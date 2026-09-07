@@ -1,0 +1,361 @@
+{
+  "build": "84",
+  "npc_comparison": [
+    {
+      "base": 25,
+      "rough": false,
+      "mode": "easy",
+      "v82NpcMean": 164.87757981077874,
+      "v83NpcMean": 137.15130927098338,
+      "reduction": 0.16816277004802793,
+      "finishers": 6,
+      "npcBoundaries": 0,
+      "current": 146.01583308419012,
+      "ratio": 1.0646331694558762,
+      "finished": 6
+    },
+    {
+      "base": 25,
+      "rough": false,
+      "mode": "normal",
+      "v82NpcMean": 160.32765872963523,
+      "v83NpcMean": 131.67429487687673,
+      "reduction": 0.17871753432810633,
+      "finishers": 6,
+      "npcBoundaries": 0,
+      "current": 139.14924340374836,
+      "ratio": 1.05676847203823,
+      "finished": 6
+    },
+    {
+      "base": 25,
+      "rough": true,
+      "mode": "easy",
+      "v82NpcMean": 182.6360648617711,
+      "v83NpcMean": 153.05406222377502,
+      "reduction": 0.16197240484996955,
+      "finishers": 6,
+      "npcBoundaries": 2,
+      "current": 161.39576556130888,
+      "ratio": 1.0545016787946324,
+      "finished": 6
+    },
+    {
+      "base": 25,
+      "rough": true,
+      "mode": "normal",
+      "v82NpcMean": 171.10707105088335,
+      "v83NpcMean": 146.96153251738968,
+      "reduction": 0.14111362192806942,
+      "finishers": 6,
+      "npcBoundaries": 0,
+      "current": 156.27624427031574,
+      "ratio": 1.0633819720941184,
+      "finished": 6
+    },
+    {
+      "base": 45,
+      "rough": false,
+      "mode": "easy",
+      "v82NpcMean": 139.4408018128597,
+      "v83NpcMean": 118.32448227805064,
+      "reduction": 0.15143572942981764,
+      "finishers": 6,
+      "npcBoundaries": 0,
+      "current": 124.838516870537,
+      "ratio": 1.055052297437305,
+      "finished": 6
+    },
+    {
+      "base": 45,
+      "rough": false,
+      "mode": "normal",
+      "v82NpcMean": 134.1385403353842,
+      "v83NpcMean": 113.98250085744955,
+      "reduction": 0.15026285083719304,
+      "finishers": 6,
+      "npcBoundaries": 0,
+      "current": 119.30588480451755,
+      "ratio": 1.0467035194615146,
+      "finished": 6
+    },
+    {
+      "base": 45,
+      "rough": true,
+      "mode": "easy",
+      "v82NpcMean": 150.8757842776456,
+      "v83NpcMean": 128.08236625755288,
+      "reduction": 0.15107406486217612,
+      "finishers": 6,
+      "npcBoundaries": 2,
+      "current": 134.2913403839338,
+      "ratio": 1.0484764164482696,
+      "finished": 6
+    },
+    {
+      "base": 45,
+      "rough": true,
+      "mode": "normal",
+      "v82NpcMean": 146.00490567644172,
+      "v83NpcMean": 122.99858367275306,
+      "reduction": 0.1575722534602534,
+      "finishers": 6,
+      "npcBoundaries": 0,
+      "current": 131.37334723839393,
+      "ratio": 1.06808829269061,
+      "finished": 6
+    },
+    {
+      "base": 85,
+      "rough": false,
+      "mode": "easy",
+      "v82NpcMean": 108.59244204511614,
+      "v83NpcMean": 94.43682542401716,
+      "reduction": 0.130355449739475,
+      "finishers": 6,
+      "npcBoundaries": 0,
+      "current": 99.25682347252697,
+      "ratio": 1.051039390903583,
+      "finished": 6
+    },
+    {
+      "base": 85,
+      "rough": false,
+      "mode": "normal",
+      "v82NpcMean": 103.39006242721867,
+      "v83NpcMean": 91.3722522391618,
+      "reduction": 0.1162375755069961,
+      "finishers": 6,
+      "npcBoundaries": 3,
+      "current": 95.80885672354012,
+      "ratio": 1.0485552711644424,
+      "finished": 6
+    },
+    {
+      "base": 85,
+      "rough": true,
+      "mode": "easy",
+      "v82NpcMean": 113.2035196413894,
+      "v83NpcMean": 100.80095459456041,
+      "reduction": 0.10955988900449676,
+      "finishers": 6,
+      "npcBoundaries": 10,
+      "current": 105.22408679104876,
+      "ratio": 1.0438798641766736,
+      "finished": 6
+    },
+    {
+      "base": 85,
+      "rough": true,
+      "mode": "normal",
+      "v82NpcMean": 108.62290914993324,
+      "v83NpcMean": 98.39222162912512,
+      "reduction": 0.09418535740638845,
+      "finishers": 6,
+      "npcBoundaries": 8,
+      "current": 100.10767456735618,
+      "ratio": 1.0174348430173394,
+      "finished": 6
+    }
+  ],
+  "rookie_spectator": {
+    "easy": [
+      {
+        "seed": 91,
+        "place": 3,
+        "finish": true,
+        "money": 11.5
+      },
+      {
+        "seed": 204,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 317,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 430,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 543,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 656,
+        "place": 6,
+        "finish": true,
+        "money": 2.3
+      },
+      {
+        "seed": 769,
+        "place": 4,
+        "finish": true,
+        "money": 6.9
+      },
+      {
+        "seed": 882,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 995,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1108,
+        "place": 4,
+        "finish": true,
+        "money": 6.9
+      },
+      {
+        "seed": 1221,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 1334,
+        "place": 3,
+        "finish": true,
+        "money": 11.5
+      },
+      {
+        "seed": 1447,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 1560,
+        "place": 4,
+        "finish": true,
+        "money": 6.9
+      },
+      {
+        "seed": 1673,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1786,
+        "place": 6,
+        "finish": true,
+        "money": 2.3
+      }
+    ],
+    "normal": [
+      {
+        "seed": 91,
+        "place": 4,
+        "finish": true,
+        "money": 6.9
+      },
+      {
+        "seed": 204,
+        "place": 3,
+        "finish": true,
+        "money": 11.5
+      },
+      {
+        "seed": 317,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 430,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 543,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 656,
+        "place": 6,
+        "finish": true,
+        "money": 2.3
+      },
+      {
+        "seed": 769,
+        "place": 6,
+        "finish": true,
+        "money": 2.3
+      },
+      {
+        "seed": 882,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 995,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1108,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 1221,
+        "place": 4,
+        "finish": true,
+        "money": 6.9
+      },
+      {
+        "seed": 1334,
+        "place": 3,
+        "finish": true,
+        "money": 11.5
+      },
+      {
+        "seed": 1447,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 1560,
+        "place": 3,
+        "finish": true,
+        "money": 11.5
+      },
+      {
+        "seed": 1673,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1786,
+        "place": 6,
+        "finish": true,
+        "money": 2.3
+      }
+    ]
+  },
+  "browser_tested": false,
+  "android_device_tested": false
+}

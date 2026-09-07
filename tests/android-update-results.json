@@ -1,0 +1,65 @@
+{
+  "passed": 14,
+  "failed": 0,
+  "results": [
+    {
+      "name": "金額は万未満を表示せず、10,000万円から億を使う",
+      "passed": true
+    },
+    {
+      "name": "WebGL共有uniform・varyingは両シェーダーで同じ精度を明示",
+      "passed": true
+    },
+    {
+      "name": "3D初期化 unavailable でも新しいCanvasで一人称描画を継続",
+      "passed": true
+    },
+    {
+      "name": "3D初期化 compile でも新しいCanvasで一人称描画を継続",
+      "passed": true
+    },
+    {
+      "name": "3D初期化 link でも新しいCanvasで一人称描画を継続",
+      "passed": true
+    },
+    {
+      "name": "軽量表示を指定すればWebGLの初期化を使わない",
+      "passed": true
+    },
+    {
+      "name": "軽量一人称描画はターン、雨、転覆、画面サイズ変更で有限な座標を使う",
+      "passed": true
+    },
+    {
+      "name": "手前を横切るポリゴンをクリップし、投影の無限大を防ぐ",
+      "passed": true
+    },
+    {
+      "name": "Pointer Captureが失敗しても、指を離す・キャンセルで入力が解除される",
+      "passed": true
+    },
+    {
+      "name": "Touch Eventsの代替処理で操舵と加速の2本指を独立して維持",
+      "passed": true
+    },
+    {
+      "name": "操船せずに着順・賞金・成長を確定し、次走へ進める",
+      "passed": true
+    },
+    {
+      "name": "おまかせの分割計算・中断復元と一括計算で着順が一致する",
+      "passed": true
+    },
+    {
+      "name": "レース途中のおまかせはスタートに戻さず、現在の位置と時間から続ける",
+      "passed": true
+    },
+    {
+      "name": "登録選手のおまかせレースもコインを一度だけ清算",
+      "passed": true
+    }
+  ],
+  "method": "Node.js calculation and mocked graphics / input API tests; no browser or device",
+  "browser_tested": false,
+  "android_device_tested": false
+}

@@ -1,0 +1,97 @@
+{
+  "trialsPerPolicy": 80,
+  "seeds": "trial × 671 + 3456",
+  "skillCatalogCount": 49,
+  "assumptions": [
+    "新規選手、再抽選なし",
+    "ショップ・アイテム未使用",
+    "自動指示",
+    "training: 最低能力を毎回練習",
+    "tuning: 毎回調整（モーター/プロペラ交互）",
+    "mixed: 3走に1回調整、残りは最低能力を練習",
+    "登録・ライバルの持越しなし（同育成内の記憶ライバルは有効）"
+  ],
+  "policies": [
+    {
+      "policy": "training",
+      "trials": 80,
+      "sgReached": 50,
+      "sgRate": 0.625,
+      "sgChampions": 5,
+      "sgWinConditional": 0.1,
+      "playerWinRate": 0.424886191198786,
+      "capsizeRate": 0.0037936267071320183,
+      "qualificationFinalRate": 0.5855072463768116,
+      "g1EarningsMedian": 2320.3,
+      "g1EarningsP10": 563.5,
+      "g1EarningsP90": 5251.400000000001,
+      "finalAverageStats": 85.37485000000002,
+      "races": 3954,
+      "decisions": {
+        "sashi": 1533,
+        "rest": 237,
+        "guard": 2507,
+        "front": 1441,
+        "stretch": 1900,
+        "position": 1810,
+        "outside": 980,
+        "gamble": 1203,
+        "chase": 229
+      }
+    },
+    {
+      "policy": "tuning",
+      "trials": 80,
+      "sgReached": 6,
+      "sgRate": 0.075,
+      "sgChampions": 0,
+      "sgWinConditional": 0,
+      "playerWinRate": 0.17167630057803468,
+      "capsizeRate": 0.005491329479768786,
+      "qualificationFinalRate": 0.22445820433436534,
+      "g1EarningsMedian": 774.8000000000001,
+      "g1EarningsP10": 312.3,
+      "g1EarningsP90": 1469.6999999999998,
+      "finalAverageStats": 61.36085000000001,
+      "races": 3460,
+      "decisions": {
+        "sashi": 1854,
+        "rest": 518,
+        "gamble": 2261,
+        "guard": 1168,
+        "stretch": 1060,
+        "outside": 552,
+        "position": 1875,
+        "front": 1054,
+        "chase": 12
+      }
+    },
+    {
+      "policy": "mixed",
+      "trials": 80,
+      "sgReached": 30,
+      "sgRate": 0.375,
+      "sgChampions": 0,
+      "sgWinConditional": 0,
+      "playerWinRate": 0.2718211206896552,
+      "capsizeRate": 0.006734913793103448,
+      "qualificationFinalRate": 0.36716417910447763,
+      "g1EarningsMedian": 1281.5000000000002,
+      "g1EarningsP10": 376.79999999999995,
+      "g1EarningsP90": 3310.0999999999995,
+      "finalAverageStats": 74.08859999999999,
+      "races": 3712,
+      "decisions": {
+        "sashi": 1704,
+        "rest": 284,
+        "gamble": 1820,
+        "guard": 1717,
+        "stretch": 1427,
+        "outside": 789,
+        "position": 1990,
+        "front": 1219,
+        "chase": 150
+      }
+    }
+  ]
+}

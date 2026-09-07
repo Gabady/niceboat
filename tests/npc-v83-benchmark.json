@@ -1,0 +1,127 @@
+{
+  "build": "83",
+  "rows": [
+    {
+      "base": 25,
+      "rough": false,
+      "mode": "easy",
+      "v82NpcMean": 164.87757981077874,
+      "v83NpcMean": 137.15130927098338,
+      "reduction": 0.16816277004802793,
+      "finishers": 6,
+      "npcBoundaries": 0
+    },
+    {
+      "base": 25,
+      "rough": false,
+      "mode": "normal",
+      "v82NpcMean": 160.32765872963523,
+      "v83NpcMean": 131.67429487687673,
+      "reduction": 0.17871753432810633,
+      "finishers": 6,
+      "npcBoundaries": 0
+    },
+    {
+      "base": 25,
+      "rough": true,
+      "mode": "easy",
+      "v82NpcMean": 182.6360648617711,
+      "v83NpcMean": 153.05406222377502,
+      "reduction": 0.16197240484996955,
+      "finishers": 6,
+      "npcBoundaries": 2
+    },
+    {
+      "base": 25,
+      "rough": true,
+      "mode": "normal",
+      "v82NpcMean": 171.10707105088335,
+      "v83NpcMean": 146.96153251738968,
+      "reduction": 0.14111362192806942,
+      "finishers": 6,
+      "npcBoundaries": 0
+    },
+    {
+      "base": 45,
+      "rough": false,
+      "mode": "easy",
+      "v82NpcMean": 139.4408018128597,
+      "v83NpcMean": 118.32448227805064,
+      "reduction": 0.15143572942981764,
+      "finishers": 6,
+      "npcBoundaries": 0
+    },
+    {
+      "base": 45,
+      "rough": false,
+      "mode": "normal",
+      "v82NpcMean": 134.1385403353842,
+      "v83NpcMean": 113.98250085744955,
+      "reduction": 0.15026285083719304,
+      "finishers": 6,
+      "npcBoundaries": 0
+    },
+    {
+      "base": 45,
+      "rough": true,
+      "mode": "easy",
+      "v82NpcMean": 150.8757842776456,
+      "v83NpcMean": 128.08236625755288,
+      "reduction": 0.15107406486217612,
+      "finishers": 6,
+      "npcBoundaries": 2
+    },
+    {
+      "base": 45,
+      "rough": true,
+      "mode": "normal",
+      "v82NpcMean": 146.00490567644172,
+      "v83NpcMean": 122.99858367275306,
+      "reduction": 0.1575722534602534,
+      "finishers": 6,
+      "npcBoundaries": 0
+    },
+    {
+      "base": 85,
+      "rough": false,
+      "mode": "easy",
+      "v82NpcMean": 108.59244204511614,
+      "v83NpcMean": 94.43682542401716,
+      "reduction": 0.130355449739475,
+      "finishers": 6,
+      "npcBoundaries": 0
+    },
+    {
+      "base": 85,
+      "rough": false,
+      "mode": "normal",
+      "v82NpcMean": 103.39006242721867,
+      "v83NpcMean": 91.3722522391618,
+      "reduction": 0.1162375755069961,
+      "finishers": 6,
+      "npcBoundaries": 3
+    },
+    {
+      "base": 85,
+      "rough": true,
+      "mode": "easy",
+      "v82NpcMean": 113.2035196413894,
+      "v83NpcMean": 100.80095459456041,
+      "reduction": 0.10955988900449676,
+      "finishers": 6,
+      "npcBoundaries": 10
+    },
+    {
+      "base": 85,
+      "rough": true,
+      "mode": "normal",
+      "v82NpcMean": 108.62290914993324,
+      "v83NpcMean": 98.39222162912512,
+      "reduction": 0.09418535740638845,
+      "finishers": 6,
+      "npcBoundaries": 8
+    }
+  ],
+  "browser_tested": false,
+  "android_device_tested": false
+}

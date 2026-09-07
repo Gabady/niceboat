@@ -1,0 +1,150 @@
+{
+  "passed": 20,
+  "failed": 0,
+  "results": [
+    {
+      "name": "600m×3周・反時計回り・内側境界を外へ移し小回りを制限",
+      "passed": true
+    },
+    {
+      "name": "4〜6コースは後方配置、助走中から全艇が同じ物理で動く",
+      "passed": true
+    },
+    {
+      "name": "船首の線分横断でF / ST0 / ST0.999 / Lを判定",
+      "passed": true
+    },
+    {
+      "name": "フライングは実際のアクセル操作で発生し、切替後も0pt・0賞金",
+      "passed": true
+    },
+    {
+      "name": "無操作でスタート期限を過ぎるとL、復旧ボタンで判定を取り消せない",
+      "passed": true
+    },
+    {
+      "name": "ブレーキ入力は物理に存在せず、同じアクセルを抜けば同じ減速",
+      "passed": true
+    },
+    {
+      "name": "5能力を上げると最高速・加速・グリップ・応答・耐波性が改善",
+      "passed": true
+    },
+    {
+      "name": "引き波は実際の位置に残り、接触していない艇の横流れを変える",
+      "passed": true
+    },
+    {
+      "name": "強い旋回と体幹、波を支配する能力で水の乱れを抑える",
+      "passed": true
+    },
+    {
+      "name": "船首と船尾も衝突し、双方の速度・進路に反作用がある",
+      "passed": true
+    },
+    {
+      "name": "内側境界への投影でショートカット距離を獲得しない",
+      "passed": true
+    },
+    {
+      "name": "NPCは内を守り、塞がれると外や差しの進路へ切り替える",
+      "passed": true
+    },
+    {
+      "name": "妨害は届く距離と条件がある。遠い艇には発動対象を作らない",
+      "passed": true
+    },
+    {
+      "name": "妨害の水面効果も50% / 100%反射し、二重反射しない",
+      "passed": true
+    },
+    {
+      "name": "高レアカットインは水面効果の発動IDと艇番を直接保持",
+      "passed": true
+    },
+    {
+      "name": "出走前のスキップも3周の実走を観戦し、同じレースを二重清算しない（v83）",
+      "passed": true
+    },
+    {
+      "name": "実走途中の観戦切替は位置・時間・水面・能力効果を保存する",
+      "passed": true
+    },
+    {
+      "name": "登録選手の観戦は原本を育成せず、コインも一度だけ清算",
+      "passed": true
+    },
+    {
+      "name": "旧コースの未完了セーブは育成を保ち、助走開始へ移行",
+      "passed": true
+    },
+    {
+      "name": "低能力でも完走可能だが、滑りとタイムで育成差が出る",
+      "passed": true
+    }
+  ],
+  "balance": [
+    {
+      "base": 25,
+      "weather": "晴れ・無風",
+      "meanSeconds": 133.4700124743331,
+      "meanSlideSeconds": 71.74444444444165,
+      "meanST": 0.19602177353538922,
+      "contacts": 19,
+      "lineChanges": 142,
+      "finishes": 6
+    },
+    {
+      "base": 25,
+      "weather": "雨・横風10",
+      "meanSeconds": 149.0686522518072,
+      "meanSlideSeconds": 86.82777777777414,
+      "meanST": 0.19656482812007922,
+      "contacts": 7,
+      "lineChanges": 127,
+      "finishes": 6
+    },
+    {
+      "base": 45,
+      "weather": "晴れ・無風",
+      "meanSeconds": 115.55308027374315,
+      "meanSlideSeconds": 59.56666666666457,
+      "meanST": 0.17570981039445618,
+      "contacts": 23,
+      "lineChanges": 148,
+      "finishes": 6
+    },
+    {
+      "base": 45,
+      "weather": "雨・横風10",
+      "meanSeconds": 124.63808964336216,
+      "meanSlideSeconds": 73.19722222221937,
+      "meanST": 0.1619272972569196,
+      "contacts": 23,
+      "lineChanges": 143,
+      "finishes": 6
+    },
+    {
+      "base": 85,
+      "weather": "晴れ・無風",
+      "meanSeconds": 92.55270777559802,
+      "meanSlideSeconds": 50.813888888887284,
+      "meanST": 0.12428178284475555,
+      "contacts": 23,
+      "lineChanges": 141,
+      "finishes": 6
+    },
+    {
+      "base": 85,
+      "weather": "雨・横風10",
+      "meanSeconds": 99.54586347765064,
+      "meanSlideSeconds": 60.69722222222006,
+      "meanST": 0.1109248827145687,
+      "contacts": 35,
+      "lineChanges": 170,
+      "finishes": 6
+    }
+  ],
+  "browser_tested": false,
+  "android_device_tested": false
+}

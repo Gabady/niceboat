@@ -1,0 +1,84 @@
+{
+  "checks": [
+    {
+      "name": "分割版がCSSと5つのJSのローカル参照を持つ",
+      "passed": true
+    },
+    {
+      "name": "参照ファイルがすべて存在",
+      "passed": true
+    },
+    {
+      "name": "単体版に外部参照なし・5つのインラインJSとCSSを保持",
+      "passed": true
+    },
+    {
+      "name": "単体版のdata.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "data.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のracing.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "racing.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のrace-renderer.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "race-renderer.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のdriving-ui.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "driving-ui.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のscript.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "script.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版CSSが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "CSSの区切り・引用符",
+      "passed": true
+    },
+    {
+      "name": "スマホ幅・動きを減らす設定を含む",
+      "passed": true
+    },
+    {
+      "name": "ネットワークAPIを使用しない",
+      "passed": true
+    }
+  ],
+  "hashes": {
+    "index.html": "58988f0ce9de083c0b7880107b658086cb287c949b72b668b3a8d3c0133878b3",
+    "style.css": "78947fe1b4d0535d98a27a631dee394139ede459b0dd531c318579b27ce7661e",
+    "data.js": "4c8df8b11c9f95318fafc9e5ff3cd9ddee334c2d0d1e3b83607dd80671fce148",
+    "racing.js": "22df101bce922c2e24de71966fe7d17401098ce490e36bb38f30210d37364e60",
+    "race-renderer.js": "90851479d22e0887c504379a7729be80a28690455800dfda6a81a6f6b75143b9",
+    "driving-ui.js": "1e24a31d8f523bc269510cc37642c032a754eeae8c6ab25cca648f3f26e19fce",
+    "script.js": "1710f275ee513d5b8450741049c08fb5817384c0fbb08812bce519e46db40ff5",
+    "index_android_safe.html": "822dd75430e1798f4853c36b19a240b9051e6ca84783aff14a5c1f0babcba780"
+  },
+  "browser_testing": false,
+  "android_device_testing": false
+}

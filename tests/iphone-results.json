@@ -1,0 +1,25 @@
+{
+  "version": "85.1",
+  "passed": 4,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Safari表示領域の高さを使い、ピンチズーム時は画面を縮め直さない",
+      "passed": true
+    },
+    {
+      "name": "JSONの内容・名前・形式を保ち、共有APIをクリック直後に呼ぶ",
+      "passed": true
+    },
+    {
+      "name": "非HTTPS環境やAPI非対応は例外を出さずテキスト退避へ進む",
+      "passed": true
+    },
+    {
+      "name": "共有キャンセルと保存失敗を区別して保存済みと誤表示しない",
+      "passed": true
+    }
+  ],
+  "iphone_device_tested": false,
+  "browser_tested": false
+}

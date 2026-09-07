@@ -1,0 +1,12 @@
+'use strict';
+// Frozen v82 NPC means were measured from release_v82/racing.js using these same fixtures.
+// Only the five non-player boats are averaged; the player uses AI without NPC pace boosts.
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const source=fs.existsSync(path.join(__dirname,'../dist/script.js'))?'../dist/':'../';
+const E=require(source+'script.js'),R=E.R,D=E.D;
+const baselines=[{"base": 25, "rough": false, "mode": "easy", "v82NpcMean": 164.87757981077874}, {"base": 25, "rough": false, "mode": "normal", "v82NpcMean": 160.32765872963523}, {"base": 25, "rough": true, "mode": "easy", "v82NpcMean": 182.6360648617711}, {"base": 25, "rough": true, "mode": "normal", "v82NpcMean": 171.10707105088335}, {"base": 45, "rough": false, "mode": "easy", "v82NpcMean": 139.4408018128597}, {"base": 45, "rough": false, "mode": "normal", "v82NpcMean": 134.1385403353842}, {"base": 45, "rough": true, "mode": "easy", "v82NpcMean": 150.8757842776456}, {"base": 45, "rough": true, "mode": "normal", "v82NpcMean": 146.00490567644172}, {"base": 85, "rough": false, "mode": "easy", "v82NpcMean": 108.59244204511614}, {"base": 85, "rough": false, "mode": "normal", "v82NpcMean": 103.39006242721867}, {"base": 85, "rough": true, "mode": "easy", "v82NpcMean": 113.2035196413894}, {"base": 85, "rough": true, "mode": "normal", "v82NpcMean": 108.62290914993324}];
+
+const rows=[];
+for(const row of baselines){const {base,rough,mode}=row,s=E.newState(93),people=Array.from({length:6},(_,i)=>{const p=E.character(s,'検証艇'+i);p.stats=Object.fromEntries(D.statKeys.map(k=>[k,base]));p.skills=[];p.equipment=E.equipment(s);return p;});const r=E.makeRace(s,people,D.venues[rough?3:0],{weather:rough?'雨':'晴れ',wind:rough?'横風':'無風',windSpeed:rough?10:0},'qualifier',people[0].id);r.difficulty=mode;const d=R.runAI(r,121),npc=d.boats.filter(b=>!b.isPlayer),mean=npc.reduce((sum,b)=>sum+b.finishTime,0)/5;
+const result={...row,v83NpcMean:mean,reduction:1-mean/row.v82NpcMean,finishers:d.boats.filter(b=>b.finishTime!==null).length,npcBoundaries:npc.reduce((sum,b)=>sum+b.metrics.boundaries,0)};rows.push(result);assert.equal(result.finishers,6);assert.ok(result.reduction>.08,'NPC pace must be substantially faster than v82: '+JSON.stringify(result));}
+const report={build:D.build,rows,browser_tested:false,android_device_tested:false};fs.writeFileSync(path.join(__dirname,'npc-v83-benchmark.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(rows));

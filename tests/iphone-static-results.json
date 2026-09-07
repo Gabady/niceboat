@@ -1,0 +1,47 @@
+{
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "name": "iPhone単体に外部JS/CSS参照なし",
+      "passed": true
+    },
+    {
+      "name": "互換処理→データ→計算→描画→入力→育成の順で埋め込み",
+      "passed": true
+    },
+    {
+      "name": "iphone-compat.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "data.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "racing.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "race-renderer.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "driving-ui.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "script.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "全インラインJSの構文",
+      "passed": true
+    },
+    {
+      "name": "共通CSSとiPhone追加CSSが一致",
+      "passed": true
+    }
+  ],
+  "iphone_device_tested": false
+}

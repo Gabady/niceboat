@@ -1,0 +1,615 @@
+{
+  "assertions": 1378,
+  "passed": 22,
+  "failed": 0,
+  "results": [
+    {
+      "name": "端数を保持し表示だけ切り下げ、ランク境界を維持",
+      "passed": true
+    },
+    {
+      "name": "反時計回りの幾何と全周の投影が一致",
+      "passed": true
+    },
+    {
+      "name": "助走中、入力なしでは自動前進せず、アクセルで物理移動",
+      "passed": true
+    },
+    {
+      "name": "有効スタート後に左へ操舵でき、アクセルを離すと減速",
+      "passed": true
+    },
+    {
+      "name": "安定系スキル・旋回能力が実際のグリップを改善",
+      "passed": true
+    },
+    {
+      "name": "セッティングと機材・環境が物理性能に反映",
+      "passed": true
+    },
+    {
+      "name": "保存と復元後、同一入力は同一の位置・速度・抽選になる",
+      "passed": true
+    },
+    {
+      "name": "30 / 60 / 120fpsで固定60Hzの走行結果が一致",
+      "passed": true
+    },
+    {
+      "name": "一時停止と立て直しで位置・順位の進行を水増ししない",
+      "passed": true
+    },
+    {
+      "name": "逆走は進行距離を増やさず、3周前にゴールしない",
+      "passed": true
+    },
+    {
+      "name": "実走のゴール順で賞金とポイント、二重清算を防止",
+      "passed": true
+    },
+    {
+      "name": "制限時間でリタイア、転覆と区別して0pt・0賞金",
+      "passed": true
+    },
+    {
+      "name": "転覆地点は固定され、完走艇より後ろに並ぶ",
+      "passed": true
+    },
+    {
+      "name": "妨害の50%・完全反射は再反射しない",
+      "passed": true
+    },
+    {
+      "name": "高レア発動イベントに能力ID・艇番・時間が直接入る",
+      "passed": true
+    },
+    {
+      "name": "旧v70セーブの育成を維持、未完了レースだけ再スタート",
+      "passed": true
+    },
+    {
+      "name": "壊れた走行JSON・能力ID・描画座標を拒否",
+      "passed": true
+    },
+    {
+      "name": "登録選手レースも任意の1艇を操船、原本は成長しない",
+      "passed": true
+    },
+    {
+      "name": "左右操舵範囲とミニマップの番号配置が有界",
+      "passed": true
+    },
+    {
+      "name": "3Dジオメトリ・視点行列が有限、前方の物体を投影できる",
+      "passed": true
+    },
+    {
+      "name": "新人〜SG相当・晴天/強風で全6艇が3周を完走",
+      "passed": true
+    },
+    {
+      "name": "実走から全9シリーズの終了・登録へ到達（SG条件は検証用に充足）",
+      "passed": true
+    }
+  ],
+  "ai": [
+    {
+      "base": 40,
+      "weather": "晴れ・無風",
+      "seed": 91,
+      "finishes": [
+        {
+          "frame": 5,
+          "seconds": 111.43,
+          "contacts": 2,
+          "boundaries": 0
+        },
+        {
+          "frame": 1,
+          "seconds": 113.57,
+          "contacts": 9,
+          "boundaries": 0
+        },
+        {
+          "frame": 3,
+          "seconds": 114.02,
+          "contacts": 11,
+          "boundaries": 0
+        },
+        {
+          "frame": 2,
+          "seconds": 119.71,
+          "contacts": 1,
+          "boundaries": 0
+        },
+        {
+          "frame": 6,
+          "seconds": 125.68,
+          "contacts": 6,
+          "boundaries": 0
+        },
+        {
+          "frame": 4,
+          "seconds": 126.33,
+          "contacts": 5,
+          "boundaries": 0
+        }
+      ]
+    },
+    {
+      "base": 40,
+      "weather": "晴れ・無風",
+      "seed": 212,
+      "finishes": [
+        {
+          "frame": 1,
+          "seconds": 112.01,
+          "contacts": 3,
+          "boundaries": 0
+        },
+        {
+          "frame": 2,
+          "seconds": 113.22,
+          "contacts": 5,
+          "boundaries": 0
+        },
+        {
+          "frame": 3,
+          "seconds": 119.59,
+          "contacts": 9,
+          "boundaries": 0
+        },
+        {
+          "frame": 5,
+          "seconds": 125.93,
+          "contacts": 17,
+          "boundaries": 0
+        },
+        {
+          "frame": 4,
+          "seconds": 128.51,
+          "contacts": 22,
+          "boundaries": 0
+        },
+        {
+          "frame": 6,
+          "seconds": 128.9,
+          "contacts": 22,
+          "boundaries": 0
+        }
+      ]
+    },
+    {
+      "base": 40,
+      "weather": "雨・横風10",
+      "seed": 91,
+      "finishes": [
+        {
+          "frame": 5,
+          "seconds": 119.33,
+          "contacts": 6,
+          "boundaries": 0
+        },
+        {
+          "frame": 1,
+          "seconds": 125.03,
+          "contacts": 11,
+          "boundaries": 2
+        },
+        {
+          "frame": 3,
+          "seconds": 125.99,
+          "contacts": 15,
+          "boundaries": 1
+        },
+        {
+          "frame": 2,
+          "seconds": 129.71,
+          "contacts": 1,
+          "boundaries": 0
+        },
+        {
+          "frame": 4,
+          "seconds": 137.51,
+          "contacts": 0,
+          "boundaries": 0
+        },
+        {
+          "frame": 6,
+          "seconds": 140.52,
+          "contacts": 1,
+          "boundaries": 1
+        }
+      ]
+    },
+    {
+      "base": 40,
+      "weather": "雨・横風10",
+      "seed": 212,
+      "finishes": [
+        {
+          "frame": 1,
+          "seconds": 119.99,
+          "contacts": 1,
+          "boundaries": 0
+        },
+        {
+          "frame": 2,
+          "seconds": 123.72,
+          "contacts": 2,
+          "boundaries": 1
+        },
+        {
+          "frame": 3,
+          "seconds": 134.47,
+          "contacts": 4,
+          "boundaries": 0
+        },
+        {
+          "frame": 5,
+          "seconds": 138.12,
+          "contacts": 13,
+          "boundaries": 1
+        },
+        {
+          "frame": 4,
+          "seconds": 140.33,
+          "contacts": 3,
+          "boundaries": 0
+        },
+        {
+          "frame": 6,
+          "seconds": 140.98,
+          "contacts": 9,
+          "boundaries": 1
+        }
+      ]
+    },
+    {
+      "base": 70,
+      "weather": "晴れ・無風",
+      "seed": 91,
+      "finishes": [
+        {
+          "frame": 3,
+          "seconds": 93.83,
+          "contacts": 3,
+          "boundaries": 0
+        },
+        {
+          "frame": 5,
+          "seconds": 94.57,
+          "contacts": 6,
+          "boundaries": 0
+        },
+        {
+          "frame": 1,
+          "seconds": 95.64,
+          "contacts": 1,
+          "boundaries": 0
+        },
+        {
+          "frame": 2,
+          "seconds": 98.75,
+          "contacts": 4,
+          "boundaries": 0
+        },
+        {
+          "frame": 6,
+          "seconds": 102.8,
+          "contacts": 3,
+          "boundaries": 2
+        },
+        {
+          "frame": 4,
+          "seconds": 105.3,
+          "contacts": 3,
+          "boundaries": 0
+        }
+      ]
+    },
+    {
+      "base": 70,
+      "weather": "晴れ・無風",
+      "seed": 212,
+      "finishes": [
+        {
+          "frame": 1,
+          "seconds": 92.87,
+          "contacts": 2,
+          "boundaries": 0
+        },
+        {
+          "frame": 2,
+          "seconds": 94.8,
+          "contacts": 3,
+          "boundaries": 0
+        },
+        {
+          "frame": 5,
+          "seconds": 101.34,
+          "contacts": 6,
+          "boundaries": 0
+        },
+        {
+          "frame": 4,
+          "seconds": 106.16,
+          "contacts": 2,
+          "boundaries": 0
+        },
+        {
+          "frame": 3,
+          "seconds": 106.28,
+          "contacts": 6,
+          "boundaries": 2
+        },
+        {
+          "frame": 6,
+          "seconds": 107.36,
+          "contacts": 5,
+          "boundaries": 0
+        }
+      ]
+    },
+    {
+      "base": 70,
+      "weather": "雨・横風10",
+      "seed": 91,
+      "finishes": [
+        {
+          "frame": 1,
+          "seconds": 99.35,
+          "contacts": 4,
+          "boundaries": 1
+        },
+        {
+          "frame": 3,
+          "seconds": 100.94,
+          "contacts": 5,
+          "boundaries": 1
+        },
+        {
+          "frame": 5,
+          "seconds": 101.4,
+          "contacts": 13,
+          "boundaries": 1
+        },
+        {
+          "frame": 2,
+          "seconds": 106.19,
+          "contacts": 10,
+          "boundaries": 2
+        },
+        {
+          "frame": 6,
+          "seconds": 111.54,
+          "contacts": 2,
+          "boundaries": 2
+        },
+        {
+          "frame": 4,
+          "seconds": 114.88,
+          "contacts": 2,
+          "boundaries": 4
+        }
+      ]
+    },
+    {
+      "base": 70,
+      "weather": "雨・横風10",
+      "seed": 212,
+      "finishes": [
+        {
+          "frame": 1,
+          "seconds": 98.48,
+          "contacts": 3,
+          "boundaries": 1
+        },
+        {
+          "frame": 2,
+          "seconds": 100.98,
+          "contacts": 5,
+          "boundaries": 0
+        },
+        {
+          "frame": 3,
+          "seconds": 106.18,
+          "contacts": 1,
+          "boundaries": 1
+        },
+        {
+          "frame": 6,
+          "seconds": 111.48,
+          "contacts": 6,
+          "boundaries": 3
+        },
+        {
+          "frame": 5,
+          "seconds": 113.57,
+          "contacts": 5,
+          "boundaries": 2
+        },
+        {
+          "frame": 4,
+          "seconds": 116.36,
+          "contacts": 4,
+          "boundaries": 4
+        }
+      ]
+    },
+    {
+      "base": 95,
+      "weather": "晴れ・無風",
+      "seed": 91,
+      "finishes": [
+        {
+          "frame": 3,
+          "seconds": 83.14,
+          "contacts": 2,
+          "boundaries": 0
+        },
+        {
+          "frame": 1,
+          "seconds": 83.92,
+          "contacts": 1,
+          "boundaries": 0
+        },
+        {
+          "frame": 5,
+          "seconds": 85.13,
+          "contacts": 3,
+          "boundaries": 0
+        },
+        {
+          "frame": 2,
+          "seconds": 86.85,
+          "contacts": 1,
+          "boundaries": 0
+        },
+        {
+          "frame": 6,
+          "seconds": 89.25,
+          "contacts": 2,
+          "boundaries": 0
+        },
+        {
+          "frame": 4,
+          "seconds": 93.37,
+          "contacts": 1,
+          "boundaries": 0
+        }
+      ]
+    },
+    {
+      "base": 95,
+      "weather": "晴れ・無風",
+      "seed": 212,
+      "finishes": [
+        {
+          "frame": 1,
+          "seconds": 82.91,
+          "contacts": 1,
+          "boundaries": 0
+        },
+        {
+          "frame": 2,
+          "seconds": 84.07,
+          "contacts": 1,
+          "boundaries": 0
+        },
+        {
+          "frame": 5,
+          "seconds": 87.54,
+          "contacts": 2,
+          "boundaries": 0
+        },
+        {
+          "frame": 6,
+          "seconds": 90.2,
+          "contacts": 4,
+          "boundaries": 0
+        },
+        {
+          "frame": 3,
+          "seconds": 91.42,
+          "contacts": 5,
+          "boundaries": 2
+        },
+        {
+          "frame": 4,
+          "seconds": 94.51,
+          "contacts": 5,
+          "boundaries": 0
+        }
+      ]
+    },
+    {
+      "base": 95,
+      "weather": "雨・横風10",
+      "seed": 91,
+      "finishes": [
+        {
+          "frame": 1,
+          "seconds": 87.18,
+          "contacts": 0,
+          "boundaries": 1
+        },
+        {
+          "frame": 5,
+          "seconds": 88.97,
+          "contacts": 10,
+          "boundaries": 0
+        },
+        {
+          "frame": 2,
+          "seconds": 93.5,
+          "contacts": 10,
+          "boundaries": 0
+        },
+        {
+          "frame": 3,
+          "seconds": 95.46,
+          "contacts": 8,
+          "boundaries": 4
+        },
+        {
+          "frame": 6,
+          "seconds": 96.06,
+          "contacts": 4,
+          "boundaries": 1
+        },
+        {
+          "frame": 4,
+          "seconds": 101.68,
+          "contacts": 2,
+          "boundaries": 1
+        }
+      ]
+    },
+    {
+      "base": 95,
+      "weather": "雨・横風10",
+      "seed": 212,
+      "finishes": [
+        {
+          "frame": 2,
+          "seconds": 88.95,
+          "contacts": 1,
+          "boundaries": 0
+        },
+        {
+          "frame": 1,
+          "seconds": 91.13,
+          "contacts": 0,
+          "boundaries": 4
+        },
+        {
+          "frame": 5,
+          "seconds": 96.36,
+          "contacts": 12,
+          "boundaries": 3
+        },
+        {
+          "frame": 3,
+          "seconds": 97.42,
+          "contacts": 10,
+          "boundaries": 2
+        },
+        {
+          "frame": 6,
+          "seconds": 98.68,
+          "contacts": 15,
+          "boundaries": 1
+        },
+        {
+          "frame": 4,
+          "seconds": 102.08,
+          "contacts": 4,
+          "boundaries": 5
+        }
+      ]
+    }
+  ],
+  "browser_tested": false,
+  "android_device_tested": false
+}

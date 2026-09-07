@@ -1,0 +1,49 @@
+{
+  "build": "86",
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "name": "ブイの余白を1.3mから0.45mへ縮小し、内側の横断防止は維持",
+      "passed": true
+    },
+    {
+      "name": "ブイに擦るたびに接線速度を28%ずつ奪わず、最初の接触だけ軽減",
+      "passed": true
+    },
+    {
+      "name": "低速接触時の早期復帰は0.7秒停止、進行距離とチェックポイントを増やさない",
+      "passed": true
+    },
+    {
+      "name": "離脱先に他艇がいれば別の空いたレーンへ復帰",
+      "passed": true
+    },
+    {
+      "name": "F/L・転覆・未接触の高速走行では早期復帰できない",
+      "passed": true
+    },
+    {
+      "name": "高速で境界に擦り続ける場合も離脱可能。NPCはスタック後に自動復帰",
+      "passed": true
+    },
+    {
+      "name": "復帰のクールダウンと位置は保存され、不正な追加数値は拒否",
+      "passed": true
+    },
+    {
+      "name": "広いパッドのどこをつかんでも初期舵を保持、短い相対ドラッグで端へ届く",
+      "passed": true
+    },
+    {
+      "name": "観戦ではNPC相当の走行補正にv85補助を加える。手動は自艇の通常性能",
+      "passed": true
+    },
+    {
+      "name": "途中切替は位置・F/Lを保持し、3周の結果は一度だけ清算",
+      "passed": true
+    }
+  ],
+  "browser_tested": false,
+  "android_device_tested": false
+}

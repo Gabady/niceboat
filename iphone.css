@@ -1,0 +1,12 @@
+/* Optional iPhone entrypoint. Keep the existing steering pad and race balance. */
+html.iphone-safe{-webkit-text-size-adjust:100%}
+.iphone-safe body:not(.in-race){padding-top:env(safe-area-inset-top);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);padding-bottom:env(safe-area-inset-bottom)}
+.iphone-safe input:not([type=checkbox]):not([type=radio]),.iphone-safe select,.iphone-safe textarea{font-size:16px}
+.iphone-safe .drive-shell{height:100svh;height:var(--iphone-height,100dvh);min-height:0;max-height:none;-webkit-touch-callout:none}
+.iphone-safe .drive-controls{left:max(14px,env(safe-area-inset-left));right:max(14px,env(safe-area-inset-right))}
+.iphone-safe .drive-top{left:max(16px,env(safe-area-inset-left));right:max(16px,env(safe-area-inset-right))}
+.iphone-safe .drive-overlay{padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}
+.iphone-safe .drive-dialog{max-height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.iphone-safe .drive-overlay,.iphone-safe .drive-dialog{-webkit-touch-callout:default}
+.iphone-safe .modal{max-height:calc(var(--iphone-height,100dvh) - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom));overflow:auto}
+.iphone-safe #export-json{user-select:text;-webkit-user-select:text;-webkit-touch-callout:default}

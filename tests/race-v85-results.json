@@ -1,0 +1,116 @@
+{
+  "build": "86",
+  "passed": 11,
+  "failed": 0,
+  "results": [
+    {
+      "name": "モンキー系4名称だけを変更し、IDと旧セーブの所持状態は維持",
+      "passed": true
+    },
+    {
+      "name": "観戦自艇の補助は現行の難易度別設定、手動とNPCには上乗せしない",
+      "passed": true
+    },
+    {
+      "name": "5能力のいずれを下げても対応する走行性能が下がる",
+      "passed": true
+    },
+    {
+      "name": "終盤の消耗が伸びと応答に反映され、フィジカルが消耗を抑える",
+      "passed": true
+    },
+    {
+      "name": "連携は能力2系統と基礎能力を満たした時のみ成立、片方だけでは無効",
+      "passed": true
+    },
+    {
+      "name": "先手必勝は内進入の序盤だけ有効、応答上昇と消耗増を伴う",
+      "passed": true
+    },
+    {
+      "name": "差し返しはターン出口の4秒だけ再加速し、最高速に小さな代償",
+      "passed": true
+    },
+    {
+      "name": "荒水の構え・攻防一体・整備の継走は天候・距離・周回に反応",
+      "passed": true
+    },
+    {
+      "name": "連携の実使用と出口時刻を保存し、読み込み後の計算が一致する",
+      "passed": true
+    },
+    {
+      "name": "ショップは足りない能力と成立する連携を具体的に推薦",
+      "passed": true
+    },
+    {
+      "name": "各能力を低くした自動操船でも完走可能か確認し、能力不足のタイム差を記録",
+      "passed": true
+    }
+  ],
+  "stats": [
+    {
+      "stat": "speed",
+      "base": 20.228,
+      "low": 14.108
+    },
+    {
+      "stat": "turn",
+      "base": 0.988738,
+      "low": 0.6827380000000001
+    },
+    {
+      "stat": "start",
+      "base": 3.5749999999999997,
+      "low": 2.66375
+    },
+    {
+      "stat": "accel",
+      "base": 5.7228,
+      "low": 3.5178000000000003
+    },
+    {
+      "stat": "power",
+      "base": 7.3229999999999995,
+      "low": 6.1530000000000005
+    },
+    {
+      "ablation": "baseline",
+      "seconds": 109.11889884404827,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "speed",
+      "seconds": 127.97674427354616,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "turn",
+      "seconds": 120.15391608596994,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "start",
+      "seconds": 110.81607878430535,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "accel",
+      "seconds": 110.23314093582633,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "power",
+      "seconds": 113.79457039216823,
+      "place": 6,
+      "finished": true
+    }
+  ],
+  "browser_tested": false,
+  "android_device_tested": false
+}

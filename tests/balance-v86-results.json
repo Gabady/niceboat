@@ -1,0 +1,2179 @@
+{
+  "build": 86,
+  "gradeComparison": {
+    "v85": {
+      "build": "85",
+      "modeRun": "watch",
+      "assumptions": "Synthetic matched growth budget, 5.3 stat/stage times difficulty growth, fixed acquired skills, not a full career or human driving test.",
+      "rows": [
+        {
+          "mode": "easy",
+          "grade": "rookie",
+          "runs": 6,
+          "wins": 3,
+          "top3": 4,
+          "finish": 6,
+          "meanPlace": 2.5,
+          "meanWinnerGap": 4.079542314524517,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 4,
+              "finish": 132.06856551689958,
+              "stats": 45.6,
+              "npcStats": 40.760000000000005,
+              "gap": 3.4605028081770257,
+              "behind": 7.882541727201726,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 1,
+              "finish": 124.0503019845625,
+              "stats": 42,
+              "npcStats": 40.440000000000005,
+              "gap": 5.2826340275587,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 2,
+              "finish": 118.30967717696471,
+              "stats": 47.4,
+              "npcStats": 43.239999999999995,
+              "gap": 0.34962367074366796,
+              "behind": 0.34962367074366796,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 1,
+              "finish": 124.35586329852367,
+              "stats": 45.8,
+              "npcStats": 42.400000000000006,
+              "gap": 5.984545518046559,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 1,
+              "finish": 120.85885943374606,
+              "stats": 42.6,
+              "npcStats": 41.559999999999995,
+              "gap": 1.762985989596757,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 135.45621290977547,
+              "stats": 45.4,
+              "npcStats": 43.239999999999995,
+              "gap": 7.63696187302439,
+              "behind": 18.08627104456525,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "easy",
+          "grade": "g3",
+          "runs": 6,
+          "wins": 1,
+          "top3": 5,
+          "finish": 6,
+          "meanPlace": 2.6666666666666665,
+          "meanWinnerGap": 3.947892209690925,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 2,
+              "finish": 117.43712722179473,
+              "stats": 53.55,
+              "npcStats": 53.36,
+              "gap": 3.654260977436664,
+              "behind": 3.654260977436664,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 3,
+              "finish": 114.9025307886001,
+              "stats": 49.95,
+              "npcStats": 53.239999999999995,
+              "gap": 5.146158271310227,
+              "behind": 6.849602850898819,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 1,
+              "finish": 106.98501587055969,
+              "stats": 55.35,
+              "npcStats": 53,
+              "gap": 6.224387060492205,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 2,
+              "finish": 114.53352131583985,
+              "stats": 53.75,
+              "npcStats": 53.279999999999994,
+              "gap": 4.590092213383713,
+              "behind": 4.590092213383713,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 2,
+              "finish": 111.63572027252484,
+              "stats": 50.55,
+              "npcStats": 55.480000000000004,
+              "gap": 3.8450637447878933,
+              "behind": 3.8450637447878933,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 125.49269371575232,
+              "stats": 53.35,
+              "npcStats": 51.839999999999996,
+              "gap": 0.2273909907348468,
+              "behind": 11.828778676967033,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "easy",
+          "grade": "g2",
+          "runs": 6,
+          "wins": 0,
+          "top3": 3,
+          "finish": 6,
+          "meanPlace": 4,
+          "meanWinnerGap": 4.633934009359095,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 6,
+              "finish": 114.51286335486937,
+              "stats": 61.5,
+              "npcStats": 64.56000000000002,
+              "gap": 9.539322580132577,
+              "behind": 12.402014300126439,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 5,
+              "finish": 113.84207017338156,
+              "stats": 57.9,
+              "npcStats": 62.160000000000004,
+              "gap": 2.205720753824451,
+              "behind": 11.460082914520271,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 2,
+              "finish": 103.88624069585785,
+              "stats": 63.3,
+              "npcStats": 61.44,
+              "gap": 2.2177576504074494,
+              "behind": 2.2177576504074494,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 3,
+              "finish": 106.55554745222676,
+              "stats": 61.7,
+              "npcStats": 62.92,
+              "gap": 7.274251023665045,
+              "behind": 7.688411404369845,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 3,
+              "finish": 108.18350602916907,
+              "stats": 58.5,
+              "npcStats": 64.84,
+              "gap": 1.0724615555264876,
+              "behind": 2.1344756102116946,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 5,
+              "finish": 114.16658088720119,
+              "stats": 61.3,
+              "npcStats": 64.2,
+              "gap": 5.494090492598559,
+              "behind": 15.564695677119389,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "easy",
+          "grade": "g1",
+          "runs": 6,
+          "wins": 0,
+          "top3": 1,
+          "finish": 6,
+          "meanPlace": 4.5,
+          "meanWinnerGap": 3.5812134888032077,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 5,
+              "finish": 106.85963968571515,
+              "stats": 69.45,
+              "npcStats": 73.96000000000001,
+              "gap": 3.7010522256434086,
+              "behind": 9.419153000048226,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 5,
+              "finish": 110.26797047879677,
+              "stats": 65.85,
+              "npcStats": 71.24,
+              "gap": 2.7978235878976108,
+              "behind": 10.088102873249099,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 2,
+              "finish": 102.92239650698183,
+              "stats": 71.25,
+              "npcStats": 70.12,
+              "gap": 1.4945039435810088,
+              "behind": 1.4945039435810088,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 4,
+              "finish": 100.51409141443389,
+              "stats": 69.65,
+              "npcStats": 72.24,
+              "gap": 8.959918972997826,
+              "behind": 12.262023472928846,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 5,
+              "finish": 105.91027378415981,
+              "stats": 66.45,
+              "npcStats": 74.48,
+              "gap": 0.7589075219447494,
+              "behind": 10.989276923319181,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 110.50877023877668,
+              "stats": 69.25,
+              "npcStats": 72.28,
+              "gap": 3.775074680754642,
+              "behind": 12.252868473095333,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "easy",
+          "grade": "sg",
+          "runs": 6,
+          "wins": 0,
+          "top3": 0,
+          "finish": 6,
+          "meanPlace": 6,
+          "meanWinnerGap": 2.826961863753534,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 6,
+              "finish": 100.16079641804237,
+              "stats": 77.4,
+              "npcStats": 84.47999999999999,
+              "gap": 1.4966148699287203,
+              "behind": 12.37276983186834,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 6,
+              "finish": 100.2063556349853,
+              "stats": 73.8,
+              "npcStats": 85.16,
+              "gap": 1.6834150472960374,
+              "behind": 14.07923542750828,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 6,
+              "finish": 94.60827041542971,
+              "stats": 79.2,
+              "npcStats": 85.75999999999999,
+              "gap": 4.25725290456279,
+              "behind": 11.405280956273188,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 6,
+              "finish": 96.74070672770996,
+              "stats": 77.6,
+              "npcStats": 86.84,
+              "gap": 3.407846166120592,
+              "behind": 10.046976699626725,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 6,
+              "finish": 96.90123941334613,
+              "stats": 74.4,
+              "npcStats": 86.75999999999999,
+              "gap": 0.8331247772879777,
+              "behind": 7.488201671419063,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 104.13038338333072,
+              "stats": 77.2,
+              "npcStats": 83.28,
+              "gap": 5.283517417325086,
+              "behind": 20.401649540770634,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "rookie",
+          "runs": 6,
+          "wins": 3,
+          "top3": 5,
+          "finish": 6,
+          "meanPlace": 2.1666666666666665,
+          "meanWinnerGap": 3.602153883357689,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 2,
+              "finish": 122.15617047066833,
+              "stats": 45.6,
+              "npcStats": 40.760000000000005,
+              "gap": 2.6079404049797006,
+              "behind": 2.6079404049797006,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 1,
+              "finish": 122.05374537903344,
+              "stats": 42,
+              "npcStats": 40.440000000000005,
+              "gap": 3.007337689523837,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 2,
+              "finish": 112.81696617233932,
+              "stats": 47.4,
+              "npcStats": 43.239999999999995,
+              "gap": 0.31356748493669784,
+              "behind": 0.31356748493669784,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 1,
+              "finish": 119.1435652538831,
+              "stats": 45.8,
+              "npcStats": 42.400000000000006,
+              "gap": 6.720738157018758,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 1,
+              "finish": 115.9984992279091,
+              "stats": 42.6,
+              "npcStats": 41.559999999999995,
+              "gap": 2.417632127807252,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 129.57163831997133,
+              "stats": 45.4,
+              "npcStats": 43.239999999999995,
+              "gap": 6.545707435879891,
+              "behind": 16.913147048809634,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "g3",
+          "runs": 6,
+          "wins": 4,
+          "top3": 5,
+          "finish": 6,
+          "meanPlace": 1.6666666666666667,
+          "meanWinnerGap": 3.660808203486392,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 1,
+              "finish": 108.14931245541862,
+              "stats": 56.2,
+              "npcStats": 53.36,
+              "gap": 3.165528624696961,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 2,
+              "finish": 108.43549443239131,
+              "stats": 52.6,
+              "npcStats": 53.239999999999995,
+              "gap": 4.250242494837707,
+              "behind": 4.250242494837707,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 1,
+              "finish": 101.35306553079315,
+              "stats": 58,
+              "npcStats": 53,
+              "gap": 9.10950462903746,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 1,
+              "finish": 106.29943157687462,
+              "stats": 56.4,
+              "npcStats": 53.279999999999994,
+              "gap": 2.219037301498929,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 1,
+              "finish": 105.46715372889827,
+              "stats": 53.2,
+              "npcStats": 55.480000000000004,
+              "gap": 0.4985069328115799,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 4,
+              "finish": 116.78436917200939,
+              "stats": 56,
+              "npcStats": 51.839999999999996,
+              "gap": 2.7220292380357165,
+              "behind": 7.9011711514180405,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "g2",
+          "runs": 6,
+          "wins": 1,
+          "top3": 4,
+          "finish": 6,
+          "meanPlace": 3,
+          "meanWinnerGap": 3.763662941911664,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 6,
+              "finish": 109.15940054197553,
+              "stats": 66.8,
+              "npcStats": 64.56000000000002,
+              "gap": 0.18331614875437197,
+              "behind": 7.179334162088594,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 2,
+              "finish": 104.09588859909165,
+              "stats": 63.2,
+              "npcStats": 62.160000000000004,
+              "gap": 6.9988549612806565,
+              "behind": 6.9988549612806565,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 2,
+              "finish": 97.45129158959456,
+              "stats": 68.6,
+              "npcStats": 61.44,
+              "gap": 1.1577198271714053,
+              "behind": 1.1577198271714053,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 2,
+              "finish": 98.56085279416925,
+              "stats": 67,
+              "npcStats": 62.92,
+              "gap": 3.773430551339274,
+              "behind": 3.773430551339274,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 1,
+              "finish": 98.16222630661069,
+              "stats": 63.8,
+              "npcStats": 64.84,
+              "gap": 3.0680025599268816,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 5,
+              "finish": 105.99933457007037,
+              "stats": 66.6,
+              "npcStats": 64.2,
+              "gap": 7.400653602997394,
+              "behind": 12.921713915739716,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "g1",
+          "runs": 6,
+          "wins": 2,
+          "top3": 5,
+          "finish": 6,
+          "meanPlace": 2.5,
+          "meanWinnerGap": 3.9984166960716863,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 3,
+              "finish": 96.5448958795631,
+              "stats": 77.4,
+              "npcStats": 74.12,
+              "gap": 5.114835910232884,
+              "behind": 5.379112539479252,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 3,
+              "finish": 98.31942997378314,
+              "stats": 73.8,
+              "npcStats": 73.88000000000002,
+              "gap": 2.8213513387544538,
+              "behind": 4.10372774381328,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 2,
+              "finish": 93.21394438299367,
+              "stats": 79.2,
+              "npcStats": 72.08,
+              "gap": 1.9690175730998192,
+              "behind": 1.9690175730998192,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 1,
+              "finish": 91.51380915172032,
+              "stats": 77.6,
+              "npcStats": 73.11999999999999,
+              "gap": 5.746810074149238,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 1,
+              "finish": 91.98451848532027,
+              "stats": 74.4,
+              "npcStats": 72.16,
+              "gap": 6.421509111923001,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 5,
+              "finish": 102.7995681144344,
+              "stats": 77.2,
+              "npcStats": 73.28,
+              "gap": 1.9169761682707218,
+              "behind": 10.468331236442253,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "sg",
+          "runs": 6,
+          "wins": 0,
+          "top3": 0,
+          "finish": 6,
+          "meanPlace": 5.333333333333333,
+          "meanWinnerGap": 3.2660949212327615,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 5,
+              "finish": 93.5719945069017,
+              "stats": 88,
+              "npcStats": 84.2,
+              "gap": 0.4584604875944507,
+              "behind": 10.21879964139228,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 5,
+              "finish": 89.53365027740863,
+              "stats": 84.4,
+              "npcStats": 84,
+              "gap": 5.833922039613853,
+              "behind": 12.838859008540297,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 5,
+              "finish": 91.63155732653823,
+              "stats": 89.8,
+              "npcStats": 85.76000000000002,
+              "gap": 1.0392972591000245,
+              "behind": 5.835876335541073,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 6,
+              "finish": 88.49764418937038,
+              "stats": 88.2,
+              "npcStats": 85.96,
+              "gap": 5.46966438185035,
+              "behind": 9.088824753732212,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 5,
+              "finish": 89.78085937190471,
+              "stats": 85,
+              "npcStats": 84.64,
+              "gap": 3.6794299409285287,
+              "behind": 10.807036101333594,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 94.82409082079137,
+              "stats": 87.8,
+              "npcStats": 86.24000000000001,
+              "gap": 3.115795418309361,
+              "behind": 11.424444531967936,
+              "allFinish": true
+            }
+          ]
+        }
+      ]
+    },
+    "v86": {
+      "build": "86",
+      "modeRun": "watch",
+      "assumptions": "Synthetic matched growth budget, 5.3 stat/stage times difficulty growth, fixed acquired skills, not a full career or human driving test.",
+      "rows": [
+        {
+          "mode": "easy",
+          "grade": "rookie",
+          "runs": 6,
+          "wins": 1,
+          "top3": 4,
+          "finish": 6,
+          "meanPlace": 2.8333333333333335,
+          "meanWinnerGap": 3.4056701360089954,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 4,
+              "finish": 131.682166979975,
+              "stats": 45.6,
+              "npcStats": 40.760000000000005,
+              "gap": 3.6881582139756546,
+              "behind": 6.498126719445352,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 2,
+              "finish": 130.78860920185912,
+              "stats": 42,
+              "npcStats": 40.440000000000005,
+              "gap": 3.416872379084566,
+              "behind": 3.416872379084566,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 2,
+              "finish": 120.77722819853759,
+              "stats": 47.4,
+              "npcStats": 43.239999999999995,
+              "gap": 1.0761129085588834,
+              "behind": 1.0761129085588834,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 1,
+              "finish": 128.0371252733802,
+              "stats": 45.8,
+              "npcStats": 42.400000000000006,
+              "gap": 2.5310683340323976,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 2,
+              "finish": 126.01814240545185,
+              "stats": 42.6,
+              "npcStats": 41.559999999999995,
+              "gap": 2.730222573418004,
+              "behind": 2.730222573418004,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 137.65255642940588,
+              "stats": 45.4,
+              "npcStats": 43.239999999999995,
+              "gap": 6.991586406984467,
+              "behind": 19.80573257806084,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "easy",
+          "grade": "g3",
+          "runs": 6,
+          "wins": 1,
+          "top3": 4,
+          "finish": 6,
+          "meanPlace": 3,
+          "meanWinnerGap": 2.911281211003361,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 2,
+              "finish": 118.31437669648732,
+              "stats": 53.55,
+              "npcStats": 51.379999999999995,
+              "gap": 5.742078677630801,
+              "behind": 5.742078677630801,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 3,
+              "finish": 118.99577348876653,
+              "stats": 49.95,
+              "npcStats": 51.25999999999999,
+              "gap": 3.2038611892786975,
+              "behind": 8.07567567494391,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 1,
+              "finish": 111.2628780590719,
+              "stats": 55.35,
+              "npcStats": 51.019999999999996,
+              "gap": 2.1316519818646213,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 4,
+              "finish": 120.29044654954262,
+              "stats": 53.75,
+              "npcStats": 51.3,
+              "gap": 2.111822496763324,
+              "behind": 3.478510470857316,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 2,
+              "finish": 116.3797202832034,
+              "stats": 50.55,
+              "npcStats": 53.499999999999986,
+              "gap": 2.4422199120045036,
+              "behind": 2.4422199120045036,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 127.65508498477071,
+              "stats": 53.35,
+              "npcStats": 49.86,
+              "gap": 1.836053008478217,
+              "behind": 16.191112297536733,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "easy",
+          "grade": "g2",
+          "runs": 6,
+          "wins": 1,
+          "top3": 2,
+          "finish": 6,
+          "meanPlace": 4.166666666666667,
+          "meanWinnerGap": 2.4451040473429395,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 6,
+              "finish": 117.70313580297622,
+              "stats": 61.5,
+              "npcStats": 60.78000000000001,
+              "gap": 0.9269067037959928,
+              "behind": 7.911536401017358,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 5,
+              "finish": 118.3352844989263,
+              "stats": 57.9,
+              "npcStats": 58.38000000000001,
+              "gap": 2.637177500502915,
+              "behind": 10.746214523534334,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 1,
+              "finish": 105.97732525899522,
+              "stats": 63.3,
+              "npcStats": 57.660000000000004,
+              "gap": 3.6443455958564357,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 3,
+              "finish": 107.5749733649807,
+              "stats": 61.7,
+              "npcStats": 59.14,
+              "gap": 0.664593507955118,
+              "behind": 3.500425544105113,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 4,
+              "finish": 111.22036118596287,
+              "stats": 58.5,
+              "npcStats": 61.06000000000002,
+              "gap": 5.45118193439896,
+              "behind": 7.890694502370835,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 118.14576963083223,
+              "stats": 61.3,
+              "npcStats": 60.42,
+              "gap": 1.3464190415482165,
+              "behind": 8.16491271247439,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "easy",
+          "grade": "g1",
+          "runs": 6,
+          "wins": 0,
+          "top3": 3,
+          "finish": 6,
+          "meanPlace": 3.6666666666666665,
+          "meanWinnerGap": 2.069759298634731,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 3,
+              "finish": 104.88493557303369,
+              "stats": 69.45,
+              "npcStats": 68.38,
+              "gap": 0.42397657670811384,
+              "behind": 3.335937474264057,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 4,
+              "finish": 111.36775220534915,
+              "stats": 65.85,
+              "npcStats": 65.66000000000001,
+              "gap": 3.72539254703689,
+              "behind": 7.256408004324442,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 4,
+              "finish": 108.05731568588499,
+              "stats": 71.25,
+              "npcStats": 64.54,
+              "gap": 3.4503146794494626,
+              "behind": 6.056718366920265,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 2,
+              "finish": 102.52544913691658,
+              "stats": 69.65,
+              "npcStats": 66.66000000000001,
+              "gap": 0.7957748023499391,
+              "behind": 0.7957748023499391,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 3,
+              "finish": 103.54679092184969,
+              "stats": 66.45,
+              "npcStats": 68.9,
+              "gap": 2.7417878565626523,
+              "behind": 6.231157122222356,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 111.77747461456764,
+              "stats": 69.25,
+              "npcStats": 66.7,
+              "gap": 1.2813093297013296,
+              "behind": 10.526475379550334,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "easy",
+          "grade": "sg",
+          "runs": 6,
+          "wins": 0,
+          "top3": 1,
+          "finish": 6,
+          "meanPlace": 5,
+          "meanWinnerGap": 3.1034183584048023,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 5,
+              "finish": 104.4331326541947,
+              "stats": 77.4,
+              "npcStats": 76.73999999999998,
+              "gap": 1.9252256422894618,
+              "behind": 7.534761830943893,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 5,
+              "finish": 103.31384257940104,
+              "stats": 73.8,
+              "npcStats": 77.41999999999999,
+              "gap": 5.804823798411732,
+              "behind": 7.800912280479466,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 6,
+              "finish": 101.31365386794205,
+              "stats": 79.2,
+              "npcStats": 78.01999999999998,
+              "gap": 2.3247323849568886,
+              "behind": 6.5681644950725655,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 3,
+              "finish": 99.86927278698583,
+              "stats": 77.6,
+              "npcStats": 79.1,
+              "gap": 3.2507512071971405,
+              "behind": 3.8260967592059387,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 5,
+              "finish": 100.26556426417156,
+              "stats": 74.4,
+              "npcStats": 79.01999999999998,
+              "gap": 4.562282576133342,
+              "behind": 8.084528325401763,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 107.84201124160614,
+              "stats": 77.2,
+              "npcStats": 75.53999999999999,
+              "gap": 0.752694541440249,
+              "behind": 16.998149551555798,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "rookie",
+          "runs": 6,
+          "wins": 0,
+          "top3": 4,
+          "finish": 6,
+          "meanPlace": 3.5,
+          "meanWinnerGap": 3.3806402521979138,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 5,
+              "finish": 129.83573419140234,
+              "stats": 45.6,
+              "npcStats": 40.760000000000005,
+              "gap": 3.8866038772976026,
+              "behind": 10.107614111445216,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 3,
+              "finish": 128.3273656157372,
+              "stats": 42,
+              "npcStats": 40.440000000000005,
+              "gap": 2.128604510705614,
+              "behind": 6.21417891493202,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 2,
+              "finish": 117.37278205708625,
+              "stats": 47.4,
+              "npcStats": 43.239999999999995,
+              "gap": 3.5891240496297883,
+              "behind": 3.5891240496297883,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 3,
+              "finish": 127.7581108237324,
+              "stats": 45.8,
+              "npcStats": 42.400000000000006,
+              "gap": 1.2352772129435152,
+              "behind": 1.497064594737239,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 2,
+              "finish": 121.71039447340787,
+              "stats": 42.6,
+              "npcStats": 41.559999999999995,
+              "gap": 2.8187728004434405,
+              "behind": 2.8187728004434405,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 132.37022164313717,
+              "stats": 45.4,
+              "npcStats": 43.239999999999995,
+              "gap": 6.625459062167522,
+              "behind": 19.256128922905148,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "g3",
+          "runs": 6,
+          "wins": 1,
+          "top3": 4,
+          "finish": 6,
+          "meanPlace": 3.1666666666666665,
+          "meanWinnerGap": 3.4620424794881735,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 4,
+              "finish": 113.27819004346543,
+              "stats": 56.2,
+              "npcStats": 53.86,
+              "gap": 2.0851826554602013,
+              "behind": 4.883490524529108,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 3,
+              "finish": 111.23324201671,
+              "stats": 52.6,
+              "npcStats": 53.739999999999995,
+              "gap": 4.5410493011493855,
+              "behind": 8.137111293984006,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 1,
+              "finish": 104.70985991063932,
+              "stats": 58,
+              "npcStats": 53.5,
+              "gap": 4.389584352451962,
+              "behind": 0,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 2,
+              "finish": 111.896751129332,
+              "stats": 56.4,
+              "npcStats": 53.779999999999994,
+              "gap": 3.932519247635355,
+              "behind": 3.932519247635355,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 3,
+              "finish": 111.00116416899625,
+              "stats": 53.2,
+              "npcStats": 55.980000000000004,
+              "gap": 4.3487090686964365,
+              "behind": 6.383663219378832,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 121.53070586421313,
+              "stats": 56,
+              "npcStats": 52.339999999999996,
+              "gap": 1.4752102515356995,
+              "behind": 13.077110033576787,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "g2",
+          "runs": 6,
+          "wins": 0,
+          "top3": 2,
+          "finish": 6,
+          "meanPlace": 4.333333333333333,
+          "meanWinnerGap": 6.153633759944104,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 6,
+              "finish": 105.99808925808419,
+              "stats": 66.8,
+              "npcStats": 65.56000000000002,
+              "gap": 2.028876585674766,
+              "behind": 5.251179108725452,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 6,
+              "finish": 109.71860159345937,
+              "stats": 63.2,
+              "npcStats": 63.160000000000004,
+              "gap": 5.80838099497349,
+              "behind": 15.307670829374786,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 3,
+              "finish": 103.75425625822541,
+              "stats": 68.6,
+              "npcStats": 62.44,
+              "gap": 8.656817929421706,
+              "behind": 10.09794829833038,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 2,
+              "finish": 103.1122715995583,
+              "stats": 67,
+              "npcStats": 63.92,
+              "gap": 10.763439114814915,
+              "behind": 10.763439114814915,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 5,
+              "finish": 104.9194459889373,
+              "stats": 63.8,
+              "npcStats": 65.84,
+              "gap": 3.761092399524287,
+              "behind": 7.731908937357204,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 4,
+              "finish": 109.93839250149894,
+              "stats": 66.6,
+              "npcStats": 65.2,
+              "gap": 5.903195535255463,
+              "behind": 16.25574905229186,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "g1",
+          "runs": 6,
+          "wins": 0,
+          "top3": 0,
+          "finish": 6,
+          "meanPlace": 5.333333333333333,
+          "meanWinnerGap": 2.498192054884766,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 6,
+              "finish": 101.33647021109661,
+              "stats": 77.4,
+              "npcStats": 75.62,
+              "gap": 3.7734230986409045,
+              "behind": 12.17448391419498,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 5,
+              "finish": 99.77535460364639,
+              "stats": 73.8,
+              "npcStats": 75.38000000000002,
+              "gap": 0.6704049600744071,
+              "behind": 8.611210762676706,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 4,
+              "finish": 96.20514228779011,
+              "stats": 79.2,
+              "npcStats": 73.58,
+              "gap": 3.3002652942684563,
+              "behind": 4.904241920349165,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 6,
+              "finish": 97.82659484766886,
+              "stats": 77.6,
+              "npcStats": 74.61999999999999,
+              "gap": 4.419469030181276,
+              "behind": 8.608703144831807,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 5,
+              "finish": 97.40401009201,
+              "stats": 74.4,
+              "npcStats": 73.66,
+              "gap": 1.8341204480443736,
+              "behind": 6.092807655902817,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 102.94417720442969,
+              "stats": 77.2,
+              "npcStats": 74.78,
+              "gap": 0.9914694980991783,
+              "behind": 13.29848936498945,
+              "allFinish": true
+            }
+          ]
+        },
+        {
+          "mode": "normal",
+          "grade": "sg",
+          "runs": 6,
+          "wins": 0,
+          "top3": 0,
+          "finish": 6,
+          "meanPlace": 6,
+          "meanWinnerGap": 1.7201914095815998,
+          "rows": [
+            {
+              "seed": 91,
+              "place": 6,
+              "finish": 92.94497914163996,
+              "stats": 88,
+              "npcStats": 86.2,
+              "gap": 3.115327670155949,
+              "behind": 11.277368642259574,
+              "allFinish": true
+            },
+            {
+              "seed": 204,
+              "place": 6,
+              "finish": 91.81259864840091,
+              "stats": 84.4,
+              "npcStats": 86,
+              "gap": 1.9206630514716352,
+              "behind": 11.131813504163489,
+              "allFinish": true
+            },
+            {
+              "seed": 317,
+              "place": 6,
+              "finish": 92.11473178986151,
+              "stats": 89.8,
+              "npcStats": 87.72,
+              "gap": 3.2245568644700597,
+              "behind": 11.18789803647607,
+              "allFinish": true
+            },
+            {
+              "seed": 430,
+              "place": 6,
+              "finish": 90.48889386890744,
+              "stats": 88.2,
+              "npcStats": 87.96,
+              "gap": 0.029823202642987212,
+              "behind": 7.4622785025616025,
+              "allFinish": true
+            },
+            {
+              "seed": 543,
+              "place": 6,
+              "finish": 91.85156887230345,
+              "stats": 85,
+              "npcStats": 86.64,
+              "gap": 0.4113931736383023,
+              "behind": 8.84341358170478,
+              "allFinish": true
+            },
+            {
+              "seed": 656,
+              "place": 6,
+              "finish": 96.68780200138322,
+              "stats": 87.8,
+              "npcStats": 88.24000000000001,
+              "gap": 1.6193844951106655,
+              "behind": 12.521211317036347,
+              "allFinish": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "career": {
+    "build": "86",
+    "policy": "No rerolls, no shop, lowest base stat training each race; natural gate; real 3-lap spectator",
+    "rows": [
+      {
+        "mode": "easy",
+        "trial": 0,
+        "ending": "sgFinished",
+        "stage": 8,
+        "skills": [
+          "quick",
+          "stout",
+          "grip",
+          "spanner",
+          "rain",
+          "practice",
+          "monkey_sr"
+        ],
+        "stats": {
+          "speed": 79.74,
+          "turn": 80.37,
+          "start": 80.96,
+          "accel": 82.69,
+          "power": 80.84
+        },
+        "earnings": 5291.1,
+        "series": [
+          {
+            "stage": 0,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 3,
+            "top3": 6,
+            "average": 50.14999999999999
+          },
+          {
+            "stage": 1,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 6,
+            "top3": 6,
+            "average": 53.82000000000001
+          },
+          {
+            "stage": 2,
+            "grade": "g3",
+            "races": 6,
+            "wins": 6,
+            "top3": 6,
+            "average": 57.54600000000001
+          },
+          {
+            "stage": 3,
+            "grade": "g3",
+            "races": 6,
+            "wins": 1,
+            "top3": 5,
+            "average": 61.379999999999995
+          },
+          {
+            "stage": 4,
+            "grade": "g2",
+            "races": 6,
+            "wins": 1,
+            "top3": 5,
+            "average": 65.098
+          },
+          {
+            "stage": 5,
+            "grade": "g2",
+            "races": 6,
+            "wins": 1,
+            "top3": 5,
+            "average": 69.09799999999998
+          },
+          {
+            "stage": 6,
+            "grade": "g1",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 71.852
+          },
+          {
+            "stage": 7,
+            "grade": "g1",
+            "races": 6,
+            "wins": 1,
+            "top3": 4,
+            "average": 75.77799999999999
+          },
+          {
+            "stage": 8,
+            "grade": "sg",
+            "races": 5,
+            "wins": 0,
+            "top3": 2,
+            "average": 80.92
+          }
+        ]
+      },
+      {
+        "mode": "easy",
+        "trial": 1,
+        "ending": "gate",
+        "stage": 7,
+        "skills": [
+          "quick",
+          "mechanic",
+          "weak_start",
+          "weak_wind",
+          "weak_rain",
+          "weak_end"
+        ],
+        "stats": {
+          "speed": 63,
+          "turn": 63.87,
+          "start": 63.48,
+          "accel": 63.98,
+          "power": 65.22
+        },
+        "earnings": 679.4,
+        "series": [
+          {
+            "stage": 0,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 5,
+            "top3": 6,
+            "average": 45.768
+          },
+          {
+            "stage": 1,
+            "grade": "rookie",
+            "races": 5,
+            "wins": 0,
+            "top3": 1,
+            "average": 48.296
+          },
+          {
+            "stage": 2,
+            "grade": "g3",
+            "races": 5,
+            "wins": 0,
+            "top3": 1,
+            "average": 50.888000000000005
+          },
+          {
+            "stage": 3,
+            "grade": "g3",
+            "races": 6,
+            "wins": 0,
+            "top3": 1,
+            "average": 54.012
+          },
+          {
+            "stage": 4,
+            "grade": "g2",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 56.278
+          },
+          {
+            "stage": 5,
+            "grade": "g2",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 58.908
+          },
+          {
+            "stage": 6,
+            "grade": "g1",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 61.3
+          },
+          {
+            "stage": 7,
+            "grade": "g1",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 63.90999999999999
+          }
+        ]
+      },
+      {
+        "mode": "normal",
+        "trial": 0,
+        "ending": "gate",
+        "stage": 7,
+        "skills": [
+          "quick",
+          "mentor",
+          "practice",
+          "weak_wind",
+          "weak_rain"
+        ],
+        "stats": {
+          "speed": 86.83,
+          "turn": 87.2,
+          "start": 88.11,
+          "accel": 88.96,
+          "power": 86.8
+        },
+        "earnings": 1447.9,
+        "series": [
+          {
+            "stage": 0,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 1,
+            "top3": 5,
+            "average": 51.172000000000004
+          },
+          {
+            "stage": 1,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 6,
+            "top3": 6,
+            "average": 56.702
+          },
+          {
+            "stage": 2,
+            "grade": "g3",
+            "races": 5,
+            "wins": 0,
+            "top3": 2,
+            "average": 61.25600000000001
+          },
+          {
+            "stage": 3,
+            "grade": "g3",
+            "races": 6,
+            "wins": 4,
+            "top3": 5,
+            "average": 67.18599999999999
+          },
+          {
+            "stage": 4,
+            "grade": "g2",
+            "races": 5,
+            "wins": 0,
+            "top3": 2,
+            "average": 71.94200000000001
+          },
+          {
+            "stage": 5,
+            "grade": "g2",
+            "races": 6,
+            "wins": 0,
+            "top3": 5,
+            "average": 77.95
+          },
+          {
+            "stage": 6,
+            "grade": "g1",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 82.934
+          },
+          {
+            "stage": 7,
+            "grade": "g1",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 87.58
+          }
+        ]
+      },
+      {
+        "mode": "normal",
+        "trial": 1,
+        "ending": "gate",
+        "stage": 7,
+        "skills": [
+          "quick",
+          "stretch",
+          "stout",
+          "weak_start"
+        ],
+        "stats": {
+          "speed": 76.58,
+          "turn": 76.69,
+          "start": 76.99,
+          "accel": 77.49,
+          "power": 78.56
+        },
+        "earnings": 1242.7,
+        "series": [
+          {
+            "stage": 0,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 5,
+            "top3": 6,
+            "average": 46.888
+          },
+          {
+            "stage": 1,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 2,
+            "top3": 4,
+            "average": 51.386
+          },
+          {
+            "stage": 2,
+            "grade": "g3",
+            "races": 6,
+            "wins": 1,
+            "top3": 3,
+            "average": 56.13399999999999
+          },
+          {
+            "stage": 3,
+            "grade": "g3",
+            "races": 6,
+            "wins": 2,
+            "top3": 6,
+            "average": 60.92800000000001
+          },
+          {
+            "stage": 4,
+            "grade": "g2",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 64.702
+          },
+          {
+            "stage": 5,
+            "grade": "g2",
+            "races": 6,
+            "wins": 0,
+            "top3": 3,
+            "average": 69.576
+          },
+          {
+            "stage": 6,
+            "grade": "g1",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 73.55
+          },
+          {
+            "stage": 7,
+            "grade": "g1",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 77.262
+          }
+        ]
+      }
+    ]
+  },
+  "sgCombatBuild": {
+    "assumptions": "SG qualifier profiles: uniform stats 85/93/100, six fixed combat skills including UR V Monkey, Comet and Split; 8 seeds each; not a measured human win rate or final-win probability.",
+    "rows": [
+      {
+        "mode": "normal",
+        "ability": 90,
+        "wins": 0,
+        "top3": 3,
+        "races": [
+          {
+            "place": 2,
+            "time": 84.24469468575825,
+            "allFinish": true
+          },
+          {
+            "place": 2,
+            "time": 83.33704532600589,
+            "allFinish": true
+          },
+          {
+            "place": 4,
+            "time": 89.78033268341014,
+            "allFinish": true
+          },
+          {
+            "place": 4,
+            "time": 87.84655886797685,
+            "allFinish": true
+          },
+          {
+            "place": 2,
+            "time": 86.74336982035592,
+            "allFinish": true
+          },
+          {
+            "place": 6,
+            "time": 93.78757547569417,
+            "allFinish": true
+          },
+          {
+            "place": 6,
+            "time": 87.62736263991124,
+            "allFinish": true
+          },
+          {
+            "place": 4,
+            "time": 86.64562712871054,
+            "allFinish": true
+          }
+        ]
+      },
+      {
+        "mode": "normal",
+        "ability": 95,
+        "wins": 2,
+        "top3": 6,
+        "races": [
+          {
+            "place": 3,
+            "time": 84.03618030749155,
+            "allFinish": true
+          },
+          {
+            "place": 1,
+            "time": 78.49189269678288,
+            "allFinish": true
+          },
+          {
+            "place": 4,
+            "time": 89.53420234817436,
+            "allFinish": true
+          },
+          {
+            "place": 4,
+            "time": 90.0780466903216,
+            "allFinish": true
+          },
+          {
+            "place": 1,
+            "time": 77.10791239732336,
+            "allFinish": true
+          },
+          {
+            "place": 2,
+            "time": 89.25419785800503,
+            "allFinish": true
+          },
+          {
+            "place": 3,
+            "time": 86.41693543126155,
+            "allFinish": true
+          },
+          {
+            "place": 2,
+            "time": 85.7121773904625,
+            "allFinish": true
+          }
+        ]
+      },
+      {
+        "mode": "normal",
+        "ability": 100,
+        "wins": 4,
+        "top3": 8,
+        "races": [
+          {
+            "place": 1,
+            "time": 80.41469664300003,
+            "allFinish": true
+          },
+          {
+            "place": 1,
+            "time": 77.77439774730834,
+            "allFinish": true
+          },
+          {
+            "place": 3,
+            "time": 88.99322346918085,
+            "allFinish": true
+          },
+          {
+            "place": 2,
+            "time": 86.21993134093874,
+            "allFinish": true
+          },
+          {
+            "place": 1,
+            "time": 77.15464134994615,
+            "allFinish": true
+          },
+          {
+            "place": 2,
+            "time": 85.72994227072006,
+            "allFinish": true
+          },
+          {
+            "place": 3,
+            "time": 85.3733334437323,
+            "allFinish": true
+          },
+          {
+            "place": 1,
+            "time": 80.61743780957323,
+            "allFinish": true
+          }
+        ]
+      }
+    ]
+  },
+  "android_device_tested": false,
+  "iphone_device_tested": false,
+  "browser_tested": false,
+  "careerWithShop": {
+    "build": "86",
+    "policy": "No rerolls/items, lowest-stat training; buy affordable combat skills with rarity/synergy priority and normal shop limits; natural gate; real 3-lap spectator",
+    "rows": [
+      {
+        "mode": "normal",
+        "trial": 0,
+        "ending": "sgFinished",
+        "stage": 8,
+        "skills": [
+          "quick",
+          "mentor",
+          "practice",
+          "accel_lock",
+          "push",
+          "power_drain",
+          "calm",
+          "slice",
+          "sweep",
+          "rain",
+          "grit",
+          "grip",
+          "entry",
+          "storm",
+          "stout",
+          "speed_lock",
+          "inside",
+          "doguchi_sr",
+          "monkey_sr"
+        ],
+        "stats": {
+          "speed": 100,
+          "turn": 100,
+          "start": 100,
+          "accel": 100,
+          "power": 100
+        },
+        "earnings": 6463.1,
+        "series": [
+          {
+            "stage": 0,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 1,
+            "top3": 5,
+            "average": 51.172000000000004
+          },
+          {
+            "stage": 1,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 6,
+            "top3": 6,
+            "average": 56.702
+          },
+          {
+            "stage": 2,
+            "grade": "g3",
+            "races": 6,
+            "wins": 2,
+            "top3": 4,
+            "average": 62.556
+          },
+          {
+            "stage": 3,
+            "grade": "g3",
+            "races": 6,
+            "wins": 5,
+            "top3": 6,
+            "average": 68.556
+          },
+          {
+            "stage": 4,
+            "grade": "g2",
+            "races": 6,
+            "wins": 2,
+            "top3": 5,
+            "average": 74.85
+          },
+          {
+            "stage": 5,
+            "grade": "g2",
+            "races": 6,
+            "wins": 2,
+            "top3": 6,
+            "average": 81.046
+          },
+          {
+            "stage": 6,
+            "grade": "g1",
+            "races": 6,
+            "wins": 2,
+            "top3": 4,
+            "average": 87.298
+          },
+          {
+            "stage": 7,
+            "grade": "g1",
+            "races": 6,
+            "wins": 6,
+            "top3": 6,
+            "average": 94.044
+          },
+          {
+            "stage": 8,
+            "grade": "sg",
+            "races": 5,
+            "wins": 0,
+            "top3": 1,
+            "average": 100
+          }
+        ]
+      },
+      {
+        "mode": "normal",
+        "trial": 1,
+        "ending": "gate",
+        "stage": 7,
+        "skills": [
+          "quick",
+          "stretch",
+          "stout",
+          "turn_press",
+          "outside",
+          "doguchi_sr",
+          "grit"
+        ],
+        "stats": {
+          "speed": 75.58,
+          "turn": 75.78,
+          "start": 76.46,
+          "accel": 75.46,
+          "power": 77.69
+        },
+        "earnings": 1014.4,
+        "series": [
+          {
+            "stage": 0,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 5,
+            "top3": 6,
+            "average": 46.888
+          },
+          {
+            "stage": 1,
+            "grade": "rookie",
+            "races": 6,
+            "wins": 2,
+            "top3": 4,
+            "average": 51.386
+          },
+          {
+            "stage": 2,
+            "grade": "g3",
+            "races": 6,
+            "wins": 1,
+            "top3": 4,
+            "average": 56.214
+          },
+          {
+            "stage": 3,
+            "grade": "g3",
+            "races": 6,
+            "wins": 0,
+            "top3": 3,
+            "average": 60.71
+          },
+          {
+            "stage": 4,
+            "grade": "g2",
+            "races": 5,
+            "wins": 0,
+            "top3": 1,
+            "average": 64.568
+          },
+          {
+            "stage": 5,
+            "grade": "g2",
+            "races": 5,
+            "wins": 0,
+            "top3": 1,
+            "average": 68.566
+          },
+          {
+            "stage": 6,
+            "grade": "g1",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 72.5
+          },
+          {
+            "stage": 7,
+            "grade": "g1",
+            "races": 5,
+            "wins": 0,
+            "top3": 0,
+            "average": 76.19399999999999
+          }
+        ]
+      }
+    ]
+  }
+}

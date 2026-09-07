@@ -1,0 +1,41 @@
+{
+  "build": "86",
+  "passed": 8,
+  "failed": 0,
+  "results": [
+    {
+      "name": "全グレードをレースへ保存し、G3以降のNPC係数は段階的に上がる",
+      "passed": true
+    },
+    {
+      "name": "手動自艇は追加出力なし、グレード補正はNPCのみ。観戦の補助をv85から減らす",
+      "passed": true
+    },
+    {
+      "name": "イージーNPCは能力の伸びと獲得レア度が控えめ、ノーマルは高グレードほど高能力",
+      "passed": true
+    },
+    {
+      "name": "イージーは低成長・低レア、ノーマルは敗戦時も高い成長を維持",
+      "passed": true
+    },
+    {
+      "name": "観戦の能力差は各能力で上限4.5の範囲だけ圧縮し、優劣を逆転しない",
+      "passed": true
+    },
+    {
+      "name": "調子の変動は小幅・連続的で、停止や読み込みで再抽選しない",
+      "passed": true
+    },
+    {
+      "name": "旧セーブのグレードをシリーズから補完し、位置とF/Lは維持",
+      "passed": true
+    },
+    {
+      "name": "途中から観戦へ切替えても進行を戻さず、3周結果と賞金を二重清算しない",
+      "passed": true
+    }
+  ],
+  "browser_tested": false,
+  "iphone_device_tested": false
+}

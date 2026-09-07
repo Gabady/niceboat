@@ -1,0 +1,272 @@
+{
+  "build": "83",
+  "passed": 19,
+  "failed": 0,
+  "results": [
+    {
+      "name": "作成時の2難易度を選手・出走に保存し、未指定はノーマル",
+      "passed": true
+    },
+    {
+      "name": "イージーの練習成長は75%、次走補正・機材変更幅は共通",
+      "passed": true
+    },
+    {
+      "name": "同じ着順ならレース後成長75%・賞金共通。観戦フラグで倍率は変わらない",
+      "passed": true
+    },
+    {
+      "name": "SG優勝はノーマルLR・イージーUR。抽選下限はN、招待先着も1段階調整",
+      "passed": true
+    },
+    {
+      "name": "イージーショップはSSRまで、ラスト5候補1購入・LR非売品を維持",
+      "passed": true
+    },
+    {
+      "name": "追加行動2能力が同時発動すると名前・種別を通知し、再読込で二重通知しない",
+      "passed": true
+    },
+    {
+      "name": "全開旋回は接触なしなら速度を維持し、横滑りを消さない",
+      "passed": true
+    },
+    {
+      "name": "アクセルを離せば自分で減速でき、同じ舵でも傾きの蓄積を抑える",
+      "passed": true
+    },
+    {
+      "name": "同速旋回の転覆危険・接触の傾きは体幹と防御能力で軽減",
+      "passed": true
+    },
+    {
+      "name": "無理な全速旋回は実際に転覆し、転覆地点は固定される",
+      "passed": true
+    },
+    {
+      "name": "衝突の減速は全開でも取り消さず、通常の加速で回復する",
+      "passed": true
+    },
+    {
+      "name": "引き波軽減は低体幹でも小さく効き、高体幹ほど強いが完全無効にはしない",
+      "passed": true
+    },
+    {
+      "name": "v83のNPC速度・加速補正を難易度別に適用し、プレイヤー性能と水面物理は共通",
+      "passed": true
+    },
+    {
+      "name": "雨・風6・55km/hの閾値を越えた場合だけ対応する演出を有効化",
+      "passed": true
+    },
+    {
+      "name": "雨風の描画は有限座標・最大72本で、乱数や走行を変更しない",
+      "passed": true
+    },
+    {
+      "name": "旧v81はノーマルに移行し報酬・位置を保持、不正な難易度や通知IDは拒否",
+      "passed": true
+    },
+    {
+      "name": "同じ艇・同じ種で両難易度を比較し、ノーマルが速く全艇完走できる",
+      "passed": true
+    },
+    {
+      "name": "イージーの9シリーズも観戦で登録へ進み、難易度を引き継ぐ（SG条件は試験用）",
+      "passed": true
+    },
+    {
+      "name": "ノーマルのNPC強化後も育成差で先着できる（全能力＋25の試験）",
+      "passed": true
+    }
+  ],
+  "balance": [
+    {
+      "base": 25,
+      "weather": "晴れ・無風",
+      "difficulty": "easy",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 138.53144788839873,
+      "meanST": 0.25643777170571136,
+      "contacts": 17
+    },
+    {
+      "base": 25,
+      "weather": "晴れ・無風",
+      "difficulty": "normal",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 133.4700124743331,
+      "meanST": 0.19602177353538922,
+      "contacts": 19
+    },
+    {
+      "base": 25,
+      "weather": "雨・横風10",
+      "difficulty": "easy",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 154.49594139532564,
+      "meanST": 0.25663800680244253,
+      "contacts": 15
+    },
+    {
+      "base": 25,
+      "weather": "雨・横風10",
+      "difficulty": "normal",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 149.0686522518072,
+      "meanST": 0.19656482812007922,
+      "contacts": 7
+    },
+    {
+      "base": 45,
+      "weather": "晴れ・無風",
+      "difficulty": "easy",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 119.49811758731754,
+      "meanST": 0.22609075280611865,
+      "contacts": 22
+    },
+    {
+      "base": 45,
+      "weather": "晴れ・無風",
+      "difficulty": "normal",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 115.55308027374315,
+      "meanST": 0.17570981039445618,
+      "contacts": 23
+    },
+    {
+      "base": 45,
+      "weather": "雨・横風10",
+      "difficulty": "easy",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 129.25908608987322,
+      "meanST": 0.21954636623065293,
+      "contacts": 21
+    },
+    {
+      "base": 45,
+      "weather": "雨・横風10",
+      "difficulty": "normal",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 124.63808964336216,
+      "meanST": 0.1619272972569196,
+      "contacts": 23
+    },
+    {
+      "base": 85,
+      "weather": "晴れ・無風",
+      "difficulty": "easy",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 95.24545333780308,
+      "meanST": 0.1519389612041869,
+      "contacts": 30
+    },
+    {
+      "base": 85,
+      "weather": "晴れ・無風",
+      "difficulty": "normal",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 92.55270777559802,
+      "meanST": 0.12428178284475555,
+      "contacts": 23
+    },
+    {
+      "base": 85,
+      "weather": "雨・横風10",
+      "difficulty": "easy",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 101.65476900409999,
+      "meanST": 0.14048882891519193,
+      "contacts": 33
+    },
+    {
+      "base": 85,
+      "weather": "雨・横風10",
+      "difficulty": "normal",
+      "finishes": 6,
+      "capsizes": 0,
+      "meanSeconds": 99.54586347765064,
+      "meanST": 0.1109248827145687,
+      "contacts": 35
+    }
+  ],
+  "turnSamples": [
+    {
+      "mode": "全開",
+      "initial": 23.061000000000003,
+      "speed": 23.060999999999957,
+      "slip": 15.579122443258424,
+      "stress": 1.4028522482392871
+    },
+    {
+      "mode": "アクセルを離す",
+      "speed": 11.191963547693891,
+      "slip": 2.0938463551651565,
+      "stress": 0
+    }
+  ],
+  "challenge": [
+    {
+      "seed": 11,
+      "weather": "晴れ・無風",
+      "playerStats": 70,
+      "npcStats": 45,
+      "place": 2,
+      "finished": true
+    },
+    {
+      "seed": 27,
+      "weather": "晴れ・無風",
+      "playerStats": 70,
+      "npcStats": 45,
+      "place": 1,
+      "finished": true
+    },
+    {
+      "seed": 58,
+      "weather": "晴れ・無風",
+      "playerStats": 70,
+      "npcStats": 45,
+      "place": 1,
+      "finished": true
+    },
+    {
+      "seed": 11,
+      "weather": "雨・横風10",
+      "playerStats": 70,
+      "npcStats": 45,
+      "place": 1,
+      "finished": true
+    },
+    {
+      "seed": 27,
+      "weather": "雨・横風10",
+      "playerStats": 70,
+      "npcStats": 45,
+      "place": 1,
+      "finished": true
+    },
+    {
+      "seed": 58,
+      "weather": "雨・横風10",
+      "playerStats": 70,
+      "npcStats": 45,
+      "place": 1,
+      "finished": true
+    }
+  ],
+  "browser_tested": false,
+  "android_device_tested": false
+}

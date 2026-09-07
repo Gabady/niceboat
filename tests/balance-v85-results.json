@@ -1,0 +1,272 @@
+{
+  "build": 85,
+  "method": "16 first-rookie races per mode, character seeds 91 + 113*i; 600m x 3 laps physical spectator",
+  "assist": {
+    "speed": 1.035,
+    "accel": 1.06,
+    "turn": 1.015
+  },
+  "spectator": {
+    "easy": [
+      {
+        "seed": 91,
+        "place": 3,
+        "finish": true,
+        "money": 11.5
+      },
+      {
+        "seed": 204,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 317,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 430,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 543,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 656,
+        "place": 6,
+        "finish": true,
+        "money": 2.3
+      },
+      {
+        "seed": 769,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 882,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 995,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1108,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 1221,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1334,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 1447,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 1560,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1673,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1786,
+        "place": 5,
+        "finish": true,
+        "money": 4
+      }
+    ],
+    "normal": [
+      {
+        "seed": 91,
+        "place": 4,
+        "finish": true,
+        "money": 6.9
+      },
+      {
+        "seed": 204,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 317,
+        "place": 2,
+        "finish": true,
+        "money": 18.4
+      },
+      {
+        "seed": 430,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 543,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 656,
+        "place": 6,
+        "finish": true,
+        "money": 2.3
+      },
+      {
+        "seed": 769,
+        "place": 3,
+        "finish": true,
+        "money": 11.5
+      },
+      {
+        "seed": 882,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 995,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1108,
+        "place": 4,
+        "finish": true,
+        "money": 6.9
+      },
+      {
+        "seed": 1221,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1334,
+        "place": 3,
+        "finish": true,
+        "money": 11.5
+      },
+      {
+        "seed": 1447,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1560,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1673,
+        "place": 1,
+        "finish": true,
+        "money": 34.5
+      },
+      {
+        "seed": 1786,
+        "place": 5,
+        "finish": true,
+        "money": 4
+      }
+    ]
+  },
+  "ablation": [
+    {
+      "stat": "speed",
+      "base": 20.228,
+      "low": 14.108
+    },
+    {
+      "stat": "turn",
+      "base": 0.988738,
+      "low": 0.6827380000000001
+    },
+    {
+      "stat": "start",
+      "base": 3.5749999999999997,
+      "low": 2.66375
+    },
+    {
+      "stat": "accel",
+      "base": 5.7228,
+      "low": 3.5178000000000003
+    },
+    {
+      "stat": "power",
+      "base": 7.3229999999999995,
+      "low": 6.1530000000000005
+    },
+    {
+      "ablation": "baseline",
+      "seconds": 109.11889884404827,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "speed",
+      "seconds": 127.97674427354616,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "turn",
+      "seconds": 120.15391608596994,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "start",
+      "seconds": 110.81607878430535,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "accel",
+      "seconds": 110.23314093582633,
+      "place": 6,
+      "finished": true
+    },
+    {
+      "ablation": "power",
+      "seconds": 113.79457039216823,
+      "place": 6,
+      "finished": true
+    }
+  ],
+  "browser_tested": false,
+  "android_device_tested": false
+}
