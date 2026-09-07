@@ -17,11 +17,11 @@ html = html.replace('<title>競艇物語</title>', '<title>競艇物語 | Androi
 standalone = SOURCE / 'index_android_safe.html'
 standalone.write_text(html, encoding='utf-8')
 assert '<script src=' not in html and '<link rel="stylesheet"' not in html
-iphone = html.replace('Android Safe', 'iPhone Safe').replace('<span class="version">v86</span>', '<span class="version">v86 iPhone</span>')
+iphone = html.replace('Android Safe', 'iPhone Safe').replace('<span class="version">v87</span>', '<span class="version">v87 iPhone</span>')
 iphone = iphone.replace('</head>', '<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-title" content="競艇物語">\n<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">\n<style>\n' + (SOURCE/'iphone.css').read_text() + '\n</style>\n<script>\n' + inline_js((SOURCE/'iphone-compat.js').read_text()) + '\n</script>\n</head>')
 iphone = iphone.replace('<p class="loading">水面を準備しています…</p>', '<p class="loading">水面を準備しています…</p><p class="notice">この表示から進まない場合は、JavaScriptを実行できる環境で開いてください。SafariではWebページのURLから開きます。ファイルのプレビューだけでは遊べない場合があります。</p>')
 (SOURCE/'index_iphone_safe.html').write_text(iphone,encoding='utf-8')
-zip_path = ROOT / 'kyotei_monogatari_v86.zip'
+zip_path = ROOT / 'kyotei_monogatari_v87.zip'
 with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as z:
     for name in ['index.html','style.css',*scripts,'index_android_safe.html','index_iphone_safe.html','iphone-compat.js','iphone.css']:
         z.write(SOURCE/name,name)

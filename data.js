@@ -21,15 +21,15 @@
   a('smile', 'ファンサービス', 'N', '人気', [], 1, {type:'fame',value:2}, '出走ごとに人気を追加で＋2。', []);
   a('stretch', '伸び足強化', 'R', '強化', [2,4], .5, {stats:{speed:12}}, '直線を＋12。', ['直線']);
   a('grit', '粘り腰', 'R', '強化', [4], .6, {stats:{power:9,accel:8}}, '最終直線でフィジカル＋9、加速＋8。', ['直線']);
-  a('rain', '荒天巧者', 'R', '環境', [0,1,2,3,4], .6, {stats:{turn:8,power:9},safety:.35}, '雨または風速6以上で旋回＋8、フィジカル＋9。転覆を軽減。', [], 'rough');
+  a('rain', '荒天巧者', 'R', '環境', [0,1,2,3,4], .6, {stats:{turn:8,power:9},safety:.35}, '雨または風速21.6 km/h以上で旋回＋8、フィジカル＋9。転覆を軽減。', [], 'rough');
   a('inside', 'インの呼吸', 'R', '戦術', [0,1], .58, {stats:{start:7,turn:9}, tactic:'front'}, '進入1〜2コースでスタート＋7、旋回＋9。先マイと好相性。', ['序盤'], 'inner');
   a('slice', '差しの軌跡', 'R', '戦術', [1,3], .5, {stats:{turn:10,accel:7},tactic:'sashi'}, '旋回＋10、加速＋7。差し狙いと好相性。', ['ターン']);
   a('outside', '外の伸び', 'R', '戦術', [1,2], .55, {stats:{speed:10,accel:8},tactic:'outside'}, '進入4〜6コースで直線＋10、加速＋8。外攻めと好相性。', ['直線'], 'outer');
-  a('calm', '静水の集中', 'R', '環境', [0,3], .6, {stats:{start:10,turn:8}}, '雨以外・風速3以下でスタート＋10、旋回＋8。', [], 'calm');
+  a('calm', '静水の集中', 'R', '環境', [0,3], .6, {stats:{start:10,turn:8}}, '雨以外・風速10.8 km/h以下でスタート＋10、旋回＋8。', [], 'calm');
   a('mentor', '反復の才', 'R', '育成', [], 1, {type:'growth',multiplier:1.14}, 'レース後と練習の基礎成長を14%増やす。', []);
   a('spanner', '熟練の手元', 'R', '整備', [], 1, {type:'tuning',success:9}, '両機材の調整成功率＋9。', []);
-  a('engineer', '整備の余白', 'SR', '整備', [], .4, {type:'extra',action:'tune'}, '各レース前40%で調整専用の追加行動を1回得る。', []);
-  a('student', '朝練の習慣', 'SR', '育成', [], .4, {type:'extra',action:'training'}, '各レース前40%で練習専用の追加行動を1回得る。', []);
+  a('engineer', '整備の余白', 'SR', '整備', [], .4, {type:'extra',action:'tune'}, '各レース前40%で調整専用の追加行動を1回得る。追加分の成長・調整効果は50%。', []);
+  a('student', '朝練の習慣', 'SR', '育成', [], .4, {type:'extra',action:'training'}, '各レース前40%で練習専用の追加行動を1回得る。追加分の成長・調整効果は50%。', []);
   a('speed_lock', '直線封じ', 'SR', '妨害', [2,4], .42, {type:'debuff',stat:'speed',amount:14,target:'ahead'}, '直前の相手の直線をこのフェーズだけ−14。先頭なら2位を狙う。', ['直線']);
   a('turn_press', '旋回圧', 'SR', '妨害', [1,3], .42, {type:'debuff',stat:'turn',amount:13,target:'nearest',pressure:.012}, '近い相手の旋回−13。接近時のみ接触圧を加える。', ['ターン']);
   a('start_check', 'スタート牽制', 'SR', '妨害', [0], .56, {type:'debuff',stat:'start',amount:17,target:'nearest'}, '近いコースの相手のスタートを−17。', ['序盤']);
@@ -124,11 +124,17 @@
     weak_out:{mechanics:{response:-.35,damping:-.2},text:'外進入で助走応答と旋回の収まりが悪くなる。'},
     weak_wind:{mechanics:{waveExtra:.45},text:'横風ターンで船首と横流れが乱れやすい。'}
   };
+  ranks.forEach(function(rarity,i){
+    var names=['水面の予習','走りの予感','集中ルーティン','水面との同調','一走への研鑽','一走入魂'];
+    var chance=[.16,.25,.38,.52,.68,.82][i],amount=[1,2,3,5,7,9][i];
+    a('prep_'+rarity.toLowerCase(),names[i],rarity,'育成',[],chance,{type:'prep',amount:amount},
+      'そのレース前の最初の練習で'+Math.round(chance*100)+'%の抽選。練習した能力を次の1レースだけ＋'+amount+'。同系統は最上位のみ。追加練習での補正は半分。',['次走']);
+  });
   abilities.forEach(function(skill){skill.drive=driving[skill.id]||{text:'整備・育成・人気の効果を両モードで共通適用。'};});
   abilities.filter(function(skill){return skill.signature;}).forEach(function(skill){
     var spec=skill.signature,describe=function(values){return Object.keys(values).map(function(k){return stats[k]+(values[k]>0?'＋':'−')+Math.abs(values[k]);}).join(' / ');};
     skill.drive=spec.family==='doguchi'?{text:'1周目：'+describe(spec.early)+'。2周目：補正なし。3周目：'+describe(spec.late)+'。反動は反射・弱点克服の対象外。'}:
-      {text:'実際の左舵25%以上・全開・6m/s以上のターン中に'+Math.round(skill.chance*100)+'%で発動。'+spec.duration+'秒間の旋回補助。減速すると効果は止まる。ブイ・接触判定は維持。'};
+      {text:'実際の左舵25%以上・全開・21.6 km/h以上のターン中に'+Math.round(skill.chance*100)+'%で発動。'+spec.duration+'秒間の旋回補助。減速すると効果は止まる。ブイ・接触判定は維持。'};
   });
 
   var tiers = {
@@ -186,7 +192,7 @@
     {id:'duel',name:'攻防一体',groups:[['speed_lock','turn_press','start_check','accel_lock','power_drain','dump'],['immune','reflect','mirror']],need:{start:35,power:35},description:'他艇18m以内で応答・接触耐性を強化。伸び足を少し犠牲にする。'},
     {id:'craftline',name:'整備の継走',groups:[['doguchi_sr','doguchi_ssr','doguchi_ur','doguchi_lr'],['mechanic','spanner','engineer','craft']],need:{accel:40},description:'2周目の機材応答と持久力を改善。伸び足は控えめ。洞口スペシャルの3周目の反動は残る。'}
   ];
-  var D = {version:80,build:'86',spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.985,accel:1.005,turn:1}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.008,g2:1.018,g1:1.028,sg:1.038}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.23,accel:1.25}},difficulties:{
+  var D = {version:80,build:'87',spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
     easy:{id:'easy',name:'イージー',growth:.75,rewardDrop:1,shopMax:'SSR',ai:'easy'},
     normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'}
   },stats:stats,statKeys:Object.keys(stats),categories:categories,
