@@ -49,7 +49,7 @@
   a('zero', '零の踏み込み', 'UR', '強化', [0,1], .72, {stats:{start:25,accel:18,turn:8}}, 'スタート＋25、加速＋18、旋回＋8。', ['序盤']);
   a('comet', '彗星航路', 'UR', '戦術', [2,4], .7, {stats:{speed:26,accel:20},tactic:'gamble'}, '直線＋26、加速＋20。直線での最高速と再加速を高める。', ['直線']);
   a('wave', '波を支配する', 'UR', '環境', [1,3], .76, {stats:{turn:24,power:22},safety:.65}, '旋回＋24、フィジカル＋22。グリップを強め、波と傾きの蓄積を軽減。', ['ターン']);
-  a('craft', '匠の設計', 'UR', '整備', [], 1, {type:'tuning',success:16}, '両機材の調整成功率＋16。成功率上限は90%。', []);
+  a('craft', '匠の設計', 'UR', '整備', [], 1, {type:'tuning',success:16}, '両機材の調整成功率＋16。成功率上限は92%。', []);
   a('mirror', '鏡面水域', 'LR', '防御', [0,1,2,3,4], 1, {type:'defense',reflect:1}, '妨害を完全無効化し、効果をすべて攻撃者へ返す。再反射しない。', []);
   a('legend_start', '一閃の境地', 'LR', '強化', [0,1], .84, {stats:{start:31,turn:20,accel:20}}, 'スタート＋31、旋回・加速＋20。', ['序盤']);
   a('legend_speed', '水上の軌跡', 'LR', '強化', [2,4], .84, {stats:{speed:33,accel:25,power:14}}, '直線＋33、加速＋25、フィジカル＋14。', ['直線']);
@@ -130,6 +130,12 @@
     a('prep_'+rarity.toLowerCase(),names[i],rarity,'育成',[],chance,{type:'prep',amount:amount},
       'そのレース前の最初の練習で'+Math.round(chance*100)+'%の抽選。練習した能力を次の1レースだけ＋'+amount+'。同系統は最上位のみ。追加練習での補正は半分。',['次走']);
   });
+  a('feather','抜きの手ほどき','N','戦術',[1,3],1,{type:'operation',stats:{turn:2}},'ターン中にアクセルを抜き、舵を切って0.4秒保つと発動。1周1回、2秒間だけ横滑りの収束を助ける。',['ターン']);
+  a('straighten','舵戻しの基本','R','戦術',[2,4],1,{type:'operation',stats:{accel:3}},'ターン出口で舵を中央に戻し全開で0.4秒保つと発動。1周1回、3秒間だけエンジン応答を改善。',['直線']);
+  a('wake_escape','引き波の抜け道','SR','環境',[0,1,2,3,4],.65,{type:'operation',stats:{accel:6,power:5}},'引き波を受けた後、進路を変えて抜けると65%で発動。1周1回、4秒間再加速と波への耐性を強化。',[]);
+  driving.feather={mechanics:{damping:.65},text:'アクセルを抜いたターンを補助。低レア固有の確定発動、各周1回。'};
+  driving.straighten={mechanics:{response:.9},text:'ターン出口で舵を戻す操作を支える。低レア固有の確定発動、各周1回。'};
+  driving.wake_escape={mechanics:{wakeShield:.2,accel:.4},text:'引き波から進路を変えて抜けた後の再加速を支える。'};
   abilities.forEach(function(skill){skill.drive=driving[skill.id]||{text:'整備・育成・人気の効果を両モードで共通適用。'};});
   abilities.filter(function(skill){return skill.signature;}).forEach(function(skill){
     var spec=skill.signature,describe=function(values){return Object.keys(values).map(function(k){return stats[k]+(values[k]>0?'＋':'−')+Math.abs(values[k]);}).join(' / ');};
@@ -192,7 +198,7 @@
     {id:'duel',name:'攻防一体',groups:[['speed_lock','turn_press','start_check','accel_lock','power_drain','dump'],['immune','reflect','mirror']],need:{start:35,power:35},description:'他艇18m以内で応答・接触耐性を強化。伸び足を少し犠牲にする。'},
     {id:'craftline',name:'整備の継走',groups:[['doguchi_sr','doguchi_ssr','doguchi_ur','doguchi_lr'],['mechanic','spanner','engineer','craft']],need:{accel:40},description:'2周目の機材応答と持久力を改善。伸び足は控えめ。洞口スペシャルの3周目の反動は残る。'}
   ];
-  var D = {version:80,build:'87',spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
+  var D = {version:80,build:'88',spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
     easy:{id:'easy',name:'イージー',growth:.75,rewardDrop:1,shopMax:'SSR',ai:'easy'},
     normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'}
   },stats:stats,statKeys:Object.keys(stats),categories:categories,

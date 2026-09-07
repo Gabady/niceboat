@@ -2446,10 +2446,28 @@ td small {
 .tilt-grid .strategy{min-width:0;padding:12px 2px;min-height:64px}.tilt-grid small{font-size:10px}
 @media(max-height:650px){.drive-countdown{top:32%;width:88px}.start-readout{top:calc(32% + 94px);font-size:12px}}
 @media(orientation:landscape) and (max-height:550px){.drive-countdown{top:22%;left:51%;width:76px}.start-readout{top:calc(22% + 80px);left:34%;right:27%}}
+
+/* v88: invisible right-hand hit region, clock in the existing upper-right map space. */
+.throttle-hit-zone{position:absolute;right:0;bottom:0;width:50%;height:50%;z-index:4;touch-action:none;user-select:none;-webkit-user-select:none}
+.drive-countdown{top:calc(143px + env(safe-area-inset-top));right:16px;left:auto;transform:none;width:112px;z-index:4}
+.start-readout{top:calc(262px + env(safe-area-inset-top));left:auto;right:12px;width:170px;font-size:12px}
+.clock-guide{fill:none;stroke:#269b87;stroke-width:8;stroke-linecap:round;opacity:.65}
+.spectator-start-clock{left:auto;right:8px}
+.training-mode,.adjust-directions{display:flex;gap:6px;flex-wrap:wrap}.training-mode button{flex:1}.adjust-directions button{flex:1 1 40%;min-height:48px}
+.training-mode .selected{background:#c8efd9;color:#143f3a}.slot-card{padding:12px;border-bottom:1px solid #6cb4b43b}.qualification-strip{padding:10px;border-radius:12px;background:#193f48;color:#e0f7e5;font-size:12px}.career-log{padding-left:18px;font-size:13px}
+@media(max-height:650px){.drive-countdown{top:calc(120px + env(safe-area-inset-top));width:88px}.start-readout{top:calc(212px + env(safe-area-inset-top))}}
+@media(orientation:landscape) and (max-height:550px){.drive-countdown{top:58px;right:75px;left:auto;width:76px}.start-readout{top:138px;right:50px;left:auto}}
+
+/* Hit planes also cover gaps and the part of the visible steering pad crossing the midpoint. */
+.steer-hit-zone,.throttle-hit-zone{z-index:6}
+.drive-controls,.drive-controls .pedals{pointer-events:none}.drive-controls .steer-pad,.drive-controls .pedal{pointer-events:auto}
+
+.drive-map.start-map .drive-cutins{visibility:visible;transform:translateY(120px)}
+@media(max-height:650px){.drive-map.start-map .drive-cutins{transform:translateY(96px)}}
 </style>
 </head>
 <body>
-  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v87</span></header>
+  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v88</span></header>
   <main id="app" tabindex="-1"><p class="loading">水面を準備しています…</p></main>
   <div id="toast" role="status" aria-live="polite"></div>
   <div id="modal" class="modal-root" hidden></div>
@@ -2506,7 +2524,7 @@ td small {
   a('zero', '零の踏み込み', 'UR', '強化', [0,1], .72, {stats:{start:25,accel:18,turn:8}}, 'スタート＋25、加速＋18、旋回＋8。', ['序盤']);
   a('comet', '彗星航路', 'UR', '戦術', [2,4], .7, {stats:{speed:26,accel:20},tactic:'gamble'}, '直線＋26、加速＋20。直線での最高速と再加速を高める。', ['直線']);
   a('wave', '波を支配する', 'UR', '環境', [1,3], .76, {stats:{turn:24,power:22},safety:.65}, '旋回＋24、フィジカル＋22。グリップを強め、波と傾きの蓄積を軽減。', ['ターン']);
-  a('craft', '匠の設計', 'UR', '整備', [], 1, {type:'tuning',success:16}, '両機材の調整成功率＋16。成功率上限は90%。', []);
+  a('craft', '匠の設計', 'UR', '整備', [], 1, {type:'tuning',success:16}, '両機材の調整成功率＋16。成功率上限は92%。', []);
   a('mirror', '鏡面水域', 'LR', '防御', [0,1,2,3,4], 1, {type:'defense',reflect:1}, '妨害を完全無効化し、効果をすべて攻撃者へ返す。再反射しない。', []);
   a('legend_start', '一閃の境地', 'LR', '強化', [0,1], .84, {stats:{start:31,turn:20,accel:20}}, 'スタート＋31、旋回・加速＋20。', ['序盤']);
   a('legend_speed', '水上の軌跡', 'LR', '強化', [2,4], .84, {stats:{speed:33,accel:25,power:14}}, '直線＋33、加速＋25、フィジカル＋14。', ['直線']);
@@ -2587,6 +2605,12 @@ td small {
     a('prep_'+rarity.toLowerCase(),names[i],rarity,'育成',[],chance,{type:'prep',amount:amount},
       'そのレース前の最初の練習で'+Math.round(chance*100)+'%の抽選。練習した能力を次の1レースだけ＋'+amount+'。同系統は最上位のみ。追加練習での補正は半分。',['次走']);
   });
+  a('feather','抜きの手ほどき','N','戦術',[1,3],1,{type:'operation',stats:{turn:2}},'ターン中にアクセルを抜き、舵を切って0.4秒保つと発動。1周1回、2秒間だけ横滑りの収束を助ける。',['ターン']);
+  a('straighten','舵戻しの基本','R','戦術',[2,4],1,{type:'operation',stats:{accel:3}},'ターン出口で舵を中央に戻し全開で0.4秒保つと発動。1周1回、3秒間だけエンジン応答を改善。',['直線']);
+  a('wake_escape','引き波の抜け道','SR','環境',[0,1,2,3,4],.65,{type:'operation',stats:{accel:6,power:5}},'引き波を受けた後、進路を変えて抜けると65%で発動。1周1回、4秒間再加速と波への耐性を強化。',[]);
+  driving.feather={mechanics:{damping:.65},text:'アクセルを抜いたターンを補助。低レア固有の確定発動、各周1回。'};
+  driving.straighten={mechanics:{response:.9},text:'ターン出口で舵を戻す操作を支える。低レア固有の確定発動、各周1回。'};
+  driving.wake_escape={mechanics:{wakeShield:.2,accel:.4},text:'引き波から進路を変えて抜けた後の再加速を支える。'};
   abilities.forEach(function(skill){skill.drive=driving[skill.id]||{text:'整備・育成・人気の効果を両モードで共通適用。'};});
   abilities.filter(function(skill){return skill.signature;}).forEach(function(skill){
     var spec=skill.signature,describe=function(values){return Object.keys(values).map(function(k){return stats[k]+(values[k]>0?'＋':'−')+Math.abs(values[k]);}).join(' / ');};
@@ -2649,7 +2673,7 @@ td small {
     {id:'duel',name:'攻防一体',groups:[['speed_lock','turn_press','start_check','accel_lock','power_drain','dump'],['immune','reflect','mirror']],need:{start:35,power:35},description:'他艇18m以内で応答・接触耐性を強化。伸び足を少し犠牲にする。'},
     {id:'craftline',name:'整備の継走',groups:[['doguchi_sr','doguchi_ssr','doguchi_ur','doguchi_lr'],['mechanic','spanner','engineer','craft']],need:{accel:40},description:'2周目の機材応答と持久力を改善。伸び足は控えめ。洞口スペシャルの3周目の反動は残る。'}
   ];
-  var D = {version:80,build:'87',spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
+  var D = {version:80,build:'88',spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
     easy:{id:'easy',name:'イージー',growth:.75,rewardDrop:1,shopMax:'SSR',ai:'easy'},
     normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'}
   },stats:stats,statKeys:Object.keys(stats),categories:categories,
@@ -2674,7 +2698,7 @@ td small {
 'use strict';
 const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null);
 const TAU=Math.PI*2, DT=1/60;
-const C={halfStraight:(600-TAU*36)/4,radius:36,inner:32,outer:73,laps:3,prestart:12,timeLimit:270,flyingGrace:.25,lateLimit:1.5};
+const C={halfStraight:(600-TAU*36)/4,radius:36,inner:32,outer:73,laps:3,prestart:12,timeLimit:270,flyingGrace:.09,lateLimit:1.5};
 C.length=600;C.start=100;C.goal=C.length*C.laps;
 // Existing v86 races retain their original start instant when loaded.
 const startAt=d=>Number.isFinite(d.startAt)?d.startAt:10;
@@ -2794,7 +2818,7 @@ function create(r,seed,options={}){
     const distance=b.course<=3?42+(b.course-1)*5:78+(b.course-4)*7;
     const start=pointAt(C.start-distance,b.lane);b.x=start.x;b.z=start.z;b.heading=start.heading;b.progress=-distance;b.lastS=C.start-distance;
   });
-  log(d,'助走開始。1〜3コースはスロー、4〜6コースは後方からダッシュ。0.25秒を超えて早い通過はF。','phase');
+  log(d,'助走開始。1〜3コースはスロー、4〜6コースは後方からダッシュ。0.09秒を超えて早い通過はF。','phase');
   return d;
 }
 function condition(a,b,d,env){switch(a.condition){case'rough':return env.weather==='雨'||env.windSpeed>=6;case'calm':return env.weather!=='雨'&&env.windSpeed<=3;case'inner':return b.course<=2;case'outer':return b.course>=4;case'rain':return env.weather==='雨';case'cross':return env.wind==='横風';case'behind':return place(d,b)>=3;default:return true;}}
@@ -2824,7 +2848,7 @@ function enterZone(d,b,r){
   const lap=Math.floor(Math.max(0,b.progress)/C.length),phase=phaseAt(b.progress),zone=lap+':'+phase;
   b.phase=phase;if(zone===b.lastZone)return;if(b.lastZone&&/:(1|3)$/.test(b.lastZone)&&[2,4].includes(phase))b.turnExitAt=d.elapsed;b.lastZone=zone;
   const checks=[];
-  b.skills.forEach(id=>{const a=D.abilityMap[id];if(!a.phases.includes(phase)||['defense','convert','lapcycle','pivot'].includes(a.type))return;
+  b.skills.forEach(id=>{const a=D.abilityMap[id];if(!a.phases.includes(phase)||['defense','convert','lapcycle','pivot','operation'].includes(a.type))return;
     const target=a.type==='debuff'?opponent(d,b,a.effect.target):null;
     const met=condition(a,b,d,r.env)&&driveCondition(a,b,d,r,target),roll=met?random(d):null,active=met&&roll<a.chance;checks.push({abilityId:id,condition:met,roll,chance:a.chance,activated:active});if(!active)return;
     activate(d,b,id);
@@ -2989,21 +3013,22 @@ function hullContacts(a,b){
 function contact(d,a,b,r){
   if(!activeBoat(a)||!activeBoat(b)||Math.hypot(b.x-a.x,b.z-a.z)>8)return false;
   const hit=hullContacts(a,b);if(!hit)return false;
+  const kind=contactType(a,b,hit),rule=CONTACT[kind];
   const pa=performance(a,d,r),pb=performance(b,d,r),invA=1/pa.mass,invB=1/pb.mass,total=invA+invB;
   const {nx,nz,depth,sa,sb}=hit,speedA=Math.hypot(a.vx,a.vz),speedB=Math.hypot(b.vx,b.vz);
   a.x-=nx*depth*invA/total;a.z-=nz*depth*invA/total;b.x+=nx*depth*invB/total;b.z+=nz*depth*invB/total;
-  const relative=(b.vx-a.vx)*nx+(b.vz-a.vz)*nz,impulse=Math.max(0,-relative)*1.12/total;
+  const relative=(b.vx-a.vx)*nx+(b.vz-a.vz)*nz,impulse=Math.max(0,-relative)*rule.restitution/total;
   a.vx-=nx*impulse*invA;a.vz-=nz*impulse*invA;b.vx+=nx*impulse*invB;b.vz+=nz*impulse*invB;
   const shieldA=1-clamp(pa.mechanics.contactShield||0,-.4,.8),shieldB=1-clamp(pb.mechanics.contactShield||0,-.4,.8);
-  a.yawRate-=clamp(sa*(Math.cos(a.heading)*nz-Math.sin(a.heading)*nx)*impulse*.055,-.38,.38)*shieldA;
-  b.yawRate+=clamp(sb*(Math.cos(b.heading)*nz-Math.sin(b.heading)*nx)*impulse*.055,-.38,.38)*shieldB;
-  a.stress=clamp(a.stress+contactStress(a,pa,impulse,speedA)*shieldA,0,3.2);b.stress=clamp(b.stress+contactStress(b,pb,impulse,speedB)*shieldB,0,3.2);
+  a.yawRate-=clamp(sa*(Math.cos(a.heading)*nz-Math.sin(a.heading)*nx)*impulse*rule.yaw,-.38,.38)*shieldA;
+  b.yawRate+=clamp(sb*(Math.cos(b.heading)*nz-Math.sin(b.heading)*nx)*impulse*rule.yaw,-.38,.38)*shieldB;
+  a.stress=clamp(a.stress+contactStress(a,pa,impulse,speedA)*shieldA*rule.stress,0,3.2);b.stress=clamp(b.stress+contactStress(b,pb,impulse,speedB)*shieldB*rule.stress,0,3.2);
   a.metrics.contactImpulse+=impulse;b.metrics.contactImpulse+=impulse;
   if(d.elapsed>=Math.max(a.cooldownContact,b.cooldownContact)){
     a.metrics.contacts++;b.metrics.contacts++;a.cooldownContact=b.cooldownContact=d.elapsed+.8;
-    a.vx*=.95;a.vz*=.95;b.vx*=.95;b.vz*=.95;
-    addEvent(d,{kind:'contact',athleteId:a.id,otherId:b.id,phase:a.phase,impulse});
-    if(a.isPlayer||b.isPlayer)log(d,a.frame+'号艇と'+b.frame+'号艇が接触。押し合いで進路と艇速が変わる。','warning',a.isPlayer?a.id:b.id);
+    a.vx*=rule.retain;a.vz*=rule.retain;b.vx*=rule.retain;b.vz*=rule.retain;
+    addEvent(d,{kind:'contact',contactType:kind,athleteId:a.id,otherId:b.id,phase:a.phase,impulse});
+    if(a.isPlayer||b.isPlayer)log(d,a.frame+'号艇と'+b.frame+'号艇：'+rule.label+'。進路と艇速が変わる。','warning',a.isPlayer?a.id:b.id);
   }
   constrain(d,a);constrain(d,b);return true;
 }
@@ -3030,10 +3055,40 @@ function startCrossing(d,b,previousX,dt){
     else{addEvent(d,{kind:'start',athleteId:b.id,phase:0,fault:null,st:b.startTime});log(d,b.frame+'号艇 ST '+startText(b.startTime)+'。'+(b.course>=4?'ダッシュから1マークへ。':'助走を合わせた。'),'phase',b.id);}
   }else if(raceTime(d)>=C.lateLimit-1e-7){b.startFault='L';b.dnf=true;b.vx=b.vz=b.speed=0;log(d,b.frame+'号艇、1.5秒未満にスタートできず出遅れ（L）。','warning',b.id);}
 }
+// Trigger from sustained player/NPC inputs, once per ability per lap, using the saved RNG.
+function operationSkills(d,b,input,dt){
+ if(b.startTime===null)return;
+ const lap=Math.min(3,1+Math.floor(Math.max(0,b.progress)/C.length)),phase=phaseAt(b.progress);
+ const op=b.operation||(b.operation={used:[],feather:0,straighten:0,wakeAt:0,wakeHeading:0});
+ const turning=[1,3].includes(phase),exit=[2,4].includes(phase)&&Number.isFinite(b.turnExitAt)&&d.elapsed-b.turnExitAt<4;
+ op.feather=turning&&input.throttle<.2&&Math.abs(b.steer)>.2?op.feather+dt:0;
+ op.straighten=exit&&input.throttle>.98&&Math.abs(b.steer)<.15?op.straighten+dt:0;
+ if(b.wakeLoad>.15){op.wakeAt=d.elapsed;op.wakeHeading=b.heading;}
+ for(const id of b.skills){const a=D.abilityMap[id];if(a.type!=='operation')continue;const token=id+':'+lap;if(op.used.includes(token))continue;
+ const met=id==='feather'?op.feather>=.4:id==='straighten'?op.straighten>=.4:op.wakeAt>0&&d.elapsed-op.wakeAt<2&&b.wakeLoad<.04&&Math.abs(wrap(b.heading-op.wakeHeading))>.06;
+ if(!met)continue;op.used.push(token);if(random(d)>=a.chance)continue;
+ activate(d,b,id);b.effects.push({id,stats:clone(a.effect.stats),safety:0,until:d.elapsed+(id==='feather'?2:id==='straighten'?3:4),source:b.id,kind:'operation',mechanics:clone(a.drive.mechanics)});
+ log(d,b.frame+'号艇「'+a.name+'」操作が決まった。','ability',b.id);
+ }
+}
+function contactType(a,b,hit){
+ const alignment=Math.cos(wrap(a.heading-b.heading));
+ if(alignment<-.55)return 'head';
+ const longitudinal=Math.abs(hit.nx*Math.cos(a.heading)+hit.nz*Math.sin(a.heading));
+ return alignment>.55&&longitudinal>.65?'rear':'side';
+}
+const CONTACT={side:{restitution:1.04,yaw:.065,stress:.8,retain:.98,label:'横の押し合い'},rear:{restitution:1.08,yaw:.025,stress:1,retain:.94,label:'追突'},head:{restitution:1.18,yaw:.04,stress:1.3,retain:.88,label:'正面・対向接触'}};
+function spectatorPace(d){
+ if(raceTime(d)<2)return {important:true,label:'スタート',ticks:30};
+ const b=activeBoat(own(d))?own(d):(ranks(d).find(activeBoat)||own(d)),near=d.boats.some(o=>o!==b&&activeBoat(o)&&Math.abs(o.progress-b.progress)<18),turn=[1,3].includes(phaseAt(b.progress));
+ const recent=d.events.some(e=>d.elapsed-e.t<2&&['ability','contact','capsize'].includes(e.kind));
+ const goal=C.goal-b.progress<85;
+ return {important:recent||turn&&near||goal,label:recent?'発動・接触':goal?'ゴール前':turn&&near?'接戦ターン':'直線早送り',ticks:recent||turn&&near||goal?30:180};
+}
 function integrate(d,b,r,input,dt){
   if(!activeBoat(b))return;
   b.phase=phaseAt(b.progress);b.throttle=clamp(Number(input.throttle)||0,0,1);updateSignatures(d,b,r,input);
-  enterZone(d,b,r);const p=performance(b,d,r),s=p.stats;
+  enterZone(d,b,r);operationSkills(d,b,input,dt);const p=performance(b,d,r),s=p.stats;
   b.synergyUsed=b.synergyUsed||[];for(const id of p.synergy){if(!b.synergyUsed.includes(id)){b.synergyUsed.push(id);if(b.isPlayer)log(d,'連携「'+D.synergies.find(x=>x.id===id).name+'」が走りを支える。','ability',b.id);}}
   b.effects=b.effects.filter(e=>e.until>d.elapsed);
   const steer=clamp(Number(input.steer)||0,-1,1),throttle=clamp(Number(input.throttle)||0,0,1);
@@ -3151,12 +3206,13 @@ function valid(d,r){
     (!('boundaryInner' in b)||typeof b.boundaryInner==='boolean')&&
     (['boundaryAt','boundaryStall','recoveryUntil','turnExitAt'].every(k=>!(k in b)||finite(b[k],0,k==='boundaryStall'?10:300)))&&
     (!b.synergyUsed||(Array.isArray(b.synergyUsed)&&b.synergyUsed.length<=D.synergies.length&&b.synergyUsed.every(id=>D.synergies.some(x=>x.id===id))))&&
+    (!b.operation||(Array.isArray(b.operation.used)&&b.operation.used.length<=9&&b.operation.used.every(x=>/^(feather|straighten|wake_escape):[123]$/.test(x))&&['feather','straighten','wakeAt'].every(k=>finite(b.operation[k],0,300))&&finite(b.operation.wakeHeading,-4,4)))&&
     (!b.signature||(Number.isInteger(b.signature.lap)&&b.signature.lap>=0&&b.signature.lap<=3&&Array.isArray(b.signature.monkeyZones)&&b.signature.monkeyZones.length<=6&&b.signature.monkeyZones.every(z=>/^[123]:[13]$/.test(z))))&&
     ['x','z','vx','vz','heading','yawRate','speed','progress','lastS','stamina','stress','heel','slip','lane','reaction','penaltyUntil','cooldownContact','cooldownBoundary','aiBias','steer','throttle','engine','itemBoost','wakeLoad','aiLane','nextPlan','startAim','startRoll'].every(k=>Number.isFinite(b[k]))&&Math.abs(b.x)<500&&Math.abs(b.z)<500&&Math.abs(b.vx)<100&&Math.abs(b.vz)<100&&Math.abs(b.progress)<C.goal+1000&&Number.isInteger(b.phase)&&b.phase>=0&&b.phase<=4&&Number.isInteger(b.checkpoints)&&b.checkpoints>=0&&b.checkpoints<=C.laps*8&&typeof b.capsized==='boolean'&&typeof b.dnf==='boolean'&&(b.finishTime===null||finite(b.finishTime,0,271))&&
     (b.startTime===null||finite(b.startTime,-C.prestart,271))&&[null,'F','L'].includes(b.startFault)&&(!b.plan||['front','defend','sashi','outside','cross','clear'].includes(b.plan.id)&&finite(b.plan.lane,C.inner,C.outer)&&finite(b.plan.speed,.1,2))&&(b.lastZone===null||typeof b.lastZone==='string'&&b.lastZone.length<20)&&Array.isArray(b.effects)&&b.effects.length<150&&b.effects.every(e=>D.abilityMap[e.id]&&finite(e.until,0,310)&&finite(e.safety,0,2)&&(!e.mechanics||Object.values(e.mechanics).every(v=>finite(v,-5,5)))&&e.stats&&Object.entries(e.stats).every(([k,v])=>D.statKeys.includes(k)&&finite(v,-10000,10000)))&&Array.isArray(b.activations)&&b.activations.length<=100&&b.activations.every(active)&&Array.isArray(b.interference)&&b.interference.length<600&&Array.isArray(b.phaseHistory)&&b.phaseHistory.length<=24&&b.metrics&&['contacts','boundaries','rescues','maxSpeed','slideSeconds','throttleSeconds','coastSeconds','wakeSeconds','lineChanges','contactImpulse','turnSpeedSum','turnSamples'].every(k=>finite(b.metrics[k],0,1e7))&&b.stats&&D.statKeys.every(k=>finite(b.stats[k],0,100))&&Array.isArray(b.skills)&&b.skills.every(id=>D.abilityMap[id])&&b.mastery&&Object.values(b.mastery).every(n=>Number.isInteger(n)&&n>0&&n<10000)&&b.statsBuff&&D.statKeys.every(k=>finite(b.statsBuff[k]||0,0,100))&&b.equipment&&['motor','prop','boat'].every(k=>b.equipment[k]&&Object.values(b.equipment[k]).every(v=>finite(v,-100,100)));});
 }
 
-const R={C,DT,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
+const R={C,DT,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
 root.KM_RACING=R;if(typeof module!=='undefined'&&module.exports)module.exports=R;
 })(typeof globalThis!=='undefined'?globalThis:window);
 
@@ -3333,9 +3389,11 @@ const clock=t=>t===null?'—':Math.floor(t/60)+':'+String(Math.floor(t%60)).padS
 const button=(text,action,cls='')=>'<button type="button" class="drive-button '+cls+'" data-drive="'+action+'">'+text+'</button>';
 // One clockwise revolution takes 12 seconds; zero is exactly at the upper tick.
 const startClockAngle=t=>t*30;
-function startClockView(t,id='start-clock-needle'){
+function clockGuide(d,b,r){const f=R.launchForecast(d,b,r);return {center:(R.raceTime(d)+f.launchIn+.20)*30,width:Math.max(5,f.uncertainty*100),precision:f.precision};}
+function guidePath(center,width){const pt=a=>{const r=a*Math.PI/180;return [60+46*Math.sin(r),60-46*Math.cos(r)];},a=pt(center-width/2),b=pt(center+width/2);return 'M'+a.join(' ')+' A46 46 0 0 1 '+b.join(' ');}
+function startClockView(t,id='start-clock-needle',guide=null){
  const ticks=Array.from({length:12},(_,i)=>'<line x1="60" y1="12" x2="60" y2="'+(i%3===0?23:18)+'" transform="rotate('+i*30+' 60 60)"/>').join('');
- return '<svg class="start-clock" viewBox="0 0 120 120" role="img" aria-label="12秒針。針が頂点へ戻るとスタート"><circle cx="60" cy="60" r="55" class="clock-face"/><g class="clock-ticks">'+ticks+'</g><path d="M55 6L60 14L65 6" class="clock-zero"/><text x="60" y="34">START</text><text x="94" y="64">3</text><text x="60" y="99">6</text><text x="26" y="64">9</text><g id="'+id+'" transform="rotate('+startClockAngle(t)+' 60 60)"><path d="M60 68V17" class="clock-hand"/><path d="M56 23L60 15L64 23" class="clock-zero"/></g><circle cx="60" cy="60" r="4" class="clock-hub"/><text x="60" y="81">12秒針</text></svg>';
+ return '<svg class="start-clock" viewBox="0 0 120 120" role="img" aria-label="12秒針。針が頂点へ戻るとスタート"><circle cx="60" cy="60" r="55" class="clock-face"/><g class="clock-ticks">'+ticks+'</g><path class="clock-guide" id="'+id+'-guide" d="'+(guide?guidePath(guide.center,guide.width):'')+'"/><path d="M55 6L60 14L65 6" class="clock-zero"/><text x="60" y="34">START</text><text x="94" y="64">3</text><text x="60" y="99">6</text><text x="26" y="64">9</text><g id="'+id+'" transform="rotate('+startClockAngle(t)+' 60 60)"><path d="M60 68V17" class="clock-hand"/><path d="M56 23L60 15L64 23" class="clock-zero"/></g><circle cx="60" cy="60" r="4" class="clock-hub"/><text x="60" y="81">12秒針</text></svg>';
 }
 function minimapPoint(x,z){return {x:100+x*85/(R.C.halfStraight+R.C.outer),y:62+z*48/R.C.outer};}
 function mapPath(){return Array.from({length:81},(_,i)=>{const p=R.pointAt(R.C.length*i/80,R.C.inner+10),m=minimapPoint(p.x,p.z);return (i?'L':'M')+m.x+' '+m.y;}).join(' ')+'Z';}
@@ -3393,10 +3451,10 @@ function view(r,title){const b=R.own(r.drive);return '<section class="drive-shel
  '<div class="drive-top"><div><span class="drive-eyebrow">'+esc(title)+' · '+esc(r.venue.name)+' · '+(r.difficulty==='easy'?'EASY':'NORMAL')+'</span><b><span class="mini-boat boat-'+b.frame+'">'+b.frame+'</span> '+esc(b.name)+'</b></div>'+button('Ⅱ','pause','pause-button')+'</div>'+
  '<div class="drive-metrics"><div><span>POSITION</span><strong id="drive-rank">—<small> / 6</small></strong></div><div><span>LAP</span><strong id="drive-lap">1<small> / 3</small></strong></div><div><span>SPEED</span><strong id="drive-speed">0<small> km/h</small></strong></div><div><span>TIME</span><b id="drive-time">0:00.0</b></div></div>'+
  '<div class="drive-standings" id="drive-standings"></div><div class="drive-map" id="drive-map"><svg viewBox="0 0 200 124" aria-label="反時計回りのコースと6艇の現在順位"><path d="'+mapPath()+'" fill="none" stroke="#80c8c7" stroke-opacity=".35" stroke-width="15"/><path d="'+mapPath()+'" fill="none" stroke="#a9ded3" stroke-opacity=".75"/><text x="87" y="115" text-anchor="middle">START / GOAL →</text><text x="183" y="63" text-anchor="middle">1M</text><text x="100" y="20" text-anchor="middle">← BACK</text><text x="16" y="63" text-anchor="middle">2M</text><g id="map-leaders"></g><g id="map-markers"></g></svg><div class="map-ranking" id="map-ranking"></div><div class="drive-cutins" id="drive-cutins" aria-live="polite"></div></div>'+
- '<div class="opponent-labels" id="opponent-labels"></div><div class="drive-countdown" id="drive-countdown">'+startClockView(R.raceTime(r.drive))+'</div><div class="drive-warning" id="drive-warning"></div><div class="start-readout" id="start-readout" aria-live="polite"></div>'+
+ '<div class="opponent-labels" id="opponent-labels"></div><div class="drive-countdown" id="drive-countdown">'+startClockView(R.raceTime(r.drive),'start-clock-needle',clockGuide(r.drive,b,r))+'</div><div class="drive-warning" id="drive-warning"></div><div class="start-readout" id="start-readout" aria-live="polite"></div>'+
  '<div class="drive-telemetry"><span id="drive-zone">スタート</span><div class="stability-meter"><i id="stability-fill"></i></div><span id="drive-stability">安定</span></div>'+
  '<div id="drive-combos" class="drive-combos"></div><div class="drive-live"><span class="live-dot"></span><span id="drive-live-text" role="status">12秒針が頂点に戻るとスタート。早過ぎ・出遅れに注意。</span></div>'+
- '<div id="steer-hit-zone" class="steer-hit-zone" aria-hidden="true"></div><div class="drive-controls"><div class="steer-pad" id="steer-pad" role="slider" tabindex="0" aria-label="操舵。広いパッドのどこからでも左右へドラッグ" aria-valuemin="-100" aria-valuemax="100" aria-valuenow="0"><span class="steer-left">←</span><span class="steer-right">→</span><div class="steer-groove"></div><div class="steer-range" id="steer-range"></div><div class="steer-request" id="steer-request"></div><div class="steer-knob" id="steer-knob"></div><small id="steer-load">舵は軽め</small></div><div class="pedals"><button class="pedal throttle" id="throttle-pedal" aria-label="押している間加速、離すと減速">加速<span>離すと減速</span></button></div></div>'+
+ '<div id="steer-hit-zone" class="steer-hit-zone" aria-hidden="true"></div><div id="throttle-hit-zone" class="throttle-hit-zone" aria-hidden="true"></div><div class="drive-controls"><div class="steer-pad" id="steer-pad" role="slider" tabindex="0" aria-label="操舵。広いパッドのどこからでも左右へドラッグ" aria-valuemin="-100" aria-valuemax="100" aria-valuenow="0"><span class="steer-left">←</span><span class="steer-right">→</span><div class="steer-groove"></div><div class="steer-range" id="steer-range"></div><div class="steer-request" id="steer-request"></div><div class="steer-knob" id="steer-knob"></div><small id="steer-load">舵は軽め</small></div><div class="pedals"><button class="pedal throttle" id="throttle-pedal" aria-label="押している間加速、離すと減速">加速<span>離すと減速</span></button></div></div>'+
  '<div class="drive-overlay" id="drive-overlay"></div></section>';}
 function mount(r,settings,callbacks){
  const d=r.drive,shell=document.getElementById('drive-shell');if(!shell)return {destroy(){}};
@@ -3421,7 +3479,7 @@ function mount(r,settings,callbacks){
   const area=node('drive-overlay');if(!d.paused&&!error&&!r.done){area.hidden=true;return;}area.hidden=false;
   const b=R.own(d);if(error){area.innerHTML='<div class="drive-dialog"><span class="drive-eyebrow">描画の準備</span><h2>レースは一時停止中</h2><p>'+esc(error)+'</p>'+button('描画を再開','retry','primary')+(r.done?'<button class="btn primary large" data-action="result">リザルトへ</button>':button('観戦モードに切り替える','skip'))+button('タイトルへ戻る','exit')+'</div>';return;}
   if(r.done){area.innerHTML='<div class="drive-dialog finish-dialog"><span class="drive-eyebrow">FINISH</span><h2>'+(b.capsized?'転覆':b.startFault==='F'?'フライング（F）':b.startFault==='L'?'出遅れ（L）':b.dnf?'リタイア':R.place(d,b)+'着')+'</h2><p>'+esc(b.name)+' · '+clock(b.finishTime)+'</p><button class="btn primary large" data-action="result">リザルトへ</button>'+debugHTML()+'</div>';return;}
-  area.innerHTML='<div class="drive-dialog"><span class="drive-eyebrow">'+(d.started?'PAUSED':'FIRST PERSON / 3 LAPS')+'</span><h2>'+(d.started?'水面で、ひと息。':'自分の手で、3周。')+'</h2><p class="drive-instructions">画面左側の下半分のどこからでも指を置いて、左右にドラッグして操舵。細い印は指の指定位置、丸い舵は水圧で遅れて動きます。光る範囲が現在の可動域。旋回中ほど重く、旋回能力で軽減します。右手で加速。押し続けると旋回中も速度を維持します。曲がる前に離して減速してください。ブイで0.7秒以上動けないと船首が自動で外を向きます。加速して復帰してください。全速旋回は横滑りと転覆の危険があります。助走中も操船でき、12秒針の頂点を目安に船首でラインを通過。ゲーム内では0.25秒を超えて早いとF、1.5秒以上遅いとLです。</p><div class="drive-mini-guide"><span>← 左回り</span><span>600m × 3周 · ブイの外を回る</span></div>'+button(d.started?'操船を再開':'水面へ出る','resume','primary')+'<div class="drive-options"><label><input id="drive-guide-setting" type="checkbox"'+(settings.guide!==false?' checked':'')+'> 水面の進行ガイド</label><label><input id="drive-motion-setting" type="checkbox"'+(motion?' checked':'')+'> 視点の揺れ・雨風の動き</label><label><input id="drive-render-setting" type="checkbox"'+(renderer?.mode==='canvas'?' checked':'')+'> 軽量表示</label></div>'+(d.started?button('立て直す · 4秒停止','rescue'):'')+button(d.started?'ここから観戦に切り替える':'観戦モードに切り替える','skip')+'<div class="drive-menu-row">'+button('タイトルへ','exit')+(d.started?button('このレースをリタイア','retire'):'')+'</div><p class="drive-key-hint">PC: ← → / A D 操舵 · ↑ / W 加速 · アクセルを離して減速 · Esc 一時停止</p>'+debugHTML()+'</div>';
+  area.innerHTML='<div class="drive-dialog"><span class="drive-eyebrow">'+(d.started?'PAUSED':'FIRST PERSON / 3 LAPS')+'</span><h2>'+(d.started?'水面で、ひと息。':'自分の手で、3周。')+'</h2><p class="drive-instructions">画面左側の下半分のどこからでも指を置いて、左右にドラッグして操舵。細い印は指の指定位置、丸い舵は水圧で遅れて動きます。光る範囲が現在の可動域。旋回中ほど重く、旋回能力で軽減します。右下半分のどこからでも押して加速。押し続けると旋回中も速度を維持します。曲がる前に離して減速してください。ブイで0.7秒以上動けないと船首が自動で外を向きます。加速して復帰してください。全速旋回は横滑りと転覆の危険があります。助走中も操船でき、時計の色帯は全開を始める目安。低スタートでは幅が広く位置も曖昧です。12秒針の頂点を目安に船首でラインを通過。ゲーム内では0.09秒を超えて早いとF、1.5秒以上遅いとLです。</p><div class="drive-mini-guide"><span>← 左回り</span><span>600m × 3周 · ブイの外を回る</span></div>'+button(d.started?'操船を再開':'水面へ出る','resume','primary')+'<div class="drive-options"><label><input id="drive-guide-setting" type="checkbox"'+(settings.guide!==false?' checked':'')+'> 水面の進行ガイド</label><label><input id="drive-motion-setting" type="checkbox"'+(motion?' checked':'')+'> 視点の揺れ・雨風の動き</label><label><input id="drive-render-setting" type="checkbox"'+(renderer?.mode==='canvas'?' checked':'')+'> 軽量表示</label></div>'+(d.started?button('立て直す · 4秒停止','rescue'):'')+button(d.started?'ここから観戦に切り替える':'観戦モードに切り替える','skip')+'<div class="drive-menu-row">'+button('タイトルへ','exit')+(d.started?button('このレースをリタイア','retire'):'')+'</div><p class="drive-key-hint">PC: ← → / A D 操舵 · ↑ / W 加速 · アクセルを離して減速 · Esc 一時停止</p>'+debugHTML()+'</div>';
  }
  function setUpRenderer(forcedMode){
   if(renderer){renderer.destroy();renderer=null;}canvas=root.KM_RACE_RENDERER.freshCanvas(canvas);
@@ -3434,14 +3492,14 @@ function mount(r,settings,callbacks){
  function syncInput(){const keyboardSteer=(keys.has('ArrowRight')||keys.has('d')?1:0)-(keys.has('ArrowLeft')||keys.has('a')?1:0);return {steer:pointers.steer!==null?input.steer:keyboardSteer,throttle:pointers.throttle!==null||keys.has('ArrowUp')||keys.has('w')?1:0};}
  function bindPointer(el,kind){
   let originX=0,originSteer=0;
-  const update=e=>{if(kind==='steer'){input.steer=steerDrag(originSteer,e.clientX-originX,node('steer-pad').getBoundingClientRect().width);}else{input[kind]=1;el.classList.add('held');}};
-  const begin=e=>{if(d.paused||d.finished||pointers[kind]!==null)return false;pointers[kind]=e.pointerId;if(kind==='steer'){originX=e.clientX;originSteer=R.own(d).steer;}update(e);return true;};
+  const update=e=>{if(kind==='steer'){input.steer=steerDrag(originSteer,e.clientX-originX,node('steer-pad').getBoundingClientRect().width);}else{input[kind]=1;node('throttle-pedal').classList.add('held');}};
+  const begin=e=>{if(d.paused||d.finished||pointers[kind]!==null||Object.values(pointers).includes(e.pointerId))return false;pointers[kind]=e.pointerId;if(kind==='steer'){originX=e.clientX;originSteer=R.own(d).steer;}update(e);return true;};
   const move=e=>{if(pointers[kind]!==e.pointerId)return false;update(e);return true;};
-  const release=e=>{if(pointers[kind]!==e.pointerId)return;pointers[kind]=null;input[kind]=0;el.classList.remove('held');};
+  const release=e=>{if(pointers[kind]!==e.pointerId)return;pointers[kind]=null;input[kind]=0;if(kind==='throttle')node('throttle-pedal').classList.remove('held');};
   attachControlEvents(root,el,{begin,move,release},on);
  }
 
- bindPointer(node('steer-hit-zone'),'steer');bindPointer(node('steer-pad'),'steer');bindPointer(node('throttle-pedal'),'throttle');
+ bindPointer(node('steer-hit-zone'),'steer');bindPointer(node('steer-pad'),'steer');bindPointer(node('throttle-pedal'),'throttle');bindPointer(node('throttle-hit-zone'),'throttle');
  on(root,'keydown',e=>{if(disposed||!document.getElementById('modal').hidden)return;const key=e.key.length===1?e.key.toLowerCase():e.key;if(key==='Escape'){e.preventDefault();pause();return;}if(['ArrowLeft','ArrowRight','ArrowUp','a','d','w'].includes(key)&&!d.paused){e.preventDefault();keys.add(key);}});
  on(root,'keyup',e=>keys.delete(e.key.length===1?e.key.toLowerCase():e.key));on(root,'blur',pause);
  on(document,'visibilitychange',()=>{if(document.hidden)pause();});on(root,'pagehide',pause);
@@ -3478,7 +3536,9 @@ function mount(r,settings,callbacks){
   const load=R.clamp(b.stress/2.8,0,1);node('stability-fill').style.width=(100-load*100)+'%';node('stability-fill').style.background=load>.45?'#ff9676':'#83e9cc';node('drive-stability').textContent=load>.6?'傾き大':b.slip>2.5?'滑り':'安定';
   node('drive-countdown').hidden=d.paused||R.raceTime(d)>=R.C.lateLimit;node('start-clock-needle').setAttribute('transform','rotate('+startClockAngle(R.raceTime(d))+' 60 60)');
   const startPanel=node('start-readout');
-  if(b.startTime===null&&!b.startFault){const f=R.launchForecast(d,b,r);startPanel.hidden=false;startPanel.innerHTML='<b>'+b.course+'コース · '+(b.course>=4?'ダッシュ':'スロー')+'</b><span>ラインまで '+Math.max(0,Math.ceil(R.pointAt(R.C.start).x-b.x-3.5))+'m</span><small>'+(f.launchIn>.25?'見込み：全開はまだ早い':f.launchIn<-.45?'見込み：今からでは遅れ気味':'見込み：全開を合わせる頃')+' · 読み '+f.precision+'</small>'; }else{startPanel.hidden=false;startPanel.innerHTML='<b>'+(b.startFault==='F'?'F · フライング':b.startFault==='L'?'L · 出遅れ':'ST '+R.startText(b.startTime))+'</b>';if(R.raceTime(d)>5)startPanel.hidden=true;}
+  const showStart=R.raceTime(d)<R.C.lateLimit;node('drive-map').style.visibility=showStart?'hidden':'';node('drive-map').classList.toggle('start-map',showStart);
+  if(b.startTime===null&&!b.startFault){const g=clockGuide(d,b,r);node('start-clock-needle-guide').setAttribute('d',guidePath(g.center,g.width));startPanel.hidden=true;node('drive-countdown').setAttribute('aria-label','12秒針。色帯は全開を始める目安。読み '+g.precision);}
+  else{startPanel.hidden=R.raceTime(d)>4||d.paused;startPanel.innerHTML='<b>'+(b.startFault||'ST '+R.startText(b.startTime))+'</b>';}
   const ideal=R.pointAt(R.C.start+b.progress),wrong=Math.abs(R.wrap(b.heading-ideal.heading))>Math.PI*.65;
   node('drive-warning').textContent=d.elapsed<(b.recoveryUntil||0)?'船首を外へ復帰 · アクセルで進もう':b.penaltyUntil>d.elapsed?'立て直し中 '+Math.ceil(b.penaltyUntil-d.elapsed)+'秒':wrong?'逆向き · 減速して進路を戻そう':load>.6?'転覆注意 · 減速して舵を戻そう':b.slip>4?'外へ流れています · アクセルを緩めよう':'';
   node('drive-standings').innerHTML=ranked.map((n,i)=>'<div class="'+(n.isPlayer?'own':'')+'"><span class="mini-boat boat-'+n.frame+'">'+n.frame+'</span><b>'+esc(n.name)+'</b><small>'+(n.startFault?n.startFault:n.capsized?'転':n.dnf?'棄':n.finishTime!==null?'完':i===0?'1位':Math.floor(Math.max(0,ranked[0].progress-n.progress))+'m')+'</small></div>').join('');
@@ -3507,7 +3567,7 @@ function mount(r,settings,callbacks){
  d.paused=true;setUpRenderer();hud(performance.now());if(d.finished&&!r.done)finish();raf=requestAnimationFrame(frame);
  return {pause,destroy(){if(disposed)return;d.paused=true;resetInput();disposed=true;cancelAnimationFrame(raf);cleanups.forEach(fn=>fn());if(renderer)renderer.destroy();callbacks.save();},getDebug(){return {pending:cutinQueue.length,abilities:cutinQueue.map(e=>e.abilityId),shown:cutinShown?.abilityId||null};}};
 }
-const API={startClockAngle,startClockView,steerDrag,steeringDisplay,signatureCaption,FX_THRESHOLDS,effectLevels,paintWeather,view,mount,attachControlEvents,clock,minimapPoint,mapLabels,steerFromPointer};root.KM_DRIVE_UI=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
+const API={clockGuide,guidePath,startClockAngle,startClockView,steerDrag,steeringDisplay,signatureCaption,FX_THRESHOLDS,effectLevels,paintWeather,view,mount,attachControlEvents,clock,minimapPoint,mapLabels,steerFromPointer};root.KM_DRIVE_UI=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
 
 </script>
@@ -3550,11 +3610,16 @@ function rewardSkill(c,p,id){
   const a=ability(id),rare=rewardRarity(p,a.rarity),pool=D.abilities.filter(x=>x.rarity===rare&&x.category===a.category&&!isWeak(x.id));
   return pool.length?pick(c,pool).id:randomSkill(c,[rare],p.skills)||randomSkill(c,[rare]);
 }
-function newState(seed=Date.now()>>>0) {return {version:D.version,seed:seed||127,career:null,registry:[],rivals:[],coins:1000,quick:null,settings:{speed:1},savedAt:null};}
-function equipment(c){return {boat:{stability:int(c,40,86),turn:int(c,-2,9),accel:int(c,-2,8)},motor:{speed:int(c,-3,13),accel:int(c,-2,10),condition:int(c,65,98)},prop:{turn:int(c,-3,12),accel:int(c,-2,9),condition:int(c,65,98)}};}
+function newState(seed=Date.now()>>>0) {return {version:D.version,build:D.build,seed:seed||127,career:null,registry:[],rivals:[],coins:1000,quick:null,settings:{speed:1},savedAt:null};}
+function equipment(c){
+  const e={boat:{stability:int(c,40,86),turn:int(c,-2,9),accel:int(c,-2,8)},motor:{speed:int(c,-3,13),accel:int(c,-2,10),condition:int(c,65,98),trait:int(c,0,3)},prop:{turn:int(c,-3,12),accel:int(c,-2,9),condition:int(c,65,98),trait:int(c,0,3)}};
+  for(const part of ['motor','prop']){const g=e[part],key=part==='motor'?'speed':'turn';if(g.trait===1){g[key]+=3;g.accel-=1.5;g.condition-=4;}if(g.trait===2){g[key]-=1.5;g.accel+=3;}if(g.trait===3){g[key]-=1;g.accel-=.5;g.condition=Math.min(100,g.condition+5);}}
+  return e;
+}
+function gearTrait(part,gear){return (part==='motor'?['均衡型','伸び型','出足型','安定型']:['均衡型','旋回型','立ち上がり型','安定型'])[gear.trait||0];}
 function character(c,name,base=44){
   return {id:uid(c),name:(name||'水瀬 湊').trim().slice(0,16)||'水瀬 湊',stats:Object.fromEntries(keys.map(k=>[k,int(c,base-9,base+9)])),
-    adjust:{motorVar:int(c,25,70),motorSuccess:int(c,35,65),propVar:int(c,25,70),propSuccess:int(c,35,65)},
+    adjust:{motorVar:int(c,25,70),motorSuccess:int(c,18,22),propVar:int(c,25,70),propSuccess:int(c,18,22)},
     growth:pick(c,D.growth).id,skills:[],mastery:{},popularity:0,money:0,totalEarnings:0,inventory:{},equipment:null,points:0,finishes:[0,0,0,0,0,0],scoreTotal:0,tie:rand(c)};
 }
 function randomSkill(c,rarities,excluded=[],weak=false){const pool=D.abilities.filter(a=>(a.category==='弱点')===weak && rarities.includes(a.rarity)&&!excluded.includes(a.id)); return pool.length ? pick(c,pool).id : null;}
@@ -3645,7 +3710,7 @@ function prepareRace(s){
     ser.finalType=type;simulateOtherFinals(s,c,type);
   }
   const r=makeRace(c,people,ser.venue,weather(c,ser.venue),type,c.player.id);ser.race=r;
-  ser.action={normal:1,training:0,tune:0,halfActions:{training:0,tune:0},logs:[],debug:[],extras:[],extrasNotified:false};
+  ser.action={normal:0,training:1,tune:1,actionVersion:88,baseActions:{training:1,tune:1},trainingMode:'focus',halfActions:{training:0,tune:0},logs:[],debug:[],extras:[],extrasNotified:false};
   c.player.skills.forEach(id=>{const a=ability(id);if(a.type==='extra'&&rand(c)<a.chance){ser.action[a.effect.action]++;ser.action.halfActions[a.effect.action]++;ser.action.extras.push(id);ser.action.logs.push(a.name+'：'+(a.effect.action==='tune'?'調整':'練習')+'を1回追加（成長・効果50%）');}});
   c.status='action';return true;
 }
@@ -3659,11 +3724,17 @@ function simulateOtherFinals(s,c,playerType){
 function consumeAction(c,kind){
   const a=c.series.action;a.effectScale=1;
   if(a.normal>0){a.normal--;return true;}
-  if(a[kind]>0){a[kind]--;if(a.halfActions&&a.halfActions[kind]>0){a.halfActions[kind]--;a.effectScale=.5;}return true;}
+  if(a[kind]>0){a[kind]--;if(a.baseActions&&a.baseActions[kind]>0){a.baseActions[kind]--;}else if(a.halfActions&&a.halfActions[kind]>0){a.halfActions[kind]--;a.effectScale=.5;}return true;}
   return false;
 }
 // Only developed high stats taper. At SG, 90+ grows at 20%; a neglected stat still grows fully.
-function lateGrowthFactor(c,key){return 1-.8*clamp(c.stage/8,0,1)*clamp((c.player.stats[key]-60)/30,0,1);}
+function statGrowthRate(value){return value>=90?.2:value>=80?.5:value>=65?.7:value>=50?.8:value>=35?.9:1;}
+function lateGrowthFactor(c,key){return statGrowthRate(c.player.stats[key]);}
+function trainingFactor(p,key,mode){
+ const g=growthOf(p).values[key];
+ if(mode==='foundation')return p.stats[key]<average(p)?1.30:.80;
+ return g*1.10;
+}
 function prepBonus(c,key,scale){
   const action=c.series.action;if(action.prepRolled)return null;action.prepRolled=true;
   const skill=c.player.skills.map(ability).filter(a=>a.type==='prep').sort((a,b)=>D.rarities.indexOf(b.rarity)-D.rarities.indexOf(a.rarity))[0];
@@ -3677,33 +3748,37 @@ function takeExtraNotice(a){
   a.extrasNotified=true;return a.extras.map(id=>{const x=ability(id);return x.name+' 発動！'+(x.effect.action==='tune'?'調整':'練習')+' ＋1回（成長・効果50%）';}).join(' / ');
 }
 function growStat(p,key,amount){const before=p.stats[key];p.stats[key]=round(clamp(before+amount,0,100));return round(p.stats[key]-before);}
-function train(c,key){
-  if(c.status!=='action'||!keys.includes(key)||!consumeAction(c,'training'))return null;
+function train(c,key,mode=c.series?.action?.trainingMode||'focus'){
+  if(c.status!=='action'||!keys.includes(key)||!['focus','foundation'].includes(mode)||!consumeAction(c,'training'))return null;
   const p=c.player,scale=c.stage===8?1:D.nonSG.trainingGrowth;
-  const amount=(2.3+rand(c)*.5)*scale*growthOf(p).values[key]*growthFactor(p)*lateGrowthFactor(c,key)*c.series.action.effectScale;
+  const amount=(2.3+rand(c)*.5)*1.5*scale*trainingFactor(p,key,mode)*growthFactor(p)*lateGrowthFactor(c,key)*c.series.action.effectScale;
   const previous=p.stats[key],gain=growStat(p,key,amount),visibleGain=R.floor(p.stats[key])-R.floor(previous);c.balance={last:null,streak:0};
   const prep=prepBonus(c,key,c.series.action.effectScale);
-  const text=D.stats[key]+'練習：＋'+visibleGain+' → '+R.display(p.stats[key])+(visibleGain===0?'（端数を蓄積）':'')+(c.series.action.effectScale===.5?'。特殊能力の追加分：成長50%':'');c.series.action.logs.push(text);
+  const text=(mode==='foundation'?'基礎':'特化')+D.stats[key]+'練習：＋'+visibleGain+' → '+R.display(p.stats[key])+(visibleGain===0?'（端数を蓄積）':'')+(c.series.action.effectScale===.5?'。特殊能力の追加分：成長50%':'');c.series.action.logs.push(text);
   syncPlayerSnapshot(c);return {key,gain,text,prep};
 }
-function tuningChance(p,target){return clamp(.45+p.adjust[target+'Success']*.0045+p.skills.reduce((v,id)=>v+(ability(id).type==='tuning'?ability(id).effect.success/100:0),0),.38,.9);}
-function tune(c,target){
-  if(c.status!=='action'||!['motor','prop'].includes(target)||!consumeAction(c,'tune'))return null;
-  const p=c.player,e=p.equipment[target],before=clone(e);const success=tuningChance(p,target),rolled=rand(c),v=p.adjust[target+'Var'];
-  const positive=rolled<success;let label,delta;
-  if(positive){const t=rand(c);if(t<.2){label='大成功';delta=4.5;}else if(t<.64){label='成功';delta=2.8;}else{label='微成功';delta=1.2;}}
-  else if(rand(c)<.23){label='大失敗';delta=-4.2;}else{label='失敗';delta=-2.4;}
-  delta=round(delta*(.75+v/100*.6)*c.series.action.effectScale);const key=target==='motor'?'speed':'turn';
-  e[key]=round(clamp(e[key]+delta,-15,30));e.accel=round(clamp(e.accel+delta*.65,-15,25));e.condition=round(clamp(e.condition+delta*1.8,25,100));
-  c.balance.streak=c.balance.last===target?c.balance.streak+1:1;c.balance.last=target;
-  const diminish=c.balance.streak===1?1:c.balance.streak===2?.55:.22;const scale=(c.stage===8?1:D.nonSG.tuningGrowth)*difficulty(p).growth*c.series.action.effectScale;
-  const beforeAdjust=clone(p.adjust);p.adjust[target+'Success']=round(clamp(p.adjust[target+'Success']+.85*diminish*scale,0,100));
-  p.adjust[target+'Var']=round(clamp(p.adjust[target+'Var']+.3*diminish*scale,0,100));
-  const changes={};Object.keys(e).forEach(k=>changes[k]=round(e[k]-before[k]));
-  const visibleChanges=Object.fromEntries(Object.keys(e).map(k=>[k,R.floor(e[k])-R.floor(before[k])]));
-  const text=(target==='motor'?'モーター':'プロペラ')+' '+label+'：'+D.stats[key]+' '+R.display(e[key],R.equipmentRange(target,key),true)+'（'+(visibleChanges[key]>=0?'+':'')+visibleChanges[key]+'）／加速 '+R.display(e.accel,R.equipmentRange(target,'accel'),true)+'（'+(visibleChanges.accel>=0?'+':'')+visibleChanges.accel+'）'+(c.series.action.effectScale===.5?'／追加行動：成長・効果50%':'');
-  const result={effectScale:c.series.action.effectScale,target,label,positive,before,after:clone(e),changes,beforeAdjust,afterAdjust:clone(p.adjust),diminish,success,rolled,text};
-  c.series.action.debug.push(result);c.series.action.logs.push(text);syncPlayerSnapshot(c);return result;
+function tuningChance(p,target){const base=Math.min(70,p.adjust[target+'Success'])/100,bonus=p.skills.reduce((v,id)=>v+(ability(id).type==='tuning'?ability(id).effect.success/100:0),0);return clamp(base+bonus,.05,.92);}
+function tuningLearning(value){return value>=70?0:value>=60?.18:value>=50?.45:1;}
+function tune(c,target,direction='balanced'){
+ if(c.status!=='action'||!['motor','prop'].includes(target)||!['balanced','primary','accel','stability'].includes(direction)||!consumeAction(c,'tune'))return null;
+ const p=c.player,e=p.equipment[target],before=clone(e),beforeAdjust=clone(p.adjust),success=tuningChance(p,target),rolled=rand(c),positive=rolled<success;
+ const quality=rand(c),label=positive?(quality<.2?'大成功':quality<.65?'成功':'微成功'):(quality<.18?'大失敗':'失敗');
+ const magnitude=positive?(1+success*3)*(quality<.2?1.6:quality<.65?1:.55):-(.15+(1-success)*.25)*(quality<.18?1.8:1);
+ const delta=round(magnitude*(.85+p.adjust[target+'Var']*.003)*c.series.action.effectScale),key=target==='motor'?'speed':'turn';
+ let primary=delta*.65,accel=delta*.5,condition=delta;
+ if(direction==='primary'){primary=delta;accel=positive?-delta*.35:0;condition=delta*.6;}
+ if(direction==='accel'){accel=delta;primary=positive?-delta*.35:0;condition=delta*.6;}
+ if(direction==='stability'){condition=delta*3;primary=positive?-delta*.2:0;accel=positive?-delta*.15:0;}
+ e[key]=round(clamp(e[key]+primary,-15,30));e.accel=round(clamp(e.accel+accel,-15,25));e.condition=round(clamp(e.condition+condition,25,100));
+ c.balance.streak=c.balance.last===target?c.balance.streak+1:1;c.balance.last=target;
+ // Every attempt teaches success control. Repeating the same part only reduces variation training.
+ const diminish=c.balance.streak===1?1:c.balance.streak===2?.55:.22,learning=tuningLearning(p.adjust[target+'Success']);
+ p.adjust[target+'Success']=round(Math.min(70,p.adjust[target+'Success']+4*learning*difficulty(p).growth*c.series.action.effectScale));
+ p.adjust[target+'Var']=round(clamp(p.adjust[target+'Var']+.8*diminish*difficulty(p).growth*c.series.action.effectScale,0,100));
+ const changes=Object.fromEntries([key,'accel','condition'].map(k=>[k,round(e[k]-before[k])]));
+ const text=(target==='motor'?'モーター':'プロペラ')+' '+({balanced:'均衡',primary:target==='motor'?'伸び':'旋回',accel:'加速',stability:'安定'})[direction]+'調整 '+label+'／'+[key,'accel','condition'].map(k=>(k==='condition'?'状態':D.stats[k])+' '+R.display(e[k],R.equipmentRange(target,k),k!=='condition')+'（'+(R.floor(e[k])-R.floor(before[k])>=0?'+':'')+(R.floor(e[k])-R.floor(before[k]))+'）').join(' · ')+'／次回成功率 '+Math.round(tuningChance(p,target)*100)+'%'+(c.series.action.effectScale===.5?'／追加分50%':'');
+ const result={target,direction,label,positive,before,after:clone(e),changes,beforeAdjust,afterAdjust:clone(p.adjust),diminish,learning,success,rolled,effectScale:c.series.action.effectScale,text};
+ c.series.action.debug.push(result);c.series.action.logs.push(text);syncPlayerSnapshot(c);return result;
 }
 function syncPlayerSnapshot(c){if(!c.series||!c.series.race||c.series.race.phase>=0)return;const n=c.series.race.runners.find(n=>n.isPlayer);if(n){n.stats=clone(c.player.stats);n.equipment=clone(c.player.equipment);n.skills=c.player.skills.slice();n.mastery=clone(c.player.mastery);}odds(c.series.race);}
 function conditionOK(a,n,r){const rough=r.env.weather==='雨'||r.env.windSpeed>=6;switch(a.condition){case'rough':return rough;case'calm':return !rough&&r.env.windSpeed<=3;case'inner':return n.course<=2;case'outer':return n.course>=4;case'rain':return r.env.weather==='雨';case'cross':return r.env.wind==='横風';case'behind':return rankIn(r,n.id)>=3;default:return true;}}
@@ -3849,11 +3924,11 @@ function prepareSpectator(s,quick=false){
   r.watch=true;r.controlMode=r.drive?'assisted':'spectator';
   startDrive(quick?s:c,r);r.drive.paused=true;syncSpectator(r);if(!quick)c.status='race';return r;
 }
-function spectatorStep(s,quick=false,choice=null,ticks=180){
+function spectatorStep(s,quick=false,choice=null,ticks=180,adaptive=false){
   const r=quick?s.quick&&s.quick.race:s.career&&s.career.series&&s.career.series.race;
   if(!r||!r.watch||r.done)return false;
   if(!r.drive)startDrive(quick?s:s.career,r);
-  const done=stepAutoRace(r,ticks);syncSpectator(r);if(done){completeDrive(s,quick);syncSpectator(r);}
+  const done=stepAutoRace(r,ticks,adaptive);syncSpectator(r);if(done){completeDrive(s,quick);syncSpectator(r);}
   return true;
 }
 function prepareAutoRace(s,quick=false){
@@ -3864,9 +3939,9 @@ function prepareAutoRace(s,quick=false){
   if(!['auto','assisted'].includes(r.controlMode))r.controlMode=r.drive.elapsed>0?'assisted':'auto';
   return r;
 }
-function stepAutoRace(r,maxTicks=240){
+function stepAutoRace(r,maxTicks=240,adaptive=false){
   if(!r||!r.drive||r.done)return true;const d=r.drive;if(d.finished)return true;
-  d.paused=false;for(let i=0;i<maxTicks&&!d.finished;i++)R.tick(d,r,{},R.DT,true);d.paused=true;return d.finished;
+  d.paused=false;const initiallyImportant=adaptive&&R.spectatorPace(d).important;for(let i=0;i<maxTicks&&!d.finished;i++){R.tick(d,r,{},R.DT,true);if(adaptive&&!initiallyImportant&&R.spectatorPace(d).important)break;}d.paused=true;return d.finished;
 }
 function autoResolve(s,quick=false){const r=prepareAutoRace(s,quick);if(!r)return null;while(!stepAutoRace(r,360)){}completeDrive(s,quick);return r;}
 function completeDrive(s,quick=false){
@@ -3885,7 +3960,8 @@ function completeDrive(s,quick=false){
 function acquire(c,p,id,source){
   if(!id)return null;
   const duplicate=has(p,id);if(duplicate){p.mastery[id]=(p.mastery[id]||1)+1;}else{p.skills.push(id);p.mastery[id]=1;}
-  return {id,source,duplicate,level:p.mastery[id]};
+  let statBonus=null;if(!duplicate&&!isWeak(id)){const key=pick(c,keys),amount=[.3,.5,.8,1.2,1.8,2.5][rarity(id)],before=p.stats[key],gain=growStat(p,key,amount*statGrowthRate(before));statBonus={key,gain,visible:R.floor(p.stats[key])-R.floor(before)};}
+  return {id,source,duplicate,level:p.mastery[id],statBonus};
 }
 function removeWeakness(p,id){if(!has(p,id)||!isWeak(id))return false;p.skills=p.skills.filter(x=>x!==id);delete p.mastery[id];return true;}
 function settleRace(s){
@@ -3897,7 +3973,7 @@ function settleRace(s){
   p.money=round(p.money+money,1);p.totalEarnings=round(p.totalEarnings+money,1);
   if(qualifier){p.points+=points;p.finishes[place-1]++;p.scoreTotal+=n.score;}
   const beforeStats=clone(p.stats);
-  const growth=Object.fromEntries(keys.map(k=>[k,growStat(p,k,(D.raceGrowthByPlace[difficulty(p).id][place-1])*(c.stage===8?1:D.nonSG.raceGrowth)*D.tiers[c.series.tier].growth*growthOf(p).values[k]*growthFactor(p)*lateGrowthFactor(c,k)*(n.capsized?.65:1))]));
+  const growth=Object.fromEntries(keys.map(k=>[k,growStat(p,k,(D.raceGrowthByPlace[difficulty(p).id][place-1])*(c.stage===8?1:D.nonSG.raceGrowth)*D.tiers[c.series.tier].growth*1.5*growthOf(p).values[k]*growthFactor(p)*lateGrowthFactor(c,k)*(n.capsized?.65:1))]));
   const fameBase=(n.capsized||n.dnf)?-3:[9,5,3,1,0,-1][place-1];const upset=place<n.favourite?Math.max(0,n.favourite-place)*2:0;
   const fameSkills=p.skills.reduce((a,id)=>a+(ability(id).type==='fame'?ability(id).effect.value:0),0);
   const fameActivated=n.activations.reduce((a,event)=>a+(ability(event.abilityId).effect.fame||0),0);
@@ -3913,13 +3989,26 @@ function settleRace(s){
       if(eligible.length){const novel=eligible.filter(id=>!has(p,id)),pool=novel.length?novel:eligible;pool.sort((a,b)=>rarity(b)-rarity(a));const high=pool.filter(id=>rarity(id)===rarity(pool[0]));acquired.push(acquire(c,p,rewardSkill(c,p,pick(c,high)),other.name+'に先着'+(p.difficulty==='easy'?' · レア度を1段階調整':'')));}
     });
   }
-  c.stats.races++;if(won)c.stats.wins++;if(n.capsized)c.stats.capsizes++;
+  recordRace(c,r,n,place,won);c.stats.races++;if(won)c.stats.wins++;if(n.capsized)c.stats.capsizes++;
   applyNPCResult(c,r,qualifier);if(qualifier){shadowQualifiers(c,r.runners.map(n=>n.id));c.series.round++;}
   const result={raceId:r.id,type:r.type,place,capsized:n.capsized,dnf:!!n.dnf,startFault:n.startFault||null,startTime:n.startTime==null?null:n.startTime,points,money,growth,growthVisible:Object.fromEntries(keys.map(k=>[k,R.floor(p.stats[k])-R.floor(beforeStats[k])])),popularity,acquired,weakness,
     driving:r.drive?{controlMode:r.controlMode||'manual',time:R.own(r.drive).finishTime,metrics:clone(R.own(r.drive).metrics),distance:R.own(r.drive).progress,synergies:(R.own(r.drive).synergyUsed||[]).slice(),setup:r.strategy,tilt:R.tiltValue(r)}:null,
     finish:finish.map((x,i)=>({id:x.id,name:x.name,frame:x.frame,place:i+1,capsized:x.capsized,dnf:!!x.dnf,startFault:x.startFault||null,startTime:x.startTime==null?null:x.startTime,finishTime:x.finishTime,isPlayer:x.isPlayer,special:!!x.special,points:qualifier&&!x.capsized&&!x.dnf?D.points[i]:0})),
     qualificationRank:standing(c).findIndex(x=>x.id===p.id)+1,playerPhase:clone(n.phaseHistory),orders:clone(n.orders),activations:clone(n.activations),debuffEvents:clone(n.debuffEvents)};
   r.result=result;r.settled=true;c.lastResult=result;c.status='raceResult';return result;
+}
+function recordRace(c,r,n,place,won){
+ const p=c.player;if(!p.careerLog)p.careerLog={races:0,wins:0,firstWin:null,bestST:null,venues:{},highlights:[]};const h=p.careerLog;h.races++;if(won)h.wins++;
+ const v=h.venues[r.venue.id]||(h.venues[r.venue.id]={races:0,wins:0});v.races++;if(won)v.wins++;
+ if(n.startTime!=null&&!n.startFault&&(h.bestST===null||Math.abs(n.startTime)<Math.abs(h.bestST)))h.bestST=n.startTime;
+ let text=null;if(won&&!h.firstWin){h.firstWin=c.series.name+'・'+r.venue.name;text='初勝利：'+h.firstWin;}
+ if(won&&r.type==='championship')text=c.series.name+' 優勝';
+ if(won&&n.favourite>=4)text=r.venue.name+' '+n.favourite+'番人気から逆転勝利';
+ if(text){h.highlights.push(text);h.highlights=h.highlights.slice(-12);}
+}
+function qualificationTarget(c){
+ const ranked=standing(c),own=c.player,remaining=5-c.series.round;
+ return {remaining,rank:ranked.findIndex(p=>p.id===own.id)+1,targets:[6,12].map(cut=>{const others=ranked.filter(p=>p.id!==own.id),line=others[cut-1]?.points||0;return {cut,line,needed:Math.max(0,line+1-own.points),maxAvailable:remaining*10};})};
 }
 function rememberRival(s,c){
   const seen=c.series.npcs.filter(n=>n.points>=c.player.points-4&&n.skills.some(id=>rarity(id)>=2));
@@ -3956,7 +4045,7 @@ function buySkill(c,id,last=false){
   const shop=last?c.lastShop:c.shop;if(!shop)return {error:'在庫がありません。'};
   const item=shop.stock.find(x=>x.id===id);if(!item||item.sold||shop.purchases>=shop.limit||has(c.player,id))return {error:'この能力は購入できません。'};
   if(c.player.money<item.price)return {error:'所持賞金が足りません。'};
-  c.player.money=round(c.player.money-item.price,1);item.sold=true;shop.purchases++;acquire(c,c.player,id,'ショップ');syncPlayerSnapshot(c);return {id,price:item.price};
+  c.player.money=round(c.player.money-item.price,1);item.sold=true;shop.purchases++;const gained=acquire(c,c.player,id,'ショップ');syncPlayerSnapshot(c);return {id,price:item.price,statBonus:gained.statBonus};
 }
 function buyItem(c,id){
   if(!['home','action','preRace'].includes(c.status)||c.ending)return {error:'通常のレース前に購入できます。'};
@@ -3999,15 +4088,16 @@ function buildInfo(p){
     tactic:build==='差し型'?'ターン前に減速、内へ向けて再加速':build==='逃げ型'?'好発進から内側の短いラインへ':'直線で舵を戻し、加速時間を確保'};
 }
 function shopReason(p,id){const a=ability(id),b=buildInfo(p),before=R.buildLinks(p),after=R.buildLinks({...p,skills:[...p.skills,id]}),ready=after.find((x,i)=>x.ready&&!before[i].ready);if(ready)return '連携「'+ready.name+'」が成立';const target=after.find((x,i)=>x.missing.length<before[i].missing.length);if(target)return '連携「'+target.name+'」へ近づく'+(target.stats.length?'（基礎能力も育てよう）':'');if(a.category==='防御')return '妨害・荒天への備え';if(a.category==='育成')return '残りシリーズの成長を後押し';if(a.category==='整備')return '機材づくりを安定';if(a.category==='妨害')return '前を行く相手へ干渉';if(a.effect.tactic==='sashi'&&b.name==='差し型')return '旋回を生かすビルドに合う';if(a.effect.stats&&a.effect.stats.speed&&b.name==='まくり型')return '伸び足の強みを伸ばす';return a.category+'を補う選択';}
+function validCareerLog(h){return h&&Number.isInteger(h.races)&&h.races>=0&&Number.isInteger(h.wins)&&h.wins>=0&&(h.firstWin===null||typeof h.firstWin==='string'&&h.firstWin.length<120)&&(h.bestST===null||Number.isFinite(h.bestST)&&h.bestST>=-.25&&h.bestST<1.5)&&h.venues&&Object.entries(h.venues).every(([id,v])=>D.venues.some(x=>x.id===id)&&v&&Number.isInteger(v.races)&&v.races>=0&&Number.isInteger(v.wins)&&v.wins>=0)&&Array.isArray(h.highlights)&&h.highlights.length<=12&&h.highlights.every(x=>typeof x==='string'&&x.length<160);}
 function validPlayer(p){
   return !!p&&(!('difficulty' in p)||['easy','normal'].includes(p.difficulty))&&typeof p.id==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(p.id)&&typeof p.name==='string'&&p.name.length>0&&p.name.length<=30&&
-    p.stats&&keys.every(k=>Number.isFinite(p.stats[k])&&p.stats[k]>=0&&p.stats[k]<=100)&&
+    (!p.careerLog||validCareerLog(p.careerLog))&&p.stats&&keys.every(k=>Number.isFinite(p.stats[k])&&p.stats[k]>=0&&p.stats[k]<=100)&&
     p.adjust&&['motorVar','motorSuccess','propVar','propSuccess'].every(k=>Number.isFinite(p.adjust[k])&&p.adjust[k]>=0&&p.adjust[k]<=100)&&
     D.growth.some(g=>g.id===p.growth)&&Number.isFinite(p.points)&&p.points>=0&&Array.isArray(p.finishes)&&p.finishes.length===6&&p.finishes.every(n=>Number.isInteger(n)&&n>=0)&&Number.isFinite(p.scoreTotal)&&Number.isFinite(p.tie)&&(!p.record||(Number.isInteger(p.record.wins)&&Number.isInteger(p.record.races)&&['SG覇者','SG完走','G1修了','途中登録'].includes(p.record.title)))&&Array.isArray(p.skills)&&p.skills.length<=D.abilities.length&&new Set(p.skills).size===p.skills.length&&p.skills.every(id=>ability(id))&&
     p.mastery&&Object.entries(p.mastery).every(([id,n])=>ability(id)&&Number.isInteger(n)&&n>=1&&n<10000)&&
     ['money','totalEarnings','popularity'].every(k=>Number.isFinite(p[k])&&p[k]>=0&&p[k]<=1e12)&&p.inventory&&Object.entries(p.inventory).every(([id,n])=>D.items.some(i=>i.id===id)&&Number.isInteger(n)&&n>=0&&n<=10000);
 }
-function validEquipment(e){return e&&['boat','motor','prop'].every(k=>e[k]&&Object.values(e[k]).every(Number.isFinite))&&['stability','turn','accel'].every(k=>Number.isFinite(e.boat[k]))&&['speed','accel','condition'].every(k=>Number.isFinite(e.motor[k]))&&['turn','accel','condition'].every(k=>Number.isFinite(e.prop[k]));}
+function validEquipment(e){return e&&['motor','prop'].every(k=>e[k]&&(!('trait' in e[k])||[0,1,2,3].includes(e[k].trait)))&&['boat','motor','prop'].every(k=>e[k]&&Object.values(e[k]).every(Number.isFinite))&&['stability','turn','accel'].every(k=>Number.isFinite(e.boat[k]))&&['speed','accel','condition'].every(k=>Number.isFinite(e.motor[k]))&&['turn','accel','condition'].every(k=>Number.isFinite(e.prop[k]));}
 function validActivation(e){return e&&ability(e.abilityId)&&Number.isInteger(e.phase)&&e.phase>=0&&e.phase<=4&&Number.isInteger(e.frame)&&e.frame>=1&&e.frame<=6&&typeof e.name==='string'&&e.name.length<=30&&typeof e.athleteId==='string';}
 function validHistory(h){return Array.isArray(h)&&h.length<=24&&h.every(x=>Number.isInteger(x.phase)&&x.phase>=0&&x.phase<=4&&['base','gear','environment','skill','debuff','training','lane','strategy','choice','noise','fatigue','total','capRisk'].every(k=>Number.isFinite(x[k]))&&Array.isArray(x.checks)&&x.checks.every(e=>ability(e.abilityId)));}
 function validRace(r){return r&&(!('tilt' in r)||[-.5,0,.5,1.5,3].includes(r.tilt))&&(!('grade' in r)||Object.prototype.hasOwnProperty.call(D.tiers,r.grade))&&(!('difficulty' in r)||['easy','normal'].includes(r.difficulty))&&(!('watch' in r)||typeof r.watch==='boolean')&&['qualifier','championship','consolation','exhibition'].includes(r.type)&&Array.isArray(r.runners)&&r.runners.length===6&&r.runners.every(n=>validPlayer(n)&&validEquipment(n.equipment)&&Number.isFinite(n.score)&&Number.isFinite(n.progress)&&Number.isFinite(n.stamina)&&validHistory(n.phaseHistory)&&Array.isArray(n.activations)&&n.activations.every(validActivation)&&Array.isArray(n.debuffEvents)&&Array.isArray(n.orders)&&n.orders.every(o=>D.choices[o.phase]&&D.choices[o.phase].some(x=>x.id===o.id)))&&new Set(r.runners.map(n=>n.id)).size===6&&new Set(r.runners.map(n=>n.frame)).size===6&&new Set(r.runners.map(n=>n.course)).size===6&&r.runners.every(n=>Number.isInteger(n.frame)&&n.frame>=1&&n.frame<=6&&Number.isInteger(n.course)&&n.course>=1&&n.course<=6)&&Number.isInteger(r.phase)&&r.phase>=-1&&r.phase<=4&&typeof r.done==='boolean'&&(r.drive?R.valid(r.drive,r):r.done===(r.phase===4))&&r.env&&['晴れ','曇り','雨'].includes(r.env.weather)&&['追い風','向かい風','横風','無風'].includes(r.env.wind)&&Number.isFinite(r.env.windSpeed)&&r.env.windSpeed>=0&&r.env.windSpeed<=10&&r.venue&&D.venues.some(v=>v.id===r.venue.id)&&r.venue.stats&&Object.entries(r.venue.stats).every(([k,v])=>keys.includes(k)&&Number.isFinite(v))&&Number.isFinite(r.venue.lane)&&Number.isFinite(r.venue.roughness)&&Array.isArray(r.logs)&&r.logs.length<=80&&r.logs.every(l=>typeof l.text==='string'&&l.text.length<2000&&['normal','phase','ability','order','weak','reflect','debuff','warning','capsize','lead','goal'].includes(l.kind))&&Array.isArray(r.events)&&Array.isArray(r.cutins)&&r.cutins.every(validActivation)&&Array.isArray(r.instructions)&&r.buff&&keys.every(k=>Number.isFinite(r.buff[k]))&&Number.isFinite(r.itemBoost)&&r.usedItems&&['balanced','attack','safe'].includes(r.strategy);}
@@ -4020,7 +4110,7 @@ function validState(s){
     if(!validPlayer(c.player)||!Number.isInteger(c.seed)||!Number.isInteger(c.stage)||c.stage<0||c.stage>8||!['home','seriesIntro','between','action','preRace','race','raceResult','seriesResult','registration'].includes(c.status)||!Array.isArray(c.history)||c.history.length>9||!c.balance||!Number.isInteger(c.balance.streak)||c.balance.streak<0||!c.stats||!['races','wins','capsizes'].every(k=>Number.isInteger(c.stats[k])&&c.stats[k]>=0)||!validShop(c.shop)||!validShop(c.lastShop))return false;
     if(c.series){const x=c.series;if(x.stage!==c.stage||!Array.isArray(x.npcs)||x.npcs.length!==19||!x.npcs.every(n=>validPlayer(n)&&validEquipment(n.equipment))||!D.tiers[x.tier]||!Number.isInteger(x.round)||x.round<0||x.round>5||!validEquipment(c.player.equipment)||!x.startStats||!keys.every(k=>Number.isFinite(x.startStats[k])))return false;
       if(x.race&&(!validRace(x.race)||x.race.type==='exhibition'||x.race.runners.filter(n=>n.isPlayer).length!==1||!x.race.runners.some(n=>n.isPlayer&&n.id===c.player.id)))return false;
-      if(x.action&&((x.action.halfActions&&!['training','tune'].every(k=>Number.isInteger(x.action.halfActions[k])&&x.action.halfActions[k]>=0&&x.action.halfActions[k]<=x.action[k]))||('prepRolled' in x.action&&typeof x.action.prepRolled!=='boolean')||!['normal','training','tune'].every(k=>Number.isInteger(x.action[k])&&x.action[k]>=0&&x.action[k]<=8)||!Array.isArray(x.action.logs)||!Array.isArray(x.action.debug)||!Array.isArray(x.action.extras)||!x.action.extras.every(id=>ability(id)&&ability(id).type==='extra')||('extrasNotified' in x.action&&typeof x.action.extrasNotified!=='boolean')))return false;
+      if(x.action&&((x.action.baseActions&&!['training','tune'].every(k=>Number.isInteger(x.action.baseActions[k])&&x.action.baseActions[k]>=0&&x.action.baseActions[k]<=x.action[k]))||(x.action.halfActions&&!['training','tune'].every(k=>Number.isInteger(x.action.halfActions[k])&&x.action.halfActions[k]>=0&&x.action.halfActions[k]<=x.action[k]))||('prepRolled' in x.action&&typeof x.action.prepRolled!=='boolean')||!['normal','training','tune'].every(k=>Number.isInteger(x.action[k])&&x.action[k]>=0&&x.action[k]<=8)||!Array.isArray(x.action.logs)||!Array.isArray(x.action.debug)||!Array.isArray(x.action.extras)||!x.action.extras.every(id=>ability(id)&&ability(id).type==='extra')||('extrasNotified' in x.action&&typeof x.action.extrasNotified!=='boolean')))return false;
     }
     if(['action','preRace','race','raceResult'].includes(c.status)&&(!c.series||!c.series.race||!c.series.action))return false;
     if(c.status==='raceResult'&&(!c.lastResult||!c.series.race.settled||!c.series.race.done||!Number.isInteger(c.lastResult.place)||!Array.isArray(c.lastResult.finish)||!validHistory(c.lastResult.playerPhase)))return false;
@@ -4046,6 +4136,11 @@ function decode(text){if(typeof text!=='string'||text.length>5000000)throw new E
   const act=s.career?.series?.action;
   if(act&&!act.halfActions){act.halfActions={};for(const k of ['training','tune'])act.halfActions[k]=Math.max(0,act[k]-(s.career.series.race?.usedItems?.[k]?1:0));}
   oldRaces.forEach(r=>{if(!('tilt' in r))r.tilt=R.tiltValue(r);if(r.prepVersion!==87){if(!r.drive&&r.phase<0)r.buff=zeros();r.prepVersion=87;}});
+  if(s.build!=='88'){
+   const players=[s.career?.player,...(s.registry||[]),...(s.rivals||[]),...(s.career?.series?.npcs||[]),...oldRaces.flatMap(r=>r.runners||[])].filter(Boolean);
+   for(const p of players)if(p.adjust){for(const part of ['motor','prop'])p.adjust[part+'Success']=Math.min(70,p.adjust[part+'Success']);}
+   s.build='88';s.migrationNotice='v88へ移行。基礎能力・賞金・走行位置を維持。整備の基礎成功率は上限70%に調整。進行中の行動残数は保持し、次走から練習1回＋調整1回。';
+  }
   if(!validState(s))throw new Error('対応するセーブ形式ではないか、データが破損しています。');
   oldRaces.forEach(r=>{if(r.watch&&!r.drive&&!r.done){startDrive(s.career&&s.career.series&&s.career.series.race===r?s.career:s,r);syncSpectator(r);}});
   if(!validState(s))throw new Error('旧観戦データを3周形式へ移行できませんでした。');
@@ -4061,7 +4156,22 @@ function createSafeStorage(access,key){
     remove(k){delete memory[k];try{access().removeItem(k);}catch(e){persistent=false;}}
   };
 }
-const E={D,R,lateGrowthFactor,prepBonus,consumeAction,formatMoney,startDrive,prepareSpectator,spectatorStep,syncSpectator,prepareAutoRace,stepAutoRace,autoResolve,completeDrive,createSafeStorage,newState,rand,clone,clamp,round,pick,int,shuffle,grade,average,character,equipment,createCareer,startSeries,prepareRace,train,tune,tuningChance,
+// Three independent full-state snapshots; archives preserve raw pre-migration bytes.
+function createSaveSlots(storage,prefix='kyotei_slots_v1'){
+ const parse=(key,fallback)=>{try{return JSON.parse(storage.get(key)||'null')||fallback;}catch(_){return fallback;}};
+ const slotKey=i=>{if(!Number.isInteger(i)||i<1||i>3)throw Error('保存枠は1〜3です。');return prefix+'_'+i;};
+ const archives=()=>{const a=parse(prefix+'_archives',[]);return Array.isArray(a)?a.filter(x=>x&&typeof x.raw==='string'&&typeof x.reason==='string'&&typeof x.date==='string').slice(0,4):[];};
+ function archive(raw,reason){decode(raw);const entries=archives();if(entries.some(x=>x.raw===raw))return;entries.unshift({raw,reason,date:new Date().toISOString()});storage.set(prefix+'_archives',JSON.stringify(entries.slice(0,4)));}
+ return {
+  list(){return [1,2,3].map(i=>{const raw=storage.get(slotKey(i));if(!raw)return {id:i,empty:true};try{const s=decode(raw);return {id:i,empty:false,name:s.career?.player?.name||'育成なし',stage:s.career?.stage,savedAt:s.savedAt,registry:s.registry.length};}catch(_){return {id:i,empty:false,broken:true};}});},
+  save(i,state){const key=slotKey(i),raw=JSON.stringify(state);decode(raw);const previous=storage.get(key);if(previous)archive(previous,'保存枠'+i+'の上書き前');storage.set(key,raw);},
+  load(i){const raw=storage.get(slotKey(i));if(!raw)throw Error('空の保存枠です。');return decode(raw);},
+  archive,archives(){const update=parse(prefix+'_update',null);return [...(update&&typeof update.raw==='string'?[update]:[]),...archives()];},
+  restore(i){const entry=this.archives()[i];if(!entry)throw Error('バックアップが見つかりません。');return decode(entry.raw);},
+  protect(raw){const original=JSON.parse(raw);if(String(original.build||'legacy')===D.build)return;const marker=prefix+'_protected_'+String(original.build||'legacy').replace(/[^a-z0-9.]/gi,'');if(storage.get(marker))return;decode(raw);storage.set(prefix+'_update',JSON.stringify({raw,reason:'v'+(original.build||'旧版')+'→v'+D.build+' 更新前',date:new Date().toISOString()}));storage.set(marker,'1');}
+ };
+}
+const E={D,R,createSaveSlots,statGrowthRate,trainingFactor,tuningLearning,gearTrait,qualificationTarget,recordRace,lateGrowthFactor,prepBonus,consumeAction,formatMoney,startDrive,prepareSpectator,spectatorStep,syncSpectator,prepareAutoRace,stepAutoRace,autoResolve,completeDrive,createSafeStorage,newState,rand,clone,clamp,round,pick,int,shuffle,grade,average,character,equipment,createCareer,startSeries,prepareRace,train,tune,tuningChance,
   makeRace,advance,simulate,ordered,standing,settleRace,continueAfterRace,finishSeries,nextSeries,register,buySkill,buyItem,useItem,quickRace,payQuick,
   acquire,removeWeakness,growthOf,growthFactor,difficulty,rewardRarity,rewardSkill,takeExtraNotice,recommend,choiceProfile,buildInfo,shopReason,validState,decode,validRace,generateShop,invited,odds};
 root.KM_ENGINE=E;
@@ -4070,7 +4180,8 @@ if(typeof document==='undefined')return;
 /* Safe storage and presentation layer. */
 const STORAGE='kyotei_monogatari_v80',BACKUP=STORAGE+'_backup',LEGACY='kyotei_monogatari_v70_1';
 const safeStorage=createSafeStorage(()=>root.localStorage,STORAGE);
-let loadNotice='';let state=(function(){for(const key of [STORAGE,BACKUP,LEGACY,LEGACY+'_backup']){const raw=safeStorage.get(key);if(!raw)continue;try{const s=decode(raw);if(s.migrationNotice)loadNotice=s.migrationNotice;if(key===BACKUP)loadNotice='直前のバックアップから復元しました。';if(key.startsWith(LEGACY))loadNotice='v70.1の育成データを引き継ぎました。未完了レースはスタートから操船できます。';return s;}catch(e){loadNotice='保存データを読み込めませんでした。JSONバックアップがあれば「データ管理」から復元できます。';}}return newState();})();
+const slotStore=createSaveSlots(safeStorage);
+let loadNotice='';let state=(function(){for(const key of [STORAGE,BACKUP,LEGACY,LEGACY+'_backup']){const raw=safeStorage.get(key);if(!raw)continue;try{const s=decode(raw);slotStore.protect(raw);if(s.migrationNotice)loadNotice=s.migrationNotice;if(key===BACKUP)loadNotice='直前のバックアップから復元しました。';if(key.startsWith(LEGACY))loadNotice='v70.1の育成データを引き継ぎました。未完了レースはスタートから操船できます。';return s;}catch(e){loadNotice='保存データを読み込めませんでした。JSONバックアップがあれば「データ管理」から復元できます。';}}return newState();})();
 let ui={page:'title',returnPage:'title',draft:null,filter:'',rare:'all',category:'all',list:'registry',selection:[],auto:false,quick:false,debug:false};
 let driveController=null;
 let autoTimer=null,cutinTimer=null,animationFrame=null,renderId=0,toastTimer=null,confirmCallback=null;
@@ -4083,7 +4194,7 @@ const btn=(label,action,value='',klass='',disabled=false)=>'<button class="btn '
 const chip=(s,c='')=>'<span class="chip '+c+'">'+s+'</span>';
 const box=(title,content,c='')=>'<section class="panel '+c+'"><h2>'+title+'</h2>'+content+'</section>';
 const heading=(eyebrow,title,note='')=>'<div class="page-heading"><span class="eyebrow">'+eyebrow+'</span><h1>'+title+'</h1>'+(note?'<p class="muted">'+note+'</p>':'')+'</div>';
-function save(){const old=safeStorage.get(STORAGE);state.savedAt=new Date().toISOString();safeStorage.set(STORAGE,JSON.stringify(state));if(old){try{decode(old);safeStorage.set(BACKUP,old);}catch(e){/* Preserve the last valid backup. */}}}
+function save(){const old=safeStorage.get(STORAGE);state.build=D.build;state.savedAt=new Date().toISOString();if(old){try{slotStore.protect(old);}catch(_){}}safeStorage.set(STORAGE,JSON.stringify(state));if(old){try{decode(old);safeStorage.set(BACKUP,old);}catch(e){/* Preserve the last valid backup. */}}}
 function toast(text){const t=document.getElementById('toast');t.textContent=text;t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('visible'),3500);}
 function stopAuto(){ui.auto=false;clearTimeout(autoTimer);autoTimer=null;}
 function navigate(page){if(driveController){driveController.destroy();driveController=null;}stopAuto();ui.page=page;render();root.scrollTo({top:0,behavior:'auto'});}
@@ -4097,7 +4208,7 @@ function statsPanel(p,compact=false){const g=growthOf(p);return '<div class="sta
 
 function adjustPanel(p){return '<div class="adjust-grid">'+[['motor','モーター'],['prop','プロペラ']].map(([k,label])=>'<div><span class="muted">'+label+'</span><b>成功 '+parameter(p.adjust[k+'Success'])+' / ムラ '+parameter(p.adjust[k+'Var'])+'</b><small>現在の調整成功率 '+Math.floor(tuningChance(p,k)*100)+'%</small></div>').join('')+'</div>';}
 
-function equipmentPanel(p){if(!p.equipment)return '';return '<div class="equipment-grid">'+[['boat','BOAT','ボート'],['motor','MOTOR','モーター'],['prop','PROPELLER','プロペラ']].map(([part,en,label])=>'<div><span class="eyebrow">'+en+'</span><b>'+label+'</b><p>'+Object.entries(p.equipment[part]).map(([k,v])=>'<span class="gear-parameter">'+(k==='condition'?'状態':k==='stability'?'安定':D.stats[k])+' '+parameter(v,R.equipmentRange(part,k),!['condition','stability'].includes(k))+'</span>').join('')+'</p></div>').join('')+'</div><p class="micro muted">整数＋ランク表示。端数は保持。機材補正のランクは各項目の性能範囲で評価します。</p>';}
+function equipmentPanel(p){if(!p.equipment)return '';return '<div class="equipment-grid">'+[['boat','BOAT','ボート'],['motor','MOTOR','モーター'],['prop','PROPELLER','プロペラ']].map(([part,en,label])=>'<div><span class="eyebrow">'+en+'</span><b>'+label+'</b>'+(part==='boat'?'':'<small>'+gearTrait(part,p.equipment[part])+'</small>')+'<p>'+Object.entries(p.equipment[part]).filter(([k])=>k!=='trait').map(([k,v])=>'<span class="gear-parameter">'+(k==='condition'?'状態':k==='stability'?'安定':D.stats[k])+' '+parameter(v,R.equipmentRange(part,k),!['condition','stability'].includes(k))+'</span>').join('')+'</p></div>').join('')+'</div><p class="micro muted">整数＋ランク表示。端数は保持。機材補正のランクは各項目の性能範囲で評価します。</p>';}
 
 function synergy(p){const b=buildInfo(p),links=R.buildLinks(p),ready=links.filter(x=>x.ready),near=links.find(x=>!x.ready&&x.missing.length<=1);return '<div class="synergy"><div>'+chip(b.name,'teal')+' <span>'+b.plus+'</span></div><p><span>注意</span>'+b.caution+'</p><p><span>戦術</span>'+b.tactic+'</p>'+ready.map(x=>'<p class="combo-line"><b>連携 '+esc(x.name)+'</b><small>'+esc(x.description)+'</small></p>').join('')+(near?'<p class="combo-hint">次の連携：'+esc(near.name)+' · '+(near.missing.length?near.missing.map(g=>g.slice(0,2).map(id=>ability(id).name).join(' / ')+(g.length>2?' など':'')).join(' ＋ '):'')+(near.stats.length?' '+near.stats.map(x=>D.stats[x.key]+x.value+'以上').join('・'):'')+'</p>':'')+'</div>';}
 function gateProgress(p){const pct=Math.min(100,p.totalEarnings/D.sgThreshold*100);return '<div class="gate"><div><strong>SGへの道</strong><span>'+money(p.totalEarnings)+' <small>/ '+money(D.sgThreshold)+'</small></span></div><div class="stat-track"><span style="width:'+pct+'%"></span></div><p>'+ (pct>=100?'賞金条件達成。G1後期を終えると最高峰へ。':'G1後期終了時に判定。あと '+money(Math.max(0,D.sgThreshold-p.totalEarnings)))+'</p></div>';}
@@ -4107,25 +4218,26 @@ function nav(){if(!state.career)return '';return '<nav class="bottom-nav" aria-l
 function careerStrip(c){return '<div class="mode-line">'+chip(difficulty(c.player).name,'teal')+'<small>'+(difficulty(c.player).id==='easy'?'成長75% · 報酬レア度−1':'成長100% · 高レア報酬')+'</small></div><div class="career-strip">'+D.stages.map((s,i)=>'<span class="'+(i===c.stage?'current':i<c.stage?'complete':'')+'" title="'+s.name+'">'+(i===8?'SG':i%2===0?D.tiers[s.tier].label:'後')+'</span>').join('')+'</div>';}
 function titleView(){const c=state.career;return '<div class="title-screen"><div class="title-top"><span class="eyebrow">A CAREER ON THE WATER</span><span class="edition">育成 × 一人称レース</span></div><div class="title-layout"><div class="title-copy"><h1>競艇<span>物語</span></h1><div class="title-meta">'+chip('6艇立て')+chip('全9シリーズ')+chip('オフライン対応')+'</div></div><div class="title-course" aria-hidden="true"><div class="start-line">START</div><div class="lane-deck">'+[1,2,3,4,5,6].map(n=>'<div><span class="boat-token boat-'+n+'">'+n+'</span><i></i></div>').join('')+'</div><div class="finish-line">ROOKIE <span>→</span> SG</div></div></div><div class="title-actions">'+btn(c?'つづきから':'選手をつくる',c?'resume':'new','','primary large')+(c?'<p class="continue-info">'+esc(c.player.name)+' · '+D.stages[c.stage].name+'</p>'+btn('はじめから','new','','secondary'):'')+'</div><div class="title-menu">'+btn('特殊能力図鑑','catalog','','menu-btn')+btn('登録選手 <b>'+state.registry.length+'</b>','registry','','menu-btn')+btn('ライバル記録 <b>'+state.rivals.length+'</b>','rivals','','menu-btn')+btn('遊び方','help','','menu-btn')+'</div><div class="title-bottom">'+btn('データ管理','data','','text-btn')+btn('データリセット','reset','','text-btn danger-text')+'</div></div>';}
 function difficultyPicker(p){return '<fieldset class="difficulty-picker"><legend>育成の難易度</legend>'+['easy','normal'].map(id=>'<label class="difficulty-option"><input type="radio" name="career-difficulty" value="'+id+'"'+(difficulty(p).id===id?' checked':'')+'><span><b>'+D.difficulties[id].name+'</b><small>'+(id==='easy'?'勝ちやすさ重視 · 成長75% · 勝利報酬のレア度を1段階下げる':'手応え重視・後半の相手は強め · 成長100%・敗戦時の成長を確保・高レア報酬')+'</small></span></label>').join('')+'<p class="small muted">開始後の変更はできません。イージーは通常・ラストショップがSSRまで、SG優勝報酬はUR。賞金と機材調整幅は共通です。</p></fieldset>';}
-function extraActionBanner(a){return a.extras.length?'<aside class="extra-action-notice" role="status"><span class="eyebrow">SPECIAL ABILITY</span><strong>特殊能力で行動が増えました</strong>'+a.extras.map(id=>{const x=ability(id);return '<div><b>'+esc(x.name)+'</b><span>'+(x.effect.action==='tune'?'モーター / プロペラ調整':'トレーニング')+' ＋1回</span></div>';}).join('')+'<p>残り：練習専用 '+a.training+'回 / 調整専用 '+a.tune+'回 / 通常 '+a.normal+'回</p></aside>':'';}
-function newView(){const p=ui.draft;return heading('NEW RACER','水面に、名前を。','能力と成長型を確かめてデビューしましょう。')+'<div class="two-column"><section class="panel"><label class="field-label" for="racer-name">選手名</label><input id="racer-name" maxlength="16" value="'+esc(p.name)+'" autocomplete="off" placeholder="名前を入力"><div class="section-line"><h2>初期能力</h2>'+btn('再抽選','reroll','','text-btn')+'</div>'+statsPanel(p)+'<div class="growth-label">'+chip(growthOf(p).name,'teal')+' <span>矢印は伸びやすさ</span></div><details><summary>調整能力を見る</summary>'+adjustPanel(p)+'</details></section>'+box('育成の始め方',difficultyPicker(p)+'<ol class="steps"><li><b>練習で選手を育てる</b><span>基礎能力は次のシリーズにも引き継ぎます。</span></li><li><b>調整で機材を仕上げる</b><span>機材は各シリーズ開始時に抽選。同じ調整の連打は調整能力の成長が減衰。</span></li><li><b>自分で艇を操る</b><span>一人称で操舵・加減速。反時計回りに3周します。</span></li></ol><p class="muted">初期能力は何度でも再抽選できます。育成開始後の成長型変更にはアイテムが必要です。</p>'+btn('この選手でデビュー','create','','primary large'))+'</div>'+btn('戻る','title','','text-btn');}
+function extraActionBanner(a){return a.extras.length?'<aside class="extra-action-notice" role="status"><span class="eyebrow">SPECIAL ABILITY</span><strong>特殊能力で行動が増えました</strong>'+a.extras.map(id=>{const x=ability(id);return '<div><b>'+esc(x.name)+'</b><span>'+(x.effect.action==='tune'?'モーター / プロペラ調整':'トレーニング')+' ＋1回（効果50%）</span></div>';}).join('')+'<p>残り：練習専用 '+a.training+'回 / 調整専用 '+a.tune+'回 / 通常 '+a.normal+'回</p></aside>':'';}
+function newView(){const p=ui.draft;return heading('NEW RACER','水面に、名前を。','能力と成長型を確かめてデビューしましょう。')+'<div class="two-column"><section class="panel"><label class="field-label" for="racer-name">選手名</label><input id="racer-name" maxlength="16" value="'+esc(p.name)+'" autocomplete="off" placeholder="名前を入力"><div class="section-line"><h2>初期能力</h2>'+btn('再抽選','reroll','','text-btn')+'</div>'+statsPanel(p)+'<div class="growth-label">'+chip(growthOf(p).name,'teal')+' <span>矢印は伸びやすさ</span></div><details><summary>調整能力を見る</summary>'+adjustPanel(p)+'</details></section>'+box('育成の始め方',difficultyPicker(p)+'<ol class="steps"><li><b>練習で選手を育てる</b><span>基礎能力は次のシリーズにも引き継ぎます。</span></li><li><b>調整で機材を仕上げる</b><span>機材は各シリーズ開始時に抽選。同じ調整の連打は調整ムラ能力の成長だけ減衰。</span></li><li><b>自分で艇を操る</b><span>一人称で操舵・加減速。反時計回りに3周します。</span></li></ol><p class="muted">初期能力は何度でも再抽選できます。育成開始後の成長型変更にはアイテムが必要です。</p>'+btn('この選手でデビュー','create','','primary large'))+'</div>'+btn('戻る','title','','text-btn');}
 function homeView(){const c=state.career,p=c.player;return heading('CAREER / '+String(c.stage+1).padStart(2,'0'),esc(p.name),D.stages[c.stage].name)+careerStrip(c)+'<div class="two-column"><div>'+box('選手ステータス',statsPanel(p)+'<div class="growth-label">'+chip(growthOf(p).name,'teal')+chip('人気 '+fmt(p.popularity))+'</div>'+synergy(p))+box('特殊能力',skills(p))+'</div><div>'+box('次の水面へ','<div class="wallet"><div><span>所持賞金</span><strong>'+money(p.money)+'</strong></div><div><span>累計獲得賞金</span><b>'+money(p.totalEarnings)+'</b></div></div>'+gateProgress(p)+btn(D.stages[c.stage].name+'へ','series','','primary large'))+box('育成メニュー','<div class="button-row">'+btn('ショップ','shop','','secondary')+btn('アイテム '+sum(Object.values(p.inventory)),'inventory','','secondary')+'</div><details><summary>調整能力</summary>'+adjustPanel(p)+'</details>'+btn('この選手を途中登録する','register','','text-btn'))+'</div></div>';}
 function standingsTable(c,preview=false){const ranked=standing(c);return '<div class="table-wrap"><table><thead><tr><th>順位</th><th>選手 / 能力</th><th>出走</th><th>pt</th></tr></thead><tbody>'+ranked.map((p,i)=>'<tr class="'+(p.id===c.player.id?'own-row':'')+'"><td><span class="standing-number '+(i<6?'qualifying':i<12?'semi':'')+'">'+(i+1)+'</span></td><td><b>'+esc(p.name)+(p.id===c.player.id?' <span class="you">YOU</span>':'')+'</b><small>総合 '+grade(average(p))+' · 人気 '+fmt(p.popularity)+(p.skills.some(id=>rarity(id)>=4)?' · '+p.skills.filter(id=>rarity(id)>=4).map(id=>ability(id).rarity).join('/'):'')+'</small></td><td>'+sum(p.finishes)+'</td><td><b>'+p.points+'</b></td></tr>').join('')+'</tbody></table></div>';}
 function seriesIntro(){const c=state.career,s=c.series;return heading('SERIES '+(c.stage+1)+' / 9',esc(s.name),esc(s.venue.name)+' · '+esc(s.venue.note))+'<div class="two-column"><div>'+box('抽選された機材',equipmentPanel(c.player)) +box('開幕前','<p>予選5走。上位6人は優勝戦、7〜12位は準優勝戦へ。各選手の出走数は同じ5走です。</p>'+btn('第1走の準備へ','prepare','','primary large'))+'</div>'+box('出場選手 20名','<details open><summary>参加者一覧</summary>'+standingsTable(c,true)+'</details>')+'</div>';}
 function roundLabel(r,c){return r.type==='championship'?'優勝戦':r.type==='consolation'?'準優勝戦':r.type==='exhibition'?'作成選手レース':'予選 '+Math.min(5,(c?c.series.round:0)+1)+' / 5';}
-function remainingAction(a){return '共通 '+a.normal+' · 練習専用 '+a.training+' · 調整専用 '+a.tune;}
+function remainingAction(a){return '追加共通 '+a.normal+' · 練習 '+a.training+' · 調整 '+a.tune;}
 function inventoryButtons(c){const list=D.items.filter(x=>c.player.inventory[x.id]>0);return list.length?'<div class="inventory-list">'+list.map(x=>'<div><div><b>'+x.name+' ×'+c.player.inventory[x.id]+'</b><small>'+x.description+'</small></div>'+btn('使う','use',x.id,'secondary')+'</div>').join('')+'</div>':'<p class="muted">所持アイテムはありません。</p>';}
-function actionView(){const c=state.career,a=c.series.action,p=c.player,r=c.series.race;return heading(roundLabel(r,c), 'レース前のひと手間',remainingAction(a))+extraActionBanner(a)+'<div class="two-column"><div>'+box('トレーニング','<p class="small muted">基礎能力を育て、連続調整の減衰をリセット。次走補正は専用能力の抽選時だけ。</p><div class="training-grid">'+keys.map(k=>btn('<span>'+D.stats[k]+' '+growthArrow(growthOf(p).values[k])+'</span><b>'+parameter(p.stats[k])+'</b>','train',k,'training-btn',a.normal+a.training<=0)).join('')+'</div>')+box('機材調整','<p class="small muted">機材はシリーズ中に持続。失敗時は性能が低下します。</p><div class="button-row">'+btn('モーター調整<br><small>成功率 '+Math.round(tuningChance(p,'motor')*100)+'%</small>','tune','motor','secondary',a.normal+a.tune<=0)+btn('プロペラ調整<br><small>成功率 '+Math.round(tuningChance(p,'prop')*100)+'%</small>','tune','prop','secondary',a.normal+a.tune<=0)+'</div><p class="balance-note">'+(c.balance.streak?(c.balance.last==='motor'?'モーター':'プロペラ')+'連続 '+c.balance.streak+'回 · 次も同じなら調整能力成長 '+(c.balance.streak===1?'55':'22')+'%':'連続調整なし · 調整能力の成長は通常効率')+'</p><details><summary>調整 / 練習のバランス</summary><p class="small">減衰は調整能力の成長だけに適用。通常行動の機材幅は維持。能力による追加行動は機材効果・成長が半分です。別の調整へ切替で連続数が1に戻り、練習でリセット。SG以外の練習成長60%、調整能力成長70%。イージーはさらに各成長量を75%にします。60を超えた基礎能力は後半ほど伸びが緩やかになり、SGの90以上は成長20%。低い能力は減衰しません。</p></details>')+'</div><div>'+box('機材と次走補正',equipmentPanel(p)+'<div class="chip-row">'+(keys.filter(k=>r.buff[k]).map(k=>chip(D.stats[k]+' ＋'+R.floor(r.buff[k]),'teal')).join('')||chip('次走補正なし'))+(r.itemBoost?chip('全能力 ＋5','gold'):'')+'</div>')+box('アクションログ','<div class="action-log" aria-live="polite">'+(a.logs.length?a.logs.map(t=>'<p>'+esc(t)+'</p>').join(''):'<p class="muted">残り行動を使うか、そのまま出走できます。</p>')+'</div>')+'<div class="button-row">'+btn('アイテム','inventory','','secondary')+btn('ショップ','shop','','secondary')+'</div>'+btn('出走表を確認する','pre','','primary large')+'<details class="debug"><summary>調整デバッグ</summary><pre>'+esc(JSON.stringify(a.debug.map(t=>({target:t.target,result:t.label,before:Object.fromEntries(Object.entries(t.before).map(([k,v])=>[k,R.display(v,R.equipmentRange(t.target,k))])),after:Object.fromEntries(Object.entries(t.after).map(([k,v])=>[k,R.display(v,R.equipmentRange(t.target,k))])),beforeAdjust:Object.fromEntries(Object.entries(t.beforeAdjust).map(([k,v])=>[k,R.display(v)])),afterAdjust:Object.fromEntries(Object.entries(t.afterAdjust).map(([k,v])=>[k,R.display(v)])),growthRate:t.diminish,extraActionScale:t.effectScale||1,success:t.success,roll:t.rolled})),null,2))+'</pre></details></div></div>';}
+function qualificationPanel(c){const q=qualificationTarget(c);if(q.remaining===0)return '<div class="qualification-strip">予選確定 '+q.rank+'位 · '+(q.rank<=6?'優勝戦':q.rank<=12?'準優勝戦':'敗退')+'</div>';return '<div class="qualification-strip">予選 '+q.rank+'位 · 残り'+q.remaining+'走'+q.targets.map(x=>'<div>'+x.cut+'位圏：現在の境界 '+x.line+'pt／単独で越えるまで '+x.needed+'pt'+(x.needed>x.maxAvailable?'（現在の境界にも届かない）':'')+'</div>').join('')+'<small>他選手の得点も増えます。必要点は現時点の目安で、進出保証ではありません。</small></div>';}
+function actionView(){const c=state.career,a=c.series.action,p=c.player,r=c.series.race,mode=a.trainingMode||'focus';return heading(roundLabel(r,c),'練習と整備',remainingAction(a))+extraActionBanner(a)+qualificationPanel(c)+'<div class="two-column"><div>'+box('トレーニング','<p class="small">特化：成長型の得意を伸ばす。基礎：自分の平均より低い能力を補う。</p><div class="training-mode">'+['focus','foundation'].map(m=>btn(m==='focus'?'特化練習':'基礎練習','trainingMode',m,'secondary '+(m===mode?'selected':''))).join('')+'</div><div class="training-grid">'+keys.map(k=>btn('<span>'+D.stats[k]+' '+growthArrow(growthOf(p).values[k])+'</span><b>'+parameter(p.stats[k])+'</b><small>成長効率 '+Math.round(statGrowthRate(p.stats[k])*100)+'%</small>','train',k,'training-btn',a.normal+a.training<=0)).join('')+'</div><p class="small muted">基礎成長1.5倍 × E100/D90/C80/B70/A50/S20%。練習後の次走補正は専用能力の抽選時だけ。</p>')+box('モーター / プロペラ調整','<p class="small">調整は合計1回。成功率は経験で伸び、50%・60%から学習が緩やかになります。能力補助なしの上限70%。</p>'+['motor','prop'].map(part=>'<h3>'+(part==='motor'?'モーター':'プロペラ')+' · 成功率 '+Math.round(tuningChance(p,part)*100)+'%</h3><div class="adjust-directions">'+[['balanced','均衡','両方を少し上げる'],['primary',part==='motor'?'伸び':'旋回','加速と交換'],['accel','加速','伸び/旋回と交換'],['stability','安定','状態を上げ、出力と交換']].map(([id,label,note])=>btn(label+'<small>'+note+'</small>','tune',part+':'+id,'secondary',a.normal+a.tune<=0)).join('')+'</div>').join('')+'<p class="small muted">失敗でも成功率の経験を獲得。同じ機材の連続調整はムラ能力の成長のみ100→55→22%。追加能力の行動は成長・機材効果50%。</p>')+'</div><div>'+box('機材と次走補正',equipmentPanel(p)+'<div class="chip-row">'+(keys.filter(k=>r.buff[k]).map(k=>chip(D.stats[k]+' ＋'+R.floor(r.buff[k]),'teal')).join('')||(!r.itemBoost?chip('次走補正なし'):''))+(r.itemBoost?chip('全能力 ＋'+R.floor(r.itemBoost),'gold'):'')+'</div>')+box('アクションログ','<div class="action-log" aria-live="polite">'+a.logs.map(t=>'<p>'+esc(t)+'</p>').join('')+'</div>')+btn('アイテム','inventory','','secondary')+btn('ショップ','shop','','secondary')+btn('出走表を確認する','pre','','primary large')+'<details><summary>調整デバッグ</summary><pre>'+esc(JSON.stringify(a.debug.map(t=>({direction:t.direction,result:t.label,success:t.success,learning:t.learning,extraScale:t.effectScale,before:Object.fromEntries(Object.entries(t.before).filter(([k])=>k!=='trait').map(([k,v])=>[k,R.display(v,R.equipmentRange(t.target,k))])),after:Object.fromEntries(Object.entries(t.after).filter(([k])=>k!=='trait').map(([k,v])=>[k,R.display(v,R.equipmentRange(t.target,k))]))})),null,2))+'</pre></details></div></div>';}
 function weatherBar(r){return '<div class="weather-bar"><strong>'+esc(r.venue.name)+'</strong>'+chip(r.env.weather)+chip(r.env.wind+' '+R.speedText(r.env.windSpeed))+'</div>';}
 function runnersTable(r){return '<div class="table-wrap"><table class="runners-table"><thead><tr><th>艇</th><th>選手 / 能力</th><th>人気順<br>目安倍率</th></tr></thead><tbody>'+r.runners.slice().sort((a,b)=>a.frame-b.frame).map(n=>'<tr class="'+(n.isPlayer?'own-row':'')+'"><td><span class="boat-token boat-'+n.frame+'">'+n.frame+'</span></td><td><button class="name-button" data-action="racer" data-value="'+esc(n.id)+'">'+esc(n.name)+(n.isPlayer?' <span class="you">YOU</span>':'')+'</button><small>進入'+n.course+' · 総合'+grade(average(n))+' · ファン人気 '+fmt(n.popularity)+'</small><div class="tiny-skills">'+n.skills.slice(0,3).map(id=>'<span class="rarity-text '+ability(id).rarity.toLowerCase()+'">'+esc(ability(id).name)+'</span>').join(' · ')+(n.skills.length>3?' ほか'+(n.skills.length-3):'')+'</div></td><td>'+n.favourite+'番人気<strong>'+n.odds.toFixed(1)+'<small>倍</small></strong></td></tr>').join('')+'</tbody></table></div>';}
-function preView(){const c=state.career,r=c.series.race,p=c.player,own=r.runners.find(n=>n.isPlayer);const rough=r.env.weather==='雨'||r.env.windSpeed>=6;return heading(roundLabel(r,c), '出走準備',esc(c.series.name))+chip(difficulty(p).name,'teal')+weatherBar(r)+'<div class="two-column"><div>'+box('出走表',runnersTable(r)+'<p class="micro muted">倍率は実力・機材・枠をもとにした簡易目安です。舟券機能はありません。名前を押すと選手詳細を表示。</p>')+'</div><div>'+box('次走の見立て','<div class="pre-brief">'+chip(own.frame+'号艇 / '+own.course+'コース','teal')+'<p>'+(rough?'荒れた水面。旋回とフィジカル、守りの能力に注目。':own.course<=2?'内から主導権を狙える進入。スタートから1マークが勝負。':'外からの出走。伸び足や差しの相性を見極めたい。')+'</p></div>'+synergy(p)) +box('ティルト調整','<p class="small muted">角度を上げると伸び足が上がり、横滑りが増えます。下げると速度を抑えて安定。変更は無料で次の1走に適用。</p><div class="tilt-grid">'+[-.5,0,.5,1.5,3].map(v=>'<button class="strategy '+(R.tiltValue(r)===v?'selected':'')+'" data-action="tilt" data-value="'+v+'" aria-pressed="'+(R.tiltValue(r)===v)+'"><b>'+(v>0?'+':'')+v+'°</b><small>'+(v<0?'安定':v===0?'標準':v<1?'伸び足':'高速・不安定')+'</small></button>').join('')+'</div>')+equipmentPanel(p)+'<div class="button-row">'+btn('アクションに戻る','backAction','','secondary')+btn('ショップ','shop','','secondary')+'</div>'+'<div class="race-entry-options">'+btn('自分で操船する','start','','primary large')+btn('観戦モードで進める','skipRace','','secondary large')+'<p class="small muted">観戦も同じ600m×3周のレース。操舵負荷・引き波・特殊能力を含む走行をAIへ委任。グレードと能力で実力差を付けつつ、走りの調子で順位が変動します。自動進行が可能で、育成報酬は共通です。</p></div>'+'</div></div>';}
+function preView(){const c=state.career,r=c.series.race,p=c.player,own=r.runners.find(n=>n.isPlayer);const rough=r.env.weather==='雨'||r.env.windSpeed>=6;return heading(roundLabel(r,c), '出走準備',esc(c.series.name))+qualificationPanel(c)+chip(difficulty(p).name,'teal')+weatherBar(r)+'<div class="two-column"><div>'+box('出走表',runnersTable(r)+'<p class="micro muted">倍率は実力・機材・枠をもとにした簡易目安です。舟券機能はありません。名前を押すと選手詳細を表示。</p>')+'</div><div>'+box('次走の見立て','<div class="pre-brief">'+chip(own.frame+'号艇 / '+own.course+'コース','teal')+'<p>'+(rough?'荒れた水面。旋回とフィジカル、守りの能力に注目。':own.course<=2?'内から主導権を狙える進入。スタートから1マークが勝負。':'外からの出走。伸び足や差しの相性を見極めたい。')+'</p></div>'+synergy(p)) +box('ティルト調整','<p class="small muted">角度を上げると伸び足が上がり、横滑りが増えます。下げると速度を抑えて安定。変更は無料で次の1走に適用。</p><div class="tilt-grid">'+[-.5,0,.5,1.5,3].map(v=>'<button class="strategy '+(R.tiltValue(r)===v?'selected':'')+'" data-action="tilt" data-value="'+v+'" aria-pressed="'+(R.tiltValue(r)===v)+'"><b>'+(v>0?'+':'')+v+'°</b><small>'+(v<0?'安定':v===0?'標準':v<1?'伸び足':'高速・不安定')+'</small></button>').join('')+'</div>')+equipmentPanel(p)+'<div class="button-row">'+btn('アクションに戻る','backAction','','secondary')+btn('ショップ','shop','','secondary')+'</div>'+'<div class="race-entry-options">'+btn('自分で操船する','start','','primary large')+btn('観戦モードで進める','skipRace','','secondary large')+'<p class="small muted">観戦も同じ600m×3周のレース。操舵負荷・引き波・特殊能力を含む走行をAIへ委任。グレードと能力で実力差を付けつつ、走りの調子で順位が変動します。自動進行が可能で、育成報酬は共通です。</p></div>'+'</div></div>';}
 function trackView(r){const orderedBoats=ordered(r),next=Math.min(4,r.phase+1);return '<div class="race-track" id="race-track">'+(r.drive&&R.raceTime(r.drive)<R.C.lateLimit?'<div class="spectator-start-clock">'+root.KM_DRIVE_UI.startClockView(R.raceTime(r.drive),'spectator-clock-needle')+'</div>':'')+'<svg class="course-svg" viewBox="0 0 600 380" aria-hidden="true"><defs><linearGradient id="water-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#143d4b"/><stop offset="1" stop-color="#0d2739"/></linearGradient></defs><rect width="600" height="380" fill="url(#water-gradient)"/><ellipse cx="300" cy="187" rx="262" ry="140" fill="none" stroke="#71c3ce" stroke-opacity=".16" stroke-width="40"/><ellipse cx="300" cy="187" rx="262" ry="140" fill="none" stroke="#94d5d9" stroke-opacity=".5" stroke-width="1.5"/><ellipse cx="300" cy="187" rx="226" ry="106" fill="#0a2231" stroke="#a6e4e0" stroke-opacity=".12"/><path d="M300 300V350" stroke="#f2c267" stroke-width="2" stroke-dasharray="4 3"/><text x="292" y="365" text-anchor="end">START</text><text x="309" y="365">GOAL</text><text x="24" y="191" text-anchor="middle">2M</text><text x="300" y="25" text-anchor="middle">BACK</text><text x="578" y="191" text-anchor="middle">1M</text></svg><div class="track-center"><div class="track-phase">'+(r.done?'FINISH':r.phase<0?'READY':D.phases[r.phase])+'</div><div class="center-standings">'+orderedBoats.map((n,i)=>'<div class="'+(n.isPlayer?'own':'')+'"><span class="mini-rank">'+(n.startFault?n.startFault:n.capsized?'転':n.dnf?'棄':i+1)+'</span><span class="mini-boat boat-'+n.frame+'">'+n.frame+'</span><span>'+esc(n.name)+'</span></div>').join('')+'</div></div><div class="boat-layer">'+r.runners.map(n=>{const tp=r.drive?n.trackProgress||0:n.progress;const theta=Math.PI/2-tp*Math.PI*2;const x=r.phase<0?29+(n.frame-1)*8.4:50+Math.cos(theta)*43.66,y=r.phase<0?86:49.21+Math.sin(theta)*36.84;const active=r.cutins.some(e=>e.athleteId===n.id)||n.activations.some(e=>e.phase===r.phase);return '<div class="moving-boat boat-'+n.frame+(n.capsized?' capsized':'')+(active?' activated':'')+'" data-boat="'+esc(n.id)+'" data-from="'+(r.drive?n.previousTrackProgress||0:n.previousProgress)+'" data-to="'+(r.drive?n.trackProgress||0:n.progress)+'" style="left:'+x+'%;top:'+y+'%" aria-label="'+n.frame+'号艇 '+esc(n.name)+' '+(n.capsized?'転覆':rankIn(r,n.id)+'位')+'">'+n.frame+(n.capsized?'<b>転</b>':'')+'</div>';}).join('')+'</div><div class="cutin-layer" id="cutin-layer" aria-live="polite"></div></div>';}
 function raceDebug(r){return '<details class="debug" '+(ui.debug?'open':'')+' id="race-debug"><summary>レースデバッグ</summary><div class="debug-status"><span id="cutin-count">カットイン待機数：'+r.cutins.length+'</span><p>対象能力：'+(r.cutins.map(e=>ability(e.abilityId).name).join(' / ')||'なし')+'</p>'+btn('カットイン確認','testCutin','','secondary')+'</div><pre>'+esc(JSON.stringify({phase:r.phase,grade:R.raceGrade(r),difficulty:r.difficulty,physical:r.drive?{laps:r.drive.laps,goal:r.drive.goal,boats:r.drive.boats.map(b=>({frame:b.frame,progress:b.progress,steering:R.steeringLimits(b,R.performance(b,r.drive,r)),pace:R.npcPace(b,r),spectator:R.spectatorAdjustment(b,r.drive,r),signature:b.signature,plan:b.plan,activeEffects:b.effects}))}:null,instructions:r.instructions,cutins:r.cutins.map(e=>e.abilityId),scores:r.runners.map(n=>({name:n.name,frame:n.frame,course:n.course,score:round(n.score),stamina:n.stamina,capsized:n.capsized,phases:n.phaseHistory})),interference:r.events.filter(e=>e.kind==='debuff')},null,2))+'</pre></details>';}
 function spectatorView(r){
   if(!r.drive&&!r.done){startDrive(ui.quick?state:state.career,r);syncSpectator(r);}
   const b=r.drive?R.own(r.drive):null,lap=b?Math.min(3,Math.floor(Math.max(0,b.progress)/R.C.length)+1):3;
   return heading('SPECTATOR / 3 LAPS',ui.quick?'作成選手レース':roundLabel(r,state.career),'600mを反時計回りに3周。操船をAIへ委任。能力差を少し和らげ、周回中の小さな調子の波も加味します。')+weatherBar(r)+
-    '<div class="chip-row">'+chip(lap+' / 3周','teal')+chip('600m × 3周')+(b?chip('レース時間 '+root.KM_DRIVE_UI.clock(Math.max(0,R.raceTime(r.drive)))):'')+chip(r.difficulty==='easy'?'イージー':'ノーマル')+'</div>'+trackView(r)+
+    '<div class="chip-row">'+chip(lap+' / 3周','teal')+chip('600m × 3周')+(r.drive?chip(R.spectatorPace(r.drive).label,'teal'):'')+(b?chip('レース時間 '+root.KM_DRIVE_UI.clock(Math.max(0,R.raceTime(r.drive)))):'')+chip(r.difficulty==='easy'?'イージー':'ノーマル')+'</div>'+trackView(r)+
     '<div class="spectator-controls">'+(r.done?btn('リザルトへ','result','','primary large'):btn('3秒進める','advance','','primary',ui.auto)+btn(ui.auto?'自動を止める':'自動進行','auto','','secondary'))+'</div>'+
     '<div class="spectator-log" role="log" aria-label="レース実況">'+r.logs.slice(-18).map(l=>'<p class="'+esc(l.kind)+'">'+esc(l.text)+'</p>').join('')+'</div>'+raceDebug(r);
 }
@@ -4144,7 +4256,7 @@ function resultAnalysis(z){if(z.driving){const m=z.driving.metrics,good=[],bad=[
   if(m.slideSeconds>15)bad.push('横滑りが長め。加速を緩めて舵角を戻そう');
   if(m.rescues)bad.push('立て直し '+m.rescues+'回 · 通常4秒停止・ブイは0.7秒スタック後に自動方向復帰');
   if(z.capsized)bad.push('旋回中の傾きが限界に到達。減速と舵の戻しで抑えられる');
-  if(z.startFault)bad.push(z.startFault==='F'?'F：0.25秒を超えて早く船首がラインを通過。踏み始めを遅らせよう':'L：1.5秒未満に通過できなかった。助走の目安を見て早めに踏もう');
+  if(z.startFault)bad.push(z.startFault==='F'?'F：0.09秒を超えて早く船首がラインを通過。踏み始めを遅らせよう':'L：1.5秒未満に通過できなかった。助走の目安を見て早めに踏もう');
   if(z.driving.metrics.wakeSeconds>6)bad.push('引き波に乗った時間が長め。前走艇の外へ進路をずらそう');
   if(z.startTime!=null&&!z.startFault)good.push('ST '+R.startText(z.startTime)+'で有効スタート');
   if(z.driving.synergies?.length)good.push('連携成立：'+z.driving.synergies.map(id=>D.synergies.find(x=>x.id===id)?.name||id).join('・'));
@@ -4168,7 +4280,7 @@ function resultAnalysis(z){if(z.driving){const m=z.driving.metrics,good=[],bad=[
   if(!good.length)good.push('走行経験を基礎能力の成長へ');if(!attention.length)attention.push('次走は水面と相手の能力を再確認');
   return '<div class="analysis-lines"><p><span class="positive">良かった点</span>'+good.slice(0,3).join(' / ')+'</p><p><span class="amber">注意点</span>'+attention.slice(0,3).join(' / ')+'</p></div><div class="order-results">'+z.orders.map(o=>{const h=history.find(h=>h.phase===o.phase);return '<div><span>'+D.phases[o.phase]+'</span><b>'+D.choices[o.phase].find(x=>x.id===o.id).name+'</b><small>'+(!h?'転覆後のため未実行':h.choice>=5?'展開を後押し':h.choice<0?'進行を抑制':'小さく寄与')+(o.automatic?' · 自動':'')+'</small></div>';}).join('')+'</div><details><summary>能力・妨害の詳細</summary><div class="skill-chips">'+Array.from(new Set(z.activations.map(x=>x.abilityId))).map(abilityChip).join('')+'</div><p class="small">'+(z.debuffEvents.length?z.debuffEvents.map(e=>ability(e.abilityId).name+'：'+(e.blocked?e.reflected?'無効化と反射':'無効化':'能力低下')).join(' / '):'妨害・反射の関与なし')+'</p></details>';
 }
-function resultView(){const c=state.career,z=c.lastResult;const title=z.startFault?z.startFault:z.capsized?'転覆':z.dnf?'棄権':z.place+'着';const evaluation=z.startFault==='F'?'踏み込みが、早かった。':z.startFault==='L'?'スタートに、届かなかった。':z.dnf?'次はゴールを目指そう。':z.capsized?'次につながる立て直しを。':z.place===1?'水面を制した。':z.place<=3?'上位争いに食い込んだ。':'経験を、次の一走へ。';return heading('RACE RESULT',evaluation)+'<div class="result-hero"><div class="result-number">'+title+'</div><div><span>獲得賞金</span><strong>'+money(z.money)+'</strong><div class="chip-row">'+(z.type==='qualifier'?chip(z.points+' pt'):'')+chip('人気 '+plus(z.popularity))+'</div></div></div><div class="two-column"><div>'+box('着順',finishList(z.finish))+box('このレースの要点',resultAnalysis(z))+'</div><div>'+box('能力成長','<div class="growth-results">'+keys.map(k=>'<div><span>'+D.stats[k]+'</span><b>'+plus(z.growthVisible?z.growthVisible[k]:R.floor(z.growth[k]))+'</b><small>'+parameter(c.player.stats[k])+'</small></div>').join('')+'</div>')+box('獲得と克服',z.acquired.length?z.acquired.map(x=>'<div class="acquired">'+abilityChip(x.id)+'<small>'+esc(x.source)+(x.duplicate?' · 習熟 Lv.'+x.level:' · 新規獲得')+'</small></div>').join(''):'<p class="muted">今回の特殊能力獲得はありません。</p>')+(z.weakness.gained?'<p class="notice warn">弱点を獲得：'+esc(ability(z.weakness.gained).name)+'</p>':'')+(z.weakness.cured?'<p class="notice">弱点を克服：'+esc(ability(z.weakness.cured).name)+'</p>':'')+(z.type==='qualifier'?'<p class="qualification-note">予選現在 <b>'+z.qualificationRank+'位</b> · '+c.player.points+' pt</p>':'')+btn(z.type!=='qualifier'?'シリーズ結果へ':c.series.round===5?'予選順位を確定する':'次のレース前アクションへ','nextRace','','primary large')+'<details><summary>予選順位を見る</summary>'+standingsTable(c)+'</details></div></div>';}
+function resultView(){const c=state.career,z=c.lastResult;const title=z.startFault?z.startFault:z.capsized?'転覆':z.dnf?'棄権':z.place+'着';const evaluation=z.startFault==='F'?'踏み込みが、早かった。':z.startFault==='L'?'スタートに、届かなかった。':z.dnf?'次はゴールを目指そう。':z.capsized?'次につながる立て直しを。':z.place===1?'水面を制した。':z.place<=3?'上位争いに食い込んだ。':'経験を、次の一走へ。';return heading('RACE RESULT',evaluation)+'<div class="result-hero"><div class="result-number">'+title+'</div><div><span>獲得賞金</span><strong>'+money(z.money)+'</strong><div class="chip-row">'+(z.type==='qualifier'?chip(z.points+' pt'):'')+chip('人気 '+plus(z.popularity))+'</div></div></div><div class="two-column"><div>'+box('着順',finishList(z.finish))+box('このレースの要点',resultAnalysis(z))+'</div><div>'+box('能力成長','<div class="growth-results">'+keys.map(k=>'<div><span>'+D.stats[k]+'</span><b>'+plus(z.growthVisible?z.growthVisible[k]:R.floor(z.growth[k]))+'</b><small>'+parameter(c.player.stats[k])+'</small></div>').join('')+'</div>')+box('獲得と克服',z.acquired.length?z.acquired.map(x=>'<div class="acquired">'+abilityChip(x.id)+'<small>'+esc(x.source)+(x.duplicate?' · 習熟 Lv.'+x.level:' · 新規獲得')+(x.statBonus?' · '+D.stats[x.statBonus.key]+'＋'+x.statBonus.visible+(x.statBonus.visible===0?'（端数蓄積）':''):'')+'</small></div>').join(''):'<p class="muted">今回の特殊能力獲得はありません。</p>')+(z.weakness.gained?'<p class="notice warn">弱点を獲得：'+esc(ability(z.weakness.gained).name)+'</p>':'')+(z.weakness.cured?'<p class="notice">弱点を克服：'+esc(ability(z.weakness.cured).name)+'</p>':'')+(z.type==='qualifier'?'<p class="qualification-note">予選現在 <b>'+z.qualificationRank+'位</b> · '+c.player.points+' pt</p>':'')+btn(z.type!=='qualifier'?'シリーズ結果へ':c.series.round===5?'予選順位を確定する':'次のレース前アクションへ','nextRace','','primary large')+'<details><summary>予選順位を見る</summary>'+standingsTable(c)+'</details></div></div>';}
 function seriesResultView(){const c=state.career,z=c.history[c.history.length-1];const ending=c.ending;return heading('SERIES RESULT',z.champion?'シリーズ制覇':z.finalType==='eliminated'?'予選敗退':z.finalType==='championship'?'優勝戦 '+z.finalPlace+'着':'準優勝戦 '+z.finalPlace+'着',esc(z.name))+'<div class="two-column"><div>'+box('シリーズの記録','<div class="result-summary"><div><span>獲得賞金</span><strong>'+money(z.money)+'</strong></div><div><span>予選順位</span><strong>'+z.qualificationRank+'位</strong></div></div><div class="growth-results">'+keys.map(k=>'<div><span>'+D.stats[k]+'</span><b>'+plus(z.growthVisible?z.growthVisible[k]:R.floor(z.growth[k]))+'</b></div>').join('')+'</div>'+(z.rival?'<p class="small muted">記憶に残った相手：'+esc(z.rival)+'</p>':''))+box('SG進出条件',gateProgress(c.player)+(ending==='gate'?'<p class="notice warn">必要賞金に届かなかったため、今回の育成はここまでです。最後の買い物をして選手を登録できます。</p>':c.stage===7?'<p class="notice">進出決定。次は最高峰シリーズ。</p>':ending?'<p class="notice">'+(ending==='sgChampion'?'SG制覇、おめでとうございます。':'最高峰シリーズを走り終えました。')+' 最後の買い物をして選手を登録できます。</p>':''))+'</div><div>'+(ending?box('登録前ラストショップ','<p class="small muted">ランダム5候補から1つだけ。通常価格の1.35倍。LR・弱点は出ません。</p>'+shopStock(c,true))+btn('選手を登録してタイトルへ','register','','primary large'):btn('次のシリーズへ','nextSeries','','primary large'))+(!ending?btn('ここで選手を登録する','register','','secondary large'):'')+'<details><summary>予選最終順位</summary>'+standingsTable(c)+'</details></div></div>';}
 function shopStock(c,last=false){const s=last?c.lastShop:c.shop;if(!s)return '<p class="muted">在庫は次のシリーズで更新されます。</p>';return '<div class="shop-meta">'+chip('購入 '+s.purchases+' / '+s.limit)+chip('所持 '+money(c.player.money),'gold')+'</div><div class="shop-stock">'+(s.stock.length?s.stock.map(item=>{const a=ability(item.id);const owned=has(c.player,item.id),sold=item.sold||owned;return '<article class="shop-item"><div>'+abilityChip(a.id)+'<p>'+esc(a.description)+'</p><p class="drive-ability-note">実走：'+esc(a.drive.text)+'</p><div class="recommendation">'+esc(shopReason(c.player,a.id))+'</div><div class="chip-row">'+chip(a.category)+'</div></div><div class="shop-buy"><strong>'+money(item.price)+'</strong>'+btn(item.sold?'購入済':owned?'所持済':'購入',last?'buyLast':'buySkill',a.id,'secondary',sold||s.purchases>=s.limit||c.player.money<item.price)+'</div></article>';}).join(''):'<p class="muted">未所持の対象能力がありません。</p>')+'</div>';}
 function shopView(){const c=state.career;if(!c)return '';return heading('SHOP','水辺の商店','買い物に使っても、SG条件の累計賞金は減りません。')+btn('育成に戻る','return','','text-btn')+'<div class="two-column"><div>'+box('特殊能力',c.stage<2?'<p class="muted">G3前期から開店。1シリーズ4候補、2つまで購入できます。</p>':shopStock(c))+box('所持アイテム',inventoryButtons(c))+'</div>'+box('レース前アイテム','<p class="small muted">各種1シリーズ2個まで購入。ドリンク・枠指定・追加行動券は1走につき各1個まで使用。</p><div class="item-stock">'+D.items.map(item=>'<article><div><h3>'+item.name+'</h3><p>'+item.description+'</p><small>所持 '+(c.player.inventory[item.id]||0)+'個 · 今期購入 '+(c.shop&&c.shop.itemBuys[item.id]||0)+' / 2</small></div><div><b>'+money(item.price)+'</b>'+btn('購入','buyItem',item.id,'secondary',c.player.money<item.price||(c.shop&&c.shop.itemBuys[item.id]||0)>=2)+'</div></article>').join('')+'</div>')+'</div>';}
@@ -4181,8 +4293,9 @@ function registryView(rivals=false){const list=rivals?state.rivals:state.registr
 function exhibitionView(){if(state.quick){const q=state.quick;return heading('EXHIBITION','作成選手レース')+'<p>進行中のレースがあります。賭けたコインは確定済みです。</p>'+btn(q.race.done?'結果を見る':'レースに戻る',q.race.done?'quickResult':'resumeQuick','','primary large')+btn('登録選手へ','registry','','text-btn');}
   return heading('EXHIBITION','6人で、もう一走。','出走する6人と操船する1人を選択。全員の成長・賞金には影響しません。')+btn('登録選手へ','registry','','text-btn')+'<div class="two-column"><div>'+box('出場選手を選択','<div class="section-line"><span>'+ui.selection.length+' / 6名</span>'+btn('ランダム6人','randomSix','','text-btn')+'</div><div class="select-racers">'+state.registry.map(p=>'<label><input type="checkbox" class="race-selection" value="'+esc(p.id)+'" '+(ui.selection.includes(p.id)?'checked':'')+' '+(!ui.selection.includes(p.id)&&ui.selection.length>=6?'disabled':'')+'><span><b>'+esc(p.name)+'</b><small>総合 '+grade(average(p))+' · '+growthOf(p).name+'</small></span></label>').join('')+'</div>')+'</div>'+box('仮想コインで応援','<div class="wallet"><span>所持コイン</span><strong>'+fmt(state.coins)+'</strong></div><p class="small muted">賭けずに出走できます。的中時は賭けたコインの3倍が戻ります。現金との交換・購入はありません。</p><label class="field-label" for="quick-driver">操船する選手</label><select id="quick-driver">'+ui.selection.map(id=>{const p=state.registry.find(n=>n.id===id);return '<option value="'+id+'">'+esc(p.name)+'</option>';}).join('')+'</select><label class="field-label" for="bet-racer">応援する選手</label><select id="bet-racer"><option value="">賭けない</option>'+ui.selection.map(id=>{const p=state.registry.find(p=>p.id===id);return '<option value="'+esc(id)+'">'+esc(p.name)+'</option>';}).join('')+'</select><label class="field-label" for="bet-stake">コイン数（0〜500）</label><input id="bet-stake" type="number" inputmode="numeric" min="0" max="'+Math.min(500,state.coins)+'" step="1" value="0">'+btn('自分で操船する','launchQuick','','primary large',ui.selection.length!==6)+btn('観戦モードで進める','launchQuick','auto','secondary large',ui.selection.length!==6)+(state.coins<100?btn('練習用コインを1,000に戻す','refill','','text-btn'):'') )+'</div>';}
 function quickResultView(){const q=state.quick;if(!q||!q.race.done)return exhibitionView();const result=ordered(q.race).map(n=>({name:n.name,id:n.id,isPlayer:n.isPlayer,frame:n.frame,capsized:n.capsized,dnf:n.dnf,startFault:n.startFault,startTime:n.startTime,finishTime:n.finishTime}));return heading('EXHIBITION RESULT','作成選手レース結果')+chip(q.race.controlMode==='auto'?'おまかせ走行':q.race.controlMode==='assisted'?'途中から観戦':q.race.controlMode==='spectator'?'観戦モード':'自分で操船','teal')+box('着順',finishList(result))+'<div class="result-summary"><div><span>使用コイン</span><strong>'+q.stake+'</strong></div><div><span>戻ったコイン</span><strong>'+q.payout+'</strong></div><div><span>現在のコイン</span><strong>'+state.coins+'</strong></div></div>'+btn('もう一度選手を選ぶ','closeQuick','','primary large')+btn('登録選手へ','registry','','text-btn');}
-function helpView(){return heading('HOW TO PLAY','遊び方')+btn('戻る','return','','text-btn')+'<div class="two-column">'+box('育成から登録まで','<ol class="steps"><li><b>選手を作成</b><span>名前・能力・成長型とイージー／ノーマルを確定。初期人気は0。</span></li><li><b>シリーズに出場</b><span>新人、G3、G2、G1を各2期、最後にSG。</span></li><li><b>レース前に1回行動</b><span>練習か調整。券や能力で追加も可能です。</span></li><li><b>一人称で3周のレース</b><span>左パッドで操舵、右で加速。離すと減速。600mを反時計回りに3周。操作しない場合は出走前の「観戦モードで進める」を選べます。</span></li><li><b>予選5走と最終戦</b><span>6位まで優勝戦、12位まで準優勝戦。準優勝戦は順位決定の最終戦です。</span></li><li><b>賞金条件を達成してSGへ</b><span>G1後期終了時に累計1,800万円。未達なら登録へ。</span></li><li><b>登録して再挑戦</b><span>登録選手と記憶ライバルはSG優勝戦の特別招待枠に登場。先着で相手の高レア能力を獲得。</span></li></ol>')+box('覚えておくこと','<p><b>難易度は選手ごとに固定。</b>両難易度でNPCの速度とコース取りを強化。イージーは判断に余裕があり、基礎・調整能力成長75%、勝利・招待先着報酬はレア度−1（Nが下限）、ショップSSRまで、SG優勝UR確定。ノーマルはさらにNPCの先読み・速度・加速を強め、成長・報酬は従来どおり。観戦に切り替えても育成倍率は変わりません。</p><p><b>Androidでの軽量表示。</b>3D描画を開始できないときは軽量な一人称表示へ自動で切り替えます。一時停止メニューから選ぶこともできます。</p><p><b>億・万の金額表示。</b>10,000万円から億を使い、万円未満の表示は切り捨てます。金額の計算用データはそのまま保持します。</p><p><b>助走スタート。</b>12秒針が1周する助走中から走行できます。針が頂点に戻るとスタート。4〜6コースは後方から。船首の通過が0.25秒を超えて早いとF、1.5秒以上遅いとL（ゲーム独自の猶予）。どちらもそのレースの賞金・ポイントは0です。目安は補助で、スタート能力が高いほど見込みの精度とエンジン応答がよくなります。</p><p><b>観戦モード。</b>出走前も途中切替も600m×3周の同じ走行計算で進行。操船中の切替では位置・転覆・F/L・能力発動を維持します。</p><p><b>アクセルを抜いて曲がる。</b>全開中は旋回しても自動減速しません。接触・ブイ衝突は失速します。低フィジカルで最高速の急旋回を続けたり、旋回中に強く接触すると転覆の危険が増します。旋回・フィジカル・安定系スキルで扱いやすさが上がります。困ったら一時停止メニューの「立て直す」を使えます。</p><p><b>整数とランク。</b>能力・機材の端数は内部で蓄積します。0〜100の能力はS90/A80/B65/C50/D35以上、以下E。機材補正は項目の上限・下限から同じ基準へ換算します。</p><p><b>機材はシリーズごとに抽選。</b>調整で伸ばした機材性能は次シリーズに持ち越しません。基礎能力、調整能力、特殊能力は引き継ぎます。</p><p><b>転覆はそのレースをリタイア。</b>順位は完走艇の後、賞金・予選ポイントは0。転覆艇の位置はその地点で固定。未完走艇同士は進んだ距離で順位を付けます。</p><p><b>倍率は目安。</b>ファン人気とレースの人気順は別に表示します。本格的な舟券やオッズ計算はありません。</p><p><b>保存場所はブラウザごと。</b>Androidのプレビューや閲覧アプリは保存が使えない場合があります。JSONバックアップで選手を引き継げます。</p><p><b>重複能力は習熟。</b>再獲得すると能力が習熟し、通常強化は1段階あたり6%、妨害量は4%上がります。防御・整備と今回の2系統の能力は固定効果です。同系統の洞口スペシャル・モンキーターンは所持する最上位だけ有効です。</p>')+'</div>';}
-function dataView(){return heading('SAVE DATA','データ管理')+btn('戻る','return','','text-btn')+'<div class="two-column">'+box('保存とバックアップ','<p class="notice '+(safeStorage.persistent?'':'warn')+'">'+(safeStorage.persistent?'この環境では自動保存が使えます。':'この環境では永続保存が使えません。ページを閉じる前にJSONを書き出してください。')+'</p><p class="small">現在の選手・進行中のレース・登録選手・ショップ在庫をまとめて保存します。</p>'+btn(root.KM_IPHONE?'JSONを共有・保存':'JSONファイルを書き出す','export','','primary large')+btn('コピー用テキストを表示','exportText','','secondary large')+'<p class="micro muted">ブラウザやファイルの置き場所を変えると、別のセーブ領域になる場合があります。</p>')+box('バックアップを読み込む','<label class="field-label" for="import-file">JSONファイルを選択</label><input type="file" id="import-file" accept="application/json,.json"><label class="field-label" for="import-text">またはJSONを貼り付け</label><textarea id="import-text" rows="6" spellcheck="false" placeholder="v80 / v70.1のセーブJSON"></textarea>'+btn('内容を確認して読み込む','import','','secondary large')+'<p class="small muted">読み込み時は現在の進行を置き換えます。v70.1のセーブも引き継げます。旧版の未完了レースはスタート地点から再開します。</p>')+'</div>';}
+function helpView(){return heading('HOW TO PLAY','遊び方')+btn('戻る','return','','text-btn')+'<div class="two-column">'+box('育成から登録まで','<ol class="steps"><li><b>選手を作成</b><span>名前・能力・成長型とイージー／ノーマルを確定。初期人気は0。</span></li><li><b>シリーズに出場</b><span>新人、G3、G2、G1を各2期、最後にSG。</span></li><li><b>レース前に練習1回＋調整1回</b><span>練習と、モーターかプロペラの調整を各1回。券や能力で追加も可能です。</span></li><li><b>一人称で3周のレース</b><span>左パッドで操舵、右で加速。離すと減速。600mを反時計回りに3周。操作しない場合は出走前の「観戦モードで進める」を選べます。</span></li><li><b>予選5走と最終戦</b><span>6位まで優勝戦、12位まで準優勝戦。準優勝戦は順位決定の最終戦です。</span></li><li><b>賞金条件を達成してSGへ</b><span>G1後期終了時に累計1,800万円。未達なら登録へ。</span></li><li><b>登録して再挑戦</b><span>登録選手と記憶ライバルはSG優勝戦の特別招待枠に登場。先着で相手の高レア能力を獲得。</span></li></ol>')+box('覚えておくこと','<p><b>難易度は選手ごとに固定。</b>両難易度でNPCの速度とコース取りを強化。イージーは判断に余裕があり、基礎・調整能力成長75%、勝利・招待先着報酬はレア度−1（Nが下限）、ショップSSRまで、SG優勝UR確定。ノーマルはさらにNPCの先読み・速度・加速を強め、成長・報酬は従来どおり。観戦に切り替えても育成倍率は変わりません。</p><p><b>Androidでの軽量表示。</b>3D描画を開始できないときは軽量な一人称表示へ自動で切り替えます。一時停止メニューから選ぶこともできます。</p><p><b>億・万の金額表示。</b>10,000万円から億を使い、万円未満の表示は切り捨てます。金額の計算用データはそのまま保持します。</p><p><b>助走スタート。</b>12秒針が1周する助走中から走行できます。針が頂点に戻るとスタート。4〜6コースは後方から。船首の通過が0.09秒を超えて早いとF、1.5秒以上遅いとL（ゲーム独自の猶予）。どちらもそのレースの賞金・ポイントは0です。目安は補助で、スタート能力が高いほど見込みの精度とエンジン応答がよくなります。</p><p><b>観戦モード。</b>出走前も途中切替も600m×3周の同じ走行計算で進行。操船中の切替では位置・転覆・F/L・能力発動を維持します。</p><p><b>アクセルを抜いて曲がる。</b>全開中は旋回しても自動減速しません。接触・ブイ衝突は失速します。低フィジカルで最高速の急旋回を続けたり、旋回中に強く接触すると転覆の危険が増します。旋回・フィジカル・安定系スキルで扱いやすさが上がります。困ったら一時停止メニューの「立て直す」を使えます。</p><p><b>整数とランク。</b>能力・機材の端数は内部で蓄積します。0〜100の能力はS90/A80/B65/C50/D35以上、以下E。機材補正は項目の上限・下限から同じ基準へ換算します。</p><p><b>機材はシリーズごとに抽選。</b>調整で伸ばした機材性能は次シリーズに持ち越しません。基礎能力、調整能力、特殊能力は引き継ぎます。</p><p><b>転覆はそのレースをリタイア。</b>順位は完走艇の後、賞金・予選ポイントは0。転覆艇の位置はその地点で固定。未完走艇同士は進んだ距離で順位を付けます。</p><p><b>倍率は目安。</b>ファン人気とレースの人気順は別に表示します。本格的な舟券やオッズ計算はありません。</p><p><b>保存場所はブラウザごと。</b>Androidのプレビューや閲覧アプリは保存が使えない場合があります。JSONバックアップで選手を引き継げます。</p><p><b>重複能力は習熟。</b>再獲得すると能力が習熟し、通常強化は1段階あたり6%、妨害量は4%上がります。防御・整備と今回の2系統の能力は固定効果です。同系統の洞口スペシャル・モンキーターンは所持する最上位だけ有効です。</p>')+'</div>';}
+function slotPanel(){return box('3つの保存枠',slotStore.list().map(x=>'<div class="slot-card"><b>枠'+x.id+' · '+(x.empty?'空き':x.broken?'読込不可':esc(x.name))+'</b><div class="button-row">'+btn('現在を保存','slotSave',x.id,'secondary')+btn('読み込む','slotLoad',x.id,'secondary',x.empty||x.broken)+'</div></div>').join('')+'<p class="small muted">各枠は登録選手を含む独立したスナップショット。端末外へ残すには枠を読み込み、JSONを書き出してください。</p>')+box('更新前・上書き前バックアップ',slotStore.archives().map((x,i)=>'<div class="slot-card">'+esc(x.reason)+' · '+esc(x.date.slice(0,16))+btn('復元','archiveLoad',i,'text-btn')+'</div>').join('')+'<p class="small muted">上書き前4件＋更新前専用1件。更新前は移行前のJSONを保持。復元後の走行は現行版の仕様になります。</p>');}
+function dataView(){return heading('SAVE DATA','データ管理')+btn('戻る','return','','text-btn')+slotPanel()+'<div class="two-column">'+box('保存とバックアップ','<p class="notice '+(safeStorage.persistent?'':'warn')+'">'+(safeStorage.persistent?'この環境では自動保存が使えます。':'この環境では永続保存が使えません。ページを閉じる前にJSONを書き出してください。')+'</p><p class="small">現在の選手・進行中のレース・登録選手・ショップ在庫をまとめて保存します。</p>'+btn(root.KM_IPHONE?'JSONを共有・保存':'JSONファイルを書き出す','export','','primary large')+btn('コピー用テキストを表示','exportText','','secondary large')+'<p class="micro muted">ブラウザやファイルの置き場所を変えると、別のセーブ領域になる場合があります。</p>')+box('バックアップを読み込む','<label class="field-label" for="import-file">JSONファイルを選択</label><input type="file" id="import-file" accept="application/json,.json"><label class="field-label" for="import-text">またはJSONを貼り付け</label><textarea id="import-text" rows="6" spellcheck="false" placeholder="v80 / v70.1のセーブJSON"></textarea>'+btn('内容を確認して読み込む','import','','secondary large')+'<p class="small muted">読み込み時は現在の進行を置き換えます。v70.1のセーブも引き継げます。旧版の未完了レースはスタート地点から再開します。</p>')+'</div>';}
 function runWithoutDriving(){
   if(driveController){driveController.destroy();driveController=null;}
   const r=prepareSpectator(state,ui.quick);if(!r)return;
@@ -4215,27 +4328,32 @@ function queueCutins(queue,rid){clearTimeout(cutinTimer);const layer=document.ge
 function openModal(title,content){if(driveController)driveController.pause();stopAuto();const modal=document.getElementById('modal');ui.previousFocus=document.activeElement;modal.innerHTML='<div class="modal-backdrop" data-action="closeModal"></div><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="section-line"><h2 id="modal-title">'+title+'</h2>'+btn('閉じる','closeModal','','text-btn')+'</div>'+content+'</section>';modal.hidden=false;document.body.classList.add('modal-open');const focus=modal.querySelector('button,input,select,textarea');if(focus)focus.focus();}
 function closeModal(){document.getElementById('modal').hidden=true;document.getElementById('modal').innerHTML='';document.body.classList.remove('modal-open');confirmCallback=null;if(ui.previousFocus&&ui.previousFocus.isConnected)ui.previousFocus.focus();if(ui.page==='race')render();}
 function confirmAction(title,content,fn,label='実行する'){openModal(title,'<p>'+content+'</p><div class="button-row">'+btn('キャンセル','closeModal','','secondary')+btn(label,'confirm','','primary')+'</div>');confirmCallback=fn;}
-function showPlayer(p){openModal(esc(p.name),statsPanel(p)+synergy(p)+skills(p)+'<details><summary>調整能力と機材</summary>'+adjustPanel(p)+equipmentPanel(p)+'</details>');}
+function careerPanel(p){const h=p.careerLog;if(!h)return '<p class="small muted">経歴はv88以降のレースから記録します。</p>';const favored=Object.entries(h.venues).sort((a,b)=>b[1].wins-a[1].wins||b[1].races-a[1].races)[0];return '<h3>選手の経歴</h3><p class="small">記録対象 '+h.races+'走 / '+h.wins+'勝'+(h.firstWin?' · 記録内の初勝利 '+esc(h.firstWin):'')+(h.bestST!==null?' · 最良ST '+R.startText(h.bestST):'')+'</p>'+(favored?'<p class="small">最多勝水面 '+esc(D.venues.find(v=>v.id===favored[0])?.name||favored[0])+' '+favored[1].wins+'勝</p>':'')+'<ul class="career-log">'+h.highlights.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul>';}
+function showPlayer(p){openModal(esc(p.name),statsPanel(p)+synergy(p)+skills(p)+careerPanel(p)+'<details><summary>調整能力と機材</summary>'+adjustPanel(p)+equipmentPanel(p)+'</details>');}
 async function exportSave(asText=false){save();const text=JSON.stringify(state,null,2);if(asText){openModal('セーブJSON','<p class="small">全選択してコピーし、メモなどに保存できます。</p><textarea id="export-json" rows="12" readonly>'+esc(text)+'</textarea>'+btn('全選択','selectExport','','secondary large'));return;}
   if(root.KM_IPHONE){const result=await root.KM_IPHONE.shareBackup(text,'kyotei_save_'+new Date().toISOString().slice(0,10)+'.json');if(result==='shared'){toast('共有先へ渡しました。保存先を確認してください。');return;}if(result==='cancelled')return;exportSave(true);toast('共有保存が使えないため、コピー用テキストを表示しました。');return;}
   const blob=new Blob([text],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='kyotei_save_'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);toast('JSONを書き出しました。保存されない場合はコピー用テキストをご利用ください。');
 }
 function doAdvance(selected=null){const r=currentRace();if(!r||r.done||!r.watch)return;
-  spectatorStep(state,ui.quick,selected,180);
+  spectatorStep(state,ui.quick,selected,r.drive?R.spectatorPace(r.drive).ticks:30,true);
   if(r.done)stopAuto();save();render();if(ui.auto)scheduleAuto();
 }
-function scheduleAuto(){clearTimeout(autoTimer);if(!ui.auto||ui.page!=='race')return;const r=currentRace();if(r.done){stopAuto();return;}const delay=r.drive?Math.max(280,650/state.settings.speed):Math.max(950,2500/state.settings.speed);autoTimer=setTimeout(()=>doAdvance(),delay);}
+function scheduleAuto(){clearTimeout(autoTimer);if(!ui.auto||ui.page!=='race')return;const r=currentRace();if(r.done){stopAuto();return;}const delay=r.drive?(R.spectatorPace(r.drive).important?500:Math.max(170,500/state.settings.speed)):Math.max(950,2500/state.settings.speed);autoTimer=setTimeout(()=>doAdvance(),delay);}
 function refreshCareer(){ui.quick=false;ui.page=careerPage();save();render();}
 function showInventory(){const c=state.career;if(c)openModal('所持アイテム',inventoryButtons(c));}
 function startNew(){const seedHolder={seed:int(state,1,0x7fffffff)};ui.draft=character(seedHolder,'水瀬 湊');navigate('new');}
 const actions={
+  slotSave(v){const i=Number(v);confirmAction('枠'+i+'へ保存','この枠を現在の全データで置き換えます。以前の内容はバックアップへ残します。',()=>{save();slotStore.save(i,state);closeModal();render();toast('保存しました。');},'保存');},
+  slotLoad(v){let next;try{next=slotStore.load(Number(v));}catch(e){toast(e.message);return;}confirmAction('保存枠を読み込む','現在の進行をバックアップして、この枠へ切り替えます。',()=>{save();slotStore.archive(JSON.stringify(state),'保存枠の読込前');state=next;ui.quick=false;closeModal();save();navigate('title');},'読み込む');},
+  archiveLoad(v){let next;try{next=slotStore.restore(Number(v));}catch(e){toast(e.message);return;}confirmAction('バックアップを復元','現在の進行を退避して復元します。ゲームの仕様は現行版を使用します。',()=>{slotStore.archive(JSON.stringify(state),'復元前');state=next;ui.quick=false;closeModal();save();navigate('title');},'復元');},
   title(){navigate('title');},new(){if(state.career)confirmAction('新しい選手で始める','育成中の選手の進行を置き換えます。登録選手とライバルは残ります。',startNew,'作成画面へ');else startNew();},
   reroll(){const name=document.getElementById('racer-name').value,mode=document.querySelector('input[name="career-difficulty"]:checked').value;ui.draft=character(state,name);ui.draft.difficulty=mode;render();},
   create(){const name=document.getElementById('racer-name').value.trim();if(!name){toast('選手名を入力してください。');return;}ui.draft.name=name;ui.draft.difficulty=document.querySelector('input[name="career-difficulty"]:checked').value;createCareer(state,ui.draft);refreshCareer();},
   resume(){ui.quick=false;navigate(careerPage());},
   series(){if(startSeries(state))refreshCareer();},prepare(){prepareRace(state);refreshCareer();},
+  trainingMode(v){if(['focus','foundation'].includes(v)&&state.career?.status==='action'){state.career.series.action.trainingMode=v;save();render();}},
   train(v){const c=state.career;if(!c)return;const result=train(c,v);if(result){save();render();toast(result.text+(result.prep?' / '+ability(result.prep.abilityId).name+' 発動！次の1レースに補正':''));}},
-  tune(v){const c=state.career;if(!c)return;const result=tune(c,v);if(result){save();render();toast(result.text);}},
+  tune(v){const c=state.career;if(!c)return;const [part,direction]=v.split(':');const result=tune(c,part,direction||'balanced');if(result){save();render();toast(result.text);}},
   pre(){if(!state.career||state.career.status!=='action')return;state.career.status='preRace';refreshCareer();root.scrollTo(0,0);},
   backAction(){if(state.career&&state.career.status==='preRace'){state.career.status='action';refreshCareer();}},
   tilt(v){const angle=Number(v);if([-.5,0,.5,1.5,3].includes(angle)&&state.career.status==='preRace'){state.career.series.race.tilt=angle;save();render();}},
@@ -4249,8 +4367,8 @@ const actions={
   register(){const c=state.career;if(!c)return;if(state.registry.length>=50){toast('登録上限50名です。登録選手一覧で枠を空けてください。');return;}
     confirmAction('選手を登録する',esc(c.player.name)+'を登録し、今回の育成を終了します。'+(c.ending&&c.lastShop.purchases===0?'ラストショップは未購入です。':''),()=>{register(state,true);save();navigate('registry');},'登録する');},
   shop(){if(!state.career)return;openAux('shop');},
-  buySkill(v){const result=buySkill(state.career,v);if(result.error)toast(result.error);else{save();render();toast(ability(v).name+'を獲得しました。');}},
-  buyLast(v){confirmAction('最後の買い物',esc(ability(v).name)+'を購入します。購入できる能力は1つだけです。',()=>{const result=buySkill(state.career,v,true);if(result.error)toast(result.error);else{save();render();toast(ability(v).name+'を獲得しました。');}},'購入する');},
+  buySkill(v){const result=buySkill(state.career,v);if(result.error)toast(result.error);else{save();render();toast(ability(v).name+'を獲得しました。'+(result.statBonus?' '+D.stats[result.statBonus.key]+'＋'+result.statBonus.visible+(result.statBonus.visible===0?'（端数蓄積）':''):''));}},
+  buyLast(v){confirmAction('最後の買い物',esc(ability(v).name)+'を購入します。購入できる能力は1つだけです。',()=>{const result=buySkill(state.career,v,true);if(result.error)toast(result.error);else{save();render();toast(ability(v).name+'を獲得しました。'+(result.statBonus?' '+D.stats[result.statBonus.key]+'＋'+result.statBonus.visible+(result.statBonus.visible===0?'（端数蓄積）':''):''));}},'購入する');},
   buyItem(v){const result=buyItem(state.career,v);if(result.error)toast(result.error);else{save();render();toast('購入しました。「使う」で適用できます。');}},
   inventory(){showInventory();},
   use(v){const c=state.career;if(!c)return;if(v==='cure'){const list=c.player.skills.filter(isWeak);if(!list.length){toast('克服する弱点がありません。');return;}openModal('克服する弱点',list.map(id=>btn(esc(ability(id).name),'cure',id,'secondary large')).join(''));return;}
@@ -4268,8 +4386,8 @@ const actions={
   help(){openAux('help');},data(){openAux('data');},return(){navigate(ui.backStack&&ui.backStack.pop()||'title');},
   export(){exportSave();},exportText(){exportSave(true);},selectExport(){document.getElementById('export-json').select();},
   import(){let imported;try{imported=decode(document.getElementById('import-text').value);}catch(e){toast(e.message);return;}
-    confirmAction('セーブを読み込む',(imported.career?esc(imported.career.player.name)+' · '+D.stages[imported.career.stage].name:'育成中の選手なし')+' / 登録 '+imported.registry.length+'名。現在の進行と登録データを置き換えます。',()=>{state=imported;ui.quick=false;save();navigate('title');toast('セーブを読み込みました。');},'読み込む');},
-  reset(){confirmAction('すべてのデータをリセット','育成中の選手、登録選手、ライバル、コインを削除します。必要なら先にJSONを書き出してください。',()=>{stopAuto();safeStorage.remove(STORAGE);safeStorage.remove(BACKUP);state=newState();ui.quick=false;ui.selection=[];save();navigate('title');},'すべて削除');},
+    confirmAction('セーブを読み込む',(imported.career?esc(imported.career.player.name)+' · '+D.stages[imported.career.stage].name:'育成中の選手なし')+' / 登録 '+imported.registry.length+'名。現在の進行と登録データを置き換えます。',()=>{slotStore.archive(JSON.stringify(state),'JSON読込前');state=imported;ui.quick=false;save();navigate('title');toast('セーブを読み込みました。');},'読み込む');},
+  reset(){confirmAction('現在の進行をリセット','現在の育成・登録選手・ライバル・コインを初期化します。3つの保存枠とバックアップは残ります。',()=>{stopAuto();safeStorage.remove(STORAGE);safeStorage.remove(BACKUP);state=newState();ui.quick=false;ui.selection=[];save();navigate('title');},'すべて削除');},
   testCutin(){const r=currentRace();const p=r.runners.find(n=>n.isPlayer);queueCutins([{athleteId:p.id,name:p.name,frame:p.frame,abilityId:'mirror'}],renderId);},
   closeModal(){closeModal();},confirm(){const fn=confirmCallback;closeModal();if(fn)fn();}
 };

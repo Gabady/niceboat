@@ -70,14 +70,14 @@
     }
   ],
   "hashes": {
-    "index.html": "16e5c75d751c88faa9d8cc6f0bf83b6f23a34a415e97cbb37a30f1d101e7b45e",
-    "style.css": "4e6cdaf2db1aeaa2b3f3b6543fe43e764e14ec0c8fc3546cdae2730e11ebbb0e",
-    "data.js": "0b4c17a9e7c7515674c075c10a87ad417602d0f6feda425cb9a4e801b6465db5",
-    "racing.js": "beec0077d299ef2a7d0f4433a4a0b904efb1b6189b253f873216bfe8c3316d3b",
+    "index.html": "8c98c4d1169a67ae638635ecaffc9626af6cd8b8d76e5acc5f872fba8b73e770",
+    "style.css": "3edb80d5136384e1a1fc7017cb1e6e7bafeb81c9c221dd7a65b4f8e3198e68e1",
+    "data.js": "2f12b03d8bd7aa7040995b52b9ddcacae07bdbe8c50edb75e111d8d0b0c772b9",
+    "racing.js": "15bc7aa880d942f6c06b028476be18db0ae52920fed08a83daf1e272d1eebdb1",
     "race-renderer.js": "90851479d22e0887c504379a7729be80a28690455800dfda6a81a6f6b75143b9",
-    "driving-ui.js": "56154ec79f169de0f878b35cf235e4c22c7327843dd2a9e82cb4bc7b4d61bc3d",
-    "script.js": "b451d9487f6a3d852b4655d7e1cf78c2f61a5dc00a9954219a03ac3ab015c34f",
-    "index_android_safe.html": "038ef9e3a7d0cb75d58af524a4f7d9997e658048af99869ff276ef78ab4017ac"
+    "driving-ui.js": "817f00723c2e16dbfe2da9022a4a2952a288851d35e96342006771881bbb021d",
+    "script.js": "438f2bdab504d916f03b6073de7bbd7df89a3ad532b65e00e4a1050e3e6f512c",
+    "index_android_safe.html": "64940bfbb26683feaac653db1fe45a171485e1143333e0db2594f640e8c5abad"
   },
   "browser_testing": false,
   "android_device_testing": false
