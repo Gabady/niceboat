@@ -2455,3 +2455,4 @@ td small {
 
 .drive-map.start-map .drive-cutins{visibility:visible;transform:translateY(120px)}
 @media(max-height:650px){.drive-map.start-map .drive-cutins{transform:translateY(96px)}}
+.tune-card{padding:14px 0;border-top:1px solid #c7dadb}.tune-card h3{margin:0}.tune-current{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0 14px}.tune-current>div{background:#e8f4f2;border-radius:10px;padding:9px 7px;color:#143e46}.tune-current small,.tune-current b{display:block}.tune-current small{font-size:13px;margin-bottom:5px}.tune-current b{font-size:17px}.tune-card .adjust-directions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tune-card .adjust-directions button{min-height:76px;white-space:normal}.tune-card .adjust-directions small{display:block;line-height:1.5;font-size:13px;margin-top:5px}

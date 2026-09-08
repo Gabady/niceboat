@@ -167,7 +167,7 @@ function mount(r,settings,callbacks){
   const recent=d.logs.filter(l=>['phase','lead','capsize','debuff','reflect','warning','goal','ability','weak'].includes(l.kind)).slice(-1)[0]||d.logs[d.logs.length-1];if(recent&&logCount!==recent.text){node('drive-live-text').textContent=recent.text;logCount=recent.text;}
   if(renderer){const visible=ranked.filter(n=>!n.isPlayer).map(n=>({n,p:renderer.project(n.x,n.capsized?.5:2,n.z)})).filter(x=>x.p&&x.p.visible&&x.p.depth<120).sort((a,b)=>a.p.x-b.p.x);const placed=[];
    node('opponent-labels').innerHTML=visible.map(({n,p})=>{let y=p.y;for(const q of placed)if(Math.abs(p.x-q.x)<46&&Math.abs(y-q.y)<26)y=q.y-27;placed.push({x:p.x,y});return '<span class="world-boat-label" style="left:'+p.x+'px;top:'+y+'px"><i class="mini-boat boat-'+n.frame+'">'+n.frame+'</i>'+(n.capsized?'転':R.place(d,n)+'位')+'</span>';}).join('');}
-  const fx=effectLevels(d,r);node('weather-fx-label').textContent=[fx.speed?'速度風':null,fx.wind?'強風':null,fx.rain?'雨脚':null].filter(Boolean).join(' / ');
+  const fx=effectLevels(d,r);node('weather-fx-label').textContent=[fx.speed?'速度風':null,fx.wind?'強風':null,fx.rain?'雨脚':null,R.tiltInstability(b,R.performance(b,d,r))>.15?'ティルト不安定':null].filter(Boolean).join(' / ');
   updateEvents(now);
  }
  function finish(){if(finalizing||r.done)return;finalizing=true;d.paused=true;resetInput();node('drive-overlay').hidden=false;node('drive-overlay').innerHTML='<div class="drive-dialog"><h2>'+(R.own(d).finishTime!==null?'FINISH':'レース終了')+'</h2><p>結果を準備しています…</p></div>';

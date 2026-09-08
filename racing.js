@@ -97,12 +97,18 @@ function steeringLimits(b,p){
   const corner=clamp(Math.abs(b.yawRate)*speed/Math.max(2,p.grip),0,3)*.60;
   const slide=clamp((b.slip||0)/8,0,1.5)*.35;
   const load=(.30*(1-clamp(turn/100,0,1))+water+corner+slide)*(1-turn/160)*(1-pivot*.85)/(1+p.safety*.4);
-  return {load,limit:clamp(1-load*.35,.30,1),rate:(.65+turn*.021)*(1+pivot*2)/(1+load*1.6)};
+  const instability=tiltInstability(b,p);
+  return {load,instability,limit:clamp(1-load*.35,.30,1)*(1-instability*.35),rate:(.65+turn*.021)*(1+pivot*2)/(1+load*1.6)*(1-instability*.45)};
 }
 function moveSteering(current,wanted,limits,dt=DT){
   const target=clamp(wanted,-limits.limit,limits.limit),returning=Math.abs(target)<Math.abs(current)||current*target<0;
   const step=limits.rate*(returning?1.35:1)*dt;
   return clamp(current+clamp(target-current,-step,step),-limits.limit,limits.limit);
+}
+function tiltInstability(b,p){
+ const angle=Math.max(0,p.tilt?.angle||0),power=clamp(p.stats.power||0,0,100),speed=Math.hypot(b.vx,b.vz);
+ const load=angle/3*Math.pow(speed/20,2)*(.45+.9*(1-power/100))*Math.abs(b.steer||0);
+ return clamp((load-.35)/.65,0,1);
 }
 function addEvent(d,e){e.t=d.elapsed;e.index=d.eventSequence++;d.events.push(e);if(d.events.length>180)d.events.shift();}
 function log(d,text,kind='normal',athleteId=null){const p=own(d);d.logs.push({phase:p.phase,text,kind,id:athleteId,lap:Math.min(C.laps,Math.floor(Math.max(0,p.progress)/C.length)+1),time:d.elapsed});if(d.logs.length>80)d.logs.shift();}
@@ -306,9 +312,9 @@ function constrain(d,b){
   const nx=(b.x-p.cx)/Math.max(p.radial,.01),nz=b.z/Math.max(p.radial,.01);
   b.x=p.cx+nx*bound;b.z=nz*bound;
   const normalSpeed=b.vx*nx+b.vz*nz;
-  if((bound===inner&&normalSpeed<0)||(bound===outer&&normalSpeed>0)){b.vx-=normalSpeed*nx*1.08;b.vz-=normalSpeed*nz*1.08;if(d.elapsed>=b.cooldownBoundary){b.vx*=.90;b.vz*=.90;}b.stress+=Math.min(.18,Math.abs(normalSpeed)*.015);}
+  if((bound===inner&&normalSpeed<0)||(bound===outer&&normalSpeed>0)){b.vx-=normalSpeed*nx*1.08;b.vz-=normalSpeed*nz*1.08;if(d.elapsed>=b.cooldownBoundary){b.vx*=.55;b.vz*=.55;}b.stress+=Math.min(.18,Math.abs(normalSpeed)*.015);}
   if(d.elapsed>=b.cooldownBoundary){b.metrics.boundaries++;b.cooldownBoundary=d.elapsed+2;
-    if(b.isPlayer)log(d,bound===inner?'小回り防止ブイに接触。内側を横切ることはできない。':'外へ膨らんだ。アクセルを抜いて進路を戻そう。','warning',b.id);
+    log(d,b.frame+'号艇、'+(bound===inner?'内側':'外側')+'ブイに接触して減速。','warning',b.id);
   }return true;
 }
 // Three overlapping hull discs cover stern, cockpit and bow, rather than a point hitbox.
@@ -407,10 +413,11 @@ function integrate(d,b,r,input,dt){
   if(d.elapsed<b.penaltyUntil){b.vx=b.vz=b.speed=0;return;}
 
   const wake=sampleWake(d,b);b.wakeLoad=wake.strength*(1-p.wakeResistance);
-  const steering=steeringLimits(b,p);b.steer=moveSteering(b.steer,steer,steering,dt);b.throttle=throttle;
+  const instability=tiltInstability(b,p),steering=steeringLimits(b,p);
+  b.steer=moveSteering(b.steer,steer,steering,dt);b.throttle=throttle;
   const speed=Math.hypot(b.vx,b.vz),factor=clamp(speed/8,.10,1.1)/(1+speed*speed/1100);
   const rudder=clamp(.42+b.engine*.68,.42,1.1);
-  const yawTarget=(d.elapsed<(b.recoveryUntil||0)?0:b.steer)*p.yawMax*factor*rudder;
+  const yawTarget=(d.elapsed<(b.recoveryUntil||0)?0:b.steer)*p.yawMax*factor*rudder*(1-instability*.6);
   const wobble=(Math.sin(d.elapsed*1.8+b.x*.03+b.frame)*p.wave*.095+wake.side*b.wakeLoad*.18)*clamp(speed/8,0,1);
   b.yawRate+=(yawTarget+wobble-b.yawRate)*(1-Math.exp(-(1.1+s.turn*.025+p.safety*1.6)*dt));
   b.heading=wrap(b.heading+b.yawRate*dt);
@@ -422,7 +429,7 @@ function integrate(d,b,r,input,dt){
   forward=q.speed;b.engine=q.engine;
   // At high yaw load the hull planes sideways; releasing throttle reduces speed but retains inertia.
   const slideLoad=clamp(Math.pow(speed/20,2)*.20*(1-clamp(s.turn,0,125)/180)*(1-p.pivot),0,.30);
-  const wetGrip=p.grip*(1-Math.min(.26,b.wakeLoad*.19))*(1-slideLoad);
+  const wetGrip=p.grip*(1-Math.min(.26,b.wakeLoad*.19))*(1-slideLoad)*(1-instability*.45);
   const lateralForce=clamp(-lateral*p.lateralDamping,-wetGrip,wetGrip);
   const waveForce=Math.sin(d.elapsed*1.3+b.x*.065+b.z*.037)*p.wave*.65+wake.side*b.wakeLoad*1.7;
   lateral+=(lateralForce+waveForce)*dt;
@@ -435,7 +442,9 @@ function integrate(d,b,r,input,dt){
     const held=Math.max(Math.min(speed,speedLimit),driven);
     forward=Math.max(forward,Math.sqrt(Math.max(0,held*held-lateral*lateral)));
   }
-  b.vx=fx*forward+rx*lateral;b.vz=fz*forward+rz*lateral;b.x+=b.vx*dt;b.z+=b.vz*dt;
+  const radial=project(b.x,b.z),outward=instability*2.5*dt;
+  b.vx=fx*forward+rx*lateral+outward*(b.x-radial.cx)/Math.max(1,radial.radial);
+  b.vz=fz*forward+rz*lateral+outward*b.z/Math.max(1,radial.radial);b.x+=b.vx*dt;b.z+=b.vz*dt;
   b.speed=Math.hypot(b.vx,b.vz);b.slip=Math.abs(lateral);
   const danger=turnDanger(b,p,wetGrip);
   b.stress=clamp(b.stress+(danger*.60+b.wakeLoad*.045-.18)*dt,0,3.2);
@@ -447,7 +456,7 @@ function integrate(d,b,r,input,dt){
   const touched=constrain(d,b);b.speed=Math.hypot(b.vx,b.vz);
   const tangent=pointAt(project(b.x,b.z).s,project(b.x,b.z).radial).heading;
   const movingAlong=Math.abs(b.vx*Math.cos(tangent)+b.vz*Math.sin(tangent));
-  const stuck=b.boundaryInner&&Number.isFinite(b.boundaryAt)&&d.elapsed-b.boundaryAt<.20&&movingAlong<2.2;
+  const stuck=Number.isFinite(b.boundaryAt)&&d.elapsed-b.boundaryAt<.20&&movingAlong<2.2;
   b.boundaryStall=stuck?Math.min(10,(b.boundaryStall||0)+dt):0;
   if(canQuickRecover(d,b))quickRecover(d,b);
   if(b.stress>=2.8){b.capsized=true;b.vx=b.vz=b.speed=0;activateCapsize(d,b);return;}
@@ -483,14 +492,15 @@ function tick(d,r,input,dt=DT,allAI=false){
   return true;
 }
 // A stalled hull is turned outward in place. No teleport, distance credit or stop penalty.
-function canQuickRecover(d,b=own(d)){return !d.finished&&activeBoat(b)&&b.startTime!==null&&!b.startFault&&b.boundaryInner===true&&d.elapsed>=(b.recoveryUntil||0)&&(b.boundaryStall||0)>=.7-1e-7;}
+function canQuickRecover(d,b=own(d)){return !d.finished&&activeBoat(b)&&!b.startFault&&typeof b.boundaryInner==='boolean'&&d.elapsed>=(b.recoveryUntil||0)&&(b.boundaryStall||0)>=.65-1e-7;}
 function quickRecover(d,b=own(d)){
   if(!canQuickRecover(d,b))return false;
   const p=project(b.x,b.z),tangent=pointAt(p.s,p.radial).heading;
   // Counterclockwise course: the right of the tangent points away from the inner barrier.
-  b.heading=wrap(tangent+.38);b.yawRate=0;b.steer=0;
+  b.heading=wrap(tangent+(b.boundaryInner?.55:-.55));b.yawRate=0;b.steer=0;
+  const retained=Math.hypot(b.vx,b.vz);b.vx=Math.cos(b.heading)*retained;b.vz=Math.sin(b.heading)*retained;
   b.boundaryStall=0;b.recoveryUntil=d.elapsed+.9;
-  b.metrics.rescues++;log(d,b.frame+'号艇、ブイで0.7秒スタック。船首を外向きに戻した。アクセルで復帰できる。','warning',b.id);return true;
+  b.metrics.rescues++;log(d,b.frame+'号艇、ブイから離れる向きに自動復帰。','warning',b.id);return true;
 }
 function rescue(d){const b=own(d);if(b.startTime===null||d.finished||!activeBoat(b))return false;
   const p=pointAt(C.start+b.progress,C.inner+8);b.x=p.x;b.z=p.z;b.heading=p.heading;b.lastS=mod(C.start+b.progress,C.length);b.vx=b.vz=b.yawRate=b.speed=b.engine=0;b.steer=0;b.stress=0;
@@ -523,6 +533,6 @@ function valid(d,r){
     (b.startTime===null||finite(b.startTime,-C.prestart,271))&&[null,'F','L'].includes(b.startFault)&&(!b.plan||['front','defend','sashi','outside','cross','clear'].includes(b.plan.id)&&finite(b.plan.lane,C.inner,C.outer)&&finite(b.plan.speed,.1,2))&&(b.lastZone===null||typeof b.lastZone==='string'&&b.lastZone.length<20)&&Array.isArray(b.effects)&&b.effects.length<150&&b.effects.every(e=>D.abilityMap[e.id]&&finite(e.until,0,310)&&finite(e.safety,0,2)&&(!e.mechanics||Object.values(e.mechanics).every(v=>finite(v,-5,5)))&&e.stats&&Object.entries(e.stats).every(([k,v])=>D.statKeys.includes(k)&&finite(v,-10000,10000)))&&Array.isArray(b.activations)&&b.activations.length<=100&&b.activations.every(active)&&Array.isArray(b.interference)&&b.interference.length<600&&Array.isArray(b.phaseHistory)&&b.phaseHistory.length<=24&&b.metrics&&['contacts','boundaries','rescues','maxSpeed','slideSeconds','throttleSeconds','coastSeconds','wakeSeconds','lineChanges','contactImpulse','turnSpeedSum','turnSamples'].every(k=>finite(b.metrics[k],0,1e7))&&b.stats&&D.statKeys.every(k=>finite(b.stats[k],0,100))&&Array.isArray(b.skills)&&b.skills.every(id=>D.abilityMap[id])&&b.mastery&&Object.values(b.mastery).every(n=>Number.isInteger(n)&&n>0&&n<10000)&&b.statsBuff&&D.statKeys.every(k=>finite(b.statsBuff[k]||0,0,100))&&b.equipment&&['motor','prop','boat'].every(k=>b.equipment[k]&&Object.values(b.equipment[k]).every(v=>finite(v,-100,100)));});
 }
 
-const R={C,DT,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
+const R={C,DT,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
 root.KM_RACING=R;if(typeof module!=='undefined'&&module.exports)module.exports=R;
 })(typeof globalThis!=='undefined'?globalThis:window);
