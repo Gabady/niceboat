@@ -64,9 +64,9 @@
   // Each family uses its highest owned rarity. Recoil is an equipment trade-off, not a removable weakness.
   var signatureLevels=[
     {rarity:'SR',suffix:'入門',early:{speed:2,accel:2,turn:1},late:{speed:-1,accel:-1,power:-1},pivot:.035,chance:.45,duration:.75},
-    {rarity:'SSR',suffix:'熟練',early:{speed:12,accel:14,turn:7},late:{speed:-7,accel:-8,power:-5},pivot:.30,chance:.58,duration:1.15},
-    {rarity:'UR',suffix:'極',early:{speed:24,accel:26,turn:12},late:{speed:-13,accel:-14,power:-8},pivot:.58,chance:.70,duration:1.35},
-    {rarity:'LR',suffix:'到達点',early:{speed:38,accel:40,turn:18},late:{speed:-20,accel:-22,power:-12},pivot:.82,chance:.82,duration:1.45}
+    {rarity:'SSR',suffix:'熟練',early:{speed:12,accel:14,turn:7},late:{speed:-7,accel:-8,power:-5},pivot:.23,chance:.58,duration:1.15},
+    {rarity:'UR',suffix:'極',early:{speed:24,accel:26,turn:12},late:{speed:-13,accel:-14,power:-8},pivot:.42,chance:.70,duration:1.35},
+    {rarity:'LR',suffix:'到達点',early:{speed:38,accel:40,turn:18},late:{speed:-20,accel:-22,power:-12},pivot:.60,chance:.82,duration:1.45}
   ];
   signatureLevels.forEach(function(level){
     var id='doguchi_'+level.rarity.toLowerCase(),average={};
@@ -111,12 +111,12 @@
     storm:{mechanics:{waveShield:.45,wakeShield:.3},text:'荒天時の横波・引き波の負荷を抑え、失速を軽減。'},
     reflect:{mechanics:{contactShield:.5},text:'妨害の能力低下と水面効果を50%反射。再反射しない。'},
     zero:{mechanics:{response:1.7},text:'助走時の立ち上がりと応答を強める。早く踏めばフライングにはなる。'},
-    comet:{mechanics:{speed:1.7,accel:1.1,wakeEmit:.65},text:'伸びと再加速を強め、通過した引き波も大きくする。'},
-    wave:{mechanics:{wakeShield:.65,damping:.8},text:'ターン中に引き波の大部分を吸収し、横滑りを速く収束。'},
+    comet:{mechanics:{speed:1.25,accel:.85,wakeEmit:.65},text:'伸びと再加速を強め、通過した引き波も大きくする。'},
+    wave:{mechanics:{wakeShield:.45,damping:.65},text:'ターン中に引き波の負荷を軽減し、横滑りを速く収束。'},
     mirror:{mechanics:{contactShield:.65,wakeShield:.4},text:'水面効果も完全反射し、直後4秒間の接触と引き波も軽減。再反射しない。'},
     legend_start:{mechanics:{response:2.5,damping:.5},text:'助走応答とスタート直後の艇の収まりを大幅強化。F判定は全艇共通。'},
-    legend_speed:{mechanics:{speed:2.1,accel:1.3,wakeEmit:.65,economy:.2},text:'強い伸び・再加速・引き波を生み、消耗も抑える。'},
-    legend_turn:{when:'inside',mechanics:{grip:1.6,damping:1,wakeShield:.65,contactShield:.45},text:'内を回る高グリップ旋回。引き波と接触にも強い。'},
+    legend_speed:{mechanics:{speed:1.5,accel:1,wakeEmit:.65,economy:.2},text:'強い伸び・再加速・引き波を生み、消耗も抑える。'},
+    legend_turn:{when:'inside',mechanics:{grip:1.2,damping:.75,wakeShield:.45,contactShield:.4},text:'内を回る高グリップ旋回。引き波と接触にも強い。'},
     legend_tide:{mechanics:{speed:1.5,accel:1.5,wakeShield:.7},text:'後方から先行艇の引き波を越える追走加速。'},
     weak_start:{mechanics:{response:-.55},text:'助走時にアクセルの反応が鈍る。'},
     weak_rain:{mechanics:{waveExtra:.35,damping:-.2},text:'雨のターンで横波と横滑りが強まる。'},
@@ -198,7 +198,7 @@
     {id:'duel',name:'攻防一体',groups:[['speed_lock','turn_press','start_check','accel_lock','power_drain','dump'],['immune','reflect','mirror']],need:{start:35,power:35},description:'他艇18m以内で応答・接触耐性を強化。伸び足を少し犠牲にする。'},
     {id:'craftline',name:'整備の継走',groups:[['doguchi_sr','doguchi_ssr','doguchi_ur','doguchi_lr'],['mechanic','spanner','engineer','craft']],need:{accel:40},description:'2周目の機材応答と持久力を改善。伸び足は控えめ。洞口スペシャルの3周目の反動は残る。'}
   ];
-  var D = {version:80,build:'88',spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
+  var D = {version:80,build:'89',driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
     easy:{id:'easy',name:'イージー',growth:.75,rewardDrop:1,shopMax:'SSR',ai:'easy'},
     normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'}
   },stats:stats,statKeys:Object.keys(stats),categories:categories,

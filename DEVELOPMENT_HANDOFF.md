@@ -1,13 +1,25 @@
-# 競艇物語 v88 開発引継ぎ
+# 競艇物語 v89 開発引継ぎ
 
 ## 再開の最短手順
 - このメモ→git status/diff→対象関数だけ読む。全コード・旧ログの再読込を避ける。
 - 正本 `/workspace/sites/kyotei-monogatari-v70/dist`。今回の依頼はファイル出力。公開・GitHub操作はしていない。
-- 配布 `/workspace/scratch/c938c42c53df/release_v88`。保存IDと最新具体版は `/workspace/scratch/c938c42c53df/upload-v88-results.json`。
+- 配布 `/workspace/scratch/c938c42c53df/release_v89`。保存IDと最新具体版は `/workspace/scratch/c938c42c53df/upload-v89-results.json`。
 - 分割ソースを変更し、`python3 tools/package.py` でAndroid/iPhone単体とZIP。生成HTMLを直接編集しない。
 - 説明・@変更理由・検証・この引継ぎを更新。実機やブラウザ操作は未検証。検証済と混同しない。
 
-## v88の変更点
+## v89の差分（先に読む）
+
+- 分割ソースが正本。Android/iPhone単体版はtools/package.pyで生成、ZIPはkyotei_monogatari_v89.zip。
+- spectatorPaceは常に180tick、important:false。doAdvanceも180固定、stepAutoRaceのadaptive引数は互換のため残すが区切りなし。自動は500/settings.speed ms（下限170）。手動は押すまで停止。
+- R.finishCrossing(d,b,previousBowX,DT)：最終周・checkpoints>=23・progress>=1725・順方向・コース内で船首が描画と同じC.startラインを越えた瞬間に完走。tick内でstartCrossingと同じ座標を使用。integrateの中心累積距離による完走処理は撤去。
+- performanceで同じid+kindの有効効果は最後のみ。能力正補正36超を25%換算、上限48。D.driveEffectCapsは追加mechanicsの合計上限。基礎能力や機材は上限対象外。
+- comet/legend_speed/wave/legend_turnのmechanicsとSSR以上monkey.pivotを縮小。数値はBALANCE_REPORT。
+- 練習UIは「得意を伸ばす／苦手を補う」、trainingHintでおすすめ表示。trainingFactor/成長計算はv88のまま。通常画面から内部倍率と学習減衰の説明を撤去。
+- decodeはv88の能力/所持金/残行動/走行状態を維持しbuild89へ。v87以前だけ既存v88移行処理を通す。保存version80とdrive.version2は維持。
+- 現行ゲート：race-v89 12、race-v88回帰21、engine21、Android14、iPhone4、static17、iPhone静的10＝99。実ブラウザ・実機未検証。
+- tests/race-v88-tests.cjsの旧観戦速度の期待値とbuild固定値だけ現行へ更新。新規検証はtests/race-v89-tests.cjs。
+
+## v88から維持した仕様
 - 右下50%×50%にthrottle-hit-zone。左側とともにz-index6でcontrols5より前。steer-padの見た目62%が中央を越えるため判定面を上へ出した。overlay9でメニューを優先。
 - bindPointerは始点のkindとpointerIdを固定。同じ指を両担当にしない。capture失敗はrootのreleaseで解除。アクセル判定外でもthrottle-pedalをheldにする。
 - 時計は右上、助走中のdrive-mapはvisibility hidden。start-map内cutinはvisibility visibleと下方向transformで時計を避けて維持。
@@ -41,7 +53,7 @@
 - operationはenterZoneの抽選から除外し、integrate内で実入力を見て発動。通常の能力IDイベント・cutinを共用。
 - acquire: 新規かつ非弱点ならrandom keyへN.3/R.5/SR.8/SSR1.2/UR1.8/LR2.5 * statGrowthRate。元成長1.5倍は掛けない。重複はmasteryのみ。ショップもこの経路。
 - contactType: headings対向cos<−.55→head、平行cos>.55かつ接触法線の前後成分>.65→rear、他side。CONTACTにrestitution/yaw/stress/retainを分ける。イベントにcontactType。
-- spectatorPace: スタート/近接ターン/直近イベント/ゴール付近なら30tick、平常180tick。重要時500ms、平常500/settings.speed(ms下限170)。stepAutoRace(adaptive=true)は高速区間から重要へ入った瞬間にbreak。
+- 観戦の重要場面減速はv89で撤去。現行仕様は先頭のv89差分を参照。
 - 自艇ゴール済みなら未完走艇を観戦速度判定に使う。全物理は60Hz・3周で共通。
 
 ## 予選・経歴
@@ -50,13 +62,13 @@
 - 保存/登録へplayer丸ごとコピー。旧版の未記録履歴は創作せずv88以降だけ。詳細UIは記録内の初勝利と明記。
 
 ## 複数保存・移行
-- newStateはversion80/build'88'。旧saveもversion80を維持。
+- newStateはversion80/build'89'。旧saveもversion80を維持。
 - createSaveSlots(safeStorage): kyotei_slots_v1_1〜3に独立の全stateJSON。
 - _archivesは通常上書き/読込/復元前の直近4件。_updateは専用の更新前1件。protectはdecode検証後に元rawを変更せず保護。_protected_<旧build>で重複保護を防ぐ。
 - 起動時decode前のrawをprotectへ渡し、saveでも旧rawを検知。データ管理に保存/読込/復元。上書きや切替に確認、現在のデータも退避。
 - 現在のJSON exportは選択中の全stateのみで、3枠一括ではない。枠を読み込んで個別export。localStorage容量不足はメモリへ。注意表示と個別JSON退避が必要。
 - 更新前専用は通常の上書き7回でも消えない検証。復元は古いバイナリ復帰ではなく現行decodeで読み込み。
-- decode旧build時: 全player系adjustSuccess>70だけ70へ。旧行動残数・機材・走行位置は維持。新規raceから通常2枠。build88化。
+- decodeのv88未満移行時: 全player系adjustSuccess>70だけ70へ。旧行動残数・機材・走行位置は維持。新規raceから通常2枠。最終build89化。
 - リセットは現在stateだけを初期化し、保存枠・退避は残すと確認文に明記。
 
 ## 維持

@@ -170,7 +170,7 @@ function mount(r,settings,callbacks){
   const fx=effectLevels(d,r);node('weather-fx-label').textContent=[fx.speed?'速度風':null,fx.wind?'強風':null,fx.rain?'雨脚':null].filter(Boolean).join(' / ');
   updateEvents(now);
  }
- function finish(){if(finalizing||r.done)return;finalizing=true;d.paused=true;resetInput();node('drive-overlay').hidden=false;node('drive-overlay').innerHTML='<div class="drive-dialog"><h2>ゴール順を確定しています…</h2></div>';
+ function finish(){if(finalizing||r.done)return;finalizing=true;d.paused=true;resetInput();node('drive-overlay').hidden=false;node('drive-overlay').innerHTML='<div class="drive-dialog"><h2>'+(R.own(d).finishTime!==null?'FINISH':'レース終了')+'</h2><p>結果を準備しています…</p></div>';
   // Remaining NPCs continue with the same fixed-step physics; the player is already stopped.
   setTimeout(()=>{if(disposed)return;try{callbacks.finish();d.paused=true;hud(performance.now());overlay();}catch(e){overlay('結果の保存を完了できませんでした。'+e.message);}finally{finalizing=false;}},30);
  }
