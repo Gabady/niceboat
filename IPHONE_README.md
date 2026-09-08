@@ -1,8 +1,8 @@
-# 競艇物語 v90 — iPhone版
+# 競艇物語 v91 — iPhone版
 
 ## ファイル
 
-`index_iphone_safe.html` がiPhone向けの単体版です。CSS・JavaScriptはすべて埋め込み済みで、外部ライブラリ・画像・音声の取得はありません。v90の育成、難易度、3周レース、観戦、連携ビルドを引き継いでいます。iOS 16以降のSafariを主な対象として作成しました。iPhone実機・Safariブラウザでのプレイ検証は未実施です。対応のためのコードと保存APIの分岐は検証しています。
+`index_iphone_safe.html` がiPhone向けの単体版です。CSS・JavaScriptはすべて埋め込み済みで、外部ライブラリ・画像・音声の取得はありません。v91の育成、難易度、3周レース、観戦、連携ビルドを引き継いでいます。iOS 16以降のSafariを主な対象として作成しました。iPhone実機・Safariブラウザでのプレイ検証は未実施です。対応のためのコードと保存APIの分岐は検証しています。
 
 ## 開き方 — ファイルのプレビューとゲーム実行は別です
 
@@ -45,7 +45,7 @@ JavaScript付きのローカルHTMLを実行できる環境で、`index_iphone_s
 
 ## 開発と検証
 
-ソースは `iphone-compat.js`（画面高さ・共有API）と `iphone.css`（追加表示設定）。`script.js`にはiPhone向け共有分岐だけを追加し、共通のレース計算と能力バランスを使います。v90の変更はREADMEと変更履歴を参照してください。単体HTMLを直接編集せず、分割ソースを編集して `python tools/package.py` で再生成します。
+ソースは `iphone-compat.js`（画面高さ・共有API）と `iphone.css`（追加表示設定）。`script.js`にはiPhone向け共有分岐だけを追加し、共通のレース計算と能力バランスを使います。v91の変更はREADMEと変更履歴を参照してください。単体HTMLを直接編集せず、分割ソースを編集して `python tools/package.py` で再生成します。
 
 `node tests/iphone-tests.cjs` で高さ計算・共有・未対応・キャンセル・例外を確認します。`python tests/iphone-static-checks.py` で単体への埋め込みと構文を確認します。入力・代替描画は `tests/android-update-tests.cjs` の共通API検証も利用します。ブラウザや実機のテストとは区別してください。
 

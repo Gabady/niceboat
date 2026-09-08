@@ -1,4 +1,14 @@
-# 競艇物語 v90 開発引継ぎ
+# 競艇物語 v91 開発引継ぎ
+
+## v91差分（最初に読む）
+
+- R.recordReplay：create時、30tickごと、ゴール時に記録。d.replay.version1/from/frames/events。最大600フレーム、400イベント。艇配列はd.boats順。7値の意味はBALANCE_REPORT。乱数は使わない。
+- R.validReplayをR.validに追加。保存形式version80/drive.version2は維持。旧版はreplayなしでも可。
+- R.dramaticRace(d)：有効自艇1着で最終100m逆転／最終周3位以下から逆転／着差0.25秒以下を判定。文字列かnull。結果画面と操船終了UIに表示。
+- script.jsのreplayResultPanel/openReplay/paintReplay/scheduleReplay/stopReplayが表示専用。モーダルで俯瞰位置・順位・ログを再生。currentRace参照のみ、物理やsettleRaceを呼ばない。
+- UI速度は1/2/4倍、±5秒、rangeシーク。closeModal/navigate/visibilitychangeで停止。次走のr差し替えで前走記録を破棄。保存スロットやJSONは現在レースの記録も含む。
+- v91新規9＋既存108＝117項目。tests/race-v91-tests.cjs。実ブラウザ・実機未検証。録画ファイル出力はなし。
+- 出力release_v91、保存IDと具体版はupload-v91-results.json。パッケージkyotei_monogatari_v91.zip。旧段落のv90の説明は履歴として読む。
 
 ## v90差分（最初に読む）
 
@@ -12,13 +22,13 @@
 ## 再開の最短手順
 - このメモ→git status/diff→対象関数だけ読む。全コード・旧ログの再読込を避ける。
 - 正本 `/workspace/sites/kyotei-monogatari-v70/dist`。今回の依頼はファイル出力。公開・GitHub操作はしていない。
-- 配布 `/workspace/scratch/c938c42c53df/release_v90`。保存IDと最新具体版は `/workspace/scratch/c938c42c53df/upload-v90-results.json`。
+- 配布 `/workspace/scratch/c938c42c53df/release_v91`。保存IDと最新具体版は `/workspace/scratch/c938c42c53df/upload-v91-results.json`。
 - 分割ソースを変更し、`python3 tools/package.py` でAndroid/iPhone単体とZIP。生成HTMLを直接編集しない。
 - 説明・@変更理由・検証・この引継ぎを更新。実機やブラウザ操作は未検証。検証済と混同しない。
 
 ## v89から維持した差分（v90との差分は先頭を参照）
 
-- 分割ソースが正本。Android/iPhone単体版はtools/package.pyで生成、ZIPはkyotei_monogatari_v90.zip。
+- 分割ソースが正本。Android/iPhone単体版はtools/package.pyで生成、ZIPはkyotei_monogatari_v91.zip。
 - spectatorPaceは常に180tick、important:false。doAdvanceも180固定、stepAutoRaceのadaptive引数は互換のため残すが区切りなし。自動は500/settings.speed ms（下限170）。手動は押すまで停止。
 - R.finishCrossing(d,b,previousBowX,DT)：最終周・checkpoints>=23・progress>=1725・順方向・コース内で船首が描画と同じC.startラインを越えた瞬間に完走。tick内でstartCrossingと同じ座標を使用。integrateの中心累積距離による完走処理は撤去。
 - performanceで同じid+kindの有効効果は最後のみ。能力正補正36超を25%換算、上限48。D.driveEffectCapsは追加mechanicsの合計上限。基礎能力や機材は上限対象外。
@@ -71,7 +81,7 @@
 - 保存/登録へplayer丸ごとコピー。旧版の未記録履歴は創作せずv88以降だけ。詳細UIは記録内の初勝利と明記。
 
 ## 複数保存・移行
-- newStateはversion80/build'90'。旧saveもversion80を維持。
+- newStateはversion80/build'91'。旧saveもversion80を維持。
 - createSaveSlots(safeStorage): kyotei_slots_v1_1〜3に独立の全stateJSON。
 - _archivesは通常上書き/読込/復元前の直近4件。_updateは専用の更新前1件。protectはdecode検証後に元rawを変更せず保護。_protected_<旧build>で重複保護を防ぐ。
 - 起動時decode前のrawをprotectへ渡し、saveでも旧rawを検知。データ管理に保存/読込/復元。上書きや切替に確認、現在のデータも退避。
