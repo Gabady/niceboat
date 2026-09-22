@@ -192,13 +192,14 @@
   ];
   // Two distinct abilities unlock a situational combination; no universal all-stat bonus.
   var synergies=[
-    {id:'launch',name:'先手必勝',groups:[['quick','zero','legend_start'],['inside','entry']],need:{start:40},description:'内進入の序盤は応答とグリップ上昇。引き換えに少し消耗が増える。'},
-    {id:'cutback',name:'差し返し',groups:[['slice','split','monkey_sr','monkey_ssr','monkey_ur','monkey_lr'],['grip','outside','sweep']],need:{accel:40},description:'ターン出口4秒の再加速を強化。わずかに伸び足を抑える。'},
-    {id:'stormwall',name:'荒水の構え',groups:[['rain','storm','wave'],['stout','steady','anchor']],need:{power:40},description:'荒天で波と消耗を軽減。最高速を少し抑えて安定を取る。'},
+    {id:'rhythm',name:'緩急自在',groups:[['feather'],['straighten']],need:{turn:35,accel:35},description:'ターンで緩めた周は、出口で舵を戻して全開にすると再加速。少し消耗が増える。'},
+    {id:'launch',name:'先手必勝',groups:[['quick','zero','legend_start'],['inside','entry']],need:{start:40},description:'内進入の序盤、舵を戻して加速すると応答とグリップ上昇。消耗は少し増える。'},
+    {id:'cutback',name:'差し返し',groups:[['slice','split','monkey_sr','monkey_ssr','monkey_ur','monkey_lr'],['grip','outside','sweep']],need:{accel:40},description:'ターン出口で舵を戻し、アクセルを踏むと再加速を強化。伸び足は少し控えめ。'},
+    {id:'stormwall',name:'荒水の構え',groups:[['rain','storm','wave'],['stout','steady','anchor']],need:{power:40},description:'荒天でアクセルを少し緩めると波と消耗を軽減。最高速は少し控えめ。'},
     {id:'duel',name:'攻防一体',groups:[['speed_lock','turn_press','start_check','accel_lock','power_drain','dump'],['immune','reflect','mirror']],need:{start:35,power:35},description:'他艇18m以内で応答・接触耐性を強化。伸び足を少し犠牲にする。'},
     {id:'craftline',name:'整備の継走',groups:[['doguchi_sr','doguchi_ssr','doguchi_ur','doguchi_lr'],['mechanic','spanner','engineer','craft']],need:{accel:40},description:'2周目の機材応答と持久力を改善。伸び足は控えめ。洞口スペシャルの3周目の反動は残る。'}
   ];
-  var D = {version:80,build:'91',driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
+  var D = {version:80,build:'92',driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
     easy:{id:'easy',name:'イージー',growth:.75,rewardDrop:1,shopMax:'SSR',ai:'easy'},
     normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'}
   },stats:stats,statKeys:Object.keys(stats),categories:categories,

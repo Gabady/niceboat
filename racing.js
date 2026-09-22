@@ -207,16 +207,26 @@ function driveCondition(a,b,d,r,target){
   return true;
 }
 function buildLinks(b){return D.synergies.map(link=>{const missing=link.groups.filter(group=>!group.some(id=>b.skills.includes(id))),stats=Object.entries(link.need).filter(([k,v])=>b.stats[k]<v);return {id:link.id,name:link.name,description:link.description,ready:!missing.length&&!stats.length,missing:missing.map(group=>group.slice()),stats:stats.map(([k,v])=>({key:k,value:v}))};});}
+// Style is derived from fixed athlete identity and learned strengths, never from race position.
+function racingStyle(b){
+ const s=b.stats,h=Array.from(String(b.id)).reduce((n,c)=>(n*31+c.charCodeAt(0))>>>0,0),bias=h%4;
+ const styles=[{id:'inside',name:'先マイ派',score:s.start*.55+s.turn*.45,plans:['front','defend'],tip:'好発進から内を守る'},
+ {id:'sashi',name:'差し派',score:s.accel*.55+s.turn*.45,plans:['sashi','cross'],tip:'出口で舵を戻し再加速'},
+ {id:'outside',name:'まくり派',score:s.speed*.65+s.accel*.35,plans:['outside'],tip:'外へ持ち出し直線で追う'},
+ {id:'clear',name:'安定派',score:s.power*.7+s.turn*.3,plans:['clear','cross'],tip:'波と接触を避けて継ぐ'}];
+ styles[bias].score+=7;return styles.sort((a,z)=>z.score-a.score)[0];
+}
 function synergyState(b,d,r){
   const phase=phaseAt(b.progress),lap=Math.min(3,Math.floor(Math.max(0,b.progress)/C.length)+1),rough=r.env.weather==='雨'||r.env.windSpeed>=6;
   const active=[],mechanics={};
   for(const link of buildLinks(b).filter(x=>x.ready)){
     let value=null;
-    if(link.id==='launch'&&b.course<=2&&b.progress<200)value={response:.6,grip:.4,economy:-.08};
-    if(link.id==='cutback'&&[2,4].includes(phase)&&Number.isFinite(b.turnExitAt)&&d.elapsed-b.turnExitAt<=4)value={accel:.75,response:.4,speed:-.20};
-    if(link.id==='stormwall'&&rough)value={wakeShield:.16,waveShield:.12,economy:.12,speed:-.25};
+    if(link.id==='launch'&&b.course<=2&&b.progress<200&&b.throttle>.8&&Math.abs(b.steer)<.35)value={response:.6,grip:.3,economy:-.10};
+    if(link.id==='cutback'&&[2,4].includes(phase)&&Number.isFinite(b.turnExitAt)&&d.elapsed-b.turnExitAt<=4&&b.throttle>.85&&Math.abs(b.steer)<.22)value={accel:.85,response:.4,speed:-.25};
+    if(link.id==='stormwall'&&rough&&b.throttle<.9)value={wakeShield:.20,waveShield:.16,economy:.14,speed:-.3};
     if(link.id==='duel'&&d.boats.some(o=>o!==b&&activeBoat(o)&&Math.hypot(o.x-b.x,o.z-b.z)<18))value={response:.45,contactShield:.15,speed:-.25};
     if(link.id==='craftline'&&lap===2)value={response:.5,economy:.18,speed:-.15};
+    if(link.id==='rhythm'&&b.operation&&b.operation.used.includes('feather:'+lap)&&[2,4].includes(phase)&&b.throttle>.9&&Math.abs(b.steer)<.15&&Number.isFinite(b.turnExitAt)&&d.elapsed-b.turnExitAt<3)value={accel:.45,damping:.25,economy:-.08};
     if(value){active.push(link.id);for(const [k,v] of Object.entries(value))mechanics[k]=(mechanics[k]||0)+v;}
   }
   return {active,mechanics};
@@ -278,7 +288,9 @@ function tacticalPlan(d,b,r,p){
     {id:'cross',name:'まくり差し',lane:turn&&pos.s%(C.length/2)>2*C.halfStraight+Math.PI*C.radius*.40?inner+1.5:inner+6,speed:1,score:5+(ahead?3:0)+p.stats.turn*.025},
     {id:'clear',name:'引き波回避',lane:inner+13,speed:1.01,score:1+(b.wakeLoad>.30?9:0)}
   ];
+  const style=racingStyle(b);
   for(const c of candidates){
+    if(style.plans.includes(c.id))c.score+=3.2;
     for(const o of nearby){const gap=o.progress-b.progress,rad=project(o.x,o.z).radial;
       if(gap>-6&&gap<18&&Math.abs(rad-c.lane)<3.0)c.score-=10+(18-Math.max(0,gap))*.25;
       if(Math.abs(gap)<7&&Math.abs(rad-c.lane)<5)c.score-=3;
@@ -311,6 +323,10 @@ function pilot(d,b,r){
   // Feed-forward cancels predictable water drag; all steering still passes through its physical travel/rate limits.
   const cruise=clamp(Math.pow(desired/p.topSpeed,2)+.28/p.acceleration,.2,1);
   let throttle=clamp(cruise+(desired-b.speed)*.68,0,1);
+  // Skills ask AI to make the same brief inputs required of manual players.
+  const lap=Math.min(3,1+Math.floor(Math.max(0,b.progress)/C.length));
+  if(b.skills.includes('feather')&&isTurn&&Math.abs(b.steer)>.2&&!b.operation?.used.includes('feather:'+lap)&&b.speed>6)throttle=.1;
+  if(racingStyle(b).id==='clear'&&(r.env.weather==='雨'||r.env.windSpeed>=6)&&b.wakeLoad>.15)throttle=Math.min(.85,throttle);
   const monkeyZone=Math.min(3,Math.floor(Math.max(0,b.progress)/C.length)+1)+':'+phaseAt(b.progress);
   if(bestSignature(b,'monkey')&&[1,3].includes(phaseAt(b.progress))&&b.steer<-.25&&b.stress<.7&&b.slip<5&&(!b.signature?.monkeyZones.includes(monkeyZone)||p.pivot>0))throttle=1;
   return {steer:clamp(requestedYaw/Math.max(.2,p.yawMax*factor*rudder)+noise,-1,1),throttle};
@@ -553,6 +569,6 @@ function valid(d,r){
     (b.startTime===null||finite(b.startTime,-C.prestart,271))&&[null,'F','L'].includes(b.startFault)&&(!b.plan||['front','defend','sashi','outside','cross','clear'].includes(b.plan.id)&&finite(b.plan.lane,C.inner,C.outer)&&finite(b.plan.speed,.1,2))&&(b.lastZone===null||typeof b.lastZone==='string'&&b.lastZone.length<20)&&Array.isArray(b.effects)&&b.effects.length<150&&b.effects.every(e=>D.abilityMap[e.id]&&finite(e.until,0,310)&&finite(e.safety,0,2)&&(!e.mechanics||Object.values(e.mechanics).every(v=>finite(v,-5,5)))&&e.stats&&Object.entries(e.stats).every(([k,v])=>D.statKeys.includes(k)&&finite(v,-10000,10000)))&&Array.isArray(b.activations)&&b.activations.length<=100&&b.activations.every(active)&&Array.isArray(b.interference)&&b.interference.length<600&&Array.isArray(b.phaseHistory)&&b.phaseHistory.length<=24&&b.metrics&&['contacts','boundaries','rescues','maxSpeed','slideSeconds','throttleSeconds','coastSeconds','wakeSeconds','lineChanges','contactImpulse','turnSpeedSum','turnSamples'].every(k=>finite(b.metrics[k],0,1e7))&&b.stats&&D.statKeys.every(k=>finite(b.stats[k],0,100))&&Array.isArray(b.skills)&&b.skills.every(id=>D.abilityMap[id])&&b.mastery&&Object.values(b.mastery).every(n=>Number.isInteger(n)&&n>0&&n<10000)&&b.statsBuff&&D.statKeys.every(k=>finite(b.statsBuff[k]||0,0,100))&&b.equipment&&['motor','prop','boat'].every(k=>b.equipment[k]&&Object.values(b.equipment[k]).every(v=>finite(v,-100,100)));});
 }
 
-const R={C,DT,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
+const R={C,DT,racingStyle,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
 root.KM_RACING=R;if(typeof module!=='undefined'&&module.exports)module.exports=R;
 })(typeof globalThis!=='undefined'?globalThis:window);

@@ -1,3 +1,16 @@
+# v92 引継ぎ（現行）
+
+- 最新正本：dist。v92、保存version80／drive.version2を維持。v92を整備旧移行の対象外に追加。
+- 新規：race-feedback.js（forecast/review、読み取り専用）、audio-assets.js（自作WAV）、audio.js（Web Audio＋ジェスチャー＋個別ミュート）。
+- racing.js：racingStyleを能力と固定IDから算出、tacticalPlanへ加点。synergyStateに操作条件とrhythmを追加。pilotでfeatherの短い抑速と荒天安定派を反映。新しい保存フィールドは不要。
+- driving-ui.js：水面予兆・短いヒント・音声通知・音デバッグ。script.js：結果のコーチカード／詳細折りたたみ、出走表の個性、画面による曲切替。
+- tests/benchmark-fixtures.jsonとbenchmark-v91.jsonは固定入力・旧基準。benchmark.cjs→benchmark-v92.json→benchmark-compare.cjs。NPCタイムは−1.55〜＋2.32%、20条件で6艇完走。人間の勝率の証拠ではない。
+- 現行テスト：v92 10＋audio-v92 5＋v91 9＋v90 9＋v89 12＋v88 21＋engine 21＋Android 14＋iPhone 4＋static 23＋iPhone static 13＝141。
+- 実ブラウザ／実機未検証。Playwrightパッケージはあるがブラウザ本体なし。音声はAPI代替環境で開始・停止・個別設定・二重発音抑制・非対応時を検証。
+- make_audio.py→package.pyで生成。編集は分割ソースのみ。ZIP内にすべてのソース／基準／結果／引継ぎを含める。
+- 次回はこの先頭と対象関数・diffを読む。旧全文を繰り返し読む必要なし。推奨実機確認：親指操作、音ON、タブ切替、ミュート、時計との重なり、危険予兆と実際の負荷。
+- 公開・GitHub送信はしていない。旧版説明は以下の履歴として扱う。
+
 # 競艇物語 v91 開発引継ぎ
 
 ## v91差分（最初に読む）
