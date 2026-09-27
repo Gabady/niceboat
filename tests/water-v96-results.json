@@ -1,0 +1,99 @@
+{
+  "passed": 21,
+  "failed": 0,
+  "results": [
+    {
+      "name": "波の法線は全風速・天候・距離・時刻で有限かつ正規化",
+      "passed": true
+    },
+    {
+      "name": "強風・雨で水面の傾斜が増す",
+      "passed": true
+    },
+    {
+      "name": "近距離の細波を遠距離では間引く",
+      "passed": true
+    },
+    {
+      "name": "Canvas実描画 sunny：画像出力・競技状態不変",
+      "passed": true
+    },
+    {
+      "name": "GLES実描画 sunny：コンパイル・リンク・GLエラーなし",
+      "passed": true
+    },
+    {
+      "name": "Canvas実描画 turn：画像出力・競技状態不変",
+      "passed": true
+    },
+    {
+      "name": "GLES実描画 turn：コンパイル・リンク・GLエラーなし",
+      "passed": true
+    },
+    {
+      "name": "Canvas実描画 rain：画像出力・競技状態不変",
+      "passed": true
+    },
+    {
+      "name": "GLES実描画 rain：コンパイル・リンク・GLエラーなし",
+      "passed": true
+    },
+    {
+      "name": "Canvas実描画 cloud：画像出力・競技状態不変",
+      "passed": true
+    },
+    {
+      "name": "GLES実描画 cloud：コンパイル・リンク・GLエラーなし",
+      "passed": true
+    },
+    {
+      "name": "Canvas実描画 wide：画像出力・競技状態不変",
+      "passed": true
+    },
+    {
+      "name": "GLES実描画 wide：コンパイル・リンク・GLエラーなし",
+      "passed": true
+    },
+    {
+      "name": "Canvas実描画 buoy：画像出力・競技状態不変",
+      "passed": true
+    },
+    {
+      "name": "GLES実描画 buoy：コンパイル・リンク・GLエラーなし",
+      "passed": true
+    },
+    {
+      "name": "低精度シェーダー経路もコンパイル・リンク・実描画可能",
+      "passed": true
+    },
+    {
+      "name": "動きを減らす設定で波のアニメーションを固定",
+      "passed": true
+    },
+    {
+      "name": "通常設定の水面反射は時間とともに変化",
+      "passed": true
+    },
+    {
+      "name": "画像が読めない場合も空と反射の代替色で描画を継続",
+      "passed": true
+    },
+    {
+      "name": "航跡に沿う泡は経年で減り、旧来の不透明なスラッシュを含まない",
+      "passed": true
+    },
+    {
+      "name": "v95セーブの座標・機材・育成・乱数を引き継ぐ",
+      "passed": true
+    }
+  ],
+  "canvasFrameMilliseconds": [
+    66.2,
+    65.8,
+    72.9,
+    67.9,
+    59.3,
+    76.7
+  ],
+  "method": "Skia Canvas + native Mesa GLES2; no physical Android/iPhone or browser performance test"
+}

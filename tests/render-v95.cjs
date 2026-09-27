@@ -1,6 +1,7 @@
 'use strict';
 const fs=require('fs'),path=require('path'),assert=require('node:assert/strict'),{createCanvas,loadImage}=require('@napi-rs/canvas');
 const E=require('../script'),R=E.R,G=require('../race-renderer'),T=require('../thrill'),C=E.Cast;
+global.OffscreenCanvas=function(w,h){return createCanvas(w,h);};
 const out=path.join(__dirname,'../previews');
 (async()=>{
  const sheet=createCanvas(720,342),x=sheet.getContext('2d');x.fillStyle='#102b3e';x.fillRect(0,0,720,342);

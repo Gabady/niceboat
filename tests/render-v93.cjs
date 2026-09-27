@@ -2,6 +2,7 @@
 const fs=require('fs'),path=require('path'),assert=require('node:assert/strict'),{createCanvas,loadImage}=require('@napi-rs/canvas');
 const root=path.resolve(__dirname,'..'),src=fs.existsSync(path.join(root,'dist'))?path.join(root,'dist'):root;
 const E=require(path.join(src,'script.js')),R=E.R,G=require(path.join(src,'race-renderer.js'));
+global.OffscreenCanvas=function(w,h){return createCanvas(w,h);};
 const out=process.argv[2]||path.join(root,'previews');fs.mkdirSync(out,{recursive:true});
 (async()=>{global.KM_SKY_IMAGE=await loadImage(path.join(src,'assets/shore-panorama.webp'));const results=[];
 for(const [name,progress,weather,width,height]of [['race-sunny',25,'晴れ',390,844],['race-turn',115,'晴れ',390,844],['race-rain',345,'雨',390,844],['race-wide',115,'晴れ',844,390],['race-buoy',143,'晴れ',390,844]]){

@@ -1,0 +1,69 @@
+{
+  "build": "96",
+  "verifiedAt": "2026-09-27T04:36:17.845809+00:00",
+  "passed": 108,
+  "failed": 0,
+  "gates": [
+    {
+      "report": "tests/water-v96-results.json",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "report": "tests/android-update-results.json",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v95-results.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "report": "tests/static-results.json",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "report": "tests/iphone-static-results.json",
+      "passed": 18,
+      "failed": 0
+    }
+  ],
+  "rendering": "Actual Skia Canvas and native Mesa GLES2. Both normal and mediump shaders executed. DOM/API substitutes for UI tests.",
+  "browserTested": false,
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "unchangedFromV95": [
+    "racing.js",
+    "driving-ui.js",
+    "cast.js",
+    "story.js",
+    "thrill.js",
+    "presentation.js",
+    "style.css",
+    "story.css"
+  ],
+  "hashes": {
+    "index.html": "8a1e7186b880c0ac7426e1286b82fcb5e733315ccd4a900f40677352b39ae4ae",
+    "style.css": "ed44342798c3bcb5b432fac1c774b9e32297e6b9060bde4d23e6027831e33c8a",
+    "story.css": "915e230385c31aebfbd98703bdc428eb246fe5b1cf5526dde5999e911eefa4a8",
+    "data.js": "937fed1ce62d62fee248b227903b9958c087d31361e09d31e7702b2174e46bee",
+    "racing.js": "4b3157c39b47b8f5903b23450ae4198d5a8bda35615bb39c4666e0fbaf914c0e",
+    "story.js": "06b4412ee067ea543eeccf0f8ecbcfbbc5913e86f698df6c57f97e93a3663d15",
+    "cast.js": "79c98deb62225348fecd9c145a907977927ec11092be04bd466c6ed96a42a0db",
+    "race-feedback.js": "46106180a78a84e270904d0f3a863199b1e65d098388f1aa44de6d9a6fd57ff9",
+    "audio-assets.js": "60595c37cd4a0f944573ddc7e8168a570c3ec15508a54754ac674a094898bd5a",
+    "audio.js": "4430d0f9c9e620cb233cc5d1f9a86adaf25209dbc76645b42550fcd0ebfb5946",
+    "presentation.js": "5c7d1b3449f3621da7d23d7e8941dfc241ebf06bce7e6689c9fe3a1513821a9b",
+    "thrill.js": "6aea33d758f49298cb6b2869b0ec12a76ae6ef1775543a7809b971d1db904bd9",
+    "visual-assets.js": "48e6fc5649e7f2ec0fc20beb088065dc3322b12227c665e8d0ac2bc5f2640f1d",
+    "race-renderer.js": "ece9e79dffb843b7bfcaa4cd58a62894b942e1891fb6cc02cc2909e13e2a0d17",
+    "driving-ui.js": "daf73fe32b205dfc75206643e43766bfba1a8784ea844d202dbaa7b87191a36e",
+    "script.js": "4a5586d534c04cf8fb1356ae6bc6f3ceb6dc0129a262d04e9f7396fce53fd5c3",
+    "iphone-compat.js": "f4eee272f69417b96349616d4d0bc294d4c918ba06c4d4acf329dc9d81243ad3",
+    "iphone.css": "228d19ef161cb5156b427ec06f9470cc37ab18e1710e3e2118b7fcd912291f16",
+    "index_android_safe.html": "cf8a2479b8a51621ba120e9de69da3a19933256bee3ac5922f3c31db750f8ea2",
+    "index_iphone_safe.html": "34a05e489e16cf84747ce760e7710ab22bbedfbff500204faaacea71b5bae283"
+  }
+}
