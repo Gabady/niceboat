@@ -1,0 +1,19 @@
+{
+  "passed": 4,
+  "failed": 0,
+  "checks": [
+    "360-degree wrap continuity rendered on real Canvas",
+    "Periodic mirrored coordinates at both joins",
+    "Grade crowd count and stable state",
+    "Real Canvas crowd closeups"
+  ],
+  "seamMeanRGBDelta": 0.03643356643356643,
+  "gradeCrowdCounts": [
+    89,
+    171,
+    240,
+    309,
+    370
+  ],
+  "method": "Skia Canvas renderer, not browser/mobile verification"
+}

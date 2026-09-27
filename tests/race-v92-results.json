@@ -1,0 +1,47 @@
+{
+  "build": "95",
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "name": "予兆と敗因表示は乱数・進行・報酬を書き換えない",
+      "passed": true
+    },
+    {
+      "name": "境界接触と改善方法を短いカードで示す",
+      "passed": true
+    },
+    {
+      "name": "F・転覆を通常の走行ロスより優先",
+      "passed": true
+    },
+    {
+      "name": "旋回前の負荷を現在の速度・能力から予測",
+      "passed": true
+    },
+    {
+      "name": "前方引き波と衝突予測は距離に反応",
+      "passed": true
+    },
+    {
+      "name": "個性は再描画・保存で変化せず、能力特化で変化する",
+      "passed": true
+    },
+    {
+      "name": "差し連携は出口で舵を戻し再加速したときのみ発動",
+      "passed": true
+    },
+    {
+      "name": "NとRの組合せは緩める→舵戻し→全開が必要",
+      "passed": true
+    },
+    {
+      "name": "音源は外部参照なしの8種類のPCM WAV",
+      "passed": true
+    },
+    {
+      "name": "v91の保存と整備成功率を引き継ぐ",
+      "passed": true
+    }
+  ]
+}

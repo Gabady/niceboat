@@ -55,7 +55,8 @@ const place=(d,b)=>ranks(d).findIndex(n=>n.id===b.id)+1;
 const own=d=>d.boats.find(b=>b.isPlayer)||d.boats[0];
 // NPC pace is explicit difficulty tuning. Steering, water, collisions and checkpoints remain shared.
 const normalAI=r=>(r.difficulty||'normal')==='normal';
-const spectating=r=>!!r.watch||['auto','assisted','spectator'].includes(r.controlMode);
+const requiresManual=r=>['championship','consolation'].includes(r?.type);
+const spectating=r=>!!r.watch||['auto','assisted','spectator','skip'].includes(r.controlMode);
 function raceGrade(r){return D.tiers[r.grade]?r.grade:'rookie';}
 function npcPace(b,r){
  if(b.isPlayer&&!spectating(r))return {speed:1,accel:1,turn:1};
@@ -97,18 +98,43 @@ function steeringLimits(b,p){
   const corner=clamp(Math.abs(b.yawRate)*speed/Math.max(2,p.grip),0,3)*.60;
   const slide=clamp((b.slip||0)/8,0,1.5)*.35;
   const load=(.30*(1-clamp(turn/100,0,1))+water+corner+slide)*(1-turn/160)*(1-pivot*.85)/(1+p.safety*.4);
-  return {load,limit:clamp(1-load*.35,.30,1),rate:(.65+turn*.021)*(1+pivot*2)/(1+load*1.6)};
+  const instability=tiltInstability(b,p);
+  return {load,instability,limit:clamp(1-load*.35,.30,1)*(1-instability*.35),rate:(.65+turn*.021)*(1+pivot*2)/(1+load*1.6)*(1-instability*.45)};
 }
 function moveSteering(current,wanted,limits,dt=DT){
   const target=clamp(wanted,-limits.limit,limits.limit),returning=Math.abs(target)<Math.abs(current)||current*target<0;
   const step=limits.rate*(returning?1.35:1)*dt;
   return clamp(current+clamp(target-current,-step,step),-limits.limit,limits.limit);
 }
-function addEvent(d,e){e.t=d.elapsed;e.index=d.eventSequence++;d.events.push(e);if(d.events.length>180)d.events.shift();}
-function log(d,text,kind='normal',athleteId=null){const p=own(d);d.logs.push({phase:p.phase,text,kind,id:athleteId,lap:Math.min(C.laps,Math.floor(Math.max(0,p.progress)/C.length)+1),time:d.elapsed});if(d.logs.length>80)d.logs.shift();}
+function tiltInstability(b,p){
+ const angle=Math.max(0,p.tilt?.angle||0),power=clamp(p.stats.power||0,0,100),speed=Math.hypot(b.vx,b.vz);
+ const load=angle/3*Math.pow(speed/20,2)*(.45+.9*(1-power/100))*Math.abs(b.steer||0);
+ return clamp((load-.35)/.65,0,1);
+}
+function addEvent(d,e){e.t=d.elapsed;e.index=d.eventSequence++;d.events.push(e);if(d.events.length>180)d.events.shift();if(d.replay&&e.kind==='ability'){d.replay.events.push({t:d.elapsed,text:e.frame+'号艇「'+D.abilityMap[e.abilityId].name+'」発動',kind:'ability',abilityId:e.abilityId,athleteId:e.athleteId});if(d.replay.events.length>400)d.replay.events.shift();}}
+function log(d,text,kind='normal',athleteId=null){const p=own(d);d.logs.push({phase:p.phase,text,kind,id:athleteId,lap:Math.min(C.laps,Math.floor(Math.max(0,p.progress)/C.length)+1),time:d.elapsed});if(d.logs.length>80)d.logs.shift();if(d.replay&&kind!=='ability'){d.replay.events.push({t:d.elapsed,text,kind});if(d.replay.events.length>400)d.replay.events.shift();}}
+function recordReplay(d,force=false){
+ if(!d.replay)d.replay={version:1,from:d.elapsed,frames:[],events:[]};
+ const a=d.replay.frames;if(a.length&&a[a.length-1].t===d.elapsed)return;
+ if(!force&&d.frame%30!==0&&a.length)return;
+ const order=ranks(d),rounded=v=>Math.round(v*100)/100||0;
+ a.push({t:rounded(d.elapsed),boats:d.boats.map(b=>[rounded(b.x),rounded(b.z),rounded(b.heading),rounded(b.progress),rounded(b.speed),b.startFault==='F'?4:b.startFault==='L'?5:b.capsized?2:b.dnf?3:b.finishTime!==null?1:0,order.indexOf(b)+1])});
+ if(a.length>600)a.splice(1,1);
+}
+function validReplay(p){return p&&p.version===1&&Number.isFinite(p.from)&&p.from>=0&&p.from<=283&&Array.isArray(p.frames)&&p.frames.length<=600&&p.frames.every((f,i)=>Number.isFinite(f.t)&&f.t>=0&&f.t<=283&&(!i||f.t>=p.frames[i-1].t)&&Array.isArray(f.boats)&&f.boats.length===6&&new Set(f.boats.map(b=>b[6])).size===6&&f.boats.every(b=>Array.isArray(b)&&b.length===7&&b.every(Number.isFinite)&&Math.abs(b[0])<500&&Math.abs(b[1])<500&&Math.abs(b[2])<=3.15&&b[3]>=-1000&&b[3]<2800&&b[4]>=0&&b[4]<150&&Number.isInteger(b[5])&&b[5]>=0&&b[5]<=5&&Number.isInteger(b[6])&&b[6]>=1&&b[6]<=6))&&Array.isArray(p.events)&&p.events.length<=400&&p.events.every(e=>Number.isFinite(e.t)&&e.t>=0&&e.t<=283&&typeof e.text==='string'&&e.text.length<=2000&&typeof e.kind==='string'&&e.kind.length<30&&(!e.abilityId||D.abilityMap[e.abilityId])&&(!e.athleteId||typeof e.athleteId==='string'));}
+function dramaticRace(d){
+ if(!d||!d.finished)return null;const order=ranks(d),b=own(d),second=order[1];
+ if(order[0]!==b||b.finishTime===null||b.dnf||b.capsized||b.startFault)return null;
+ const frames=d.replay?.frames||[],index=d.boats.indexOf(b);
+ if(frames.some(f=>f.boats[index][3]>=1700&&f.boats[index][5]===0&&f.boats[index][6]>1))return '最後の直線で逆転';
+ const third=frames.find(f=>f.boats[index][3]>=1200);
+ if(third&&third.boats[index][3]<1250&&third.boats[index][6]>=3)return '最終周、3位以下からの逆転';
+ if(second&&second.finishTime!==null&&!second.dnf&&second.finishTime-b.finishTime<=.25+1e-8)return '僅差の勝負を制した';
+ return null;
+}
 function create(r,seed,options={}){
   const d={version:2,seed:seed>>>0,frame:0,elapsed:0,startAt:C.prestart,countdown:C.prestart,started:false,finished:false,paused:true,boats:[],events:[],eventSequence:0,logs:[],
-    laps:C.laps,goal:C.goal,controls:{steer:0,throttle:0},lastAnnouncedLeader:null,finalized:false,wakes:[],wakeClock:0};
+    laps:C.laps,goal:C.goal,controls:{steer:0,throttle:0},replay:{version:1,from:0,frames:[],events:[]},lastAnnouncedLeader:null,finalized:false,wakes:[],wakeClock:0};
   r.runners.slice().sort((a,b)=>a.frame-b.frame).forEach(p=>{
     const b={id:p.id,name:p.name,frame:p.frame,course:p.course,isPlayer:!!p.isPlayer,stats:clone(p.stats),equipment:clone(p.equipment),skills:p.skills.slice(),mastery:clone(p.mastery||{}),
       x:0,z:0,heading:0,vx:0,vz:0,yawRate:0,speed:0,steer:0,throttle:0,engine:0,
@@ -125,7 +151,7 @@ function create(r,seed,options={}){
     const distance=b.course<=3?42+(b.course-1)*5:78+(b.course-4)*7;
     const start=pointAt(C.start-distance,b.lane);b.x=start.x;b.z=start.z;b.heading=start.heading;b.progress=-distance;b.lastS=C.start-distance;
   });
-  log(d,'助走開始。1〜3コースはスロー、4〜6コースは後方からダッシュ。0.09秒を超えて早い通過はF。','phase');
+  recordReplay(d,true);log(d,'助走開始。1〜3コースはスロー、4〜6コースは後方からダッシュ。0.09秒を超えて早い通過はF。','phase');
   return d;
 }
 function condition(a,b,d,env){switch(a.condition){case'rough':return env.weather==='雨'||env.windSpeed>=6;case'calm':return env.weather!=='雨'&&env.windSpeed<=3;case'inner':return b.course<=2;case'outer':return b.course>=4;case'rain':return env.weather==='雨';case'cross':return env.wind==='横風';case'behind':return place(d,b)>=3;default:return true;}}
@@ -182,24 +208,36 @@ function driveCondition(a,b,d,r,target){
   return true;
 }
 function buildLinks(b){return D.synergies.map(link=>{const missing=link.groups.filter(group=>!group.some(id=>b.skills.includes(id))),stats=Object.entries(link.need).filter(([k,v])=>b.stats[k]<v);return {id:link.id,name:link.name,description:link.description,ready:!missing.length&&!stats.length,missing:missing.map(group=>group.slice()),stats:stats.map(([k,v])=>({key:k,value:v}))};});}
+// Style is derived from fixed athlete identity and learned strengths, never from race position.
+function racingStyle(b){
+ const s=b.stats,h=Array.from(String(b.id)).reduce((n,c)=>(n*31+c.charCodeAt(0))>>>0,0),bias=h%4;
+ const styles=[{id:'inside',name:'先マイ派',score:s.start*.55+s.turn*.45,plans:['front','defend'],tip:'好発進から内を守る'},
+ {id:'sashi',name:'差し派',score:s.accel*.55+s.turn*.45,plans:['sashi','cross'],tip:'出口で舵を戻し再加速'},
+ {id:'outside',name:'まくり派',score:s.speed*.65+s.accel*.35,plans:['outside'],tip:'外へ持ち出し直線で追う'},
+ {id:'clear',name:'安定派',score:s.power*.7+s.turn*.3,plans:['clear','cross'],tip:'波と接触を避けて継ぐ'}];
+ styles[bias].score+=7;return styles.sort((a,z)=>z.score-a.score)[0];
+}
 function synergyState(b,d,r){
   const phase=phaseAt(b.progress),lap=Math.min(3,Math.floor(Math.max(0,b.progress)/C.length)+1),rough=r.env.weather==='雨'||r.env.windSpeed>=6;
   const active=[],mechanics={};
   for(const link of buildLinks(b).filter(x=>x.ready)){
     let value=null;
-    if(link.id==='launch'&&b.course<=2&&b.progress<200)value={response:.6,grip:.4,economy:-.08};
-    if(link.id==='cutback'&&[2,4].includes(phase)&&Number.isFinite(b.turnExitAt)&&d.elapsed-b.turnExitAt<=4)value={accel:.75,response:.4,speed:-.20};
-    if(link.id==='stormwall'&&rough)value={wakeShield:.16,waveShield:.12,economy:.12,speed:-.25};
+    if(link.id==='launch'&&b.course<=2&&b.progress<200&&b.throttle>.8&&Math.abs(b.steer)<.35)value={response:.6,grip:.3,economy:-.10};
+    if(link.id==='cutback'&&[2,4].includes(phase)&&Number.isFinite(b.turnExitAt)&&d.elapsed-b.turnExitAt<=4&&b.throttle>.85&&Math.abs(b.steer)<.22)value={accel:.85,response:.4,speed:-.25};
+    if(link.id==='stormwall'&&rough&&b.throttle<.9)value={wakeShield:.20,waveShield:.16,economy:.14,speed:-.3};
     if(link.id==='duel'&&d.boats.some(o=>o!==b&&activeBoat(o)&&Math.hypot(o.x-b.x,o.z-b.z)<18))value={response:.45,contactShield:.15,speed:-.25};
     if(link.id==='craftline'&&lap===2)value={response:.5,economy:.18,speed:-.15};
+    if(link.id==='rhythm'&&b.operation&&b.operation.used.includes('feather:'+lap)&&[2,4].includes(phase)&&b.throttle>.9&&Math.abs(b.steer)<.15&&Number.isFinite(b.turnExitAt)&&d.elapsed-b.turnExitAt<3)value={accel:.45,damping:.25,economy:-.08};
     if(value){active.push(link.id);for(const [k,v] of Object.entries(value))mechanics[k]=(mechanics[k]||0)+v;}
   }
   return {active,mechanics};
 }
 function performance(b,d,r){
   const spread=spectatorAdjustment(b,d,r),synergy=synergyState(b,d,r),s=Object.assign({},b.stats),buff={},debuff={},mechanics={...synergy.mechanics};let safety=0,skillSum=0,debuffSum=0;
-  for(const e of b.effects){if(e.until<=d.elapsed||(e.kind==='pivot'&&(b.throttle<.98||b.steer>=-.2||![1,3].includes(phaseAt(b.progress)))))continue;safety=Math.max(safety,e.safety||0);for(const [k,v] of Object.entries(e.stats)){if(v>=0)buff[k]=(buff[k]||0)+v;else debuff[k]=(debuff[k]||0)+v;}for(const [k,v] of Object.entries(e.mechanics||{}))mechanics[k]=(mechanics[k]||0)+v;}
-  D.statKeys.forEach(k=>{let up=buff[k]||0;if(up>36)up=36+(up-36)*.4;skillSum+=up/5;debuffSum+=(debuff[k]||0)/5;s[k]=clamp(s[k]+(spread.stats[k]||0)+up+(debuff[k]||0)+(b.statsBuff[k]||0)+b.itemBoost+(r.venue.stats[k]||0),0,150);});
+  const unique=new Map();for(const e of b.effects)if(e.until>d.elapsed)unique.set(e.id+':'+e.kind,e);
+  for(const e of unique.values()){if(e.until<=d.elapsed||(e.kind==='pivot'&&(b.throttle<.98||b.steer>=-.2||![1,3].includes(phaseAt(b.progress)))))continue;safety=Math.max(safety,e.safety||0);for(const [k,v] of Object.entries(e.stats)){if(v>=0)buff[k]=(buff[k]||0)+v;else debuff[k]=(debuff[k]||0)+v;}for(const [k,v] of Object.entries(e.mechanics||{}))mechanics[k]=(mechanics[k]||0)+v;}
+  D.statKeys.forEach(k=>{let up=buff[k]||0;if(up>36)up=Math.min(48,36+(up-36)*.25);skillSum+=up/5;debuffSum+=(debuff[k]||0)/5;s[k]=clamp(s[k]+(spread.stats[k]||0)+up+(debuff[k]||0)+(b.statsBuff[k]||0)+b.itemBoost+(r.venue.stats[k]||0),0,150);});
+  for(const [key,limit] of Object.entries(D.driveEffectCaps))if(mechanics[key]>limit)mechanics[key]=limit;
   const e=b.equipment,mc=e.motor.condition/100,pc=e.prop.condition/100;
   const gearSpeed=e.motor.speed*mc*.14,gearAccel=(e.motor.accel*mc+e.prop.accel*pc+e.boat.accel)*.055;
   const gearTurn=e.prop.turn*pc*.11+e.boat.turn*.085,wind=r.env.windSpeed||0,rain=r.env.weather==='雨'?1:0;
@@ -251,7 +289,9 @@ function tacticalPlan(d,b,r,p){
     {id:'cross',name:'まくり差し',lane:turn&&pos.s%(C.length/2)>2*C.halfStraight+Math.PI*C.radius*.40?inner+1.5:inner+6,speed:1,score:5+(ahead?3:0)+p.stats.turn*.025},
     {id:'clear',name:'引き波回避',lane:inner+13,speed:1.01,score:1+(b.wakeLoad>.30?9:0)}
   ];
+  const style=racingStyle(b);
   for(const c of candidates){
+    if(style.plans.includes(c.id))c.score+=3.2;
     for(const o of nearby){const gap=o.progress-b.progress,rad=project(o.x,o.z).radial;
       if(gap>-6&&gap<18&&Math.abs(rad-c.lane)<3.0)c.score-=10+(18-Math.max(0,gap))*.25;
       if(Math.abs(gap)<7&&Math.abs(rad-c.lane)<5)c.score-=3;
@@ -284,6 +324,10 @@ function pilot(d,b,r){
   // Feed-forward cancels predictable water drag; all steering still passes through its physical travel/rate limits.
   const cruise=clamp(Math.pow(desired/p.topSpeed,2)+.28/p.acceleration,.2,1);
   let throttle=clamp(cruise+(desired-b.speed)*.68,0,1);
+  // Skills ask AI to make the same brief inputs required of manual players.
+  const lap=Math.min(3,1+Math.floor(Math.max(0,b.progress)/C.length));
+  if(b.skills.includes('feather')&&isTurn&&Math.abs(b.steer)>.2&&!b.operation?.used.includes('feather:'+lap)&&b.speed>6)throttle=.1;
+  if(racingStyle(b).id==='clear'&&(r.env.weather==='雨'||r.env.windSpeed>=6)&&b.wakeLoad>.15)throttle=Math.min(.85,throttle);
   const monkeyZone=Math.min(3,Math.floor(Math.max(0,b.progress)/C.length)+1)+':'+phaseAt(b.progress);
   if(bestSignature(b,'monkey')&&[1,3].includes(phaseAt(b.progress))&&b.steer<-.25&&b.stress<.7&&b.slip<5&&(!b.signature?.monkeyZones.includes(monkeyZone)||p.pivot>0))throttle=1;
   return {steer:clamp(requestedYaw/Math.max(.2,p.yawMax*factor*rudder)+noise,-1,1),throttle};
@@ -304,9 +348,9 @@ function constrain(d,b){
   const nx=(b.x-p.cx)/Math.max(p.radial,.01),nz=b.z/Math.max(p.radial,.01);
   b.x=p.cx+nx*bound;b.z=nz*bound;
   const normalSpeed=b.vx*nx+b.vz*nz;
-  if((bound===inner&&normalSpeed<0)||(bound===outer&&normalSpeed>0)){b.vx-=normalSpeed*nx*1.08;b.vz-=normalSpeed*nz*1.08;if(d.elapsed>=b.cooldownBoundary){b.vx*=.90;b.vz*=.90;}b.stress+=Math.min(.18,Math.abs(normalSpeed)*.015);}
+  if((bound===inner&&normalSpeed<0)||(bound===outer&&normalSpeed>0)){b.vx-=normalSpeed*nx*1.08;b.vz-=normalSpeed*nz*1.08;if(d.elapsed>=b.cooldownBoundary){b.vx*=.55;b.vz*=.55;}b.stress+=Math.min(.18,Math.abs(normalSpeed)*.015);}
   if(d.elapsed>=b.cooldownBoundary){b.metrics.boundaries++;b.cooldownBoundary=d.elapsed+2;
-    if(b.isPlayer)log(d,bound===inner?'小回り防止ブイに接触。内側を横切ることはできない。':'外へ膨らんだ。アクセルを抜いて進路を戻そう。','warning',b.id);
+    log(d,b.frame+'号艇、'+(bound===inner?'内側':'外側')+'ブイに接触して減速。','warning',b.id);
   }return true;
 }
 // Three overlapping hull discs cover stern, cockpit and bow, rather than a point hitbox.
@@ -320,6 +364,7 @@ function hullContacts(a,b){
 function contact(d,a,b,r){
   if(!activeBoat(a)||!activeBoat(b)||Math.hypot(b.x-a.x,b.z-a.z)>8)return false;
   const hit=hullContacts(a,b);if(!hit)return false;
+  a.lastContactAt=b.lastContactAt=d.elapsed; // Presentation timestamp; no physical effect.
   const kind=contactType(a,b,hit),rule=CONTACT[kind];
   const pa=performance(a,d,r),pb=performance(b,d,r),invA=1/pa.mass,invB=1/pb.mass,total=invA+invB;
   const {nx,nz,depth,sa,sb}=hit,speedA=Math.hypot(a.vx,a.vz),speedB=Math.hypot(b.vx,b.vz);
@@ -385,12 +430,15 @@ function contactType(a,b,hit){
  return alignment>.55&&longitudinal>.65?'rear':'side';
 }
 const CONTACT={side:{restitution:1.04,yaw:.065,stress:.8,retain:.98,label:'横の押し合い'},rear:{restitution:1.08,yaw:.025,stress:1,retain:.94,label:'追突'},head:{restitution:1.18,yaw:.04,stress:1.3,retain:.88,label:'正面・対向接触'}};
-function spectatorPace(d){
- if(raceTime(d)<2)return {important:true,label:'スタート',ticks:30};
- const b=activeBoat(own(d))?own(d):(ranks(d).find(activeBoat)||own(d)),near=d.boats.some(o=>o!==b&&activeBoat(o)&&Math.abs(o.progress-b.progress)<18),turn=[1,3].includes(phaseAt(b.progress));
- const recent=d.events.some(e=>d.elapsed-e.t<2&&['ability','contact','capsize'].includes(e.kind));
- const goal=C.goal-b.progress<85;
- return {important:recent||turn&&near||goal,label:recent?'発動・接触':goal?'ゴール前':turn&&near?'接戦ターン':'直線早送り',ticks:recent||turn&&near||goal?30:180};
+function spectatorPace(d){return {important:false,label:'高速進行',ticks:180};}
+// Resolve the visible bow crossing, using the same gate as the renderers and start.
+function finishCrossing(d,b,previousX,dt=DT){
+ if(!activeBoat(b)||b.startTime===null||b.checkpoints<23||b.progress<C.goal-C.length/8)return false;
+ const line=pointAt(C.start).x,bow=b.x+Math.cos(b.heading)*3.5;
+ if(previousX>=line||bow<line||b.z<C.inner||b.z>C.outer)return false;
+ const fraction=clamp((line-previousX)/Math.max(.00001,bow-previousX),0,1);
+ b.finishTime=Math.max(0,raceTime(d)-dt+dt*fraction);b.progress=C.goal;b.checkpoints=24;
+ b.vx=b.vz=b.speed=0;log(d,b.frame+'号艇 '+b.name+'、ゴール。','goal',b.id);return true;
 }
 function integrate(d,b,r,input,dt){
   if(!activeBoat(b))return;
@@ -402,10 +450,11 @@ function integrate(d,b,r,input,dt){
   if(d.elapsed<b.penaltyUntil){b.vx=b.vz=b.speed=0;return;}
 
   const wake=sampleWake(d,b);b.wakeLoad=wake.strength*(1-p.wakeResistance);
-  const steering=steeringLimits(b,p);b.steer=moveSteering(b.steer,steer,steering,dt);b.throttle=throttle;
+  const instability=tiltInstability(b,p),steering=steeringLimits(b,p);
+  b.steer=moveSteering(b.steer,steer,steering,dt);b.throttle=throttle;
   const speed=Math.hypot(b.vx,b.vz),factor=clamp(speed/8,.10,1.1)/(1+speed*speed/1100);
   const rudder=clamp(.42+b.engine*.68,.42,1.1);
-  const yawTarget=(d.elapsed<(b.recoveryUntil||0)?0:b.steer)*p.yawMax*factor*rudder;
+  const yawTarget=(d.elapsed<(b.recoveryUntil||0)?0:b.steer)*p.yawMax*factor*rudder*(1-instability*.6);
   const wobble=(Math.sin(d.elapsed*1.8+b.x*.03+b.frame)*p.wave*.095+wake.side*b.wakeLoad*.18)*clamp(speed/8,0,1);
   b.yawRate+=(yawTarget+wobble-b.yawRate)*(1-Math.exp(-(1.1+s.turn*.025+p.safety*1.6)*dt));
   b.heading=wrap(b.heading+b.yawRate*dt);
@@ -417,7 +466,7 @@ function integrate(d,b,r,input,dt){
   forward=q.speed;b.engine=q.engine;
   // At high yaw load the hull planes sideways; releasing throttle reduces speed but retains inertia.
   const slideLoad=clamp(Math.pow(speed/20,2)*.20*(1-clamp(s.turn,0,125)/180)*(1-p.pivot),0,.30);
-  const wetGrip=p.grip*(1-Math.min(.26,b.wakeLoad*.19))*(1-slideLoad);
+  const wetGrip=p.grip*(1-Math.min(.26,b.wakeLoad*.19))*(1-slideLoad)*(1-instability*.45);
   const lateralForce=clamp(-lateral*p.lateralDamping,-wetGrip,wetGrip);
   const waveForce=Math.sin(d.elapsed*1.3+b.x*.065+b.z*.037)*p.wave*.65+wake.side*b.wakeLoad*1.7;
   lateral+=(lateralForce+waveForce)*dt;
@@ -430,7 +479,9 @@ function integrate(d,b,r,input,dt){
     const held=Math.max(Math.min(speed,speedLimit),driven);
     forward=Math.max(forward,Math.sqrt(Math.max(0,held*held-lateral*lateral)));
   }
-  b.vx=fx*forward+rx*lateral;b.vz=fz*forward+rz*lateral;b.x+=b.vx*dt;b.z+=b.vz*dt;
+  const radial=project(b.x,b.z),outward=instability*2.5*dt;
+  b.vx=fx*forward+rx*lateral+outward*(b.x-radial.cx)/Math.max(1,radial.radial);
+  b.vz=fz*forward+rz*lateral+outward*b.z/Math.max(1,radial.radial);b.x+=b.vx*dt;b.z+=b.vz*dt;
   b.speed=Math.hypot(b.vx,b.vz);b.slip=Math.abs(lateral);
   const danger=turnDanger(b,p,wetGrip);
   b.stress=clamp(b.stress+(danger*.60+b.wakeLoad*.045-.18)*dt,0,3.2);
@@ -442,7 +493,7 @@ function integrate(d,b,r,input,dt){
   const touched=constrain(d,b);b.speed=Math.hypot(b.vx,b.vz);
   const tangent=pointAt(project(b.x,b.z).s,project(b.x,b.z).radial).heading;
   const movingAlong=Math.abs(b.vx*Math.cos(tangent)+b.vz*Math.sin(tangent));
-  const stuck=b.boundaryInner&&Number.isFinite(b.boundaryAt)&&d.elapsed-b.boundaryAt<.20&&movingAlong<2.2;
+  const stuck=Number.isFinite(b.boundaryAt)&&d.elapsed-b.boundaryAt<.20&&movingAlong<2.2;
   b.boundaryStall=stuck?Math.min(10,(b.boundaryStall||0)+dt):0;
   if(canQuickRecover(d,b))quickRecover(d,b);
   if(b.stress>=2.8){b.capsized=true;b.vx=b.vz=b.speed=0;activateCapsize(d,b);return;}
@@ -451,7 +502,6 @@ function integrate(d,b,r,input,dt){
   if(!touched&&Math.abs(delta)<=Math.max(2,dt*60)){
     const previous=b.progress;b.progress+=delta;
     while(b.progress>=(b.checkpoints+1)*C.length/8-1e-6&&b.checkpoints<8*C.laps)b.checkpoints++;
-    if(b.startTime!==null&&b.progress>=C.goal&&b.checkpoints>=8*C.laps){b.finishTime=raceTime(d)-dt+dt*clamp((C.goal-previous)/Math.max(.0001,b.progress-previous),0,1);b.progress=C.goal;b.vx=b.vz=b.speed=0;log(d,b.frame+'号艇 '+b.name+'、ゴール。','goal',b.id);}
   }
   b.lastS=projected.s;
 }
@@ -467,7 +517,7 @@ function tick(d,r,input,dt=DT,allAI=false){
   const commands=d.boats.map(b=>b.isPlayer&&!allAI?d.controls:pilot(d,b,r));
   d.boats.forEach((b,i)=>integrate(d,b,r,commands[i],dt));
   for(let i=0;i<d.boats.length;i++)for(let j=i+1;j<d.boats.length;j++)contact(d,d.boats[i],d.boats[j],r);
-  d.boats.forEach((b,i)=>startCrossing(d,b,previousBows[i],dt));
+  d.boats.forEach((b,i)=>{startCrossing(d,b,previousBows[i],dt);finishCrossing(d,b,previousBows[i],dt);});
   d.wakeClock+=dt;
   if(d.wakeClock>=.35){d.wakeClock-=.35;d.wakes=d.wakes.filter(w=>d.elapsed-w.t<5);
     for(const b of d.boats)if(activeBoat(b)&&b.speed>3){const p=performance(b,d,r);d.wakes.push({owner:b.id,x:b.x-Math.cos(b.heading)*2,z:b.z-Math.sin(b.heading)*2,fx:Math.cos(b.heading),fz:Math.sin(b.heading),t:d.elapsed,strength:clamp(b.speed/20*(1+(p.mechanics.wakeEmit||0)),.1,2)});}
@@ -476,17 +526,19 @@ function tick(d,r,input,dt=DT,allAI=false){
   const leader=ranks(d)[0];if(leader.id!==d.lastAnnouncedLeader&&raceTime(d)>3){d.lastAnnouncedLeader=leader.id;log(d,leader.frame+'号艇 '+leader.name+'が先頭。','lead',leader.id);}
   if(raceTime(d)>=C.timeLimit){d.boats.forEach(b=>{if(activeBoat(b)){b.dnf=true;b.vx=b.vz=b.speed=0;}});log(d,'制限時間。未完走の艇はリタイア。','warning');}
   if(allAI?d.boats.every(b=>!activeBoat(b)):!activeBoat(own(d)))d.finished=true;
+  recordReplay(d,d.finished||d.boats.some(b=>b.finishTime!==null&&Math.abs(b.finishTime-raceTime(d))<=DT+.00001));
   return true;
 }
 // A stalled hull is turned outward in place. No teleport, distance credit or stop penalty.
-function canQuickRecover(d,b=own(d)){return !d.finished&&activeBoat(b)&&b.startTime!==null&&!b.startFault&&b.boundaryInner===true&&d.elapsed>=(b.recoveryUntil||0)&&(b.boundaryStall||0)>=.7-1e-7;}
+function canQuickRecover(d,b=own(d)){return !d.finished&&activeBoat(b)&&!b.startFault&&typeof b.boundaryInner==='boolean'&&d.elapsed>=(b.recoveryUntil||0)&&(b.boundaryStall||0)>=.65-1e-7;}
 function quickRecover(d,b=own(d)){
   if(!canQuickRecover(d,b))return false;
   const p=project(b.x,b.z),tangent=pointAt(p.s,p.radial).heading;
   // Counterclockwise course: the right of the tangent points away from the inner barrier.
-  b.heading=wrap(tangent+.38);b.yawRate=0;b.steer=0;
+  b.heading=wrap(tangent+(b.boundaryInner?.55:-.55));b.yawRate=0;b.steer=0;
+  const retained=Math.hypot(b.vx,b.vz);b.vx=Math.cos(b.heading)*retained;b.vz=Math.sin(b.heading)*retained;
   b.boundaryStall=0;b.recoveryUntil=d.elapsed+.9;
-  b.metrics.rescues++;log(d,b.frame+'号艇、ブイで0.7秒スタック。船首を外向きに戻した。アクセルで復帰できる。','warning',b.id);return true;
+  b.metrics.rescues++;log(d,b.frame+'号艇、ブイから離れる向きに自動復帰。','warning',b.id);return true;
 }
 function rescue(d){const b=own(d);if(b.startTime===null||d.finished||!activeBoat(b))return false;
   const p=pointAt(C.start+b.progress,C.inner+8);b.x=p.x;b.z=p.z;b.heading=p.heading;b.lastS=mod(C.start+b.progress,C.length);b.vx=b.vz=b.yawRate=b.speed=b.engine=0;b.steer=0;b.stress=0;
@@ -503,7 +555,7 @@ function valid(d,r){
   const finite=(v,lo,hi)=>Number.isFinite(v)&&v>=lo&&v<=hi;
   if(!d||d.version!==2||('startAt' in d&&![10,12].includes(d.startAt))||!Number.isInteger(d.seed)||d.seed<0||d.seed>4294967295||!Number.isInteger(d.frame)||d.frame<0||d.frame>18000||!finite(d.elapsed,0,283)||!finite(d.countdown,0,C.prestart)||!['paused','finished','started','finalized'].every(k=>typeof d[k]==='boolean')||!Array.isArray(d.boats)||d.boats.length!==6||d.laps!==C.laps||d.goal!==C.goal)return false;
   if(!Array.isArray(d.wakes)||d.wakes.length>96||!finite(d.wakeClock,0,.36)||!d.wakes.every(w=>finite(w.x,-500,500)&&finite(w.z,-500,500)&&finite(w.fx,-1.01,1.01)&&finite(w.fz,-1.01,1.01)&&finite(w.t,0,283)&&finite(w.strength,0,2)&&d.boats.some(b=>b.id===w.owner)))return false;
-  if(r.done!==d.finalized||r.done&&!d.finished)return false;
+  if(d.replay&&!validReplay(d.replay))return false; if(r.done!==d.finalized||r.done&&!d.finished)return false;
   const ids=new Set(r.runners.map(n=>n.id)),controls=d.controls;
   if(!controls||!finite(controls.steer,-1,1)||!finite(controls.throttle,0,1)||new Set(d.boats.map(b=>b.id)).size!==6||!d.boats.every(b=>ids.has(b.id))||new Set(d.boats.map(b=>b.course)).size!==6)return false;
   const active=e=>e&&D.abilityMap[e.abilityId]&&Number.isInteger(e.frame)&&e.frame>=1&&e.frame<=6&&Number.isInteger(e.phase)&&e.phase>=0&&e.phase<=4&&typeof e.name==='string'&&e.name.length<=30&&ids.has(e.athleteId);
@@ -519,6 +571,6 @@ function valid(d,r){
     (b.startTime===null||finite(b.startTime,-C.prestart,271))&&[null,'F','L'].includes(b.startFault)&&(!b.plan||['front','defend','sashi','outside','cross','clear'].includes(b.plan.id)&&finite(b.plan.lane,C.inner,C.outer)&&finite(b.plan.speed,.1,2))&&(b.lastZone===null||typeof b.lastZone==='string'&&b.lastZone.length<20)&&Array.isArray(b.effects)&&b.effects.length<150&&b.effects.every(e=>D.abilityMap[e.id]&&finite(e.until,0,310)&&finite(e.safety,0,2)&&(!e.mechanics||Object.values(e.mechanics).every(v=>finite(v,-5,5)))&&e.stats&&Object.entries(e.stats).every(([k,v])=>D.statKeys.includes(k)&&finite(v,-10000,10000)))&&Array.isArray(b.activations)&&b.activations.length<=100&&b.activations.every(active)&&Array.isArray(b.interference)&&b.interference.length<600&&Array.isArray(b.phaseHistory)&&b.phaseHistory.length<=24&&b.metrics&&['contacts','boundaries','rescues','maxSpeed','slideSeconds','throttleSeconds','coastSeconds','wakeSeconds','lineChanges','contactImpulse','turnSpeedSum','turnSamples'].every(k=>finite(b.metrics[k],0,1e7))&&b.stats&&D.statKeys.every(k=>finite(b.stats[k],0,100))&&Array.isArray(b.skills)&&b.skills.every(id=>D.abilityMap[id])&&b.mastery&&Object.values(b.mastery).every(n=>Number.isInteger(n)&&n>0&&n<10000)&&b.statsBuff&&D.statKeys.every(k=>finite(b.statsBuff[k]||0,0,100))&&b.equipment&&['motor','prop','boat'].every(k=>b.equipment[k]&&Object.values(b.equipment[k]).every(v=>finite(v,-100,100)));});
 }
 
-const R={C,DT,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
+const R={C,DT,requiresManual,racingStyle,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
 root.KM_RACING=R;if(typeof module!=='undefined'&&module.exports)module.exports=R;
 })(typeof globalThis!=='undefined'?globalThis:window);

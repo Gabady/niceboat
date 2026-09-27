@@ -1,0 +1,10 @@
+{
+  "passed": 3,
+  "failed": 0,
+  "checks": [
+    "10 original SVG faces rendered on Canvas",
+    "High speed Canvas effects preserve physics state",
+    "Speed perspective and reduced-motion fallback"
+  ],
+  "method": "Real Skia Canvas / SVG, not browser or mobile-device testing"
+}

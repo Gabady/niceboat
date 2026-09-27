@@ -1,7 +1,7 @@
 {
   "checks": [
     {
-      "name": "分割版がCSSと5つのJSのローカル参照を持つ",
+      "name": "分割版がCSSと13つのJSのローカル参照を持つ",
       "passed": true
     },
     {
@@ -9,7 +9,7 @@
       "passed": true
     },
     {
-      "name": "単体版に外部参照なし・5つのインラインJSとCSSを保持",
+      "name": "単体版に外部参照なし・13つのインラインJSとCSSを保持",
       "passed": true
     },
     {
@@ -26,6 +26,70 @@
     },
     {
       "name": "racing.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のstory.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "story.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のcast.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "cast.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のrace-feedback.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "race-feedback.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のaudio-assets.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "audio-assets.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のaudio.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "audio.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のpresentation.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "presentation.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のthrill.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "thrill.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のvisual-assets.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "visual-assets.js構文",
       "passed": true
     },
     {
@@ -53,7 +117,7 @@
       "passed": true
     },
     {
-      "name": "単体版CSSが分割版と一致",
+      "name": "単体版CSSと画像埋め込みが分割版と一致",
       "passed": true
     },
     {
@@ -70,14 +134,17 @@
     }
   ],
   "hashes": {
-    "index.html": "8c98c4d1169a67ae638635ecaffc9626af6cd8b8d76e5acc5f872fba8b73e770",
-    "style.css": "3edb80d5136384e1a1fc7017cb1e6e7bafeb81c9c221dd7a65b4f8e3198e68e1",
-    "data.js": "2f12b03d8bd7aa7040995b52b9ddcacae07bdbe8c50edb75e111d8d0b0c772b9",
-    "racing.js": "15bc7aa880d942f6c06b028476be18db0ae52920fed08a83daf1e272d1eebdb1",
-    "race-renderer.js": "90851479d22e0887c504379a7729be80a28690455800dfda6a81a6f6b75143b9",
-    "driving-ui.js": "817f00723c2e16dbfe2da9022a4a2952a288851d35e96342006771881bbb021d",
-    "script.js": "438f2bdab504d916f03b6073de7bbd7df89a3ad532b65e00e4a1050e3e6f512c",
-    "index_android_safe.html": "64940bfbb26683feaac653db1fe45a171485e1143333e0db2594f640e8c5abad"
+    "index.html": "94da3770909cc3f9066d715d131d96349f9f253d87bf9b575aa7dd3975512c96",
+    "style.css": "ed44342798c3bcb5b432fac1c774b9e32297e6b9060bde4d23e6027831e33c8a",
+    "story.css": "915e230385c31aebfbd98703bdc428eb246fe5b1cf5526dde5999e911eefa4a8",
+    "story.js": "06b4412ee067ea543eeccf0f8ecbcfbbc5913e86f698df6c57f97e93a3663d15",
+    "presentation.js": "5c7d1b3449f3621da7d23d7e8941dfc241ebf06bce7e6689c9fe3a1513821a9b",
+    "data.js": "3a034c289dfa1e1a02af7c801d1489a9ee73c08c7ca66cada2285ee002a3307b",
+    "racing.js": "4b3157c39b47b8f5903b23450ae4198d5a8bda35615bb39c4666e0fbaf914c0e",
+    "race-renderer.js": "ef75a5a11823dc9811d26c9a07db89c79c3bb7e3b2dc7b277e03728802ea7faa",
+    "driving-ui.js": "daf73fe32b205dfc75206643e43766bfba1a8784ea844d202dbaa7b87191a36e",
+    "script.js": "9d3d1625542412c6823bcf64f1435ba4f58c9884638c7d359b538425d5cda3f4",
+    "index_android_safe.html": "6cc397202bc39967385672e3bfaceaf4905256b8add0793a558f8c2522d40f62"
   },
   "browser_testing": false,
   "android_device_testing": false

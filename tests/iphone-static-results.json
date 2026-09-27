@@ -1,5 +1,5 @@
 {
-  "passed": 10,
+  "passed": 18,
   "failed": 0,
   "results": [
     {
@@ -23,6 +23,38 @@
       "passed": true
     },
     {
+      "name": "story.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "cast.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "race-feedback.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "audio-assets.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "audio.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "presentation.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "thrill.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "visual-assets.jsがソースと一致",
+      "passed": true
+    },
+    {
       "name": "race-renderer.jsがソースと一致",
       "passed": true
     },
@@ -39,7 +71,7 @@
       "passed": true
     },
     {
-      "name": "共通CSSとiPhone追加CSSが一致",
+      "name": "共通CSS・埋め込み画像とiPhone追加CSSが一致",
       "passed": true
     }
   ],

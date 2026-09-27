@@ -1,0 +1,27 @@
+{
+  "passed": 5,
+  "failed": 0,
+  "results": [
+    {
+      "name": "操作前は無音、音ONのジェスチャー後にBGMを一重再生",
+      "passed": true
+    },
+    {
+      "name": "全ミュートと非表示は音を止める。戻っても操作まで再開しない",
+      "passed": true
+    },
+    {
+      "name": "BGM・効果音を別々に止め、一時停止時はエンジンを止める",
+      "passed": true
+    },
+    {
+      "name": "効果音の同時発音上限とゴール音の二重再生防止",
+      "passed": true
+    },
+    {
+      "name": "音声APIがない環境でもゲームを例外で止めない",
+      "passed": true
+    }
+  ],
+  "method": "Web Audio and DOM stand-ins; not speaker/device verification"
+}

@@ -1,0 +1,45 @@
+{
+  "build": "95",
+  "passed": 9,
+  "failed": 0,
+  "results": [
+    {
+      "name": "助走開始時に6艇の位置と順位を記録し、記録で乱数や艇を変えない",
+      "passed": true
+    },
+    {
+      "name": "停止・未記録の旧セーブはデータを創作せず途中から記録",
+      "passed": true
+    },
+    {
+      "name": "普通の独走・敗北・転覆にはDramaticRaceを出さない",
+      "passed": true
+    },
+    {
+      "name": "0.25秒以内の有効な僅差勝利を表示、境界外は表示しない",
+      "passed": true
+    },
+    {
+      "name": "最後100mの2位以下からの逆転を記録で判定",
+      "passed": true
+    },
+    {
+      "name": "最終周の入口で3位以下なら逆転演出、2位からは対象外",
+      "passed": true
+    },
+    {
+      "name": "不正座標・重複順位・過大な記録をロードで拒否",
+      "passed": true
+    },
+    {
+      "name": "全3周の観戦結果と記録を保存・復元でき、読み返しても報酬を増やさない",
+      "passed": true
+    },
+    {
+      "name": "旧版の完了レースは記録なしのまま引継ぎ可能",
+      "passed": true
+    }
+  ],
+  "browser_tested": false,
+  "device_tested": false
+}

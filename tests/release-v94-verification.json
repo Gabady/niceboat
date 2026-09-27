@@ -1,0 +1,96 @@
+{
+  "version": 94,
+  "checks_passed": 177,
+  "failed": 0,
+  "reports": [
+    {
+      "report": "tests/race-v92-results.json",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "report": "tests/audio-v92-results.json",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v91-results.json",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v90-results.json",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v89-results.json",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v88-results.json",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "report": "tests/engine-results.json",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "report": "tests/android-update-results.json",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "report": "tests/iphone-results.json",
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "report": "tests/static-results.json",
+      "passed": 29,
+      "failed": 0
+    },
+    {
+      "report": "tests/iphone-static-results.json",
+      "passed": 16,
+      "failed": 0
+    },
+    {
+      "report": "tests/story-v94-results.json",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "report": "tests/presentation-v94-results.json",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "report": "tests/visual-v94-results.json",
+      "passed": 4,
+      "failed": 0
+    }
+  ],
+  "physics_sha256": "54d0172c7872782ab207391fcb87ecf2b5364e6918c40157b6a43d6d6b720051",
+  "physics_equal_to_v93": true,
+  "rendering": {
+    "canvas_scenes": 5,
+    "additional_crowd_scenes": 2,
+    "seam_mean_RGB_delta": 0.03643356643356643,
+    "native_gles_scenes": 4,
+    "native_gles_status": "compiled, linked, rendered, GL error 0",
+    "browser_screenshots": false
+  },
+  "browser_tested": false,
+  "device_tested": false,
+  "haptic_hardware_tested": false,
+  "audio_hardware_tested": false,
+  "notes": [
+    "UI, audio and vibration checks use controlled DOM/API stand-ins.",
+    "Rendering uses Skia Canvas and Mesa EGL/GLES, not mobile hardware.",
+    "Story and duel rewards affect career outcomes; no claim of fixed win rates."
+  ]
+}

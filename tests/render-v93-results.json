@@ -1,0 +1,45 @@
+{
+  "method": "Real Canvas 2D rendered with Skia; not a browser or mobile GPU test",
+  "results": [
+    {
+      "name": "race-sunny",
+      "width": 390,
+      "height": 844,
+      "drawMilliseconds": 72,
+      "sampledColors": 13091,
+      "stateUnchanged": true
+    },
+    {
+      "name": "race-turn",
+      "width": 390,
+      "height": 844,
+      "drawMilliseconds": 36,
+      "sampledColors": 13042,
+      "stateUnchanged": true
+    },
+    {
+      "name": "race-rain",
+      "width": 390,
+      "height": 844,
+      "drawMilliseconds": 59,
+      "sampledColors": 7765,
+      "stateUnchanged": true
+    },
+    {
+      "name": "race-wide",
+      "width": 844,
+      "height": 390,
+      "drawMilliseconds": 69,
+      "sampledColors": 14053,
+      "stateUnchanged": true
+    },
+    {
+      "name": "race-buoy",
+      "width": 390,
+      "height": 844,
+      "drawMilliseconds": 61,
+      "sampledColors": 11168,
+      "stateUnchanged": true
+    }
+  ]
+}

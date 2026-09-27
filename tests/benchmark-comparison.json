@@ -1,0 +1,127 @@
+{
+  "fixtureSHA256": "3e443faf4f92b8c8ae628424d81a8dc82978cf69d52bc3ffca6019f43a94a476",
+  "allConditionsPassed": true,
+  "criteria": "same 20 inputs; 6 finishers; NPC mean time within ±8% of v91",
+  "rows": [
+    {
+      "id": "easy-rookie-calm",
+      "npcTimeChangePercent": -0.4,
+      "oldPlayerRank": 3,
+      "newPlayerRank": 1
+    },
+    {
+      "id": "easy-rookie-rough",
+      "npcTimeChangePercent": 1.53,
+      "oldPlayerRank": 2,
+      "newPlayerRank": 1
+    },
+    {
+      "id": "easy-g3-calm",
+      "npcTimeChangePercent": -0.53,
+      "oldPlayerRank": 3,
+      "newPlayerRank": 4
+    },
+    {
+      "id": "easy-g3-rough",
+      "npcTimeChangePercent": -1.37,
+      "oldPlayerRank": 2,
+      "newPlayerRank": 3
+    },
+    {
+      "id": "easy-g2-calm",
+      "npcTimeChangePercent": -0.74,
+      "oldPlayerRank": 5,
+      "newPlayerRank": 6
+    },
+    {
+      "id": "easy-g2-rough",
+      "npcTimeChangePercent": 0.79,
+      "oldPlayerRank": 6,
+      "newPlayerRank": 5
+    },
+    {
+      "id": "easy-g1-calm",
+      "npcTimeChangePercent": 0.34,
+      "oldPlayerRank": 3,
+      "newPlayerRank": 4
+    },
+    {
+      "id": "easy-g1-rough",
+      "npcTimeChangePercent": -0.03,
+      "oldPlayerRank": 4,
+      "newPlayerRank": 4
+    },
+    {
+      "id": "easy-sg-calm",
+      "npcTimeChangePercent": 0.06,
+      "oldPlayerRank": 3,
+      "newPlayerRank": 4
+    },
+    {
+      "id": "easy-sg-rough",
+      "npcTimeChangePercent": -0.22,
+      "oldPlayerRank": 4,
+      "newPlayerRank": 4
+    },
+    {
+      "id": "normal-rookie-calm",
+      "npcTimeChangePercent": 2.32,
+      "oldPlayerRank": 5,
+      "newPlayerRank": 1
+    },
+    {
+      "id": "normal-rookie-rough",
+      "npcTimeChangePercent": 1,
+      "oldPlayerRank": 4,
+      "newPlayerRank": 1
+    },
+    {
+      "id": "normal-g3-calm",
+      "npcTimeChangePercent": 0.58,
+      "oldPlayerRank": 5,
+      "newPlayerRank": 5
+    },
+    {
+      "id": "normal-g3-rough",
+      "npcTimeChangePercent": -0.05,
+      "oldPlayerRank": 3,
+      "newPlayerRank": 5
+    },
+    {
+      "id": "normal-g2-calm",
+      "npcTimeChangePercent": 1.2,
+      "oldPlayerRank": 6,
+      "newPlayerRank": 6
+    },
+    {
+      "id": "normal-g2-rough",
+      "npcTimeChangePercent": 1.35,
+      "oldPlayerRank": 6,
+      "newPlayerRank": 6
+    },
+    {
+      "id": "normal-g1-calm",
+      "npcTimeChangePercent": -1.55,
+      "oldPlayerRank": 5,
+      "newPlayerRank": 5
+    },
+    {
+      "id": "normal-g1-rough",
+      "npcTimeChangePercent": 0.72,
+      "oldPlayerRank": 6,
+      "newPlayerRank": 4
+    },
+    {
+      "id": "normal-sg-calm",
+      "npcTimeChangePercent": -0.81,
+      "oldPlayerRank": 6,
+      "newPlayerRank": 6
+    },
+    {
+      "id": "normal-sg-rough",
+      "npcTimeChangePercent": -0.83,
+      "oldPlayerRank": 5,
+      "newPlayerRank": 6
+    }
+  ]
+}

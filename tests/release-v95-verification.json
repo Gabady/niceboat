@@ -1,0 +1,119 @@
+{
+  "version": 95,
+  "checks_passed": 208,
+  "failed": 0,
+  "reports": [
+    {
+      "report": "tests/race-v92-results.json",
+      "passed": 10,
+      "failed": 0
+    },
+    {
+      "report": "tests/audio-v92-results.json",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v91-results.json",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v90-results.json",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v89-results.json",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v88-results.json",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "report": "tests/engine-results.json",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "report": "tests/android-update-results.json",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "report": "tests/iphone-results.json",
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "report": "tests/static-results.json",
+      "passed": 33,
+      "failed": 0
+    },
+    {
+      "report": "tests/iphone-static-results.json",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "report": "tests/story-v94-results.json",
+      "passed": 18,
+      "failed": 0
+    },
+    {
+      "report": "tests/presentation-v94-results.json",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "report": "tests/visual-v94-results.json",
+      "passed": 4,
+      "failed": 0
+    },
+    {
+      "report": "tests/race-v95-results.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "report": "tests/render-v95-results.json",
+      "passed": 3,
+      "failed": 0
+    }
+  ],
+  "rendering": {
+    "canvas": "Skia Canvas: speed effects, portrait sheet, panorama continuity, crowds",
+    "native_gles_scenes": 1,
+    "native_gles_status": "compiled, linked, rendered successfully",
+    "browser_screenshots": false
+  },
+  "source_hashes": {
+    "cast.js": "79c98deb62225348fecd9c145a907977927ec11092be04bd466c6ed96a42a0db",
+    "race-renderer.js": "ef75a5a11823dc9811d26c9a07db89c79c3bb7e3b2dc7b277e03728802ea7faa",
+    "iphone-compat.js": "f4eee272f69417b96349616d4d0bc294d4c918ba06c4d4acf329dc9d81243ad3",
+    "thrill.js": "6aea33d758f49298cb6b2869b0ec12a76ae6ef1775543a7809b971d1db904bd9",
+    "story.js": "06b4412ee067ea543eeccf0f8ecbcfbbc5913e86f698df6c57f97e93a3663d15",
+    "script.js": "9d3d1625542412c6823bcf64f1435ba4f58c9884638c7d359b538425d5cda3f4",
+    "data.js": "3a034c289dfa1e1a02af7c801d1489a9ee73c08c7ca66cada2285ee002a3307b",
+    "presentation.js": "5c7d1b3449f3621da7d23d7e8941dfc241ebf06bce7e6689c9fe3a1513821a9b",
+    "visual-assets.js": "9b2b7fd33b869f13f86500d467a987bacb08e30aebfdb797ea0e21e499c538b0",
+    "driving-ui.js": "daf73fe32b205dfc75206643e43766bfba1a8784ea844d202dbaa7b87191a36e",
+    "race-feedback.js": "46106180a78a84e270904d0f3a863199b1e65d098388f1aa44de6d9a6fd57ff9",
+    "audio-assets.js": "60595c37cd4a0f944573ddc7e8168a570c3ec15508a54754ac674a094898bd5a",
+    "racing.js": "4b3157c39b47b8f5903b23450ae4198d5a8bda35615bb39c4666e0fbaf914c0e",
+    "audio.js": "4430d0f9c9e620cb233cc5d1f9a86adaf25209dbc76645b42550fcd0ebfb5946"
+  },
+  "browser_tested": false,
+  "device_tested": false,
+  "haptic_hardware_tested": false,
+  "audio_hardware_tested": false,
+  "notes": [
+    "DOM/API stand-ins cover real UI handlers, asynchronous skip completion, settings and presentation; not browser layout.",
+    "Race physics coefficients unchanged; new cast opponents, training bonus and event rewards affect career balance.",
+    "Final-wall player win rate and phone FPS have not been measured.",
+    "Event sample: 24 surge and 80 setback in 1000 seeded first preparations; not a career-wide frequency estimate."
+  ]
+}
