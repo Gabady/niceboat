@@ -40,10 +40,10 @@ for key,values in data['geometry'].items():
  buffer=U();gen(1,C.byref(buffer));bind(0x8892,buffer);arr=(F*len(values))(*values);upload(0x8892,C.sizeof(arr),arr,0x88E4);buffers[key]=(buffer,len(values)//6)
 for command in data['commands']:
  key,m,col,material=command[:4];buffer,count=buffers[key];bind(0x8892,buffer);pointer(position,3,0x1406,0,24,None);pointer(normal,3,0x1406,0,24,ptr(12));mat(uniform['Model'],1,0,(F*16)(*m));vec(uniform['Color'],1,(F*3)(*col));scalar(uniform['Water'],material)
- if material>=5:
+ if material in (5,6):
   gl('glEnable',None,[U])(0x0BE2);gl('glBlendFunc',None,[U,U])(0x0302,0x0303);gl('glDepthMask',None,[U])(0)
  draw(4,0,count)
- if material>=5:
+ if material in (5,6):
   gl('glDepthMask',None,[U])(1);gl('glDisable',None,[U])(0x0BE2)
 gl('glFinish',None,[])();error=gl('glGetError',U,[])();assert not error,hex(error)
 pixels=(C.c_ubyte*(w*h*4))();gl('glReadPixels',None,[I,I,I,I,U,U,ptr])(0,0,w,h,0x1908,0x1401,pixels)

@@ -5,40 +5,40 @@
       "name": "race-sunny",
       "width": 390,
       "height": 844,
-      "drawMilliseconds": 86,
-      "sampledColors": 16428,
+      "drawMilliseconds": 140,
+      "sampledColors": 17896,
       "stateUnchanged": true
     },
     {
       "name": "race-turn",
       "width": 390,
       "height": 844,
-      "drawMilliseconds": 52,
-      "sampledColors": 16179,
+      "drawMilliseconds": 57,
+      "sampledColors": 17133,
       "stateUnchanged": true
     },
     {
       "name": "race-rain",
       "width": 390,
       "height": 844,
-      "drawMilliseconds": 71,
-      "sampledColors": 9641,
+      "drawMilliseconds": 136,
+      "sampledColors": 10849,
       "stateUnchanged": true
     },
     {
       "name": "race-wide",
       "width": 844,
       "height": 390,
-      "drawMilliseconds": 73,
-      "sampledColors": 18764,
+      "drawMilliseconds": 138,
+      "sampledColors": 19093,
       "stateUnchanged": true
     },
     {
       "name": "race-buoy",
       "width": 390,
       "height": 844,
-      "drawMilliseconds": 78,
-      "sampledColors": 14422,
+      "drawMilliseconds": 140,
+      "sampledColors": 15564,
       "stateUnchanged": true
     }
   ]

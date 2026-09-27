@@ -88,12 +88,12 @@
     }
   ],
   "canvasFrameMilliseconds": [
-    66.2,
-    65.8,
-    72.9,
-    67.9,
-    59.3,
-    76.7
+    73.6,
+    67.5,
+    69.7,
+    67,
+    65.4,
+    71.2
   ],
   "method": "Skia Canvas + native Mesa GLES2; no physical Android/iPhone or browser performance test"
 }

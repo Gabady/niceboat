@@ -1,15 +1,16 @@
-# v96 開発引継ぎ — 現行の接続点だけを読む
+# v97 開発引継ぎ — 現行接続点
 
-- 正本：ZIPルート、作業 `/workspace/scratch/c938c42c53df/kyotei-v96`。build96、save.version80／drive.version2。公開やGitHubの変更なし。
-- 今回は水面描画だけ。`race-renderer.js`に6波長法線・背景反射・Fresnel・日照光沢・距離LOD・天候粗さ。水面は平面、波の法線だけを合成。`racing.js`等の物理係数に変更なし。
-- マテリアル：0艇など、1水、2空、3無照明、4観客、5半透明泡、6艇の水際の影。5/6だけBLENDとdepthMask(false)、直後に元へ戻す。GL_FRAGMENT_PRECISION_HIGH分岐は両シェーダーで一致。
-- 航跡はd.wakesを読むだけ（4.5秒まで）。泡のcol[0]は不透明度。G.geometryのflatとvLocalで軟らかいパッチへ。乱数・物理・セーブは描画から変更しない。
-- CanvasはcreateWaterPainterの縮小バッファ（最大216×144）、同じ6波長、192×96の背景サンプル、96×96泡テクスチャ。OffscreenCanvasまたはdocument.createElementのcanvas。画像の未読込時は反射を色で代替。createWaterPainterはrendererごとに一度生成。
-- 新ゲート `node tests/water-v96-tests.cjs`（21項目）。`tests/render-webgl.py`はuWeather＋5/6の半透明描画対応。Skiaテストではglobal.OffscreenCanvasをcreateCanvasで提供。比較PNGはpreviews/v96-*。
-- 共通13JS＋2CSS。`tools/package.py`でAndroid単体13JS、iPhoneは互換を加えて14JS。分割ソースとの一致はstatic-checksとiphone-static-checks。v96移行は通知とbuild更新のみ、旧版補正の除外リストに96を追加済み。
-- 現行検証まとめ `tests/release-v96-verification.json`。実ブラウザ／Android／iPhone実機は未検証。ソフトウェア描画の速度を実機FPSと書かない。
-- v95既存：予選の操船／観戦／即結果、観戦からtakeControlで状態維持、決勝はrequiresManual。runInstantは360tick分割、非表示で観戦へ。師匠5＋壁5はcast.js、物語51件はstory.js、速度／接触／UR/LR演出はthrill.js。競技と演出の乱数を混ぜない。
-- v95セーブ：c.cast、p.castJournal、イベントの精算済みID。人物は20名枠の置換、SGの既存登録・記憶招待を保護。詳しく必要な場合のみSTORY_DESIGN.mdと対象コードを読む。
-- 今後の水面改善はスマホ実機でのGPU負荷とCanvas速度を先に確認。近似反射なので艇や動く観客の鏡像は未実装。新しい依頼と無関係な全履歴／全テストの再読を避ける。
+- 正本：ZIPルート、作業 `/workspace/scratch/c938c42c53df/kyotei-v97`。build97、save.version80／drive.version2。公開・GitHub変更なし。
+- 今回：`race-renderer.js` のboatScene/racerPoseと材質7〜11、`presentation.js`のmedalSVG/rewardMarkup、`story.css`の報酬とカットイン。計算・入力・報酬のバランスはv96と同一。
+- Gにshell/deck/deckTrim/wing/torso/helmet/visor/helmetSeal/wheel/thin/数字1〜6を追加。生成メッシュの法線とGLの逆転置相当計算で非等方拡大に対応。5/6だけ半透明。7塗装、8布、9金属、10バイザー、11木材。
+- boatSceneは頭・肩・腕・脚と装備を別部品で配置。自艇の頭／胴を非表示。姿勢はsteer/yawRate/speed/heelから表示専用計算。motion=falseなら揺れ・呼吸なし。競技状態を書き換えない。
+- LOD：通常32/70m、Canvas18/46mで小物省略。CanvasはsoftTinyとhelmetLowで頂点削減。Canvasの重なりは艇単位＋部品順で近似し、GLESの深度と完全一致ではない。
+- 数字はDejaVu Sans由来の静的三角形。THIRD_PARTY_NOTICES.txtとソースコメントにライセンス、単体HTMLにも埋込。tools/generate-deck-digits.pyは開発時Matplotlibで再生成、ゲーム実行・package.pyには不要。
+- presentationはmedalSVG/rewardMarkupを純関数で公開。箔8/12/16、短縮・不運0。role/status・ESC・クリック・既存タイマー・レース暗転禁止を維持。決定済み報酬にだけ演出する既存契約を変えない。
+- 新ゲート：node tests/visual-v97-tests.cjs（15項目）、接近モデルはmodel-v97-preview.cjs。既存water-v96-testsは現在build名でPNGを出し、21項目を継続。演出の実機手動確認はtests/presentation-preview.html。
+- 全検証集約：tests/release-v97-verification.json。実際に動かしたのはMesa GLES2、Skia Canvas、DOM/API代替環境。実ブラウザCSS・Android/iPhone実機は未検証。実機FPSを断言しない。
+- 共通13JS＋2CSS。package.pyでAndroid13JS、iPhone互換込み14JSを内蔵。static-checksとiphone-static-checksでソース一致。97を既知版に追加し、旧整備補正を再適用しない。
+- v96水面：6波長法線・背景反射・Fresnel・天候・泡。canvas縮小バッファ最大216×144、空192×96、泡96×96。画像未読込で色の反射へ代替。詳細は必要時にBALANCE_REPORT.mdのv96節を参照。
+- 既存キャリア：予選3モード／決勝操船必須、師匠5＋壁5、物語51。racing.js/cast.js/story.js/thrill.jsは今回変更なし。保存済み精算ID、SG招待枠、runInstant分割処理を維持。
 
-変更理由はCHANGES_AT.md @188〜194。描画仕様と限界はBALANCE_REPORT.mdの先頭。
+変更理由@195〜202はCHANGES_AT.md。新規依頼に関係するコードと試験だけを読み、全履歴の再読を避ける。

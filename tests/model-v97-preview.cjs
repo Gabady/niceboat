@@ -1,0 +1,4 @@
+const fs=require('fs'),path=require('path'),G=require('../race-renderer'),E=require('../script');
+const out=path.join(__dirname,'../previews');
+function make(name,turn){const eye=[5.6,3.35,6.2],vp=G.multiply(G.perspective(44*Math.PI/180,960/640,.12,650),G.lookAt(eye,[.2,.65,0],[0,1,0])),commands=[['sphere',Array.from(G.model(...eye,0,480,480,480)),[.725,.898,.937],2],['water',Array.from(G.model(0,0,0)),[.075,.557,.686],1]];const n={id:'preview',frame:3,isPlayer:false,x:0,z:0,heading:0,speed:21,steer:turn,yawRate:turn*.5,heel:turn*.45};G.boatScene(n,{elapsed:32},{motion:true},(k,m,c,v=0)=>commands.push([k,Array.from(m),c,v]));fs.writeFileSync(path.join(out,'v97-model-'+name+'-scene.json'),JSON.stringify({width:960,height:640,time:32,vertex:G.vertex,fragment:G.fragment,weather:[.5,0,0],camera:{eye,vp:Array.from(vp)},geometry:G.geometry,commands,fog:[.725,.898,.937]}));}
+make('straight',0);make('turn',-.85);

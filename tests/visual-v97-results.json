@@ -1,0 +1,67 @@
+{
+  "passed": 15,
+  "failed": 0,
+  "results": [
+    {
+      "name": "新規メッシュは有限・三角形形式・法線を保持する",
+      "passed": true
+    },
+    {
+      "name": "非等方拡大・回転後も法線と接線が直交する",
+      "passed": true
+    },
+    {
+      "name": "船体・装備・人体で塗装／布／金属／バイザー／木材を描き分ける",
+      "passed": true
+    },
+    {
+      "name": "操舵で肩・頭が動き、表示姿勢は競技状態を変更しない",
+      "passed": true
+    },
+    {
+      "name": "自艇の頭部を表示せず、一人称視界を確保する",
+      "passed": true
+    },
+    {
+      "name": "遠方の艇は小物を省略し、枠色と選手の輪郭を保持",
+      "passed": true
+    },
+    {
+      "name": "転覆艇は裏返した船体だけを表示する",
+      "passed": true
+    },
+    {
+      "name": "動きを減らす設定では船体の揺れと呼吸を固定",
+      "passed": true
+    },
+    {
+      "name": "報酬は少数の金属箔。通常8・高レア12・強イベント16",
+      "passed": true
+    },
+    {
+      "name": "短縮・不運では粒子を作らず、外部フォント・画像に依存しない",
+      "passed": true
+    },
+    {
+      "name": "HTML文字をエスケープし、不明なレア度も安全に表示",
+      "passed": true
+    },
+    {
+      "name": "演出中断・OFF・レース中の抑止とタイマー解放",
+      "passed": true
+    },
+    {
+      "name": "v96セーブを物理・育成・抽選値を保って移行",
+      "passed": true
+    },
+    {
+      "name": "通常・旋回の接近モデルを実GLESで描画",
+      "passed": true
+    },
+    {
+      "name": "本番SVG徽章4種を実Canvasで描画",
+      "passed": true
+    }
+  ],
+  "method": "Native GLES, Skia SVG/Canvas and DOM/API stand-ins. No browser layout or phone test."
+}
