@@ -1,0 +1,83 @@
+{
+  "build": "99",
+  "passed": 152,
+  "failed": 0,
+  "suites": [
+    {
+      "file": "relationships-v99-results.json",
+      "passed": 26,
+      "failed": 0
+    },
+    {
+      "file": "career-v98-results.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "file": "race-v95-results.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "file": "android-update-results.json",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "file": "presentation-v94-results.json",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "file": "static-results.json",
+      "passed": 41,
+      "failed": 0
+    },
+    {
+      "file": "iphone-static-results.json",
+      "passed": 22,
+      "failed": 0
+    }
+  ],
+  "browser_tested": false,
+  "android_device_tested": false,
+  "iphone_device_tested": false,
+  "portrait_check": "Production SVG rendered by Skia and visually inspected",
+  "scope": "Engine and production UI handlers with controlled DOM/API; source/standalone equality and syntax",
+  "preserved_racing_files": [
+    "driving-ui.js",
+    "race-renderer.js",
+    "race-feedback.js",
+    "thrill.js",
+    "audio.js",
+    "presentation.js"
+  ],
+  "source_sha256": {
+    "iphone-compat.js": "f4eee272f69417b96349616d4d0bc294d4c918ba06c4d4acf329dc9d81243ad3",
+    "index_android_safe.html": "8f05215bececb2c2817a82acf66f3af1645e6fb2477206e880bccba7eb3ed51c",
+    "visual-assets.js": "c8ab00b62c1b90308e8f3115fa55113d580bdcdc9edf245f0d0a30c8b3769576",
+    "race-renderer.js": "e8e0b82890d5940fc000c7baa9d1bd90798080428de8d358419da60bfcdd0160",
+    "index.html": "5ae3e46f76d32d9b35c6308b202c559ca9abb33eecd68be26c5880248f1a6487",
+    "story.js": "a46d61c18b9e070dfa4c6b1de74c86b571e537360bdfc76b19be1a27cfff01e0",
+    "profile.js": "6c6e4e7f7c6a28c51b90f7dc09055dc004c915fb4f021b359ac75912393087e4",
+    "thrill.js": "6aea33d758f49298cb6b2869b0ec12a76ae6ef1775543a7809b971d1db904bd9",
+    "bonds-data.js": "41fbefcacc74b3ff14f68ed896613d9c8ab7ad459a3d8207e27ab15404781c3a",
+    "script.js": "145bb3c95d28aa44b3d9bfa1a423c8f65e06983823ac6da6b58f7d4c494c8ee8",
+    "style.css": "ed44342798c3bcb5b432fac1c774b9e32297e6b9060bde4d23e6027831e33c8a",
+    "story.css": "ea8dd80b2c2a8e987f8bd3ec7838aa8facc701e31346414edb2e42e65bea382e",
+    "iphone.css": "228d19ef161cb5156b427ec06f9470cc37ab18e1710e3e2118b7fcd912291f16",
+    "data.js": "080e6d9e90570e279889f41b4aaff88c9da3794067ab0b921b4f77f99dfcc641",
+    "audio.js": "4430d0f9c9e620cb233cc5d1f9a86adaf25209dbc76645b42550fcd0ebfb5946",
+    "driving-ui.js": "daf73fe32b205dfc75206643e43766bfba1a8784ea844d202dbaa7b87191a36e",
+    "bonds.js": "e532e4e96b0117e4cfeed16d01dca2ec82e41e6a45b519dd1500dc0171dca85b",
+    "race-feedback.js": "46106180a78a84e270904d0f3a863199b1e65d098388f1aa44de6d9a6fd57ff9",
+    "racing.js": "0c3fe33a7dd074e28b6dca642f924ef42b707f1cc22272b3172d9e8c2e843c80",
+    "audio-assets.js": "60595c37cd4a0f944573ddc7e8168a570c3ec15508a54754ac674a094898bd5a",
+    "bonds.css": "5e37aa846cc589e2fa281e153cc9fda71713346c27304d1c88b9e761074e63d7",
+    "story-extra.js": "ef1d8ca95f3039f68fcc425522efa65d993b9a2fcb3a949523b2746ca4da358a",
+    "presentation.js": "5b69b687daa9f8865d83a2272ec1fcc01644fcdbc1b1c05a2999f01faf919ce9",
+    "index_iphone_safe.html": "5bd0655aefa21310d8a94df372b0a67c18770959b6ee5c78fe6cb8f215fb2429",
+    "interface.css": "953f24d719da5318841ff783cdb2d46f10ebc0613d8b6b68bee984301c7a205c",
+    "cast.js": "dcc9c17330bfda825b07d28c9623fc2893365f5d5629b407ed424ad7fb0b9bdf"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "build": "98",
+  "date": "2026-09-27",
+  "passed": 120,
+  "failed": 0,
+  "suites": [
+    {
+      "file": "tests/career-v98-results.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "file": "tests/race-v95-results.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "file": "tests/android-update-results.json",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "file": "tests/presentation-v94-results.json",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "file": "tests/static-results.json",
+      "passed": 37,
+      "failed": 0
+    },
+    {
+      "file": "tests/iphone-static-results.json",
+      "passed": 20,
+      "failed": 0
+    }
+  ],
+  "unchangedFromV97": [
+    "racing.js",
+    "driving-ui.js",
+    "race-renderer.js",
+    "cast.js",
+    "race-feedback.js",
+    "thrill.js",
+    "audio.js",
+    "audio-assets.js",
+    "presentation.js",
+    "story.css",
+    "style.css",
+    "iphone-compat.js",
+    "iphone.css"
+  ],
+  "sourceHashes": {
+    "index.html": "5a3bfd9413613f69e8a1055586371c0e87a770bb6ffa5a129743abe3c694976a",
+    "style.css": "ed44342798c3bcb5b432fac1c774b9e32297e6b9060bde4d23e6027831e33c8a",
+    "story.css": "ea8dd80b2c2a8e987f8bd3ec7838aa8facc701e31346414edb2e42e65bea382e",
+    "interface.css": "953f24d719da5318841ff783cdb2d46f10ebc0613d8b6b68bee984301c7a205c",
+    "audio-assets.js": "60595c37cd4a0f944573ddc7e8168a570c3ec15508a54754ac674a094898bd5a",
+    "audio.js": "4430d0f9c9e620cb233cc5d1f9a86adaf25209dbc76645b42550fcd0ebfb5946",
+    "cast.js": "79c98deb62225348fecd9c145a907977927ec11092be04bd466c6ed96a42a0db",
+    "data.js": "70affed7bda73b8f371489341a80cf6f3f0e2aa3e80600c580e4d498733bfe20",
+    "driving-ui.js": "daf73fe32b205dfc75206643e43766bfba1a8784ea844d202dbaa7b87191a36e",
+    "iphone-compat.js": "f4eee272f69417b96349616d4d0bc294d4c918ba06c4d4acf329dc9d81243ad3",
+    "presentation.js": "5b69b687daa9f8865d83a2272ec1fcc01644fcdbc1b1c05a2999f01faf919ce9",
+    "profile.js": "6c6e4e7f7c6a28c51b90f7dc09055dc004c915fb4f021b359ac75912393087e4",
+    "race-feedback.js": "46106180a78a84e270904d0f3a863199b1e65d098388f1aa44de6d9a6fd57ff9",
+    "race-renderer.js": "e8e0b82890d5940fc000c7baa9d1bd90798080428de8d358419da60bfcdd0160",
+    "racing.js": "4b3157c39b47b8f5903b23450ae4198d5a8bda35615bb39c4666e0fbaf914c0e",
+    "script.js": "cbef1f72a7c91722aa73d8a56f7efc7104da60232fff8ef5b3b5298143f1e620",
+    "story-extra.js": "ef1d8ca95f3039f68fcc425522efa65d993b9a2fcb3a949523b2746ca4da358a",
+    "story.js": "0bad744f792574ba37fd07ab7a229016ec2c3cb80fbb62da02bcbe74939dcba4",
+    "thrill.js": "6aea33d758f49298cb6b2869b0ec12a76ae6ef1775543a7809b971d1db904bd9",
+    "visual-assets.js": "a0465281a81a434e043dd2a2129e39e623f1a80a8fba03252fb94edec813bed5",
+    "iphone.css": "228d19ef161cb5156b427ec06f9470cc37ab18e1710e3e2118b7fcd912291f16",
+    "THIRD_PARTY_NOTICES.txt": "82f93f0c379b3632e0d176f2d06f1461130e4d686fbb1337c8eeaa8cb0ded3e0"
+  },
+  "browserLayoutTested": false,
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "notes": "UI tests execute production handlers with controlled DOM/API stand-ins. Previous v97 renderer previews retained; no new screenshot claim."
+}

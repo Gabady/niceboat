@@ -17,13 +17,15 @@ class Parser(HTMLParser):
 p=Parser();p.feed((S/'index_iphone_safe.html').read_text());results=[]
 def check(n,ok):assert ok,n;results.append({'name':n,'passed':True})
 check('iPhone単体に外部JS/CSS参照なし',not p.external)
-js=['iphone-compat.js','data.js','racing.js','story.js','cast.js','race-feedback.js','audio-assets.js','audio.js','presentation.js','thrill.js','visual-assets.js','race-renderer.js','driving-ui.js','script.js'];check('互換処理→データ→計算→描画→入力→育成の順で埋め込み',len(p.scripts)==14)
+js=['iphone-compat.js','data.js','racing.js','profile.js','story-extra.js','story.js','portraits.js','bonds-data.js','bonds.js','cast.js','race-feedback.js','audio-assets.js','music.js','audio.js','presentation.js','thrill.js','visual-assets.js','race-renderer.js','driving-ui.js','script.js'];check('互換処理→データ→計算→描画→入力→育成の順で埋め込み',len(p.scripts)==20)
 for name,content in zip(js,p.scripts):
- check(name+'がソースと一致',content.replace('<\\/script','</script')==(S/name).read_text().strip())
+ source=(S/name).read_text().strip()
+ if name=='music.js': source=re.sub(r"(['\"])(assets/audio/[^'\"\n]+\.mp3)\1",lambda m:m.group(1)+'data:audio/mpeg;base64,'+base64.b64encode((S/m.group(2)).read_bytes()).decode()+m.group(1),source)
+ check(name+'がソースと一致',content.replace('<\\/script','</script')==source)
  with tempfile.NamedTemporaryFile(suffix='.js',mode='w') as f:
   f.write(content);f.flush();subprocess.run(['node','--check',f.name],check=True,capture_output=True)
 check('全インラインJSの構文',True)
-styles=[((S/'style.css').read_text()+'\n'+(S/'story.css').read_text()).strip(),(S/'iphone.css').read_text().strip()]
+styles=[((S/'style.css').read_text()+'\n'+(S/'story.css').read_text()+'\n'+(S/'interface.css').read_text()+'\n'+(S/'bonds.css').read_text()).strip(),(S/'iphone.css').read_text().strip()]
 styles[0]=re.sub(r'url\("(assets/[^"\\n]+)"\)',lambda m:'url("data:image/webp;base64,'+base64.b64encode((S/m.group(1)).read_bytes()).decode()+'")',styles[0])
 check('共通CSS・埋め込み画像とiPhone追加CSSが一致',p.styles==styles)
 (S.parent/'tests' if S.name=='dist' else S/'tests').joinpath('iphone-static-results.json').write_text(json.dumps({'passed':len(results),'failed':0,'results':results,'iphone_device_tested':False},ensure_ascii=False,indent=2))

@@ -1,0 +1,210 @@
+{
+  "build": "100",
+  "passed": 184,
+  "failed": 0,
+  "suites": [
+    {
+      "file": "music-v100-results.json",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "file": "relationships-v99-results.json",
+      "passed": 26,
+      "failed": 0
+    },
+    {
+      "file": "career-v98-results.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "file": "race-v95-results.json",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "file": "android-update-results.json",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "file": "presentation-v94-results.json",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "file": "audio-v92-results.json",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "file": "static-results.json",
+      "passed": 45,
+      "failed": 0
+    },
+    {
+      "file": "iphone-static-results.json",
+      "passed": 24,
+      "failed": 0
+    }
+  ],
+  "browser_tested": false,
+  "android_device_tested": false,
+  "iphone_device_tested": false,
+  "speaker_tested": false,
+  "portrait_check": "Production SVG rendered by Skia and visually inspected",
+  "audio_integrity": [
+    {
+      "file": "race.mp3",
+      "bytes": 4100708,
+      "sha256": "fccbe1ca848cc3a54b569b81bf47997e06779d77a463316a473dbb548ab53f55",
+      "original_bytes_match": true,
+      "full_decode_passed": true,
+      "media": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "48000"
+          },
+          {
+            "codec_name": "mjpeg"
+          }
+        ],
+        "format": {
+          "duration": "192.840000"
+        }
+      }
+    },
+    {
+      "file": "main.mp3",
+      "bytes": 2631555,
+      "sha256": "d4ec072d3717a67d868ed1527c1f2026d4d1270b5e892ed5778aa2df921213fe",
+      "original_bytes_match": true,
+      "full_decode_passed": true,
+      "media": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "48000"
+          },
+          {
+            "codec_name": "mjpeg"
+          }
+        ],
+        "format": {
+          "duration": "114.696000"
+        }
+      }
+    },
+    {
+      "file": "sg-lounge.mp3",
+      "bytes": 4956920,
+      "sha256": "1b533947d741cfe7e102298bbeff993b29c6d9d74b210c5366e93c98849c91a3",
+      "original_bytes_match": true,
+      "full_decode_passed": true,
+      "media": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "48000"
+          },
+          {
+            "codec_name": "mjpeg"
+          }
+        ],
+        "format": {
+          "duration": "214.896000"
+        }
+      }
+    },
+    {
+      "file": "heroine.mp3",
+      "bytes": 4368417,
+      "sha256": "3bbf8f01cbd7638b3b7eb7e0b10c8f784adeb50d72c7908b36880c0bac4dff5c",
+      "original_bytes_match": true,
+      "full_decode_passed": true,
+      "media": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "48000"
+          },
+          {
+            "codec_name": "mjpeg"
+          }
+        ],
+        "format": {
+          "duration": "183.216000"
+        }
+      }
+    },
+    {
+      "file": "final.mp3",
+      "bytes": 4192943,
+      "sha256": "9331fb8ebec1a9133359154ebf3ca1519edd37d48a444d94685e2fbb70d87982",
+      "original_bytes_match": true,
+      "full_decode_passed": true,
+      "media": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "48000"
+          },
+          {
+            "codec_name": "mjpeg"
+          }
+        ],
+        "format": {
+          "duration": "184.776000"
+        }
+      }
+    }
+  ],
+  "scope": "Production scene routing, media lifecycle, UI handlers and migration under DOM/API stand-ins; full MP3 decode; standalone source equality and syntax",
+  "preserved_racing_files": [
+    "racing.js",
+    "driving-ui.js",
+    "race-renderer.js",
+    "race-feedback.js",
+    "thrill.js",
+    "presentation.js",
+    "story.js",
+    "bonds-data.js"
+  ],
+  "source_sha256": {
+    "iphone-compat.js": "f4eee272f69417b96349616d4d0bc294d4c918ba06c4d4acf329dc9d81243ad3",
+    "index_android_safe.html": "5c9ee1a2a8afa54f54a729017f1d7a202c212a2f335fa6032a2b2109807d5fae",
+    "visual-assets.js": "c54a240d54296eabdac1b20800e221b42fe9f684bb7602b32d627b802326008d",
+    "race-renderer.js": "e8e0b82890d5940fc000c7baa9d1bd90798080428de8d358419da60bfcdd0160",
+    "index.html": "c01a98f78deb5df80a13ebdb712821b0142ffeec5fde7f117e75020a2f7a298e",
+    "story.js": "a46d61c18b9e070dfa4c6b1de74c86b571e537360bdfc76b19be1a27cfff01e0",
+    "profile.js": "6c6e4e7f7c6a28c51b90f7dc09055dc004c915fb4f021b359ac75912393087e4",
+    "thrill.js": "6aea33d758f49298cb6b2869b0ec12a76ae6ef1775543a7809b971d1db904bd9",
+    "bonds-data.js": "41fbefcacc74b3ff14f68ed896613d9c8ab7ad459a3d8207e27ab15404781c3a",
+    "script.js": "36b16c684fdddf8ff9d3342adb2b53257a140228073fa929427c2b824a69cfe6",
+    "style.css": "ed44342798c3bcb5b432fac1c774b9e32297e6b9060bde4d23e6027831e33c8a",
+    "story.css": "ea8dd80b2c2a8e987f8bd3ec7838aa8facc701e31346414edb2e42e65bea382e",
+    "iphone.css": "228d19ef161cb5156b427ec06f9470cc37ab18e1710e3e2118b7fcd912291f16",
+    "data.js": "586f8f8806192c429c268aafd2d86279e2a4233131b01fa64f2a1c80863459d2",
+    "music.js": "8bf5090a0ad70d62a60963485696c59246995a07f90bbab088dd1e9fbd82abd2",
+    "audio.js": "411ccf6471a2e4bc1b0b07f93cecc61c5aa6709bebe7ff9870f9409ea081c6b4",
+    "driving-ui.js": "daf73fe32b205dfc75206643e43766bfba1a8784ea844d202dbaa7b87191a36e",
+    "bonds.js": "8e59963ce99fa9a5ca705f8c522b7f59e67bd7722b7411ff0d34dc665dd68ee7",
+    "race-feedback.js": "46106180a78a84e270904d0f3a863199b1e65d098388f1aa44de6d9a6fd57ff9",
+    "racing.js": "0c3fe33a7dd074e28b6dca642f924ef42b707f1cc22272b3172d9e8c2e843c80",
+    "audio-assets.js": "60595c37cd4a0f944573ddc7e8168a570c3ec15508a54754ac674a094898bd5a",
+    "bonds.css": "5e37aa846cc589e2fa281e153cc9fda71713346c27304d1c88b9e761074e63d7",
+    "story-extra.js": "ef1d8ca95f3039f68fcc425522efa65d993b9a2fcb3a949523b2746ca4da358a",
+    "presentation.js": "5b69b687daa9f8865d83a2272ec1fcc01644fcdbc1b1c05a2999f01faf919ce9",
+    "index_iphone_safe.html": "b57ba44c9595235bf9a213ab2ea59b70d674de28dee1dc22f13b38b58062ef8a",
+    "interface.css": "d4c19de3184cc12b2f354385d47138a7572f219d364f50c6cda01a6144689633",
+    "portraits.js": "8f209d303d998e68ff3171bc4efaaf80946b26e3770a7208d2902f9216de62a6",
+    "cast.js": "00e9f5657ebe98bd4a689343d1c930e79702c2a59ac4a9a944ba3a05413561b9"
+  }
+}

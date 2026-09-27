@@ -1,16 +1,27 @@
-# v97 開発引継ぎ — 現行接続点
+# v100 開発引継ぎ
 
-- 正本：ZIPルート、作業 `/workspace/scratch/c938c42c53df/kyotei-v97`。build97、save.version80／drive.version2。公開・GitHub変更なし。
-- 今回：`race-renderer.js` のboatScene/racerPoseと材質7〜11、`presentation.js`のmedalSVG/rewardMarkup、`story.css`の報酬とカットイン。計算・入力・報酬のバランスはv96と同一。
-- Gにshell/deck/deckTrim/wing/torso/helmet/visor/helmetSeal/wheel/thin/数字1〜6を追加。生成メッシュの法線とGLの逆転置相当計算で非等方拡大に対応。5/6だけ半透明。7塗装、8布、9金属、10バイザー、11木材。
-- boatSceneは頭・肩・腕・脚と装備を別部品で配置。自艇の頭／胴を非表示。姿勢はsteer/yawRate/speed/heelから表示専用計算。motion=falseなら揺れ・呼吸なし。競技状態を書き換えない。
-- LOD：通常32/70m、Canvas18/46mで小物省略。CanvasはsoftTinyとhelmetLowで頂点削減。Canvasの重なりは艇単位＋部品順で近似し、GLESの深度と完全一致ではない。
-- 数字はDejaVu Sans由来の静的三角形。THIRD_PARTY_NOTICES.txtとソースコメントにライセンス、単体HTMLにも埋込。tools/generate-deck-digits.pyは開発時Matplotlibで再生成、ゲーム実行・package.pyには不要。
-- presentationはmedalSVG/rewardMarkupを純関数で公開。箔8/12/16、短縮・不運0。role/status・ESC・クリック・既存タイマー・レース暗転禁止を維持。決定済み報酬にだけ演出する既存契約を変えない。
-- 新ゲート：node tests/visual-v97-tests.cjs（15項目）、接近モデルはmodel-v97-preview.cjs。既存water-v96-testsは現在build名でPNGを出し、21項目を継続。演出の実機手動確認はtests/presentation-preview.html。
-- 全検証集約：tests/release-v97-verification.json。実際に動かしたのはMesa GLES2、Skia Canvas、DOM/API代替環境。実ブラウザCSS・Android/iPhone実機は未検証。実機FPSを断言しない。
-- 共通13JS＋2CSS。package.pyでAndroid13JS、iPhone互換込み14JSを内蔵。static-checksとiphone-static-checksでソース一致。97を既知版に追加し、旧整備補正を再適用しない。
-- v96水面：6波長法線・背景反射・Fresnel・天候・泡。canvas縮小バッファ最大216×144、空192×96、泡96×96。画像未読込で色の反射へ代替。詳細は必要時にBALANCE_REPORT.mdのv96節を参照。
-- 既存キャリア：予選3モード／決勝操船必須、師匠5＋壁5、物語51。racing.js/cast.js/story.js/thrill.jsは今回変更なし。保存済み精算ID、SG招待枠、runInstant分割処理を維持。
+正本はZIPルート。build '100'、save.version80／drive.version2。今回、物理・育成バランスを変更していない。公開／GitHub変更なし。
 
-変更理由@195〜202はCHANGES_AT.md。新規依頼に関係するコードと試験だけを読み、全履歴の再読を避ける。
+## v100の接続
+
+- `music.js`：KM_MUSIC.tracks/select/resolve/create。7枠。main/race/final/sgLounge/heroineの5MP3、sgRace/sgFinalはsrc:nullでrace/finalへ代用。曲対応と追加手順はMUSIC.md。元MP3はassets/audio、音質変更なし。
+- `script.js` render→syncAudioScene→audioSceneInfo→KM_AUDIO.scene。raceでは現レースgrade/type、その他はcareer.stage、bonds pending／romance outcome／SG恋愛報酬をheroineへ。titleなど育成外はmain。レースの種別championshipだけ決勝曲、consolationは通常曲。おまけレースを育成SGと混同しない。
+- `audio.js`：既存km_audio_v92のmute/BGM/SFX/volumeを継承。最初mute。MP3一重再生、同曲更新は位置維持、切替で旧要素解放、0.32秒フェードイン。短い6効果音だけWeb Audio。旧harbor/raceループはmusicモジュール不在時のみ。隠れたら停止し次タップまで再開しない。play Promiseは世代tokenで競合を防ぐ。
+- `portraits.js`：KM_PORTRAITS.fixed/definition/render。ヒロイン5＋師匠5＋壁5の専用顔、一般NPCはIDハッシュから輪郭等を独立決定。cast_接頭辞は除去して同一人物へ。Bonds.portraitとCast.portraitがこの共通描画を利用。thoughtful/sad/warm差分。SVGのみ、名前をescape、任意色はhex限定。ゲームの乱数不使用。
+- scriptsは19本。portraits.jsをbonds/castより前、music.jsをaudioより前。共通4CSS。iPhoneのみ互換JS1本＋CSS1本追加。
+- tools/package.pyは既定music.js内のassets/audio/*.mp3をdata URIへ変換し2つの単体HTMLを出力。ファイル欠落は生成エラー。ZIPはassets以下を再帰収録。HTML約30MB、ZIPは両単体版・原MP3を含むため大きい。
+- 保存build99→100は既存進行を保持。音量設定は端末側。顔はIDから作るのでセーブに画像を増やさない。
+
+## 既存ゲームの主要点
+
+- data.jsの図鑑89能力。bonds-data.jsに成人5人×7話＋SG本文。通常物語123イベントはstory.js/story-extra.js。
+- bonds.js：ensure/gate/open/scene/choose/depart/final/rivalInfo/train/status/valid。career.bonds version1。2走ごとの交流、1シリーズ1回のライバル特訓、重要章2/4の悪手で交際不可、第6話告白。選択キーは保存し二重処理防止。登録選手へ履歴を残す。
+- 恋愛LR：akari→bond_reignite、mio→bond_headline、nagi→bond_breakwater、kanade→bond_clockletter、tsumugi→bond_lastorder。交際中stage8/championship未開始で1回。専用LRは通常抽選とNPCから除外。登録選手由来のSG継承は維持。
+- profile.jsは名前・地域・ひと言・色・お気に入り。3保存枠、更新前バックアップ、JSON、Android保存不可時の一時保存を継承。
+- race-renderer.jsが水面と艇、driving-ui.jsが左右下半分タッチ。racing.jsは固定刻みの3周物理。優勝戦と準優勝戦は操船必須。予選のみ観戦・結果スキップ、観戦→操船可。
+
+## 検証と次作業
+
+新規 node tests/music-v100-tests.cjs（21）。回帰はrelationships-v99（26）、career-v98（22）、race-v95（22）、android-update（14）、presentation-v94（5）、audio-v92（5）。単体生成後python3 tests/static-checks.py（45）とiphone-static-checks.py（24）。計184。集計tests/release-v100-verification.json。MP3のハッシュ・全区間decodeはaudio-files-v100.json。
+
+NODE_PATHに開発依存を設定して tests/portraits-v100-preview.cjs を実行するとSkia確認画像を再生成。ゲーム本体は外部ライブラリ不要。実ブラウザ／スマホ実機／音出しは未検証。次は端末再生と切替、単体HTMLのメモリ確認、未完成SG2曲の差し替え。古い検証JSONは各版の記録で現在の集計に混ぜない。

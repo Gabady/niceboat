@@ -35,7 +35,7 @@ function profile(c,kind,template){
  n.id='cast_'+def.id;n.name=def.name;n.castId=def.id;n.castRole=kind;n.special=false;
  for(const [i,k] of D.statKeys.entries())n.stats[k]=k===def.key?(kind==='boss'?100:94):(kind==='boss'?(easy?79:85)+(S.hash(def.id+k)%6):Math.min(90,Math.max(easy?69:75,n.stats[k])));
  const phases={speed:[2,4],turn:[1,3],start:[0],accel:[1,2,4],power:[0,1,3,4]}[def.key];
- const usable=D.abilities.filter(a=>a.category!=='弱点'&&a.type!=='extra'&&a.type!=='growth'&&a.type!=='tuning'&&a.type!=='prep');
+ const usable=D.abilities.filter(a=>!a.exclusive&&a.category!=='弱点'&&a.type!=='extra'&&a.type!=='growth'&&a.type!=='tuning'&&a.type!=='prep');
  n.skills=[];for(const rarity of kind==='boss'?['LR','UR','SSR','SR']:['UR','SSR','SR']){
   let pool=usable.filter(a=>a.rarity===(easy&&rarity==='UR'?'SSR':rarity)&&!n.skills.includes(a.id));
   const suited=pool.filter(a=>(a.phases||[]).some(p=>phases.includes(p)));if(suited.length)pool=suited;
@@ -65,7 +65,7 @@ function settle(c,r,result,api){
  const won=!!me&&!!op&&!me.startFault&&!me.capsized&&!me.dnf&&me.place<op.place,entry=q.kind==='boss'?t.boss:t.mentor;entry[won?'wins':'losses']++;
  const z={kind:q.kind,id:q.id,name:def.name,won,money:0,skill:null};
  if(won){z.money=q.kind==='boss'?(r.type==='championship'?300:120):60;const p=c.player;p.money+=z.money;p.totalEarnings+=z.money;
-  const rar=api.rewardRarity(p,q.kind==='boss'?(r.type==='championship'?'LR':'UR'):'SSR');let pool=D.abilities.filter(a=>a.rarity===rar&&a.category!=='弱点'&&!p.skills.includes(a.id));if(!pool.length)pool=D.abilities.filter(a=>a.rarity===rar&&a.category!=='弱点');
+  const rar=api.rewardRarity(p,q.kind==='boss'?(r.type==='championship'?'LR':'UR'):'SSR');let pool=D.abilities.filter(a=>!a.exclusive&&a.rarity===rar&&a.category!=='弱点'&&!p.skills.includes(a.id));if(!pool.length)pool=D.abilities.filter(a=>!a.exclusive&&a.rarity===rar&&a.category!=='弱点');
   const id=pool[S.hash(r.id+':castReward')%pool.length]?.id;if(id){z.skill=id;result.acquired.push(api.acquire(c,p,id,q.kind==='boss'?'最強の壁に先着':'師匠に先着'));}
  }
  result.castDuel=z;const st=S.ensure(c);st.log.push({index:++st.serial,stage:c.stage,kind:'duelResult',title:(q.kind==='boss'?'最強の壁':'師匠')+(won?'を越えた':'との一戦'),note:def.name+'「'+(won?'今日の航跡は、お前のものだ。':def.quote)+'」',rewards:[]});
@@ -74,9 +74,7 @@ function settle(c,r,result,api){
 function valid(t){const count=v=>Number.isInteger(v)&&v>=0&&v<=60,entry=(v,list)=>v===null||v&&list.some(x=>x.id===v.id)&&count(v.wins)&&count(v.losses);
  return !!t&&t.version===1&&typeof t.mentorLocked==='boolean'&&entry(t.mentor,mentors)&&entry(t.boss,walls)&&Number.isInteger(t.trained)&&t.trained>=0&&t.trained<=1000&&Array.isArray(t.stages)&&t.stages.length<=9&&t.stages.every(x=>Number.isInteger(x)&&x>=0&&x<=8)&&(!t.schedule||['mentor','boss'].includes(t.schedule.kind)&&[1,2,3,4].includes(t.schedule.round))&&Array.isArray(t.duels)&&t.duels.length<=12&&new Set(t.duels.map(x=>x.raceId)).size===t.duels.length&&t.duels.every(x=>typeof x.raceId==='string'&&x.raceId.length<110&&(x.kind==='boss'?walls:mentors).some(d=>d.id===x.id)&&['mentor','boss'].includes(x.kind)&&['active','settled'].includes(x.status));
 }
-function portrait(id,large=false){const p=map[id];if(!p)return '';const boss=walls.includes(p),skin=['#e4b49b','#f2c8b0','#bd8c75','#d8a18a','#cea58e'][p.hair],hair=boss?['#262b40','#eee5f2','#b9c8cf','#5e3445','#aeb4b3'][p.hair]:['#203949','#2c263b','#73828b','#402f30','#233a34'][p.hair];
- const h=['M22 39Q15 10 43 13Q73 7 74 41L63 25 45 30 32 23Z','M19 47Q14 13 43 11Q78 8 78 49L69 67 63 29 52 26 30 35 24 71Z','M24 35Q20 11 48 13Q72 12 74 37L64 25 50 28 37 24Z','M21 38L17 19 33 23 38 7 50 20 66 10 66 25 78 26 72 44 60 26 35 31Z','M24 33Q26 15 47 16Q70 15 73 34L64 29 35 29Z'][p.hair];
- return '<svg class="cast-face'+(large?' large':'')+'" viewBox="0 0 96 104" role="img" aria-label="'+p.name+'の顔"><rect width="96" height="104" rx="18" fill="#102b3e"/><path d="M0 72L96 8V104H0Z" fill="'+p.color+'" opacity=".24"/><path d="M6 104Q8 78 38 77L58 77Q87 78 90 104" fill="'+p.color+'"/><path d="M36 71V83L48 93 60 83V69" fill="'+skin+'"/><path d="M25 35Q24 16 48 18Q74 19 72 39L69 62Q65 79 48 81Q30 75 27 59Z" fill="'+skin+'"/><path d="'+h+'" fill="'+hair+'"/><path d="'+(boss?'M31 43L42 47M54 47L66 43':'M32 46L42 44M54 44L65 46')+'" stroke="#263039" stroke-width="3" fill="none"/><path d="M33 50H42M54 50H63" stroke="#fff7ed" stroke-width="3"/><path d="M38 49V53M58 49V53" stroke="#223142" stroke-width="3"/><path d="'+(boss?'M48 50L45 61 50 62M41 70L56 69':'M48 50L45 61 50 62M41 69Q49 72 56 68')+'" fill="none" stroke="#8d6155" stroke-width="1.8"/><path d="M18 89L33 84 48 96 62 84 78 89" stroke="#effbff" stroke-width="3" fill="none"/>'+(boss?'<path d="M8 8H26M8 8V25M70 96H88V78" stroke="#f8d583" stroke-width="2" fill="none"/>':'')+'</svg>';
-}
+function portrait(id,large=false){const p=map[id];if(!p)return '';const P=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);return P?P.render({...p,role:'cast'},large):'';}
+
 const API={mentors,walls,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);

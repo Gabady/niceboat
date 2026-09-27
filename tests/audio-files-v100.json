@@ -1,0 +1,112 @@
+[
+  {
+    "file": "race.mp3",
+    "bytes": 4100708,
+    "sha256": "fccbe1ca848cc3a54b569b81bf47997e06779d77a463316a473dbb548ab53f55",
+    "original_bytes_match": true,
+    "full_decode_passed": true,
+    "media": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "48000"
+        },
+        {
+          "codec_name": "mjpeg"
+        }
+      ],
+      "format": {
+        "duration": "192.840000"
+      }
+    }
+  },
+  {
+    "file": "main.mp3",
+    "bytes": 2631555,
+    "sha256": "d4ec072d3717a67d868ed1527c1f2026d4d1270b5e892ed5778aa2df921213fe",
+    "original_bytes_match": true,
+    "full_decode_passed": true,
+    "media": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "48000"
+        },
+        {
+          "codec_name": "mjpeg"
+        }
+      ],
+      "format": {
+        "duration": "114.696000"
+      }
+    }
+  },
+  {
+    "file": "sg-lounge.mp3",
+    "bytes": 4956920,
+    "sha256": "1b533947d741cfe7e102298bbeff993b29c6d9d74b210c5366e93c98849c91a3",
+    "original_bytes_match": true,
+    "full_decode_passed": true,
+    "media": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "48000"
+        },
+        {
+          "codec_name": "mjpeg"
+        }
+      ],
+      "format": {
+        "duration": "214.896000"
+      }
+    }
+  },
+  {
+    "file": "heroine.mp3",
+    "bytes": 4368417,
+    "sha256": "3bbf8f01cbd7638b3b7eb7e0b10c8f784adeb50d72c7908b36880c0bac4dff5c",
+    "original_bytes_match": true,
+    "full_decode_passed": true,
+    "media": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "48000"
+        },
+        {
+          "codec_name": "mjpeg"
+        }
+      ],
+      "format": {
+        "duration": "183.216000"
+      }
+    }
+  },
+  {
+    "file": "final.mp3",
+    "bytes": 4192943,
+    "sha256": "9331fb8ebec1a9133359154ebf3ca1519edd37d48a444d94685e2fbb70d87982",
+    "original_bytes_match": true,
+    "full_decode_passed": true,
+    "media": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "48000"
+        },
+        {
+          "codec_name": "mjpeg"
+        }
+      ],
+      "format": {
+        "duration": "184.776000"
+      }
+    }
+  }
+]

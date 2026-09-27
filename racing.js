@@ -202,6 +202,12 @@ function enterZone(d,b,r){
 function driveCondition(a,b,d,r,target){
   const spec=a.drive||{};
   if(a.type==='debuff')return !!target&&Math.hypot(target.x-b.x,target.z-b.z)<(spec.range||28);
+  if(spec.when==='composed')return Math.abs(b.steer)<.2&&b.throttle>.6;
+  if(spec.when==='turning')return Math.abs(b.steer)>.2;
+  if(spec.when==='duel')return d.boats.some(o=>o!==b&&activeBoat(o)&&Math.hypot(o.x-b.x,o.z-b.z)<18);
+  if(spec.when==='finalLap')return b.progress>=C.length*2;
+  if(spec.when==='tired')return b.stamina<75;
+  if(spec.when==='exit')return Number.isFinite(b.turnExitAt)&&d.elapsed-b.turnExitAt<=4;
   if(spec.when==='inside')return project(b.x,b.z).radial<C.inner+15;
   if(spec.when==='outside')return project(b.x,b.z).radial>C.inner+9;
   if(spec.when==='wake')return b.wakeLoad>.08||d.boats.some(o=>o!==b&&o.progress>b.progress&&o.progress-b.progress<35);

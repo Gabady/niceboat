@@ -1,5 +1,5 @@
 {
-  "passed": 18,
+  "passed": 24,
   "failed": 0,
   "results": [
     {
@@ -23,7 +23,27 @@
       "passed": true
     },
     {
+      "name": "profile.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "story-extra.jsがソースと一致",
+      "passed": true
+    },
+    {
       "name": "story.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "portraits.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "bonds-data.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "bonds.jsがソースと一致",
       "passed": true
     },
     {
@@ -36,6 +56,10 @@
     },
     {
       "name": "audio-assets.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "music.jsがソースと一致",
       "passed": true
     },
     {

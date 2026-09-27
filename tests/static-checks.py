@@ -23,17 +23,18 @@ def check(name,condition):
     assert condition,name
     checks.append({'name':name,'passed':True})
 h=HTML();h.feed((SRC/'index.html').read_text())
-check('分割版がCSSと13つのJSのローカル参照を持つ',h.refs==['style.css','story.css','data.js','racing.js','story.js','cast.js','race-feedback.js','audio-assets.js','audio.js','presentation.js','thrill.js','visual-assets.js','race-renderer.js','driving-ui.js','script.js'])
+check('分割版がCSSと19個のJSのローカル参照を持つ',h.refs==['style.css','story.css','interface.css','bonds.css','data.js','racing.js','profile.js','story-extra.js','story.js','portraits.js','bonds-data.js','bonds.js','cast.js','race-feedback.js','audio-assets.js','music.js','audio.js','presentation.js','thrill.js','visual-assets.js','race-renderer.js','driving-ui.js','script.js'])
 check('参照ファイルがすべて存在',all((SRC/r).is_file() for r in h.refs))
 a=HTML();a.feed((SRC/'index_android_safe.html').read_text())
-check('単体版に外部参照なし・13つのインラインJSとCSSを保持',len(a.refs)==0 and len(a.scripts)==13 and len(a.styles)==1)
-for i,file in enumerate(['data.js','racing.js','story.js','cast.js','race-feedback.js','audio-assets.js','audio.js','presentation.js','thrill.js','visual-assets.js','race-renderer.js','driving-ui.js','script.js']):
+check('単体版に外部参照なし・19個のインラインJSとCSSを保持',len(a.refs)==0 and len(a.scripts)==19 and len(a.styles)==1)
+for i,file in enumerate(['data.js','racing.js','profile.js','story-extra.js','story.js','portraits.js','bonds-data.js','bonds.js','cast.js','race-feedback.js','audio-assets.js','music.js','audio.js','presentation.js','thrill.js','visual-assets.js','race-renderer.js','driving-ui.js','script.js']):
     source=(SRC/file).read_text()
+    if file=='music.js': source=re.sub(r"(['\"])(assets/audio/[^'\"\n]+\.mp3)\1",lambda m:m.group(1)+'data:audio/mpeg;base64,'+base64.b64encode((SRC/m.group(2)).read_bytes()).decode()+m.group(1),source)
     check('単体版の'+file+'が分割版と一致',a.scripts[i].strip().replace('<\\/script','</script')==source.strip())
     with tempfile.NamedTemporaryFile(suffix='.js',mode='w',delete=True) as tmp:
         tmp.write(a.scripts[i]);tmp.flush();subprocess.run(['node','--check',tmp.name],check=True)
     check(file+'構文',True)
-css=(SRC/'style.css').read_text()+'\n'+(SRC/'story.css').read_text()
+css=(SRC/'style.css').read_text()+'\n'+(SRC/'story.css').read_text()+'\n'+(SRC/'interface.css').read_text()+'\n'+(SRC/'bonds.css').read_text()
 compiled_css=re.sub(r'url\("(assets/[^"\\n]+)"\)',lambda m:'url("data:image/webp;base64,'+base64.b64encode((SRC/m.group(1)).read_bytes()).decode()+'")',css)
 check('単体版CSSと画像埋め込みが分割版と一致',a.styles[0].strip()==compiled_css.strip())
 text=re.sub(r'/\*.*?\*/','',css,flags=re.S);stack=[];quote=None;escaped=False
