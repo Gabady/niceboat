@@ -1,0 +1,206 @@
+{
+  "build": 102,
+  "scope": "Encounter rolls only, assuming every listed race is reached; not observed player completion or SG qualification rates.",
+  "rates": [
+    0.002,
+    0.004,
+    0.009,
+    0.013,
+    0.019,
+    0.023,
+    0.028,
+    0.035,
+    0.045
+  ],
+  "runs": [
+    {
+      "racesPerSeries": 5,
+      "samples": 20000,
+      "rows": [
+        {
+          "stage": "新人シリーズ 前期",
+          "none": 0.99005,
+          "one": 0.00995,
+          "twoOrMore": 0,
+          "meanPeople": 0.00995,
+          "any": 0.009950000000000014,
+          "theoreticalNone": 0.990039920079968
+        },
+        {
+          "stage": "新人シリーズ 後期",
+          "none": 0.9714,
+          "one": 0.0281,
+          "twoOrMore": 0.0005,
+          "meanPeople": 0.0291,
+          "any": 0.02859999999999996,
+          "theoreticalNone": 0.9703968957062699
+        },
+        {
+          "stage": "G3シリーズ 前期",
+          "none": 0.9285,
+          "one": 0.06875,
+          "twoOrMore": 0.00275,
+          "meanPeople": 0.07435,
+          "any": 0.07150000000000001,
+          "theoreticalNone": 0.9275080144682093
+        },
+        {
+          "stage": "G3シリーズ 後期",
+          "none": 0.87165,
+          "one": 0.1186,
+          "twoOrMore": 0.00975,
+          "meanPeople": 0.13835,
+          "any": 0.12834999999999996,
+          "theoreticalNone": 0.8687672368295538
+        },
+        {
+          "stage": "G2シリーズ 前期",
+          "none": 0.7905,
+          "one": 0.18615,
+          "twoOrMore": 0.02335,
+          "meanPeople": 0.2346,
+          "any": 0.20950000000000002,
+          "theoreticalNone": 0.7893115742528484
+        },
+        {
+          "stage": "G2シリーズ 後期",
+          "none": 0.70585,
+          "one": 0.246,
+          "twoOrMore": 0.04815,
+          "meanPeople": 0.3475,
+          "any": 0.29415,
+          "theoreticalNone": 0.7026212652307502
+        },
+        {
+          "stage": "G1シリーズ 前期",
+          "none": 0.6112,
+          "one": 0.30415,
+          "twoOrMore": 0.08465,
+          "meanPeople": 0.4866,
+          "any": 0.38880000000000003,
+          "theoreticalNone": 0.6096107466572223
+        },
+        {
+          "stage": "G1シリーズ 後期",
+          "none": 0.51345,
+          "one": 0.3436,
+          "twoOrMore": 0.14295,
+          "meanPeople": 0.6621,
+          "any": 0.48655000000000004,
+          "theoreticalNone": 0.510139768998864
+        },
+        {
+          "stage": "最高峰シリーズ",
+          "none": 0.4085,
+          "one": 0.36845,
+          "twoOrMore": 0.22305,
+          "meanPeople": 0.88545,
+          "any": 0.5915,
+          "theoreticalNone": 0.40523415175616256
+        }
+      ],
+      "identity": {
+        "mio": 3552,
+        "akari": 3531,
+        "nagi": 3523,
+        "tsumugi": 3590,
+        "kanade": 3513
+      }
+    },
+    {
+      "racesPerSeries": 6,
+      "samples": 20000,
+      "rows": [
+        {
+          "stage": "新人シリーズ 前期",
+          "none": 0.98765,
+          "one": 0.0123,
+          "twoOrMore": 0.00005,
+          "meanPeople": 0.0124,
+          "any": 0.012349999999999972,
+          "theoreticalNone": 0.9880598402398081
+        },
+        {
+          "stage": "新人シリーズ 後期",
+          "none": 0.9656,
+          "one": 0.03385,
+          "twoOrMore": 0.00055,
+          "meanPeople": 0.03495,
+          "any": 0.034399999999999986,
+          "theoreticalNone": 0.9645822775071979
+        },
+        {
+          "stage": "G3シリーズ 前期",
+          "none": 0.9144,
+          "one": 0.0813,
+          "twoOrMore": 0.0043,
+          "meanPeople": 0.09,
+          "any": 0.08560000000000001,
+          "theoreticalNone": 0.9136528329675061
+        },
+        {
+          "stage": "G3シリーズ 後期",
+          "none": 0.84645,
+          "one": 0.14125,
+          "twoOrMore": 0.0123,
+          "meanPeople": 0.16645,
+          "any": 0.15354999999999996,
+          "theoreticalNone": 0.8446642654137236
+        },
+        {
+          "stage": "G2シリーズ 前期",
+          "none": 0.75635,
+          "one": 0.212,
+          "twoOrMore": 0.03165,
+          "meanPeople": 0.27815,
+          "any": 0.24365000000000003,
+          "theoreticalNone": 0.7528321637631249
+        },
+        {
+          "stage": "G2シリーズ 後期",
+          "none": 0.658,
+          "one": 0.2795,
+          "twoOrMore": 0.0625,
+          "meanPeople": 0.41335,
+          "any": 0.34199999999999997,
+          "theoreticalNone": 0.654734985342657
+        },
+        {
+          "stage": "G1シリーズ 前期",
+          "none": 0.55695,
+          "one": 0.32775,
+          "twoOrMore": 0.1153,
+          "meanPeople": 0.5807,
+          "any": 0.44305000000000005,
+          "theoreticalNone": 0.5521577056426928
+        },
+        {
+          "stage": "G1シリーズ 後期",
+          "none": 0.4498,
+          "one": 0.3611,
+          "twoOrMore": 0.1891,
+          "meanPeople": 0.79285,
+          "any": 0.5502,
+          "theoreticalNone": 0.44588926580404314
+        },
+        {
+          "stage": "最高峰シリーズ",
+          "none": 0.3399,
+          "one": 0.3701,
+          "twoOrMore": 0.29,
+          "meanPeople": 1.0655,
+          "any": 0.6601,
+          "theoreticalNone": 0.33825735369677906
+        }
+      ],
+      "identity": {
+        "mio": 4286,
+        "akari": 4208,
+        "nagi": 4223,
+        "tsumugi": 4354,
+        "kanade": 4239
+      }
+    }
+  ],
+  "passed": true
+}

@@ -93,6 +93,7 @@ function series(c){
  const opponent=near[Math.floor(random(t)*near.length)];let record;
  if(t.rivals.length&&random(t)<.68){record=t.rivals[t.rivals.length-1];opponent.id=record.id;opponent.name=record.name;}
  else{record={id:opponent.id,name:opponent.name,wins:0,losses:0,met:c.stage};t.rivals.push(record);}
+ const portraits=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);if(portraits){portraits.assign(record,t.rivals.filter(x=>x!==record).map(x=>portraits.definition(x).key));opponent.portraitKey=portraits.definition(record).key;}
  c.series.npcs.filter(n=>n!==opponent&&n.name===opponent.name).forEach((n,i)=>n.name=n.name+'・'+(i+2));
  t.duel={stage:c.stage,round:1+Math.floor(random(t)*4),rivalId:opponent.id,rivalName:opponent.name,status:'scheduled',raceId:null,money:[8,12,20,25,35,45,60,75,150][c.stage]};
 }

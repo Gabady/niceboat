@@ -1,0 +1,169 @@
+{
+  "build": 101,
+  "generator": "Built-in image generation",
+  "delivery": "512 × 512 PNG and WebP; original generation retained in working files. Only resolution/format export, no artistic edits.",
+  "portraits": [
+    {
+      "id": "akari",
+      "png": "assets/portrait-png/akari.png",
+      "webp": "assets/portraits/akari.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: premium character portrait for Japanese boat-racing story game. Create ONE portrait of fictional Japanese woman Akari Shiomi, age 24, a young marine mechanic. Emotionally engaging, realistic cinematic portrait, subtle painterly finish, convincing natural skin texture and anatomy, individual face, expressive warm dark eyes, freckles near nose, short tousled chestnut hair tucked behind one ear, cheerful confident small smile with slightly visible teeth. Worn but clean orange and navy mechanic jacket over cream shirt, no logos, no tools. Front three-quarter view looking at viewer, head and upper chest framed generously, complete hair and shoulders within square composition. Background softly defocused teal waterfront workshop with warm daylight. Cinematic soft side lighting, restrained color grade, fine hair strands, believable fabric. Adult, not anime, not cartoon, not vector, not plastic 3D, not fashion retouched, not celebrity. No text, no frame, no watermark. One person only. Professional narrative-game key character art, face occupies most of image, readable small."
+    },
+    {
+      "id": "mio",
+      "png": "assets/portrait-png/mio.png",
+      "webp": "assets/portraits/mio.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 25, investigative local journalist, distinct long face, thoughtful slightly hooded brown eyes, thin round bronze glasses, straight chin length dark navy black bob, intelligent reserved closed-lip smile, navy blazer and oatmeal blouse, blurred harbor newspaper office"
+    },
+    {
+      "id": "nagi",
+      "png": "assets/portrait-png/nagi.png",
+      "webp": "assets/portraits/nagi.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 26, emergency nurse on her day off, soft round face, gentle slightly tired kind eyes, warm medium tan skin, chestnut hair in a loose practical bun, reassuring tender smile, sage knit cardigan and ivory shirt, blurred waterfront park"
+    },
+    {
+      "id": "kanade",
+      "png": "assets/portrait-png/kanade.png",
+      "webp": "assets/portraits/kanade.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 23, pianist and teacher, slender oval face, delicate serious eyebrows, expressive large but anatomically realistic dark eyes, long straight black hair tucked behind one ear, shy hopeful smile, muted lavender blouse, blurred music room with window overlooking sea"
+    },
+    {
+      "id": "tsumugi",
+      "png": "assets/portrait-png/tsumugi.png",
+      "webp": "assets/portraits/tsumugi.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 27, waterfront cafe owner, distinctive broad cheekbones and softly squared jaw, small beauty mark near cheek, shoulder length wavy warm brown hair, smiling eyes and welcoming genuine smile, linen shirt and brown apron, blurred refined seaside cafe"
+    },
+    {
+      "id": "hayase",
+      "png": "assets/portrait-png/hayase.png",
+      "webp": "assets/portraits/hayase.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 37, expert boat racer mentor, lean long face, sharp observant narrow eyes, short black side parted hair with slight gray temples, composed serious yet supportive expression, navy racing suit with muted cyan panels, blurred waterside paddock"
+    },
+    {
+      "id": "tsukino",
+      "png": "assets/portrait-png/tsukino.png",
+      "webp": "assets/portraits/tsukino.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 35, expert turn technique mentor, diamond face with defined cheekbones, calm almond eyes, dark plum black hair in low ponytail, perceptive confident half smile, slate racing jacket with subtle lavender trim, blurred boat racing paddock"
+    },
+    {
+      "id": "kuzumi",
+      "png": "assets/portrait-png/kuzumi.png",
+      "webp": "assets/portraits/kuzumi.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 52, veteran boat-racer mentor, weathered angular face, silver thinning hair, deep-set hooded eyes, fine forehead wrinkles, quiet melancholic but warm expression, navy racing jacket with muted amber trim, blurred early morning boathouse"
+    },
+    {
+      "id": "akamine",
+      "png": "assets/portrait-png/akamine.png",
+      "webp": "assets/portraits/akamine.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 33, explosive acceleration specialist mentor, square jaw and healthy tan, lively open eyes, short tousled copper black hair, slight stubble, energetic inviting toothy smile, navy racing suit with rust orange panels, blurred harbor pit"
+    },
+    {
+      "id": "iwase",
+      "png": "assets/portrait-png/iwase.png",
+      "webp": "assets/portraits/iwase.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 44, powerful boat-race mentor, solid broad face and strong neck, kind deep brown eyes, dark crew cut hair and short neatly shaped beard, grounded friendly slight smile, dark green and navy racing jacket, blurred stormy waterfront"
+    },
+    {
+      "id": "kurose",
+      "png": "assets/portrait-png/kurose.png",
+      "webp": "assets/portraits/kurose.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 32, reigning boat racing champion, angular narrow face, exceptionally intense cold focused eyes, sharp cheekbones, black slicked back hair with one silver streak at temple, firm unsmiling mouth, premium black racing suit with ice blue trim, imposing quiet confidence, blurred steel blue sea at dawn"
+    },
+    {
+      "id": "shirakami",
+      "png": "assets/portrait-png/shirakami.png",
+      "webp": "assets/portraits/shirakami.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 29, formidable boat racing champion, sharply defined diamond face, piercing almond eyes, silver ash short asymmetrical bob, subtle knowing half-smile, pale natural skin with realistic texture, black tailored racing jacket with pale lilac trim, blurred cool waterfront paddock"
+    },
+    {
+      "id": "kagura",
+      "png": "assets/portrait-png/kagura.png",
+      "webp": "assets/portraits/kagura.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 27, champion start specialist, youthful heart-shaped face, alert wide eyes, sandy dark blond hair swept to side, mischievous confident asymmetric smile, dark racing suit with muted gold accents, defocused harbor morning"
+    },
+    {
+      "id": "raiden",
+      "png": "assets/portrait-png/raiden.png",
+      "webp": "assets/portraits/raiden.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 34, intimidating champion acceleration racer, muscular neck, square rugged jaw, small healed eyebrow scar, deep-set narrow fierce eyes, short dark burgundy textured quiff, challenging tooth-baring slight grin, charcoal racing suit with red panels, blurred harbor under stormy skies"
+    },
+    {
+      "id": "onizuka",
+      "png": "assets/portrait-png/onizuka.png",
+      "webp": "assets/portraits/onizuka.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 48, physically powerful final champion, imposing broad weathered face, strong thick eyebrows, stern steady eyes, very short dark salt-and-pepper hair, neatly trimmed thick beard, unsmiling unshakable calm, navy and deep forest-green racing suit, dark defocused waterfront"
+    },
+    {
+      "id": "rival_01",
+      "png": "assets/portrait-png/rival_01.png",
+      "webp": "assets/portraits/rival_01.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 22, promising young racer, slim heart-shaped clean-shaven face, thick straight eyebrows, short straight black fringe, determined eyes and earnest closed smile, navy racing jacket with white collar, blurred harbor"
+    },
+    {
+      "id": "rival_02",
+      "png": "assets/portrait-png/rival_02.png",
+      "webp": "assets/portraits/rival_02.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 29, competitive racer, long thin face, medium brown side-parted hair, small mole beside left eye, skeptical half-smile, light stubble, dark racing jacket with orange trim, blurred harbor"
+    },
+    {
+      "id": "rival_03",
+      "png": "assets/portrait-png/rival_03.png",
+      "webp": "assets/portraits/rival_03.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 41, seasoned racer, wide round face, tanned skin, close shaved black hair, cheerful deep laugh lines and kind small eyes, broad open smile, navy racing jacket green trim, blurred harbor"
+    },
+    {
+      "id": "rival_04",
+      "png": "assets/portrait-png/rival_04.png",
+      "webp": "assets/portraits/rival_04.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 24, ambitious racer, angular oval face, short sporty cropped black hair, arched eyebrows, serious intelligent eyes, tight confident smile, navy racing suit sky-blue trim, blurred harbor"
+    },
+    {
+      "id": "rival_05",
+      "png": "assets/portrait-png/rival_05.png",
+      "webp": "assets/portraits/rival_05.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 35, calm racer, narrow rectangular face, slightly crooked nose, deep-set warm eyes, wavy midlength black hair and neat mustache, quiet reserved expression, navy and gray racing suit, blurred harbor"
+    },
+    {
+      "id": "rival_06",
+      "png": "assets/portrait-png/rival_06.png",
+      "webp": "assets/portraits/rival_06.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 26, extroverted racer, triangular face, slightly prominent ears, close-cut sides and copper-brown quiff, playful friendly grin, navy suit with muted burgundy panels, blurred harbor"
+    },
+    {
+      "id": "rival_07",
+      "png": "assets/portrait-png/rival_07.png",
+      "webp": "assets/portraits/rival_07.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 32, experienced racer, broad high cheekbones, sun-kissed skin, shoulder length dark brown hair tied low, soft smiling eyes and confident expression, racing jacket with cream trim, blurred harbor"
+    },
+    {
+      "id": "rival_08",
+      "png": "assets/portrait-png/rival_08.png",
+      "webp": "assets/portraits/rival_08.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 47, veteran racer, lean weathered face, silver black buzzcut, strong aquiline nose, horizontal forehead lines, tired determined eyes and slight encouraging smile, charcoal racing jacket with orange collar, blurred harbor"
+    },
+    {
+      "id": "rival_09",
+      "png": "assets/portrait-png/rival_09.png",
+      "webp": "assets/portraits/rival_09.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 31, analytical racer, oval face with rounded chin, medium complexion, short neatly brushed black hair, thin rectangular glasses, attentive calm eyes, subtle closed smile, navy racing jacket teal trim, blurred harbor"
+    },
+    {
+      "id": "rival_10",
+      "png": "assets/portrait-png/rival_10.png",
+      "webp": "assets/portraits/rival_10.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 28, focused racer, petite round face, faint freckles, hair in dark auburn short ponytail, keen direct eyes, firm resolved mouth, navy racing jacket golden yellow trim, blurred harbor"
+    },
+    {
+      "id": "rival_11",
+      "png": "assets/portrait-png/rival_11.png",
+      "webp": "assets/portraits/rival_11.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese man age 38, strong racer, very broad square jaw, olive tan complexion, thick close cropped beard, black crewcut, narrowed thoughtful eyes, serious dependable expression, charcoal suit cobalt blue trim, blurred harbor"
+    },
+    {
+      "id": "rival_12",
+      "png": "assets/portrait-png/rival_12.png",
+      "webp": "assets/portraits/rival_12.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: emotionally engaging premium narrative-game portrait. Generate ONE fictional adult character, not a real person. Realistic cinematic photography with restrained fine painterly finish, individual believable facial anatomy, skin pores, subtle asymmetry, detailed hair and fabric, natural eyes with light, no beauty smoothing. Head and upper chest portrait, complete hair within square frame, looking toward viewer, slightly turned shoulders, shallow depth of field, soft directional daylight, restrained teal/warm color grade. No text, logos, frame, watermarks, no anime, no cartoon, no vector, no plastic CGI. Subject: Japanese woman age 40, seasoned racer, elegant long face, visible gentle laugh lines, chin-length wavy dark hair streaked gray, relaxed warm direct gaze, wry small smile, navy jacket muted violet trim, blurred harbor"
+    }
+  ]
+}

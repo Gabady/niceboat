@@ -1,0 +1,2994 @@
+{
+  "quick": {
+    "id": "quick",
+    "name": "好スタート",
+    "rarity": "N",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      0
+    ],
+    "chance": 0.48,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": 9
+      }
+    },
+    "description": "スタートを＋9。",
+    "tags": [
+      "強化",
+      "序盤"
+    ],
+    "drive": {
+      "mechanics": {
+        "response": 0.8
+      },
+      "text": "助走のスロットル応答を速め、スタート予測幅を狭める。"
+    }
+  },
+  "steady": {
+    "id": "steady",
+    "name": "安定旋回",
+    "rarity": "N",
+    "category": "防御",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.48,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 5
+      },
+      "safety": 0.38
+    },
+    "description": "旋回＋5、水面でのグリップを強め、傾きの蓄積を軽減。",
+    "tags": [
+      "防御",
+      "ターン"
+    ],
+    "drive": {
+      "mechanics": {
+        "damping": 0.35,
+        "wakeShield": 0.12
+      },
+      "text": "ターンの横流れが収まりやすく、引き波に押されにくい。"
+    }
+  },
+  "push": {
+    "id": "push",
+    "name": "小さな伸び",
+    "rarity": "N",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.44,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 6
+      }
+    },
+    "description": "直線を＋6。",
+    "tags": [
+      "強化",
+      "直線"
+    ],
+    "drive": {
+      "mechanics": {
+        "speed": 0.4
+      },
+      "text": "直線の伸び足を上乗せする。"
+    }
+  },
+  "grip": {
+    "id": "grip",
+    "name": "水面をつかむ",
+    "rarity": "N",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      1,
+      2
+    ],
+    "chance": 0.42,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "accel": 7
+      }
+    },
+    "description": "加速を＋7。",
+    "tags": [
+      "強化",
+      "ターン"
+    ],
+    "drive": {
+      "when": "wake",
+      "mechanics": {
+        "damping": 0.55,
+        "accel": 0.5
+      },
+      "text": "前走艇が近い区間で、引き波を越えた再加速と横滑り収束を助ける。"
+    }
+  },
+  "stout": {
+    "id": "stout",
+    "name": "体幹の基礎",
+    "rarity": "N",
+    "category": "防御",
+    "type": "buff",
+    "phases": [
+      0,
+      1,
+      3,
+      4
+    ],
+    "chance": 0.32,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": 6
+      },
+      "safety": 0.15
+    },
+    "description": "フィジカル＋6、水面の揺れと傾きの蓄積を軽減。",
+    "tags": [
+      "防御"
+    ],
+    "drive": {
+      "mechanics": {
+        "contactShield": 0.25
+      },
+      "text": "接触で船首を振られる量を減らす。"
+    }
+  },
+  "mechanic": {
+    "id": "mechanic",
+    "name": "整備の心得",
+    "rarity": "N",
+    "category": "整備",
+    "type": "tuning",
+    "phases": [],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "tuning",
+      "success": 5
+    },
+    "description": "モーター・プロペラの調整成功率＋5。",
+    "tags": [
+      "整備"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "practice": {
+    "id": "practice",
+    "name": "積み重ね",
+    "rarity": "N",
+    "category": "育成",
+    "type": "growth",
+    "phases": [],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "growth",
+      "multiplier": 1.08
+    },
+    "description": "レース後と練習の基礎成長を8%増やす。",
+    "tags": [
+      "育成"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "smile": {
+    "id": "smile",
+    "name": "ファンサービス",
+    "rarity": "N",
+    "category": "人気",
+    "type": "fame",
+    "phases": [],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "fame",
+      "value": 2
+    },
+    "description": "出走ごとに人気を追加で＋2。",
+    "tags": [
+      "人気"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "stretch": {
+    "id": "stretch",
+    "name": "伸び足強化",
+    "rarity": "R",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.5,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 12
+      }
+    },
+    "description": "直線を＋12。",
+    "tags": [
+      "強化",
+      "直線"
+    ],
+    "drive": {
+      "mechanics": {
+        "speed": 0.8
+      },
+      "text": "直線で上がった最高速を維持しやすい。"
+    }
+  },
+  "grit": {
+    "id": "grit",
+    "name": "粘り腰",
+    "rarity": "R",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      4
+    ],
+    "chance": 0.6,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": 9,
+        "accel": 8
+      }
+    },
+    "description": "最終直線でフィジカル＋9、加速＋8。",
+    "tags": [
+      "強化",
+      "直線"
+    ],
+    "drive": {
+      "mechanics": {
+        "economy": 0.4,
+        "response": 0.5
+      },
+      "text": "ホーム直線で消耗を抑え、再加速の反応を保つ。"
+    }
+  },
+  "rain": {
+    "id": "rain",
+    "name": "荒天巧者",
+    "rarity": "R",
+    "category": "環境",
+    "type": "buff",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 0.6,
+    "condition": "rough",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 8,
+        "power": 9
+      },
+      "safety": 0.35
+    },
+    "description": "雨または風速21.6 km/h以上で旋回＋8、フィジカル＋9。転覆を軽減。",
+    "tags": [
+      "環境"
+    ],
+    "drive": {
+      "mechanics": {
+        "waveShield": 0.35,
+        "wakeShield": 0.2
+      },
+      "text": "荒天の横波と他艇の引き波を軽減する。"
+    }
+  },
+  "inside": {
+    "id": "inside",
+    "name": "インの呼吸",
+    "rarity": "R",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      0,
+      1
+    ],
+    "chance": 0.58,
+    "condition": "inner",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": 7,
+        "turn": 9
+      },
+      "tactic": "front"
+    },
+    "description": "進入1〜2コースでスタート＋7、旋回＋9。先マイと好相性。",
+    "tags": [
+      "戦術",
+      "序盤"
+    ],
+    "drive": {
+      "when": "inside",
+      "mechanics": {
+        "damping": 0.4,
+        "response": 0.7
+      },
+      "text": "内側で助走応答とターンの収まりがよくなる。"
+    }
+  },
+  "slice": {
+    "id": "slice",
+    "name": "差しの軌跡",
+    "rarity": "R",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.5,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 10,
+        "accel": 7
+      },
+      "tactic": "sashi"
+    },
+    "description": "旋回＋10、加速＋7。差し狙いと好相性。",
+    "tags": [
+      "戦術",
+      "ターン"
+    ],
+    "drive": {
+      "when": "inside",
+      "mechanics": {
+        "grip": 0.6,
+        "damping": 0.4,
+        "accel": 0.4
+      },
+      "text": "内側へ差すターンで水をつかみ、立ち上がりを強める。"
+    }
+  },
+  "outside": {
+    "id": "outside",
+    "name": "外の伸び",
+    "rarity": "R",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      1,
+      2
+    ],
+    "chance": 0.55,
+    "condition": "outer",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 10,
+        "accel": 8
+      },
+      "tactic": "outside"
+    },
+    "description": "進入4〜6コースで直線＋10、加速＋8。外攻めと好相性。",
+    "tags": [
+      "戦術",
+      "直線"
+    ],
+    "drive": {
+      "when": "outside",
+      "mechanics": {
+        "speed": 0.7,
+        "accel": 0.6
+      },
+      "text": "外の進路で速度と立ち上がりを伸ばす。"
+    }
+  },
+  "calm": {
+    "id": "calm",
+    "name": "静水の集中",
+    "rarity": "R",
+    "category": "環境",
+    "type": "buff",
+    "phases": [
+      0,
+      3
+    ],
+    "chance": 0.6,
+    "condition": "calm",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": 10,
+        "turn": 8
+      }
+    },
+    "description": "雨以外・風速10.8 km/h以下でスタート＋10、旋回＋8。",
+    "tags": [
+      "環境"
+    ],
+    "drive": {
+      "mechanics": {
+        "response": 0.7,
+        "damping": 0.25
+      },
+      "text": "静水で助走応答と旋回の収束を高める。"
+    }
+  },
+  "mentor": {
+    "id": "mentor",
+    "name": "反復の才",
+    "rarity": "R",
+    "category": "育成",
+    "type": "growth",
+    "phases": [],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "growth",
+      "multiplier": 1.14
+    },
+    "description": "レース後と練習の基礎成長を14%増やす。",
+    "tags": [
+      "育成"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "spanner": {
+    "id": "spanner",
+    "name": "熟練の手元",
+    "rarity": "R",
+    "category": "整備",
+    "type": "tuning",
+    "phases": [],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "tuning",
+      "success": 9
+    },
+    "description": "両機材の調整成功率＋9。",
+    "tags": [
+      "整備"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "engineer": {
+    "id": "engineer",
+    "name": "整備の余白",
+    "rarity": "SR",
+    "category": "整備",
+    "type": "extra",
+    "phases": [],
+    "chance": 0.4,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "extra",
+      "action": "tune"
+    },
+    "description": "各レース前40%で調整専用の追加行動を1回得る。追加分の成長・調整効果は50%。",
+    "tags": [
+      "整備"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "student": {
+    "id": "student",
+    "name": "朝練の習慣",
+    "rarity": "SR",
+    "category": "育成",
+    "type": "extra",
+    "phases": [],
+    "chance": 0.4,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "extra",
+      "action": "training"
+    },
+    "description": "各レース前40%で練習専用の追加行動を1回得る。追加分の成長・調整効果は50%。",
+    "tags": [
+      "育成"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "speed_lock": {
+    "id": "speed_lock",
+    "name": "直線封じ",
+    "rarity": "SR",
+    "category": "妨害",
+    "type": "debuff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.42,
+    "condition": "always",
+    "target": "ahead",
+    "effect": {
+      "type": "debuff",
+      "stat": "speed",
+      "amount": 14,
+      "target": "ahead"
+    },
+    "description": "直前の相手の直線をこのフェーズだけ−14。先頭なら2位を狙う。",
+    "tags": [
+      "妨害",
+      "直線"
+    ],
+    "drive": {
+      "range": 30,
+      "mechanics": {
+        "drag": 0.8
+      },
+      "text": "30m以内の相手に4秒間の抵抗増。離れた艇には届かない。"
+    }
+  },
+  "turn_press": {
+    "id": "turn_press",
+    "name": "旋回圧",
+    "rarity": "SR",
+    "category": "妨害",
+    "type": "debuff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.42,
+    "condition": "always",
+    "target": "nearest",
+    "effect": {
+      "type": "debuff",
+      "stat": "turn",
+      "amount": 13,
+      "target": "nearest",
+      "pressure": 0.012
+    },
+    "description": "近い相手の旋回−13。接近時のみ接触圧を加える。",
+    "tags": [
+      "妨害",
+      "ターン"
+    ],
+    "drive": {
+      "range": 13,
+      "mechanics": {
+        "grip": -1,
+        "damping": -0.3
+      },
+      "text": "13m以内の相手のグリップと横滑りの収まりを4秒間下げる。"
+    }
+  },
+  "start_check": {
+    "id": "start_check",
+    "name": "スタート牽制",
+    "rarity": "SR",
+    "category": "妨害",
+    "type": "debuff",
+    "phases": [
+      0
+    ],
+    "chance": 0.56,
+    "condition": "always",
+    "target": "nearest",
+    "effect": {
+      "type": "debuff",
+      "stat": "start",
+      "amount": 17,
+      "target": "nearest"
+    },
+    "description": "近いコースの相手のスタートを−17。",
+    "tags": [
+      "妨害",
+      "序盤"
+    ],
+    "drive": {
+      "range": 52,
+      "mechanics": {
+        "response": -0.65
+      },
+      "text": "助走中、52m以内の相手のアクセル応答をスタート有効時間の終了まで鈍らせる。"
+    }
+  },
+  "accel_lock": {
+    "id": "accel_lock",
+    "name": "加速鈍化",
+    "rarity": "SR",
+    "category": "妨害",
+    "type": "debuff",
+    "phases": [
+      1,
+      2,
+      4
+    ],
+    "chance": 0.34,
+    "condition": "always",
+    "target": "ahead",
+    "effect": {
+      "type": "debuff",
+      "stat": "accel",
+      "amount": 14,
+      "target": "ahead"
+    },
+    "description": "直前の相手の加速を−14。",
+    "tags": [
+      "妨害"
+    ],
+    "drive": {
+      "range": 26,
+      "mechanics": {
+        "response": -0.7
+      },
+      "text": "26m以内の相手に4秒間のエンジン応答遅れ。"
+    }
+  },
+  "power_drain": {
+    "id": "power_drain",
+    "name": "フィジカル削り",
+    "rarity": "SR",
+    "category": "妨害",
+    "type": "debuff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.4,
+    "condition": "always",
+    "target": "nearest",
+    "effect": {
+      "type": "debuff",
+      "stat": "power",
+      "amount": 15,
+      "target": "nearest"
+    },
+    "description": "近い相手のフィジカルを−15。",
+    "tags": [
+      "妨害",
+      "ターン"
+    ],
+    "drive": {
+      "range": 16,
+      "mechanics": {
+        "wakeShield": -0.2,
+        "contactShield": -0.2
+      },
+      "text": "16m以内の相手を引き波・接触に弱くする。"
+    }
+  },
+  "sweep": {
+    "id": "sweep",
+    "name": "全速まくり",
+    "rarity": "SR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.55,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 13,
+        "accel": 14
+      },
+      "tactic": "outside"
+    },
+    "description": "直線＋13、加速＋14。外を回る走行の再加速を後押し。",
+    "tags": [
+      "戦術",
+      "ターン",
+      "荒技"
+    ],
+    "drive": {
+      "when": "outside",
+      "mechanics": {
+        "speed": 1.1,
+        "accel": 1,
+        "grip": -0.35,
+        "wakeEmit": 0.4
+      },
+      "text": "外を握ると伸びと再加速が強化。引き波も強くなるが、グリップは少し落ちる。"
+    }
+  },
+  "entry": {
+    "id": "entry",
+    "name": "進入の読み",
+    "rarity": "SR",
+    "category": "戦術",
+    "type": "entry",
+    "phases": [],
+    "chance": 0.52,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "entry"
+    },
+    "description": "レース開始時、52%で進入コースを1つ内へ動かす。艇番は変わらない。",
+    "tags": [
+      "戦術",
+      "序盤"
+    ],
+    "drive": {
+      "text": "抽選でコースを一つ内へ。進入後の助走距離も新しいコースに合わせる。"
+    }
+  },
+  "hero": {
+    "id": "hero",
+    "name": "水面の主役",
+    "rarity": "SR",
+    "category": "人気",
+    "type": "buff",
+    "phases": [
+      4
+    ],
+    "chance": 0.65,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 8,
+        "power": 8
+      },
+      "fame": 4
+    },
+    "description": "最終直線で直線・フィジカル＋8。発動すると人気＋4。",
+    "tags": [
+      "人気",
+      "直線"
+    ],
+    "drive": {
+      "mechanics": {
+        "response": 0.6,
+        "economy": 0.2
+      },
+      "text": "ホーム直線で応答と持久力が上がり、発動時に人気も増える。"
+    }
+  },
+  "immune": {
+    "id": "immune",
+    "name": "妨害耐性",
+    "rarity": "SSR",
+    "category": "防御",
+    "type": "defense",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "defense",
+      "reflect": 0
+    },
+    "description": "相手からの妨害を無効化。反射された妨害は防げない。",
+    "tags": [
+      "防御"
+    ],
+    "drive": {
+      "mechanics": {
+        "contactShield": 0.35
+      },
+      "text": "妨害を無効化し、直後4秒間は接触による船首の振れを軽減。"
+    }
+  },
+  "dump": {
+    "id": "dump",
+    "name": "強襲ダンプ",
+    "rarity": "SSR",
+    "category": "妨害",
+    "type": "debuff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.43,
+    "condition": "always",
+    "target": "nearest",
+    "effect": {
+      "type": "debuff",
+      "stat": "turn",
+      "amount": 20,
+      "target": "nearest",
+      "pressure": 0.026
+    },
+    "description": "接近艇の旋回−20、接触圧を追加。単独先頭の艇には接触圧が届かない。",
+    "tags": [
+      "妨害",
+      "ターン",
+      "荒技"
+    ],
+    "drive": {
+      "range": 9,
+      "mechanics": {
+        "grip": -1.3
+      },
+      "text": "9m以内の接近艇に横向きの押しと旋回低下。反動で自艇も揺れ、離れた艇には届かない。"
+    }
+  },
+  "split": {
+    "id": "split",
+    "name": "刹那の差し",
+    "rarity": "SSR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.64,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 18,
+        "accel": 13
+      },
+      "safety": 0.2,
+      "tactic": "sashi"
+    },
+    "description": "旋回＋18、加速＋13。グリップを強め、波と傾きの蓄積を軽減。",
+    "tags": [
+      "戦術",
+      "ターン"
+    ],
+    "drive": {
+      "when": "inside",
+      "mechanics": {
+        "grip": 1,
+        "damping": 0.65,
+        "wakeShield": 0.25,
+        "accel": 0.7
+      },
+      "text": "内側の狭い進路で引き波を越え、滑りを収めて鋭く再加速。"
+    }
+  },
+  "burst": {
+    "id": "burst",
+    "name": "直線解放",
+    "rarity": "SSR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.62,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 22,
+        "accel": 10
+      }
+    },
+    "description": "直線＋22、加速＋10。",
+    "tags": [
+      "強化",
+      "直線"
+    ],
+    "drive": {
+      "mechanics": {
+        "speed": 1.5,
+        "accel": 0.7,
+        "economy": -0.15
+      },
+      "text": "直線の最高速と再加速を解放するぶん消耗も増える。"
+    }
+  },
+  "comeback": {
+    "id": "comeback",
+    "name": "弱さを推進力に",
+    "rarity": "SSR",
+    "category": "戦術",
+    "type": "convert",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "convert"
+    },
+    "description": "発動した弱点の能力低下を、低下量の40%の上昇へ変える。",
+    "tags": [
+      "戦術"
+    ],
+    "drive": {
+      "text": "弱点発動時、その能力低下を40%の上昇へ変え、水面ギミックの追加ペナルティを除く。"
+    }
+  },
+  "anchor": {
+    "id": "anchor",
+    "name": "不動のターン",
+    "rarity": "SSR",
+    "category": "防御",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.7,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 12,
+        "power": 16
+      },
+      "safety": 0.7
+    },
+    "description": "旋回＋12、フィジカル＋16。グリップを強め、波と傾きの蓄積を軽減。",
+    "tags": [
+      "防御",
+      "ターン"
+    ],
+    "drive": {
+      "mechanics": {
+        "contactShield": 0.55,
+        "damping": 0.65,
+        "wakeShield": 0.25
+      },
+      "text": "接触と引き波で振られにくい、収まりのよいターン。"
+    }
+  },
+  "storm": {
+    "id": "storm",
+    "name": "嵐の先導者",
+    "rarity": "SSR",
+    "category": "環境",
+    "type": "buff",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 0.65,
+    "condition": "rough",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 14,
+        "power": 16,
+        "speed": 7
+      },
+      "safety": 0.45
+    },
+    "description": "荒天時、旋回＋14、フィジカル＋16、直線＋7。転覆を軽減。",
+    "tags": [
+      "環境"
+    ],
+    "drive": {
+      "mechanics": {
+        "waveShield": 0.45,
+        "wakeShield": 0.3
+      },
+      "text": "荒天時の横波・引き波の負荷を抑え、失速を軽減。"
+    }
+  },
+  "reflect": {
+    "id": "reflect",
+    "name": "妨害返し",
+    "rarity": "UR",
+    "category": "防御",
+    "type": "defense",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "defense",
+      "reflect": 0.5
+    },
+    "description": "妨害を無効化し、効果量の50%を攻撃者へ返す。再反射しない。",
+    "tags": [
+      "防御"
+    ],
+    "drive": {
+      "mechanics": {
+        "contactShield": 0.5
+      },
+      "text": "妨害の能力低下と水面効果を50%反射。再反射しない。"
+    }
+  },
+  "zero": {
+    "id": "zero",
+    "name": "零の踏み込み",
+    "rarity": "UR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      0,
+      1
+    ],
+    "chance": 0.72,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": 25,
+        "accel": 18,
+        "turn": 8
+      }
+    },
+    "description": "スタート＋25、加速＋18、旋回＋8。",
+    "tags": [
+      "強化",
+      "序盤"
+    ],
+    "drive": {
+      "mechanics": {
+        "response": 1.7
+      },
+      "text": "助走時の立ち上がりと応答を強める。早く踏めばフライングにはなる。"
+    }
+  },
+  "comet": {
+    "id": "comet",
+    "name": "彗星航路",
+    "rarity": "UR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.7,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 26,
+        "accel": 20
+      },
+      "tactic": "gamble"
+    },
+    "description": "直線＋26、加速＋20。直線での最高速と再加速を高める。",
+    "tags": [
+      "戦術",
+      "直線"
+    ],
+    "drive": {
+      "mechanics": {
+        "speed": 1.25,
+        "accel": 0.85,
+        "wakeEmit": 0.65
+      },
+      "text": "伸びと再加速を強め、通過した引き波も大きくする。"
+    }
+  },
+  "wave": {
+    "id": "wave",
+    "name": "波を支配する",
+    "rarity": "UR",
+    "category": "環境",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.76,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 24,
+        "power": 22
+      },
+      "safety": 0.65
+    },
+    "description": "旋回＋24、フィジカル＋22。グリップを強め、波と傾きの蓄積を軽減。",
+    "tags": [
+      "環境",
+      "ターン"
+    ],
+    "drive": {
+      "mechanics": {
+        "wakeShield": 0.45,
+        "damping": 0.65
+      },
+      "text": "ターン中に引き波の負荷を軽減し、横滑りを速く収束。"
+    }
+  },
+  "craft": {
+    "id": "craft",
+    "name": "匠の設計",
+    "rarity": "UR",
+    "category": "整備",
+    "type": "tuning",
+    "phases": [],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "tuning",
+      "success": 16
+    },
+    "description": "両機材の調整成功率＋16。成功率上限は92%。",
+    "tags": [
+      "整備"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "mirror": {
+    "id": "mirror",
+    "name": "鏡面水域",
+    "rarity": "LR",
+    "category": "防御",
+    "type": "defense",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "defense",
+      "reflect": 1
+    },
+    "description": "妨害を完全無効化し、効果をすべて攻撃者へ返す。再反射しない。",
+    "tags": [
+      "防御"
+    ],
+    "drive": {
+      "mechanics": {
+        "contactShield": 0.65,
+        "wakeShield": 0.4
+      },
+      "text": "水面効果も完全反射し、直後4秒間の接触と引き波も軽減。再反射しない。"
+    }
+  },
+  "legend_start": {
+    "id": "legend_start",
+    "name": "一閃の境地",
+    "rarity": "LR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      0,
+      1
+    ],
+    "chance": 0.84,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": 31,
+        "turn": 20,
+        "accel": 20
+      }
+    },
+    "description": "スタート＋31、旋回・加速＋20。",
+    "tags": [
+      "強化",
+      "序盤"
+    ],
+    "drive": {
+      "mechanics": {
+        "response": 2.5,
+        "damping": 0.5
+      },
+      "text": "助走応答とスタート直後の艇の収まりを大幅強化。F判定は全艇共通。"
+    }
+  },
+  "legend_speed": {
+    "id": "legend_speed",
+    "name": "水上の軌跡",
+    "rarity": "LR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.84,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 33,
+        "accel": 25,
+        "power": 14
+      }
+    },
+    "description": "直線＋33、加速＋25、フィジカル＋14。",
+    "tags": [
+      "強化",
+      "直線"
+    ],
+    "drive": {
+      "mechanics": {
+        "speed": 1.5,
+        "accel": 1,
+        "wakeEmit": 0.65,
+        "economy": 0.2
+      },
+      "text": "強い伸び・再加速・引き波を生み、消耗も抑える。"
+    }
+  },
+  "legend_turn": {
+    "id": "legend_turn",
+    "name": "王者の旋回",
+    "rarity": "LR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.86,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 32,
+        "power": 26,
+        "accel": 20
+      },
+      "safety": 0.8,
+      "tactic": "sashi"
+    },
+    "description": "旋回＋32、フィジカル＋26、加速＋20。転覆を大きく軽減。",
+    "tags": [
+      "戦術",
+      "ターン"
+    ],
+    "drive": {
+      "when": "inside",
+      "mechanics": {
+        "grip": 1.2,
+        "damping": 0.75,
+        "wakeShield": 0.45,
+        "contactShield": 0.4
+      },
+      "text": "内を回る高グリップ旋回。引き波と接触にも強い。"
+    }
+  },
+  "legend_tide": {
+    "id": "legend_tide",
+    "name": "逆潮を越えて",
+    "rarity": "LR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      3,
+      4
+    ],
+    "chance": 0.88,
+    "condition": "behind",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 30,
+        "accel": 30,
+        "power": 20
+      },
+      "tactic": "gamble"
+    },
+    "description": "3位以下で直線・加速＋30、フィジカル＋20。",
+    "tags": [
+      "戦術"
+    ],
+    "drive": {
+      "mechanics": {
+        "speed": 1.5,
+        "accel": 1.5,
+        "wakeShield": 0.7
+      },
+      "text": "後方から先行艇の引き波を越える追走加速。"
+    }
+  },
+  "weak_start": {
+    "id": "weak_start",
+    "name": "踏み込みの迷い",
+    "rarity": "N",
+    "category": "弱点",
+    "type": "buff",
+    "phases": [
+      0
+    ],
+    "chance": 0.7,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": -12
+      }
+    },
+    "description": "70%でスタート−12。1着時の克服抽選か克服手帳で除去。",
+    "tags": [
+      "弱点",
+      "序盤"
+    ],
+    "drive": {
+      "mechanics": {
+        "response": -0.55
+      },
+      "text": "助走時にアクセルの反応が鈍る。"
+    }
+  },
+  "weak_rain": {
+    "id": "weak_rain",
+    "name": "雨への苦手意識",
+    "rarity": "R",
+    "category": "弱点",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.75,
+    "condition": "rain",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": -12,
+        "power": -8
+      }
+    },
+    "description": "雨のターンで旋回−12、フィジカル−8。",
+    "tags": [
+      "弱点"
+    ],
+    "drive": {
+      "mechanics": {
+        "waveExtra": 0.35,
+        "damping": -0.2
+      },
+      "text": "雨のターンで横波と横滑りが強まる。"
+    }
+  },
+  "weak_end": {
+    "id": "weak_end",
+    "name": "終盤の息切れ",
+    "rarity": "R",
+    "category": "弱点",
+    "type": "buff",
+    "phases": [
+      4
+    ],
+    "chance": 0.7,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": -12,
+        "accel": -10
+      }
+    },
+    "description": "最終直線でフィジカル−12、加速−10。",
+    "tags": [
+      "弱点",
+      "直線"
+    ],
+    "drive": {
+      "mechanics": {
+        "economy": -0.25,
+        "response": -0.4
+      },
+      "text": "終盤の応答と持久力が落ちる。"
+    }
+  },
+  "weak_out": {
+    "id": "weak_out",
+    "name": "外枠の重圧",
+    "rarity": "N",
+    "category": "弱点",
+    "type": "buff",
+    "phases": [
+      0,
+      1
+    ],
+    "chance": 0.65,
+    "condition": "outer",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": -8,
+        "turn": -8
+      }
+    },
+    "description": "外進入時にスタート・旋回−8。",
+    "tags": [
+      "弱点",
+      "序盤"
+    ],
+    "drive": {
+      "mechanics": {
+        "response": -0.35,
+        "damping": -0.2
+      },
+      "text": "外進入で助走応答と旋回の収まりが悪くなる。"
+    }
+  },
+  "weak_wind": {
+    "id": "weak_wind",
+    "name": "横風の不安",
+    "rarity": "R",
+    "category": "弱点",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.7,
+    "condition": "cross",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": -13
+      }
+    },
+    "description": "横風時、旋回−13。",
+    "tags": [
+      "弱点"
+    ],
+    "drive": {
+      "mechanics": {
+        "waveExtra": 0.45
+      },
+      "text": "横風ターンで船首と横流れが乱れやすい。"
+    }
+  },
+  "doguchi_sr": {
+    "id": "doguchi_sr",
+    "name": "洞口スペシャル・入門",
+    "rarity": "SR",
+    "category": "整備",
+    "type": "lapcycle",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "lapcycle",
+      "stats": {
+        "speed": 0.3333333333333333,
+        "turn": 0.3333333333333333,
+        "start": 0,
+        "accel": 0.3333333333333333,
+        "power": -0.3333333333333333
+      }
+    },
+    "description": "有効スタート後の1周目を強化、2周目は通常、3周目は反動で能力低下。入門版は強化・反動ともごく小さい。同系統は最上位だけ有効。",
+    "tags": [
+      "整備",
+      "序盤",
+      "直線"
+    ],
+    "signature": {
+      "family": "doguchi",
+      "early": {
+        "speed": 2,
+        "accel": 2,
+        "turn": 1
+      },
+      "late": {
+        "speed": -1,
+        "accel": -1,
+        "power": -1
+      }
+    },
+    "drive": {
+      "text": "1周目：直線＋2 / 加速＋2 / 旋回＋1。2周目：補正なし。3周目：直線−1 / 加速−1 / フィジカル−1。反動は反射・弱点克服の対象外。"
+    }
+  },
+  "monkey_sr": {
+    "id": "monkey_sr",
+    "name": "モンキーターン",
+    "rarity": "SR",
+    "category": "戦術",
+    "type": "pivot",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.45,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "pivot",
+      "stats": {
+        "turn": 0.6300000000000001
+      },
+      "safety": 0.014000000000000002,
+      "tactic": "sashi"
+    },
+    "description": "全開で左へ切ったターン中に抽選。短時間だけ舵の負荷を緩め、水面をつかんでV字に近い全速旋回。入門版はごくわずかな補助。同系統は最上位だけ、1つのマークで1回抽選。",
+    "tags": [
+      "戦術",
+      "ターン",
+      "荒技"
+    ],
+    "signature": {
+      "family": "monkey",
+      "pivot": 0.035,
+      "duration": 0.75
+    },
+    "drive": {
+      "text": "実際の左舵25%以上・全開・21.6 km/h以上のターン中に45%で発動。0.75秒間の旋回補助。減速すると効果は止まる。ブイ・接触判定は維持。"
+    }
+  },
+  "doguchi_ssr": {
+    "id": "doguchi_ssr",
+    "name": "洞口スペシャル・熟練",
+    "rarity": "SSR",
+    "category": "整備",
+    "type": "lapcycle",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "lapcycle",
+      "stats": {
+        "speed": 1.6666666666666667,
+        "turn": 2.3333333333333335,
+        "start": 0,
+        "accel": 2,
+        "power": -1.6666666666666667
+      }
+    },
+    "description": "有効スタート後の1周目を強化、2周目は通常、3周目は反動で能力低下。序盤の貯金を作る整備。同系統は最上位だけ有効。",
+    "tags": [
+      "整備",
+      "序盤",
+      "直線"
+    ],
+    "signature": {
+      "family": "doguchi",
+      "early": {
+        "speed": 12,
+        "accel": 14,
+        "turn": 7
+      },
+      "late": {
+        "speed": -7,
+        "accel": -8,
+        "power": -5
+      }
+    },
+    "drive": {
+      "text": "1周目：直線＋12 / 加速＋14 / 旋回＋7。2周目：補正なし。3周目：直線−7 / 加速−8 / フィジカル−5。反動は反射・弱点克服の対象外。"
+    }
+  },
+  "monkey_ssr": {
+    "id": "monkey_ssr",
+    "name": "Vモンキー",
+    "rarity": "SSR",
+    "category": "戦術",
+    "type": "pivot",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.58,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "pivot",
+      "stats": {
+        "turn": 4.140000000000001
+      },
+      "safety": 0.09200000000000001,
+      "tactic": "sashi"
+    },
+    "description": "全開で左へ切ったターン中に抽選。短時間だけ舵の負荷を緩め、水面をつかんでV字に近い全速旋回。同系統は最上位だけ、1つのマークで1回抽選。",
+    "tags": [
+      "戦術",
+      "ターン",
+      "荒技"
+    ],
+    "signature": {
+      "family": "monkey",
+      "pivot": 0.23,
+      "duration": 1.15
+    },
+    "drive": {
+      "text": "実際の左舵25%以上・全開・21.6 km/h以上のターン中に58%で発動。1.15秒間の旋回補助。減速すると効果は止まる。ブイ・接触判定は維持。"
+    }
+  },
+  "doguchi_ur": {
+    "id": "doguchi_ur",
+    "name": "洞口スペシャル・極",
+    "rarity": "UR",
+    "category": "整備",
+    "type": "lapcycle",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "lapcycle",
+      "stats": {
+        "speed": 3.6666666666666665,
+        "turn": 4,
+        "start": 0,
+        "accel": 4,
+        "power": -2.6666666666666665
+      }
+    },
+    "description": "有効スタート後の1周目を強化、2周目は通常、3周目は反動で能力低下。序盤の貯金を作る整備。同系統は最上位だけ有効。",
+    "tags": [
+      "整備",
+      "序盤",
+      "直線"
+    ],
+    "signature": {
+      "family": "doguchi",
+      "early": {
+        "speed": 24,
+        "accel": 26,
+        "turn": 12
+      },
+      "late": {
+        "speed": -13,
+        "accel": -14,
+        "power": -8
+      }
+    },
+    "drive": {
+      "text": "1周目：直線＋24 / 加速＋26 / 旋回＋12。2周目：補正なし。3周目：直線−13 / 加速−14 / フィジカル−8。反動は反射・弱点克服の対象外。"
+    }
+  },
+  "monkey_ur": {
+    "id": "monkey_ur",
+    "name": "超絶Vモンキー",
+    "rarity": "UR",
+    "category": "戦術",
+    "type": "pivot",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.7,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "pivot",
+      "stats": {
+        "turn": 7.56
+      },
+      "safety": 0.168,
+      "tactic": "sashi"
+    },
+    "description": "全開で左へ切ったターン中に抽選。短時間だけ舵の負荷を緩め、水面をつかんでV字に近い全速旋回。同系統は最上位だけ、1つのマークで1回抽選。",
+    "tags": [
+      "戦術",
+      "ターン",
+      "荒技"
+    ],
+    "signature": {
+      "family": "monkey",
+      "pivot": 0.42,
+      "duration": 1.35
+    },
+    "drive": {
+      "text": "実際の左舵25%以上・全開・21.6 km/h以上のターン中に70%で発動。1.35秒間の旋回補助。減速すると効果は止まる。ブイ・接触判定は維持。"
+    }
+  },
+  "doguchi_lr": {
+    "id": "doguchi_lr",
+    "name": "洞口スペシャル・到達点",
+    "rarity": "LR",
+    "category": "整備",
+    "type": "lapcycle",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "lapcycle",
+      "stats": {
+        "speed": 6,
+        "turn": 6,
+        "start": 0,
+        "accel": 6,
+        "power": -4
+      }
+    },
+    "description": "有効スタート後の1周目を強化、2周目は通常、3周目は反動で能力低下。序盤の貯金を作る整備。同系統は最上位だけ有効。",
+    "tags": [
+      "整備",
+      "序盤",
+      "直線"
+    ],
+    "signature": {
+      "family": "doguchi",
+      "early": {
+        "speed": 38,
+        "accel": 40,
+        "turn": 18
+      },
+      "late": {
+        "speed": -20,
+        "accel": -22,
+        "power": -12
+      }
+    },
+    "drive": {
+      "text": "1周目：直線＋38 / 加速＋40 / 旋回＋18。2周目：補正なし。3周目：直線−20 / 加速−22 / フィジカル−12。反動は反射・弱点克服の対象外。"
+    }
+  },
+  "monkey_lr": {
+    "id": "monkey_lr",
+    "name": "究極Vモンキー",
+    "rarity": "LR",
+    "category": "戦術",
+    "type": "pivot",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.82,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "pivot",
+      "stats": {
+        "turn": 10.799999999999999
+      },
+      "safety": 0.24,
+      "tactic": "sashi"
+    },
+    "description": "全開で左へ切ったターン中に抽選。短時間だけ舵の負荷を緩め、水面をつかんでV字に近い全速旋回。同系統は最上位だけ、1つのマークで1回抽選。",
+    "tags": [
+      "戦術",
+      "ターン",
+      "荒技"
+    ],
+    "signature": {
+      "family": "monkey",
+      "pivot": 0.6,
+      "duration": 1.45
+    },
+    "drive": {
+      "text": "実際の左舵25%以上・全開・21.6 km/h以上のターン中に82%で発動。1.45秒間の旋回補助。減速すると効果は止まる。ブイ・接触判定は維持。"
+    }
+  },
+  "prep_n": {
+    "id": "prep_n",
+    "name": "水面の予習",
+    "rarity": "N",
+    "category": "育成",
+    "type": "prep",
+    "phases": [],
+    "chance": 0.16,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "prep",
+      "amount": 1
+    },
+    "description": "そのレース前の最初の練習で16%の抽選。練習した能力を次の1レースだけ＋1。同系統は最上位のみ。追加練習での補正は半分。",
+    "tags": [
+      "育成",
+      "次走"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "prep_r": {
+    "id": "prep_r",
+    "name": "走りの予感",
+    "rarity": "R",
+    "category": "育成",
+    "type": "prep",
+    "phases": [],
+    "chance": 0.25,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "prep",
+      "amount": 2
+    },
+    "description": "そのレース前の最初の練習で25%の抽選。練習した能力を次の1レースだけ＋2。同系統は最上位のみ。追加練習での補正は半分。",
+    "tags": [
+      "育成",
+      "次走"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "prep_sr": {
+    "id": "prep_sr",
+    "name": "集中ルーティン",
+    "rarity": "SR",
+    "category": "育成",
+    "type": "prep",
+    "phases": [],
+    "chance": 0.38,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "prep",
+      "amount": 3
+    },
+    "description": "そのレース前の最初の練習で38%の抽選。練習した能力を次の1レースだけ＋3。同系統は最上位のみ。追加練習での補正は半分。",
+    "tags": [
+      "育成",
+      "次走"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "prep_ssr": {
+    "id": "prep_ssr",
+    "name": "水面との同調",
+    "rarity": "SSR",
+    "category": "育成",
+    "type": "prep",
+    "phases": [],
+    "chance": 0.52,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "prep",
+      "amount": 5
+    },
+    "description": "そのレース前の最初の練習で52%の抽選。練習した能力を次の1レースだけ＋5。同系統は最上位のみ。追加練習での補正は半分。",
+    "tags": [
+      "育成",
+      "次走"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "prep_ur": {
+    "id": "prep_ur",
+    "name": "一走への研鑽",
+    "rarity": "UR",
+    "category": "育成",
+    "type": "prep",
+    "phases": [],
+    "chance": 0.68,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "prep",
+      "amount": 7
+    },
+    "description": "そのレース前の最初の練習で68%の抽選。練習した能力を次の1レースだけ＋7。同系統は最上位のみ。追加練習での補正は半分。",
+    "tags": [
+      "育成",
+      "次走"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "prep_lr": {
+    "id": "prep_lr",
+    "name": "一走入魂",
+    "rarity": "LR",
+    "category": "育成",
+    "type": "prep",
+    "phases": [],
+    "chance": 0.82,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "prep",
+      "amount": 9
+    },
+    "description": "そのレース前の最初の練習で82%の抽選。練習した能力を次の1レースだけ＋9。同系統は最上位のみ。追加練習での補正は半分。",
+    "tags": [
+      "育成",
+      "次走"
+    ],
+    "drive": {
+      "text": "整備・育成・人気の効果を両モードで共通適用。"
+    }
+  },
+  "feather": {
+    "id": "feather",
+    "name": "抜きの手ほどき",
+    "rarity": "N",
+    "category": "戦術",
+    "type": "operation",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "operation",
+      "stats": {
+        "turn": 2
+      }
+    },
+    "description": "ターン中にアクセルを抜き、舵を切って0.4秒保つと発動。1周1回、2秒間だけ横滑りの収束を助ける。",
+    "tags": [
+      "戦術",
+      "ターン"
+    ],
+    "drive": {
+      "mechanics": {
+        "damping": 0.65
+      },
+      "text": "アクセルを抜いたターンを補助。低レア固有の確定発動、各周1回。"
+    }
+  },
+  "straighten": {
+    "id": "straighten",
+    "name": "舵戻しの基本",
+    "rarity": "R",
+    "category": "戦術",
+    "type": "operation",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "operation",
+      "stats": {
+        "accel": 3
+      }
+    },
+    "description": "ターン出口で舵を中央に戻し全開で0.4秒保つと発動。1周1回、3秒間だけエンジン応答を改善。",
+    "tags": [
+      "戦術",
+      "直線"
+    ],
+    "drive": {
+      "mechanics": {
+        "response": 0.9
+      },
+      "text": "ターン出口で舵を戻す操作を支える。低レア固有の確定発動、各周1回。"
+    }
+  },
+  "wake_escape": {
+    "id": "wake_escape",
+    "name": "引き波の抜け道",
+    "rarity": "SR",
+    "category": "環境",
+    "type": "operation",
+    "phases": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 0.65,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "operation",
+      "stats": {
+        "accel": 6,
+        "power": 5
+      }
+    },
+    "description": "引き波を受けた後、進路を変えて抜けると65%で発動。1周1回、4秒間再加速と波への耐性を強化。",
+    "tags": [
+      "環境"
+    ],
+    "drive": {
+      "mechanics": {
+        "wakeShield": 0.2,
+        "accel": 0.4
+      },
+      "text": "引き波から進路を変えて抜けた後の再加速を支える。"
+    }
+  },
+  "wit_breath": {
+    "id": "wit_breath",
+    "name": "まずは深呼吸",
+    "rarity": "N",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      0
+    ],
+    "chance": 0.5,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": 3
+      }
+    },
+    "description": "助走でスタート＋3。焦って踏みすぎればFになる。",
+    "tags": [
+      "強化",
+      "物語"
+    ],
+    "drive": {
+      "mechanics": {
+        "response": 0.25
+      },
+      "text": "助走のエンジン応答を小さく改善。F判定は変わらない。"
+    }
+  },
+  "wit_receipt": {
+    "id": "wit_receipt",
+    "name": "領収書あります",
+    "rarity": "N",
+    "category": "整備",
+    "type": "tuning",
+    "phases": [],
+    "chance": 1,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "type": "tuning",
+      "success": 2
+    },
+    "description": "記録を残して迷いを減らす。両機材の調整成功率＋2。",
+    "tags": [
+      "整備",
+      "物語"
+    ],
+    "drive": {
+      "text": "モーター・プロペラの調整成功率＋2。上限92%。"
+    }
+  },
+  "wit_clockout": {
+    "id": "wit_clockout",
+    "name": "定時でゴール",
+    "rarity": "N",
+    "category": "防御",
+    "type": "buff",
+    "phases": [
+      4
+    ],
+    "chance": 0.55,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": 3
+      }
+    },
+    "description": "ホーム直線で力みを抑える。フィジカル＋3。",
+    "tags": [
+      "防御",
+      "物語"
+    ],
+    "drive": {
+      "mechanics": {
+        "economy": 0.16
+      },
+      "text": "ホーム直線の消耗を控えめにする。"
+    }
+  },
+  "wit_rudder": {
+    "id": "wit_rudder",
+    "name": "急がば舵戻せ",
+    "rarity": "R",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.62,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "accel": 6
+      }
+    },
+    "description": "直線へ入る時、舵を中央近くに戻していると立ち上がりを補助。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "drive": {
+      "when": "composed",
+      "mechanics": {
+        "response": 0.6,
+        "accel": 0.25
+      },
+      "text": "直線入口で実舵20%未満・アクセル60%以上なら抽選。"
+    }
+  },
+  "wit_weather": {
+    "id": "wit_weather",
+    "name": "風向きだけ空気読む",
+    "rarity": "R",
+    "category": "環境",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.62,
+    "condition": "cross",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": 6,
+        "turn": 3
+      }
+    },
+    "description": "横風のターンでフィジカル＋6、旋回＋3。",
+    "tags": [
+      "環境",
+      "物語"
+    ],
+    "drive": {
+      "mechanics": {
+        "waveShield": 0.18,
+        "damping": 0.15
+      },
+      "text": "横風の横波を軽減し、横流れを少し早く収める。"
+    }
+  },
+  "wit_afteryou": {
+    "id": "wit_afteryou",
+    "name": "お先に失礼",
+    "rarity": "R",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      0,
+      1
+    ],
+    "chance": 0.6,
+    "condition": "inner",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": 5,
+        "turn": 4
+      }
+    },
+    "description": "内進入で、礼儀正しく先手を狙う。スタート＋5・旋回＋4。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "drive": {
+      "when": "inside",
+      "mechanics": {
+        "response": 0.45,
+        "grip": 0.15
+      },
+      "text": "内側の進路で助走応答とグリップを補う。"
+    }
+  },
+  "wit_slipstream": {
+    "id": "wit_slipstream",
+    "name": "既読スルー航法",
+    "rarity": "SR",
+    "category": "環境",
+    "type": "buff",
+    "phases": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "chance": 0.65,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": 7,
+        "accel": 6
+      }
+    },
+    "description": "前走艇の引き波に、全部は付き合わない。近い前走艇がいる区間で発動。",
+    "tags": [
+      "環境",
+      "物語"
+    ],
+    "drive": {
+      "when": "wake",
+      "mechanics": {
+        "wakeShield": 0.24,
+        "accel": 0.35
+      },
+      "text": "引き波の影響を軽減し、波を抜ける加速を補う。"
+    }
+  },
+  "wit_overtime": {
+    "id": "wit_overtime",
+    "name": "残業しないターン",
+    "rarity": "SR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.62,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 8,
+        "power": 5
+      }
+    },
+    "description": "舵を作ったターン入口で、横流れを長引かせない。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "drive": {
+      "when": "turning",
+      "mechanics": {
+        "damping": 0.38,
+        "grip": 0.28,
+        "speed": -0.15
+      },
+      "text": "実舵20%以上のターン入口で抽選。横滑りの収束を改善するが、伸び足は少し控えめ。"
+    }
+  },
+  "wit_latebird": {
+    "id": "wit_latebird",
+    "name": "二度寝の逆襲",
+    "rarity": "SR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.62,
+    "condition": "behind",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "accel": 10,
+        "speed": 5
+      }
+    },
+    "description": "3位以下で追走の立ち上がりを補う。スタート違反を取り消す効果はない。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "drive": {
+      "mechanics": {
+        "accel": 0.5,
+        "economy": -0.12
+      },
+      "text": "後方から再加速。ただし消耗が少し増える。"
+    }
+  },
+  "wit_bill": {
+    "id": "wit_bill",
+    "name": "追い波の請求書",
+    "rarity": "SSR",
+    "category": "妨害",
+    "type": "debuff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.48,
+    "condition": "behind",
+    "target": "ahead",
+    "effect": {
+      "type": "debuff",
+      "stat": "accel",
+      "amount": 11,
+      "target": "ahead"
+    },
+    "description": "先行艇へ、追走の苦労を少し返す。近い相手の加速を−11。",
+    "tags": [
+      "妨害",
+      "物語"
+    ],
+    "drive": {
+      "range": 22,
+      "mechanics": {
+        "response": -0.45
+      },
+      "text": "22m以内の先行艇の加速と応答を4秒間下げる。防御・反射の対象。"
+    }
+  },
+  "wit_elbow": {
+    "id": "wit_elbow",
+    "name": "肘で語るな、舵で語れ",
+    "rarity": "SSR",
+    "category": "防御",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.7,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": 12,
+        "turn": 7
+      }
+    },
+    "description": "他艇が近いターンで接触の揺れを抑える。",
+    "tags": [
+      "防御",
+      "物語"
+    ],
+    "drive": {
+      "when": "duel",
+      "mechanics": {
+        "contactShield": 0.28,
+        "damping": 0.28
+      },
+      "text": "18m以内に他艇がいるターン入口で抽選。接触しても無敵にはならない。"
+    }
+  },
+  "wit_lastrain": {
+    "id": "wit_lastrain",
+    "name": "雨天決行、無茶中止",
+    "rarity": "SSR",
+    "category": "環境",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.74,
+    "condition": "rain",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 10,
+        "power": 12
+      }
+    },
+    "description": "雨のターンで安定を買う。旋回＋10・フィジカル＋12。",
+    "tags": [
+      "環境",
+      "物語"
+    ],
+    "drive": {
+      "mechanics": {
+        "waveShield": 0.3,
+        "grip": 0.35,
+        "speed": -0.25
+      },
+      "text": "雨の横波を抑えグリップを補う。最高速を少し犠牲にする。"
+    }
+  },
+  "wit_latefee": {
+    "id": "wit_latefee",
+    "name": "延長料金はいただかない",
+    "rarity": "UR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.76,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "accel": 16,
+        "speed": 10
+      }
+    },
+    "description": "3周目だけ、最後の仕事を早く片づける。",
+    "tags": [
+      "強化",
+      "物語"
+    ],
+    "drive": {
+      "when": "finalLap",
+      "mechanics": {
+        "accel": 0.7,
+        "response": 0.75,
+        "economy": -0.2
+      },
+      "text": "3周目の直線で加速と応答を強化。消耗は増える。"
+    }
+  },
+  "wit_nosignal": {
+    "id": "wit_nosignal",
+    "name": "圏外から失礼します",
+    "rarity": "UR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.75,
+    "condition": "behind",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 17,
+        "accel": 10
+      }
+    },
+    "description": "外の進路から追い上げる。外の進路かつ3位以下で発動。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "drive": {
+      "when": "outside",
+      "mechanics": {
+        "speed": 0.8,
+        "wakeShield": 0.2,
+        "grip": -0.2
+      },
+      "text": "外側の直線で伸び足を強化。グリップは少し下がる。"
+    }
+  },
+  "wit_harbor": {
+    "id": "wit_harbor",
+    "name": "心に防波堤",
+    "rarity": "UR",
+    "category": "防御",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.78,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": 18,
+        "turn": 10
+      }
+    },
+    "description": "消耗したターンで、崩れない支えを作る。",
+    "tags": [
+      "防御",
+      "物語"
+    ],
+    "drive": {
+      "when": "tired",
+      "mechanics": {
+        "damping": 0.55,
+        "contactShield": 0.3,
+        "economy": 0.3
+      },
+      "text": "体力75未満のターン入口で抽選。接触・横流れ・消耗を抑える。"
+    }
+  },
+  "wit_unposted": {
+    "id": "wit_unposted",
+    "name": "勝利の予約は承りません",
+    "rarity": "LR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.8,
+    "condition": "behind",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 20,
+        "accel": 18
+      }
+    },
+    "description": "予約席のない先頭を、3周目の追走で狙う。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "drive": {
+      "when": "finalLap",
+      "mechanics": {
+        "speed": 1,
+        "accel": 0.85,
+        "wakeShield": 0.28
+      },
+      "text": "3周目かつ3位以下の直線で追走を強化。勝利保証ではない。"
+    }
+  },
+  "wit_norefund": {
+    "id": "wit_norefund",
+    "name": "流した涙は返金不可",
+    "rarity": "LR",
+    "category": "防御",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.82,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "turn": 20,
+        "power": 18
+      }
+    },
+    "description": "疲れた時ほど、流される量を減らす。",
+    "tags": [
+      "防御",
+      "物語"
+    ],
+    "drive": {
+      "when": "tired",
+      "mechanics": {
+        "grip": 0.7,
+        "damping": 0.65,
+        "wakeShield": 0.3
+      },
+      "text": "体力75未満のターン入口で抽選。水をつかみ横流れと引き波を抑える。"
+    }
+  },
+  "wit_reply": {
+    "id": "wit_reply",
+    "name": "水平線からの返信",
+    "rarity": "LR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.82,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 22,
+        "accel": 14
+      }
+    },
+    "description": "舵を戻して全開へ。迷いのない直線に、水面が応える。",
+    "tags": [
+      "強化",
+      "物語"
+    ],
+    "drive": {
+      "when": "composed",
+      "mechanics": {
+        "speed": 1.05,
+        "response": 0.9,
+        "economy": -0.12
+      },
+      "text": "実舵20%未満・アクセル60%以上の直線入口で抽選。伸びと応答が上がるぶん消耗も少し増える。"
+    }
+  },
+  "bond_reignite": {
+    "id": "bond_reignite",
+    "name": "約束の再点火",
+    "rarity": "LR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.86,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "accel": 20,
+        "power": 10
+      }
+    },
+    "description": "汐見 灯と交際中にSG優勝戦へ進出すると、ノーマルでLR、イージーではUR版を獲得。ターン出口直後4秒以内の直線入口で抽選。立ち上がりを強化。",
+    "tags": [
+      "強化",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "when": "exit",
+      "mechanics": {
+        "accel": 1,
+        "response": 1.1
+      },
+      "text": "ターン出口直後4秒以内の直線入口で抽選。立ち上がりを強化。"
+    }
+  },
+  "bond_headline": {
+    "id": "bond_headline",
+    "name": "号外、ふたりの未来",
+    "rarity": "LR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.86,
+    "condition": "behind",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 20,
+        "power": 14
+      }
+    },
+    "description": "星宮 澪と交際中にSG優勝戦へ進出すると、ノーマルでLR、イージーではUR版を獲得。3位以下の直線で先行艇を追う伸びと引き波耐性。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "mechanics": {
+        "speed": 1,
+        "wakeShield": 0.35
+      },
+      "text": "3位以下の直線で先行艇を追う伸びと引き波耐性。"
+    }
+  },
+  "bond_breakwater": {
+    "id": "bond_breakwater",
+    "name": "おかえりの防波堤",
+    "rarity": "LR",
+    "category": "環境",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.9,
+    "condition": "rough",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": 22,
+        "turn": 14
+      }
+    },
+    "description": "花守 凪と交際中にSG優勝戦へ進出すると、ノーマルでLR、イージーではUR版を獲得。荒天のターンで横波・接触・横流れに備える。転覆は起こり得る。",
+    "tags": [
+      "環境",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "mechanics": {
+        "waveShield": 0.36,
+        "contactShield": 0.32,
+        "damping": 0.4
+      },
+      "text": "荒天のターンで横波・接触・横流れに備える。転覆は起こり得る。"
+    }
+  },
+  "bond_clockletter": {
+    "id": "bond_clockletter",
+    "name": "十二秒のラブレター",
+    "rarity": "LR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      0
+    ],
+    "chance": 0.88,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": 24,
+        "accel": 14
+      }
+    },
+    "description": "朝比奈 奏と交際中にSG優勝戦へ進出すると、ノーマルでLR、イージーではUR版を獲得。助走応答を強化。フライング許容幅・出遅れ判定は共通のまま。",
+    "tags": [
+      "強化",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "mechanics": {
+        "response": 1.7,
+        "damping": 0.35
+      },
+      "text": "助走応答を強化。フライング許容幅・出遅れ判定は共通のまま。"
+    }
+  },
+  "bond_lastorder": {
+    "id": "bond_lastorder",
+    "name": "閉店後の逆転劇",
+    "rarity": "LR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.88,
+    "condition": "behind",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 18,
+        "accel": 20
+      }
+    },
+    "description": "橘 紬と交際中にSG優勝戦へ進出すると、ノーマルでLR、イージーではUR版を獲得。3周目かつ3位以下の直線で追走を強化。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "when": "finalLap",
+      "mechanics": {
+        "accel": 0.9,
+        "wakeShield": 0.3,
+        "economy": 0.25
+      },
+      "text": "3周目かつ3位以下の直線で追走を強化。"
+    }
+  },
+  "bond_reignite_ur": {
+    "id": "bond_reignite_ur",
+    "name": "約束の再点火・絆",
+    "rarity": "UR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.74,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "accel": 14,
+        "power": 7
+      }
+    },
+    "description": "イージーでのSG優勝戦の約束。LR版より発動率と補助量を抑える。",
+    "tags": [
+      "強化",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "when": "exit",
+      "mechanics": {
+        "accel": 0.72,
+        "response": 0.79
+      },
+      "text": "イージー専用UR版。ターン出口直後4秒以内の直線入口で抽選。立ち上がりを強化。"
+    }
+  },
+  "bond_headline_ur": {
+    "id": "bond_headline_ur",
+    "name": "号外、ふたりの未来・絆",
+    "rarity": "UR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.74,
+    "condition": "behind",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 14,
+        "power": 10
+      }
+    },
+    "description": "イージーでのSG優勝戦の約束。LR版より発動率と補助量を抑える。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "mechanics": {
+        "speed": 0.72,
+        "wakeShield": 0.25
+      },
+      "text": "イージー専用UR版。3位以下の直線で先行艇を追う伸びと引き波耐性。"
+    }
+  },
+  "bond_breakwater_ur": {
+    "id": "bond_breakwater_ur",
+    "name": "おかえりの防波堤・絆",
+    "rarity": "UR",
+    "category": "環境",
+    "type": "buff",
+    "phases": [
+      1,
+      3
+    ],
+    "chance": 0.77,
+    "condition": "rough",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "power": 16,
+        "turn": 10
+      }
+    },
+    "description": "イージーでのSG優勝戦の約束。LR版より発動率と補助量を抑える。",
+    "tags": [
+      "環境",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "mechanics": {
+        "waveShield": 0.26,
+        "contactShield": 0.23,
+        "damping": 0.29
+      },
+      "text": "イージー専用UR版。荒天のターンで横波・接触・横流れに備える。転覆は起こり得る。"
+    }
+  },
+  "bond_clockletter_ur": {
+    "id": "bond_clockletter_ur",
+    "name": "十二秒のラブレター・絆",
+    "rarity": "UR",
+    "category": "強化",
+    "type": "buff",
+    "phases": [
+      0
+    ],
+    "chance": 0.76,
+    "condition": "always",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "start": 17,
+        "accel": 10
+      }
+    },
+    "description": "イージーでのSG優勝戦の約束。LR版より発動率と補助量を抑える。",
+    "tags": [
+      "強化",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "mechanics": {
+        "response": 1.22,
+        "damping": 0.25
+      },
+      "text": "イージー専用UR版。助走応答を強化。フライング許容幅・出遅れ判定は共通のまま。"
+    }
+  },
+  "bond_lastorder_ur": {
+    "id": "bond_lastorder_ur",
+    "name": "閉店後の逆転劇・絆",
+    "rarity": "UR",
+    "category": "戦術",
+    "type": "buff",
+    "phases": [
+      2,
+      4
+    ],
+    "chance": 0.76,
+    "condition": "behind",
+    "target": "self",
+    "effect": {
+      "stats": {
+        "speed": 13,
+        "accel": 14
+      }
+    },
+    "description": "イージーでのSG優勝戦の約束。LR版より発動率と補助量を抑える。",
+    "tags": [
+      "戦術",
+      "物語"
+    ],
+    "exclusive": "romance",
+    "drive": {
+      "when": "finalLap",
+      "mechanics": {
+        "accel": 0.65,
+        "wakeShield": 0.22,
+        "economy": 0.18
+      },
+      "text": "イージー専用UR版。3周目かつ3位以下の直線で追走を強化。"
+    }
+  }
+}

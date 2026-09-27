@@ -147,7 +147,7 @@ function wheelMesh(){const m=meshBuilder(),n=24,k=6;for(let i=0;i<n;i++)for(let 
 function rotation(x=0,y=0,z=0){const c=Math.cos,s=Math.sin,rx=new Float32Array([1,0,0,0,0,c(x),s(x),0,0,-s(x),c(x),0,0,0,0,1]),ry=model(0,0,0,y),rz=new Float32Array([c(z),s(z),0,0,-s(z),c(z),0,0,0,0,1,0,0,0,0,1]);return multiply(multiply(ry,rx),rz);}
 function normalVector(m,n){const a=m[0]*m[0]+m[1]*m[1]+m[2]*m[2]||1,b=m[4]*m[4]+m[5]*m[5]+m[6]*m[6]||1,c=m[8]*m[8]+m[9]*m[9]+m[10]*m[10]||1,x=n[0]/a,y=n[1]/b,z=n[2]/c;let nx=m[0]*x+m[4]*y+m[8]*z,ny=m[1]*x+m[5]*y+m[9]*z,nz=m[2]*x+m[6]*y+m[10]*z;const l=Math.sqrt(nx*nx+ny*ny+nz*nz)||1;return [nx/l,ny/l,nz/l];}
 function segmentMatrix(a,b,rx,rz){const y=unit(sub(b,a)),x=unit(cross(y,[0,0,1])),z=cross(x,y),len=Math.hypot(...sub(b,a))*.5;return new Float32Array([x[0]*rx,x[1]*rx,x[2]*rx,0,y[0]*len,y[1]*len,y[2]*len,0,z[0]*rz,z[1]*rz,z[2]*rz,0,(a[0]+b[0])*.5,(a[1]+b[1])*.5,(a[2]+b[2])*.5,1]);}
-function racerPose(n,motion=true,time=0){const turn=R.clamp((n.steer||0)*.8+(n.yawRate||0)*.24,-1,1),speed=R.clamp(n.speed/23,0,1),lean=turn*.22,breathe=motion?Math.sin(time*2.3+n.frame)*.012:0;return {turn,lean,speed,hip:[-.88,.64,lean*.30],shoulder:[-.16+speed*.10,1.02+breathe,lean],head:[.21+speed*.08,1.37+breathe,lean*1.18],heel:motion?R.clamp(n.heel||0,-.65,.65)*.14:0,pitch:motion?speed*.014:0};}
+function racerPose(n,motion=true,time=0){const turn=R.clamp((n.steer||0)*.8+(n.yawRate||0)*.24,-1,1),speed=R.clamp(n.speed/23,0,1),posture=R.clamp(Number(n.posture)||0,-1,1),lean=turn*(.22+Math.max(0,posture)*.065),breathe=motion?Math.sin(time*2.3+n.frame)*.012:0;return {turn,lean,speed,hip:[-.88,.64+Math.max(0,posture)*.04,lean*.30],shoulder:[-.16+speed*.10-posture*.10,1.02+posture*.18+breathe,lean],head:[.21+speed*.08-posture*.17,1.37+posture*.22+breathe,lean*1.18],heel:motion?R.clamp(n.heel||0,-.65,.65)*.14:0,pitch:motion?speed*.014:0};}
 const BM={paint:7,fabric:8,metal:9,glass:10,wood:11};
 const BOAT_PALETTE={white:rgb('#e7e8df'),wood:rgb('#c4a77b'),rubber:rgb('#202c32'),steel:rgb('#9baeb5'),dark:rgb('#273941'),stitch:rgb('#c9d8d5')};
 function boatScene(n,d,settings,emit){
@@ -338,7 +338,7 @@ const distantSphere=sphereMesh(8,4);
 const P={ink:rgb('#133346'),white:rgb('#fff5df'),foam:rgb('#e0fff4'),aqua:rgb('#49c5c2'),water:rgb('#137f9d'),steel:rgb('#87a9af'),red:rgb('#ee664e')};
 const segs={1:'bc',2:'abdeg',3:'abcdg',4:'bcfg',5:'acdfg',6:'acdefg'};
 function camera(d,width,height,motion,thrill=false){const b=R.own(d),fx=Math.cos(b.heading),fz=Math.sin(b.heading),t=motion?d.elapsed:0,bob=motion?Math.sin(t*4.3)*Math.min(.09,b.speed*.0015+b.wakeLoad*.05):0,roll=motion?b.heel*.16:0;
-const eye=[b.x-fx*.25,1.65+bob,b.z-fz*.25],up=[-fz*Math.sin(roll),Math.cos(roll),fx*Math.sin(roll)],view=lookAt(eye,[eye[0]+fx*24,eye[1]-.72,eye[2]+fz*24],up);
+const eye=[b.x-fx*.25,1.65+(motion?R.clamp(Number(b.posture)||0,-1,1)*.12:0)+bob,b.z-fz*.25],up=[-fz*Math.sin(roll),Math.cos(roll),fx*Math.sin(roll)],view=lookAt(eye,[eye[0]+fx*24,eye[1]-.72,eye[2]+fz*24],up);
 const fov=80+(motion&&thrill?R.clamp((b.speed*3.6-52)/5,0,6):0);
 return {eye,view,vp:multiply(perspective(fov*Math.PI/180,width/height,.14,650),view),focal:height/(2*Math.tan(fov*.5*Math.PI/180))};}
 function palette(r){const rain=r.env.weather==='雨',cloud=r.env.weather==='曇り';return {fog:rgb(rain?'#9db9c7':cloud?'#b6d3df':'#b9e5ef'),water:rgb(rain?'#1b4655':cloud?'#1c5966':'#125d65'),rain,cloud};}

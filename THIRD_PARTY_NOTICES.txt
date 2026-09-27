@@ -101,9 +101,10 @@ from Tavmjong Bah. For further information, contact: tavmjong @ free
 
 $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $
 
-V99 relationships: all five heroine stories, fictional characters and SVG portrait geometry are original for this game. No external portrait or character artwork is loaded.
+V99 relationships: all five heroine stories and fictional characters were written for this game. Historical vector portrait geometry was replaced in V101.
 
-V100 portraits: original native SVG geometry, no third-party portrait images.
+V101 portraits: 27 AI-generated fictional-character raster portraits created for this game. PNG and WebP exports are included; no stock photograph or real-person identity is used as a reference. Generation prompts are in PORTRAIT_PROMPTS.json. No external image requests at runtime.
+V101 mentor stories: 25 original chapters for five fictional mentors.
 V100 music: five MP3 files supplied by the user for integration into this game.
 Original bytes preserved; this document does not assign or change their rights.
 main.mp3: メインテーマ.mp3

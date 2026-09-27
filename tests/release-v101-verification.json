@@ -1,0 +1,132 @@
+{
+  "build": 101,
+  "passed": 210,
+  "failed": 0,
+  "suites": [
+    {
+      "suite": "mentor-v101",
+      "passed": 20,
+      "failed": 0
+    },
+    {
+      "suite": "relationships-v101",
+      "passed": 26,
+      "failed": 0
+    },
+    {
+      "suite": "music-v101",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "suite": "career-v98",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "suite": "race-v95",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "suite": "android-update",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "suite": "presentation-v94",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "suite": "audio-v92",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "suite": "android-static",
+      "passed": 49,
+      "failed": 0
+    },
+    {
+      "suite": "iphone-static",
+      "passed": 26,
+      "failed": 0
+    }
+  ],
+  "mentorRouteChoiceCombinations": 320,
+  "generatedPortraits": 27,
+  "browser_tested": false,
+  "android_device_tested": false,
+  "iphone_device_tested": false,
+  "method": "Production engine and production UI handlers using controlled DOM/media, PNG/WebP decoding and contact-sheet visual inspection, source-to-standalone byte comparisons. No physical-device or real-browser claims.",
+  "unchangedFromV100": [
+    "racing.js",
+    "driving-ui.js",
+    "race-renderer.js",
+    "race-feedback.js",
+    "thrill.js",
+    "presentation.js",
+    "audio.js",
+    "music.js",
+    "bonds-data.js"
+  ],
+  "mp3OriginalsUnchanged": true,
+  "assetHashes": {
+    "assets/portraits/akamine.webp": "40554069897cd2e7af4546a803c6e419249c7b6b955d2c9203ad5a70b1e60c4a",
+    "assets/portraits/akari.webp": "5e09699257824843562ab314e21a478a694362b79c61c69c10f5ff9962259c1d",
+    "assets/portraits/hayase.webp": "5c81098eb2edd90ad23dc301ba33dc5a4a336d6b877f51da352ad1011de8a2b3",
+    "assets/portraits/iwase.webp": "facd050d06195b4b9d1487cca4105382e5bcec9c37b2b1fd58e98e7c5f56c00a",
+    "assets/portraits/kagura.webp": "9f20fbc4055ec802bbcc5f967f2b05b0ab81f26a6e854389129c6c92da104d64",
+    "assets/portraits/kanade.webp": "3eff5324b6255cdf78cf507920424d651035468c64e52bc9a15882b39b31eeb4",
+    "assets/portraits/kurose.webp": "3c1e4ba687f138373a2977276930638a7a0146db3828c251eac7dfc1fa44d760",
+    "assets/portraits/kuzumi.webp": "71be5dd79a9d4746012518dfbd85fab29485ba674920c074c53da87b7f4d5391",
+    "assets/portraits/mio.webp": "d07fa117b4023a84ae198d6814e9b9ea11d3eefc1e507d53cae4c5bf5938f333",
+    "assets/portraits/nagi.webp": "12b49a8652e0a2b7e038161dae7f1a05175475b95eb2b17487d6ac2e64432e06",
+    "assets/portraits/onizuka.webp": "21d1a79e6b46452a9fa6b0e96b8178568b889a3bbe483fe0061ea87ef9180c57",
+    "assets/portraits/raiden.webp": "0ff25956c7220dd1dc55fbfcba2edcaf938c6d60cfba405b865542e3149ef93d",
+    "assets/portraits/rival_01.webp": "034bd9e11ba96a9a7f4e3f226dc336da2ac752885a8687d93046e48a0c21433f",
+    "assets/portraits/rival_02.webp": "4c4cc5fcb8c0dcbdea71c755e7d242e72a4be871ee45c29f9de07a07b61e49c0",
+    "assets/portraits/rival_03.webp": "d2c973897df6062f795559895d7cba24fc49d026949e0827eea1f065ca64b42d",
+    "assets/portraits/rival_04.webp": "65b58603eaf2392d72bf12687b9671e85e1535d9de30fdc388865301cb4ed664",
+    "assets/portraits/rival_05.webp": "70ade62bc4fcb17a106bf414e6ff0d062f9664dd05601a54690b0db59a98df85",
+    "assets/portraits/rival_06.webp": "d0bc84da50825069c4e35c8e74ef7396bf7eb1b0aecb74f9092127314cb24678",
+    "assets/portraits/rival_07.webp": "99f97a15e3f960d8cb8a50a04cb3b929230de595d9cfbf60b92af028350eae11",
+    "assets/portraits/rival_08.webp": "2c0942e415d4bc37c681684c20218916f77f98084c32badbdddbbac5449176e6",
+    "assets/portraits/rival_09.webp": "eb0a4b035471979b336dd147e261df24624fd7c9508e062f2b68453dc43257cc",
+    "assets/portraits/rival_10.webp": "12c7ae8b4608711845649864a1973c6647293d3c2761a11e3ce624c680a5eeb7",
+    "assets/portraits/rival_11.webp": "0cdd5a373102dc5c90aee13199118bba8820bace63233a4c12becea0eb69d3e4",
+    "assets/portraits/rival_12.webp": "bed49eb69be39ab41ac589000daf81d4bc755c62dab56a95595d06907eab9bc4",
+    "assets/portraits/shirakami.webp": "7d15c33fec3907114e3063bd0815cafa9bb4edfda10006a2363ad04259d84b82",
+    "assets/portraits/tsukino.webp": "98393435d65c16325049a5b35289d3a6d714b5ff8c494a2f4ce9e104eed9b486",
+    "assets/portraits/tsumugi.webp": "4689a4ff3db6ac41faeb5f5908366265d28673995edd3633e3533a8fb9762b72"
+  },
+  "sourceHashes": {
+    "audio-assets.js": "60595c37cd4a0f944573ddc7e8168a570c3ec15508a54754ac674a094898bd5a",
+    "audio.js": "411ccf6471a2e4bc1b0b07f93cecc61c5aa6709bebe7ff9870f9409ea081c6b4",
+    "bonds-data.js": "41fbefcacc74b3ff14f68ed896613d9c8ab7ad459a3d8207e27ab15404781c3a",
+    "bonds.js": "cedf22b422436838f14d685a728eb3f8a10b6f2aa8f618d833165324e05fe1cb",
+    "cast.js": "19fbe8f05eb9bd8d1a03cda5bb4994815b1924c55fa700ea2047e6c14e35de70",
+    "data.js": "db7b8cd2a0426b940f6f58ea007c5c03399675d49ea6af8df7d7403c5ba31b41",
+    "driving-ui.js": "daf73fe32b205dfc75206643e43766bfba1a8784ea844d202dbaa7b87191a36e",
+    "iphone-compat.js": "f4eee272f69417b96349616d4d0bc294d4c918ba06c4d4acf329dc9d81243ad3",
+    "mentor-data.js": "9c21322dea187ef934f28c985c83dbe2a6eaca415ada95391e471eba103c01f6",
+    "music.js": "8bf5090a0ad70d62a60963485696c59246995a07f90bbab088dd1e9fbd82abd2",
+    "portrait-assets.js": "667f9f8c25045381854bcfa65bc1d36cb965360678dec25079fbc551c62e9d28",
+    "portraits.js": "9fcf5c188f944bc9bef308277bb98fab39d7cd8e722ff2f119b49e0f2fe8286e",
+    "presentation.js": "5b69b687daa9f8865d83a2272ec1fcc01644fcdbc1b1c05a2999f01faf919ce9",
+    "profile.js": "6c6e4e7f7c6a28c51b90f7dc09055dc004c915fb4f021b359ac75912393087e4",
+    "race-feedback.js": "46106180a78a84e270904d0f3a863199b1e65d098388f1aa44de6d9a6fd57ff9",
+    "race-renderer.js": "e8e0b82890d5940fc000c7baa9d1bd90798080428de8d358419da60bfcdd0160",
+    "racing.js": "0c3fe33a7dd074e28b6dca642f924ef42b707f1cc22272b3172d9e8c2e843c80",
+    "script.js": "d74e8a89bc55c6edf951754425b91303d9a82b789d1c0f4a8fca3be6175d9f66",
+    "story-extra.js": "ef1d8ca95f3039f68fcc425522efa65d993b9a2fcb3a949523b2746ca4da358a",
+    "story.js": "34323e3acc249c8132861a8d4e71c27a72fba3671211331482289b61bba6ba84",
+    "thrill.js": "6aea33d758f49298cb6b2869b0ec12a76ae6ef1775543a7809b971d1db904bd9",
+    "visual-assets.js": "17f39748cc34f1e68d68e1707bfcefcb802cc7b610406fc5248c8ce0db48b2ac"
+  },
+  "standaloneBytes": {
+    "index_android_safe.html": 32061090,
+    "index_iphone_safe.html": 32064588
+  }
+}

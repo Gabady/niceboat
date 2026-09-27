@@ -1,7 +1,8 @@
-/* v95: career mentors and the final wall. Pure calculations, original SVG portraits. */
+/* v101: mentors, five-chapter routes, final rivals and raster portrait delegation. */
 (function(root){
 'use strict';
 const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null),S=root.KM_STORY||(typeof require==='function'?require('./story.js'):null);
+const routes=root.KM_MENTOR_DATA||(typeof require==='function'?require('./mentor-data.js'):null);
 const copy=x=>JSON.parse(JSON.stringify(x));
 const mentors=[
  {id:'hayase',name:'早瀬 怜',key:'speed',title:'直線の求道者',color:'#35bbdf',hair:0,quote:'速さは、迷わない一線から生まれる。'},
@@ -20,7 +21,7 @@ const walls=[
 const all=[...mentors,...walls],map=Object.fromEntries(all.map(x=>[x.id,x]));
 function ensure(c){if(!c.cast)c.cast={version:1,mentor:null,boss:null,mentorLocked:false,stages:[],schedule:null,duels:[],trained:0};return c.cast;}
 function record(id){return {id,wins:0,losses:0};}
-function select(c,id){const t=ensure(c);if(c.stage<2||t.mentorLocked||c.status!=='seriesIntro'||!mentors.some(x=>x.id===id))return false;t.mentor=record(id);return true;}
+function select(c,id){const t=ensure(c);if(c.stage<2||t.mentorLocked||c.status!=='seriesIntro'||!mentors.some(x=>x.id===id))return false;t.mentor=record(id);t.route=null;return true;}
 function setup(c){
  const t=ensure(c);if(c.stage>=2&&!t.mentor)t.mentor=record(mentors[S.hash(c.player.id+':mentor')%5].id);
  if(c.stage===8&&!t.boss)t.boss=record(walls[S.hash(c.player.id+':wall')%5].id);
@@ -71,10 +72,34 @@ function settle(c,r,result,api){
  result.castDuel=z;const st=S.ensure(c);st.log.push({index:++st.serial,stage:c.stage,kind:'duelResult',title:(q.kind==='boss'?'最強の壁':'師匠')+(won?'を越えた':'との一戦'),note:def.name+'「'+(won?'今日の航跡は、お前のものだ。':def.quote)+'」',rewards:[]});
  st.log[st.log.length-1].rewards=won?[z.money+'万円',D.abilityMap[z.skill]?.name].filter(Boolean):[];st.log=st.log.slice(-72);return z;
 }
+function routeState(c){const t=ensure(c),id=t.mentor?.id;if(!id)return null;if(!t.route)t.route={id,step:0,nextAt:0,choices:[],log:[],pending:null,reward:null};return t.route;}
+function routeReward(c){const q=routeState(c),r=q&&routes[q.id];return r?(c.player.difficulty==='easy'?r.easyReward:r.reward):null;}
+function routeGate(c){if(!c?.player||!c.cast?.mentor)return {open:false,reason:'G3から師匠に出会えます'};const q=routeState(c),r=routes[q.id],episode=r.chapters[q.step];
+ if(!episode)return {open:false,completed:true,reason:'全5話を修了しました'};
+ if(c.ending||c.status==='race'||c.series?.race?.drive&&!c.series.race.done)return {open:false,reason:c.ending?'今回の育成は終了しました':'レース後に話せます'};
+ if(c.stage<episode.stage)return {open:false,reason:D.stages[episode.stage].name+'から続きが届きます'};
+ if(c.stats.races<q.nextAt)return {open:false,reason:'あと'+(q.nextAt-c.stats.races)+'走で続きが届きます'};
+ return {open:true,episode,reason:'第'+(q.step+1)+'話を進められます'};
+}
+function routeOpen(c){const g=routeGate(c);if(!g.open)return null;const t=ensure(c),q=routeState(c);t.mentorLocked=true;q.pending={key:q.id+':mentor:'+q.step+':'+c.stats.races,step:q.step,stamp:c.stats.races};return routeScene(c);}
+function routeScene(c){const q=routeState(c),p=q?.pending;if(!p)return null;const ep=routes[q.id].chapters[p.step];return {...ep,key:p.key,mentor:map[q.id],step:p.step,previous:q.log.at(-1)||null};}
+function routeChoose(c,key,index,api){const q=routeState(c),p=q?.pending,g=routeGate(c);if(!p||!g.open||p.key!==key||p.step!==q.step||p.stamp!==c.stats.races||!Number.isInteger(index))return null;const ch=g.episode.choices[index];if(!ch)return null;
+ const person=map[q.id],stat=ch.key||person.key,before=Math.floor(c.player.stats[stat]);api.growStat(c.player,stat,.25*1.5*api.statGrowthRate(c.player.stats[stat])*api.growthFactor(c.player));q.pending=null;q.choices.push(index);q.step++;q.nextAt=c.stats.races+2;
+ let skill=null;if(q.step===5&&!q.reward){const acquired=api.acquire(c,c.player,routeReward(c),person.name+'からの伝授');skill=acquired.id;q.reward={skill,stage:c.stage};}
+ const z={kind:'mentorRoute',mentor:q.id,title:g.episode.title,note:ch.reply,choice:ch.label,stat,gain:Math.floor(c.player.stats[stat])-before,skill,races:c.stats.races,stage:c.stage};q.log.push(z);return copy(z);
+}
+function routeDepart(c){if(c.cast?.route)c.cast.route.pending=null;}
+function validRoute(q,mentor){if(q===null||q===undefined)return true;const num=(x,a,b)=>Number.isInteger(x)&&x>=a&&x<=b,str=(x,n)=>typeof x==='string'&&x.length<=n,r=routes[q.id];
+ if(!r||q.id!==mentor?.id||!num(q.step,0,5)||!num(q.nextAt,0,1000)||!Array.isArray(q.choices)||q.choices.length!==q.step||!q.choices.every(v=>num(v,0,1))||!Array.isArray(q.log)||q.log.length!==q.step)return false;
+ if(!q.log.every((l,i)=>l.mentor===q.id&&l.kind==='mentorRoute'&&l.title===r.chapters[i].title&&str(l.note,600)&&str(l.choice,200)&&D.statKeys.includes(l.stat)&&num(l.gain,0,5)&&num(l.races,0,1000)&&num(l.stage,0,8)&&(!l.skill||[r.reward,r.easyReward].includes(l.skill))))return false;
+ if(q.reward?!(q.step===5&&[r.reward,r.easyReward].includes(q.reward.skill)&&num(q.reward.stage,0,8)):q.step===5)return false;
+ const p=q.pending;if(p&&(!str(p.key,120)||p.step!==q.step||q.step>=5||!num(p.stamp,0,1000)))return false;return true;
+}
+
 function valid(t){const count=v=>Number.isInteger(v)&&v>=0&&v<=60,entry=(v,list)=>v===null||v&&list.some(x=>x.id===v.id)&&count(v.wins)&&count(v.losses);
- return !!t&&t.version===1&&typeof t.mentorLocked==='boolean'&&entry(t.mentor,mentors)&&entry(t.boss,walls)&&Number.isInteger(t.trained)&&t.trained>=0&&t.trained<=1000&&Array.isArray(t.stages)&&t.stages.length<=9&&t.stages.every(x=>Number.isInteger(x)&&x>=0&&x<=8)&&(!t.schedule||['mentor','boss'].includes(t.schedule.kind)&&[1,2,3,4].includes(t.schedule.round))&&Array.isArray(t.duels)&&t.duels.length<=12&&new Set(t.duels.map(x=>x.raceId)).size===t.duels.length&&t.duels.every(x=>typeof x.raceId==='string'&&x.raceId.length<110&&(x.kind==='boss'?walls:mentors).some(d=>d.id===x.id)&&['mentor','boss'].includes(x.kind)&&['active','settled'].includes(x.status));
+ return !!t&&validRoute(t.route,t.mentor)&&t.version===1&&typeof t.mentorLocked==='boolean'&&entry(t.mentor,mentors)&&entry(t.boss,walls)&&Number.isInteger(t.trained)&&t.trained>=0&&t.trained<=1000&&Array.isArray(t.stages)&&t.stages.length<=9&&t.stages.every(x=>Number.isInteger(x)&&x>=0&&x<=8)&&(!t.schedule||['mentor','boss'].includes(t.schedule.kind)&&[1,2,3,4].includes(t.schedule.round))&&Array.isArray(t.duels)&&t.duels.length<=12&&new Set(t.duels.map(x=>x.raceId)).size===t.duels.length&&t.duels.every(x=>typeof x.raceId==='string'&&x.raceId.length<110&&(x.kind==='boss'?walls:mentors).some(d=>d.id===x.id)&&['mentor','boss'].includes(x.kind)&&['active','settled'].includes(x.status));
 }
 function portrait(id,large=false){const p=map[id];if(!p)return '';const P=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);return P?P.render({...p,role:'cast'},large):'';}
 
-const API={mentors,walls,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
+const API={routes,routeState,routeGate,routeReward,routeOpen,routeScene,routeChoose,routeDepart,validRoute,mentors,walls,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);

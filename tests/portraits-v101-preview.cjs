@@ -1,0 +1,6 @@
+'use strict';
+// Technical contact sheet of actual shipped raster assets. Not a browser screenshot.
+const fs=require('fs'),path=require('path'),{createCanvas,loadImage}=require('@napi-rs/canvas'),A=require('../portrait-assets');
+(async()=>{const rows=Object.entries(A),cv=createCanvas(1200,1580),x=cv.getContext('2d');x.fillStyle='#102536';x.fillRect(0,0,1200,1580);x.fillStyle='#f5efdf';x.font='26px sans-serif';x.fillText('KYOTEI MONOGATARI / CAST v101',30,42);x.fillStyle='#9eb5c1';x.font='15px sans-serif';x.fillText('AI-generated fictional characters / shipped 512px raster assets',30,67);
+for(const [i,[id,src]]of rows.entries()){const left=28+(i%6)*196,top=100+Math.floor(i/6)*288,im=await loadImage(path.join(__dirname,'..',src));x.drawImage(im,left,top,168,168);x.fillStyle='#f5efdf';x.font='20px sans-serif';x.fillText(id.replace('_',' ').toUpperCase(),left,top+200);x.fillStyle='#9eb5c1';x.font='13px sans-serif';x.fillText(i<5?'HEROINE':i<10?'MENTOR':i<15?'FINAL WALL':'RIVAL',left,top+224);}
+fs.mkdirSync(path.join(__dirname,'../previews'),{recursive:true});fs.writeFileSync(path.join(__dirname,'../previews/v101-portraits.png'),cv.toBuffer('image/png'));console.log('27 shipped portraits decoded and rendered.');})();

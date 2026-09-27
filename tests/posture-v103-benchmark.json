@@ -1,0 +1,1546 @@
+{
+  "build": 103,
+  "assumptions": "60 paired synthetic 3-lap races, two difficulties, five grades, dry/rough water and 3 seeds per cell. Same fixtures, skills and seeds with all boats on AI. Measures regression, not human win rates. Old engine is v102.",
+  "rows": [
+    {
+      "mode": "easy",
+      "grade": "rookie",
+      "rough": false,
+      "oldNpcTime": 128.43288126712298,
+      "newNpcTime": 125.53053281035936,
+      "timeChange": -0.022598172898785407,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 3,
+      "newWins": 3,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 1,
+            "time": 119.63553605601383,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 128.0633450446607,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 1,
+            "time": 115.6965662796104,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 124.36194358237307,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 1,
+            "time": 122.97504957877209,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 129.99646541581737,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 1,
+            "time": 119.32923927305946,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 127.87762015843552,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 1,
+            "time": 119.10755570099688,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 127.23883334089086,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 1,
+            "time": 116.09594896425637,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 124.3520346902695,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "grade": "rookie",
+      "rough": true,
+      "oldNpcTime": 138.07659086293958,
+      "newNpcTime": 133.7773638037227,
+      "timeChange": -0.031136538296230643,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 3,
+      "newWins": 2,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 1,
+            "time": 124.96803513629249,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 138.74805335521575,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 1,
+            "time": 122.0429436763126,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 134.07502197544497,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 1,
+            "time": 132.7061154125521,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 139.99523034723606,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 3,
+            "time": 131.91045227927629,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 135.71342339312648,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 1,
+            "time": 124.78573752616207,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 135.486488886367,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 1,
+            "time": 121.63168834183273,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 131.54364604259666,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "grade": "g3",
+      "rough": false,
+      "oldNpcTime": 117.70719305628086,
+      "newNpcTime": 114.5484899333149,
+      "timeChange": -0.02683525994418756,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 2,
+      "newWins": 2,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 1,
+            "time": 109.79544023120788,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 117.38219011394047,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 1,
+            "time": 106.5002624904959,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 114.427976620843,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 1,
+            "time": 113.56967708979253,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 118.57464701163084,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 1,
+            "time": 108.94051587723372,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 115.09137914970333,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 2,
+            "time": 108.73454966018274,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 117.16474204327126,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 2,
+            "time": 110.21409501283473,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 114.12611402939838,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "grade": "g3",
+      "rough": true,
+      "oldNpcTime": 124.60129667468497,
+      "newNpcTime": 120.84327201021654,
+      "timeChange": -0.03016039772266632,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 1,
+      "newWins": 1,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 1,
+            "time": 116.46155722280118,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 124.46421942700435,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 1,
+            "time": 114.07216950797823,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 119.95905976092925,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 2,
+            "time": 122.24079057233266,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 126.13045580393381,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 2,
+            "time": 119.28802202375346,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 122.40444076340455,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 2,
+            "time": 115.96774934063211,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 123.20921479311676,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 3,
+            "time": 118.49864632312257,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 120.1663155063158,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "grade": "g2",
+      "rough": false,
+      "oldNpcTime": 111.4987269891379,
+      "newNpcTime": 108.59748461684102,
+      "timeChange": -0.026020408040887455,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 2,
+      "newWins": 2,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 2,
+            "time": 106.1813875450807,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 111.62160539912853,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 2,
+            "time": 104.68835126730951,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 108.64905127180808,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 1,
+            "time": 106.68443741026269,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 112.9378480986749,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 1,
+            "time": 105.42657992699291,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 110.14712855925995,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 1,
+            "time": 103.73501084196964,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 109.9367274696103,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 1,
+            "time": 100.55295734251978,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 106.996274019455,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "grade": "g2",
+      "rough": true,
+      "oldNpcTime": 116.65968762124652,
+      "newNpcTime": 114.38109701219271,
+      "timeChange": -0.01953194505759004,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 2,
+      "newWins": 2,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 2,
+            "time": 109.04776560768981,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 115.29358421206163,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 2,
+            "time": 105.55630774927663,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 112.32005355865661,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 1,
+            "time": 111.91387602613274,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 118.7737421437816,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 1,
+            "time": 109.76973060761242,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 117.64971370475374,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 1,
+            "time": 108.5300561597904,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 115.91173650789631,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 1,
+            "time": 104.83632740127575,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 113.17352377316782,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "grade": "g1",
+      "rough": false,
+      "oldNpcTime": 103.93037595849019,
+      "newNpcTime": 101.29096226489419,
+      "timeChange": -0.02539597946465799,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 0,
+      "newWins": 0,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 5,
+            "time": 102.97914503863613,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 101.0780006793461,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 3,
+            "time": 98.09449593590068,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 98.30112889420325,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 3,
+            "time": 102.01916676930603,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 103.28651921512972,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 2,
+            "time": 98.20955860322624,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 100.51422431754312,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 2,
+            "time": 105.0295610528534,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 107.42660798099473,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 2,
+            "time": 102.36553294582913,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 105.05753358293623,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "grade": "g1",
+      "rough": true,
+      "oldNpcTime": 107.79471500125516,
+      "newNpcTime": 105.23487309829812,
+      "timeChange": -0.023747378551232545,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 0,
+      "newWins": 0,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 5,
+            "time": 104.51534149922168,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 103.33580994395015,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 5,
+            "time": 104.27050702485238,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 100.15203001930686,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 3,
+            "time": 109.29950740895893,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 108.70560472979426,
+            "boundaries": 3
+          },
+          "current": {
+            "place": 2,
+            "time": 102.50926838808425,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 106.53515966454638,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 5,
+            "time": 113.92181458254592,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 111.34273033002106,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 5,
+            "time": 111.08183019806187,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 109.0174296110411,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "grade": "sg",
+      "rough": false,
+      "oldNpcTime": 98.27694467208762,
+      "newNpcTime": 95.45443275243395,
+      "timeChange": -0.028719980348100083,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 0,
+      "newWins": 0,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 3,
+            "time": 95.04972007751687,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 98.23210417746868,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 3,
+            "time": 92.34436214254657,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 94.83397064695613,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 3,
+            "time": 100.08476516594492,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 100.35998480284528,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 3,
+            "time": 94.99468532538506,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 97.2255898447098,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 4,
+            "time": 97.7229330200514,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 96.23874503594891,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 6,
+            "time": 96.91406269582157,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 94.30373776563587,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "grade": "sg",
+      "rough": true,
+      "oldNpcTime": 101.54734628069086,
+      "newNpcTime": 99.24272900778392,
+      "timeChange": -0.022695002452714608,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 0,
+      "newWins": 0,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 3,
+            "time": 98.75868480122587,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 102.28454316936276,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 3,
+            "time": 96.74249314846398,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 99.41591436294786,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 3,
+            "time": 104.41539671601303,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 105.18160306853773,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 2,
+            "time": 100.16339213530996,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 103.45081400958566,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 6,
+            "time": 103.08050028404108,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 97.17589260417205,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 6,
+            "time": 101.74822090005749,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 94.86145865081825,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "rookie",
+      "rough": false,
+      "oldNpcTime": 123.14306616173559,
+      "newNpcTime": 119.01201333955832,
+      "timeChange": -0.0335467757214325,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 2,
+      "newWins": 3,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 1,
+            "time": 115.07454864030447,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 123.15701641181131,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 1,
+            "time": 111.78564718805508,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 118.78797483365433,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 3,
+            "time": 122.74617596194562,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 125.37154527884647,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 1,
+            "time": 115.53174114135231,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 120.62313152140572,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 1,
+            "time": 115.58982072334636,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 120.90063679454897,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 1,
+            "time": 112.3520570685476,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 117.62493366361488,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "rookie",
+      "rough": true,
+      "oldNpcTime": 130.65274969621197,
+      "newNpcTime": 128.04504515253163,
+      "timeChange": -0.019959048315046246,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 1,
+      "newWins": 1,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 1,
+            "time": 121.07027295042765,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 130.3109765537261,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 1,
+            "time": 118.40509085161607,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 128.50172697115647,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 3,
+            "time": 130.21738238246382,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 132.74445394076943,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 3,
+            "time": 127.88987703363058,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 128.84218915274442,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 4,
+            "time": 128.69658664628002,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 128.90281859414034,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 5,
+            "time": 128.93005679174757,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 126.79121933369395,
+            "boundaries": 3
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "g3",
+      "rough": false,
+      "oldNpcTime": 109.86517722075422,
+      "newNpcTime": 105.70393247892527,
+      "timeChange": -0.0378759207156939,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 1,
+      "newWins": 1,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 1,
+            "time": 103.4199354063621,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 112.20012706520265,
+            "boundaries": 3
+          },
+          "current": {
+            "place": 1,
+            "time": 101.65643125632359,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 107.48473560277998,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 2,
+            "time": 105.45235818882388,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 108.50729282429407,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 2,
+            "time": 102.57510641385262,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 105.09300062970192,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 4,
+            "time": 109.76635054762264,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 108.88811177276594,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 3,
+            "time": 103.21877706940315,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 104.53406120429392,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "g3",
+      "rough": true,
+      "oldNpcTime": 114.5398868786437,
+      "newNpcTime": 111.55996390578132,
+      "timeChange": -0.026016465129039656,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 1,
+      "newWins": 1,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 1,
+            "time": 109.3071168499522,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 116.39997279778545,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 1,
+            "time": 106.19844837626837,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 113.41509769534511,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 2,
+            "time": 113.36986488773827,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 114.84283915928322,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 2,
+            "time": 111.41290868108571,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 111.97456233224266,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 6,
+            "time": 118.82379818503162,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 112.37684867886242,
+            "boundaries": 1
+          },
+          "current": {
+            "place": 6,
+            "time": 114.92989615028539,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 109.29023168975618,
+            "boundaries": 1
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "g2",
+      "rough": false,
+      "oldNpcTime": 101.99605586790928,
+      "newNpcTime": 98.14800488038448,
+      "timeChange": -0.03772744891732138,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 0,
+      "newWins": 1,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 2,
+            "time": 97.74139375645439,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 101.01473541280293,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 3,
+            "time": 96.2331225835891,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 98.01254351178122,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 2,
+            "time": 100.3087515589691,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 103.69381517208303,
+            "boundaries": 3
+          },
+          "current": {
+            "place": 1,
+            "time": 96.92164270126881,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 100.60866718152216,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 3,
+            "time": 98.05704351931868,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 101.27961701884185,
+            "boundaries": 5
+          },
+          "current": {
+            "place": 4,
+            "time": 97.30938096197043,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 95.82280394785002,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "g2",
+      "rough": true,
+      "oldNpcTime": 107.86353351121649,
+      "newNpcTime": 103.16362843812475,
+      "timeChange": -0.04357269709324896,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 1,
+      "newWins": 0,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 2,
+            "time": 102.92795333263197,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 106.57542519192728,
+            "boundaries": 3
+          },
+          "current": {
+            "place": 3,
+            "time": 101.63604354912867,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 102.08576678784571,
+            "boundaries": 2
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 1,
+            "time": 101.79353100798454,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 111.07477981385671,
+            "boundaries": 4
+          },
+          "current": {
+            "place": 2,
+            "time": 100.8207650268268,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 106.51949211706412,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 2,
+            "time": 101.68416445847473,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 105.94039552786549,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 3,
+            "time": 101.31212092993596,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 100.8856264094644,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "g1",
+      "rough": false,
+      "oldNpcTime": 93.558059617534,
+      "newNpcTime": 90.15575111567536,
+      "timeChange": -0.03636574460572717,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 0,
+      "newWins": 0,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 4,
+            "time": 93.68435032169184,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 94.1512827530411,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 3,
+            "time": 90.19775245398505,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 91.8704901884797,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 5,
+            "time": 96.89103145079945,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 92.74590903100723,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 6,
+            "time": 92.67786088914474,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 88.89845933590419,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 4,
+            "time": 94.62744828488657,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 93.77698706855362,
+            "boundaries": 7
+          },
+          "current": {
+            "place": 6,
+            "time": 95.21106843923936,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 89.69830382264216,
+            "boundaries": 3
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "g1",
+      "rough": true,
+      "oldNpcTime": 95.52132550294353,
+      "newNpcTime": 92.11239607236331,
+      "timeChange": -0.03568762695273908,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 0,
+      "newWins": 0,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 3,
+            "time": 95.3319250423723,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 95.84791357293565,
+            "boundaries": 3
+          },
+          "current": {
+            "place": 4,
+            "time": 94.3661480087654,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 93.64335519327207,
+            "boundaries": 2
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 5,
+            "time": 95.93265004451837,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 94.21382956569485,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 5,
+            "time": 95.4388812124055,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 91.06243579515805,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 5,
+            "time": 100.71762615587872,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 96.50223337020009,
+            "boundaries": 7
+          },
+          "current": {
+            "place": 6,
+            "time": 96.80280593120409,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 91.63139722865981,
+            "boundaries": 1
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "sg",
+      "rough": false,
+      "oldNpcTime": 84.21154145983856,
+      "newNpcTime": 81.61270386458271,
+      "timeChange": -0.030860824421498845,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 0,
+      "newWins": 0,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 6,
+            "time": 87.57927749969409,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 85.49512008058147,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 6,
+            "time": 85.78562716640148,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 83.0247194027998,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 5,
+            "time": 88.37847472632374,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 83.65507846305171,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 4,
+            "time": 85.27308354954046,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 80.48026732362655,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 5,
+            "time": 88.04191201921374,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 83.48442583588249,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 5,
+            "time": 86.85021124293921,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 81.33312486732176,
+            "boundaries": 0
+          }
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "grade": "sg",
+      "rough": true,
+      "oldNpcTime": 84.35623963915809,
+      "newNpcTime": 82.33302633338825,
+      "timeChange": -0.023984157122512006,
+      "oldFinish": 18,
+      "newFinish": 18,
+      "oldWins": 0,
+      "newWins": 0,
+      "samples": [
+        {
+          "seed": 391,
+          "old": {
+            "place": 6,
+            "time": 89.35075282394294,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 84.03503015448209,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 6,
+            "time": 88.42804878397152,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 81.75328109759545,
+            "boundaries": 0
+          }
+        },
+        {
+          "seed": 508,
+          "old": {
+            "place": 6,
+            "time": 95.04754217136835,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 83.80833513253314,
+            "boundaries": 2
+          },
+          "current": {
+            "place": 6,
+            "time": 91.07237347753055,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 81.93872256313401,
+            "boundaries": 1
+          }
+        },
+        {
+          "seed": 625,
+          "old": {
+            "place": 6,
+            "time": 91.52957449439668,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 85.22535363045907,
+            "boundaries": 0
+          },
+          "current": {
+            "place": 6,
+            "time": 90.9858166932829,
+            "finish": 6,
+            "faults": 0,
+            "capsize": 0,
+            "npcMean": 83.30707533943527,
+            "boundaries": 0
+          }
+        }
+      ]
+    }
+  ]
+}

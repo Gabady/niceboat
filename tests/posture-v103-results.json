@@ -1,0 +1,116 @@
+{
+  "build": 103,
+  "passed": 27,
+  "failed": 0,
+  "results": [
+    {
+      "name": "全94能力名に句読点・記号・重複なし、IDとレア度を維持",
+      "passed": true
+    },
+    {
+      "name": "冗談調の名前が更新されモンキー4段階を維持",
+      "passed": true
+    },
+    {
+      "name": "姿勢上下の方向・8px遊び・両端の可動範囲",
+      "passed": true
+    },
+    {
+      "name": "低姿勢は直線の伸び、高姿勢は旋回の収まりに役割を分ける",
+      "passed": true
+    },
+    {
+      "name": "姿勢だけでは能力差を逆転できず最高速差は約5%以内",
+      "passed": true
+    },
+    {
+      "name": "姿勢は瞬時に切り替わらず旋回・フィジカルで移行が速くなる",
+      "passed": true
+    },
+    {
+      "name": "旋回負荷中は姿勢の切り替えも重くなる",
+      "passed": true
+    },
+    {
+      "name": "助走中の姿勢はST予測と加速を変えずF判定を悪化させない",
+      "passed": true
+    },
+    {
+      "name": "スタート後は姿勢の効果を滑らかに立ち上げる",
+      "passed": true
+    },
+    {
+      "name": "全開で曲がる際も従来の速度維持が働きブレーキを追加しない",
+      "passed": true
+    },
+    {
+      "name": "NPCは直線で伏せターン手前で起こす",
+      "passed": true
+    },
+    {
+      "name": "荒天や強い引き波の直線では伏せすぎを控える",
+      "passed": true
+    },
+    {
+      "name": "観戦と即結果スキップは同じ姿勢計算で着順も一致",
+      "passed": true
+    },
+    {
+      "name": "旧v102の途中レースを姿勢なしでも読み込めて所持能力を保持",
+      "passed": true
+    },
+    {
+      "name": "姿勢と目標値は保存復元でき不正範囲を拒否",
+      "passed": true
+    },
+    {
+      "name": "中断復元でも同じ乱数・姿勢・位置へ進む",
+      "passed": true
+    },
+    {
+      "name": "姿勢でレーサーの頭・肩が変わり描画は状態を変更しない",
+      "passed": true
+    },
+    {
+      "name": "揺れOFFでは姿勢を変えてもカメラ高さが動かない",
+      "passed": true
+    },
+    {
+      "name": "リザルトの小型ヒントから姿勢と横滑りの関係がわかる",
+      "passed": true
+    },
+    {
+      "name": "左下全体から上下左右と右アクセルを同時操作できる",
+      "passed": true
+    },
+    {
+      "name": "指を離すと舵は戻り姿勢は保持される",
+      "passed": true
+    },
+    {
+      "name": "純粋な横ドラッグでは姿勢が変わらない",
+      "passed": true
+    },
+    {
+      "name": "タッチフォールバックにもY座標と2本指を渡す",
+      "passed": true
+    },
+    {
+      "name": "矢印上下は姿勢 WとSpaceは加速へ割り当てる",
+      "passed": true
+    },
+    {
+      "name": "一時停止・画面非表示でアクセルと舵を解除し姿勢は復元する",
+      "passed": true
+    },
+    {
+      "name": "姿勢補助設定で自動化でき上下操作ですぐ手動へ戻せる",
+      "passed": true
+    },
+    {
+      "name": "姿勢HUDと一時停止の操作説明が存在しブレーキを追加しない",
+      "passed": true
+    }
+  ],
+  "method": "Production JS with controlled DOM, touch/pointer/keyboard and frame scheduler. Not physical-device or real-browser testing."
+}

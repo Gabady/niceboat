@@ -1,5 +1,5 @@
 {
-  "passed": 24,
+  "passed": 26,
   "failed": 0,
   "results": [
     {
@@ -35,6 +35,10 @@
       "passed": true
     },
     {
+      "name": "portrait-assets.jsがソースと一致",
+      "passed": true
+    },
+    {
       "name": "portraits.jsがソースと一致",
       "passed": true
     },
@@ -44,6 +48,10 @@
     },
     {
       "name": "bonds.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "mentor-data.jsがソースと一致",
       "passed": true
     },
     {

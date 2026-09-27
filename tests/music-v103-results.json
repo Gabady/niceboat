@@ -1,0 +1,92 @@
+{
+  "build": 103,
+  "passed": 21,
+  "failed": 0,
+  "results": [
+    {
+      "name": "全グレードの予選・準優勝戦・優勝戦を指定曲へ振り分ける",
+      "passed": true
+    },
+    {
+      "name": "通常画面はメイン、SG育成画面は専用曲、ヒロイン会話が優先",
+      "passed": true
+    },
+    {
+      "name": "SGセーブ保持中もタイトル・名鑑・おまけレースはSG曲に誤判定しない",
+      "passed": true
+    },
+    {
+      "name": "SG未完成2枠は代用し、後からsrcを設定すれば独立した曲へ変わる",
+      "passed": true
+    },
+    {
+      "name": "操作前にMP3を準備せず、音ON後も再描画で再生位置を戻さない",
+      "passed": true
+    },
+    {
+      "name": "切替で古いMP3を解放し、一重再生と代用曲の継続を維持",
+      "passed": true
+    },
+    {
+      "name": "ミュートは位置を保って停止し、音量変更だけでは曲を再開しない",
+      "passed": true
+    },
+    {
+      "name": "古いplay Promiseが遅れて成功しても新しい曲を止めない",
+      "passed": true
+    },
+    {
+      "name": "同じ曲のミュート→再開中に古いPromiseが戻っても再開を邪魔しない",
+      "passed": true
+    },
+    {
+      "name": "再生拒否・読込失敗を表示し、ジェスチャーで再試行できる",
+      "passed": true
+    },
+    {
+      "name": "MP3はWeb Audioに展開せず、短い効果音だけをデコード",
+      "passed": true
+    },
+    {
+      "name": "BGMと効果音の設定は独立し、ミュートを保存",
+      "passed": true
+    },
+    {
+      "name": "アプリ切替で停止、画面復帰のみでは鳴らさずタップで再開",
+      "passed": true
+    },
+    {
+      "name": "曲名とSG代用状態を音声パネルに表示",
+      "passed": true
+    },
+    {
+      "name": "実際の人物UIは会話時に切替、戻るとメインに復帰",
+      "passed": true
+    },
+    {
+      "name": "実際のSG最終戦とタイトル遷移が現在の出走条件を音声へ渡す",
+      "passed": true
+    },
+    {
+      "name": "15人の固定キャストは別々の生成画像を使用",
+      "passed": true
+    },
+    {
+      "name": "一般NPCは12画像のプールを使用し、同じIDは再読込後も同じ",
+      "passed": true
+    },
+    {
+      "name": "同じ人物画像を場面で維持し、顔描画でゲームの乱数を消費しない",
+      "passed": true
+    },
+    {
+      "name": "名前と色から画像タグへ属性やスクリプトを注入できない",
+      "passed": true
+    },
+    {
+      "name": "v99形式を移行しても選手・機材・物語・出走状態を変更しない",
+      "passed": true
+    }
+  ],
+  "method": "Production routing, UI handlers and audio lifecycle with controlled DOM/media stand-ins; not speaker/browser/device tests"
+}

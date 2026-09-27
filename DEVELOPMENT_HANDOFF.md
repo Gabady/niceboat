@@ -1,27 +1,31 @@
-# v100 開発引継ぎ
+# v103 開発引継ぎ
 
-正本はZIPルート。build '100'、save.version80／drive.version2。今回、物理・育成バランスを変更していない。公開／GitHub変更なし。
+正本はZIPルート。build '103'、save.version80／drive.version2、bonds.version2。公開／GitHubの更新なし。前回v102の交際・所持報酬・途中レースを維持。
 
-## v100の接続
+## 今回の実装
 
-- `music.js`：KM_MUSIC.tracks/select/resolve/create。7枠。main/race/final/sgLounge/heroineの5MP3、sgRace/sgFinalはsrc:nullでrace/finalへ代用。曲対応と追加手順はMUSIC.md。元MP3はassets/audio、音質変更なし。
-- `script.js` render→syncAudioScene→audioSceneInfo→KM_AUDIO.scene。raceでは現レースgrade/type、その他はcareer.stage、bonds pending／romance outcome／SG恋愛報酬をheroineへ。titleなど育成外はmain。レースの種別championshipだけ決勝曲、consolationは通常曲。おまけレースを育成SGと混同しない。
-- `audio.js`：既存km_audio_v92のmute/BGM/SFX/volumeを継承。最初mute。MP3一重再生、同曲更新は位置維持、切替で旧要素解放、0.32秒フェードイン。短い6効果音だけWeb Audio。旧harbor/raceループはmusicモジュール不在時のみ。隠れたら停止し次タップまで再開しない。play Promiseは世代tokenで競合を防ぐ。
-- `portraits.js`：KM_PORTRAITS.fixed/definition/render。ヒロイン5＋師匠5＋壁5の専用顔、一般NPCはIDハッシュから輪郭等を独立決定。cast_接頭辞は除去して同一人物へ。Bonds.portraitとCast.portraitがこの共通描画を利用。thoughtful/sad/warm差分。SVGのみ、名前をescape、任意色はhex限定。ゲームの乱数不使用。
-- scriptsは19本。portraits.jsをbonds/castより前、music.jsをaudioより前。共通4CSS。iPhoneのみ互換JS1本＋CSS1本追加。
-- tools/package.pyは既定music.js内のassets/audio/*.mp3をdata URIへ変換し2つの単体HTMLを出力。ファイル欠落は生成エラー。ZIPはassets以下を再帰収録。HTML約30MB、ZIPは両単体版・原MP3を含むため大きい。
-- 保存build99→100は既存進行を保持。音量設定は端末側。顔はIDから作るのでセーブに画像を増やさない。
+- data.jsのskillNamesで57IDの表示名を更新。全94名に句読点・区切り記号なし、名前重複なし。効果・条件・確率・IDは不変。SKILL_NAMES.mdに旧→新と全94種。モンキー4段階は既存名を維持。bonds-dataのfinalTitleと関係／師匠資料も更新。過去の保存済み実況文字列はそのまま。
+- racing.jsの姿勢はcontrols.posture／boat.posture／boat.postureTarget、範囲[-1,1]。-1伏せ＋1起こす。新規は0、古い保存ではフィールド省略可。validは存在時に範囲を検証。tickで入力欠落なら現在目標を保持。
+- postureEffects：伏せtopSpeed×1.028、grip×.90、yaw×.92、damping×.86。起こすtopSpeed×.978、grip×1.10、yaw×1.08、damping×1.14。中間は線形。助走中補正0、ライン通過後1.2秒で立ち上げ。steeringLimitsの水圧loadも姿勢で±10%。自動ターン減速なし。
+- movePosture：rate=(.75+turn*.0075+power*.0035)/(1+min(.8,abs(yawRate)*speed*.06))。固定DT、同じ制約を全艇へ。能力の元値と接触質量は変更しない。
+- postureTarget：助走0、曲率を先読みしてターン手前＋.84、通常直線−.86、雨／強風／引き波直線−.48。pilot・観戦・スキップと手動の姿勢補助が共用。姿勢で新しい乱数を消費しない。
+- driving-ui.js：左下全体のXに既存steerDrag、YにpostureDrag（8pxデッドゾーン、片道50〜78px）。pointer/touch/mouseへclientYを伝搬。指離しで舵だけ0、姿勢保持。pause/blur/visibility/pagehideでスロットルと舵解除、姿勢目標維持。上下手動入力でpostureAssist=falseへ即切替。
+- PCは←→/ADが舵、↑↓が姿勢、W/Spaceが加速。settings.postureAssistのbooleanを保存検証。一時停止画面に設定。報酬ペナルティなし。
+- 左スライダー上に小型姿勢パネル。現在点と目標印を分離。左右下半分の判定と横スライダーは継承。競合した旧min-heightを82pxに整理し画面外はみ出しを抑制。実況・予兆・警告を上へずらす。
+- race-renderer.jsのracerPoseに頭・肩・腰の上下と前後。camera高さ±.12m、motion=falseでは固定。Canvas/WebGL共用。race-feedback.jsにlowTurnSeconds/highStraightSecondsを使う短い改善ヒント。新metricsは省略可で旧保存互換。
 
-## 既存ゲームの主要点
+## 継承する重要仕様
 
-- data.jsの図鑑89能力。bonds-data.jsに成人5人×7話＋SG本文。通常物語123イベントはstory.js/story-extra.js。
-- bonds.js：ensure/gate/open/scene/choose/depart/final/rivalInfo/train/status/valid。career.bonds version1。2走ごとの交流、1シリーズ1回のライバル特訓、重要章2/4の悪手で交際不可、第6話告白。選択キーは保存し二重処理防止。登録選手へ履歴を残す。
-- 恋愛LR：akari→bond_reignite、mio→bond_headline、nagi→bond_breakwater、kanade→bond_clockletter、tsumugi→bond_lastorder。交際中stage8/championship未開始で1回。専用LRは通常抽選とNPCから除外。登録選手由来のSG継承は維持。
-- profile.jsは名前・地域・ひと言・色・お気に入り。3保存枠、更新前バックアップ、JSON、Android保存不可時の一時保存を継承。
-- race-renderer.jsが水面と艇、driving-ui.jsが左右下半分タッチ。racing.jsは固定刻みの3周物理。優勝戦と準優勝戦は操船必須。予選のみ観戦・結果スキップ、観戦→操船可。
+3周、予選のみ観戦／即結果、優勝戦・準優勝戦は操船。F許容0.09秒、L1.5秒。3保存枠・バックアップ・JSON・safeStorage。27人物WebPとPNG、5MP3、SGレースの2曲枠は未設定で代用。共通JS21本・CSS4本、iPhoneのみ互換1JS＋1CSS。素材は再生成しない。
 
-## 検証と次作業
+v102の出会い抽選[.002,.004,.009,.013,.019,.023,.028,.035,.045]はstage:roundで一度だけ、専用LCGを保存。met人物だけ一覧へ。新規は第7話で交際／完走1人、ほかは第6話まで。第5〜7話に即終了選択、第4話後から3走待ち。90万円bond_shortcutは1育成1回2走短縮。旧交際維持。師匠5人×5話は別枠、EasyはUR上限。RELATIONSHIPS.md／MENTOR_ROUTES.md参照。
 
-新規 node tests/music-v100-tests.cjs（21）。回帰はrelationships-v99（26）、career-v98（22）、race-v95（22）、android-update（14）、presentation-v94（5）、audio-v92（5）。単体生成後python3 tests/static-checks.py（45）とiphone-static-checks.py（24）。計184。集計tests/release-v100-verification.json。MP3のハッシュ・全区間decodeはaudio-files-v100.json。
+## 検証と次の作業
 
-NODE_PATHに開発依存を設定して tests/portraits-v100-preview.cjs を実行するとSkia確認画像を再生成。ゲーム本体は外部ライブラリ不要。実ブラウザ／スマホ実機／音出しは未検証。次は端末再生と切替、単体HTMLのメモリ確認、未完成SG2曲の差し替え。古い検証JSONは各版の記録で現在の集計に混ぜない。
+集計 tests/release-v103-verification.json：262項目。posture-v103 27、posture-v103-render 3、relationships-v103 26、mentor-v103 20（320選択組合せ）、music-v103 21、encounters-v103 22、career-v98 22、race-v95 22、android-update 14、presentation-v94 5、audio-v92 5、static 49、iphone-static 26。
+
+posture-v103-benchmark：60組の同一条件比較（2難易度×5グレード×2天候×3シード）。旧／新とも360艇完走。NPC平均タイム条件別−2.0〜−4.4%。プレイヤーAI勝利Easy13→12/30、Normal6→7/30。実際の人間の勝率ではない。旧基準はtests/posture-v102-baseline.json、旧セーブ固定はv102-posture-migration.json。旧catalogは名前と効果の不変確認用。
+
+UI試験は本番JS＋DOM/API代替環境。水面はSkiaで実描画し2画像を目視確認。ブラウザ実体がないため実ブラウザ・実スマホのタッチ/レイアウト/音/FPSは未確認。画像は水面描画の出力でGUIスクリーンショットではない。
+
+再生成はpython tools/package.py → python tests/static-checks.pyとiphone-static-checks.py。集計更新後にもう一度packageしZIPを検証。過去版testsとJSONは履歴、現行集計へ混ぜない。次は実機の上下左右誤入力、姿勢補助、短い縦画面と横画面のHUD重なりを確認。新しい変更理由は@255から追記。

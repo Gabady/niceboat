@@ -1,0 +1,178 @@
+{
+  "build": 102,
+  "passed": 232,
+  "failed": 0,
+  "suites": [
+    {
+      "suite": "encounters-v102",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "suite": "relationships-v102",
+      "passed": 26,
+      "failed": 0
+    },
+    {
+      "suite": "mentor-v102",
+      "passed": 20,
+      "failed": 0
+    },
+    {
+      "suite": "music-v102",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "suite": "career-v98",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "suite": "race-v95",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "suite": "android-update",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "suite": "presentation-v94",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "suite": "audio-v92",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "suite": "android-static",
+      "passed": 49,
+      "failed": 0
+    },
+    {
+      "suite": "iphone-static",
+      "passed": 26,
+      "failed": 0
+    }
+  ],
+  "encounterBenchmark": {
+    "file": "encounters-v102-benchmark.json",
+    "samples": 40000,
+    "scope": "Encounter rolls only. Assumes all 9 series reached, 5 or 6 races per series. Not observed player completion or romance rates."
+  },
+  "mentorRouteChoiceCombinations": 320,
+  "browser_tested": false,
+  "android_device_tested": false,
+  "iphone_device_tested": false,
+  "method": "Production engine and UI handlers using controlled DOM/media. Source-to-standalone comparisons. No physical-device or real-browser claims.",
+  "unchangedFromV101": [
+    "racing.js",
+    "driving-ui.js",
+    "race-renderer.js",
+    "race-feedback.js",
+    "thrill.js",
+    "presentation.js",
+    "audio.js",
+    "music.js",
+    "cast.js",
+    "mentor-data.js",
+    "portrait-assets.js",
+    "portraits.js"
+  ],
+  "existing27PortraitsUnchanged": true,
+  "mp3OriginalsUnchanged": true,
+  "assetHashes": {
+    "assets/audio/heroine.mp3": "3bbf8f01cbd7638b3b7eb7e0b10c8f784adeb50d72c7908b36880c0bac4dff5c",
+    "assets/audio/main.mp3": "d4ec072d3717a67d868ed1527c1f2026d4d1270b5e892ed5778aa2df921213fe",
+    "assets/audio/sg-lounge.mp3": "1b533947d741cfe7e102298bbeff993b29c6d9d74b210c5366e93c98849c91a3",
+    "assets/audio/final.mp3": "9331fb8ebec1a9133359154ebf3ca1519edd37d48a444d94685e2fbb70d87982",
+    "assets/audio/race.mp3": "fccbe1ca848cc3a54b569b81bf47997e06779d77a463316a473dbb548ab53f55",
+    "assets/portraits/kuzumi.webp": "71be5dd79a9d4746012518dfbd85fab29485ba674920c074c53da87b7f4d5391",
+    "assets/portraits/rival_05.webp": "70ade62bc4fcb17a106bf414e6ff0d062f9664dd05601a54690b0db59a98df85",
+    "assets/portraits/shirakami.webp": "7d15c33fec3907114e3063bd0815cafa9bb4edfda10006a2363ad04259d84b82",
+    "assets/portraits/rival_07.webp": "99f97a15e3f960d8cb8a50a04cb3b929230de595d9cfbf60b92af028350eae11",
+    "assets/portraits/raiden.webp": "0ff25956c7220dd1dc55fbfcba2edcaf938c6d60cfba405b865542e3149ef93d",
+    "assets/portraits/kurose.webp": "3c1e4ba687f138373a2977276930638a7a0146db3828c251eac7dfc1fa44d760",
+    "assets/portraits/rival_03.webp": "d2c973897df6062f795559895d7cba24fc49d026949e0827eea1f065ca64b42d",
+    "assets/portraits/rival_06.webp": "d0bc84da50825069c4e35c8e74ef7396bf7eb1b0aecb74f9092127314cb24678",
+    "assets/portraits/rival_04.webp": "65b58603eaf2392d72bf12687b9671e85e1535d9de30fdc388865301cb4ed664",
+    "assets/portraits/kagura.webp": "9f20fbc4055ec802bbcc5f967f2b05b0ab81f26a6e854389129c6c92da104d64",
+    "assets/portraits/rival_09.webp": "eb0a4b035471979b336dd147e261df24624fd7c9508e062f2b68453dc43257cc",
+    "assets/portraits/mio.webp": "d07fa117b4023a84ae198d6814e9b9ea11d3eefc1e507d53cae4c5bf5938f333",
+    "assets/portraits/onizuka.webp": "21d1a79e6b46452a9fa6b0e96b8178568b889a3bbe483fe0061ea87ef9180c57",
+    "assets/portraits/tsumugi.webp": "4689a4ff3db6ac41faeb5f5908366265d28673995edd3633e3533a8fb9762b72",
+    "assets/portraits/kanade.webp": "3eff5324b6255cdf78cf507920424d651035468c64e52bc9a15882b39b31eeb4",
+    "assets/portraits/rival_02.webp": "4c4cc5fcb8c0dcbdea71c755e7d242e72a4be871ee45c29f9de07a07b61e49c0",
+    "assets/portraits/rival_01.webp": "034bd9e11ba96a9a7f4e3f226dc336da2ac752885a8687d93046e48a0c21433f",
+    "assets/portraits/akamine.webp": "40554069897cd2e7af4546a803c6e419249c7b6b955d2c9203ad5a70b1e60c4a",
+    "assets/portraits/akari.webp": "5e09699257824843562ab314e21a478a694362b79c61c69c10f5ff9962259c1d",
+    "assets/portraits/rival_12.webp": "bed49eb69be39ab41ac589000daf81d4bc755c62dab56a95595d06907eab9bc4",
+    "assets/portraits/rival_10.webp": "12c7ae8b4608711845649864a1973c6647293d3c2761a11e3ce624c680a5eeb7",
+    "assets/portraits/hayase.webp": "5c81098eb2edd90ad23dc301ba33dc5a4a336d6b877f51da352ad1011de8a2b3",
+    "assets/portraits/nagi.webp": "12b49a8652e0a2b7e038161dae7f1a05175475b95eb2b17487d6ac2e64432e06",
+    "assets/portraits/iwase.webp": "facd050d06195b4b9d1487cca4105382e5bcec9c37b2b1fd58e98e7c5f56c00a",
+    "assets/portraits/rival_08.webp": "2c0942e415d4bc37c681684c20218916f77f98084c32badbdddbbac5449176e6",
+    "assets/portraits/rival_11.webp": "0cdd5a373102dc5c90aee13199118bba8820bace63233a4c12becea0eb69d3e4",
+    "assets/portraits/tsukino.webp": "98393435d65c16325049a5b35289d3a6d714b5ff8c494a2f4ce9e104eed9b486",
+    "assets/portrait-png/kanade.png": "0b84241097fe2be63df46070fd72c36c0671d1e69c36a533c793d91064c6113c",
+    "assets/portrait-png/mio.png": "6340977ac82977fe8124ef6105d5b43a00848b7426afbaee571e4dca47819eb0",
+    "assets/portrait-png/akamine.png": "aa919fc47f01289d1a6845fc8d3a157429d5d9c7627db9c0ade39ca93efcddc7",
+    "assets/portrait-png/rival_05.png": "579b0743659e90fdd2fc0730fbddba872d26b7cbd8665724e260d222654824e7",
+    "assets/portrait-png/raiden.png": "3010de84f86a0e6f0b9b237286ebd4e5ff32b4ec7c10cd05db5043e279972489",
+    "assets/portrait-png/tsumugi.png": "e913c9aa388d433344ede63e6e2b390046768a96d0ec9812abc8cfad94a98c5c",
+    "assets/portrait-png/rival_09.png": "fd6900377c742294ff2e6cf34376971ef2bf6bd2a74babc58d735a85ca03f3fc",
+    "assets/portrait-png/iwase.png": "03562476520a71755499b1015426631e1508fd9b0cc56e60a5d9e4cf0b5a46a0",
+    "assets/portrait-png/rival_07.png": "5a63ea4d09f001ed6b885e46ceb94e2115edd6b9faf1293af69a3fe2e6f7de1f",
+    "assets/portrait-png/shirakami.png": "ac0662240517857292377a9a121bd6a4210632cefc75b307ca19d3bd73c38702",
+    "assets/portrait-png/rival_10.png": "19865654496368934ac7cd51208f5117a4dac619e1adb11bdacc9afa65b023b2",
+    "assets/portrait-png/rival_01.png": "8d96420385430a8dbc7732592cf8b824472e99407b13eb4870b77657a1807ba2",
+    "assets/portrait-png/rival_04.png": "625e9ba3c3a8f2106a93580f56363f65d914da4a8c73057f51dfea2e124b21ba",
+    "assets/portrait-png/kurose.png": "36ca780fba7d93935c6db8dec5361549939dfbcff410f46cd891e33755e95a68",
+    "assets/portrait-png/rival_02.png": "1b463a6577989ede7242f93c4465cba01557d1e39c97bf7134d733b056f9133f",
+    "assets/portrait-png/kuzumi.png": "5ec4b6d784fb3ad462e00dff673341aff4c2a296833f06d3d6ac60da971dd3fc",
+    "assets/portrait-png/onizuka.png": "6a84732520f3e1e9ca71a880b092d55f1dabed73c35dafaf5220b7f796975c9c",
+    "assets/portrait-png/kagura.png": "274b239e934a08b4bff431705aa5792e0f01108d8a732b4fd02f68de7c69284f",
+    "assets/portrait-png/akari.png": "f56d8374e3f95c03e15dfec5699c7f4630cdc6eb1423a0c2c41c69972cd02e12",
+    "assets/portrait-png/rival_11.png": "2f0c1b253dd89ee3dabc028e829009d9bb0fe490475cfc987b231864ff1e7c33",
+    "assets/portrait-png/rival_06.png": "dd7406c5546b591375c3d2396e34d5cd6c16a432c7b755daa3c889874483672b",
+    "assets/portrait-png/hayase.png": "45fb4f3d6a20317f7d3e18cf83fde59875f90af540f194b06f46b9ef4b4159c5",
+    "assets/portrait-png/tsukino.png": "7f0aa25db4dda27ab5f6332157f5dcfb81aafed9d5cb5c14de3e2c996d762f0d",
+    "assets/portrait-png/rival_12.png": "914d56f426a75236858d95f4e14925e7946f5b7694d9cd5711294e1165036585",
+    "assets/portrait-png/rival_08.png": "4d558c5b0f2cd09d750db9198c4400338118605b919021657da46a80976d4ccd",
+    "assets/portrait-png/rival_03.png": "5bddc2dc863293cc382fc70e2012498f9b678b57c5a435b82f8f0416094b3f88",
+    "assets/portrait-png/nagi.png": "d1aea6cac830e69fbe2d03487a30132214fb85c24801496218d22ac2359832a3"
+  },
+  "sourceHashes": {
+    "audio-assets.js": "60595c37cd4a0f944573ddc7e8168a570c3ec15508a54754ac674a094898bd5a",
+    "audio.js": "411ccf6471a2e4bc1b0b07f93cecc61c5aa6709bebe7ff9870f9409ea081c6b4",
+    "bonds-data.js": "67ce17c49026bb129ee0d79817cdb7d41cea71128188ad786c18a63aa4a0263f",
+    "bonds.js": "08a81df5a2ff8412f923a7506c5a26bc2d118e00089b08a70bd77eff2b5e7efd",
+    "cast.js": "19fbe8f05eb9bd8d1a03cda5bb4994815b1924c55fa700ea2047e6c14e35de70",
+    "data.js": "7932a3998d7fca6d8bf3e4c54f4904f318d717a1d28d05c9a9b2ef316b0dba10",
+    "driving-ui.js": "daf73fe32b205dfc75206643e43766bfba1a8784ea844d202dbaa7b87191a36e",
+    "iphone-compat.js": "f4eee272f69417b96349616d4d0bc294d4c918ba06c4d4acf329dc9d81243ad3",
+    "mentor-data.js": "9c21322dea187ef934f28c985c83dbe2a6eaca415ada95391e471eba103c01f6",
+    "music.js": "8bf5090a0ad70d62a60963485696c59246995a07f90bbab088dd1e9fbd82abd2",
+    "portrait-assets.js": "667f9f8c25045381854bcfa65bc1d36cb965360678dec25079fbc551c62e9d28",
+    "portraits.js": "9fcf5c188f944bc9bef308277bb98fab39d7cd8e722ff2f119b49e0f2fe8286e",
+    "presentation.js": "5b69b687daa9f8865d83a2272ec1fcc01644fcdbc1b1c05a2999f01faf919ce9",
+    "profile.js": "6c6e4e7f7c6a28c51b90f7dc09055dc004c915fb4f021b359ac75912393087e4",
+    "race-feedback.js": "46106180a78a84e270904d0f3a863199b1e65d098388f1aa44de6d9a6fd57ff9",
+    "race-renderer.js": "e8e0b82890d5940fc000c7baa9d1bd90798080428de8d358419da60bfcdd0160",
+    "racing.js": "0c3fe33a7dd074e28b6dca642f924ef42b707f1cc22272b3172d9e8c2e843c80",
+    "script.js": "e71c117df58034bfa12e746309d7705bb83352262e885f66c732268ecc1a8977",
+    "story-extra.js": "ef1d8ca95f3039f68fcc425522efa65d993b9a2fcb3a949523b2746ca4da358a",
+    "story.js": "34323e3acc249c8132861a8d4e71c27a72fba3671211331482289b61bba6ba84",
+    "thrill.js": "6aea33d758f49298cb6b2869b0ec12a76ae6ef1775543a7809b971d1db904bd9",
+    "visual-assets.js": "17f39748cc34f1e68d68e1707bfcefcb802cc7b610406fc5248c8ce0db48b2ac"
+  },
+  "standaloneBytes": {
+    "index_android_safe.html": 32072065,
+    "index_iphone_safe.html": 32075563
+  },
+  "v101MigrationFixtureHash": "bc67b44785fc22bcf16078cc2349cecea263942a30cefabed9420a0a5b25b3aa"
+}
