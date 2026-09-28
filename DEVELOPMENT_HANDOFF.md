@@ -1,117 +1,33 @@
-# v92 引継ぎ（現行）
+# v104 開発引継ぎ
 
-- 最新正本：dist。v92、保存version80／drive.version2を維持。v92を整備旧移行の対象外に追加。
-- 新規：race-feedback.js（forecast/review、読み取り専用）、audio-assets.js（自作WAV）、audio.js（Web Audio＋ジェスチャー＋個別ミュート）。
-- racing.js：racingStyleを能力と固定IDから算出、tacticalPlanへ加点。synergyStateに操作条件とrhythmを追加。pilotでfeatherの短い抑速と荒天安定派を反映。新しい保存フィールドは不要。
-- driving-ui.js：水面予兆・短いヒント・音声通知・音デバッグ。script.js：結果のコーチカード／詳細折りたたみ、出走表の個性、画面による曲切替。
-- tests/benchmark-fixtures.jsonとbenchmark-v91.jsonは固定入力・旧基準。benchmark.cjs→benchmark-v92.json→benchmark-compare.cjs。NPCタイムは−1.55〜＋2.32%、20条件で6艇完走。人間の勝率の証拠ではない。
-- 現行テスト：v92 10＋audio-v92 5＋v91 9＋v90 9＋v89 12＋v88 21＋engine 21＋Android 14＋iPhone 4＋static 23＋iPhone static 13＝141。
-- 実ブラウザ／実機未検証。Playwrightパッケージはあるがブラウザ本体なし。音声はAPI代替環境で開始・停止・個別設定・二重発音抑制・非対応時を検証。
-- make_audio.py→package.pyで生成。編集は分割ソースのみ。ZIP内にすべてのソース／基準／結果／引継ぎを含める。
-- 次回はこの先頭と対象関数・diffを読む。旧全文を繰り返し読む必要なし。推奨実機確認：親指操作、音ON、タブ切替、ミュート、時計との重なり、危険予兆と実際の負荷。
-- 公開・GitHub送信はしていない。旧版説明は以下の履歴として扱う。
+正本はZIPルート。build104、save.version80／drive.version2／bonds.version2／campaign.version1。公開・GitHub更新なし。次回はこの文書と変更箇所だけを読む。
 
-# 競艇物語 v91 開発引継ぎ
+## 変更箇所
 
-## v91差分（最初に読む）
+- `script.js bondSceneView`：選択前の「選ぶとルート終了」、terminal classを削除。一般的な選択説明のみ。選択後のroute-failed・理由は維持。選択順はbonds-dataの既存人物・章別ローテーションで、再読込では変化なし。
+- `racing.js`：`postureStep`で目標を−1/0/1へ。身体の現在値は移行中のみ連続。切替rate=6+turn*.012+power*.006、旋回負荷の追加遅延を削除。伏せtopSpeed×1.028、grip×.9等の物理効果はv103のまま。荒天・引き波の直線のAI姿勢は0、晴れ直線−1、ターン1。助走中効果0。
+- `driving-ui.js`：24px刻みスワイプ、直接タップ3ボタン、上下キー1押し1段。右下加速・左下操舵の広域判定維持。postureRevisionでタップ後の左指の上下基点を更新。指離しは舵だけ戻し姿勢保持。手動姿勢で補助OFF。ボタンaria-pressed。controls z7、hit-zones z6。姿勢と舵を左半分に収め、ボタンは高さ44px。スタイル末尾を参照。
+- `cast.js loadouts`：10人物に固定能力・技能。師匠は主97＋他80〜88、4技能。ボスは主100＋他89〜98、6技能（LR2を含む）。Easyは主以外を師匠−4、ボス−5。機材は元の抽選。一般NPCの難易度定数やスキル効果は不変。lineUpは既存キャストも次の出走表を作る時に再構成し、ポイントと機材を維持。読み込み時の途中レースは改変しない。
 
-- R.recordReplay：create時、30tickごと、ゴール時に記録。d.replay.version1/from/frames/events。最大600フレーム、400イベント。艇配列はd.boats順。7値の意味はBALANCE_REPORT。乱数は使わない。
-- R.validReplayをR.validに追加。保存形式version80/drive.version2は維持。旧版はreplayなしでも可。
-- R.dramaticRace(d)：有効自艇1着で最終100m逆転／最終周3位以下から逆転／着差0.25秒以下を判定。文字列かnull。結果画面と操船終了UIに表示。
-- script.jsのreplayResultPanel/openReplay/paintReplay/scheduleReplay/stopReplayが表示専用。モーダルで俯瞰位置・順位・ログを再生。currentRace参照のみ、物理やsettleRaceを呼ばない。
-- UI速度は1/2/4倍、±5秒、rangeシーク。closeModal/navigate/visibilitychangeで停止。次走のr差し替えで前走記録を破棄。保存スロットやJSONは現在レースの記録も含む。
-- v91新規9＋既存108＝117項目。tests/race-v91-tests.cjs。実ブラウザ・実機未検証。録画ファイル出力はなし。
-- 出力release_v91、保存IDと具体版はupload-v91-results.json。パッケージkyotei_monogatari_v91.zip。旧段落のv90の説明は履歴として読む。
+## 本編
 
-## v90差分（最初に読む）
+- 新規 `campaign-data.js` と `campaign.js`。KM_CAMPAIGNをscript.js前にロード。共通JS23本、iPhone24本。CSS4本＋iPhone1本。
+- 3ルート：light「灯を継ぐ」、back「置いてきた背中」、shore「遠い岸の約束」。新規作成のui.draft.scenario→player.scenario、再抽選でも維持。未指定／旧育成はlight。
+- `campaign.ensure(c)`：{version:1,arc,origin,entries,closed}。opening1章を作り、進行中の旧育成は現在stageから開始。古い全履歴の偽再構成はしない。
+- `finishSeries`→`Campaign.capture`：stage1/3/5/7/8で章。champion→win、championshipまたはconsolation3着以内→steady、それ以外setback。真の着順を保存。SG未進出gateと途中登録earlyは別結末。全18本編章＋6結末、節目15章×3の成績本文。G3/G1/SGにstrong(5能力orbalanced)とweakを追加。
+- 分岐時点で能力差8未満はbalanced、差15以上なら最下位能力をweak。現在の能力で過去章を再判定しない。readフラグのみ読書で変化。報酬・レース乱数は消費しない。
+- `Campaign.valid`で章ID、順序、成績分岐、能力キー、既読型などを検証。旧保存は省略可、decode検証後に追加。現在シリーズの確定結果があればその章のみ追加。
+- 登録時 `campaignJournal`をclone。profileから再読可。途中登録ではearlyを追加しclosed。既読／未読の章一覧、ホームとシリーズ結果の小型入口。自動モーダルなし。専用page=campaign、出走中に開く導線なし。
+- `MAIN_SCENARIOS.md`に全文。ストーリー追加時はB.stagesとentries最大7、保存検証、UI・packagerの依存順を合わせる。
 
-- tuningOutlookは純粋関数、現在値・上下限を使い成功時の増減方向だけ返す。tuningPanelで現在3項目の整数＋ランクと方向ボタンを表示。乱数や行動残数は消費しない。
-- tuneのログは変更後値・次回成功率を撤去。実際の整数表示差だけ。debugにはbefore/afterが残る。
-- 通常練習はfocus固定。UIの2タブとtrainingModeハンドラを撤去。矢印・能力値・ランクを残す。
-- R.tiltInstabilityをsteeringLimitsとintegrate、HUD警告で共用。閾値と係数はBALANCE_REPORT。NPCのティルトは従来どおり0、プレイヤーは観戦でも選択角度を適用。
-- constrainのブイ速度保持を.90→.55。canQuickRecoverは.65秒・内外両方・助走中も対象。quickRecoverは速度の方向も安全側へ。位置・進捗・速さを増やさない。
-- build90、保存version80/drive.version2は維持。v88/v89/v90には整備上限の旧移行を再適用しない。
+## 継承
 
-## 再開の最短手順
-- このメモ→git status/diff→対象関数だけ読む。全コード・旧ログの再読込を避ける。
-- 正本 `/workspace/sites/kyotei-monogatari-v70/dist`。今回の依頼はファイル出力。公開・GitHub操作はしていない。
-- 配布 `/workspace/scratch/c938c42c53df/release_v91`。保存IDと最新具体版は `/workspace/scratch/c938c42c53df/upload-v91-results.json`。
-- 分割ソースを変更し、`python3 tools/package.py` でAndroid/iPhone単体とZIP。生成HTMLを直接編集しない。
-- 説明・@変更理由・検証・この引継ぎを更新。実機やブラウザ操作は未検証。検証済と混同しない。
+3周600m、F.09s、L1.5s、12秒針、決勝は手動。3保存枠・バックアップ・JSON・safeStorage。Easy新規UR上限、NormalLR。27人物WebP＋PNG、MP3 5曲。スキル94種の名称変更とID維持。恋愛ランダム出会い・1人完走・終盤3走待ち・1回短縮、師匠25話を維持。素材再生成不要。
 
-## v89から維持した差分（v90との差分は先頭を参照）
+## 検証・次回
 
-- 分割ソースが正本。Android/iPhone単体版はtools/package.pyで生成、ZIPはkyotei_monogatari_v91.zip。
-- spectatorPaceは常に180tick、important:false。doAdvanceも180固定、stepAutoRaceのadaptive引数は互換のため残すが区切りなし。自動は500/settings.speed ms（下限170）。手動は押すまで停止。
-- R.finishCrossing(d,b,previousBowX,DT)：最終周・checkpoints>=23・progress>=1725・順方向・コース内で船首が描画と同じC.startラインを越えた瞬間に完走。tick内でstartCrossingと同じ座標を使用。integrateの中心累積距離による完走処理は撤去。
-- performanceで同じid+kindの有効効果は最後のみ。能力正補正36超を25%換算、上限48。D.driveEffectCapsは追加mechanicsの合計上限。基礎能力や機材は上限対象外。
-- comet/legend_speed/wave/legend_turnのmechanicsとSSR以上monkey.pivotを縮小。数値はBALANCE_REPORT。
-- v90では練習タブとtrainingModeハンドラを削除。trainのデフォルトはfocus固定、旧セーブのtrainingModeを参照しない。foundationの純粋関数は旧検証互換用のみ。
-- decodeはv88の能力/所持金/残行動/走行状態を維持しbuild89へ。v87以前だけ既存v88移行処理を通す。保存version80とdrive.version2は維持。
-- 現行ゲート：race-v90 9、race-v89 12、race-v88回帰21、engine21、Android14、iPhone4、static17、iPhone静的10＝108。実ブラウザ・実機未検証。
-- tests/race-v88-tests.cjsの旧観戦速度の期待値とbuild固定値だけ現行へ更新。新規検証はtests/race-v89-tests.cjs。
+現行集計 `tests/release-v104-verification.json`。update-v104、posture-v104、encounters-v104、mentor-v104、relationships-v104、music-v104、既存career/race/android/audio/presentation、Android/iPhone静的埋込一致を実行。固定旧保存 `v103-migration.json`、旧60レース `cast-v103-baseline.json`、新比較 `cast-v104-benchmark.json`。Normalの未調整固定選手は旧新とも勝利0/30、実プレイヤー勝率に換算しない。調整済み上限寄りの10例は全ボスに勝利可能だが通常育成の到達率ではない。
 
-## v88から維持した仕様
-- 右下50%×50%にthrottle-hit-zone。左側とともにz-index6でcontrols5より前。steer-padの見た目62%が中央を越えるため判定面を上へ出した。overlay9でメニューを優先。
-- bindPointerは始点のkindとpointerIdを固定。同じ指を両担当にしない。capture失敗はrootのreleaseで解除。アクセル判定外でもthrottle-pedalをheldにする。
-- 時計は右上、助走中のdrive-mapはvisibility hidden。start-map内cutinはvisibility visibleと下方向transformで時計を避けて維持。
-- 時計の色帯: U.clockGuide。中心=(raceTime+launchIn+.20)*30度、幅max(5,uncertainty*100)。発進目安の文は廃止。高スタートほど狭く、位置の誤差も小さい。
-- C.flyingGrace=.09（F<−.09）、lateLimit1.5維持。比較には微小丸め許容。旧時刻のstartAt未設定は10、新規12。
+DOM/API代替の本番JSテスト、SkiaによるCanvas描画。実ブラウザ／実Android／実iPhoneのUI・タッチ・音・FPSは未検証。previews/v104-posture-*.pngは水面描画のみでGUIスクショではない。
 
-## 育成
-- statGrowthRate: E1 / D.9 / C.8 / B.7 / A.5 / S.2。lateGrowthFactorは互換名のまま、シーズンを参照しない。
-- 練習とレース後の基礎成長を1.5倍にし、処理前ランク率を乗算。難易度E.75/N1、非SG等は従来どおり別乗算。
-- trainingMode focus/foundation。focusはgrowthOf.values[key]*1.1、foundationはkey<自分の平均なら1.3、他.8で成長型倍率を置換。
-- prepareRace action: normal0/training1/tune1、baseActions各1、halfActions各0、actionVersion88。
-- consumeAction: 旧normalがあれば先に消費。専用枠はbaseActions→能力追加half→券。能力追加効果.5、通常と券1。validatorでbase/halfが残数以下を確認。
-- 次走専用prep_n〜lrはv87のまま。最初の練習1回抽選、同系統最上位だけ。通常練習の固定buffなし。prepVersion87はこの方式を表すのでbuildとは別。
-
-## 機材と整備
-- 新規characterのmotorSuccess/propSuccessは18〜22（基礎確率%）。
-- tuningChance=min(70,param)/100 + tuningスキルのsuccess/100、上限.92。
-- tuningLearning: param<50→1、<60→.45、<70→.18、70以上0。
-- 毎回success paramへ4*learning*difficulty.growth*effectScale、上限70。成功失敗不問。連続調整減衰はVarの成長.8*diminish*difficulty*scaleだけ。
-- 成功幅=(1+success*3)*quality、失敗幅=−(.15+(1−success)*.25)*severity。Var/.effectScaleを重ねる。
-- direction balanced / primary / accel / stability。成功時primaryとaccelは他方を35%犠牲、stabilityはconditionを3倍・primary20%/accel15%犠牲。失敗時は交換先の無料強化をしない。
-- equipment.motor/prop.trait=0〜3の数値。0均衡、1主能力、2加速、3状態。生成時に性能を偏らせ、物理への隠し二重加算はしない。
-- validEquipmentでtrait enum。古い機材traitなしは均衡として表示、性能は維持。equipmentPanel/debugはtraitを数値パラメータ一覧から除外。
-
-## 能力・レース
-- data.js計66能力。追加N feather、R straighten、SR wake_escape、type operation。
-- operationSkills(d,b,input,dt): start後、各周各能力1回。b.operationにused/timers/wakeAt/wakeHeadingを保存・検証。
-- feather: ターン・throttle<.2・実舵abs>.2を.4秒→確定、2秒damping+.65/turn+2。
-- straighten: ターン出口4秒内・throttle>.98・実舵abs<.15を.4秒→確定、3秒response+.9/accel+3。
-- wake_escape: wakeLoad>.15を記録、2秒内にwake<.04＆向き差>.06rad→65%、4秒accel/power/wake耐性。抽選失敗でもその周を消費。
-- operationはenterZoneの抽選から除外し、integrate内で実入力を見て発動。通常の能力IDイベント・cutinを共用。
-- acquire: 新規かつ非弱点ならrandom keyへN.3/R.5/SR.8/SSR1.2/UR1.8/LR2.5 * statGrowthRate。元成長1.5倍は掛けない。重複はmasteryのみ。ショップもこの経路。
-- contactType: headings対向cos<−.55→head、平行cos>.55かつ接触法線の前後成分>.65→rear、他side。CONTACTにrestitution/yaw/stress/retainを分ける。イベントにcontactType。
-- 観戦の重要場面減速はv89で撤去。現行仕様は先頭のv89差分を参照。
-- 自艇ゴール済みなら未完走艇を観戦速度判定に使う。全物理は60Hz・3周で共通。
-
-## 予選・経歴
-- qualificationTarget: 他19人の6番目/12番目のpointsに対する単独超え必要点、残り走数×10も表示。将来の境界予測や確定条件ではない。残り0で結果を表示。
-- recordRaceをsettleRaceの二重精算ガード内で実行。careerLogにraces/wins/firstWin/bestST/venues/highlights(最大12)。validCareerLogを検証。
-- 保存/登録へplayer丸ごとコピー。旧版の未記録履歴は創作せずv88以降だけ。詳細UIは記録内の初勝利と明記。
-
-## 複数保存・移行
-- newStateはversion80/build'91'。旧saveもversion80を維持。
-- createSaveSlots(safeStorage): kyotei_slots_v1_1〜3に独立の全stateJSON。
-- _archivesは通常上書き/読込/復元前の直近4件。_updateは専用の更新前1件。protectはdecode検証後に元rawを変更せず保護。_protected_<旧build>で重複保護を防ぐ。
-- 起動時decode前のrawをprotectへ渡し、saveでも旧rawを検知。データ管理に保存/読込/復元。上書きや切替に確認、現在のデータも退避。
-- 現在のJSON exportは選択中の全stateのみで、3枠一括ではない。枠を読み込んで個別export。localStorage容量不足はメモリへ。注意表示と個別JSON退避が必要。
-- 更新前専用は通常の上書き7回でも消えない検証。復元は古いバイナリ復帰ではなく現行decodeで読み込み。
-- decodeのv88未満移行時: 全player系adjustSuccess>70だけ70へ。旧行動残数・機材・走行位置は維持。新規raceから通常2枠。最終build90化。
-- リセットは現在stateだけを初期化し、保存枠・退避は残すと確認文に明記。
-
-## 維持
-- 600m×3周CCW、全開旋回速度維持、低旋回/低体幹の負荷、ティルト5段階、ブイ.65秒スタックから自動方向復帰。
-- Eは低成長/低レア、Nは高成長/高レア。NPC pace/grade/観戦補助はv87のまま。
-- 9シリーズ、20人、予選5、SG1800万円、登録/ライバルはSG優勝戦特別参戦のみ。
-- 単体Android/iPhone、WebGL→Canvas代替、全速度km/h、能力整数ランク、億万円、fraction保持。
-
-## 検証・次回注意
-- tests/race-v88-tests.cjs: 21項目。新操作/成長/整備/取得/接触/観戦/保存、3条件の3周物理。
-- engine-tests.cjs:21。通常枠変更による旧期待値だけ更新。全9期テストはSG門用の賞金設定あり、実戦勝率統計ではない。
-- android-update-tests.cjs14、iphone-tests.cjs4、static-checks.py17、iphone-static-checks.py10。合計87。
-- 過去版テストは廃止仕様（旧成長・F・1行動・復帰停止）を含むので一括ゲートにしない。
-- 新機材の調整方向と初期成功率による難易度の変化、成長型による練習対象の偏りを次回実機フィードバックで判断。
+次に調べるのは親指の届き方、3段階の誤入力、実操船での人物別勝率、本編の未読滞留。不要な全ファイル再読は避ける。`python tools/package.py`→静的2試験→集計更新→もう一度package→ZIP整合。新しい変更理由は@264から。

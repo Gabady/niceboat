@@ -31,18 +31,24 @@ function setup(c){
 }
 function growth(c,key){const m=c.cast?.mentor;return m&&map[m.id].key===key?1.25:1;}
 function train(c,key){if(growth(c,key)===1)return null;c.cast.trained++;return map[c.cast.mentor.id];}
+// Fixed identities: no random skill lottery and no position-based catch-up power.
+const loadouts={
+ hayase:{stats:[97,82,80,88,82],skills:['comet','burst','straighten','push'],note:'舵を戻し 直線で伸ばす'},
+ tsukino:{stats:[81,97,84,87,83],skills:['monkey_ur','split','slice','feather'],note:'小さく回り 出口で差す'},
+ kuzumi:{stats:[83,86,97,87,81],skills:['zero','immune','inside','start_check'],note:'踏み込みから先手を守る'},
+ akamine:{stats:[87,83,81,97,84],skills:['wit_latefee','burst','wake_escape','wit_rudder'],note:'引き波を抜け 再加速する'},
+ iwase:{stats:[82,87,81,83,97],skills:['reflect','storm','anchor','rain'],note:'荒水面で姿勢を崩さない'},
+ kurose:{stats:[100,91,92,98,90],skills:['legend_speed','wit_reply','comet','burst','speed_lock','straighten'],note:'直線で突き放す高速型'},
+ shirakami:{stats:[90,100,92,96,96],skills:['legend_turn','monkey_lr','wave','split','turn_press','feather'],note:'旋回半径と出口で競る技術型'},
+ kagura:{stats:[94,97,100,95,90],skills:['legend_start','legend_turn','zero','immune','start_check','inside'],note:'スタートと先マイの逃走型'},
+ raiden:{stats:[98,93,89,100,94],skills:['legend_tide','wit_unposted','wit_latefee','burst','accel_lock','wake_escape'],note:'出口と終盤で追い詰める追撃型'},
+ onizuka:{stats:[91,97,91,95,100],skills:['mirror','wit_norefund','wit_harbor','storm','anchor','power_drain'],note:'接戦と荒天に強い持久型'}
+};
 function profile(c,kind,template){
- const entry=kind==='boss'?c.cast.boss:c.cast.mentor,def=map[entry.id],n=copy(template),easy=c.player.difficulty==='easy';
+ const entry=kind==='boss'?c.cast.boss:c.cast.mentor,def=map[entry.id],n=copy(template),easy=c.player.difficulty==='easy',spec=loadouts[def.id];
  n.id='cast_'+def.id;n.name=def.name;n.castId=def.id;n.castRole=kind;n.special=false;
- for(const [i,k] of D.statKeys.entries())n.stats[k]=k===def.key?(kind==='boss'?100:94):(kind==='boss'?(easy?79:85)+(S.hash(def.id+k)%6):Math.min(90,Math.max(easy?69:75,n.stats[k])));
- const phases={speed:[2,4],turn:[1,3],start:[0],accel:[1,2,4],power:[0,1,3,4]}[def.key];
- const usable=D.abilities.filter(a=>!a.exclusive&&a.category!=='弱点'&&a.type!=='extra'&&a.type!=='growth'&&a.type!=='tuning'&&a.type!=='prep');
- n.skills=[];for(const rarity of kind==='boss'?['LR','UR','SSR','SR']:['UR','SSR','SR']){
-  let pool=usable.filter(a=>a.rarity===(easy&&rarity==='UR'?'SSR':rarity)&&!n.skills.includes(a.id));
-  const suited=pool.filter(a=>(a.phases||[]).some(p=>phases.includes(p)));if(suited.length)pool=suited;
-  if(pool.length)n.skills.push(pool[S.hash(def.id+rarity)%pool.length].id);
- }
- n.mastery={};n.popularity=kind==='boss'?600:260;return n;
+ D.statKeys.forEach((k,i)=>n.stats[k]=spec.stats[i]-(easy&&k!==def.key?(kind==='boss'?5:4):0));
+ n.skills=spec.skills.slice();n.mastery={};n.popularity=kind==='boss'?600:260;return n;
 }
 function lineUp(c,people,type){
  setup(c);const t=c.cast;if(t.mentor&&!t.mentorLocked){const st=S.ensure(c),p=map[t.mentor.id];st.log.push({index:++st.serial,stage:c.stage,kind:'event',title:'師匠との出会い',note:p.name+'「'+p.quote+'」',rewards:[D.stats[p.key]+'の練習を指導']});st.log=st.log.slice(-72);}t.mentorLocked=!!t.mentor;
@@ -51,9 +57,9 @@ function lineUp(c,people,type){
  // Keep the player, registered guests and the scheduled rival; replace one ordinary NPC.
  const group=people.slice(),lastIndex=test=>{for(let i=group.length-1;i>=0;i--)if(test(group[i]))return i;return -1;};let slot=lastIndex(n=>n.id!==c.player.id&&!n.special&&n.id!==c.story?.duel?.rivalId);
  if(slot<0)slot=lastIndex(n=>n.id!==c.player.id&&!n.special);if(slot<0)return people;
- const original=group[slot],def=map[(kind==='boss'?t.boss:t.mentor).id],existing=c.series.npcs.find(n=>n.id==='cast_'+def.id);if(group.some(n=>n.id==='cast_'+def.id))return group;const n=existing||profile(c,kind,original);group[slot]=n;
+ const original=group[slot],def=map[(kind==='boss'?t.boss:t.mentor).id],existing=c.series.npcs.find(n=>n.id==='cast_'+def.id);if(group.some(n=>n.id==='cast_'+def.id)){const gi=group.findIndex(n=>n.id==='cast_'+def.id),n=profile(c,kind,group[gi]),ri=c.series.npcs.findIndex(p=>p.id===n.id);group[gi]=n;if(ri>=0)c.series.npcs[ri]=copy(n);return group;}const n=profile(c,kind,existing||original);group[slot]=n;
  // The selected cast member occupies the same roster slot, preserving 20 participants / 5 starts.
- const ri=c.series.npcs.findIndex(p=>p.id===original.id);if(ri>=0&&!existing)c.series.npcs[ri]=copy(n);
+ const ri=c.series.npcs.findIndex(p=>p.id===(existing?existing.id:original.id));if(ri>=0)c.series.npcs[ri]=copy(n);
  return group;
 }
 function attach(c,r){const n=r.runners.filter(x=>!x.special&&x.castRole&&map[x.castId]&&c.cast?.[x.castRole==='boss'?'boss':'mentor']?.id===x.castId).sort((a,b)=>Number(b.castRole==='boss')-Number(a.castRole==='boss'))[0];if(!n)return;
@@ -101,5 +107,5 @@ function valid(t){const count=v=>Number.isInteger(v)&&v>=0&&v<=60,entry=(v,list)
 }
 function portrait(id,large=false){const p=map[id];if(!p)return '';const P=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);return P?P.render({...p,role:'cast'},large):'';}
 
-const API={routes,routeState,routeGate,routeReward,routeOpen,routeScene,routeChoose,routeDepart,validRoute,mentors,walls,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
+const API={loadouts,routes,routeState,routeGate,routeReward,routeOpen,routeScene,routeChoose,routeDepart,validRoute,mentors,walls,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);

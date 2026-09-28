@@ -136,6 +136,44 @@
   driving.feather={mechanics:{damping:.65},text:'アクセルを抜いたターンを補助。低レア固有の確定発動、各周1回。'};
   driving.straighten={mechanics:{response:.9},text:'ターン出口で舵を戻す操作を支える。低レア固有の確定発動、各周1回。'};
   driving.wake_escape={mechanics:{wakeShield:.2,accel:.4},text:'引き波から進路を変えて抜けた後の再加速を支える。'};
+  // Wit comes with a role: timing, water and position matter more than a flat upgrade.
+  function witty(id,name,rarity,category,phase,chance,effect,description,drive,condition){a(id,name,rarity,category,phase,chance,effect,description,['物語'],condition);driving[id]=drive;}
+  witty('wit_breath','まずは深呼吸','N','強化',[0],.5,{stats:{start:3}},'助走でスタート＋3。焦って踏みすぎればFになる。',{mechanics:{response:.25},text:'助走のエンジン応答を小さく改善。F判定は変わらない。'});
+  witty('wit_receipt','領収書あります','N','整備',[],1,{type:'tuning',success:2},'記録を残して迷いを減らす。両機材の調整成功率＋2。',{text:'モーター・プロペラの調整成功率＋2。上限92%。'});
+  witty('wit_clockout','定時でゴール','N','防御',[4],.55,{stats:{power:3}},'ホーム直線で力みを抑える。フィジカル＋3。',{mechanics:{economy:.16},text:'ホーム直線の消耗を控えめにする。'});
+  witty('wit_rudder','急がば舵戻せ','R','戦術',[2,4],.62,{stats:{accel:6}},'直線へ入る時、舵を中央近くに戻していると立ち上がりを補助。',{when:'composed',mechanics:{response:.6,accel:.25},text:'直線入口で実舵20%未満・アクセル60%以上なら抽選。'});
+  witty('wit_weather','風向きだけ空気読む','R','環境',[1,3],.62,{stats:{power:6,turn:3}},'横風のターンでフィジカル＋6、旋回＋3。',{mechanics:{waveShield:.18,damping:.15},text:'横風の横波を軽減し、横流れを少し早く収める。'},'cross');
+  witty('wit_afteryou','お先に失礼','R','戦術',[0,1],.6,{stats:{start:5,turn:4}},'内進入から先手を狙う。スタート＋5・旋回＋4。',{when:'inside',mechanics:{response:.45,grip:.15},text:'内側の進路で助走応答とグリップを補う。'},'inner');
+  witty('wit_slipstream','既読スルー航法','SR','環境',[1,2,3,4],.65,{stats:{power:7,accel:6}},'前走艇の引き波を受け流す。近い前走艇がいる区間で発動。',{when:'wake',mechanics:{wakeShield:.24,accel:.35},text:'引き波の影響を軽減し、波を抜ける加速を補う。'});
+  witty('wit_overtime','残業しないターン','SR','戦術',[1,3],.62,{stats:{turn:8,power:5}},'舵を作ったターン入口で、横流れを長引かせない。',{when:'turning',mechanics:{damping:.38,grip:.28,speed:-.15},text:'実舵20%以上のターン入口で抽選。横滑りの収束を改善するが、伸び足は少し控えめ。'});
+  witty('wit_latebird','二度寝の逆襲','SR','戦術',[2,4],.62,{stats:{accel:10,speed:5}},'3位以下で追走の立ち上がりを補う。スタート違反を取り消す効果はない。',{mechanics:{accel:.5,economy:-.12},text:'後方から再加速。ただし消耗が少し増える。'},'behind');
+  witty('wit_bill','追い波の請求書','SSR','妨害',[2,4],.48,{type:'debuff',stat:'accel',amount:11,target:'ahead'},'先行艇に圧力をかける。近い相手の加速を−11。',{range:22,mechanics:{response:-.45},text:'22m以内の先行艇の加速と応答を4秒間下げる。防御・反射の対象。'},'behind');
+  witty('wit_elbow','肘で語るな、舵で語れ','SSR','防御',[1,3],.7,{stats:{power:12,turn:7}},'他艇が近いターンで接触の揺れを抑える。',{when:'duel',mechanics:{contactShield:.28,damping:.28},text:'18m以内に他艇がいるターン入口で抽選。接触しても無敵にはならない。'});
+  witty('wit_lastrain','雨天決行、無茶中止','SSR','環境',[1,3],.74,{stats:{turn:10,power:12}},'雨のターンで安定を買う。旋回＋10・フィジカル＋12。',{mechanics:{waveShield:.3,grip:.35,speed:-.25},text:'雨の横波を抑えグリップを補う。最高速を少し犠牲にする。'},'rain');
+  witty('wit_latefee','延長料金はいただかない','UR','強化',[2,4],.76,{stats:{accel:16,speed:10}},'3周目の直線で出力を引き出す。',{when:'finalLap',mechanics:{accel:.7,response:.75,economy:-.2},text:'3周目の直線で加速と応答を強化。消耗は増える。'});
+  witty('wit_nosignal','圏外から失礼します','UR','戦術',[2,4],.75,{stats:{speed:17,accel:10}},'外の進路から追い上げる。外の進路かつ3位以下で発動。',{when:'outside',mechanics:{speed:.8,wakeShield:.2,grip:-.2},text:'外側の直線で伸び足を強化。グリップは少し下がる。'},'behind');
+  witty('wit_harbor','心に防波堤','UR','防御',[1,3],.78,{stats:{power:18,turn:10}},'消耗したターンで、崩れない支えを作る。',{when:'tired',mechanics:{damping:.55,contactShield:.3,economy:.3},text:'体力75未満のターン入口で抽選。接触・横流れ・消耗を抑える。'});
+  witty('wit_unposted','勝利の予約は承りません','LR','戦術',[2,4],.8,{stats:{speed:20,accel:18}},'3周目の追走から逆転を狙う。',{when:'finalLap',mechanics:{speed:1,accel:.85,wakeShield:.28},text:'3周目かつ3位以下の直線で追走を強化。勝利保証ではない。'},'behind');
+  witty('wit_norefund','流した涙は返金不可','LR','防御',[1,3],.82,{stats:{turn:20,power:18}},'疲れた時ほど、流される量を減らす。',{when:'tired',mechanics:{grip:.7,damping:.65,wakeShield:.3},text:'体力75未満のターン入口で抽選。水をつかみ横流れと引き波を抑える。'});
+  witty('wit_reply','水平線からの返信','LR','強化',[2,4],.82,{stats:{speed:22,accel:14}},'舵を戻して全開へ。迷いのない直線に、水面が応える。',{when:'composed',mechanics:{speed:1.05,response:.9,economy:-.12},text:'実舵20%未満・アクセル60%以上の直線入口で抽選。伸びと応答が上がるぶん消耗も少し増える。'});
+  [
+   ['bond_reignite','約束の再点火','強化',[2,4],.86,{stats:{accel:20,power:10}},{when:'exit',mechanics:{accel:1,response:1.1},text:'ターン出口直後4秒以内の直線入口で抽選。立ち上がりを強化。'},'汐見 灯'],
+   ['bond_headline','号外、ふたりの未来','戦術',[2,4],.86,{stats:{speed:20,power:14}},{mechanics:{speed:1,wakeShield:.35},text:'3位以下の直線で先行艇を追う伸びと引き波耐性。'},'星宮 澪','behind'],
+   ['bond_breakwater','おかえりの防波堤','環境',[1,3],.9,{stats:{power:22,turn:14}},{mechanics:{waveShield:.36,contactShield:.32,damping:.4},text:'荒天のターンで横波・接触・横流れに備える。転覆は起こり得る。'},'花守 凪','rough'],
+   ['bond_clockletter','十二秒のラブレター','強化',[0],.88,{stats:{start:24,accel:14}},{mechanics:{response:1.7,damping:.35},text:'助走応答を強化。フライング許容幅・出遅れ判定は共通のまま。'},'朝比奈 奏'],
+   ['bond_lastorder','閉店後の逆転劇','戦術',[2,4],.88,{stats:{speed:18,accel:20}},{when:'finalLap',mechanics:{accel:.9,wakeShield:.3,economy:.25},text:'3周目かつ3位以下の直線で追走を強化。'},'橘 紬','behind']
+  ].forEach(function(x){witty(x[0],x[1],'LR',x[2],x[3],x[4],x[5],x[7]+'と交際中にSG優勝戦へ進出すると、ノーマルでLR、イージーではUR版を獲得。'+x[6].text,x[6],x[8]);abilities[abilities.length-1].exclusive='romance';});
+  var easyRewardMap={mirror:'reflect',legend_start:'zero',legend_speed:'comet',legend_turn:'monkey_ur',legend_tide:'comet',doguchi_lr:'doguchi_ur',monkey_lr:'monkey_ur',prep_lr:'prep_ur',wit_unposted:'wit_nosignal',wit_norefund:'wit_harbor',wit_reply:'comet'};
+  abilities.filter(function(a){return a.exclusive==='romance';}).slice().forEach(function(a){
+    var id=a.id+'_ur',effect=JSON.parse(JSON.stringify(a.effect)),drive=JSON.parse(JSON.stringify(driving[a.id]));
+    if(effect.stats)Object.keys(effect.stats).forEach(function(k){effect.stats[k]=Math.round(effect.stats[k]*.72);});
+    Object.keys(drive.mechanics||{}).forEach(function(k){drive.mechanics[k]=Math.round(drive.mechanics[k]*.72*100)/100;});
+    drive.text='イージー専用UR版。'+drive.text;witty(id,a.name+'・絆','UR',a.category,a.phases,Math.round(a.chance*.86*100)/100,effect,'イージーでのSG優勝戦の約束。LR版より発動率と補助量を抑える。',drive,a.condition);
+    abilities[abilities.length-1].exclusive='romance';easyRewardMap[a.id]=id;
+  });
+  // v103: presentation names change; persistent ability IDs and rarity effects stay stable.
+  var skillNames={"push":"伸び足","grip":"波越え","stout":"体幹安定","practice":"鍛錬","inside":"先手必勝","outside":"外伸び","mentor":"反復鍛錬","spanner":"精密整備","engineer":"整備巧者","student":"強化練習","power_drain":"消耗戦","comeback":"逆境突破","wave":"波乗りの極意","legend_speed":"絶対艇速","legend_tide":"逆潮突破","weak_rain":"雨天不慣れ","weak_wind":"横風不慣れ","doguchi_sr":"洞口スペシャル","doguchi_ssr":"真洞口スペシャル","doguchi_ur":"極洞口スペシャル","doguchi_lr":"究極洞口スペシャル","prep_n":"水面研究","prep_r":"展開予測","prep_sr":"集中研鑽","prep_ssr":"水面同調","prep_ur":"臨戦覚醒","feather":"抜き技","straighten":"舵戻し","wake_escape":"引き波離脱","wit_breath":"静心","wit_receipt":"整備記録","wit_clockout":"終盤集中","wit_rudder":"立ち上がり巧者","wit_weather":"風読み","wit_afteryou":"先手旋回","wit_slipstream":"引き波突破","wit_overtime":"旋回収束","wit_latebird":"追撃加速","wit_bill":"追走圧力","wit_elbow":"接戦不動","wit_lastrain":"雨水制御","wit_latefee":"終盤解放","wit_nosignal":"大外強襲","wit_harbor":"不屈の体幹","wit_unposted":"逆転の覇道","wit_norefund":"不撓の旋回","wit_reply":"一気呵成","bond_reignite":"再起の炎","bond_headline":"未来を拓く航跡","bond_breakwater":"守護の水域","bond_clockletter":"暁の旋律","bond_lastorder":"宵の逆転","bond_reignite_ur":"再起の絆","bond_headline_ur":"未来への絆","bond_breakwater_ur":"守護の絆","bond_clockletter_ur":"旋律の絆","bond_lastorder_ur":"宵の絆"};
+  abilities.forEach(function(skill){if(skillNames[skill.id])skill.name=skillNames[skill.id];});
   abilities.forEach(function(skill){skill.drive=driving[skill.id]||{text:'整備・育成・人気の効果を両モードで共通適用。'};});
   abilities.filter(function(skill){return skill.signature;}).forEach(function(skill){
     var spec=skill.signature,describe=function(values){return Object.keys(values).map(function(k){return stats[k]+(values[k]>0?'＋':'−')+Math.abs(values[k]);}).join(' / ');};
@@ -183,6 +221,7 @@
        {id:'gamble',name:'一発狙い',hint:'下位から勝負。成功も失敗も大きい。'}]
   };
   var items = [
+    {id:'bond_shortcut',name:'ふたりの予定手帳',price:90,onceCareer:true,description:'ヒロインとの現在の待ち時間を2走短縮。1育成に1回。出会いの確率は変わりません。'},
     {id:'boost',name:'集中ドリンク',price:65,description:'次の1レースだけ全基礎能力＋5。1走1本。'},
     {id:'lane',name:'1号艇指定券',price:180,description:'次走の枠番を1号艇へ変更。進入能力による移動は有効。'},
     {id:'training',name:'追加練習券',price:105,description:'次走前のトレーニングを1回追加。1走1枚。'},
@@ -199,7 +238,7 @@
     {id:'duel',name:'攻防一体',groups:[['speed_lock','turn_press','start_check','accel_lock','power_drain','dump'],['immune','reflect','mirror']],need:{start:35,power:35},description:'他艇18m以内で応答・接触耐性を強化。伸び足を少し犠牲にする。'},
     {id:'craftline',name:'整備の継走',groups:[['doguchi_sr','doguchi_ssr','doguchi_ur','doguchi_lr'],['mechanic','spanner','engineer','craft']],need:{accel:40},description:'2周目の機材応答と持久力を改善。伸び足は控えめ。洞口スペシャルの3周目の反動は残る。'}
   ];
-  var D = {version:80,build:'92',driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
+  var D = {easyRewardMap:easyRewardMap,version:80,build:'104',driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
     easy:{id:'easy',name:'イージー',growth:.75,rewardDrop:1,shopMax:'SSR',ai:'easy'},
     normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'}
   },stats:stats,statKeys:Object.keys(stats),categories:categories,
