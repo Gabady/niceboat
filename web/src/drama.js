@@ -17,7 +17,7 @@ function entry(c,kind,stage,result){const t=c.campaign,prev=t.entries.filter(x=>
  return {choiceMode:t.edition>=118?'paths':'legacy',observation:kind==='season'?Craft.storyBeat(c):null,id:kind==='season'?'season:'+stage:kind,kind,stage,outcome:result?.outcome||'steady',strong:keys.slice().sort((a,b)=>c.player.stats[b]-c.player.stats[a])[0],weak:null,read:false,late:kind==='opening'&&stage>0,legacy:false,branch,wins,races,prior:prev?.decision?prev.decision.index:null,priorText:prev?.decision?specFor(t,prev)[prev.decision.index]:'',priorAligned:prev?.decision?prev.decision.aligned:null,choiceSpec:hasChoice?di:null,decision:null,...(kind==='season'?{result:{rank:result.rank,place:result.place,type:result.type,champion:result.champion}}:{})};
 }
 function ensure(c,legacy){
- if(!c.campaign){c.campaign={version:2,arc:B.arcs[c.player.scenario]?c.player.scenario:'light',edition:118,origin:c.stage,entries:[],closed:false,dominance:false};c.campaign.entries.push(entry(c,'opening',c.stage));freezeScene(c.campaign,c.campaign.entries[0]);}
+ if(!c.campaign){c.campaign={version:2,arc:B.arcs[c.player.scenario]?c.player.scenario:'light',edition:119,origin:c.stage,entries:[],closed:false,dominance:false};c.campaign.entries.push(entry(c,'opening',c.stage));freezeScene(c.campaign,c.campaign.entries[0]);}
  else if(c.campaign.version===1&&!c.campaign.closed){c.campaign.version=2;c.campaign.dominance=false;c.campaign.entries.forEach(e=>e.legacy=true);}
  return c.campaign;
 }

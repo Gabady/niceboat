@@ -59,7 +59,7 @@ function scene(c){const t=ensure(c),p=t.pending;if(!p)return null;const h=B.map[
  const sc={...episode(c,h,p.step),heroine:h,kind:'chapter',key:p.key};
  if(p.step===5&&finalLock(t,h.id)){sc.title='別々の未来、その手前';sc.body=[h.name+'「大切な相手がいるのは、知っています。今日は、これからの距離を話したいです」','主人公「曖昧にしたまま会うのは、よくないよね」',h.name+'「はい。今までの話が全部なくなるわけではないけれど、恋人としての約束はできません」'];sc.choices=sc.choices.map(ch=>ch.code===0?{...ch,label:'友人として、これからも話を聞きたい',reply:h.name+'「分かりました。友人として、ここからの話をしましょう」'}:ch.code===1?{...ch,label:'ここで関係に区切りをつける'}:{...ch,label:'恋人より自分を優先してほしいと言う'});}
  return sc;
- }return {heroine:h,kind:'visit',key:p.key,title:q.dated?'二人の休み時間':'次の話までの、ひととき',body:visitDialogue[h.id].slice(),choices:[{label:'話を聞き、一緒に過ごす'},{label:'自分の近況を話し、相手の近況も聞く'}]};}
+ }return {heroine:h,kind:'visit',key:p.key,title:q.dated?'二人の休み時間':'次の話までの、ひととき',body:(h.visits?.[t.log.filter(e=>e.kind==='romance'&&e.heroine===h.id).length%h.visits.length]||visitDialogue[h.id]).slice(),choices:[{label:'話を聞き、一緒に過ごす'},{label:'自分の近況を話し、相手の近況も聞く'}]};}
 function choose(c,key,index){if(!writable(c))return null;const t=ensure(c),p=t.pending;if(!p||p.key!==key||p.stamp!==c.stats.races||c.stats.races<t.nextAt)return null;const h=B.map[p.id],q=t.heroines[p.id],sc=scene(c);if(!Number.isInteger(index)||!sc.choices[index]||!q.met||q.failed||!gate(c,h.id).open)return null;
  if(p.kind==='chapter'&&(q.step!==p.step||!gate(c,h.id).chapter))return null;
  const ch=sc.choices[index];t.pending=null;let title=sc.title,note,startedDating=false,completed=false;

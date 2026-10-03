@@ -1,0 +1,119 @@
+{
+  "checks": [
+    "概要と全10場面の増量 light",
+    "概要と全10場面の増量 back",
+    "概要と全10場面の増量 shore",
+    "概要と全10場面の増量 recovery",
+    "本編選択・報酬・結果分岐の数値条件を維持",
+    "7話の条件・選択と再起専用の構造を維持 akari",
+    "7話の条件・選択と再起専用の構造を維持 mio",
+    "7話の条件・選択と再起専用の構造を維持 nagi",
+    "7話の条件・選択と再起専用の構造を維持 kanade",
+    "7話の条件・選択と再起専用の構造を維持 tsumugi",
+    "7話の条件・選択と再起専用の構造を維持 mizuki",
+    "レース物理・強敵報酬・日常能力獲得・攻略ゲートはソース不変",
+    "選んだ4ルートをそのまま開始し、ランダムで4本に到達",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 light/akari",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 light/mio",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 light/nagi",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 light/kanade",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 light/tsumugi",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 light/mizuki",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 recovery/akari",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 recovery/mio",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 recovery/nagi",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 recovery/kanade",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 recovery/tsumugi",
+    "G1優勝まで終盤は開かず、全7話の完走経路が存続 recovery/mizuki",
+    "V118の能力・機材・選択・凍結済み本文・走行を維持して移行"
+  ],
+  "routes": [
+    {
+      "arc": "light",
+      "id": "akari",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "light",
+      "id": "mio",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "light",
+      "id": "nagi",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "light",
+      "id": "kanade",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "light",
+      "id": "tsumugi",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "light",
+      "id": "mizuki",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "recovery",
+      "id": "akari",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "recovery",
+      "id": "mio",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "recovery",
+      "id": "nagi",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "recovery",
+      "id": "kanade",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "recovery",
+      "id": "tsumugi",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "arc": "recovery",
+      "id": "mizuki",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    }
+  ],
+  "volume": {
+    "main": {
+      "before": 12671,
+      "after": 24795
+    },
+    "heroines": {
+      "before": 16949,
+      "after": 35960
+    },
+    "visits": {
+      "scenes": 12,
+      "characters": 2156
+    }
+  },
+  "total": 26
+}
