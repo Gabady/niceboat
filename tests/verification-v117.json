@@ -1,0 +1,384 @@
+{
+  "checks": [
+    "STは秒:百分の一秒。早発はゼロ、未通過はダッシュ",
+    "早発境界 start=0",
+    "早発境界 start=1",
+    "早発境界 start=34",
+    "早発境界 start=50",
+    "早発境界 start=65",
+    "早発境界 start=90",
+    "早発境界 start=99",
+    "早発境界 start=100",
+    "早発境界 start=120",
+    "通常の高能力NPCとプレイヤーには0.30秒特例なし",
+    "直進固定と通過後の解除 無風",
+    "直進固定と通過後の解除 横風",
+    "直進固定と通過後の解除 向かい風",
+    "直進固定と通過後の解除 追い風",
+    "強敵の全コース0.30秒先行 normal 無風",
+    "強敵の全コース0.30秒先行 normal 横風",
+    "強敵の全コース0.30秒先行 normal 向かい風",
+    "強敵の全コース0.30秒先行 normal 追い風",
+    "強敵の全コース0.30秒先行 easy 無風",
+    "強敵の全コース0.30秒先行 easy 横風",
+    "強敵の全コース0.30秒先行 easy 向かい風",
+    "強敵の全コース0.30秒先行 easy 追い風",
+    "本編の全章と報酬・再読 light win",
+    "本編の全章と報酬・再読 light steady",
+    "本編の全章と報酬・再読 light setback",
+    "本編の全章と報酬・再読 back win",
+    "本編の全章と報酬・再読 back steady",
+    "本編の全章と報酬・再読 back setback",
+    "本編の全章と報酬・再読 shore win",
+    "本編の全章と報酬・再読 shore steady",
+    "本編の全章と報酬・再読 shore setback",
+    "本編の全章と報酬・再読 recovery win",
+    "本編の全章と報酬・再読 recovery steady",
+    "本編の全章と報酬・再読 recovery setback",
+    "再起編の終了 early",
+    "再起編の終了 gate",
+    "人物ルートの文脈切替と既存の選択条件維持",
+    "再起編の今節の約束は有効なデータとして保存可能",
+    "実レースの中断再開は同じ位置・判定",
+    "V116の整備・能力・シナリオ・保有報酬を移行で変更しない"
+  ],
+  "eliteStarts": [
+    {
+      "mode": "normal",
+      "wind": "無風",
+      "course": 1,
+      "id": "cast_kagura",
+      "actual": -0.29999899819059755
+    },
+    {
+      "mode": "normal",
+      "wind": "無風",
+      "course": 2,
+      "id": "cast_teiou",
+      "actual": -0.2999989997369386
+    },
+    {
+      "mode": "normal",
+      "wind": "無風",
+      "course": 3,
+      "id": "main_izumi",
+      "actual": -0.29999899874470654
+    },
+    {
+      "mode": "normal",
+      "wind": "無風",
+      "course": 4,
+      "id": "cast_kagura",
+      "actual": -0.29999899810559677
+    },
+    {
+      "mode": "normal",
+      "wind": "無風",
+      "course": 5,
+      "id": "cast_teiou",
+      "actual": -0.2999989985738765
+    },
+    {
+      "mode": "normal",
+      "wind": "無風",
+      "course": 6,
+      "id": "main_izumi",
+      "actual": -0.2999989981003669
+    },
+    {
+      "mode": "normal",
+      "wind": "横風",
+      "course": 1,
+      "id": "cast_kagura",
+      "actual": -0.29999899819059755
+    },
+    {
+      "mode": "normal",
+      "wind": "横風",
+      "course": 2,
+      "id": "cast_teiou",
+      "actual": -0.2999989997369386
+    },
+    {
+      "mode": "normal",
+      "wind": "横風",
+      "course": 3,
+      "id": "main_izumi",
+      "actual": -0.29999899874470654
+    },
+    {
+      "mode": "normal",
+      "wind": "横風",
+      "course": 4,
+      "id": "cast_kagura",
+      "actual": -0.29999899810559677
+    },
+    {
+      "mode": "normal",
+      "wind": "横風",
+      "course": 5,
+      "id": "cast_teiou",
+      "actual": -0.2999989985738765
+    },
+    {
+      "mode": "normal",
+      "wind": "横風",
+      "course": 6,
+      "id": "main_izumi",
+      "actual": -0.2999989981003669
+    },
+    {
+      "mode": "normal",
+      "wind": "向かい風",
+      "course": 1,
+      "id": "cast_kagura",
+      "actual": -0.29999899881779624
+    },
+    {
+      "mode": "normal",
+      "wind": "向かい風",
+      "course": 2,
+      "id": "cast_teiou",
+      "actual": -0.29999899972263244
+    },
+    {
+      "mode": "normal",
+      "wind": "向かい風",
+      "course": 3,
+      "id": "main_izumi",
+      "actual": -0.2999989995011648
+    },
+    {
+      "mode": "normal",
+      "wind": "向かい風",
+      "course": 4,
+      "id": "cast_kagura",
+      "actual": -0.29999899951816617
+    },
+    {
+      "mode": "normal",
+      "wind": "向かい風",
+      "course": 5,
+      "id": "cast_teiou",
+      "actual": -0.2999989990270813
+    },
+    {
+      "mode": "normal",
+      "wind": "向かい風",
+      "course": 6,
+      "id": "main_izumi",
+      "actual": -0.29999899873048325
+    },
+    {
+      "mode": "normal",
+      "wind": "追い風",
+      "course": 1,
+      "id": "cast_kagura",
+      "actual": -0.29999899829993143
+    },
+    {
+      "mode": "normal",
+      "wind": "追い風",
+      "course": 2,
+      "id": "cast_teiou",
+      "actual": -0.29999899966825616
+    },
+    {
+      "mode": "normal",
+      "wind": "追い風",
+      "course": 3,
+      "id": "main_izumi",
+      "actual": -0.2999989994566911
+    },
+    {
+      "mode": "normal",
+      "wind": "追い風",
+      "course": 4,
+      "id": "cast_kagura",
+      "actual": -0.2999989996663266
+    },
+    {
+      "mode": "normal",
+      "wind": "追い風",
+      "course": 5,
+      "id": "cast_teiou",
+      "actual": -0.2999989984656844
+    },
+    {
+      "mode": "normal",
+      "wind": "追い風",
+      "course": 6,
+      "id": "main_izumi",
+      "actual": -0.29999899802677726
+    },
+    {
+      "mode": "easy",
+      "wind": "無風",
+      "course": 1,
+      "id": "cast_kagura",
+      "actual": -0.29999899883265113
+    },
+    {
+      "mode": "easy",
+      "wind": "無風",
+      "course": 2,
+      "id": "cast_teiou",
+      "actual": -0.2999989992157176
+    },
+    {
+      "mode": "easy",
+      "wind": "無風",
+      "course": 3,
+      "id": "main_izumi",
+      "actual": -0.29999899892260995
+    },
+    {
+      "mode": "easy",
+      "wind": "無風",
+      "course": 4,
+      "id": "cast_kagura",
+      "actual": -0.2999989983387212
+    },
+    {
+      "mode": "easy",
+      "wind": "無風",
+      "course": 5,
+      "id": "cast_teiou",
+      "actual": -0.29999899909203764
+    },
+    {
+      "mode": "easy",
+      "wind": "無風",
+      "course": 6,
+      "id": "main_izumi",
+      "actual": -0.2999989998216294
+    },
+    {
+      "mode": "easy",
+      "wind": "横風",
+      "course": 1,
+      "id": "cast_kagura",
+      "actual": -0.29999899883265113
+    },
+    {
+      "mode": "easy",
+      "wind": "横風",
+      "course": 2,
+      "id": "cast_teiou",
+      "actual": -0.2999989992157176
+    },
+    {
+      "mode": "easy",
+      "wind": "横風",
+      "course": 3,
+      "id": "main_izumi",
+      "actual": -0.29999899892260995
+    },
+    {
+      "mode": "easy",
+      "wind": "横風",
+      "course": 4,
+      "id": "cast_kagura",
+      "actual": -0.2999989983387212
+    },
+    {
+      "mode": "easy",
+      "wind": "横風",
+      "course": 5,
+      "id": "cast_teiou",
+      "actual": -0.29999899909203764
+    },
+    {
+      "mode": "easy",
+      "wind": "横風",
+      "course": 6,
+      "id": "main_izumi",
+      "actual": -0.2999989998216294
+    },
+    {
+      "mode": "easy",
+      "wind": "向かい風",
+      "course": 1,
+      "id": "cast_kagura",
+      "actual": -0.29999899956636705
+    },
+    {
+      "mode": "easy",
+      "wind": "向かい風",
+      "course": 2,
+      "id": "cast_teiou",
+      "actual": -0.2999989991558453
+    },
+    {
+      "mode": "easy",
+      "wind": "向かい風",
+      "course": 3,
+      "id": "main_izumi",
+      "actual": -0.2999989992564178
+    },
+    {
+      "mode": "easy",
+      "wind": "向かい風",
+      "course": 4,
+      "id": "cast_kagura",
+      "actual": -0.29999899861013046
+    },
+    {
+      "mode": "easy",
+      "wind": "向かい風",
+      "course": 5,
+      "id": "cast_teiou",
+      "actual": -0.2999989981261465
+    },
+    {
+      "mode": "easy",
+      "wind": "向かい風",
+      "course": 6,
+      "id": "main_izumi",
+      "actual": -0.2999989981346678
+    },
+    {
+      "mode": "easy",
+      "wind": "追い風",
+      "course": 1,
+      "id": "cast_kagura",
+      "actual": -0.29999899830718335
+    },
+    {
+      "mode": "easy",
+      "wind": "追い風",
+      "course": 2,
+      "id": "cast_teiou",
+      "actual": -0.29999899923634116
+    },
+    {
+      "mode": "easy",
+      "wind": "追い風",
+      "course": 3,
+      "id": "main_izumi",
+      "actual": -0.2999989991343584
+    },
+    {
+      "mode": "easy",
+      "wind": "追い風",
+      "course": 4,
+      "id": "cast_kagura",
+      "actual": -0.29999899884023246
+    },
+    {
+      "mode": "easy",
+      "wind": "追い風",
+      "course": 5,
+      "id": "cast_teiou",
+      "actual": -0.29999899825442844
+    },
+    {
+      "mode": "easy",
+      "wind": "追い風",
+      "course": 6,
+      "id": "main_izumi",
+      "actual": -0.2999989982881306
+    }
+  ],
+  "total": 41
+}

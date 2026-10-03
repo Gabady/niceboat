@@ -1,0 +1,53 @@
+[
+  {
+    "file": "index.html",
+    "width": 390,
+    "height": 844,
+    "errors": [],
+    "route": "recovery",
+    "checked": [
+      "起動",
+      "シナリオ選択",
+      "序章の返答",
+      "閉じる",
+      "復帰シリーズ",
+      "レース描画",
+      "操舵固定",
+      "保存再読込"
+    ]
+  },
+  {
+    "file": "release/index_android_safe.html",
+    "width": 360,
+    "height": 800,
+    "errors": [],
+    "route": "recovery",
+    "checked": [
+      "起動",
+      "シナリオ選択",
+      "序章の返答",
+      "閉じる",
+      "復帰シリーズ",
+      "レース描画",
+      "操舵固定",
+      "保存再読込"
+    ]
+  },
+  {
+    "file": "release/index_iphone_safe.html",
+    "width": 393,
+    "height": 852,
+    "errors": [],
+    "route": "recovery",
+    "checked": [
+      "起動",
+      "シナリオ選択",
+      "序章の返答",
+      "閉じる",
+      "復帰シリーズ",
+      "レース描画",
+      "操舵固定",
+      "保存再読込"
+    ]
+  }
+]

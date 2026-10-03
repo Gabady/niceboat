@@ -1,0 +1,50 @@
+{
+  "index.html": {
+    "size": 45624177,
+    "sha256": "0726e5d749e07364773b28023f360266bbf960c6e2e971b566526e69810dd67e"
+  },
+  "index_iphone_safe.html": {
+    "size": 45627683,
+    "sha256": "b306e7aefe3000bcfb0adc22ffe16ae37a814d982902e0cfeed57dc7750fc240"
+  },
+  "README.md": {
+    "size": 5729,
+    "sha256": "477a7f229c14c6949214a9cef7b46bc978491120c92c87a24e87098cd24c68a3"
+  },
+  "IPHONE_README.md": {
+    "size": 1244,
+    "sha256": "5e16001ca4b07ff446916c0abbbb3e7f147c050d22d4240ced0a7f86f75594bd"
+  },
+  "CHANGES_AT.md": {
+    "size": 75826,
+    "sha256": "6912bd9e0c0e903cb914472a1af24f7c7ff299b2104b1f955e59e5badf938c1e"
+  },
+  "tools/extract_source.py": {
+    "size": 906,
+    "sha256": "074e95ad164898bcb110762c836344edd27e1ef5c9470f68e5c7cc3669ae5115"
+  },
+  "tools/rebuild.py": {
+    "size": 809,
+    "sha256": "4ddf85e3077dbb1222b6045eea097efc61f4caf15b5c57cf650832e1c152028a"
+  },
+  "tools/script_order.json": {
+    "size": 384,
+    "sha256": "e31a399b86d5e2e3b417d1d6990370a6909545c01d8d8338490162c534894ca0"
+  },
+  "tests/browser-verification-v117.json": {
+    "size": 1018,
+    "sha256": "3e852c701a31302e5797bfc0f43e2d7f3b7c691bc56cb058165d5cf2d11a28b7"
+  },
+  "tests/v116-save.json": {
+    "size": 29707,
+    "sha256": "dd0c05b161c2cc5b80616a1fcbecbf6b525b3df0709d1576679209c8bdd17cab"
+  },
+  "tests/verification-v117.json": {
+    "size": 9044,
+    "sha256": "13c138e067f899d9d7c21493187bd9602633544ece45b82bf9ddb91360a0f591"
+  },
+  "tests/verify-v117.cjs": {
+    "size": 8933,
+    "sha256": "1734f26e10a5f38423bf45583dd59080bf9dc450351dff31a1ebe45e5058c8ca"
+  }
+}
