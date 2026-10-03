@@ -1,0 +1,8 @@
+V105 original dialogue workshop background
+Tool: built-in image generation, new fictional background.
+Output used by the game: assets/dialogue-workshop.webp
+Prepared as WebP for local execution and embedded into both safe HTML files.
+No external photographs, brand logos, or character references were used.
+
+Generation prompt:
+Use case: illustration-story. Asset type: premium Japanese boat-racing visual novel background, no characters, no typography. An intimate family-owned Japanese hydroplane racing workshop beside the water, at late afternoon. A realistic small racing hydroplane rests on a low cradle on the left, neatly worn wooden workbench with brass propeller and tools on the right, open garage door looking onto a calm turquoise racing basin, warm pendant light and soft sunset reflections. Lived-in emotionally warm place, detailed but uncluttered. Polished cinematic anime background painting with convincing material textures and perspective, no chibi, no cartoon outlines. Wide landscape composition, keep central area open for a foreground character portrait and bottom third calm for a dialogue textbox. No logos, no text, no watermarks. One complete scene edge to edge.

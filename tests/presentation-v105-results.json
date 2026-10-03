@@ -1,0 +1,27 @@
+{
+  "passed": 5,
+  "failed": 0,
+  "results": [
+    {
+      "name": "暗転・振動：レース中は演出DOMを作らず、短縮・OFF・停止を守る",
+      "passed": true
+    },
+    {
+      "name": "振動は明示ONのみ、連続接触で380ms以内に連打しない",
+      "passed": true
+    },
+    {
+      "name": "非表示・画面移動で暗転とタイマーを残さない。振動未対応でも進行",
+      "passed": true
+    },
+    {
+      "name": "実際のUIハンドラでイベント表示→選択→保存→物語記録へ進む",
+      "passed": true
+    },
+    {
+      "name": "結果再表示で演出を繰り返さず、出走するとレース文脈になる",
+      "passed": true
+    }
+  ],
+  "method": "Real UI and presentation JavaScript with controlled DOM/API stand-ins; not visual browser testing"
+}

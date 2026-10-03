@@ -22,5 +22,5 @@ function valid(t){const n=(x,a,b)=>Number.isInteger(x)&&x>=a&&x<=b;if(!t||t.vers
  if(i===0)return e.stage===t.origin&&typeof e.late==='boolean';
  if(e.kind==='season'){const z=e.result;return B.stages.includes(e.stage)&&e.id==='season:'+e.stage&&!!z&&n(z.rank,1,20)&&['championship','consolation','eliminated'].includes(z.type)&&(z.type==='eliminated'?z.place===null:n(z.place,1,6))&&typeof z.champion==='boolean'&&(!z.champion||z.type==='championship'&&z.place===1)&&e.outcome===outcome({champion:z.champion,finalType:z.type,finalPlace:z.place});}
  return ['gate','early'].includes(e.kind)&&e.id===e.kind&&i===t.entries.length-1&&t.closed&&(e.kind!=='gate'||e.stage>=7);});}
-const API={B,build,ensure,outcome,capture,close,mark,scene,valid,copy};root.KM_CAMPAIGN=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
+const Legacy={B,build,ensure,outcome,capture,close,mark,scene,valid,copy};const N=root.KM_DRAMA||(typeof require==='function'?require('./drama.js'):null);const API={...Legacy,ensure:c=>N.ensure(c,Legacy),capture:(c,z)=>N.capture(c,z,Legacy),close:(c,k='early')=>N.close(c,k,Legacy),scene:(t,id)=>N.scene(t,id,Legacy),valid:t=>N.valid(t,Legacy)};root.KM_CAMPAIGN=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);

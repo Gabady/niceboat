@@ -1,0 +1,89 @@
+{
+  "build": 104,
+  "passed": 20,
+  "failed": 0,
+  "routeCombinations": 320,
+  "results": [
+    {
+      "name": "5人×全5話の人物固有シナリオ・選択50個・既存報酬を参照",
+      "passed": true
+    },
+    {
+      "name": "全5師匠×両難易度×32通りの選択を修了・報酬・保存まで検証",
+      "passed": true
+    },
+    {
+      "name": "G3以前は開始不可・各シリーズ条件と2走待ちを守る",
+      "passed": true
+    },
+    {
+      "name": "最初の会話で師匠を確定し、後から付け替えできない",
+      "passed": true
+    },
+    {
+      "name": "返答前の保存・再読込で同じ話と選択キーを保持",
+      "passed": true
+    },
+    {
+      "name": "重複送信・不正選択・古い走数キーでは二重成長や二重報酬なし",
+      "passed": true
+    },
+    {
+      "name": "出走開始で保留会話を閉じ、レース中と育成終了後には進めない",
+      "passed": true
+    },
+    {
+      "name": "通常の練習回数・恋愛交流枠を消費せず、SG以前に最終報酬を渡さない",
+      "passed": true
+    },
+    {
+      "name": "既に持つ伝授能力は熟練度を一度だけ上げる",
+      "passed": true
+    },
+    {
+      "name": "イージーの全LR取得入口をURへ変換し、Normal LRは維持",
+      "passed": true
+    },
+    {
+      "name": "恋愛UR5種は元の発動条件を保ち、確率・効果を抑えている",
+      "passed": true
+    },
+    {
+      "name": "更新前にEasyで取得済みのLRと進行中レースを取り消さない",
+      "passed": true
+    },
+    {
+      "name": "師匠ルートがない旧セーブから自然に開始できる",
+      "passed": true
+    },
+    {
+      "name": "師匠・話数・報酬の不整合なルートセーブを拒否",
+      "passed": true
+    },
+    {
+      "name": "途中登録も修了登録も師匠の履歴を保持し、保留返信だけ破棄",
+      "passed": true
+    },
+    {
+      "name": "実UI：G3紹介から師匠ルートへ入り、返信・履歴・保存で反映",
+      "passed": true
+    },
+    {
+      "name": "実UI：Easy修了演出はUR・NormalはLR、繰返し表示で再付与なし",
+      "passed": true
+    },
+    {
+      "name": "27生成画像は全て別ファイル・PNGとWebPの正しいヘッダーを持つ",
+      "passed": true
+    },
+    {
+      "name": "固定15人は専用画像、一般12人は重複なしで固定割当・名前変更でも保持",
+      "passed": true
+    },
+    {
+      "name": "ライバル本人・特訓・会話ログ・再読込で同じ画像を使う",
+      "passed": true
+    }
+  ],
+  "method": "Production engine and UI handlers with controlled DOM; not physical-device verification"
+}

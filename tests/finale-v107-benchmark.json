@@ -1,0 +1,1077 @@
+{
+  "note": "Fixed pilot, 90 stats, tuned equal gear; sample is not human win rate.",
+  "rows": [
+    {
+      "mode": "easy",
+      "wall": "kurose",
+      "seed": 41,
+      "boats": [
+        {
+          "id": "pu82i98i2l8x8",
+          "role": null,
+          "time": 81.46417025284101,
+          "st": 0.16596952852128266,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 105
+        },
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 81.71870048960226,
+          "st": 0.181656714851299,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 106
+        },
+        {
+          "id": "cast_kurose",
+          "role": "wall_speed",
+          "time": 85.07796522798775,
+          "st": 0.2716426980128217,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 115
+        },
+        {
+          "id": "main_ren",
+          "role": "rival_ally",
+          "time": 85.21949680368562,
+          "st": 0.20239415357692556,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 89
+        },
+        {
+          "id": "cast_akamine",
+          "role": "mentor",
+          "time": 88.34803961202283,
+          "st": 0.2309578607676236,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 101
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 91.36779637666737,
+          "st": 0.2648913674082943,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 92
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "wall": "kurose",
+      "seed": 42,
+      "boats": [
+        {
+          "id": "plcjmbifx5xhh",
+          "role": null,
+          "time": 83.72323412282365,
+          "st": 0.20078822061589482,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 101
+        },
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 85.09261798924321,
+          "st": 0.15082475724614675,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 101
+        },
+        {
+          "id": "cast_kurose",
+          "role": "wall_speed",
+          "time": 85.42136998270806,
+          "st": 0.23009832316472564,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 113
+        },
+        {
+          "id": "main_haruto",
+          "role": "rival_ally",
+          "time": 86.82232026221929,
+          "st": 0.1583979449802004,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 110
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 91.4695566441641,
+          "st": 0.2143770412693045,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 83
+        },
+        {
+          "id": "cast_tsukino",
+          "role": "mentor",
+          "time": 93.661181556168,
+          "st": 0.24668348574719257,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 80
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "wall": "shirakami",
+      "seed": 41,
+      "boats": [
+        {
+          "id": "pu82i98i2l8x8",
+          "role": null,
+          "time": 81.605210331699,
+          "st": 0.16596952852128266,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 105
+        },
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 82.7509077511228,
+          "st": 0.181656714851299,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 106
+        },
+        {
+          "id": "main_ren",
+          "role": "rival_ally",
+          "time": 84.5723720450282,
+          "st": 0.20239415357692556,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 89
+        },
+        {
+          "id": "cast_akamine",
+          "role": "mentor",
+          "time": 86.67592667488368,
+          "st": 0.23096711035584566,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 103
+        },
+        {
+          "id": "cast_shirakami",
+          "role": "wall_turn",
+          "time": 91.24056815316679,
+          "st": 0.27906877295961585,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 83
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 91.88451994076298,
+          "st": 0.2648912604805699,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 92
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "wall": "shirakami",
+      "seed": 42,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 81.17294590986549,
+          "st": 0.1508510518593964,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 102
+        },
+        {
+          "id": "main_haruto",
+          "role": "rival_ally",
+          "time": 83.43174355854445,
+          "st": 0.15839749894697888,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 110
+        },
+        {
+          "id": "plcjmbifx5xhh",
+          "role": null,
+          "time": 84.44183484970937,
+          "st": 0.20078822061585697,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 101
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 91.50742773620968,
+          "st": 0.2143770666739308,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 83
+        },
+        {
+          "id": "cast_tsukino",
+          "role": "mentor",
+          "time": 93.51132070545053,
+          "st": 0.24670321704654852,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 80
+        },
+        {
+          "id": "cast_shirakami",
+          "role": "wall_turn",
+          "time": 94.96228360893085,
+          "st": 0.2324436699224925,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 81
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "wall": "kagura",
+      "seed": 41,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 82.15123909594436,
+          "st": 0.18165078706578727,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 106
+        },
+        {
+          "id": "pu82i98i2l8x8",
+          "role": null,
+          "time": 83.12793160720149,
+          "st": 0.16596952851162844,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 105
+        },
+        {
+          "id": "main_ren",
+          "role": "rival_ally",
+          "time": 86.62387735555922,
+          "st": 0.20239419828562605,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 89
+        },
+        {
+          "id": "cast_akamine",
+          "role": "mentor",
+          "time": 88.93691360192862,
+          "st": 0.23097260897209693,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 102
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 90.16225296960498,
+          "st": 0.2648911825525584,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 92
+        },
+        {
+          "id": "cast_kagura",
+          "role": "wall_start",
+          "time": 91.60375551145248,
+          "st": -0.20134629069962326,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 99
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "wall": "kagura",
+      "seed": 42,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 83.20042080828131,
+          "st": 0.15084678298534562,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 102
+        },
+        {
+          "id": "main_haruto",
+          "role": "rival_ally",
+          "time": 85.24758792539102,
+          "st": 0.15839714408046196,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 111
+        },
+        {
+          "id": "plcjmbifx5xhh",
+          "role": null,
+          "time": 86.71918583486033,
+          "st": 0.20078822059882045,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 99
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 91.07037183806062,
+          "st": 0.21437743263457285,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 83
+        },
+        {
+          "id": "cast_tsukino",
+          "role": "mentor",
+          "time": 93.08553652916552,
+          "st": 0.2466758609082843,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 80
+        },
+        {
+          "id": "cast_kagura",
+          "role": "wall_start",
+          "time": 94.43235244114196,
+          "st": -0.20193131808774206,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 97
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "wall": "onizuka",
+      "seed": 41,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 78.98017712619462,
+          "st": 0.18165700787263542,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 107
+        },
+        {
+          "id": "pu82i98i2l8x8",
+          "role": null,
+          "time": 82.1206251089499,
+          "st": 0.16596952852120012,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 105
+        },
+        {
+          "id": "main_ren",
+          "role": "rival_ally",
+          "time": 84.46038916203649,
+          "st": 0.20239415434594096,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 89
+        },
+        {
+          "id": "cast_akamine",
+          "role": "mentor",
+          "time": 88.0678151787354,
+          "st": 0.23097289557611228,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 103
+        },
+        {
+          "id": "cast_onizuka",
+          "role": "wall_power",
+          "time": 88.85885136965345,
+          "st": 0.2658440120636092,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 85
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 91.25806764249731,
+          "st": 0.2648912149310962,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 92
+        }
+      ]
+    },
+    {
+      "mode": "easy",
+      "wall": "onizuka",
+      "seed": 42,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 81.8432498813685,
+          "st": 0.15084426794025843,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 102
+        },
+        {
+          "id": "main_haruto",
+          "role": "rival_ally",
+          "time": 83.48017013500662,
+          "st": 0.15839763590353773,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 111
+        },
+        {
+          "id": "plcjmbifx5xhh",
+          "role": null,
+          "time": 85.69307674160278,
+          "st": 0.20078822061586266,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 101
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 91.5695633949035,
+          "st": 0.2143770636058852,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 83
+        },
+        {
+          "id": "cast_tsukino",
+          "role": "mentor",
+          "time": 93.12030555348913,
+          "st": 0.2467020969442987,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 80
+        },
+        {
+          "id": "cast_onizuka",
+          "role": "wall_power",
+          "time": 94.28622986504901,
+          "st": 0.24624521167860494,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 84
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "wall": "kurose",
+      "seed": 41,
+      "boats": [
+        {
+          "id": "cast_kurose",
+          "role": "wall_speed",
+          "time": 79.31833673148347,
+          "st": 0.16264517299871203,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 122
+        },
+        {
+          "id": "pu82i98i2l8x8",
+          "role": null,
+          "time": 80.00327316765862,
+          "st": 0.11602760952546784,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 105
+        },
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 81.73774684488352,
+          "st": 0.15576223969454747,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 114
+        },
+        {
+          "id": "cast_akamine",
+          "role": "mentor",
+          "time": 82.65157602637078,
+          "st": 0.1809921163265088,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 107
+        },
+        {
+          "id": "main_ren",
+          "role": "rival_ally",
+          "time": 84.19054135006454,
+          "st": 0.1782067125095839,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 100
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 86.49805137428183,
+          "st": 0.17551172368121998,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 92
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "wall": "kurose",
+      "seed": 42,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 77.7311646713776,
+          "st": 0.09954042599912244,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 110
+        },
+        {
+          "id": "main_haruto",
+          "role": "rival_ally",
+          "time": 80.09192043254427,
+          "st": 0.129113761902982,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 114
+        },
+        {
+          "id": "cast_kurose",
+          "role": "wall_speed",
+          "time": 81.7124673799659,
+          "st": 0.18102697637075388,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 119
+        },
+        {
+          "id": "plcjmbifx5xhh",
+          "role": null,
+          "time": 84.48064759912945,
+          "st": 0.17085105624918365,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 101
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 87.64825208083374,
+          "st": 0.15415877561677196,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 88
+        },
+        {
+          "id": "cast_tsukino",
+          "role": "mentor",
+          "time": 88.48218191457825,
+          "st": 0.17611314778959578,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 90
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "wall": "shirakami",
+      "seed": 41,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 76.21394898100496,
+          "st": 0.15576109585493045,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 115
+        },
+        {
+          "id": "pu82i98i2l8x8",
+          "role": null,
+          "time": 82.31019878984878,
+          "st": 0.11602760952546784,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 105
+        },
+        {
+          "id": "main_ren",
+          "role": "rival_ally",
+          "time": 82.48308070550631,
+          "st": 0.178208857064286,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 100
+        },
+        {
+          "id": "cast_akamine",
+          "role": "mentor",
+          "time": 84.70495242981292,
+          "st": 0.1809921163265088,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 105
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 86.68773540864319,
+          "st": 0.17551183125107103,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 92
+        },
+        {
+          "id": "cast_shirakami",
+          "role": "wall_turn",
+          "time": 87.94351424641354,
+          "st": 0.154118440652597,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 90
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "wall": "shirakami",
+      "seed": 42,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 77.43541066153168,
+          "st": 0.09954042597337943,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 110
+        },
+        {
+          "id": "main_haruto",
+          "role": "rival_ally",
+          "time": 80.28069993383943,
+          "st": 0.1291137615416956,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 114
+        },
+        {
+          "id": "plcjmbifx5xhh",
+          "role": null,
+          "time": 84.05019422416908,
+          "st": 0.17085106083642806,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 101
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 87.17062913081139,
+          "st": 0.15416113727994007,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 88
+        },
+        {
+          "id": "cast_shirakami",
+          "role": "wall_turn",
+          "time": 89.19134086001746,
+          "st": 0.18650689140384213,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 83
+        },
+        {
+          "id": "cast_tsukino",
+          "role": "mentor",
+          "time": 90.62232041190227,
+          "st": 0.17611698114327481,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 90
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "wall": "kagura",
+      "seed": 41,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 77.22531693811969,
+          "st": 0.1557507355955392,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 115
+        },
+        {
+          "id": "pu82i98i2l8x8",
+          "role": null,
+          "time": 81.73167049723797,
+          "st": 0.11602760952546784,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 105
+        },
+        {
+          "id": "main_ren",
+          "role": "rival_ally",
+          "time": 82.91871895303917,
+          "st": 0.1782074377224459,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 100
+        },
+        {
+          "id": "cast_akamine",
+          "role": "mentor",
+          "time": 84.50090988191197,
+          "st": 0.18099211633484802,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 109
+        },
+        {
+          "id": "cast_kagura",
+          "role": "wall_start",
+          "time": 85.92140123751727,
+          "st": -0.19647344351976043,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 106
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 87.16060826240403,
+          "st": 0.17551223345946132,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 92
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "wall": "kagura",
+      "seed": 42,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 79.70260742766155,
+          "st": 0.09954042670255886,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 110
+        },
+        {
+          "id": "main_haruto",
+          "role": "rival_ally",
+          "time": 81.05251251857342,
+          "st": 0.12911365586873627,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 114
+        },
+        {
+          "id": "plcjmbifx5xhh",
+          "role": null,
+          "time": 86.72844360846975,
+          "st": 0.17084324221742192,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 100
+        },
+        {
+          "id": "cast_kagura",
+          "role": "wall_start",
+          "time": 89.28867991625772,
+          "st": -0.2007912322853314,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 104
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 89.45793378709403,
+          "st": 0.1541426178244877,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 88
+        },
+        {
+          "id": "cast_tsukino",
+          "role": "mentor",
+          "time": 89.8358338237233,
+          "st": 0.17614460732289552,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 90
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "wall": "onizuka",
+      "seed": 41,
+      "boats": [
+        {
+          "id": "main_ren",
+          "role": "rival_ally",
+          "time": 81.81844759499063,
+          "st": 0.17821230150260042,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 100
+        },
+        {
+          "id": "pu82i98i2l8x8",
+          "role": null,
+          "time": 82.36459283577203,
+          "st": 0.11602760952546784,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 105
+        },
+        {
+          "id": "cast_onizuka",
+          "role": "wall_power",
+          "time": 82.91960053623127,
+          "st": 0.14619640811718848,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 93
+        },
+        {
+          "id": "cast_akamine",
+          "role": "mentor",
+          "time": 85.1089750759682,
+          "st": 0.1809921163265088,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 106
+        },
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 85.20258319494604,
+          "st": 0.1557608970483288,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 114
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 86.0763425541766,
+          "st": 0.1755119136362891,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 93
+        }
+      ]
+    },
+    {
+      "mode": "normal",
+      "wall": "onizuka",
+      "seed": 42,
+      "boats": [
+        {
+          "id": "cast_teiou",
+          "role": "king",
+          "time": 78.9336349489156,
+          "st": 0.09954042600801946,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 110
+        },
+        {
+          "id": "main_haruto",
+          "role": "rival_ally",
+          "time": 81.9411155502804,
+          "st": 0.12911370434529446,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 110
+        },
+        {
+          "id": "plcjmbifx5xhh",
+          "role": null,
+          "time": 85.35501965413148,
+          "st": 0.17085073949777022,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 101
+        },
+        {
+          "id": "cast_onizuka",
+          "role": "wall_power",
+          "time": 87.11001825375527,
+          "st": 0.1850588555001855,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 86
+        },
+        {
+          "id": "mizuki",
+          "role": "heroine",
+          "time": 88.55667049621427,
+          "st": 0.15415957309483738,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 88
+        },
+        {
+          "id": "cast_tsukino",
+          "role": "mentor",
+          "time": 89.43457598129997,
+          "st": 0.17611664596076812,
+          "fault": null,
+          "capsized": false,
+          "dnf": false,
+          "max": 90
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "build": 110,
+  "passed": 11,
+  "failed": 0,
+  "results": [
+    {
+      "name": "390px 本編 主人公と父の名札を一発言ずつ切替",
+      "passed": true
+    },
+    {
+      "name": "会話履歴にも名前と本文を分離して表示",
+      "passed": true
+    },
+    {
+      "name": "最終頁まで選択不可 読了後のみ一度成長",
+      "passed": true
+    },
+    {
+      "name": "360px 師匠の人物画像と台詞が一致",
+      "passed": true
+    },
+    {
+      "name": "360px 主ライバルの対話と正しい名前を表示",
+      "passed": true
+    },
+    {
+      "name": "360px 瑞希の会話は本人と主人公の掛け合い",
+      "passed": true
+    },
+    {
+      "name": "320px 大きな文字でも本文と選択が横にはみ出さない",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html 通信なしで新本文 画像 保存再開を確認",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html 通信なしで新本文 画像 保存再開を確認",
+      "passed": true
+    },
+    {
+      "name": "約束を選んだ返事と履歴に主ライバルという役割名を出さない",
+      "passed": true
+    },
+    {
+      "name": "全ページの未処理エラーなし",
+      "passed": true
+    }
+  ],
+  "browser": "Chromium mobile touch emulation 390x844 360x740 320x640",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false
+}

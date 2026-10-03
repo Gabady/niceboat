@@ -1,0 +1,50 @@
+{
+  "build": 105,
+  "passed": 6,
+  "failed": 0,
+  "method": "Scripted placement fixtures test state transitions and reward guards; not win-rate estimates.",
+  "rows": [
+    {
+      "mode": "easy",
+      "arc": "light",
+      "races": 54,
+      "finals": 9,
+      "registered": true
+    },
+    {
+      "mode": "easy",
+      "arc": "back",
+      "races": 54,
+      "finals": 9,
+      "registered": true
+    },
+    {
+      "mode": "easy",
+      "arc": "shore",
+      "races": 54,
+      "finals": 9,
+      "registered": true
+    },
+    {
+      "mode": "normal",
+      "arc": "light",
+      "races": 54,
+      "finals": 9,
+      "registered": true
+    },
+    {
+      "mode": "normal",
+      "arc": "back",
+      "races": 54,
+      "finals": 9,
+      "registered": true
+    },
+    {
+      "mode": "normal",
+      "arc": "shore",
+      "races": 54,
+      "finals": 9,
+      "registered": true
+    }
+  ]
+}

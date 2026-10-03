@@ -1,0 +1,11 @@
+'use strict';
+const fs=require('fs'),path=require('path'),E=require('../script'),B=E.Drama.B;
+const write=(n,s)=>fs.writeFileSync(path.join(__dirname,'..',n),s);
+let out='# V106 メインシナリオ全文\n\nこの文書には展開と選択肢を含みます。初期3ルートをデビュー時にランダム決定。各章には実際のシリーズ結果、以下の戦績分岐、以前の選択への応答が加わります。本文中の優勝や敗退は実際の結果から表示します。\n\n';
+for(const [id,a]of Object.entries(B.arcs)){out+='## '+a.title+'\n\n'+a.tagline+'\n\n### 序章\n\n'+a.intro.join('\n\n')+'\n\n';for(let i=0;i<a.chapters.length;i++){const [title,body]=a.chapters[i];out+='### '+E.D.stages[i].name+' — '+title+'\n\n'+body.join('\n\n')+'\n\n';}out+='### 節目の決断\n\n';B.decisions[id].forEach((d,i)=>{out+='- '+(['序章','新人後期','G3後期','G2後期','G1後期','SG終了'][i])+'：'+d[0]+' ／ '+d[1]+'\n';});out+='\n';}
+out+='## 戦績による展開\n\n';for(const b of Object.values(B.branches))out+='### '+b.name+'\n\n'+b.body.join('\n\n')+'\n\n';write('MAIN_SCENARIOS.md',out);
+out='# V106 師匠ルート全文\n\n全5話の読了だけでは伝授されません。テーマに合う返答を積み重ね、最後の判断も合致する必要があります。条件の詳細は BALANCE_REPORT.md。Easyは対応URまで、Normalは既存LRです。他の獲得経路は維持します。取得済みの旧報酬は取り消しません。\n\n';
+for(const [id,r]of Object.entries(E.Cast.routes)){out+='## '+E.Cast.map[id].name+' — '+r.title+'\n\n伝授：'+E.D.abilityMap[r.reward].name+'／Easy：'+E.D.abilityMap[r.easyReward].name+'\n\n';r.chapters.forEach((c,i)=>{out+='### 第'+(i+1)+'話 '+c.title+'\n\n'+c.body.join('\n\n')+'\n\n'+c.choices.map(x=>'- '+x.label).join('\n')+'\n\n';});}write('MENTOR_ROUTES.md',out);
+out='# V106 主ライバルの対話\n\n一人の主ライバルと、新人・G3・G2・G1・SGで全5話。各話には直近の先着結果を反映します。伝授には対話の理解に加え、実際の先着履歴も必要です。\n\n';for(const [id,d]of Object.entries(B.rivals)){const p=E.Development.rivals.find(x=>x.id===id);out+='## '+p.name+'\n\n';d.chapters.forEach((c,i)=>out+='### 第'+(i+1)+'話 '+c[0]+'\n\n'+c[1].join('\n\n')+'\n\n- '+c[2].join('\n- ')+'\n\n');}write('RIVAL_SCENARIOS_V106.md',out);
+out='# V106 抽選イベント一覧と本文\n\n新しい通常抽選は5連作15場面、強イベントは2場面、悪いイベントは既存8種。旧通常・強イベントの定義は過去記録と保留イベントの互換用に残しています。選択の効果はテーマへの理解に応じ、日常の最終伝授にはそれまでの返答も使います。\n\n';
+for(const e of [...B.daily,...B.surges])out+='## '+e.title+'\n\n'+(e.arcName?e.arcName+' 第'+(e.step+1)+'話\n\n':'低確率の強イベント\n\n')+e.text.replace(/\n/g,'\n\n')+'\n\n'+e.choices.map(x=>'- '+x.label).join('\n')+'\n\n';out+='## 継続する悪いイベント\n\n'+E.Story.events.filter(e=>e.tone==='setback').map(e=>'- '+e.title+'（'+e.id+'）').join('\n')+'\n';write('EVENT_CATALOG.md',out);

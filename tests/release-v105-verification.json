@@ -1,0 +1,108 @@
+{
+  "build": 105,
+  "passed": 309,
+  "failed": 0,
+  "suites": [
+    {
+      "suite": "development-v105",
+      "passed": 23,
+      "failed": 0
+    },
+    {
+      "suite": "career-flow-v105",
+      "passed": 6,
+      "failed": 0
+    },
+    {
+      "suite": "browser-v105",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "suite": "race-v105",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "suite": "posture-v105",
+      "passed": 27,
+      "failed": 0
+    },
+    {
+      "suite": "career-v105",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "suite": "music-v105",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "suite": "presentation-v105",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "suite": "encounters-v104",
+      "passed": 22,
+      "failed": 0
+    },
+    {
+      "suite": "mentor-v104",
+      "passed": 20,
+      "failed": 0
+    },
+    {
+      "suite": "relationships-v104",
+      "passed": 26,
+      "failed": 0
+    },
+    {
+      "suite": "android-update",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "suite": "audio-v92",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "suite": "static",
+      "passed": 57,
+      "failed": 0
+    },
+    {
+      "suite": "iphone-static",
+      "passed": 30,
+      "failed": 0
+    }
+  ],
+  "careerTransitionCases": 6,
+  "scriptedTransitionRaces": 324,
+  "transitionPlacementsControlled": true,
+  "realBrowserTested": true,
+  "browser": "Chromium stable headless, mobile viewport",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false,
+  "sourceHashes": {
+    "index.html": "41e63ed37c69adcccffc802755be2f65026119128adf0379ef71020cefae45db",
+    "style.css": "a1219a21e75ffbb698780398f4d8f3896d32cfd376d0557536d6f38415db6080",
+    "story.css": "ea8dd80b2c2a8e987f8bd3ec7838aa8facc701e31346414edb2e42e65bea382e",
+    "interface.css": "22b4e6a7a88da0ca9cd2d2eda8ef239740f6b9243748f4dfbf04915c65533423",
+    "bonds.css": "57a46a7028617e3b858650cfb09a5867ba508ea7847863296f018e159659bcba",
+    "dialogue.css": "6006fb1265398adac13eae84a414a06ffac61b6dbeda65bae5f4396c8f1c043e",
+    "data.js": "2163e61150982f9cad90e2db5252340b97f2e6e8310fa09028a85f6eb0dddd1c",
+    "racing.js": "c5c1c201597f400ba0bbdfe3988418142412969ce8477958e73bf4354946d459",
+    "story.js": "161fc7e426430fe64141b79a0b868de753030c10a4de1b76443b3b5e4e55ad7c",
+    "cast.js": "b2e6c1bb0a65fc9f0bee440a376aa098856849c67042d23fec497e6a4419d74f",
+    "campaign.js": "d63cc69fe05bea570d747112e6153e046710a43047bfbe8aaa5757a2b3cf345d",
+    "development.js": "44d506780f49d7f7da4271806956b8f139069149888cdcda60136d0a350d18af",
+    "dialogue.js": "d0d0592da831a68fdc6ad24124251ea805231b7c8e29ed9ebb0843314a50ba3d",
+    "script.js": "a006cf5fd90c02b08e184f8e0f9dbc364367317fa20e158c75b2fae9269ddc73",
+    "index_android_safe.html": "3e9d43b8091caf7deeb7adcf6b7709aabd241e68c0b615b3821ae79785ef278f",
+    "index_iphone_safe.html": "a6a4e44b442ade0c8b733c71c52c128d731b6aee54036e874438d6869a90b8d5"
+  }
+}

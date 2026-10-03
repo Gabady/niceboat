@@ -35,3 +35,18 @@ body.high-contrast .bond-card,body.high-contrast .bond-scene{background:#102a3e;
 /* v102: visible endings, unseen encounters, a single schedule item. */
 .bond-unseen{font-size:32px;color:#d6bf92;padding:0 8px;flex:none}.bond-mystery{grid-column:1/-1;text-align:center;padding:34px 24px;border:1px dashed #bfa97e70;border-radius:20px;background:linear-gradient(145deg,#263d50,#132b3b)}.bond-mystery>span{font-size:35px;color:#f0d6a2}.bond-mystery h3{font-size:20px;color:#f8ead6}.bond-mystery p{font-size:13px;line-height:1.9;color:#c1d0d8;max-width:420px;margin:auto}.bond-status.ended{color:#ffd9d7;background:#833e4988;border:1px solid #f1959a88}.bond-status.locked{color:#ffe5af;background:#59472588}.route-failed{border-color:#cf7c8799!important;box-shadow:inset 3px 0 #d87d89!important}.route-failed .bond-gate{color:#ffc5cc}.route-locked .bond-gate{color:#f0d49d}.route-complete{border-color:#93cab0a8!important}.route-terminal-note{display:block;font-size:12px;line-height:1.8;color:#ffcad0}.bond-shortcut{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border:1px solid #839dab60;border-radius:15px;background:#203c4b;margin:15px 0 22px}.bond-shortcut>div{min-width:0}.bond-shortcut b{display:block;font-size:14px}.bond-shortcut small{display:block;font-size:12px;color:#d0dbe0;margin-top:7px}.bond-shortcut .btn{flex:none}
 @media(max-width:359px){.bond-shortcut{padding:13px;gap:8px}.bond-shortcut .btn{padding:9px}.bond-mystery{padding:26px 17px}}
+/* V108: affection stays beside the person, promises beside the next race. */
+.affinity-meter{margin:14px 0 8px;padding:10px 12px;border-radius:12px;background:rgba(133,180,200,.07);border:1px solid rgba(153,195,208,.16)}
+.affinity-meter>div:first-child{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;color:#c6d9df}
+.affinity-meter b{font-size:19px;color:#f4e0cf;font-variant-numeric:tabular-nums}
+.affinity-meter small{font-size:10px;color:#98afb9}.affinity-meter strong{font-size:11px;font-weight:600;text-align:right}
+.affinity-meter.ready strong{color:#9ce4ce}.affinity-track{position:relative;height:6px;margin-top:9px;border-radius:5px;background:#162d39}
+.affinity-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#b684a5,#f4baa1)}
+.affinity-meter.ready .affinity-track i{background:linear-gradient(90deg,#69bbae,#b5eacb)}
+.affinity-track em{position:absolute;top:-3px;width:2px;height:12px;background:#fff5dc;border-radius:2px}
+.affinity-result{display:grid;gap:0;margin:12px 0;border-block:1px solid #ffffff18}
+.affinity-result>div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 4px}
+.affinity-result>div+div{border-top:1px solid #ffffff0d}.affinity-result span{font-size:13px}.affinity-result small{display:block;font-size:10px;color:#a6bbc5;font-weight:400;margin-top:2px}
+.affinity-result b{text-align:right;font-variant-numeric:tabular-nums}.affinity-result .up{color:#a5e5cd}.affinity-result .down{color:#efb9bb}
+.relationship-promise{display:flex;align-items:center;gap:12px;padding:13px;margin:12px 0;border:1px solid #dbaac73a;border-radius:16px;background:linear-gradient(110deg,#392d3c88,#152b39)}
+.relationship-promise>div{min-width:0;flex:1}.relationship-promise .portrait{width:46px;height:56px;flex:none}.relationship-promise b,.relationship-promise small,.relationship-promise span{display:block}.relationship-promise b{font-size:13px;line-height:1.5}.relationship-promise small{font-size:10px;color:#edc5d8}.relationship-promise span{font-size:10px;color:#adc2cd;margin-top:3px}

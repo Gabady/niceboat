@@ -1,0 +1,88 @@
+{
+  "build": 106,
+  "passed": 20,
+  "failed": 0,
+  "results": [
+    {
+      "name": "成人6人・各7話・各3選択・固有SGエピソードとLR",
+      "passed": true
+    },
+    {
+      "name": "6人とも全7話を自然な条件到達で完了・交際・保存",
+      "passed": true
+    },
+    {
+      "name": "重要場面12件で誤った選択は交際不可・読み直しでも変わらない",
+      "passed": true
+    },
+    {
+      "name": "通常会話の失敗は会話で回復でき、交際には進める",
+      "passed": true
+    },
+    {
+      "name": "告白で友人を選ぶと交際せず、選択履歴が残る",
+      "passed": true
+    },
+    {
+      "name": "一人と完走後も他の相手の序盤は読めるが交際は増えない",
+      "passed": true
+    },
+    {
+      "name": "交流枠は2走で回復・読み直し、同一回答再送で二重加算しない",
+      "passed": true
+    },
+    {
+      "name": "レース開始で保留中の返答を破棄、交流枠は消費しない",
+      "passed": true
+    },
+    {
+      "name": "5人×両難易度：SG優勝戦でNormal LR・Easy URを獲得し出走者へ反映",
+      "passed": true
+    },
+    {
+      "name": "SG準優勝戦・G1優勝戦・未交際には恋愛LRを与えない",
+      "passed": true
+    },
+    {
+      "name": "準備済みSG優勝戦の報酬未適用データも操船開始前に補完",
+      "passed": true
+    },
+    {
+      "name": "SG優勝戦を準備後に最終話を完走してもLRと出走者を更新",
+      "passed": true
+    },
+    {
+      "name": "登録選手へ顔の人物ID・全選択・交際・SG約束の記録を保持",
+      "passed": true
+    },
+    {
+      "name": "不正人物、交際矛盾、過剰回数、不正LRの保存を拒否",
+      "passed": true
+    },
+    {
+      "name": "v98セーブは走行・名前・人気・既存イベントを保ったまま読込",
+      "passed": true
+    },
+    {
+      "name": "通常18種と恋愛用LR6種・UR6種の構成",
+      "passed": true
+    },
+    {
+      "name": "通常NPC・師匠・ショップ・通常獲得候補に専用LRを混ぜない",
+      "passed": true
+    },
+    {
+      "name": "新能力の操船条件：舵・全開・消耗・3周目・出口時間を判定",
+      "passed": true
+    },
+    {
+      "name": "顔は人物IDに固定・HTML入力を逃がし、外部画像に依存しない",
+      "passed": true
+    },
+    {
+      "name": "追加能力を積んだ3周レースが精算まで進み、実発動・保存・効果上限を守る",
+      "passed": true
+    }
+  ],
+  "scope": "Romance engine and save compatibility. Current shared training budget is covered by development-v106, dialogue UI by browser-v106 and encounters-v106."
+}

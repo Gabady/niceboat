@@ -1,0 +1,1017 @@
+{
+  "build": 104,
+  "races": 60,
+  "groups": [
+    {
+      "mode": "easy",
+      "base": 82,
+      "races": 15,
+      "oldBossWins": 8,
+      "newBossWins": 12,
+      "oldPlayerWins": 3,
+      "newPlayerWins": 3,
+      "oldBossMean": 2.1333333333333333,
+      "newBossMean": 1.2,
+      "finished": 90
+    },
+    {
+      "mode": "easy",
+      "base": 92,
+      "races": 15,
+      "oldBossWins": 5,
+      "newBossWins": 11,
+      "oldPlayerWins": 10,
+      "newPlayerWins": 4,
+      "oldBossMean": 2,
+      "newBossMean": 1.3333333333333333,
+      "finished": 90
+    },
+    {
+      "mode": "normal",
+      "base": 82,
+      "races": 15,
+      "oldBossWins": 5,
+      "newBossWins": 10,
+      "oldPlayerWins": 0,
+      "newPlayerWins": 0,
+      "oldBossMean": 2.3333333333333335,
+      "newBossMean": 1.5333333333333334,
+      "finished": 90
+    },
+    {
+      "mode": "normal",
+      "base": 92,
+      "races": 15,
+      "oldBossWins": 8,
+      "newBossWins": 11,
+      "oldPlayerWins": 0,
+      "newPlayerWins": 0,
+      "oldBossMean": 1.8666666666666667,
+      "newBossMean": 1.3333333333333333,
+      "finished": 90
+    }
+  ],
+  "results": [
+    {
+      "mode": "easy",
+      "boss": "kurose",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 4,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 3,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kurose",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kurose",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 3,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kurose",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kurose",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kurose",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "shirakami",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 4,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "shirakami",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 4,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "shirakami",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 5,
+        "playerPlace": 4,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "shirakami",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 4,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 3,
+        "playerPlace": 1,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "shirakami",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "shirakami",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kagura",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 3,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kagura",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kagura",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kagura",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kagura",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "kagura",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 4,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "raiden",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 3,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 4,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "raiden",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "raiden",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 4,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "raiden",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "raiden",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "raiden",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "onizuka",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 4,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "onizuka",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 4,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "onizuka",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "onizuka",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "onizuka",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "easy",
+      "boss": "onizuka",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 2,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 1,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kurose",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 4,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 4,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kurose",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kurose",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 4,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kurose",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kurose",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kurose",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 4,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "shirakami",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "shirakami",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "shirakami",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "shirakami",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "shirakami",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "shirakami",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 4,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kagura",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 4,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kagura",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kagura",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kagura",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kagura",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "kagura",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "raiden",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "raiden",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "raiden",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "raiden",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 2,
+        "playerPlace": 4,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "raiden",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "raiden",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 3,
+        "playerPlace": 4,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "onizuka",
+      "base": 82,
+      "seed": 1,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "onizuka",
+      "base": 82,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "onizuka",
+      "base": 82,
+      "seed": 3,
+      "old": {
+        "bossPlace": 3,
+        "playerPlace": 6,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 3,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "onizuka",
+      "base": 92,
+      "seed": 1,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "onizuka",
+      "base": 92,
+      "seed": 2,
+      "old": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 5,
+        "finished": 6
+      }
+    },
+    {
+      "mode": "normal",
+      "boss": "onizuka",
+      "base": 92,
+      "seed": 3,
+      "old": {
+        "bossPlace": 2,
+        "playerPlace": 5,
+        "finished": 6
+      },
+      "current": {
+        "bossPlace": 1,
+        "playerPlace": 6,
+        "finished": 6
+      }
+    }
+  ],
+  "method": "Paired seeded shared-physics AI SG championship fixtures. Fixed synthetic player stats and 6 skills; not observed human win rates."
+}

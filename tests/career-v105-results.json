@@ -1,0 +1,95 @@
+{
+  "passed": 22,
+  "failed": 0,
+  "results": [
+    {
+      "name": "72件を追加、合計123件・8本24話。IDと選択肢がすべて一意で参照可能",
+      "passed": true
+    },
+    {
+      "name": "追加イベントの全選択・全分岐が保存可能、二重受け取りなし",
+      "passed": true
+    },
+    {
+      "name": "人気帯の境界0/25/70/140/250/400は重複せず、次の段階を表示",
+      "passed": true
+    },
+    {
+      "name": "同じ出会いが人気で本文・選択肢を変え、提示後の人気変化では変わらない",
+      "passed": true
+    },
+    {
+      "name": "8本の連続イベントは順番・次シリーズ制約・選択記憶を守る",
+      "passed": true
+    },
+    {
+      "name": "連続イベントは過去の選択で本文と効果が変わる",
+      "passed": true
+    },
+    {
+      "name": "シード固定・再読込・再表示で抽選をやり直さない",
+      "passed": true
+    },
+    {
+      "name": "支援金は所持金だけに入り、SG進出賞金・勝利数を増やさない",
+      "passed": true
+    },
+    {
+      "name": "人気の上昇で段階通知。低下は0未満にならず能力を失わない",
+      "passed": true
+    },
+    {
+      "name": "選手編集はID・能力・機材・賞金・乱数・難易度を保持",
+      "passed": true
+    },
+    {
+      "name": "登録選手の編集は過去のリプレイ・別選手に波及しない",
+      "passed": true
+    },
+    {
+      "name": "操船中・観戦中・作成選手レース中は出走者の名前を変更できない",
+      "passed": true
+    },
+    {
+      "name": "空白名・不正カラーを拒否、不可視制御文字を除き、長い入力を制限",
+      "passed": true
+    },
+    {
+      "name": "お気に入り・検索・人気順は選手データを変更しない",
+      "passed": true
+    },
+    {
+      "name": "不正プロフィール・表示設定・イベント分岐・連続進行を読込で拒否",
+      "passed": true
+    },
+    {
+      "name": "v97データを育成・人気・機材・走行状態ごと維持して移行",
+      "passed": true
+    },
+    {
+      "name": "登録でプロフィール・選択履歴・連続イベントの到達を保存",
+      "passed": true
+    },
+    {
+      "name": "実UI：ホームから編集し、表示・再読込・選手プロフィールに反映",
+      "passed": true
+    },
+    {
+      "name": "実UI：文字・コントラストの設定は即反映・保存、再起動でも維持",
+      "passed": true
+    },
+    {
+      "name": "実UI：名鑑検索・お気に入り・並び替え・保護確認",
+      "passed": true
+    },
+    {
+      "name": "実UI：人気分岐の提示・選択・物語フィルター・連続の到達を表示",
+      "passed": true
+    },
+    {
+      "name": "実UI：入力をHTMLとして実行せず、名前・出身地・ひと言をエスケープ",
+      "passed": true
+    }
+  ],
+  "method": "Production engine and UI event handlers with controlled DOM. Browser layout and mobile device testing not performed."
+}

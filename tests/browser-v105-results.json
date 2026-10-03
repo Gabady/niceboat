@@ -1,0 +1,47 @@
+{
+  "build": 105,
+  "passed": 9,
+  "failed": 0,
+  "browser": "Chromium headless stable",
+  "realBrowser": true,
+  "realAndroidDevice": false,
+  "realIPhoneDevice": false,
+  "results": [
+    {
+      "name": "分割版をAndroid相当幅で起動し練習と整備を1回ずつ実行",
+      "passed": true
+    },
+    {
+      "name": "会話は1頁ずつ進み最後まで選択肢が出ず二重報酬もない",
+      "passed": true
+    },
+    {
+      "name": "実ブラウザ再起動で本編の読書位置が維持される",
+      "passed": true
+    },
+    {
+      "name": "恋愛会話・人物画像・返答後の会話を同じリーダーで表示",
+      "passed": true
+    },
+    {
+      "name": "師匠会話から閉じて再開しても同じ頁に戻る",
+      "passed": true
+    },
+    {
+      "name": "360px・短い画面・大きな文字でも本文が横にはみ出さない",
+      "passed": true
+    },
+    {
+      "name": "Android Safe単体で会話 背景 人物を外部通信なしで表示",
+      "passed": true
+    },
+    {
+      "name": "iPhone Safe単体を390px幅で起動し本文送りを実行",
+      "passed": true
+    },
+    {
+      "name": "各画面でJavaScript例外が発生しない",
+      "passed": true
+    }
+  ]
+}

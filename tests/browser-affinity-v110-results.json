@@ -1,0 +1,51 @@
+{
+  "build": 110,
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "name": "390px ライバル好感度と広い特訓ボタンを表示 枠消費と加算",
+      "passed": true
+    },
+    {
+      "name": "師匠は好感度不足で最終話を開けず現在値と不足分を表示",
+      "passed": true
+    },
+    {
+      "name": "ヒロインは好感度ゲージと第7話の不足条件 回復用の訪問を残す",
+      "passed": true
+    },
+    {
+      "name": "おねだりが自動表示 最後までタップして贈り物を購入し一度だけ保存",
+      "passed": true
+    },
+    {
+      "name": "着順の約束を出走前へ表示 即結果の精算でも達成可否と好感度を反映",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html 単体の好感度と強制依頼を表示し保存復元",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html 単体の好感度と強制依頼を表示し保存復元",
+      "passed": true
+    },
+    {
+      "name": "320px 好感度不足の理由と交流ボタンを表示し通常訪問へ進める",
+      "passed": true
+    },
+    {
+      "name": "360px ティルト説明と5つの角度を表示し加速のフィジカル依存を反映",
+      "passed": true
+    },
+    {
+      "name": "起動 会話 特訓 スキップ 保存復元で未処理エラーなし",
+      "passed": true
+    }
+  ],
+  "browser": "Chromium mobile touch emulation 390x844 and 360x740",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false
+}

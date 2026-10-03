@@ -3,6 +3,7 @@
 'use strict';
 const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null);
 const Extra=root.KM_STORY_EXTRA||(typeof require==='function'?require('./story-extra.js'):null);
+const N=root.KM_DRAMA_DATA||(typeof require==='function'?require('./drama-data.js'):null);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const hash=s=>{let v=2166136261;for(const c of String(s))v=Math.imul(v^c.charCodeAt(0),16777619);return v>>>0;};
 const random=t=>{let v=t.seed+=0x6D2B79F5;t.seed>>>=0;v=Math.imul(v^v>>>15,v|1);v^=v+Math.imul(v^v>>>7,v|61);return ((v^v>>>14)>>>0)/4294967296;};
@@ -81,28 +82,19 @@ const setbacks=[
 ];
 surges.forEach(e=>{e.tone='surge';events.push(e);});setbacks.forEach(e=>{e.tone='setback';events.push(e);});
 events.push(...Extra.events);surges.push(...Extra.events.filter(e=>e.tone==='surge'));setbacks.push(...Extra.events.filter(e=>e.tone==='setback'));
+Extra.arcs.push(...N.dailyArcs);events.push(...N.daily,...N.surges);surges.push(...N.surges);
+for(const e of events)if(N.eventDialogue?.[e.id])e.text=N.eventDialogue[e.id];
 const eventMap=Object.assign(Object.create(null),Object.fromEntries(events.map(e=>[e.id,e])));
 function ensure(c){if(!c.story)c.story={version:1,seed:hash(c.player.id+':story'),chapters:[],gates:[],seen:{},bonds:{mentor:0,mechanic:0},pending:null,rivals:[],duel:null,log:[],shown:[],serial:0};if(!c.story.arcs)c.story.arcs={};return c.story;}
 function log(c,entry){const t=ensure(c);t.log.push({...entry,index:++t.serial,stage:c.stage});if(t.log.length>72)t.log.shift();}
-function series(c){
- const t=ensure(c);if(t.chapters.includes(c.stage))return;t.chapters.push(c.stage);t.pending=null;t.duel=null;
- log(c,{kind:'chapter',title:chapters[c.stage][0],note:chapters[c.stage][1]});
- if(random(t)>=.88)return;
- const avg=p=>D.statKeys.reduce((v,k)=>v+p.stats[k],0)/5;
- const near=c.series.npcs.slice().sort((a,b)=>Math.abs(avg(a)-avg(c.player))-Math.abs(avg(b)-avg(c.player))).slice(0,7);
- const opponent=near[Math.floor(random(t)*near.length)];let record;
- if(t.rivals.length&&random(t)<.68){record=t.rivals[t.rivals.length-1];opponent.id=record.id;opponent.name=record.name;}
- else{record={id:opponent.id,name:opponent.name,wins:0,losses:0,met:c.stage};t.rivals.push(record);}
- const portraits=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);if(portraits){portraits.assign(record,t.rivals.filter(x=>x!==record).map(x=>portraits.definition(x).key));opponent.portraitKey=portraits.definition(record).key;}
- c.series.npcs.filter(n=>n!==opponent&&n.name===opponent.name).forEach((n,i)=>n.name=n.name+'・'+(i+2));
- t.duel={stage:c.stage,round:1+Math.floor(random(t)*4),rivalId:opponent.id,rivalName:opponent.name,status:'scheduled',raceId:null,money:[8,12,20,25,35,45,60,75,150][c.stage]};
-}
+function series(c){const t=ensure(c);if(t.chapters.includes(c.stage))return;t.chapters.push(c.stage);t.pending=null;t.duel=null;log(c,{kind:'chapter',title:chapters[c.stage][0],note:chapters[c.stage][1]});}
 function lineUp(c,people){const q=c.story?.duel;if(!q||q.status!=='scheduled'||q.round!==c.series.round)return people;const rival=c.series.npcs.find(n=>n.id===q.rivalId);if(!rival||people.some(n=>n.id===rival.id))return people;return [...people.slice(0,5),rival];}
 function fame(p){const value=Math.max(0,Math.floor(p.popularity||0)),i=Extra.bands.findIndex(b=>value<b.max),band=Extra.bands[i],next=Extra.bands[i+1];return {value,index:i,name:band.name,min:band.min,next:next?.min||null,progress:next?clamp((value-band.min)/(next.min-band.min),0,1):1};}
 function resolve(pending){const base=eventMap[pending?.id];if(!base)return null;const b=base.branches?.[pending.variant||0];return b?{...base,...b}:base;}
 function arcStatus(c){return Extra.arcs.map(a=>({...a,...(c.story?.arcs?.[a.id]||{step:0,route:0,lastStage:-1})}));}
-function routeNote(c,e){if(!e?.arc||!e.step)return '';const first=eventMap['life_'+e.arc+'_0'],route=c.story?.arcs?.[e.arc]?.route||0;return 'あの日の選択「'+first.choices[route].label+'」から、続く物語。';}
+function routeNote(c,e){if(!e?.arc||!e.step)return '';const first=events.find(x=>x.arc===e.arc&&x.step===0),route=c.story?.arcs?.[e.arc]?.route||0;return 'あの日の選択「'+first.choices[route].label+'」から、続く物語。';}
 function eligible(e,c,r){
+ if(!e.id.startsWith('novel_')&&e.tone!=='setback')return false;
  if(c.player.popularity<(e.minFame||0)||c.player.popularity>=(e.maxFame??Infinity)||c.stage<(e.minStage||0))return false;
  if(e.arc){const a=c.story?.arcs?.[e.arc]||{step:0,lastStage:-1};if(a.step!==e.step||a.lastStage>=c.stage)return false;}
  const w=e.when;return w==='any'||w==='rain'&&r.env.weather==='雨'||w==='wind'&&r.env.windSpeed>=5||w==='calm'&&r.env.weather!=='雨'&&r.env.windSpeed<=2||w==='loss'&&c.lastResult?.place>=4||w==='win'&&c.lastResult?.place===1&&!c.lastResult.dnf&&!c.lastResult.capsized||w==='lowTurn'&&c.player.stats.turn<65||w==='lowPower'&&c.player.stats.power<65||w==='g1'&&c.stage>=6||w==='g3'&&c.stage>=2&&c.stage<=5||w==='late'&&c.stage===7||w==='sg'&&c.stage===8||w==='popular'&&c.player.popularity>=70||w==='bondMentor'&&c.story.bonds.mentor>=2||w==='bondMechanic'&&c.story.bonds.mechanic>=2;}
@@ -114,7 +106,7 @@ function prepare(c,r){
  if(!pool.length)return;
  const weights=pool.map(e=>(e.arc?2.5:e.theme==='人気の物語'?1.7:e.rare?.22:1)/((t.seen[e.id]||0)+1));let roll=random(t)*weights.reduce((a,b)=>a+b,0),selected=pool[0];
  for(let i=0;i<pool.length;i++){roll-=weights[i];if(roll<=0){selected=pool[i];break;}}
- t.pending={kind:'event',key:r.id+':'+selected.id,id:selected.id,raceId:r.id,variant:selected.arc&&selected.step?(t.arcs[selected.arc]?.route||0):selected.branches?selected.branches.reduce((v,b,i)=>c.player.popularity>=b.minFame?i:v,0):0};
+ t.pending={kind:'event',key:r.id+':'+selected.id,id:selected.id,raceId:r.id,variant:selected.choiceSensitive?0:selected.arc&&selected.step?(t.arcs[selected.arc]?.route||0):selected.branches?selected.branches.reduce((v,b,i)=>c.player.popularity>=b.minFame?i:v,0):0};
 }
 function begin(c,r,api){const t=c.story;if(t?.pending&&eventMap[t.pending.id]?.tone==='setback'&&api){choose(c,t.pending.key,0,api,true);return;}if(!t?.pending||t.pending.raceId!==r.id)return;if(t.pending.kind==='duel'&&t.duel?.status==='offered')t.duel.status='declined';log(c,{kind:'skip',title:t.pending.kind==='duel'?'対決を見送った':eventMap[t.pending.id].title,note:'今回はレースの準備を優先した。'});t.pending=null;}
 function effectLabel(e){const out=[];if(e.stat)out.push(D.stats[e.stat]+'が少し成長');if(e.best)out.push('得意能力が少し成長');if(e.worst)out.push('苦手能力が少し成長');if(e.gear)out.push((e.gear==='motor'?'モーター':'プロペラ')+'状態'+(e.value<0?'↓':'↑'));if(e.learn)out.push((e.learn==='motor'?'モーター':'プロペラ')+'整備経験');if(e.fame)out.push('人気'+(e.fame>0?'＋':'')+e.fame);if(e.bond)out.push(speakers[e.bond].name+'との信頼↑');if(e.money)out.push('支援金 '+e.money+'万円');if(e.cost)out.push('費用 '+e.cost+'万円 / 不足時は状態↓');if(e.skill)out.push('特殊能力を獲得');return out.join(' · ');}
@@ -126,7 +118,7 @@ function choose(c,key,index,api,forced=false){
   const result={title:index===0?'対決成立':'今回は見送る',note:index===0?q.rivalName+'「先にゴールした方が勝ちだ。水面で会おう」':'相手はうなずいた。「次の機会を楽しみにしている」',rewards:[],kind:'duel'};
   log(c,result);return result;
  }
- const beforeFame=fame(p);const e=resolve(pending),ch=e?.choices[index];if(!ch)return null;const x=ch.effect,rewards=[];
+ const beforeFame=fame(p);const e=resolve(pending),ch=e?.choices[index];if(!ch)return null;let x=ch.effect;const rewards=[];const previousInsight=e.arc?(t.arcs[e.arc]?.insight||0):0;const denied=!!(e.choiceSensitive&&e.step===2&&x.skill&&previousInsight<1);if(denied)x={};
  let k=x.stat;if(x.best||x.worst)k=D.statKeys.slice().sort((a,b)=>x.best?p.stats[b]-p.stats[a]:p.stats[a]-p.stats[b])[0];
  if(k){const old=Math.floor(p.stats[k]),gain=(x.value||x.best||x.worst)*1.5*api.statGrowthRate(p.stats[k])*api.growthFactor(p);api.growStat(p,k,gain);rewards.push(D.stats[k]+'＋'+(Math.floor(p.stats[k])-old)+(Math.floor(p.stats[k])===old?'（端数蓄積）':''));}
  if(x.gear&&p.equipment){const g=p.equipment[x.gear],old=Math.floor(g.condition);g.condition=clamp(g.condition+x.value,25,100);const delta=Math.floor(g.condition)-old;rewards.push((x.gear==='motor'?'モーター':'プロペラ')+'状態'+(delta>=0?'＋':'')+delta);}
@@ -136,8 +128,8 @@ function choose(c,key,index,api,forced=false){
  if(x.money){p.money+=x.money;rewards.push('支援金 '+x.money+'万円');}
  if(x.cost){const paid=Math.min(p.money,x.cost);p.money-=paid;rewards.push('費用 −'+Math.floor(paid)+'万円');if(paid<x.cost){const g=p.equipment.prop;g.condition=Math.max(25,g.condition-2);rewards.push('不足分は応急処置：プロペラ状態−2');}}
  let gained=null;if(x.skill&&api.acquire){const rarity=api.rewardRarity(p,c.stage>=8?'UR':c.stage>=6?'SSR':c.stage>=2?'SR':'R');let pool=D.abilities.filter(a=>!a.exclusive&&a.category!=='弱点'&&a.rarity===rarity&&!p.skills.includes(a.id));if(!pool.length)pool=D.abilities.filter(a=>!a.exclusive&&a.category!=='弱点'&&a.rarity===rarity);const id=pool[Math.floor(random(t)*pool.length)]?.id;if(id){gained=api.acquire(c,p,id,'物語の転機');rewards.push(D.abilityMap[id].name+(gained.duplicate?' 習熟':' 獲得'));}}
- if(e.arc){const previous=t.arcs[e.arc];t.arcs[e.arc]={step:e.step+1,route:e.step?previous.route:index,lastStage:c.stage};}
- t.seen[e.id]=(t.seen[e.id]||0)+1;t.pending=null;const result={kind:'event',eventId:e.id,title:e.title,note:ch.reply,choice:ch.label,rewards,rare:e.rare,tone:e.tone||'normal',skill:gained?.id||null,arc:e.arc||null,arcStep:e.arc?e.step+1:null,fameTier:fame(p).index>beforeFame.index?fame(p).name:null};log(c,result);return result;
+ if(e.arc){const previous=t.arcs[e.arc];t.arcs[e.arc]={step:e.step+1,route:e.step?previous.route:index,lastStage:c.stage,...(e.choiceSensitive?{insight:previousInsight+(ch.aligned?1:0)}:{})};}
+ t.seen[e.id]=(t.seen[e.id]||0)+1;t.pending=null;const result={kind:'event',eventId:e.id,title:e.title,note:ch.reply+(denied?' ただし、ここまでの対話から技の理解を積み上げる条件には届かなかった。今回は伝授なし。':''),choice:ch.label,rewards,rare:e.rare,tone:e.tone||'normal',skill:gained?.id||null,arc:e.arc||null,arcStep:e.arc?e.step+1:null,fameTier:fame(p).index>beforeFame.index?fame(p).name:null};log(c,result);return result;
 }
 function settle(c,r,result,api){
  const t=c.story,q=t?.duel;if(!q||q.status!=='accepted'||q.raceId!==r.id||q.stage!==c.stage)return null;
@@ -157,10 +149,10 @@ function settle(c,r,result,api){
 function finish(c){const t=ensure(c);if(!c.ending||t.closed)return;t.closed=c.ending;log(c,{kind:'chapter',title:c.ending==='sgChampion'?'水面に刻んだ名前':c.ending==='gate'?'まだ、物語の途中':'最高峰の、その先へ',note:c.ending==='sgChampion'?'表彰台から、あの横断幕が見えた。朝倉と篠原、七瀬もいる。勝ったのは一艇。でも、ここまで来たのは一人ではなかった。':c.ending==='gate'?'切符には届かなかった。それでも練習帳の最初と最後は、違う選手の線だった。朝倉が言う。「積み重ねたものは、消えないよ」':'最高峰の水面から戻ると、篠原はいつものように艇を受け止めた。「次は、どんな走りにしようか」物語は、まだ続いている。'});}
 function valid(t){
  const str=(s,n)=>typeof s==='string'&&s.length<=n,num=(v,a,b)=>Number.isInteger(v)&&v>=a&&v<=b,id=s=>str(s,110)&&/^[a-zA-Z0-9_:-]+$/.test(s);
- if(t?.arcs&&(typeof t.arcs!=='object'||Array.isArray(t.arcs)||!Object.entries(t.arcs).every(([k,a])=>Extra.arcs.some(x=>x.id===k)&&a&&num(a.step,1,3)&&num(a.route,0,1)&&num(a.lastStage,0,8))))return false;
+ if(t?.arcs&&(typeof t.arcs!=='object'||Array.isArray(t.arcs)||!Object.entries(t.arcs).every(([k,a])=>Extra.arcs.some(x=>x.id===k)&&a&&num(a.step,1,3)&&num(a.route,0,1)&&num(a.lastStage,0,8)&&(a.insight===undefined||num(a.insight,0,a.step)))))return false;
  if(t?.pending&&('variant' in t.pending)&&(!num(t.pending.variant,0,1)||t.pending.variant>0&&!eventMap[t.pending.id]?.branches?.[t.pending.variant]))return false;
  if(!t||('closed' in t&&!['sgChampion','sgFinished','gate'].includes(t.closed))||t.version!==1||!num(t.seed,0,4294967295)||!num(t.serial,0,2000)||!Array.isArray(t.chapters)||t.chapters.length>9||!t.chapters.every(v=>num(v,0,8))||new Set(t.chapters).size!==t.chapters.length||!Array.isArray(t.gates)||t.gates.length>60||!t.gates.every(id)||!t.seen||!Object.entries(t.seen).every(([k,v])=>eventMap[k]&&num(v,0,1000))||!t.bonds||!['mentor','mechanic'].every(k=>num(t.bonds[k],0,1000))||!Array.isArray(t.shown)||t.shown.length>100||!t.shown.every(s=>str(s,150))||!Array.isArray(t.rivals)||t.rivals.length>9||!t.rivals.every(r=>id(r.id)&&str(r.name,30)&&num(r.wins,0,9)&&num(r.losses,0,9)&&num(r.met,0,8)))return false;
- if(!Array.isArray(t.log)||t.log.length>72||!t.log.every(l=>num(l.index,1,2000)&&num(l.stage,0,8)&&['chapter','event','duel','duelResult','skip'].includes(l.kind)&&str(l.title,80)&&str(l.note,250)&&(!l.rewards||Array.isArray(l.rewards)&&l.rewards.length<=6&&l.rewards.every(s=>str(s,100)))))return false;
+ if(!Array.isArray(t.log)||t.log.length>72||!t.log.every(l=>num(l.index,1,2000)&&num(l.stage,0,8)&&['chapter','event','duel','duelResult','skip'].includes(l.kind)&&str(l.title,80)&&str(l.note,3000)&&(!l.rewards||Array.isArray(l.rewards)&&l.rewards.length<=6&&l.rewards.every(s=>str(s,100)))))return false;
  if(t.pending&&(!['duel','event'].includes(t.pending.kind)||!id(t.pending.key)||!id(t.pending.raceId)||!(t.pending.kind==='duel'?t.pending.id==='duel':eventMap[t.pending.id])))return false;
  const q=t.duel;if(q&&(!num(q.stage,0,8)||!num(q.round,1,4)||!['scheduled','offered','accepted','declined','settled'].includes(q.status)||!id(q.rivalId)||!str(q.rivalName,30)||!num(q.money,0,150)||(q.raceId!==null&&!id(q.raceId))||!t.rivals.some(n=>n.id===q.rivalId)))return false;
  return true;

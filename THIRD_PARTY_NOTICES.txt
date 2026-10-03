@@ -112,3 +112,8 @@ race.mp3: レース音楽・通常「水飛沫のデッドヒート」.mp3
 final.mp3: レース音楽・優勝戦「栄冠へ、波を裂け」.mp3
 sg-lounge.mp3: 最優秀シリーズレース外「静寂を破る航跡」.mp3
 heroine.mp3: ヒロイン「きみと、水面に恋をして」.mp3
+
+V105 dialogue background: assets/dialogue-workshop.webp is an original AI-generated fictional workshop illustration created for this release. The prompt is in V105_ART_PROMPT.txt. It is embedded in the safe HTML editions; no image fetch occurs at runtime. Existing character portraits and music are unchanged.
+
+V107 portraits:
+assets/portraits/mizuki.webp and assets/portraits/teiou.webp are newly AI-generated original fictional adult characters for this game. No stock-photo source or specific real-person likeness was used. Prompts and roles are described in V107_PORTRAITS.md. Existing user-provided MP3 files are unchanged.

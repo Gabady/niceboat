@@ -1,0 +1,54 @@
+/* v105 visual novel and training UI, shared by desktop and both safe editions. */
+.reading-novel .masthead,.reading-novel .bottom-nav,.reading-novel .save-footer{display:none}
+.reading-novel #app{padding:0;max-width:none;margin:0}
+.reading-novel{background:#0b2030}
+.novel-stage{position:relative;isolation:isolate;min-height:100svh;min-height:100dvh;max-width:1000px;margin:auto;overflow:hidden;background:#102d3e;color:#f8f4ea;display:flex;flex-direction:column;justify-content:space-between}
+.novel-backdrop{position:absolute;z-index:-2;inset:0;background-image:url("assets/dialogue-workshop.webp");background-size:cover;background-position:52% center}
+.novel-harbor .novel-backdrop{background-image:url("assets/shore-panorama.webp");background-position:62% 60%}
+.novel-backdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,15,25,.6),transparent 32%,rgba(4,15,25,.2) 55%,rgba(4,15,25,.88))}
+.novel-top{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:max(20px,env(safe-area-inset-top)) 20px 10px;text-shadow:0 2px 8px #071820}
+.novel-top small{font-size:11px;letter-spacing:.22em;color:#f5d59b}.novel-top h2{font-size:clamp(19px,4.8vw,27px);margin:6px 0;line-height:1.45;max-width:22em}
+.novel-close{min-width:66px;min-height:44px;background:#0b273bba;border:1px solid #dbe6e35c;border-radius:24px;color:#fff}
+.novel-cast{position:relative;flex:1;display:flex;align-items:flex-end;justify-content:center;min-height:170px;padding:10px 30px 0}
+.novel-cast .portrait-face{width:min(75vw,380px);height:auto;max-height:46svh;aspect-ratio:1;object-fit:cover;object-position:center top;border:1px solid #f0d29b70;border-radius:36% 36% 8px 8px;box-shadow:0 18px 55px #06182480;filter:drop-shadow(0 4px 14px #00152160);mask-image:linear-gradient(#000 87%,transparent);-webkit-mask-image:linear-gradient(#000 87%,transparent)}
+.novel-cast>span{position:absolute;bottom:12px;left:calc(50% - 140px);font-size:13px;font-weight:700;background:#122c40dc;padding:7px 16px;border-left:3px solid #edc983;letter-spacing:.08em}
+.novel-bottom{position:relative;z-index:2;padding:0 14px max(18px,env(safe-area-inset-bottom));width:100%;box-sizing:border-box}
+.novel-tools{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:0 8px;background:#0a2235c9;border-radius:14px 14px 0 0}.novel-tools .btn{color:#f0e7d5;min-height:40px;font-size:12px}.novel-tools>span{opacity:.75;font-variant-numeric:tabular-nums}
+.novel-box{display:block;position:relative;width:100%;text-align:left;padding:22px 22px 32px;min-height:190px;border:1px solid #efd49b99;background:linear-gradient(135deg,#102e42f7,#081b2bf7);color:#fff8e8;border-radius:3px 3px 16px 16px;box-shadow:0 8px 26px #0005;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;font:inherit}
+.novel-speaker{display:block;font-size:11px;font-weight:700;color:#edcb8d;letter-spacing:.12em;margin-bottom:10px}.novel-text{display:block;font-size:clamp(16px,4.3vw,20px);line-height:1.8;letter-spacing:.02em;overflow-wrap:anywhere}.novel-hint{position:absolute;right:18px;bottom:9px;font-size:10px;color:#aed6db}
+.novel-choices{display:grid;gap:8px;margin:10px auto 0;max-width:640px}.novel-choice{min-height:52px;display:flex;flex-direction:column;justify-content:center;padding:13px 18px;color:#142d40;background:linear-gradient(110deg,#fff8e6,#f1dec0);border:1px solid #d5b275;border-radius:10px;text-align:left;box-shadow:0 3px 8px #00142560;font-size:14px}.novel-choice small{margin-top:4px;font-weight:400;color:#536269}.novel-choice:active{transform:translateY(1px);background:#dfefdf}
+.novel-log{line-height:1.9;border-bottom:1px solid #ffffff12;padding:8px 0 18px}
+.large-type .novel-text{font-size:21px}.large-type .novel-box{min-height:220px}
+.development-strip,.technique-card,.final-preparation,.career-identity,.story-invitation{margin:14px 0;padding:18px;border:1px solid #86bbbf42;border-radius:18px;background:linear-gradient(135deg,#15394b,#0e2738);box-shadow:0 4px 20px #06152317}
+.development-person{display:flex;align-items:center;gap:12px}.development-person .portrait-face{width:62px;height:62px;border-radius:18px}.development-person>div{flex:1;min-width:0}.development-person small,.development-person b,.development-person span{display:block}.development-person b{margin:4px 0}.development-person span{font-size:11px;color:#b6d3d9}.development-person small{color:#e8c786;font-size:10px;letter-spacing:.12em}
+.development-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}.development-links .btn{font-size:12px;flex:1}
+.training-partners{display:grid;gap:8px;margin-top:16px}.training-partners .btn{display:flex;align-items:center;justify-content:flex-start;gap:12px;padding:10px;text-align:left;min-height:78px}.training-partners .portrait-face{width:50px;height:50px;border-radius:12px}.training-partners b,.training-partners small{display:block}.training-partners small{font-weight:400;font-size:11px;margin-top:5px}
+.technique-card h3{margin:0;font-size:16px}.technique-meter{display:grid;grid-template-columns:70px 1fr;align-items:center;gap:8px;font-size:11px;margin:15px 0}.technique-meter progress{height:7px;width:100%;accent-color:#84dacc}.technique-card .button-row .btn{display:flex;flex-direction:column;gap:5px;flex:1;font-size:12px}.technique-card .button-row small{font-size:10px;font-weight:400}
+.final-preparation{border-color:#e7c88a70;background:linear-gradient(110deg,#213d4d,#182f41)}.final-preparation>small,.career-identity>small{font-size:10px;letter-spacing:.15em;color:#f0cb89}.final-preparation h3,.career-identity h3{font-size:20px;margin:10px 0}.final-preparation p{font-size:14px}.career-identity{background:linear-gradient(125deg,#1c424d,#14253b);border-color:#8cbeaf90}
+.story-record-link{width:100%;text-align:left;display:flex;flex-direction:column;gap:5px;margin:8px 0}.story-record-link small{font-size:10px;color:#c3d2ce}
+@media(min-width:700px){.novel-stage{min-height:100dvh}.novel-bottom{padding-left:40px;padding-right:40px}.novel-cast .portrait-face{max-height:43dvh;width:380px}.novel-box{min-height:165px}.novel-text{font-size:19px}}
+@media(max-height:680px){.novel-top{padding-top:10px}.novel-cast{min-height:110px}.novel-cast .portrait-face{max-height:31svh;width:auto}.novel-box{min-height:170px;padding:14px 18px 28px}.novel-text{font-size:15px;line-height:1.7}.novel-choice{padding:9px 14px;min-height:46px}}
+@media(prefers-reduced-motion:reduce){.novel-stage *{animation:none!important;transition:none!important}}
+/* Keep the always-available sound controls away from the dialogue close button. */
+.reading-novel .sound-controls{position:absolute;right:auto;left:max(14px,env(safe-area-inset-left));top:max(10px,env(safe-area-inset-top));z-index:45}
+.reading-novel .novel-top{padding-top:calc(max(12px,env(safe-area-inset-top)) + 82px)}
+.reading-novel .sound-panel{left:0;right:auto}
+.novel-tools .btn{min-height:44px}
+/* V106: one compact entry point for all uncollected learning opportunities. */
+.opportunity-tray{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 18px;padding:13px 14px;border:1px solid #f5d89c88;border-radius:16px;background:linear-gradient(110deg,#284653,#183340);box-shadow:0 5px 18px #00132230}
+.opportunity-tray>div{display:flex;align-items:center;gap:10px;min-width:0}.opportunity-tray strong{display:block;font-size:15px;color:#ffe6b1}.opportunity-tray small{display:block;font-size:11px;color:#c9dbd9;margin-top:4px;line-height:1.5}.opportunity-dot{display:grid;place-items:center;width:32px;height:32px;flex-shrink:0;border-radius:50%;background:#f7d99e;color:#173445;font-size:21px;font-weight:800}.opportunity-tray .btn{flex-shrink:0;min-height:44px;font-size:13px;padding:10px 14px}.opportunity-list{display:grid;gap:10px}.opportunity-list .btn{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;white-space:normal}.opportunity-list small{font-size:11px;color:#eed1a0}.origin-random{padding:12px 16px;border-left:3px solid #efd49b;color:#cedcda;line-height:1.8;font-size:13px}
+
+/* Keep tuning labels above their outlook at narrow mobile widths. */
+.tune-card .adjust-directions button{display:block;text-align:left;min-width:0;overflow-wrap:anywhere}
+/* V109: readable speaker turns without extra explanatory panels. */
+.novel-box.speaker-player{border-color:#8fddd1;background:linear-gradient(135deg,#153f49f7,#0a2534f7)}
+.speaker-player .novel-speaker{color:#a9f2df}
+.speaker-narration .novel-speaker{color:#bacbd2}
+.novel-speaker{font-size:13px;letter-spacing:.05em}
+.novel-log b,.novel-log span{display:block}.novel-log b{font-size:12px;color:#edd0a0;margin-bottom:5px}
+.novel-cast.is-listening .portrait-face{filter:brightness(.91) drop-shadow(0 4px 14px #00152160)}
+.novel-text{line-break:strict;word-break:normal}
+.novel-box:focus-visible,.novel-choice:focus-visible{outline:3px solid #b7f1e4;outline-offset:3px}
+
+/* V110: one compact next-action hint under relationship progress. */
+.affinity-guidance{margin:8px 0 0;color:var(--muted,#abc9cc);font-size:12px;line-height:1.6;overflow-wrap:anywhere}

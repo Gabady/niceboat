@@ -1,0 +1,47 @@
+{
+  "build": 107,
+  "passed": 9,
+  "failed": 0,
+  "results": [
+    {
+      "name": "390px 決戦の6艇とSS120を表示 新しい顔画像を読み込み",
+      "passed": true
+    },
+    {
+      "name": "実描画上で2人のセリフを表示 操作エリアと重ならず入力を遮らない",
+      "passed": true
+    },
+    {
+      "name": "ゴール線通過で即FINISHと固定タイム その後も船体が進む",
+      "passed": true
+    },
+    {
+      "name": "3秒ずつ進む観戦でも対戦セリフと先駆スタートを確認",
+      "passed": true
+    },
+    {
+      "name": "新ヒロインも背景と顔を伴うタップ式会話で表示",
+      "passed": true
+    },
+    {
+      "name": "主ライバルの分岐は最後まで読んで選択し保存される",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html を360pxで起動し 新ポートレートと決戦を表示",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html を360pxで起動し 新ポートレートと決戦を表示",
+      "passed": true
+    },
+    {
+      "name": "起動・会話・操船で未処理JavaScriptエラーなし",
+      "passed": true
+    }
+  ],
+  "browser": "Chromium headless mobile emulation",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false
+}

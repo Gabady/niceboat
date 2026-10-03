@@ -1,0 +1,18 @@
+{
+  "build": 108,
+  "unchangedModules": [
+    "racing.js",
+    "race-renderer.js",
+    "driving-ui.js",
+    "race-feedback.js",
+    "finale.js",
+    "race-dialogue.js",
+    "audio.js",
+    "music.js",
+    "bonds-data.js",
+    "mentor-data.js",
+    "drama-data.js"
+  ],
+  "assetsUnchanged": true,
+  "note": "Source comparison with V107; physics, authored scenarios, MP3 and portraits preserved."
+}

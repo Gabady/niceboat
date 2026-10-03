@@ -1,0 +1,233 @@
+[
+  {
+    "name": "自主練",
+    "before": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "after": {
+      "speed": 40.25,
+      "turn": 42.64,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "gains": {
+      "speed": 0,
+      "turn": 2.39,
+      "start": 0,
+      "accel": 0,
+      "power": 0
+    },
+    "result": 2.39
+  },
+  {
+    "name": "ライバル特訓",
+    "before": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "after": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 43.13,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "gains": {
+      "speed": 0,
+      "turn": 0,
+      "start": 2.88,
+      "accel": 0,
+      "power": 0
+    },
+    "result": 2.88
+  },
+  {
+    "name": "師匠合同練習",
+    "before": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "after": {
+      "speed": 42.22,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "gains": {
+      "speed": 1.97,
+      "turn": 0,
+      "start": 0,
+      "accel": 0,
+      "power": 0
+    },
+    "result": 1.97
+  },
+  {
+    "name": "本編イベント",
+    "before": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "after": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.68
+    },
+    "gains": {
+      "speed": 0,
+      "turn": 0,
+      "start": 0,
+      "accel": 0,
+      "power": 0.43
+    },
+    "result": null
+  },
+  {
+    "name": "師匠イベント",
+    "before": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "after": {
+      "speed": 40.59,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "gains": {
+      "speed": 0.34,
+      "turn": 0,
+      "start": 0,
+      "accel": 0,
+      "power": 0
+    },
+    "result": null
+  },
+  {
+    "name": "ライバルイベント",
+    "before": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "after": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.72,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "gains": {
+      "speed": 0,
+      "turn": 0,
+      "start": 0.47,
+      "accel": 0,
+      "power": 0
+    },
+    "result": null
+  },
+  {
+    "name": "日常イベント",
+    "before": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "after": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.72,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "gains": {
+      "speed": 0,
+      "turn": 0,
+      "start": 0.47,
+      "accel": 0,
+      "power": 0
+    },
+    "result": "morning"
+  },
+  {
+    "name": "能力の新規獲得",
+    "before": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "after": {
+      "speed": 40.7,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "gains": {
+      "speed": 0.45,
+      "turn": 0,
+      "start": 0,
+      "accel": 0,
+      "power": 0
+    },
+    "result": "stretch"
+  },
+  {
+    "name": "レース後",
+    "before": {
+      "speed": 40.25,
+      "turn": 40.25,
+      "start": 40.25,
+      "accel": 40.25,
+      "power": 40.25
+    },
+    "after": {
+      "speed": 41.03,
+      "turn": 41.03,
+      "start": 41.37,
+      "accel": 40.86,
+      "power": 40.76
+    },
+    "gains": {
+      "speed": 0.78,
+      "turn": 0.78,
+      "start": 1.12,
+      "accel": 0.61,
+      "power": 0.51
+    },
+    "result": {
+      "speed": 0.78,
+      "turn": 0.78,
+      "start": 1.12,
+      "accel": 0.61,
+      "power": 0.51
+    }
+  }
+]

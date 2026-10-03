@@ -1,0 +1,75 @@
+{
+  "method": "Upper-end trained/adjusted fixture with AI driving, manual-mode physics; not typical career results or human win rate",
+  "results": [
+    {
+      "boss": "kurose",
+      "seed": 1,
+      "playerPlace": 1,
+      "bossPlace": 4,
+      "finished": 6
+    },
+    {
+      "boss": "kurose",
+      "seed": 2,
+      "playerPlace": 1,
+      "bossPlace": 3,
+      "finished": 6
+    },
+    {
+      "boss": "shirakami",
+      "seed": 1,
+      "playerPlace": 1,
+      "bossPlace": 4,
+      "finished": 6
+    },
+    {
+      "boss": "shirakami",
+      "seed": 2,
+      "playerPlace": 1,
+      "bossPlace": 3,
+      "finished": 6
+    },
+    {
+      "boss": "kagura",
+      "seed": 1,
+      "playerPlace": 1,
+      "bossPlace": 2,
+      "finished": 6
+    },
+    {
+      "boss": "kagura",
+      "seed": 2,
+      "playerPlace": 1,
+      "bossPlace": 3,
+      "finished": 6
+    },
+    {
+      "boss": "raiden",
+      "seed": 1,
+      "playerPlace": 1,
+      "bossPlace": 4,
+      "finished": 6
+    },
+    {
+      "boss": "raiden",
+      "seed": 2,
+      "playerPlace": 1,
+      "bossPlace": 2,
+      "finished": 6
+    },
+    {
+      "boss": "onizuka",
+      "seed": 1,
+      "playerPlace": 1,
+      "bossPlace": 4,
+      "finished": 6
+    },
+    {
+      "boss": "onizuka",
+      "seed": 2,
+      "playerPlace": 1,
+      "bossPlace": 3,
+      "finished": 6
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "checks": [
     {
-      "name": "分割版がCSSと21個のJSのローカル参照を持つ",
+      "name": "分割版がCSSと30個のJSのローカル参照を持つ",
       "passed": true
     },
     {
@@ -9,7 +9,7 @@
       "passed": true
     },
     {
-      "name": "単体版に外部参照なし・21個のインラインJSとCSSを保持",
+      "name": "単体版に外部参照なし・30個のインラインJSとCSSを保持",
       "passed": true
     },
     {
@@ -18,6 +18,30 @@
     },
     {
       "name": "data.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のaffinity.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "affinity.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のdrama-data.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "drama-data.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のdrama.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "drama.js構文",
       "passed": true
     },
     {
@@ -101,6 +125,22 @@
       "passed": true
     },
     {
+      "name": "単体版のcampaign-data.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "campaign-data.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のcampaign.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "campaign.js構文",
+      "passed": true
+    },
+    {
       "name": "単体版のrace-feedback.jsが分割版と一致",
       "passed": true
     },
@@ -165,11 +205,43 @@
       "passed": true
     },
     {
+      "name": "単体版のrace-dialogue.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "race-dialogue.js構文",
+      "passed": true
+    },
+    {
       "name": "単体版のdriving-ui.jsが分割版と一致",
       "passed": true
     },
     {
       "name": "driving-ui.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のdevelopment.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "development.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のfinale.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "finale.js構文",
+      "passed": true
+    },
+    {
+      "name": "単体版のdialogue.jsが分割版と一致",
+      "passed": true
+    },
+    {
+      "name": "dialogue.js構文",
       "passed": true
     },
     {
@@ -198,17 +270,24 @@
     }
   ],
   "hashes": {
-    "index.html": "a21096a224676310156753fd18c095f9afdb5d18db4c39fae952ad7ca4032f19",
-    "style.css": "958c498a65f7e526968955afa6a52c9254ac9fb5b6f874fa632441ca0f65cf9f",
+    "index.html": "12b2fdcd9e07134e44cbe8e5d118f2674825baf324fe21de4072bbd7f094c7a6",
+    "style.css": "a1219a21e75ffbb698780398f4d8f3896d32cfd376d0557536d6f38415db6080",
     "story.css": "ea8dd80b2c2a8e987f8bd3ec7838aa8facc701e31346414edb2e42e65bea382e",
-    "story.js": "34323e3acc249c8132861a8d4e71c27a72fba3671211331482289b61bba6ba84",
+    "story.js": "1c365e448bb0078c17df18f8812aaf6f0567b3818aa3e1014ae9944ffaba2038",
     "presentation.js": "5b69b687daa9f8865d83a2272ec1fcc01644fcdbc1b1c05a2999f01faf919ce9",
-    "data.js": "88e5357709d740b9a696821c94b8eecd40992192a523d4268433c75e3245283a",
-    "racing.js": "ca726e8e6649b41a2208d0d0ba7428fd38156ba3c8f89de9b58c240331d8ff3a",
+    "data.js": "b85fdfa783af1e877e2474153e21cd29728b0cdffbf8368dca389de71c66b504",
+    "affinity.js": "a070c03fa4001b66cd81542765bdfc8d37afa56340151c4fd7f21bb49fa61141",
+    "drama-data.js": "d2004d190311c60c991ba501460ddd19f0af39b14098c679baa9616e45000958",
+    "drama.js": "20b29daa74f6297179b546b2459d48497e8d7a158843a7fbd99049c12a827fe4",
+    "racing.js": "93b247b93872e1f8c54446accd06fd895a71d62453172b9449fa81ead0c2dddf",
     "race-renderer.js": "9e3db691332580e4c7e7d8b533aa08683da03498560e12d1f594a9b616db445d",
-    "driving-ui.js": "724c86440f43666cd9055fd12863d77bf27aedc6dbe84ddb719fc6e41e9e0633",
-    "script.js": "8b13930750c423ef31742dd5cb3c4cd1f34eb1857941630421e87c9598ce6bd9",
-    "index_android_safe.html": "38d36068072eb23d3fe08e3880ac8e97e7c34a0132ba38d1bf262047036b4ac9"
+    "race-dialogue.js": "b36b7b22e3d8c92fa80631de83177d0b9adca8eacb6cc0569ee201e4e243e3fc",
+    "driving-ui.js": "75b7db2595dd80b43711d4e77119fc75121300ef113ff588513acd7a4b7ceb7b",
+    "development.js": "d2e815f9b98dc97f2ce7e156924d219b8ca36c8e64ea0902087654bb4dbe27a0",
+    "finale.js": "c8eff0959119be7af9e7a80e822d976ed55f2bd81dc47cc97da8fcd8b6977dbf",
+    "dialogue.js": "d714a58dbe1077f1a9e06912411137b0b25fa11e1e2c43e602d58c4884290df1",
+    "script.js": "dcbb0cff97601a31827fdcd7090eb19b5435c92b68a565b30c2587258ee605f9",
+    "index_android_safe.html": "f98f53da84b8832181c2a127ecc9418e00f06b53ad9523d4cd98154418593c23"
   },
   "browser_testing": false,
   "android_device_testing": false

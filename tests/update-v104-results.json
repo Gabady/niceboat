@@ -1,0 +1,112 @@
+{
+  "build": 104,
+  "passed": 26,
+  "failed": 0,
+  "results": [
+    {
+      "name": "3つの出発点を選び、能力再抽選と物語を分離",
+      "passed": true
+    },
+    {
+      "name": "15の節目すべてで優勝 上位 苦戦の文章を分岐",
+      "passed": true
+    },
+    {
+      "name": "能力の強み6通りと苦手を実データから確定",
+      "passed": true
+    },
+    {
+      "name": "勝敗と能力による分岐は獲得時に固定し後の育成で書き換えない",
+      "passed": true
+    },
+    {
+      "name": "同じシーズンの再処理で章を重複させない",
+      "passed": true
+    },
+    {
+      "name": "通常9シリーズは6章として残り最終結果まで読める",
+      "passed": true
+    },
+    {
+      "name": "G1でSG条件未達の結末と途中登録の結末を区別",
+      "passed": true
+    },
+    {
+      "name": "登録後も全章と既読状態を読み返せる",
+      "passed": true
+    },
+    {
+      "name": "実UIのホームと物語一覧から章を開き保存する",
+      "passed": true
+    },
+    {
+      "name": "読書や再読で賞金 能力 乱数 練習回数が変化しない",
+      "passed": true
+    },
+    {
+      "name": "古いセーブは現在地点から開始し過去の成績を創作しない",
+      "passed": true
+    },
+    {
+      "name": "不正なシナリオ 保存分岐 重複章 既読値を拒否",
+      "passed": true
+    },
+    {
+      "name": "本文は3つの人物関係を持ち5段階の節目に本文と成績別の結末を持つ",
+      "passed": true
+    },
+    {
+      "name": "3段階スワイプは24pxごとに進み横ずれの遊びを確保",
+      "passed": true
+    },
+    {
+      "name": "最低能力でも旋回中に全幅の姿勢変更を0.35秒以内に完了",
+      "passed": true
+    },
+    {
+      "name": "姿勢タップを舵とアクセルを保ったまま切り替え",
+      "passed": true
+    },
+    {
+      "name": "姿勢ボタンは自動補助を解除し選択中を支援技術にも表示",
+      "passed": true
+    },
+    {
+      "name": "一時停止中の誤タップと不正な姿勢値を無視",
+      "passed": true
+    },
+    {
+      "name": "10人全員に固有の固定構成があり弱点と役割を保つ",
+      "passed": true
+    },
+    {
+      "name": "イージーは得意分野を残して他能力を抑える",
+      "passed": true
+    },
+    {
+      "name": "師匠伝授と恋愛報酬は変えずEasyのUR上限を保持",
+      "passed": true
+    },
+    {
+      "name": "新しい構成は次の出走表から反映し既存途中レースを書き換えない",
+      "passed": true
+    },
+    {
+      "name": "v103途中レースの座標と旧連続姿勢を読込時に保ち次の計算から3段階",
+      "passed": true
+    },
+    {
+      "name": "姿勢タップ後に同じ左指を動かしても以前の上下入力へ戻らない",
+      "passed": true
+    },
+    {
+      "name": "シリーズ結果の計算から章を自動で保存し再呼び出しでも1回だけ",
+      "passed": true
+    },
+    {
+      "name": "全姿勢ボタンはsliderの子ではなく44px以上の独立入力",
+      "passed": true
+    }
+  ],
+  "method": "Production engines and UI event handlers in a controlled DOM; no physical-device claim"
+}

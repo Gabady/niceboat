@@ -1,5 +1,5 @@
 {
-  "passed": 26,
+  "passed": 35,
   "failed": 0,
   "results": [
     {
@@ -16,6 +16,18 @@
     },
     {
       "name": "data.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "affinity.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "drama-data.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "drama.jsがソースと一致",
       "passed": true
     },
     {
@@ -59,6 +71,14 @@
       "passed": true
     },
     {
+      "name": "campaign-data.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "campaign.jsがソースと一致",
+      "passed": true
+    },
+    {
       "name": "race-feedback.jsがソースと一致",
       "passed": true
     },
@@ -91,7 +111,23 @@
       "passed": true
     },
     {
+      "name": "race-dialogue.jsがソースと一致",
+      "passed": true
+    },
+    {
       "name": "driving-ui.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "development.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "finale.jsがソースと一致",
+      "passed": true
+    },
+    {
+      "name": "dialogue.jsがソースと一致",
       "passed": true
     },
     {
