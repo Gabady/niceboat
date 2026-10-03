@@ -1,0 +1,44 @@
+{
+  "build": 116,
+  "passed": 119,
+  "failed": 0,
+  "runs": [
+    {
+      "file": "render-v116-results.json",
+      "passed": 12,
+      "failed": 0
+    },
+    {
+      "file": "browser-v116-results.json",
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "file": "static-results.json",
+      "passed": 67,
+      "failed": 0
+    },
+    {
+      "file": "iphone-static-results.json",
+      "passed": 35,
+      "failed": 0
+    }
+  ],
+  "runtimeFilesChanged": [
+    "data.js",
+    "index.html",
+    "race-renderer.js",
+    "script.js"
+  ],
+  "unchangedAssets": 71,
+  "sourceHashes": {
+    "data.js": "0ef67a9680eb88a0193807a1c3bb9adb2c674bbb4b661b61be86bfd6e53940e7",
+    "index.html": "03c03c1f0cb89393b135eeb86bd20431dc1e75f711663dd597505cb18601d49c",
+    "race-renderer.js": "93d0215423bc9924616d7686b8e57ba0207d44e5b78c28cc647364a6caade637",
+    "script.js": "110b819c1ec45059f71fb90263ec1eff525e91b33bec9e4db09fc216f6e6946a"
+  },
+  "staticEvidence": "Android and iPhone embedded modules match final source; all inline JS syntax checked",
+  "graphicsEvidence": "6 boats, three postures, turns, rear view and rain. Native GLES and Canvas plus Chromium 390/360/320px. All rendering is original geometry.",
+  "phoneDeviceTested": false,
+  "safariTested": false
+}

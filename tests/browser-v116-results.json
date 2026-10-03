@@ -1,0 +1,32 @@
+{
+  "build": 116,
+  "passed": 5,
+  "failed": 0,
+  "results": [
+    {
+      "name": "index.html auto 390px 旧セーブ維持 レース描画 再開 停止 保存",
+      "passed": true
+    },
+    {
+      "name": "index.html canvas 360px 旧セーブ維持 レース描画 再開 停止 保存",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html auto 390px 旧セーブ維持 レース描画 再開 停止 保存",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html auto 320px 旧セーブ維持 レース描画 再開 停止 保存",
+      "passed": true
+    },
+    {
+      "name": "未処理JavaScriptエラーなし",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "browser": "Chromium mobile touch emulation 390/360/320px; WebGL and Canvas",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false
+}

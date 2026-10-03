@@ -1,4 +1,4 @@
-/* v102: saved random encounters, exclusive final chapter, late-route risk and one-use schedule item. */
+/* v115: rebalance regular encounters and racer discovery; preserve saved encounters and routes. */
 (function(root){
 'use strict';
 const A=root.KM_AFFINITY||(typeof require==='function'?require('./affinity.js'):null);
@@ -7,7 +7,10 @@ const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null),B=
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),copy=x=>JSON.parse(JSON.stringify(x));
 const esc=x=>String(x||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Only race preparation draws an encounter. Reading a screen never draws again.
-const encounterRates=[.002,.004,.009,.013,.019,.023,.028,.035,.045];
+// Per race-preparation roll: chance for ONE of the undiscovered regular heroines.
+const encounterRates=Object.freeze([.004,.009,.020,.029,.042,.050,.060,.073,.090]);
+// Separate roll, only after a clean first place with Mizuki in the field.
+const racerEncounterRate=.18;
 function blank(){return {met:false,metStage:null,metRace:null,step:0,trust:0,affection:0,failed:false,reason:'',dated:false,choices:[]};}
 function encounterState(c){return {seed:S.hash(c.player.id+':romance-v102'),rolled:[],notice:null};}
 function ensure(c){
@@ -29,7 +32,7 @@ function encounter(c,r){if(!c?.player||!r||r!==c.series?.race||c.ending||r.done|
  const h=pool[Math.floor(encounterRandom(e)*pool.length)],q=t.heroines[h.id];q.met=true;q.metStage=c.stage;q.metRace=c.stats.races;e.notice={id:h.id,stage:c.stage,races:c.stats.races,shown:false};
  record(c,{kind:'encounter',heroine:h.id,title:h.name+'との出会い',note:h.intro,choice:'水辺で言葉を交わした'});return copy(e.notice);
 }
-function discoverRacer(c,r,result){const t=ensure(c),q=t.heroines.mizuki;if(q.met||result.place!==1||!result.finish.some(n=>n.id==='mizuki')||result.finish.some(n=>n.isPlayer&&(n.startFault||n.dnf||n.capsized)))return null; if(encounterRandom(t.encounters)>=.28)return null;q.met=true;q.metStage=c.stage;q.metRace=c.stats.races;t.encounters.notice={id:'mizuki',stage:c.stage,races:c.stats.races,shown:false};record(c,{kind:'encounter',heroine:'mizuki',title:'朝凪 瑞希との出会い',note:B.map.mizuki.intro,choice:'勝負の後 ピットで言葉を交わした'});return copy(t.encounters.notice);}
+function discoverRacer(c,r,result){const t=ensure(c),q=t.heroines.mizuki;if(q.met||result.place!==1||!result.finish.some(n=>n.id==='mizuki')||result.finish.some(n=>n.isPlayer&&(n.startFault||n.dnf||n.capsized)))return null; if(encounterRandom(t.encounters)>=racerEncounterRate)return null;q.met=true;q.metStage=c.stage;q.metRace=c.stats.races;t.encounters.notice={id:'mizuki',stage:c.stage,races:c.stats.races,shown:false};record(c,{kind:'encounter',heroine:'mizuki',title:'朝凪 瑞希との出会い',note:B.map.mizuki.intro,choice:'勝負の後 ピットで言葉を交わした'});return copy(t.encounters.notice);}
 function metHeroines(c){const t=ensure(c);return B.heroines.filter(h=>t.heroines[h.id].met);}
 function finalLock(t,id){return (t.completed||t.partner)&&((t.completed||t.partner)!==id)?(t.completed||t.partner):null;}
 function gate(c,id){const h=B.map[id];if(!c||!h)return {open:false,reason:'人物が見つかりません'};const t=ensure(c),q=t.heroines[id],e=h.chapters[q.step];
@@ -107,5 +110,5 @@ function valid(t){const num=(v,a,b)=>Number.isInteger(v)&&v>=a&&v<=b,str=(v,n)=>
 // Generated raster portraits: stable identity, never a gameplay random draw.
 function portrait(person,large=false,emotion=null){const h=typeof person==='string'?B.map[person]:person;if(!h)return '';const P=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);return P?P.render(h,large,emotion):'';}
 
-const API={B,discoverRacer,encounterRates,encounter,metHeroines,finalLock,shortcutGate,shortcut,ensure,gate,open,scene,choose,depart,final,rivalInfo,train,status,valid,portrait,writable};root.KM_BONDS=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
+const API={B,discoverRacer,encounterRates,racerEncounterRate,encounter,metHeroines,finalLock,shortcutGate,shortcut,ensure,gate,open,scene,choose,depart,final,rivalInfo,train,status,valid,portrait,writable};root.KM_BONDS=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);

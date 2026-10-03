@@ -608,12 +608,12 @@ function decode(text){if(typeof text!=='string'||text.length>5000000)throw new E
   const act=s.career?.series?.action;
   if(act&&!act.halfActions){act.halfActions={};for(const k of ['training','tune'])act.halfActions[k]=Math.max(0,act[k]-(s.career.series.race?.usedItems?.[k]?1:0));}
   oldRaces.forEach(r=>{if(!('tilt' in r))r.tilt=R.tiltValue(r);if(r.prepVersion!==87){if(!r.drive&&r.phase<0)r.buff=zeros();r.prepVersion=87;}});
-  if(!['88','89','90','91','92','93','94','95','96','97','98','99','100','101','102','103','104','105','106','107','108','109','110','111','112','113',D.build].includes(s.build)){
+  if(!['88','89','90','91','92','93','94','95','96','97','98','99','100','101','102','103','104','105','106','107','108','109','110','111','112','113','114','115',D.build].includes(s.build)){
    const players=[s.career?.player,...(s.registry||[]),...(s.rivals||[]),...(s.career?.series?.npcs||[]),...oldRaces.flatMap(r=>r.runners||[])].filter(Boolean);
    for(const p of players)if(p.adjust){for(const part of ['motor','prop'])p.adjust[part+'Success']=Math.min(70,p.adjust[part+'Success']);}
    s.build='88';s.migrationNotice='v88へ移行。基礎能力・賞金・走行位置を維持。整備の基礎成功率は上限70%に調整。進行中の行動残数は保持し、次走から練習1回＋調整1回。';
   }
-  if(s.build!==D.build){s.build=D.build;s.migrationNotice='v114へ更新しました。曲が切り替わると曲名を短く表示します。';}
+  if(s.build!==D.build){s.build=D.build;s.migrationNotice='v116へ更新しました。レース中のボートとレーサーを刷新しました。';}
   if(!validState(s))throw new Error('対応するセーブ形式ではないか、データが破損しています。');
   if(s.career){Affinity.ensure(s.career);Finale.ensure(s.career);Development.ensure(s.career);Bonds.ensure(s.career);if(s.career.campaign)Campaign.ensure(s.career);if(!s.career.campaign){Campaign.ensure(s.career);const z=s.career.history.at(-1);if(z&&z.stage===s.career.stage)Campaign.capture(s.career,z);}}
   oldRaces.forEach(r=>{if(r.watch&&!r.drive&&!r.done){startDrive(s.career&&s.career.series&&s.career.series.race===r?s.career:s,r);syncSpectator(r);}});

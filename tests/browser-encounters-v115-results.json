@@ -1,0 +1,28 @@
+{
+  "build": 115,
+  "passed": 4,
+  "failed": 0,
+  "results": [
+    {
+      "name": "index.html 起動・更新設定・V114の抽選履歴保持",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html 起動・更新設定・V114の抽選履歴保持",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html 起動・更新設定・V114の抽選履歴保持",
+      "passed": true
+    },
+    {
+      "name": "未処理例外なし",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "browser": "Chromium startup with touch emulation at 390/360/320px; not physical mobile devices",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false
+}

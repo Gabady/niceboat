@@ -1,0 +1,60 @@
+{
+  "build": 115,
+  "passed": 13,
+  "failed": 0,
+  "results": [
+    {
+      "name": "通常5人の合計抽選は全9期で旧版より上がり、後半ほど高くなる",
+      "passed": true
+    },
+    {
+      "name": "全9期で当選と非当選の境界を実抽選に適用",
+      "passed": true
+    },
+    {
+      "name": "普通の抽選は未発見5人だけが対象、1回の抽選で最大1人",
+      "passed": true
+    },
+    {
+      "name": "通常5人と出会い済みなら再抽選も瑞希への振替も行わない",
+      "passed": true
+    },
+    {
+      "name": "準備・UIの再表示・保存再読込で通常抽選を引き直さない",
+      "passed": true
+    },
+    {
+      "name": "瑞希の18%抽選は全9期で同じ、旧28%との間の乱数は落選",
+      "passed": true
+    },
+    {
+      "name": "同走なし・2位以下・F・L・転覆・リタイアでは瑞希を抽選しない",
+      "passed": true
+    },
+    {
+      "name": "本番の決着処理で瑞希を抽選、再精算と再読込で増やさない",
+      "passed": true
+    },
+    {
+      "name": "瑞希の出走者登録と第2予選の同走は従来通り",
+      "passed": true
+    },
+    {
+      "name": "両難易度で出会い率と抽選結果は同一、レース用乱数を消費しない",
+      "passed": true
+    },
+    {
+      "name": "V114更新で既存の出会い・好感度・待ち日数・抽選履歴を保持",
+      "passed": true
+    },
+    {
+      "name": "V114の抽選済みレースは更新直後に引き直さず、次の新しい抽選から適用",
+      "passed": true
+    },
+    {
+      "name": "出会い済みの相手は再発見せず、全員未発見でもG1・SGで確定しない",
+      "passed": true
+    }
+  ],
+  "scope": "Production encounter rolls, settlement, save/load and UI handlers; fixed outcomes are not race win-rate estimates."
+}

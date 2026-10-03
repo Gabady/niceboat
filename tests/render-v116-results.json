@@ -1,0 +1,58 @@
+{
+  "build": 116,
+  "passed": 12,
+  "failed": 0,
+  "results": [
+    {
+      "name": "新モデル33メッシュの頂点と法線が有効",
+      "passed": true
+    },
+    {
+      "name": "6艇は白 黒 赤 青 黄 緑で重複しない",
+      "passed": true
+    },
+    {
+      "name": "6艇すべての側面番号 旗 上衣 艇体色を実GLESで描画",
+      "passed": true
+    },
+    {
+      "name": "追走方向から船外機と背面艇番を描画",
+      "passed": true
+    },
+    {
+      "name": "伏せ 中立 起こすと旋回の体重移動が連動",
+      "passed": true
+    },
+    {
+      "name": "中遠距離も艇体形状と色を保持し遠方25部品以下",
+      "passed": true
+    },
+    {
+      "name": "演出短縮で揺れと旗の動きが固定",
+      "passed": true
+    },
+    {
+      "name": "自艇の頭と上体を除外し手袋と袖を表示",
+      "passed": true
+    },
+    {
+      "name": "転覆モデルを維持",
+      "passed": true
+    },
+    {
+      "name": "晴れの390px一人称 WebGL Canvasで表示し物理状態を変更しない",
+      "passed": true
+    },
+    {
+      "name": "雨の390px一人称 WebGL Canvasで表示し物理状態を変更しない",
+      "passed": true
+    },
+    {
+      "name": "V115から能力 好感度 調整力 走行位置を保持して移行",
+      "passed": true
+    }
+  ],
+  "geometryMeshes": 33,
+  "nearParts": 78,
+  "method": "Native GLES and Skia Canvas plus geometry and save migration; not phone performance tests"
+}

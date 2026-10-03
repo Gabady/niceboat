@@ -1,0 +1,1692 @@
+{
+  "build": 115,
+  "samplesPerScenario": 20000,
+  "regularRates": {
+    "before": [
+      0.002,
+      0.004,
+      0.009,
+      0.013,
+      0.019,
+      0.023,
+      0.028,
+      0.035,
+      0.045
+    ],
+    "after": [
+      0.004,
+      0.009,
+      0.02,
+      0.029,
+      0.042,
+      0.05,
+      0.06,
+      0.073,
+      0.09
+    ]
+  },
+  "racerRate": {
+    "before": 0.28,
+    "after": 0.18
+  },
+  "scope": "Production encounter code only. All listed races reached; no season exit/SG qualification model. Combined model assumes independent clean-win chances 1/6,1/3,1/2; 5/19 co-entry outside the guaranteed second qualifier; excludes the SG final before discovery. Not measured gameplay win rates or exact roster scheduling.",
+  "regular": [
+    {
+      "racesPerSeries": 5,
+      "samplesPerVersion": 20000,
+      "before": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.0098,
+            "regular": 0.0098,
+            "racer": 0,
+            "total": 0.00985,
+            "firstRegular": 0.0098,
+            "firstRacer": 0
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.0305,
+            "regular": 0.0305,
+            "racer": 0,
+            "total": 0.0307,
+            "firstRegular": 0.0305,
+            "firstRacer": 0
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.07275,
+            "regular": 0.07275,
+            "racer": 0,
+            "total": 0.0751,
+            "firstRegular": 0.07275,
+            "firstRacer": 0
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.1301,
+            "regular": 0.1301,
+            "racer": 0,
+            "total": 0.1391,
+            "firstRegular": 0.1301,
+            "firstRacer": 0
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.21165,
+            "regular": 0.21165,
+            "racer": 0,
+            "total": 0.23515,
+            "firstRegular": 0.21165,
+            "firstRacer": 0
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.29765,
+            "regular": 0.29765,
+            "racer": 0,
+            "total": 0.3501,
+            "firstRegular": 0.29765,
+            "firstRacer": 0
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.39345,
+            "regular": 0.39345,
+            "racer": 0,
+            "total": 0.493,
+            "firstRegular": 0.39345,
+            "firstRacer": 0
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.49465,
+            "regular": 0.49465,
+            "racer": 0,
+            "total": 0.6732,
+            "firstRegular": 0.49465,
+            "firstRacer": 0
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.5989,
+            "regular": 0.5989,
+            "racer": 0,
+            "total": 0.89795,
+            "firstRegular": 0.5989,
+            "firstRacer": 0
+          }
+        ],
+        "identity": {
+          "akari": 3561,
+          "tsumugi": 3635,
+          "nagi": 3578,
+          "kanade": 3567,
+          "mio": 3618
+        }
+      },
+      "after": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.01845,
+            "regular": 0.01845,
+            "racer": 0,
+            "total": 0.01865,
+            "firstRegular": 0.01845,
+            "firstRacer": 0
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.06125,
+            "regular": 0.06125,
+            "racer": 0,
+            "total": 0.0626,
+            "firstRegular": 0.06125,
+            "firstRacer": 0
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.15075,
+            "regular": 0.15075,
+            "racer": 0,
+            "total": 0.162,
+            "firstRegular": 0.15075,
+            "firstRacer": 0
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.26455,
+            "regular": 0.26455,
+            "racer": 0,
+            "total": 0.3031,
+            "firstRegular": 0.26455,
+            "firstRacer": 0
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.4101,
+            "regular": 0.4101,
+            "racer": 0,
+            "total": 0.51515,
+            "firstRegular": 0.4101,
+            "firstRacer": 0
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.5423,
+            "regular": 0.5423,
+            "racer": 0,
+            "total": 0.7622,
+            "firstRegular": 0.5423,
+            "firstRacer": 0
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.6649,
+            "regular": 0.6649,
+            "racer": 0,
+            "total": 1.0656,
+            "firstRegular": 0.6649,
+            "firstRacer": 0
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.7711,
+            "regular": 0.7711,
+            "racer": 0,
+            "total": 1.4316,
+            "firstRegular": 0.7711,
+            "firstRacer": 0
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.86055,
+            "regular": 0.86055,
+            "racer": 0,
+            "total": 1.87775,
+            "firstRegular": 0.86055,
+            "firstRacer": 0
+          }
+        ],
+        "identity": {
+          "akari": 7451,
+          "tsumugi": 7560,
+          "kanade": 7432,
+          "nagi": 7527,
+          "mio": 7585
+        }
+      }
+    },
+    {
+      "racesPerSeries": 6,
+      "samplesPerVersion": 20000,
+      "before": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.012,
+            "regular": 0.012,
+            "racer": 0,
+            "total": 0.01205,
+            "firstRegular": 0.012,
+            "firstRacer": 0
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.03725,
+            "regular": 0.03725,
+            "racer": 0,
+            "total": 0.0375,
+            "firstRegular": 0.03725,
+            "firstRacer": 0
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.08615,
+            "regular": 0.08615,
+            "racer": 0,
+            "total": 0.0901,
+            "firstRegular": 0.08615,
+            "firstRacer": 0
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.1562,
+            "regular": 0.1562,
+            "racer": 0,
+            "total": 0.1685,
+            "firstRegular": 0.1562,
+            "firstRacer": 0
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.2457,
+            "regular": 0.2457,
+            "racer": 0,
+            "total": 0.28175,
+            "firstRegular": 0.2457,
+            "firstRacer": 0
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.34765,
+            "regular": 0.34765,
+            "racer": 0,
+            "total": 0.42395,
+            "firstRegular": 0.34765,
+            "firstRacer": 0
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.45225,
+            "regular": 0.45225,
+            "racer": 0,
+            "total": 0.59515,
+            "firstRegular": 0.45225,
+            "firstRacer": 0
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.5603,
+            "regular": 0.5603,
+            "racer": 0,
+            "total": 0.8085,
+            "firstRegular": 0.5603,
+            "firstRacer": 0
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.66485,
+            "regular": 0.66485,
+            "racer": 0,
+            "total": 1.07325,
+            "firstRegular": 0.66485,
+            "firstRacer": 0
+          }
+        ],
+        "identity": {
+          "akari": 4281,
+          "nagi": 4241,
+          "mio": 4380,
+          "kanade": 4197,
+          "tsumugi": 4366
+        }
+      },
+      "after": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.02215,
+            "regular": 0.02215,
+            "racer": 0,
+            "total": 0.02245,
+            "firstRegular": 0.02215,
+            "firstRacer": 0
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.0744,
+            "regular": 0.0744,
+            "racer": 0,
+            "total": 0.0765,
+            "firstRegular": 0.0744,
+            "firstRacer": 0
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.17705,
+            "regular": 0.17705,
+            "racer": 0,
+            "total": 0.1928,
+            "firstRegular": 0.17705,
+            "firstRacer": 0
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.3131,
+            "regular": 0.3131,
+            "racer": 0,
+            "total": 0.36705,
+            "firstRegular": 0.3131,
+            "firstRacer": 0
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.46755,
+            "regular": 0.46755,
+            "racer": 0,
+            "total": 0.6162,
+            "firstRegular": 0.46755,
+            "firstRacer": 0
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.6076,
+            "regular": 0.6076,
+            "racer": 0,
+            "total": 0.91795,
+            "firstRegular": 0.6076,
+            "firstRacer": 0
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.7307,
+            "regular": 0.7307,
+            "racer": 0,
+            "total": 1.28095,
+            "firstRegular": 0.7307,
+            "firstRacer": 0
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.83345,
+            "regular": 0.83345,
+            "racer": 0,
+            "total": 1.71465,
+            "firstRegular": 0.83345,
+            "firstRacer": 0
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.9059,
+            "regular": 0.9059,
+            "racer": 0,
+            "total": 2.226,
+            "firstRegular": 0.9059,
+            "firstRacer": 0
+          }
+        ],
+        "identity": {
+          "akari": 8888,
+          "nagi": 8896,
+          "tsumugi": 9015,
+          "mio": 8871,
+          "kanade": 8850
+        }
+      }
+    }
+  ],
+  "combined": [
+    {
+      "racesPerSeries": 5,
+      "assumedCleanWinRate": 0.16666666666666666,
+      "samplesPerVersion": 20000,
+      "before": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.0999,
+            "regular": 0.00995,
+            "racer": 0.09095,
+            "total": 0.10095,
+            "firstRegular": 0.00955,
+            "firstRacer": 0.09035
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.20185,
+            "regular": 0.0301,
+            "racer": 0.17675,
+            "total": 0.207,
+            "firstRegular": 0.0272,
+            "firstRacer": 0.17465
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.3034,
+            "regular": 0.0711,
+            "racer": 0.24955,
+            "total": 0.323,
+            "firstRegular": 0.0605,
+            "firstRacer": 0.2429
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.4101,
+            "regular": 0.13155,
+            "racer": 0.31915,
+            "total": 0.45955,
+            "firstRegular": 0.1047,
+            "firstRacer": 0.3054
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.5155,
+            "regular": 0.21135,
+            "racer": 0.3837,
+            "total": 0.61925,
+            "firstRegular": 0.1574,
+            "firstRacer": 0.3581
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.60905,
+            "regular": 0.29635,
+            "racer": 0.4408,
+            "total": 0.79065,
+            "firstRegular": 0.20905,
+            "firstRacer": 0.4
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.69225,
+            "regular": 0.3931,
+            "racer": 0.49175,
+            "total": 0.9848,
+            "firstRegular": 0.25905,
+            "firstRacer": 0.4332
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.76805,
+            "regular": 0.49325,
+            "racer": 0.5375,
+            "total": 1.2098,
+            "firstRegular": 0.30975,
+            "firstRacer": 0.4583
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.834,
+            "regular": 0.5977,
+            "racer": 0.5798,
+            "total": 1.4763,
+            "firstRegular": 0.35715,
+            "firstRacer": 0.47685
+          }
+        ],
+        "identity": {
+          "akari": 3582,
+          "nagi": 3562,
+          "tsumugi": 3651,
+          "kanade": 3524,
+          "mio": 3611
+        }
+      },
+      "after": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.0748,
+            "regular": 0.01825,
+            "racer": 0.05775,
+            "total": 0.07625,
+            "firstRegular": 0.01775,
+            "firstRacer": 0.05705
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.1685,
+            "regular": 0.0605,
+            "racer": 0.1148,
+            "total": 0.17665,
+            "firstRegular": 0.05675,
+            "firstRacer": 0.11175
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.2912,
+            "regular": 0.14825,
+            "racer": 0.1685,
+            "total": 0.32765,
+            "firstRegular": 0.1324,
+            "firstRacer": 0.1588
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.42635,
+            "regular": 0.266,
+            "racer": 0.21825,
+            "total": 0.5222,
+            "firstRegular": 0.2285,
+            "firstRacer": 0.19785
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.5684,
+            "regular": 0.4101,
+            "racer": 0.26605,
+            "total": 0.7811,
+            "firstRegular": 0.3389,
+            "firstRacer": 0.2295
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.683,
+            "regular": 0.53905,
+            "racer": 0.3089,
+            "total": 1.0701,
+            "firstRegular": 0.4314,
+            "firstRacer": 0.2516
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.77885,
+            "regular": 0.661,
+            "racer": 0.3502,
+            "total": 1.4125,
+            "firstRegular": 0.512,
+            "firstRacer": 0.26685
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.8596,
+            "regular": 0.77,
+            "racer": 0.39065,
+            "total": 1.81865,
+            "firstRegular": 0.58155,
+            "firstRacer": 0.27805
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.9168,
+            "regular": 0.8554,
+            "racer": 0.42835,
+            "total": 2.2995,
+            "firstRegular": 0.63245,
+            "firstRacer": 0.28435
+          }
+        ],
+        "identity": {
+          "akari": 7454,
+          "nagi": 7520,
+          "tsumugi": 7563,
+          "kanade": 7380,
+          "mio": 7506
+        }
+      }
+    },
+    {
+      "racesPerSeries": 5,
+      "assumedCleanWinRate": 0.3333333333333333,
+      "samplesPerVersion": 20000,
+      "before": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.1838,
+            "regular": 0.0099,
+            "racer": 0.1757,
+            "total": 0.18565,
+            "firstRegular": 0.009,
+            "firstRacer": 0.1748
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.3405,
+            "regular": 0.029,
+            "racer": 0.3211,
+            "total": 0.35025,
+            "firstRegular": 0.02345,
+            "firstRacer": 0.31705
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.4775,
+            "regular": 0.07055,
+            "racer": 0.43795,
+            "total": 0.51075,
+            "firstRegular": 0.0498,
+            "firstRacer": 0.4277
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.5994,
+            "regular": 0.12815,
+            "racer": 0.5405,
+            "total": 0.67705,
+            "firstRegular": 0.0784,
+            "firstRacer": 0.521
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.7033,
+            "regular": 0.2107,
+            "racer": 0.6231,
+            "total": 0.8582,
+            "firstRegular": 0.1134,
+            "firstRacer": 0.5899
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.7821,
+            "regular": 0.2955,
+            "racer": 0.689,
+            "total": 1.0378,
+            "firstRegular": 0.14355,
+            "firstRacer": 0.63855
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.84495,
+            "regular": 0.3935,
+            "racer": 0.74345,
+            "total": 1.236,
+            "firstRegular": 0.171,
+            "firstRacer": 0.67395
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.8949,
+            "regular": 0.4923,
+            "racer": 0.7891,
+            "total": 1.45895,
+            "firstRegular": 0.1952,
+            "firstRacer": 0.6997
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.93335,
+            "regular": 0.59765,
+            "racer": 0.82765,
+            "total": 1.7199,
+            "firstRegular": 0.21515,
+            "firstRacer": 0.7182
+          }
+        ],
+        "identity": {
+          "akari": 3578,
+          "nagi": 3581,
+          "tsumugi": 3632,
+          "mio": 3581,
+          "kanade": 3473
+        }
+      },
+      "after": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.13135,
+            "regular": 0.01825,
+            "racer": 0.1151,
+            "total": 0.1336,
+            "firstRegular": 0.01735,
+            "firstRacer": 0.114
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.26545,
+            "regular": 0.05975,
+            "racer": 0.2194,
+            "total": 0.2805,
+            "firstRegular": 0.05185,
+            "firstRacer": 0.2136
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.41055,
+            "regular": 0.1483,
+            "racer": 0.30935,
+            "total": 0.46795,
+            "firstRegular": 0.11795,
+            "firstRacer": 0.2926
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.553,
+            "regular": 0.26365,
+            "racer": 0.3932,
+            "total": 0.6941,
+            "firstRegular": 0.19315,
+            "firstRacer": 0.35985
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.6826,
+            "regular": 0.409,
+            "racer": 0.4626,
+            "total": 0.97615,
+            "firstRegular": 0.2771,
+            "firstRacer": 0.4055
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.7807,
+            "regular": 0.539,
+            "racer": 0.5239,
+            "total": 1.2862,
+            "firstRegular": 0.3442,
+            "firstRacer": 0.4365
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.8569,
+            "regular": 0.66385,
+            "racer": 0.5785,
+            "total": 1.642,
+            "firstRegular": 0.39855,
+            "firstRacer": 0.45835
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.91565,
+            "regular": 0.7729,
+            "racer": 0.62895,
+            "total": 2.0582,
+            "firstRegular": 0.4431,
+            "firstRacer": 0.47255
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.95335,
+            "regular": 0.8587,
+            "racer": 0.6707,
+            "total": 2.54225,
+            "firstRegular": 0.47285,
+            "firstRacer": 0.4805
+          }
+        ],
+        "identity": {
+          "akari": 7452,
+          "nagi": 7495,
+          "tsumugi": 7600,
+          "mio": 7476,
+          "kanade": 7408
+        }
+      }
+    },
+    {
+      "racesPerSeries": 5,
+      "assumedCleanWinRate": 0.5,
+      "samplesPerVersion": 20000,
+      "before": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.2665,
+            "regular": 0.01035,
+            "racer": 0.2586,
+            "total": 0.269,
+            "firstRegular": 0.009,
+            "firstRacer": 0.2575
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.4701,
+            "regular": 0.03,
+            "racer": 0.4531,
+            "total": 0.48325,
+            "firstRegular": 0.0221,
+            "firstRacer": 0.448
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.6257,
+            "regular": 0.0707,
+            "racer": 0.596,
+            "total": 0.66895,
+            "firstRegular": 0.04215,
+            "firstRacer": 0.58355
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.7412,
+            "regular": 0.12985,
+            "racer": 0.70185,
+            "total": 0.8401,
+            "firstRegular": 0.06245,
+            "firstRacer": 0.67875
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.82765,
+            "regular": 0.21075,
+            "racer": 0.7804,
+            "total": 1.01555,
+            "firstRegular": 0.0836,
+            "firstRacer": 0.74405
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.88505,
+            "regular": 0.2983,
+            "racer": 0.8362,
+            "total": 1.18815,
+            "firstRegular": 0.1005,
+            "firstRacer": 0.78455
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.92765,
+            "regular": 0.3947,
+            "racer": 0.87875,
+            "total": 1.37405,
+            "firstRegular": 0.1147,
+            "firstRacer": 0.81295
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.956,
+            "regular": 0.49395,
+            "racer": 0.91045,
+            "total": 1.58525,
+            "firstRegular": 0.12585,
+            "firstRacer": 0.83015
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.97505,
+            "regular": 0.60125,
+            "racer": 0.9339,
+            "total": 1.8326,
+            "firstRegular": 0.13505,
+            "firstRacer": 0.84
+          }
+        ],
+        "identity": {
+          "akari": 3566,
+          "nagi": 3582,
+          "tsumugi": 3658,
+          "kanade": 3538,
+          "mio": 3630
+        }
+      },
+      "after": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.1878,
+            "regular": 0.0183,
+            "racer": 0.17215,
+            "total": 0.19075,
+            "firstRegular": 0.0171,
+            "firstRacer": 0.1707
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.35885,
+            "regular": 0.06075,
+            "racer": 0.3176,
+            "total": 0.3799,
+            "firstRegular": 0.04915,
+            "firstRacer": 0.3097
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.5208,
+            "regular": 0.14765,
+            "racer": 0.4368,
+            "total": 0.59495,
+            "firstRegular": 0.10465,
+            "firstRacer": 0.41615
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.66145,
+            "regular": 0.2653,
+            "racer": 0.53595,
+            "total": 0.8396,
+            "firstRegular": 0.16555,
+            "firstRacer": 0.4959
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.7748,
+            "regular": 0.40855,
+            "racer": 0.61515,
+            "total": 1.1304,
+            "firstRegular": 0.2273,
+            "firstRacer": 0.5475
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.8547,
+            "regular": 0.5412,
+            "racer": 0.6812,
+            "total": 1.4472,
+            "firstRegular": 0.27365,
+            "firstRacer": 0.58105
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.91245,
+            "regular": 0.6639,
+            "racer": 0.73665,
+            "total": 1.8019,
+            "firstRegular": 0.3092,
+            "firstRacer": 0.60325
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.95225,
+            "regular": 0.77365,
+            "racer": 0.78315,
+            "total": 2.2174,
+            "firstRegular": 0.33555,
+            "firstRacer": 0.6167
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.976,
+            "regular": 0.8607,
+            "racer": 0.8205,
+            "total": 2.6971,
+            "firstRegular": 0.3534,
+            "firstRacer": 0.6226
+          }
+        ],
+        "identity": {
+          "akari": 7475,
+          "nagi": 7524,
+          "tsumugi": 7583,
+          "mio": 7520,
+          "kanade": 7430
+        }
+      }
+    },
+    {
+      "racesPerSeries": 6,
+      "assumedCleanWinRate": 0.16666666666666666,
+      "samplesPerVersion": 20000,
+      "before": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.1125,
+            "regular": 0.0126,
+            "racer": 0.10145,
+            "total": 0.1141,
+            "firstRegular": 0.0118,
+            "firstRacer": 0.1007
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.224,
+            "regular": 0.03725,
+            "racer": 0.193,
+            "total": 0.23045,
+            "firstRegular": 0.03345,
+            "firstRacer": 0.19055
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.3425,
+            "regular": 0.0863,
+            "racer": 0.2791,
+            "total": 0.3692,
+            "firstRegular": 0.0712,
+            "firstRacer": 0.2713
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.45685,
+            "regular": 0.156,
+            "racer": 0.35485,
+            "total": 0.5233,
+            "firstRegular": 0.1196,
+            "firstRacer": 0.33725
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.56515,
+            "regular": 0.2455,
+            "racer": 0.4207,
+            "total": 0.702,
+            "firstRegular": 0.1753,
+            "firstRacer": 0.38985
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.6631,
+            "regular": 0.34755,
+            "racer": 0.481,
+            "total": 0.9041,
+            "firstRegular": 0.2317,
+            "firstRacer": 0.4314
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.7448,
+            "regular": 0.44985,
+            "racer": 0.5355,
+            "total": 1.1289,
+            "firstRegular": 0.2814,
+            "firstRacer": 0.4634
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.8136,
+            "regular": 0.55835,
+            "racer": 0.5807,
+            "total": 1.38675,
+            "firstRegular": 0.3274,
+            "firstRacer": 0.4862
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.87115,
+            "regular": 0.6664,
+            "racer": 0.6202,
+            "total": 1.6928,
+            "firstRegular": 0.3696,
+            "firstRacer": 0.50155
+          }
+        ],
+        "identity": {
+          "akari": 4264,
+          "nagi": 4265,
+          "mio": 4350,
+          "kanade": 4181,
+          "tsumugi": 4392
+        }
+      },
+      "after": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.08555,
+            "regular": 0.0225,
+            "racer": 0.0647,
+            "total": 0.0875,
+            "firstRegular": 0.0217,
+            "firstRacer": 0.06385
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.1925,
+            "regular": 0.07375,
+            "racer": 0.12775,
+            "total": 0.2032,
+            "firstRegular": 0.0687,
+            "firstRacer": 0.1238
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.33485,
+            "regular": 0.17685,
+            "racer": 0.19005,
+            "total": 0.38235,
+            "firstRegular": 0.156,
+            "firstRacer": 0.17885
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.4858,
+            "regular": 0.31315,
+            "racer": 0.2483,
+            "total": 0.61435,
+            "firstRegular": 0.26335,
+            "firstRacer": 0.22245
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.6282,
+            "regular": 0.466,
+            "racer": 0.29905,
+            "total": 0.91265,
+            "firstRegular": 0.37525,
+            "firstRacer": 0.25295
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.74535,
+            "regular": 0.60745,
+            "racer": 0.3475,
+            "total": 1.26295,
+            "firstRegular": 0.471,
+            "firstRacer": 0.27435
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.83765,
+            "regular": 0.7322,
+            "racer": 0.39415,
+            "total": 1.67285,
+            "firstRegular": 0.54885,
+            "firstRacer": 0.2888
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.9058,
+            "regular": 0.8326,
+            "racer": 0.434,
+            "total": 2.14525,
+            "firstRegular": 0.60885,
+            "firstRacer": 0.29695
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.94985,
+            "regular": 0.90535,
+            "racer": 0.46775,
+            "total": 2.6877,
+            "firstRegular": 0.6491,
+            "firstRacer": 0.30075
+          }
+        ],
+        "identity": {
+          "akari": 8866,
+          "nagi": 8870,
+          "mio": 8874,
+          "tsumugi": 8967,
+          "kanade": 8822
+        }
+      }
+    },
+    {
+      "racesPerSeries": 6,
+      "assumedCleanWinRate": 0.3333333333333333,
+      "samplesPerVersion": 20000,
+      "before": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.20385,
+            "regular": 0.0125,
+            "racer": 0.19415,
+            "total": 0.2067,
+            "firstRegular": 0.0109,
+            "firstRacer": 0.19295
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.37855,
+            "regular": 0.03615,
+            "racer": 0.35365,
+            "total": 0.39,
+            "firstRegular": 0.0293,
+            "firstRacer": 0.34925
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.5264,
+            "regular": 0.0853,
+            "racer": 0.4815,
+            "total": 0.57065,
+            "firstRegular": 0.0579,
+            "firstRacer": 0.4685
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.6528,
+            "regular": 0.15545,
+            "racer": 0.58785,
+            "total": 0.75595,
+            "firstRegular": 0.09055,
+            "firstRacer": 0.56225
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.7528,
+            "regular": 0.24655,
+            "racer": 0.67125,
+            "total": 0.9543,
+            "firstRegular": 0.12515,
+            "firstRacer": 0.62765
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.82995,
+            "regular": 0.34775,
+            "racer": 0.73735,
+            "total": 1.1615,
+            "firstRegular": 0.15605,
+            "firstRacer": 0.6739
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.88615,
+            "regular": 0.45075,
+            "racer": 0.7911,
+            "total": 1.38365,
+            "firstRegular": 0.1797,
+            "firstRacer": 0.70645
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.92565,
+            "regular": 0.5589,
+            "racer": 0.83145,
+            "total": 1.6362,
+            "firstRegular": 0.19905,
+            "firstRacer": 0.7266
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.9528,
+            "regular": 0.6651,
+            "racer": 0.861,
+            "total": 1.9316,
+            "firstRegular": 0.21475,
+            "firstRacer": 0.73805
+          }
+        ],
+        "identity": {
+          "akari": 4261,
+          "nagi": 4220,
+          "mio": 4360,
+          "kanade": 4183,
+          "tsumugi": 4388
+        }
+      },
+      "after": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.14655,
+            "regular": 0.0221,
+            "racer": 0.1275,
+            "total": 0.1499,
+            "firstRegular": 0.02045,
+            "firstRacer": 0.1261
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.29765,
+            "regular": 0.07235,
+            "racer": 0.2423,
+            "total": 0.3167,
+            "firstRegular": 0.0626,
+            "firstRacer": 0.23505
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.45795,
+            "regular": 0.17685,
+            "racer": 0.34195,
+            "total": 0.53365,
+            "firstRegular": 0.1364,
+            "firstRacer": 0.32155
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.61255,
+            "regular": 0.3128,
+            "racer": 0.4336,
+            "total": 0.801,
+            "firstRegular": 0.2199,
+            "firstRacer": 0.39265
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.73865,
+            "regular": 0.46725,
+            "racer": 0.50735,
+            "total": 1.12645,
+            "firstRegular": 0.3037,
+            "firstRacer": 0.43495
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.8338,
+            "regular": 0.60685,
+            "racer": 0.57475,
+            "total": 1.492,
+            "firstRegular": 0.3685,
+            "firstRacer": 0.4653
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.9015,
+            "regular": 0.7327,
+            "racer": 0.63255,
+            "total": 1.9127,
+            "firstRegular": 0.4175,
+            "firstRacer": 0.484
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.94535,
+            "regular": 0.8318,
+            "racer": 0.6805,
+            "total": 2.3895,
+            "firstRegular": 0.45165,
+            "firstRacer": 0.4937
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.97275,
+            "regular": 0.9049,
+            "racer": 0.71695,
+            "total": 2.94475,
+            "firstRegular": 0.47425,
+            "firstRacer": 0.4985
+          }
+        ],
+        "identity": {
+          "akari": 8876,
+          "nagi": 8867,
+          "mio": 8948,
+          "tsumugi": 8947,
+          "kanade": 8918
+        }
+      }
+    },
+    {
+      "racesPerSeries": 6,
+      "assumedCleanWinRate": 0.5,
+      "samplesPerVersion": 20000,
+      "before": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.2943,
+            "regular": 0.0129,
+            "racer": 0.2851,
+            "total": 0.29805,
+            "firstRegular": 0.01065,
+            "firstRacer": 0.28365
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.51205,
+            "regular": 0.0356,
+            "racer": 0.4928,
+            "total": 0.52875,
+            "firstRegular": 0.0258,
+            "firstRacer": 0.48625
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.6689,
+            "regular": 0.08535,
+            "racer": 0.6363,
+            "total": 0.72555,
+            "firstRegular": 0.0472,
+            "firstRacer": 0.6217
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.78495,
+            "regular": 0.1563,
+            "racer": 0.7434,
+            "total": 0.91225,
+            "firstRegular": 0.0687,
+            "firstRacer": 0.71625
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.86575,
+            "regular": 0.2486,
+            "racer": 0.81965,
+            "total": 1.1043,
+            "firstRegular": 0.0891,
+            "firstRacer": 0.77665
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.9151,
+            "regular": 0.34925,
+            "racer": 0.8703,
+            "total": 1.29595,
+            "firstRegular": 0.1037,
+            "firstRacer": 0.8114
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.94785,
+            "regular": 0.45235,
+            "racer": 0.90725,
+            "total": 1.5014,
+            "firstRegular": 0.1144,
+            "firstRacer": 0.83345
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.9685,
+            "regular": 0.55995,
+            "racer": 0.93385,
+            "total": 1.73945,
+            "firstRegular": 0.1218,
+            "firstRacer": 0.8467
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.98225,
+            "regular": 0.66625,
+            "racer": 0.95175,
+            "total": 2.02595,
+            "firstRegular": 0.12805,
+            "firstRacer": 0.8542
+          }
+        ],
+        "identity": {
+          "akari": 4313,
+          "nagi": 4234,
+          "mio": 4360,
+          "kanade": 4148,
+          "tsumugi": 4429
+        }
+      },
+      "after": {
+        "rows": [
+          {
+            "stage": 0,
+            "season": "新人シリーズ 前期",
+            "any": 0.21005,
+            "regular": 0.02275,
+            "racer": 0.19135,
+            "total": 0.2144,
+            "firstRegular": 0.02045,
+            "firstRacer": 0.1896
+          },
+          {
+            "stage": 1,
+            "season": "新人シリーズ 後期",
+            "any": 0.39535,
+            "regular": 0.0717,
+            "racer": 0.34795,
+            "total": 0.42185,
+            "firstRegular": 0.0564,
+            "firstRacer": 0.33895
+          },
+          {
+            "stage": 2,
+            "season": "G3シリーズ 前期",
+            "any": 0.56595,
+            "regular": 0.17585,
+            "racer": 0.4735,
+            "total": 0.6643,
+            "firstRegular": 0.11685,
+            "firstRacer": 0.4491
+          },
+          {
+            "stage": 3,
+            "season": "G3シリーズ 後期",
+            "any": 0.7097,
+            "regular": 0.31255,
+            "racer": 0.5774,
+            "total": 0.94535,
+            "firstRegular": 0.1808,
+            "firstRacer": 0.5289
+          },
+          {
+            "stage": 4,
+            "season": "G2シリーズ 前期",
+            "any": 0.81775,
+            "regular": 0.4669,
+            "racer": 0.6596,
+            "total": 1.27845,
+            "firstRegular": 0.23945,
+            "firstRacer": 0.5783
+          },
+          {
+            "stage": 5,
+            "season": "G2シリーズ 後期",
+            "any": 0.89115,
+            "regular": 0.6098,
+            "racer": 0.7253,
+            "total": 1.647,
+            "firstRegular": 0.2832,
+            "firstRacer": 0.60795
+          },
+          {
+            "stage": 6,
+            "season": "G1シリーズ 前期",
+            "any": 0.9404,
+            "regular": 0.7349,
+            "racer": 0.77755,
+            "total": 2.0616,
+            "firstRegular": 0.315,
+            "firstRacer": 0.6254
+          },
+          {
+            "stage": 7,
+            "season": "G1シリーズ 後期",
+            "any": 0.97005,
+            "regular": 0.831,
+            "racer": 0.8207,
+            "total": 2.5368,
+            "firstRegular": 0.33545,
+            "firstRacer": 0.6346
+          },
+          {
+            "stage": 8,
+            "season": "最高峰シリーズ",
+            "any": 0.98605,
+            "regular": 0.90425,
+            "racer": 0.8509,
+            "total": 3.0738,
+            "firstRegular": 0.3473,
+            "firstRacer": 0.63875
+          }
+        ],
+        "identity": {
+          "akari": 8931,
+          "nagi": 8880,
+          "mio": 8862,
+          "kanade": 8836,
+          "tsumugi": 8949
+        }
+      }
+    }
+  ],
+  "passed": true
+}

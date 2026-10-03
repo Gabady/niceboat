@@ -1,8 +1,8 @@
-/* v112 — Curved plywood hulls, mechanical outboards and soft moored turn buoys. Drawing never changes race state. */
+/* v116 — Japanese racing hydroplanes, sculpted safety gear and clear six-lane liveries. Drawing never changes race state. */
 (function(root){
 'use strict';
 const R=root.KM_RACING||(typeof require==='function'?require('./racing.js'):null);
-const COLORS=['#fff4dc','#344756','#ed5747','#348ecf','#f6c641','#47b991'];
+const COLORS=['#f4f5ef','#171d24','#df2635','#125dd3','#ffd124','#179b5c'];
 let skyImage=null;if(root.Image&&root.KM_VISUAL?.sky){skyImage=new root.Image();skyImage.src=root.KM_VISUAL.sky;}
 const getSky=()=>root.KM_SKY_IMAGE||skyImage;
 const panoramaU=u=>1-Math.abs(2*R.mod(u,1)-1);
@@ -76,7 +76,13 @@ void main(){
   if(uWater>7.5&&uWater<8.5)base*=.985+sin(vLocal.x*190.)*sin(vLocal.y*180.)*.009;
   float skyReflection=pow(1.-max(dot(n,eye),0.),4.);
   vec3 color=base*(hemi+diffuse*.42);
-  vec3 reflected=environment(reflect(-eye,n));
+  vec3 reflectionRay=reflect(-eye,n);
+  vec3 reflected=environment(reflectionRay);
+  // A broad sky reflection keeps a small helmet visor legible without noisy panorama aliasing.
+  if(uWater>9.5&&uWater<10.5){
+   reflected=mix(vec3(.055,.12,.18),uFog*.80,smoothstep(-.14,.65,reflectionRay.y));
+   reflected+=vec3(.21,.27,.30)*pow(max(0.,1.-abs(reflectionRay.y-.11)*3.),12.);
+  }
   color=mix(color,reflected,reflectivity*(.35+skyReflection*.65));
   float highlight=pow(max(dot(n,normalize(light+eye)),0.),mix(150.,9.,roughness));
   color+=vec3(1.,.97,.87)*highlight*specular*(1.-uWeather.y*.58-uWeather.z*.34);
@@ -163,103 +169,160 @@ function helmetSealMesh(){return smoothMesh(24,1,(u,v)=>{const a=u*Math.PI*2,y=-
 function visorMesh(){return smoothMesh(18,7,(u,v)=>{const a=(u-.5)*2.40,b=-.25+v*.63;return [Math.cos(a)*Math.cos(b),Math.sin(b),Math.sin(a)*Math.cos(b)];});}
 function helmetStripe(){return smoothMesh(16,2,(u,v)=>{const a=-.38+u*2.66,z=(v-.5)*.22;return [Math.cos(a)*Math.sqrt(1-z*z),Math.sin(a)*Math.sqrt(1-z*z),z];});}
 function wheelMesh(){const m=meshBuilder(),n=24,k=6;for(let i=0;i<n;i++)for(let j=0;j<k;j++){const p=(a,b)=>[Math.sin(b)*.08,Math.cos(a)*(1+Math.cos(b)*.08),Math.sin(a)*(1+Math.cos(b)*.08)];m.quad(p(i*2*Math.PI/n,j*2*Math.PI/k),p((i+1)*2*Math.PI/n,j*2*Math.PI/k),p((i+1)*2*Math.PI/n,(j+1)*2*Math.PI/k),p(i*2*Math.PI/n,(j+1)*2*Math.PI/k));}return smoothNormals(m.data);}
+// v116: a low hydroplane with an open, raised cockpit coaming. These meshes
+// share boat coordinates (+X bow, +Y up); they never change the collision hull.
+const COAMING=[[-1.83,.54,.76,.79,.88],[-1.25,.58,.83,.94,1.05],[-.44,.57,.85,1.06,1.15],[.12,.49,.80,1.08,1.08],[.46,.29,.67,.96,1.00],[.65,0,.52,.78,.95],[1.43,0,.26,.48,.73]];
+const COAMING_SAMPLES=loftRows(COAMING,4).map(r=>[r[0],Math.max(0,r[1]),r[2],r[3],r[4]]);
+function coamingMesh(kind='shell',lightweight=false){
+ const m=meshBuilder(),rows=lightweight?COAMING:COAMING_SAMPLES;
+ for(const side of [-1,1])for(let i=0;i<rows.length-1;i++){
+  const a=rows[i],b=rows[i+1],quad=(...pts)=>m.quad(...(side===-1?pts.reverse():pts));
+  const edge=(r,t)=>[r[0],.465+(r[3]-.465)*t,side*(r[4]+(r[2]-r[4])*t)];
+  if(kind==='shell'){
+   // Colour panels replace this middle band rather than fighting a coplanar surface.
+   for(const [lo,hi] of [[0,.12],[.83,1]])quad(edge(a,lo),edge(b,lo),edge(b,hi),edge(a,hi));
+   quad([a[0],a[3],side*a[1]],edge(a,1),edge(b,1),[b[0],b[3],side*b[1]]);
+  }else if(kind==='livery')quad(edge(a,.12),edge(b,.12),edge(b,.83),edge(a,.83));
+  else if(a[1]||b[1]){const p=(r,y)=>[r[0],r[3]-y,side*r[1]];quad(p(a,.012),p(b,.012),p(b,.32),p(a,.32));}
+ }
+ return smoothNormals(m.data);
+}
+function coamingZ(x,y){
+ let i=0;while(i<COAMING_SAMPLES.length-2&&COAMING_SAMPLES[i+1][0]<x)i++;
+ const a=COAMING_SAMPLES[i],b=COAMING_SAMPLES[i+1],t=R.clamp((x-a[0])/(b[0]-a[0]),0,1),r=a.map((v,k)=>v+(b[k]-v)*t),u=R.clamp((y-.465)/(r[3]-.465),0,1);
+ return r[4]+(r[2]-r[4])*u;
+}
+function sideMarkMesh(source,side,number=false){
+ const out=[];
+ for(let i=0;i<source.length;i+=6){const x=-.65+side*source[i+2]*(number?.39:.56),y=.755+source[i]*(number?.32:.40),z=side*(coamingZ(x,y)+(number?.022:.009));out.push(x,y,z,0,.460129,side*.887852);}
+ return out;
+}
+function tailoredMesh(rows,steps=14,detail=2){
+ const m=meshBuilder(),stations=detail===1?rows:loftRows(rows,detail),pt=(r,a)=>[Math.cos(a)*r[1],r[0],Math.sin(a)*r[2]];
+ for(let i=0;i<stations.length-1;i++)for(let j=0;j<steps;j++){const a=j*Math.PI*2/steps,b=(j+1)*Math.PI*2/steps;m.quad(pt(stations[i],a),pt(stations[i+1],a),pt(stations[i+1],b),pt(stations[i],b));}
+ for(const [r,flip] of [[stations[0],true],[stations.at(-1),false]])for(let j=0;j<steps;j++){const a=pt(r,j*Math.PI*2/steps),b=pt(r,(j+1)*Math.PI*2/steps);m.tri([0,r[0],0],flip?b:a,flip?a:b);}
+ const out=smoothNormals(m.data);for(let i=0;i<out.length;i+=6)if(out[i]*out[i+3]+out[i+2]*out[i+5]<0){out[i+3]*=-1;out[i+4]*=-1;out[i+5]*=-1;}return out;
+}
+const HELMET_ROWS=[[-1,.53,-.43,.44],[-.79,.86,-.73,.72],[-.42,1.06,-.93,.93],[.10,.94,-1,.99],[.55,.70,-.84,.84],[.88,.33,-.52,.50],[1,-.04,-.15,.035]];
+function helmetPoint(y,a,offset=0){
+ const rows=HELMET_ROWS;let i=0;while(i<rows.length-2&&rows[i+1][0]<y)i++;
+ const r=rows[i],s=rows[i+1],t=R.clamp((y-r[0])/(s[0]-r[0]),0,1),front=r[1]+(s[1]-r[1])*t,back=r[2]+(s[2]-r[2])*t,width=r[3]+(s[3]-r[3])*t;
+ return [(front+back)/2+Math.cos(a)*((front-back)/2+offset),y,Math.sin(a)*(width+offset)];
+}
+function raceHelmet(kind='shell',steps=24){
+ const m=meshBuilder(),rows=kind==='shell'?loftRows(HELMET_ROWS,2).map(r=>r[0]):kind==='visor'?[-.27,-.12,.08,.28,.42]:kind==='seal'?[-.31,-.27,.42,.46]:[-.97,-.83,-.66];
+ const arc=kind==='visor'||kind==='seal'?2.48:Math.PI*2;
+ for(let i=0;i<rows.length-1;i++){
+  if(kind==='seal'&&i===1)continue;
+  for(let j=0;j<steps;j++){
+   const a=(j/steps-.5)*arc,b=((j+1)/steps-.5)*arc,offset=kind==='shell'?0:kind==='visor'?.065:.055;
+   m.quad(helmetPoint(rows[i],a,offset),helmetPoint(rows[i+1],a,offset),helmetPoint(rows[i+1],b,offset),helmetPoint(rows[i],b,offset));
+  }
+ }
+ return smoothNormals(m.data);
+}
+function pennantMesh(){const m=meshBuilder(),p=(x,y)=>[x,y,Math.sin(x*9)*.026];m.tri(p(0,.04),p(-.68,.20),p(0,.37));return m.data;}
 function rotation(x=0,y=0,z=0){const c=Math.cos,s=Math.sin,rx=new Float32Array([1,0,0,0,0,c(x),s(x),0,0,-s(x),c(x),0,0,0,0,1]),ry=model(0,0,0,y),rz=new Float32Array([c(z),s(z),0,0,-s(z),c(z),0,0,0,0,1,0,0,0,0,1]);return multiply(multiply(ry,rx),rz);}
 function normalVector(m,n){const a=m[0]*m[0]+m[1]*m[1]+m[2]*m[2]||1,b=m[4]*m[4]+m[5]*m[5]+m[6]*m[6]||1,c=m[8]*m[8]+m[9]*m[9]+m[10]*m[10]||1,x=n[0]/a,y=n[1]/b,z=n[2]/c;let nx=m[0]*x+m[4]*y+m[8]*z,ny=m[1]*x+m[5]*y+m[9]*z,nz=m[2]*x+m[6]*y+m[10]*z;const l=Math.sqrt(nx*nx+ny*ny+nz*nz)||1;return [nx/l,ny/l,nz/l];}
 function segmentMatrix(a,b,rx,rz){const y=unit(sub(b,a)),x=unit(cross(y,[0,0,1])),z=cross(x,y),len=Math.hypot(...sub(b,a))*.5;return new Float32Array([x[0]*rx,x[1]*rx,x[2]*rx,0,y[0]*len,y[1]*len,y[2]*len,0,z[0]*rz,z[1]*rz,z[2]*rz,0,(a[0]+b[0])*.5,(a[1]+b[1])*.5,(a[2]+b[2])*.5,1]);}
-function racerPose(n,motion=true,time=0){const turn=R.clamp((n.steer||0)*.8+(n.yawRate||0)*.24,-1,1),speed=R.clamp(n.speed/23,0,1),posture=R.clamp(Number(n.posture)||0,-1,1),lean=turn*(.22+Math.max(0,posture)*.065),breathe=motion?Math.sin(time*2.3+n.frame)*.012:0;return {turn,lean,speed,hip:[-.88,.64+Math.max(0,posture)*.04,lean*.30],shoulder:[-.16+speed*.10-posture*.10,1.02+posture*.18+breathe,lean],head:[.21+speed*.08-posture*.17,1.37+posture*.22+breathe,lean*1.18],heel:motion?R.clamp(n.heel||0,-.65,.65)*.14:0,pitch:motion?speed*.014:0};}
+function racerPose(n,motion=true,time=0){
+ const turn=R.clamp((n.steer||0)*.8+(n.yawRate||0)*.24,-1,1),speed=R.clamp(n.speed/23,0,1),posture=R.clamp(Number(n.posture)||0,-1,1),lean=turn*(.19+Math.max(0,posture)*.065),breathe=motion?Math.sin(time*2.3+n.frame)*.008:0;
+ return {turn,lean,speed,posture,hip:[-1.02,.72+Math.max(0,posture)*.035,lean*.30],shoulder:[-.34+speed*.05-posture*.13,1.22+posture*.17-speed*.04+breathe,lean],head:[.02+speed*.06-posture*.16,1.64+posture*.19-speed*.04+breathe,lean*1.18],heel:motion?R.clamp(n.heel||0,-.65,.65)*.14:0,pitch:motion?speed*.014:0};
+}
 const BM={paint:7,fabric:8,metal:9,glass:10,wood:11,buoy:12,decal:13};
-const BOAT_PALETTE={white:rgb('#e7e8df'),wood:rgb('#b89360'),rubber:rgb('#202c32'),steel:rgb('#9baeb5'),dark:rgb('#273941'),stitch:rgb('#c9d8d5')};
+const BOAT_PALETTE={white:rgb('#edf0eb'),wood:rgb('#c58a45'),rubber:rgb('#151b21'),steel:rgb('#b6c2c5'),dark:rgb('#26313b'),stitch:rgb('#d4dddf')};
 function boatScene(n,d,settings,emit){
- const time=settings.motion===false?0:d.elapsed,pose=racerPose(n,settings.motion!==false,time),p=BOAT_PALETTE,color=rgb(COLORS[n.frame-1]);
- const bob=settings.motion===false?0:Math.sin(time*3+n.frame)*.022,base=multiply(model(n.x,.035+bob,n.z,n.heading),rotation(pose.heel,0,pose.pitch));
+ const time=settings.motion===false?0:d.elapsed,pose=racerPose(n,settings.motion!==false,time),p=BOAT_PALETTE,color=rgb(COLORS[n.frame-1]),ink=n.frame===1||n.frame===5?p.rubber:p.white;
+ const bob=settings.motion===false?0:Math.sin(time*3+n.frame)*.018,base=multiply(model(n.x,.035+bob,n.z,n.heading),rotation(pose.heel,0,pose.pitch));
  let layer=0;const part=(key,m,c,material=BM.paint)=>emit(key,multiply(base,m),c,material,{x:n.x,z:n.z,layer:layer++});
  const add=(key,x,y,z,sx,sy,sz,c,material=BM.paint,rot=null)=>part(key,rot?multiply(model(x,y,z),multiply(rot,model(0,0,0,0,sx,sy,sz))):model(x,y,z,0,sx,sy,sz),c,material);
- const seg=(a,b,rx,rz,c,material=BM.fabric)=>part(rx<.07?'thin':'soft',segmentMatrix(a,b,rx,rz),c,material);
- if(n.capsized){part('shell',multiply(rotation(Math.PI,0,0),model(0,-.16,0)),p.dark);return;}
+ const seg=(a,b,rx,rz,c,material=BM.fabric,key=null)=>part(key||(rx<.07?'thin':'sleeve'),segmentMatrix(a,b,rx,rz),c,material);
+ if(n.capsized){part('shell',multiply(rotation(Math.PI,0,0),model(0,-.16,0,0,1,.84,1.14)),p.wood,BM.wood);return;}
  const viewer=d.boats?.find(b=>b.isPlayer),distance=viewer?Math.hypot(n.x-viewer.x,n.z-viewer.z):0,lod=n.isPlayer?0:distance>(settings.lightweight?46:70)?2:distance>(settings.lightweight?18:32)?1:0;
- if(lod){
-  part('shell',identity(),p.white);part('deck',identity(),p.wood,BM.wood);part('deckTrim',identity(),p.white,BM.paint);
-  add('box',-.66,.20,0,.85,.07,.56,p.rubber,BM.fabric);
-  for(const side of [-1,1])add('wing',0,0,0,1,1,side,p.wood,BM.wood);
-  add('rounded',-2.08,.73,0,.33,.30,.34,p.dark,BM.paint);
-  add('rounded',-2.08,.99,0,.34,.075,.35,p.white,BM.paint);
-  part('torso',segmentMatrix(pose.hip,pose.shoulder,.32,.37),color,BM.fabric);
-  add('helmetLow',...pose.head,.30,.323,.273,p.white,BM.paint);
-  if(lod===1){
-   add('visor',pose.head[0]+.008,pose.head[1],pose.head[2],.307,.331,.280,rgb('#163b4c'),BM.glass);
-   for(const side of [-1,1]){part('softLow',segmentMatrix([pose.shoulder[0],pose.shoulder[1]-.05,pose.shoulder[2]+side*.31],[.39,.65,side*.39],.11,.10),color,BM.fabric);part('softLow',segmentMatrix([-.83,.50,side*.24],[-.13,.30,side*.30],.16,.15),color,BM.fabric);}
-   add('flat',1.94,.432,0,.65,1,.49,color,BM.decal,rotation(0,0,-.125));
-   add('digit'+n.frame,1.94,.434,0,.51,1,.49,n.frame===1||n.frame===5?p.dark:p.white,BM.decal,rotation(0,0,-.125));
-  }
-  return;
+ // Broad, shallow wooden hull, sealed deck and a raised open cockpit.
+ add('shell',0,.065,0,1,.84,1.14,p.wood,BM.wood);
+ add('deck',0,-.005,0,1,1,1.14,p.white);
+ add('deckTrim',0,-.002,0,1,1,1.14,p.rubber,BM.fabric);
+ for(const side of [-1,1])add('wing',0,0,0,1,1,side*1.14,p.wood,BM.wood);
+ add('box',-.72,.25,0,.90,.055,.58,p.rubber,BM.fabric);
+ part('coaming',identity(),p.white);part('coamingInside',identity(),p.rubber,BM.fabric);part('livery',identity(),color);
+ // Upright side plates. +X of each glyph is its top; both sides read normally.
+ if(lod<2)for(const side of [-1,1]){
+  part('sidePlate'+(side===1?'R':'L'),identity(),p.white,BM.decal);
+  part('sideDigit'+n.frame+(side===1?'R':'L'),identity(),p.rubber,BM.decal);
  }
-
- part('shell',identity(),p.white);part('deck',identity(),p.wood,BM.wood);part('deckTrim',identity(),p.white,BM.paint);
- for(const side of [-1,1]){
-  add('wing',0,0,0,1,1,side,p.wood,BM.wood);
-  seg([-1.80,.43,side*.58],[.35,.49,side*.58],.035,.035,p.rubber);
-  seg([-1.82,.36,side*.86],[.62,.39,side*.88],.055,.05,color,BM.paint);
-  seg([.60,.39,side*.89],[2.53,.29,side*.42],.031,.026,p.white,BM.paint);
-  if(!n.isPlayer)add('soft',-.95,.10,side*.92,.65,.085,.075,p.dark,BM.fabric);
- }
- // Waterline chine, dark seam and warm exposed plywood at the cockpit rim.
- for(const side of [-1,1]){
-  seg([-1.79,.115,side*.88],[.68,.13,side*.87],.018,.018,p.dark,BM.fabric);
-  seg([.70,.13,side*.86],[2.48,.16,side*.40],.012,.012,p.dark,BM.fabric);
- }
- // Deep cockpit, rear transom, deck seams and flush fasteners.
- add('box',-.56,.15,0,.91,.08,.56,p.rubber,BM.fabric);
- add('box',-1.77,.33,0,.23,.055,.66,p.wood,BM.wood);
- add('soft',.46,.43,0,.14,.16,.53,p.white);
- for(const x of [.88,1.95])for(const side of [-1,1])add('soft',x,x<1?.469:.376,side*(x<1?.73:.47),.032,.013,.032,p.steel,BM.metal);
- // Recessed number plate on the forward deck; large lane colour stays visible at distance.
- add('flat',1.94,.432,0,.65,1,.49,color,BM.decal,rotation(0,0,-.125));
- add('digit'+n.frame,1.94,.434,0,.51,1,.49,n.frame===1||n.frame===5?p.dark:p.white,BM.decal,rotation(0,0,-.125));
- // A small stainless bow fitting and recessed deck screws catch the light.
- add('rounded',2.75,.345,0,.085,.016,.095,p.steel,BM.metal);
- add('wheel',2.76,.386,0,.060,.060,.060,p.steel,BM.metal,rotation(0,0,Math.PI/2));
- for(const side of [-1,1])add('box',1.2,.477,side*.70,.09,.002,.004,p.dark,BM.fabric);
- // Compact outboard: rounded cowl, lower leg, mount and metallic cooling slots.
- add('box',-2.02,.40,0,.14,.28,.28,p.steel,BM.metal);
- add('rounded',-2.12,.73,0,.33,.30,.36,p.dark,BM.paint);
- add('rounded',-2.12,1,0,.34,.075,.365,p.white,BM.paint);
- add('box',-2.33,.75,0,.018,.035,.27,color,BM.paint);
- for(let j=0;j<3;j++)add('box',-1.81,.73+j*.08,0,.015,.012,.24,p.rubber,BM.fabric);
- add('rounded',-2.16,.15,0,.085,.40,.10,p.steel,BM.metal);
- for(const side of [-1,1]){
-  add('rounded',-2.13,.50,side*.29,.15,.05,.07,p.steel,BM.metal);
-  add('softLow',-2.00,.44,side*.31,.045,.045,.02,p.dark,BM.fabric);
- }
- add('box',-2.12,.942,0,.335,.012,.366,p.rubber,BM.fabric);
- seg([-1.88,.62,.24],[-1.68,.39,.47],.018,.018,p.rubber,BM.fabric);
- // Steering wheel, tiller and human-scale gloves. The player view omits their own head/torso.
- const wheelZ=-.17,steer=pose.turn*.42;
- add('wheel',.49,.66,wheelZ,.25,.25,.25,p.rubber,BM.fabric,rotation(steer,0,-.38));
- for(let i=0;i<3;i++){const a=i*Math.PI*2/3+steer;seg([.49,.66,wheelZ],[.49,.66+Math.cos(a)*.22,wheelZ+Math.sin(a)*.22],.016,.016,p.steel,BM.metal);}
- add('soft',.48,.66,wheelZ,.06,.065,.065,p.steel,BM.metal);
- seg([-.14,.40,.49],[.38,.62,.46],.022,.024,p.steel,BM.metal);
- const hands=[[.43,.67,-.39],[.31,.61,.46]];
- if(!n.isPlayer){
-  for(const side of [-1,1]){seg([-.85,.53,side*.23],[-.13,.31,side*.30],.18,.17,color);seg([-.13,.29,side*.30],[-1.12,.25,side*.36],.13,.13,p.dark);add('soft',-1.20,.25,side*.36,.27,.12,.14,p.rubber,BM.fabric);}
-  part('torso',segmentMatrix(pose.hip,pose.shoulder,.32,.37),color,BM.fabric);
-  for(const side of [-1,1]){seg([pose.hip[0]-.15,pose.hip[1]+.12,pose.hip[2]+side*.22],[pose.shoulder[0]-.16,pose.shoulder[1]+.10,pose.shoulder[2]+side*.22],.024,.018,p.dark,BM.fabric);add('box',-.44,.91,pose.lean*.6+side*.34,.065,.018,.025,p.steel,BM.metal);}
-  seg([pose.hip[0]-.16,pose.hip[1]+.02,pose.hip[2]],[pose.shoulder[0]-.14,pose.shoulder[1]+.05,pose.shoulder[2]],.012,.015,p.stitch,BM.fabric);
+ // Bow pennant repeats the jacket colour above the deck.
+ seg([2.51,.34,0],[2.51,1.05,0],.016,.016,p.steel,BM.metal);
+ add('pennant',2.50,.66,0,1,1,1,color,BM.fabric,rotation(0,settings.motion===false?0:Math.sin(time*7+n.frame)*.12,0));
+ // Exposed racing outboard: alloy powerhead, black airbox, tank and drive leg.
+ add('rounded',-2.02,.53,0,.18,.21,.32,p.steel,BM.metal);
+ add('rounded',-2.18,.78,0,.27,.23,.27,p.steel,BM.metal);
+ add('rounded',-2.17,1.005,0,.35,.085,.34,p.steel,BM.metal);
+ add('rounded',-2.38,.77,.12,.14,.17,.24,p.rubber,BM.fabric);
+ add('rounded',-2.17,.09,0,.075,.37,.085,p.steel,BM.metal);
+ if(lod===0){
+  add('rounded',-2.10,1.104,-.10,.062,.027,.068,p.rubber,BM.fabric);
+  for(let i=0;i<4;i++)add('box',-2.06,.65+i*.075,-.275,.17,.012,.015,p.dark,BM.metal);
   for(const side of [-1,1]){
-   const shoulder=[pose.shoulder[0],pose.shoulder[1]-.05,pose.shoulder[2]+side*.32],elbow=[.12,.80,side*.49+pose.lean*.6],hand=hands[side===-1?0:1];seg(shoulder,elbow,.12,.11,color);seg(elbow,hand,.095,.095,p.dark);seg([shoulder[0]-.055,shoulder[1]+.06,shoulder[2]],[elbow[0]-.05,elbow[1]+.065,elbow[2]],.021,.021,p.stitch);
+   add('rounded',-1.89,.40,side*.31,.17,.047,.055,p.steel,BM.metal);
+   seg([-1.81,.39,side*.32],[-2.05,.69,side*.32],.025,.025,p.steel,BM.metal);
+   seg([-2.27,.67,side*.22],[-1.63,.42,side*.49],.015,.015,p.rubber,BM.fabric);
+   // Soft bow rim and fine rub rail separate the livery from the waterline.
+   seg([-1.82,.36,side*.98],[.62,.37,side*1.01],.028,.024,p.rubber,BM.fabric);
+   seg([.62,.37,side*1.01],[2.58,.29,side*.47],.023,.020,p.rubber,BM.fabric);
   }
-  const head=pose.head,hr=rotation(-pose.turn*.08,pose.turn*.18,-.10);
-  add('soft',head[0]-.16,head[1]-.28,head[2],.16,.15,.17,p.rubber,BM.fabric);
-  add('helmet',...head,.30,.323,.273,p.white,BM.paint,hr);
-  add('visor',head[0]+.008,head[1],head[2],.307,.331,.280,rgb('#163b4c'),BM.glass,hr);
-  add('helmetStripe',head[0],head[1]+.006,head[2],.307,.328,.282,color,BM.paint,hr);
-  add('helmetSeal',head[0],head[1],head[2],.307,.328,.282,p.rubber,BM.fabric,hr);
-  add('softLow',head[0]-.293,head[1]+.09,head[2],.012,.018,.09,p.rubber,BM.fabric,hr);
-  add('soft',head[0]+.21,head[1]-.21,head[2],.14,.075,.20,p.white,BM.paint,hr);
-  for(const side of [-1,1])add('soft',head[0]-.01,head[1]+.01,head[2]+side*.277,.043,.043,.012,p.steel,BM.metal);
- }else{
-  for(const side of [-1,1])seg([-.30,.30,side*.48],hands[side===-1?0:1],.12,.12,color);
+  add('rounded',3.10,.285,0,.10,.086,.275,p.white);
+  add('box',-1.77,.49,0,.12,.04,.60,p.wood,BM.wood);
  }
- for(const hand of hands){add('soft',...hand,.115,.067,.084,p.rubber,BM.fabric);add('soft',hand[0]+.015,hand[1]+.046,hand[2],.08,.023,.067,p.stitch,BM.fabric);}
+ const hands=[[.21,.84,-.40],[.02,.68,.47]],shoulder=pose.shoulder,hip=pose.hip;
+ if(!n.isPlayer){
+  // Folded knees and fitted trousers support the low racing posture.
+  if(lod<2)for(const side of [-1,1]){
+   seg([hip[0]+.09,hip[1]-.12,hip[2]+side*.23],[-.27,.39,side*.34],.175,.17,p.dark,BM.fabric,'trouser');
+   seg([-.27,.37,side*.34],[-1.23,.30,side*.39],.11,.12,p.dark,BM.fabric,'sleeve');
+   add('rounded',-1.39,.31,side*.39,.22,.10,.125,p.rubber,BM.fabric);
+  }
+  part('jacket',segmentMatrix(hip,shoulder,.265,.355),color,BM.fabric);
+  // Dark stretch insert follows the same anatomy; no external sphere joints.
+  if(lod<2){
+   const backA=[hip[0]-.14,hip[1]+.19,hip[2]],backB=[shoulder[0]-.17,shoulder[1]+.22,shoulder[2]];
+   seg(backA,backB,.036,.255,p.dark,BM.fabric,'jacket');
+   if(lod===0){
+    const up=unit(sub(shoulder,hip)),back=unit([-up[1],up[0],0]),mid=hip.map((v,k)=>(v+shoulder[k])*.5+back[k]*.306);
+    const mark=(size,offset)=>new Float32Array([up[0]*size,up[1]*size,up[2]*size,0,back[0],back[1],0,0,0,0,size,0,mid[0]+back[0]*offset,mid[1]+back[1]*offset,mid[2],1]);
+    part('flat',mark(.41,0),p.white,BM.decal);part('digit'+n.frame,mark(.29,.007),p.rubber,BM.decal);
+   }
+   for(const side of [-1,1])seg([hip[0]-.16,hip[1]+.13,hip[2]+side*.23],[shoulder[0]-.17,shoulder[1]+.14,shoulder[2]+side*.25],.012,.013,p.stitch);
+   for(const side of [-1,1]){
+    const joint=[shoulder[0]-.025,shoulder[1]-.08,shoulder[2]+side*.295],elbow=[-.14+pose.posture*.05,.95+pose.posture*.055,side*.47+pose.lean*.55],hand=hands[side===-1?0:1];
+    seg(joint,elbow,.115,.115,color,BM.fabric,'sleeve');seg(elbow,hand,.088,.091,p.dark,BM.fabric,'sleeve');
+    if(lod===0)seg([joint[0]-.065,joint[1]+.035,joint[2]],[elbow[0]-.063,elbow[1]+.035,elbow[2]],.018,.014,p.stitch);
+   }
+  }
+  const head=pose.head,hr=rotation(-pose.turn*.07,pose.turn*.17,-.08-pose.speed*.05);
+  seg([shoulder[0]+.09,shoulder[1]+.09,shoulder[2]],[head[0]-.12,head[1]-.24,head[2]],.105,.12,p.rubber,BM.fabric);
+  add(lod===2?'raceHelmetLow':'raceHelmet',...head,.31,.34,.29,color,BM.paint,hr);
+  add('raceVisor',...head,.31,.34,.29,rgb('#132e39'),BM.glass,hr);
+  if(lod===0){
+   add('raceSeal',...head,.31,.34,.29,p.rubber,BM.fabric,hr);
+   add('chinBand',...head,.311,.34,.291,p.white,BM.paint,hr);
+   for(const side of [-1,1])add('softLow',head[0]-.026,head[1]+.05,head[2]+side*.286,.026,.026,.011,p.steel,BM.metal);
+  }
+ }
+ if(lod===2)return;
+ // Wheel and throttle are visible in the first-person cockpit; arms stay low.
+ const steer=pose.turn*.42;
+ add('wheel',.27,.81,-.16,.235,.235,.235,p.rubber,BM.fabric,rotation(steer,0,-.32));
+ if(lod===0){
+  for(let i=0;i<3;i++){const a=i*Math.PI*2/3+steer;seg([.27,.81,-.16],[.27,.81+Math.cos(a)*.20,-.16+Math.sin(a)*.20],.012,.012,p.steel,BM.metal);}
+  add('rounded',.25,.81,-.16,.045,.045,.045,p.steel,BM.metal);
+  seg([-.21,.43,.48],[.07,.69,.47],.022,.025,p.steel,BM.metal);
+  if(n.isPlayer)for(const side of [-1,1]){
+   const hand=hands[side===-1?0:1];seg([-.48,.44,side*.48],hand,.10,.105,color,BM.fabric,'sleeve');
+   seg([hand[0]-.13,hand[1]-.13,hand[2]],[hand[0]-.065,hand[1]-.065,hand[2]],.096,.095,p.dark,BM.fabric,'sleeve');
+  }
+ }
+ for(const hand of hands){add('rounded',...hand,.102,.057,.077,p.rubber,BM.fabric);if(lod===0){add('rounded',hand[0]+.005,hand[1]+.046,hand[2],.068,.012,.057,p.stitch,BM.fabric);for(let i=0;i<3;i++)add('box',hand[0]+.025,hand[1]+.059,hand[2]+(i-1)*.024,.023,.003,.006,p.dark,BM.fabric);}}
 }
 
 /* Deck digit outline notice.
@@ -365,14 +428,15 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $
 
 */
 const digitGeometry={"digit1":[-0.5,0,-0.367017,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.321903,0,-0.33144,0,1,0,-0.321903,0,0.367017,0,1,0,-0.321903,0,0.140699,0,1,0,-0.5,0,0.33294,0,1,0,-0.5,0,0.33294,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.5,0,-0.367017,0,1,0,-0.5,0,0.33294,0,1,0,-0.321903,0,0.140699,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.321903,0,0.140699,0,1,0,0.324475,0,0.021539,0,1,0,0.5,0,0.054329,0,1,0,0.451779,0,-0.18742,0,1,0,0.324475,0,0.021539,0,1,0,0.324475,0,0.021539,0,1,0,0.451779,0,-0.18742,0,1,0,0.276254,0,-0.22171,0,1,0,0.324475,0,0.021539,0,1,0,0.5,0,0.299293,0,1,0,0.5,0,0.054329,0,1,0],"digit2":[-0.5,0,-0.426,0,1,0,-0.5,0,0.287263,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.312421,0,-0.389158,0,1,0,-0.313895,0,-0.103684,0,1,0,0.002737,0,0.028526,0,1,0,-0.5,0,-0.426,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.312421,0,-0.389158,0,1,0,0.002737,0,0.028526,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.129684,0,0.141789,0,1,0,0.271,0,-0.192789,0,1,0,0.434947,0,-0.242421,0,1,0,0.226316,0,-0.284526,0,1,0,0.302316,0,-0.110842,0,1,0,0.434947,0,-0.242421,0,1,0,0.271,0,-0.192789,0,1,0,0.258526,0,0.426,0,1,0,0.358579,0,0.404421,0,1,0,0.261684,0,0.159526,0,1,0,0.261684,0,0.159526,0,1,0,0.358579,0,0.404421,0,1,0,0.435158,0,0.339684,0,1,0,-0.313895,0,0.323263,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.5,0,0.287263,0,1,0,0.463579,0,-0.153789,0,1,0,0.434947,0,-0.242421,0,1,0,0.302316,0,-0.110842,0,1,0,0.002737,0,0.028526,0,1,0,-0.129684,0,0.141789,0,1,0,0.055684,0,0.088789,0,1,0,0.055684,0,0.088789,0,1,0,-0.129684,0,0.141789,0,1,0,-0.009211,0,0.289158,0,1,0,-0.009211,0,0.289158,0,1,0,0.109263,0,0.132737,0,1,0,0.055684,0,0.088789,0,1,0,0.5,0,0.103684,0,1,0,0.495947,0,0.018947,0,1,0,0.326947,0,0.028526,0,1,0,0.083579,0,0.373368,0,1,0,0.166789,0,0.412842,0,1,0,0.213895,0,0.168737,0,1,0,0.258526,0,0.426,0,1,0,0.261684,0,0.159526,0,1,0,0.213895,0,0.168737,0,1,0,0.213895,0,0.168737,0,1,0,0.166789,0,0.412842,0,1,0,0.258526,0,0.426,0,1,0,0.320789,0,-0.037474,0,1,0,0.463579,0,-0.153789,0,1,0,0.302316,0,-0.110842,0,1,0,0.483789,0,-0.066842,0,1,0,0.463579,0,-0.153789,0,1,0,0.320789,0,-0.037474,0,1,0,0.320789,0,-0.037474,0,1,0,0.495947,0,0.018947,0,1,0,0.483789,0,-0.066842,0,1,0,0.320789,0,-0.037474,0,1,0,0.326947,0,0.028526,0,1,0,0.495947,0,0.018947,0,1,0,0.297263,0,0.131895,0,1,0,0.483789,0,0.237632,0,1,0,0.5,0,0.103684,0,1,0,0.435158,0,0.339684,0,1,0,0.483789,0,0.237632,0,1,0,0.297263,0,0.131895,0,1,0,0.297263,0,0.131895,0,1,0,0.261684,0,0.159526,0,1,0,0.435158,0,0.339684,0,1,0,0.083579,0,0.373368,0,1,0,0.213895,0,0.168737,0,1,0,0.162368,0,0.159737,0,1,0,-0.009211,0,0.289158,0,1,0,0.083579,0,0.373368,0,1,0,0.162368,0,0.159737,0,1,0,0.162368,0,0.159737,0,1,0,0.109263,0,0.132737,0,1,0,-0.009211,0,0.289158,0,1,0,0.5,0,0.103684,0,1,0,0.326947,0,0.028526,0,1,0,0.319526,0,0.087632,0,1,0,0.319526,0,0.087632,0,1,0,0.297263,0,0.131895,0,1,0,0.5,0,0.103684,0,1,0],"digit3":[0.378279,0,0.400589,0,1,0,0.274788,0,0.1651,0,1,0,0.284342,0,0.421194,0,1,0,0.378279,0,0.400589,0,1,0,0.445672,0,0.338773,0,1,0,0.274788,0,0.1651,0,1,0,0.5,0,0.093369,0,1,0,0.306445,0,0.13427,0,1,0,0.486418,0,0.236315,0,1,0,0.274788,0,0.1651,0,1,0,0.445672,0,0.338773,0,1,0,0.486418,0,0.236315,0,1,0,0.486418,0,0.236315,0,1,0,0.306445,0,0.13427,0,1,0,0.274788,0,0.1651,0,1,0,-0.086139,0,0.347191,0,1,0,-0.179818,0,0.11258,0,1,0,-0.154617,0,0.357364,0,1,0,-0.154617,0,0.357364,0,1,0,-0.179818,0,0.11258,0,1,0,-0.297872,0,0.325656,0,1,0,-0.407457,0,0.230531,0,1,0,-0.297872,0,0.325656,0,1,0,-0.241841,0,0.096674,0,1,0,-0.297872,0,0.325656,0,1,0,-0.179818,0,0.11258,0,1,0,-0.241841,0,0.096674,0,1,0,0.332266,0,0.015286,0,1,0,0.489672,0,-0.052882,0,1,0,0.328703,0,-0.042088,0,1,0,0.300558,0,-0.170109,0,1,0,0.458686,0,-0.203057,0,1,0,0.276699,0,-0.238587,0,1,0,0.104524,0,0.046633,0,1,0,0.095332,0,-0.044206,0,1,0,-0.071938,0,0.003615,0,1,0,0.489672,0,-0.052882,0,1,0,0.332266,0,0.015286,0,1,0,0.497418,0,0.020657,0,1,0,0.328703,0,-0.042088,0,1,0,0.489672,0,-0.052882,0,1,0,0.476761,0,-0.127401,0,1,0,-0.497005,0,-0.200372,0,1,0,-0.5,0,-0.118364,0,1,0,-0.33082,0,-0.123528,0,1,0,-0.473043,0,-0.35189,0,1,0,-0.290229,0,-0.324416,0,1,0,-0.452076,0,-0.421194,0,1,0,-0.488019,0,-0.278248,0,1,0,-0.312435,0,-0.259244,0,1,0,-0.473043,0,-0.35189,0,1,0,-0.473043,0,-0.35189,0,1,0,-0.312435,0,-0.259244,0,1,0,-0.290229,0,-0.324416,0,1,0,-0.452076,0,-0.421194,0,1,0,-0.290229,0,-0.324416,0,1,0,-0.26038,0,-0.384425,0,1,0,0.124045,0,0.363974,0,1,0,0.175325,0,0.160607,0,1,0,0.070543,0,0.295239,0,1,0,0.175325,0,0.160607,0,1,0,0.124045,0,0.363974,0,1,0,0.23146,0,0.175377,0,1,0,0.23146,0,0.175377,0,1,0,0.124045,0,0.363974,0,1,0,0.19624,0,0.406889,0,1,0,0.284342,0,0.421194,0,1,0,0.274788,0,0.1651,0,1,0,0.23146,0,0.175377,0,1,0,0.23146,0,0.175377,0,1,0,0.19624,0,0.406889,0,1,0,0.284342,0,0.421194,0,1,0,-0.33082,0,-0.123528,0,1,0,-0.5,0,-0.118364,0,1,0,-0.320595,0,-0.025873,0,1,0,-0.5,0,-0.118364,0,1,0,-0.476864,0,0.079891,0,1,0,-0.320595,0,-0.025873,0,1,0,0.070543,0,0.295239,0,1,0,0.175325,0,0.160607,0,1,0,0.038525,0,0.203057,0,1,0,0.325811,0,0.084074,0,1,0,0.306445,0,0.13427,0,1,0,0.5,0,0.093369,0,1,0,0.5,0,0.093369,0,1,0,0.497418,0,0.020657,0,1,0,0.325811,0,0.084074,0,1,0,0.325811,0,0.084074,0,1,0,0.497418,0,0.020657,0,1,0,0.332266,0,0.015286,0,1,0,0.328703,0,-0.042088,0,1,0,0.476761,0,-0.127401,0,1,0,0.318013,0,-0.104317,0,1,0,0.458686,0,-0.203057,0,1,0,0.300558,0,-0.170109,0,1,0,0.318013,0,-0.104317,0,1,0,0.318013,0,-0.104317,0,1,0,0.476761,0,-0.127401,0,1,0,0.458686,0,-0.203057,0,1,0,-0.064759,0,-0.081595,0,1,0,-0.071938,0,0.003615,0,1,0,0.095332,0,-0.044206,0,1,0,-0.064759,0,-0.081595,0,1,0,0.095332,0,-0.14873,0,1,0,-0.064759,0,-0.180335,0,1,0,0.095332,0,-0.044206,0,1,0,0.095332,0,-0.14873,0,1,0,-0.064759,0,-0.081595,0,1,0,0.104524,0,0.046633,0,1,0,-0.071938,0,0.003615,0,1,0,-0.093472,0,0.064243,0,1,0,-0.093472,0,0.064243,0,1,0,0.038525,0,0.203057,0,1,0,0.104524,0,0.046633,0,1,0,-0.326224,0,-0.191334,0,1,0,-0.497005,0,-0.200372,0,1,0,-0.33082,0,-0.123528,0,1,0,-0.488019,0,-0.278248,0,1,0,-0.497005,0,-0.200372,0,1,0,-0.326224,0,-0.191334,0,1,0,-0.326224,0,-0.191334,0,1,0,-0.312435,0,-0.259244,0,1,0,-0.488019,0,-0.278248,0,1,0,-0.289919,0,0.048957,0,1,0,-0.320595,0,-0.025873,0,1,0,-0.476864,0,0.079891,0,1,0,-0.289919,0,0.048957,0,1,0,-0.476864,0,0.079891,0,1,0,-0.407457,0,0.230531,0,1,0,-0.407457,0,0.230531,0,1,0,-0.241841,0,0.096674,0,1,0,-0.289919,0,0.048957,0,1,0,0.104524,0,0.046633,0,1,0,0.038525,0,0.203057,0,1,0,0.132101,0,0.116298,0,1,0,0.132101,0,0.116298,0,1,0,0.038525,0,0.203057,0,1,0,0.175325,0,0.160607,0,1,0,0.038525,0,0.203057,0,1,0,-0.093472,0,0.064243,0,1,0,-0.129415,0,0.100496,0,1,0,0.013065,0,0.26792,0,1,0,0.038525,0,0.203057,0,1,0,-0.129415,0,0.100496,0,1,0,-0.129415,0,0.100496,0,1,0,-0.029436,0,0.31667,0,1,0,0.013065,0,0.26792,0,1,0,-0.129415,0,0.100496,0,1,0,-0.179818,0,0.11258,0,1,0,-0.086139,0,0.347191,0,1,0,-0.086139,0,0.347191,0,1,0,-0.029436,0,0.31667,0,1,0,-0.129415,0,0.100496,0,1,0],"digit4":[0.280326,0,0.130626,0,1,0,0.5,0,0.417167,0,1,0,0.5,0,0.123768,0,1,0,0.5,0,0.123768,0,1,0,-0.096871,0,-0.39252,0,1,0,0.280326,0,0.130626,0,1,0,-0.130947,0,0.293292,0,1,0,0.280326,0,0.130626,0,1,0,-0.130947,0,0.0494,0,1,0,-0.130947,0,0.293292,0,1,0,-0.317831,0,0.40045,0,1,0,-0.130947,0,0.436027,0,1,0,-0.130947,0,-0.225139,0,1,0,0.280326,0,0.130626,0,1,0,-0.096871,0,-0.39252,0,1,0,-0.130947,0,-0.225139,0,1,0,-0.096871,0,-0.39252,0,1,0,-0.317831,0,-0.436027,0,1,0,-0.317831,0,0.40045,0,1,0,-0.130947,0,0.293292,0,1,0,-0.317831,0,0.257715,0,1,0,-0.317831,0,0.257715,0,1,0,-0.130947,0,0.293292,0,1,0,-0.130947,0,0.0494,0,1,0,-0.317831,0,0.014038,0,1,0,-0.5,0,-0.022182,0,1,0,-0.5,0,0.222353,0,1,0,-0.5,0,0.222353,0,1,0,-0.317831,0,0.257715,0,1,0,-0.317831,0,0.014038,0,1,0,-0.317831,0,0.014038,0,1,0,-0.317831,0,0.257715,0,1,0,-0.130947,0,0.0494,0,1,0,-0.130947,0,0.0494,0,1,0,-0.130947,0,-0.225139,0,1,0,-0.317831,0,0.014038,0,1,0,-0.317831,0,0.014038,0,1,0,-0.130947,0,-0.225139,0,1,0,-0.317831,0,-0.436027,0,1,0],"digit5":[-0.003311,0,0.021074,0,1,0,0.178789,0,0.054656,0,1,0,0.177686,0,0.023176,0,1,0,-0.273597,0,0.061804,0,1,0,-0.471673,0,0.08971,0,1,0,-0.386693,0,0.243641,0,1,0,0.5,0,0.424427,0,1,0,0.5,0,-0.20433,0,1,0,0.313958,0,-0.03868,0,1,0,-0.471673,0,0.08971,0,1,0,-0.273597,0,0.061804,0,1,0,-0.314274,0,-0.010984,0,1,0,-0.276855,0,-0.313696,0,1,0,-0.235758,0,-0.385537,0,1,0,-0.434833,0,-0.424427,0,1,0,0.5,0,0.424427,0,1,0,0.313958,0,-0.03868,0,1,0,0.313958,0,0.38827,0,1,0,0.162182,0,-0.06832,0,1,0,0.313958,0,-0.03868,0,1,0,0.5,0,-0.20433,0,1,0,-0.008304,0,-0.171116,0,1,0,0.162182,0,-0.06832,0,1,0,-0.026225,0,-0.238228,0,1,0,0.5,0,-0.20433,0,1,0,-0.051818,0,-0.311331,0,1,0,-0.026225,0,-0.238228,0,1,0,-0.026225,0,-0.238228,0,1,0,0.162182,0,-0.06832,0,1,0,0.5,0,-0.20433,0,1,0,-0.2109,0,0.108629,0,1,0,-0.273597,0,0.061804,0,1,0,-0.386693,0,0.243641,0,1,0,-0.386693,0,0.243641,0,1,0,-0.253311,0,0.341707,0,1,0,-0.2109,0,0.108629,0,1,0,-0.327833,0,-0.104478,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.5,0,-0.110994,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.495953,0,-0.192033,0,1,0,-0.5,0,-0.110994,0,1,0,-0.5,0,-0.110994,0,1,0,-0.314274,0,-0.010984,0,1,0,-0.327833,0,-0.104478,0,1,0,-0.471673,0,0.08971,0,1,0,-0.314274,0,-0.010984,0,1,0,-0.5,0,-0.110994,0,1,0,-0.483813,0,-0.270759,0,1,0,-0.495953,0,-0.192033,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.031217,0,0.076939,0,1,0,0.178789,0,0.054656,0,1,0,-0.003311,0,0.021074,0,1,0,-0.031217,0,0.076939,0,1,0,0.161604,0,0.188564,0,1,0,0.178789,0,0.054656,0,1,0,0.110048,0,0.289678,0,1,0,-0.074732,0,0.112413,0,1,0,0.028116,0,0.353216,0,1,0,0.161604,0,0.188564,0,1,0,-0.031217,0,0.076939,0,1,0,0.110048,0,0.289678,0,1,0,0.110048,0,0.289678,0,1,0,-0.031217,0,0.076939,0,1,0,-0.074732,0,0.112413,0,1,0,0.028116,0,0.353216,0,1,0,-0.074732,0,0.112413,0,1,0,-0.080198,0,0.374396,0,1,0,-0.003311,0,0.021074,0,1,0,0.177686,0,0.023176,0,1,0,0.174375,0,-0.008198,0,1,0,-0.003311,0,0.021074,0,1,0,0.174375,0,-0.008198,0,1,0,0.005991,0,-0.051923,0,1,0,-0.30555,0,-0.244061,0,1,0,-0.483813,0,-0.270759,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.13128,0,0.124238,0,1,0,-0.2109,0,0.108629,0,1,0,-0.253311,0,0.341707,0,1,0,-0.253311,0,0.341707,0,1,0,-0.080198,0,0.374396,0,1,0,-0.13128,0,0.124238,0,1,0,-0.13128,0,0.124238,0,1,0,-0.080198,0,0.374396,0,1,0,-0.074732,0,0.112413,0,1,0,-0.463475,0,-0.347856,0,1,0,-0.276855,0,-0.313696,0,1,0,-0.434833,0,-0.424427,0,1,0,-0.463475,0,-0.347856,0,1,0,-0.30555,0,-0.244061,0,1,0,-0.276855,0,-0.313696,0,1,0,-0.483813,0,-0.270759,0,1,0,-0.30555,0,-0.244061,0,1,0,-0.463475,0,-0.347856,0,1,0,0.002417,0,-0.10926,0,1,0,0.162182,0,-0.06832,0,1,0,-0.008304,0,-0.171116,0,1,0,0.002417,0,-0.10926,0,1,0,0.005991,0,-0.051923,0,1,0,0.162182,0,-0.06832,0,1,0,0.162182,0,-0.06832,0,1,0,0.005991,0,-0.051923,0,1,0,0.169224,0,-0.038785,0,1,0,0.169224,0,-0.038785,0,1,0,0.005991,0,-0.051923,0,1,0,0.174375,0,-0.008198,0,1,0],"digit6":[-0.294206,0,-0.380861,0,1,0,-0.221132,0,-0.158851,0,1,0,-0.143049,0,-0.403429,0,1,0,-0.334435,0,-0.095177,0,1,0,-0.476709,0,-0.204142,0,1,0,-0.5,0,-0.058046,0,1,0,-0.215193,0,0.106899,0,1,0,-0.386181,0,0.241686,0,1,0,-0.256094,0,0.329064,0,1,0,0.108345,0,-0.363561,0,1,0,0.091407,0,-0.128486,0,1,0,0.219841,0,-0.315431,0,1,0,-0.221132,0,-0.158851,0,1,0,-0.294206,0,-0.380861,0,1,0,-0.272206,0,-0.151622,0,1,0,-0.272206,0,-0.151622,0,1,0,-0.294206,0,-0.380861,0,1,0,-0.406837,0,-0.313158,0,1,0,-0.28269,0,0.071266,0,1,0,-0.471545,0,0.1085,0,1,0,-0.386181,0,0.241686,0,1,0,-0.386181,0,0.241686,0,1,0,-0.215193,0,0.106899,0,1,0,-0.28269,0,0.071266,0,1,0,0.395579,0,-0.166701,0,1,0,0.272568,0,-0.038215,0,1,0,0.453522,0,-0.068168,0,1,0,0.195053,0,-0.097862,0,1,0,0.272568,0,-0.038215,0,1,0,0.395579,0,-0.166701,0,1,0,0.195053,0,-0.097862,0,1,0,0.219841,0,-0.315431,0,1,0,0.091407,0,-0.128486,0,1,0,0.091407,0,-0.128486,0,1,0,-0.064966,0,-0.111754,0,1,0,-0.019417,0,-0.057994,0,1,0,-0.143049,0,-0.403429,0,1,0,-0.221132,0,-0.158851,0,1,0,-0.13427,0,-0.147077,0,1,0,0.5,0,0.16918,0,1,0,0.48838,0,0.043948,0,1,0,0.337224,0,0.156166,0,1,0,-0.476709,0,-0.204142,0,1,0,-0.334435,0,-0.095177,0,1,0,-0.310576,0,-0.129932,0,1,0,-0.406837,0,-0.313158,0,1,0,-0.476709,0,-0.204142,0,1,0,-0.310576,0,-0.129932,0,1,0,-0.310576,0,-0.129932,0,1,0,-0.272206,0,-0.151622,0,1,0,-0.406837,0,-0.313158,0,1,0,-0.471545,0,0.1085,0,1,0,-0.28269,0,0.071266,0,1,0,-0.327463,0,0.017507,0,1,0,-0.5,0,-0.058046,0,1,0,-0.471545,0,0.1085,0,1,0,-0.327463,0,0.017507,0,1,0,0.48838,0,0.043948,0,1,0,0.453522,0,-0.068168,0,1,0,0.32106,0,0.047562,0,1,0,0.32106,0,0.047562,0,1,0,0.453522,0,-0.068168,0,1,0,0.272568,0,-0.038215,0,1,0,0.337224,0,0.156166,0,1,0,0.48838,0,0.043948,0,1,0,0.32106,0,0.047562,0,1,0,0.314708,0,-0.251188,0,1,0,0.195053,0,-0.097862,0,1,0,0.395579,0,-0.166701,0,1,0,0.219841,0,-0.315431,0,1,0,0.195053,0,-0.097862,0,1,0,0.314708,0,-0.251188,0,1,0,-0.014305,0,-0.393462,0,1,0,-0.13427,0,-0.147077,0,1,0,-0.064966,0,-0.111754,0,1,0,-0.014305,0,-0.393462,0,1,0,0.091407,0,-0.128486,0,1,0,0.108345,0,-0.363561,0,1,0,-0.014305,0,-0.393462,0,1,0,-0.064966,0,-0.111754,0,1,0,0.091407,0,-0.128486,0,1,0,-0.143049,0,-0.403429,0,1,0,-0.13427,0,-0.147077,0,1,0,-0.014305,0,-0.393462,0,1,0,0.305309,0,0.313881,0,1,0,0.280417,0,0.368519,0,1,0,0.458686,0,0.403429,0,1,0,0.33366,0,0.208428,0,1,0,0.5,0,0.16918,0,1,0,0.337224,0,0.156166,0,1,0,0.497418,0,0.22893,0,1,0,0.5,0,0.16918,0,1,0,0.33366,0,0.208428,0,1,0,0.476761,0,0.345022,0,1,0,0.305309,0,0.313881,0,1,0,0.458686,0,0.403429,0,1,0,0.32297,0,0.26069,0,1,0,0.305309,0,0.313881,0,1,0,0.476761,0,0.345022,0,1,0,0.085416,0,0.282586,0,1,0,-0.077412,0,0.11165,0,1,0,0.005474,0,0.339289,0,1,0,0.005474,0,0.339289,0,1,0,-0.077412,0,0.11165,0,1,0,-0.093886,0,0.35819,0,1,0,-0.093886,0,0.35819,0,1,0,-0.077412,0,0.11165,0,1,0,-0.132101,0,0.118777,0,1,0,-0.132101,0,0.118777,0,1,0,-0.215193,0,0.106899,0,1,0,-0.256094,0,0.329064,0,1,0,-0.256094,0,0.329064,0,1,0,-0.093886,0,0.35819,0,1,0,-0.132101,0,0.118777,0,1,0,-0.037286,0,0.090271,0,1,0,-0.077412,0,0.11165,0,1,0,0.085416,0,0.282586,0,1,0,0.085416,0,0.282586,0,1,0,0.138246,0,0.196344,0,1,0,-0.037286,0,0.090271,0,1,0,-0.342388,0,-0.049163,0,1,0,-0.334435,0,-0.095177,0,1,0,-0.5,0,-0.058046,0,1,0,-0.5,0,-0.058046,0,1,0,-0.327463,0,0.017507,0,1,0,-0.342388,0,-0.049163,0,1,0,-0.004235,0,0.009089,0,1,0,0.15188,0,0.030004,0,1,0,0.13995,0,-0.024995,0,1,0,0.32297,0,0.26069,0,1,0,0.476761,0,0.345022,0,1,0,0.489672,0,0.287131,0,1,0,0.497418,0,0.22893,0,1,0,0.33366,0,0.208428,0,1,0,0.489672,0,0.287131,0,1,0,0.489672,0,0.287131,0,1,0,0.33366,0,0.208428,0,1,0,0.32297,0,0.26069,0,1,0,-0.012497,0,0.055825,0,1,0,0.138246,0,0.196344,0,1,0,0.155856,0,0.088411,0,1,0,-0.012497,0,0.055825,0,1,0,-0.037286,0,0.090271,0,1,0,0.138246,0,0.196344,0,1,0,-0.012497,0,0.055825,0,1,0,0.15188,0,0.030004,0,1,0,-0.004235,0,0.009089,0,1,0,0.155856,0,0.088411,0,1,0,0.15188,0,0.030004,0,1,0,-0.012497,0,0.055825,0,1,0,0.091407,0,-0.128486,0,1,0,-0.019417,0,-0.057994,0,1,0,0.119965,0,-0.077412,0,1,0,0.119965,0,-0.077412,0,1,0,-0.019417,0,-0.057994,0,1,0,-0.004235,0,0.009089,0,1,0,-0.004235,0,0.009089,0,1,0,0.13995,0,-0.024995,0,1,0,0.119965,0,-0.077412,0,1,0]};
-const G={...digitGeometry,digit1:deckOne(),rounded:roundedBoxMesh(),thin:smoothNormals(frustumMesh(1,1,-1,1,6)),softTiny:smoothSphere(6,4),helmetLow:smoothSphere(12,8),torso:torsoMesh(),helmetSeal:helmetSealMesh(),shell:hullShell(),deck:foreDeck(),deckTrim:foreDeck(true),wing:wingDeck(),soft:smoothSphere(),softLow:smoothSphere(8,5),helmet:smoothSphere(24,14),visor:visorMesh(),helmetStripe:helmetStripe(),wheel:wheelMesh(),box:boxMesh(),hull:hullMesh(),cone:coneMesh(),sphere:sphereMesh(),flat:planeMesh(1),slash:slashMesh(),stripe:stripeMesh(),
+const G={roundedLow:roundedBoxMesh(.22,2),coamingLow:coamingMesh("shell",true),coamingInsideLow:coamingMesh("inside",true),liveryLow:coamingMesh("livery",true),jacketLow:tailoredMesh([[-1,.68,.73],[-.7,.91,.86],[.28,1,.97],[.68,.95,1],[.93,.69,.74],[1,.46,.55]],10,1),sleeveLow:tailoredMesh([[-1,.72,.72],[-.8,.98,.95],[-.2,1,1],[.55,.81,.83],[1,.63,.69]],8,1),trouserLow:tailoredMesh([[-1,.68,.76],[-.7,.95,1],[.1,1,.94],[.72,.80,.77],[1,.64,.66]],8,1),coaming:coamingMesh(),coamingInside:coamingMesh("inside"),livery:coamingMesh("livery"),pennant:pennantMesh(),jacket:tailoredMesh([[-1,.68,.73],[-.7,.91,.86],[.28,1,.97],[.68,.95,1],[.93,.69,.74],[1,.46,.55]]),sleeve:tailoredMesh([[-1,.72,.72],[-.8,.98,.95],[-.2,1,1],[.55,.81,.83],[1,.63,.69]],10),trouser:tailoredMesh([[-1,.68,.76],[-.7,.95,1],[.1,1,.94],[.72,.80,.77],[1,.64,.66]],10),raceHelmet:raceHelmet(),raceHelmetLow:raceHelmet("shell",12),raceVisor:raceHelmet("visor",24),raceSeal:raceHelmet("seal",24),chinBand:raceHelmet("chin",24),...digitGeometry,digit1:deckOne(),rounded:roundedBoxMesh(),thin:smoothNormals(frustumMesh(1,1,-1,1,6)),softTiny:smoothSphere(6,4),helmetLow:smoothSphere(12,8),torso:torsoMesh(),helmetSeal:helmetSealMesh(),shell:hullShell(),deck:foreDeck(),deckTrim:foreDeck(true),wing:wingDeck(),soft:smoothSphere(),softLow:smoothSphere(8,5),helmet:smoothSphere(24,14),visor:visorMesh(),helmetStripe:helmetStripe(),wheel:wheelMesh(),box:boxMesh(),hull:hullMesh(),cone:coneMesh(),sphere:sphereMesh(),flat:planeMesh(1),slash:slashMesh(),stripe:stripeMesh(),
 water:planeMesh(900,1),shore:ringMesh(90,235,.12),edge:ringMesh(87,90,.32),rope:ringMesh(R.C.inner-.06,R.C.inner+.06,.04),mountain:mountainMesh(270,0),farHill:mountainMesh(340,2),
 buoy1:latheProfile([[0,.88],[.07,.98],[.22,1],[.44,.94],[.67,.835],[.9,.72]]),buoy2:latheProfile([[.9,.72],[1.15,.61],[1.4,.51],[1.65,.405],[1.9,.30]]),buoy3:latheProfile([[1.9,.30],[2.15,.207],[2.4,.12],[2.63,.045],[2.68,.01]]),buoyCollar:latheProfile([[0,.93],[.035,1.10],[.11,1.13],[.18,1.06],[.205,.97]]),buoyBand:latheProfile([[.895,.729],[.924,.716]]),float:frustumMesh(1,1,0,.16)};
+for(const side of [-1,1]){const suffix=side===1?'R':'L';G['sidePlate'+suffix]=sideMarkMesh(planeMesh(1,8),side);for(let frame=1;frame<=6;frame++)G['sideDigit'+frame+suffix]=sideMarkMesh(G['digit'+frame],side,true);}
 const distantSphere=sphereMesh(8,4);
 const P={ink:rgb('#133346'),white:rgb('#fff5df'),foam:rgb('#e0fff4'),aqua:rgb('#49c5c2'),water:rgb('#137f9d'),steel:rgb('#87a9af'),red:rgb('#ee664e')};
 const segs={1:'bc',2:'abdeg',3:'abcdg',4:'bcfg',5:'acdfg',6:'acdefg'};
 function camera(d,width,height,motion,thrill=false){const b=R.own(d),fx=Math.cos(b.heading),fz=Math.sin(b.heading),t=motion?d.elapsed:0,bob=motion?Math.sin(t*4.3)*Math.min(.09,b.speed*.0015+b.wakeLoad*.05):0,roll=motion?b.heel*.16:0;
-const eye=[b.x-fx*.25,1.65+(motion?R.clamp(Number(b.posture)||0,-1,1)*.12:0)+bob,b.z-fz*.25],up=[-fz*Math.sin(roll),Math.cos(roll),fx*Math.sin(roll)],view=lookAt(eye,[eye[0]+fx*24,eye[1]-.72,eye[2]+fz*24],up);
+const eye=[b.x-fx*.75,1.65+(motion?R.clamp(Number(b.posture)||0,-1,1)*.12:0)+bob,b.z-fz*.75],up=[-fz*Math.sin(roll),Math.cos(roll),fx*Math.sin(roll)],view=lookAt(eye,[eye[0]+fx*24,eye[1]-.72,eye[2]+fz*24],up);
 const fov=80+(motion&&thrill?R.clamp((b.speed*3.6-52)/5,0,6):0);
 return {eye,view,vp:multiply(perspective(fov*Math.PI/180,width/height,.14,650),view),focal:height/(2*Math.tan(fov*.5*Math.PI/180))};}
 function palette(r){const rain=r.env.weather==='雨',cloud=r.env.weather==='曇り';return {fog:rgb(rain?'#9db9c7':cloud?'#b6d3df':'#b9e5ef'),water:rgb(rain?'#1b4655':cloud?'#1c5966':'#125d65'),rain,cloud};}
@@ -528,7 +592,7 @@ const position=gl.getAttribLocation(program,'aPosition'),normal=gl.getAttribLoca
 const meshes={};for(const [key,data]of Object.entries(G)){const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(data),gl.STATIC_DRAW);meshes[key]={buffer,count:data.length/6,source:data};}
 const texture=gl.createTexture();gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,1,1,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([170,215,230,255]));gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.uniform1i(uniforms.Sky,0);
 let width=1,height=1,vp=identity(),drawCamera=null,disposed=false,skyReady=false;
-function emit(key,m,col,water=0){if(drawCamera&&water!==2&&key!=='water'&&!key.startsWith('crowd')&&!['mountain','farHill','shore','edge','rope'].includes(key)){const v=drawCamera.view,x=v[0]*m[12]+v[4]*m[13]+v[8]*m[14]+v[12],y=v[1]*m[12]+v[5]*m[13]+v[9]*m[14]+v[13],z=-(v[2]*m[12]+v[6]*m[13]+v[10]*m[14]+v[14]),radius=Math.max(Math.hypot(m[0],m[2]),Math.abs(m[5]),Math.hypot(m[8],m[10]))*(['hull','stripe','shell','deck','deckTrim','wing'].includes(key)?4:key==='cone'||key.startsWith('buoy')?3:1.8);if(z+radius<.14||Math.abs(x)-radius>Math.max(0,z+radius)*width/(2*drawCamera.focal)||Math.abs(y)-radius>Math.max(0,z+radius)*height/(2*drawCamera.focal))return;}let g=meshes[key];if(!g||g.source!==G[key]){const buffer=g?g.buffer:gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(G[key]),gl.STATIC_DRAW);g=meshes[key]={buffer,count:G[key].length/6,source:G[key]};}gl.bindBuffer(gl.ARRAY_BUFFER,g.buffer);gl.vertexAttribPointer(position,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(normal,3,gl.FLOAT,false,24,12);gl.uniformMatrix4fv(uniforms.Model,false,m);gl.uniform3fv(uniforms.Color,col);gl.uniform1f(uniforms.Water,water);if(water===5||water===6){gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);}gl.drawArrays(gl.TRIANGLES,0,g.count);if(water===5||water===6){gl.depthMask(true);gl.disable(gl.BLEND);}}
+function emit(key,m,col,water=0){if(drawCamera&&water!==2&&key!=='water'&&!key.startsWith('crowd')&&!['mountain','farHill','shore','edge','rope'].includes(key)){const v=drawCamera.view,x=v[0]*m[12]+v[4]*m[13]+v[8]*m[14]+v[12],y=v[1]*m[12]+v[5]*m[13]+v[9]*m[14]+v[13],z=-(v[2]*m[12]+v[6]*m[13]+v[10]*m[14]+v[14]),radius=Math.max(Math.hypot(m[0],m[2]),Math.abs(m[5]),Math.hypot(m[8],m[10]))*(['hull','stripe','shell','deck','deckTrim','wing','coaming','coamingInside','livery'].includes(key)||key.startsWith('side')?4:key==='cone'||key.startsWith('buoy')?3:1.8);if(z+radius<.14||Math.abs(x)-radius>Math.max(0,z+radius)*width/(2*drawCamera.focal)||Math.abs(y)-radius>Math.max(0,z+radius)*height/(2*drawCamera.focal))return;}let g=meshes[key];if(!g||g.source!==G[key]){const buffer=g?g.buffer:gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(G[key]),gl.STATIC_DRAW);g=meshes[key]={buffer,count:G[key].length/6,source:G[key]};}gl.bindBuffer(gl.ARRAY_BUFFER,g.buffer);gl.vertexAttribPointer(position,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(normal,3,gl.FLOAT,false,24,12);gl.uniformMatrix4fv(uniforms.Model,false,m);gl.uniform3fv(uniforms.Color,col);gl.uniform1f(uniforms.Water,water);if(water===5||water===6){gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);}gl.drawArrays(gl.TRIANGLES,0,g.count);if(water===5||water===6){gl.depthMask(true);gl.disable(gl.BLEND);}}
 function draw(d,r,settings={}){if(disposed||gl.isContextLost())return;width=Math.max(1,canvas.clientWidth);height=Math.max(1,canvas.clientHeight);const scale=Math.min(root.devicePixelRatio||1,1.5,Math.sqrt(1050000/(width*height))),w=Math.round(width*scale),h=Math.round(height*scale);
 if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h);}
 const image=getSky();if(!skyReady&&image&&image.width>0){try{gl.bindTexture(gl.TEXTURE_2D,texture);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);skyReady=true;}catch(_){/* Retain procedural sky when images cannot decode. */}}
@@ -539,9 +603,32 @@ emit('sphere',model(cam.eye[0],cam.eye[1],cam.eye[2],0,480,480,480),pal.fog,2);e
 function project(x,y,z){const v=[x,y,z,1],a=[0,0,0,0];for(let i=0;i<4;i++)for(let k=0;k<4;k++)a[i]+=vp[k*4+i]*v[k];if(a[3]<=.16)return null;return {x:(a[0]/a[3]*.5+.5)*width,y:(.5-a[1]/a[3]*.5)*height,depth:a[3],visible:Math.abs(a[0]/a[3])<1.1&&Math.abs(a[1]/a[3])<1.1};}
 return {canvas,mode:'webgl',diagnostic:null,draw,project,get size(){return {width,height};},destroy(){if(disposed)return;disposed=true;Object.values(meshes).forEach(g=>gl.deleteBuffer(g.buffer));gl.deleteTexture(texture);gl.deleteProgram(program);},isLost:()=>gl.isContextLost()};
 }
+// The Canvas fallback uses a small software depth buffer for solid geometry.
+// Average-depth polygon sorting tears the cockpit and numbers at close range.
+function createDepthPainter(){
+ let layer=null,context=null,pixels=null,depth=null,width=0,height=0;
+ function draw(ctx,commands,w,h){
+  const targetW=Math.max(1,Math.round(w)),targetH=Math.max(1,Math.round(h));
+  if(!layer){layer=root.OffscreenCanvas?new root.OffscreenCanvas(targetW,targetH):root.document.createElement('canvas');context=layer.getContext('2d');}
+  if(width!==targetW||height!==targetH){width=targetW;height=targetH;layer.width=width;layer.height=height;pixels=context.createImageData(width,height);depth=new Float32Array(width*height);}
+  pixels.data.fill(0);depth.fill(0);const rgba=pixels.data;
+  function triangle(a,b,c,za,zb,zc,color){
+   const determinant=(b[1]-c[1])*(a[0]-c[0])+(c[0]-b[0])*(a[1]-c[1]);if(Math.abs(determinant)<.00001)return;
+   const left=Math.max(0,Math.floor(Math.min(a[0],b[0],c[0]))),right=Math.min(width-1,Math.ceil(Math.max(a[0],b[0],c[0]))),top=Math.max(0,Math.floor(Math.min(a[1],b[1],c[1]))),bottom=Math.min(height-1,Math.ceil(Math.max(a[1],b[1],c[1])));
+   const ax=(b[1]-c[1])/determinant,ay=(c[0]-b[0])/determinant,bx=(c[1]-a[1])/determinant,by=(a[0]-c[0])/determinant,ia=1/za,ib=1/zb,ic=1/zc;
+   for(let y=top;y<=bottom;y++){
+    let u=ax*(left+.5-c[0])+ay*(y+.5-c[1]),v=bx*(left+.5-c[0])+by*(y+.5-c[1]);
+    for(let x=left;x<=right;x++,u+=ax,v+=bx){if(u<-.00001||v<-.00001||u+v>1.00001)continue;const d=u*ia+v*ib+(1-u-v)*ic,index=y*width+x;if(d<=depth[index])continue;depth[index]=d;const p=index*4;rgba[p]=color[0];rgba[p+1]=color[1];rgba[p+2]=color[2];rgba[p+3]=255;}
+   }
+  }
+  for(const cmd of commands){if(!cmd.polygon)continue;const color=cmd.fill.match(/[\d.]+/g).map(Number),p=cmd.polygon,z=cmd.z;for(let i=1;i<p.length-1;i++)triangle(p[0],p[i],p[i+1],z[0],z[i],z[i+1],color);}
+  context.putImageData(pixels,0,0);ctx.drawImage(layer,0,0,w,h);
+ }
+ return {draw};
+}
 function createCanvas(canvas){
 const ctx=canvas.getContext('2d',{alpha:false});if(!ctx)throw Error('この環境では水面を描画できません。観戦モードをご利用ください。');
-let width=1,height=1,view=identity(),focal=1,disposed=false,painted=0;const waterPainter=createWaterPainter();
+let width=1,height=1,view=identity(),focal=1,disposed=false,painted=0;const waterPainter=createWaterPainter(),depthPainter=createDepthPainter();
 const cameraPoint=p=>[view[0]*p[0]+view[4]*p[1]+view[8]*p[2]+view[12],view[1]*p[0]+view[5]*p[1]+view[9]*p[2]+view[13],-(view[2]*p[0]+view[6]*p[1]+view[10]*p[2]+view[14])];
 const screen=p=>[width/2+p[0]*focal/p[2],height/2-p[1]*focal/p[2]];
 function project(x,y,z){const p=cameraPoint([x,y,z]);if(p[2]<=.16)return null;const q=screen(p);return {x:q[0],y:q[1],depth:p[2],visible:q[0]>-15&&q[0]<width+15&&q[1]>-15&&q[1]<height+15};}
@@ -555,25 +642,28 @@ const art=getSky(),paintedSky=!!(art&&art.width>0&&ctx.drawImage);if(paintedSky)
 const water=ctx.createLinearGradient(0,horizon,0,height);water.addColorStop(0,color(pal.water,pal.fog,140));water.addColorStop(.35,color(pal.water,pal.fog,50));water.addColorStop(1,pal.rain?'#1e647f':'#076383');ctx.fillStyle=water;ctx.fillRect(0,horizon,width,height-horizon);
 waterPainter.draw(ctx,cam,width,height,pal,weatherVector(r),t);
 const commands=[];
-function emit(key,m,col,material=0,anchor=null){if(material===5||material===6){const points=[[-.5,-.5],[-.5,.5],[.5,.5],[.5,-.5]].map(([x,z])=>cameraPoint([m[0]*x+m[8]*z+m[12],m[13],m[2]*x+m[10]*z+m[14]]));if(points.some(p=>p[2]<.25))return;const quad=points.map(screen);if(quad.every(p=>p[0]<0)||quad.every(p=>p[0]>width)||quad.every(p=>p[1]<0)||quad.every(p=>p[1]>height))return;commands.push({quad,shadow:material===6,alpha:col[0],depth:points.reduce((n,p)=>n+p[2],0)/4});return;}const center=cameraPoint([m[12],m[13],m[14]]),data=key==='sphere'&&center[2]>16?distantSphere:key==='soft'||key==='softLow'?G.softTiny:key==='helmet'?(center[2]>23?G.softLow:G.helmetLow):G[key];
-if(!key.startsWith('crowd')&&!['mountain','farHill','shore','edge','rope'].includes(key)){const radius=Math.max(Math.hypot(m[0],m[1],m[2]),Math.hypot(m[4],m[5],m[6]),Math.hypot(m[8],m[9],m[10]))*(['hull','stripe','shell','deck','deckTrim','wing'].includes(key)?4:key==='cone'||key.startsWith('buoy')?3:1.8);if(center[2]+radius<.16||Math.abs(center[0])-radius>Math.max(0,center[2]+radius)*width/(2*focal)||Math.abs(center[1])-radius>Math.max(0,center[2]+radius)*height/(2*focal))return;}
-const decalPolygons=material===BM.decal?[]:null;
-const partDepth=anchor?cameraPoint([anchor.x,.5,anchor.z])[2]-anchor.layer*.001:0,world=[m[12],m[13],m[14]],eye=unit(sub(cam.eye,world)),half=unit([eye[0]-.4,eye[1]+.88,eye[2]+.28]);
+function emit(key,m,col,material=0,anchor=null){if(material===5||material===6){const points=[[-.5,-.5],[-.5,.5],[.5,.5],[.5,-.5]].map(([x,z])=>cameraPoint([m[0]*x+m[8]*z+m[12],m[13],m[2]*x+m[10]*z+m[14]]));if(points.some(p=>p[2]<.25))return;const quad=points.map(screen);if(quad.every(p=>p[0]<0)||quad.every(p=>p[0]>width)||quad.every(p=>p[1]<0)||quad.every(p=>p[1]>height))return;commands.push({quad,shadow:material===6,alpha:col[0],depth:points.reduce((n,p)=>n+p[2],0)/4});return;}const center=cameraPoint([m[12],m[13],m[14]]),data=key==='sphere'&&center[2]>16?distantSphere:key==='soft'||key==='softLow'?G.softTiny:key==='helmet'?(center[2]>23?G.softLow:G.helmetLow):key==='raceHelmet'?G.raceHelmetLow:['rounded','coaming','coamingInside','livery','jacket','sleeve','trouser'].includes(key)?G[key+'Low']:G[key];
+if(!key.startsWith('crowd')&&!['mountain','farHill','shore','edge','rope'].includes(key)){const radius=Math.max(Math.hypot(m[0],m[1],m[2]),Math.hypot(m[4],m[5],m[6]),Math.hypot(m[8],m[9],m[10]))*(['hull','stripe','shell','deck','deckTrim','wing','coaming','coamingInside','livery'].includes(key)||key.startsWith('side')?4:key==='cone'||key.startsWith('buoy')?3:1.8);if(center[2]+radius<.16||Math.abs(center[0])-radius>Math.max(0,center[2]+radius)*width/(2*focal)||Math.abs(center[1])-radius>Math.max(0,center[2]+radius)*height/(2*focal))return;}
+
+const world=[m[12],m[13],m[14]],eye=unit(sub(cam.eye,world)),half=unit([eye[0]-.4,eye[1]+.88,eye[2]+.28]);
 for(let i=0;i<data.length;i+=18){const points=[];for(let k=0;k<3;k++){const j=i+k*6,x=data[j],y=data[j+1],z=data[j+2];points.push(cameraPoint([m[0]*x+m[4]*y+m[8]*z+m[12],m[1]*x+m[5]*y+m[9]*z+m[13],m[2]*x+m[6]*y+m[10]*z+m[14]]));}
 const clipped=clipNear(points);if(clipped.length<3)continue;const depth=clipped.reduce((v,p)=>v+p[2],0)/clipped.length;if(depth>600)continue;const polygon=clipped.map(screen);
 if(polygon.every(p=>p[0]<-2)||polygon.every(p=>p[0]>width+2)||polygon.every(p=>p[1]<-2)||polygon.every(p=>p[1]>height+2))continue;
-const normal=[0,1,2].map(c=>(data[i+3+c]+data[i+9+c]+data[i+15+c])/3),n=normalVector(m,normal),lit=-n[0]*.4+n[1]*.88+n[2]*.28,unlit=material===3||material===4;
+const normal=[0,1,2].map(c=>(data[i+3+c]+data[i+9+c]+data[i+15+c])/3),n=normalVector(m,normal);
+if(anchor&&key!=='pennant'){const nv=[view[0]*n[0]+view[4]*n[1]+view[8]*n[2],view[1]*n[0]+view[5]*n[1]+view[9]*n[2],-(view[2]*n[0]+view[6]*n[1]+view[10]*n[2])],mid=[0,1,2].map(k=>points.reduce((sum,p)=>sum+p[k],0)/3);if(dot(nv,mid)>.001)continue;}
+const lit=-n[0]*.4+n[1]*.88+n[2]*.28,unlit=material===3||material===4;
 let fill;if(material===BM.decal){fill=color(col,pal.fog,depth);}else if(material>=7){
  const power=material===8?25:material===9?120:material===10?140:material===11?65:95,spec=material===8?.035:material===9?.50:material===10?.65:.19;
  const shine=Math.pow(Math.max(0,dot(n,half)),power)*spec*(pal.rain?.42:pal.cloud?.66:1),facing=1-Math.max(0,dot(n,eye)),reflect=(material===10?.52:material===9?.26:.04)*(.35+Math.pow(facing,4)*.65),light=.47+.20*n[1]+Math.max(0,lit)*.42;
  const painted=col.map((v,c)=>(v*light*(1-reflect)+pal.fog[c]*reflect+shine*[1,.97,.87][c])*(.87+.13*R.clamp((world[1]-.10)/.42,0,1)));fill=color(painted,pal.fog,depth);
 }else fill=unlit?color(col,col,0):color(col,pal.fog,depth,lit>.5?1:lit>-.15?.82:.61);
-if(decalPolygons)decalPolygons.push(polygon);else commands.push({polygon,depth:anchor?partDepth+depth*.0000001:depth,fill});
+commands.push({polygon,z:clipped.map(p=>p[2]),depth,fill});
 }
-if(decalPolygons?.length)commands.push({polygons:decalPolygons,depth:anchor?partDepth:center[2],fill:color(col,pal.fog,Math.max(0,center[2]))});
+
 }
 scene(d,r,{...settings,paintedSky,lightweight:true},emit);commands.sort((a,b)=>b.depth-a.depth);
-for(const c of commands){if(c.quad){waterPainter.drawFoam(ctx,c);continue;}if(c.polygons){ctx.fillStyle=c.fill;ctx.beginPath();for(const p of c.polygons){ctx.moveTo(...p[0]);for(let i=1;i<p.length;i++)ctx.lineTo(...p[i]);ctx.closePath();}ctx.fill();continue;}ctx.fillStyle=c.fill;ctx.beginPath();ctx.moveTo(...c.polygon[0]);for(let i=1;i<c.polygon.length;i++)ctx.lineTo(...c.polygon[i]);ctx.closePath();ctx.fill();ctx.strokeStyle=c.fill;ctx.lineWidth=.45;ctx.stroke();}
+for(const c of commands)if(c.quad)waterPainter.drawFoam(ctx,c);
+depthPainter.draw(ctx,commands,width,height);
 }
 return {canvas,mode:'canvas',diagnostic:null,draw,project,isLost:()=>false,get size(){return {width,height};},get frames(){return painted;},destroy(){disposed=true;}};
 }
