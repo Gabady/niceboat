@@ -1,37 +1,22 @@
-# V112 開発引継ぎ
+# V114 開発引継ぎ
 
-## 現在地
+D.version=80、D.build='114'、保存キーkyotei_monogatari_v80。V113を引き継ぎ、曲名のみの切替通知を追加。@323〜324。物理・育成・素材・選曲ルールは変更なし。
 
-D.version=80、D.build='112'、保存キーkyotei_monogatari_v80。変更履歴@316〜319。V111から会話UIと描画を更新。育成・好感度・報酬条件・物理・AI・音源・画像は変更なし。公開作業なし。
+## 変更
 
-## 会話の不具合
+- music.js：onTrackChange({id,title})を再生成功時に発行。最後に通知した実音源srcで重複を抑止し、mute/stop/再開でも記憶を保つ。古いPromise、再生拒否、音量ゼロは通知しない。音量ゼロからの復帰は未通知の曲のみ通知する。
+- audio.js：sound-controls内に独立したsound-noticeを作成。約4.2秒で非表示。次曲読込中、ミュート、BGMオフ、音量ゼロ、非表示・pagehideで消去。ゲームのtoastは流用しない。
+- interface.css：曲名のみの小型表示、pointer-events:none、aria-live polite、reduced-motion対応。通常／会話は上64px、レースはHUDの下・時計の左に表示。
+- index.html/data.js/script.js：版番号と移行文。V113を過去の移行済みリストへ追加。
 
-script.js の openNovel は、返答画面を開くたびに戻り先をnovelへ上書きしていた。今は会話外から入る時だけ戻り先を記録する。novelExit は現在の会話と結果表示の一時状態を消し、元の画面か各話のexitへ進む。outcomeNovel は元会話のexitを継承し、本編はcampaignExitで章一覧へ戻す。師匠はmentor、ヒロインはbondsへ明示移動する。
+V113の重要修正：endNovel(false)は明示終了、trueは読了。Affinity.offer.deferredは保留。閉じた直後の再オープン・自動章一覧を戻さない。閉じるは右上84×48px以上。会話修正本体は変更していない。
 
-返答keyは元会話のkeyから生成。選択処理はnovelCurrentの末頁と選択肢のaction/value一致を要求する。render冒頭でnovelCurrentをクリアするため、画面外に古い選択肢を残さない。強制おねだりは返答必須のまま。読書位置・選択・成長は既存の保存方式を使う。
+## 検証・配布
 
-## 描画
+結果はtests/release-v114-verification.json。music-v114-tests.cjsで実選曲・UIルーティング・メディアライフサイクル・通知を検証。browser-music-v114.cjsは実Chromium・タッチ画面・7曲MP3・3配布形式で通知と配置を確認。static-checks.py / iphone-static-checks.pyは構文と埋込一致。
 
-race-renderer.js: hull/foredeckをloftRowsで補間。roundedBoxMeshで船外機を再構成、金具と冷却口を追加。木目はBM.woodのみへ適用。latheProfileでbuoy1/2/3とcollar/band、buoySceneで配置。BM.buoyは表面の細かな凹凸と水際の湿りを表現。
+Android/iPhone実機、Safari、実スピーカーでの音出しは未確認。変更のないレース物理の再試験は行わない。過去の検証結果を今回分へ合算しない。
 
-deckOneで数字1を専用生成、G.digit1を置換。他の数字は既存のライセンス付きアウトライン。BM.decalでプレートと数字を安定表示。プレートはboxではなくflat一枚、Canvasは同じデカールの三角形を一つのパスへまとめる。裏面重なりと継ぎ目対策を戻さない。近景81 draw calls、遠景は細部省略。racing.jsとコライダーは変更なし。
+python tools/package.py で全体ZIP、Android/iPhone単体HTMLとV113向け差分ZIPを生成。差分はindex.html/data.js/script.js/music.js/audio.js/interface.cssとV114_UPDATE.txt。単体HTMLは直接編集しない。assetsはV113と同一。
 
-## 検証と配布
-
-- tests/dialogue-v112-tests.cjs: 閉じる、再開、選択連打、強制依頼、保存復元。
-- tests/dialogue-v111-reproduction.json: 修正前の失敗記録。現行合計に加えない。
-- tests/browser-v112.cjs: Chromiumのスマホタッチ操作、単体HTML、WebGL/Canvas起動。
-- tests/render-v112.cjs: 有限な形状、連続した数字1、LOD、GLESとSkiaで固定場面描画、描画副作用なし。
-- tests/music-v112-tests.cjs: 会話のBGM遷移と旧セーブ互換など。音楽7曲の設定はV111を維持。
-- android-update-tests.cjs、static-checks.py、iphone-static-checks.pyでフォールバックと単体版を確認。
-- 現行集計は tests/release-v112-verification.json。過去の結果は履歴として保持。
-
-実機Android/iPhone、Safari、実機FPS、スピーカーの音、複数タッチは未検証。新たな勝率推定はしていない。
-
-python tools/package.py でAndroid/iPhone単体版とZIPを生成。埋込HTMLは直接編集しない。全音源と肖像を内蔵、ゲームに外部依存や追加通信なし。assets/はV111からバイト単位で維持。
-
-PlaywrightとCanvasはCODEX_PRIMARY_RUNTIME_NODE_MODULES。Chromium既定は/tmp/v105-browser/chrome-headless-shell-linux64/chrome-headless-shell、フォントは/tmp/v105-fonts.conf。タップ後は対象actionのclick受信を待つ。KM_APP.getState()はclone。Android/iPhone単体HTMLはfile URLからChromiumで検証し、Safari実機として扱わない。
-
-## 次回の編集
-
-バランス変更時はdata.js、racing.js、script.jsの計算APIを確認。物語原稿はtools/dialogue-v110.txt、本文方針はSCENARIO_STYLE_V110.md。今回の描画・会話バグ修正に過去の全キャリア試験を無条件で再実行しない。変更対象に絞り、結果と引継ぎを更新する。
+PlaywrightはCODEX_PRIMARY_RUNTIME_NODE_MODULES、Chromium /tmp/v105-browser/chrome-headless-shell-linux64/chrome-headless-shell、FONTCONFIG_FILE=/tmp/v105-fonts.conf。KM_APP.getState()はclone。タップはbuttonを指定し対象actionのclick到達を待つ。

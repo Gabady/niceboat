@@ -1,0 +1,63 @@
+{
+  "build": 114,
+  "passed": 13,
+  "failed": 0,
+  "results": [
+    {
+      "name": "index 7曲すべて実再生時に曲名だけを表示",
+      "passed": true
+    },
+    {
+      "name": "index 自動消去・同じ曲の再描画とミュート解除で再通知しない",
+      "passed": true
+    },
+    {
+      "name": "index 会話への切替・閉じる操作を通知が妨げない",
+      "passed": true
+    },
+    {
+      "name": "index レース中は速度表示と12秒針を避け、操作面へ干渉しない",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe 7曲すべて実再生時に曲名だけを表示",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe 自動消去・同じ曲の再描画とミュート解除で再通知しない",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe 会話への切替・閉じる操作を通知が妨げない",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe レース中は速度表示と12秒針を避け、操作面へ干渉しない",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe 7曲すべて実再生時に曲名だけを表示",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe 自動消去・同じ曲の再描画とミュート解除で再通知しない",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe 会話への切替・閉じる操作を通知が妨げない",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe レース中は速度表示と12秒針を避け、操作面へ干渉しない",
+      "passed": true
+    },
+    {
+      "name": "画面遷移と曲変更に未処理例外なし",
+      "passed": true
+    }
+  ],
+  "browser": "Chromium: actual HTMLAudioElement playback progression, 390/360/320px touch emulation",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false
+}

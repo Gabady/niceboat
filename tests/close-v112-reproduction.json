@@ -1,0 +1,63 @@
+{
+  "build": "112",
+  "passed": 4,
+  "failed": 8,
+  "results": [
+    {
+      "name": "ヒロインの返答で閉じると依頼会話へ進まず人物画面へ戻る",
+      "passed": false,
+      "error": "conversation still visible"
+    },
+    {
+      "name": "依頼会話にも閉じるがあり未回答を保存して再開できる",
+      "passed": false,
+      "error": "close button missing"
+    },
+    {
+      "name": "閉じた依頼は育成への移動 再描画 セーブ再開で勝手に開かない",
+      "passed": false,
+      "error": "conversation still visible"
+    },
+    {
+      "name": "保留中の依頼は操船 観戦 即結果の前に返答を求める",
+      "passed": false,
+      "error": "conversation still visible"
+    },
+    {
+      "name": "依頼を回答した後は閉じられ 古い回答で二重精算しない",
+      "passed": true
+    },
+    {
+      "name": "本文を最後まで読んだときは続く依頼へ自然に進む",
+      "passed": false,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(a.nodes.app.innerHTML.includes('data-action=\"novelExit\"'))\n"
+    },
+    {
+      "name": "本編を閉じても章一覧を自動表示しない 明示操作なら一覧を開ける",
+      "passed": false,
+      "error": "another modal opened"
+    },
+    {
+      "name": "本編選択後も閉じるで会話とモーダルの両方を終了",
+      "passed": false,
+      "error": "another modal opened"
+    },
+    {
+      "name": "師匠5人の途中閉じと選択後閉じ 報酬は選択時だけ",
+      "passed": true
+    },
+    {
+      "name": "ヒロイン6人の未選択で閉じると元の人物画面へ",
+      "passed": true
+    },
+    {
+      "name": "ライバルと約束と日常も途中で閉じられ 成長機会を失わない",
+      "passed": true
+    },
+    {
+      "name": "不正な保留フラグは読込拒否 V112の未設定データは互換",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\ntrue !== false\n"
+    }
+  ]
+}

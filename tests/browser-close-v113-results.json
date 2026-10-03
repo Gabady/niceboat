@@ -1,0 +1,79 @@
+{
+  "build": 113,
+  "passed": 17,
+  "failed": 0,
+  "results": [
+    {
+      "name": "index.html ヒロイン返答後に閉じると依頼の強制再表示なし",
+      "passed": true
+    },
+    {
+      "name": "index.html 依頼を途中と選択直前で閉じて読書位置を維持",
+      "passed": true
+    },
+    {
+      "name": "index.html 閉じた状態を保存復元 出走時に返答を求め再び閉じられる",
+      "passed": true
+    },
+    {
+      "name": "index.html 本編を閉じると章一覧を開かず会話を終了",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html ヒロイン返答後に閉じると依頼の強制再表示なし",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html 依頼を途中と選択直前で閉じて読書位置を維持",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html 閉じた状態を保存復元 出走時に返答を求め再び閉じられる",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html 本編を閉じると章一覧を開かず会話を終了",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html ヒロイン返答後に閉じると依頼の強制再表示なし",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html 依頼を途中と選択直前で閉じて読書位置を維持",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html 閉じた状態を保存復元 出走時に返答を求め再び閉じられる",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html 本編を閉じると章一覧を開かず会話を終了",
+      "passed": true
+    },
+    {
+      "name": "師匠の途中閉じ 選択後閉じ 履歴モーダルを閉じてから会話終了",
+      "passed": true
+    },
+    {
+      "name": "会話の音声メニューを開いたままでも閉じるをタップできる",
+      "passed": true
+    },
+    {
+      "name": "大きい文字 最後の選択肢までスクロールしても閉じるボタンは画面内",
+      "passed": true
+    },
+    {
+      "name": "通常演出ONでも閉じた直後に出会い演出を重ねない",
+      "passed": true
+    },
+    {
+      "name": "全画面の未処理JavaScriptエラーなし",
+      "passed": true
+    }
+  ],
+  "browser": "Chromium mobile touch emulation 390x844 360x740 320x700 320x640",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false
+}

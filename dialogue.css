@@ -52,3 +52,9 @@
 
 /* V110: one compact next-action hint under relationship progress. */
 .affinity-guidance{margin:8px 0 0;color:var(--muted,#abc9cc);font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+
+/* V113: a stable close target, independent of title length and text scrolling. */
+.novel-top>div{min-width:0}.novel-top h2{overflow-wrap:anywhere}
+.novel-close{position:fixed;top:max(12px,env(safe-area-inset-top));right:max(14px,calc((100vw - 1000px)/2 + 14px),env(safe-area-inset-right));z-index:4;min-width:84px;min-height:48px;flex-shrink:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.novel-close:focus-visible{outline:3px solid #b7f1e4;outline-offset:3px}
+.campaign-strip{flex-wrap:wrap}.campaign-strip>div{min-width:0;flex:1 1 160px}

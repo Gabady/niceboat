@@ -1,4 +1,4 @@
-/* v100: one compressed MP3 player + gesture-unlocked Web Audio effects. No eager MP3 decoding. */
+/* v114: one MP3 player, title-only change notification and gesture-unlocked effects. */
 (function(root){
 'use strict';
 if(typeof document==='undefined')return;
@@ -6,11 +6,15 @@ const Music=root.KM_MUSIC;
 let prefs={muted:true,bgm:true,sfx:true,volume:.35};
 try{const p=JSON.parse(localStorage.getItem('km_audio_v92'));if(p)for(const k of ['muted','bgm','sfx'])if(typeof p[k]==='boolean')prefs[k]=p[k];if(p&&Number.isFinite(p.volume))prefs.volume=Math.max(0,Math.min(1,p.volume));}catch(_){}
 let context=null,loading=null,unlocked=false,gestureRequired=false,blocked=false,scene='main',drive=null,lastDrive=null,lastTime=0,lastContact=0,lastAbility=0,finishPlayed=false;
-const buffers={},tracks={},voices=new Set(),music=Music?.create({notify:paint});
+let noticeTimer=null,noticeTrack=null;
+const buffers={},tracks={},voices=new Set(),music=Music?.create({notify:paint,onTrackChange:showSong});
+function hideSong(){if(noticeTimer!==null){root.clearTimeout(noticeTimer);noticeTimer=null;}noticeTrack=null;const n=document.getElementById('sound-notice');if(n){n.classList.remove('visible');n.setAttribute('aria-hidden','true');}}
+function showSong(track){if(!allowed('bgm')||prefs.volume<=0)return;const n=document.getElementById('sound-notice');if(!n)return;hideSong();noticeTrack=track.id;n.textContent=track.title;n.setAttribute('aria-hidden','false');n.classList.add('visible');noticeTimer=root.setTimeout(hideSong,4200);}
 function allowed(kind){return unlocked&&!gestureRequired&&!prefs.muted&&prefs[kind]&&!document.hidden;}
 function stop(id){const a=tracks[id];if(a){try{a.source.stop();}catch(_){}a.source.disconnect();a.gain.disconnect();}delete tracks[id];}
 function start(id,loop,volume){if(!context||context.state!=='running'||!buffers[id])return null;const source=context.createBufferSource(),gain=context.createGain();source.buffer=buffers[id];source.loop=loop;gain.gain.value=volume;source.connect(gain);gain.connect(context.destination);const a={source,gain};source.start();return a;}
 function sync(){
+ if(!allowed('bgm')||prefs.volume<=0||(noticeTrack&&noticeTrack!==Music?.resolve(scene).id))hideSong();
  music?.set(scene,allowed('bgm'),prefs.volume*.72);
  // A missing music module may use the old tiny generated loop, never a second BGM.
  const fallback=scene==='race'||scene==='final'||scene==='sgRace'||scene==='sgFinal'?'race':'harbor';
@@ -41,13 +45,13 @@ function update(d){drive=d;if(!d){stop('engine');return;}const b=root.KM_RACING.
  lastTime=d.elapsed;
  if(allowed('sfx')&&!d.paused&&!d.finished){if(!tracks.engine)tracks.engine=start('engine',true,0);const a=tracks.engine;if(a){a.gain.gain.value=prefs.volume*(.08+Math.min(1,b.speed/30)*.17);a.source.playbackRate.value=.6+Math.min(1,b.speed/30)*1.2;}}else stop('engine');
 }
-function mount(){const host=document.createElement('div');host.className='sound-controls';host.innerHTML='<button id="sound-toggle" type="button" aria-label="全音声のオン・オフ">♪ 音 OFF</button><details><summary aria-label="音声設定">♫</summary><div class="sound-panel"><b id="sound-track" class="sound-track"></b><label><input id="sound-bgm" type="checkbox"> BGM</label><label><input id="sound-sfx" type="checkbox"> 効果音</label><label>音量 <input id="sound-volume" type="range" min="0" max="1" step=".05" aria-label="音量"></label><small id="sound-status" role="status"></small></div></details>';document.body.appendChild(host);
+function mount(){const host=document.createElement('div');host.className='sound-controls';host.innerHTML='<div id="sound-notice" class="sound-notice" role="status" aria-live="polite" aria-atomic="true" aria-hidden="true"></div><button id="sound-toggle" type="button" aria-label="全音声のオン・オフ">♪ 音 OFF</button><details><summary aria-label="音声設定">♫</summary><div class="sound-panel"><b id="sound-track" class="sound-track"></b><label><input id="sound-bgm" type="checkbox"> BGM</label><label><input id="sound-sfx" type="checkbox"> 効果音</label><label>音量 <input id="sound-volume" type="range" min="0" max="1" step=".05" aria-label="音量"></label><small id="sound-status" role="status"></small></div></details>';document.body.appendChild(host);
  document.getElementById('sound-bgm').checked=prefs.bgm;document.getElementById('sound-sfx').checked=prefs.sfx;document.getElementById('sound-volume').value=prefs.volume;
  document.getElementById('sound-toggle').onclick=()=>{prefs.muted=!prefs.muted;if(!prefs.muted)unlock();save();};
  host.addEventListener('change',e=>{if(e.target.id==='sound-bgm')prefs.bgm=e.target.checked;if(e.target.id==='sound-sfx')prefs.sfx=e.target.checked;if(e.target.id==='sound-volume')prefs.volume=Number(e.target.value);if(!prefs.muted)unlock();save();});
  document.addEventListener('click',e=>{if(!prefs.muted&&(!unlocked||gestureRequired||context?.state==='suspended'||music?.diagnostics().blocked))unlock();if(e.target.closest('button')&&!host.contains(e.target))effect('click');});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)gestureRequired=true;sync();paint();});
- root.addEventListener('pagehide',()=>{gestureRequired=true;music?.stop();Object.keys(tracks).forEach(stop);voices.forEach(a=>{try{a.source.stop();}catch(_){}});voices.clear();context?.suspend().catch(()=>{});});paint();
+ root.addEventListener('pagehide',()=>{gestureRequired=true;hideSong();music?.stop();Object.keys(tracks).forEach(stop);voices.forEach(a=>{try{a.source.stop();}catch(_){}});voices.clear();context?.suspend().catch(()=>{});});paint();
 }
 root.KM_AUDIO={scene(value,d,info={}){scene=Music?Music.select({...info,page:value}):(value==='race'?'race':'main');sync();update(d);paint();},update,effect,
  diagnostics(){const m=music?.diagnostics();return {muted:prefs.muted,bgm:prefs.bgm,sfx:prefs.sfx,volume:prefs.volume,ready:Object.keys(buffers).length,context:context?.state||'idle',tracks:[...Object.keys(tracks).filter(k=>tracks[k]),...(m?.playing?['mp3:'+m.track]:[])],voices:voices.size,blocked:blocked||!!m?.blocked,music:m,gestureRequired};}};

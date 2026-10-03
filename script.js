@@ -608,12 +608,12 @@ function decode(text){if(typeof text!=='string'||text.length>5000000)throw new E
   const act=s.career?.series?.action;
   if(act&&!act.halfActions){act.halfActions={};for(const k of ['training','tune'])act.halfActions[k]=Math.max(0,act[k]-(s.career.series.race?.usedItems?.[k]?1:0));}
   oldRaces.forEach(r=>{if(!('tilt' in r))r.tilt=R.tiltValue(r);if(r.prepVersion!==87){if(!r.drive&&r.phase<0)r.buff=zeros();r.prepVersion=87;}});
-  if(!['88','89','90','91','92','93','94','95','96','97','98','99','100','101','102','103','104','105','106','107','108','109','110','111',D.build].includes(s.build)){
+  if(!['88','89','90','91','92','93','94','95','96','97','98','99','100','101','102','103','104','105','106','107','108','109','110','111','112','113',D.build].includes(s.build)){
    const players=[s.career?.player,...(s.registry||[]),...(s.rivals||[]),...(s.career?.series?.npcs||[]),...oldRaces.flatMap(r=>r.runners||[])].filter(Boolean);
    for(const p of players)if(p.adjust){for(const part of ['motor','prop'])p.adjust[part+'Success']=Math.min(70,p.adjust[part+'Success']);}
    s.build='88';s.migrationNotice='v88へ移行。基礎能力・賞金・走行位置を維持。整備の基礎成功率は上限70%に調整。進行中の行動残数は保持し、次走から練習1回＋調整1回。';
   }
-  if(s.build!==D.build){s.build=D.build;s.migrationNotice='v112へ更新しました。会話の画面遷移と艇番表示を修正し、船体とブイの描画を更新しました。育成とレースの続きから遊べます。';}
+  if(s.build!==D.build){s.build=D.build;s.migrationNotice='v114へ更新しました。曲が切り替わると曲名を短く表示します。';}
   if(!validState(s))throw new Error('対応するセーブ形式ではないか、データが破損しています。');
   if(s.career){Affinity.ensure(s.career);Finale.ensure(s.career);Development.ensure(s.career);Bonds.ensure(s.career);if(s.career.campaign)Campaign.ensure(s.career);if(!s.career.campaign){Campaign.ensure(s.career);const z=s.career.history.at(-1);if(z&&z.stage===s.career.stage)Campaign.capture(s.career,z);}}
   oldRaces.forEach(r=>{if(r.watch&&!r.drive&&!r.done){startDrive(s.career&&s.career.series&&s.career.series.race===r?s.career:s,r);syncSpectator(r);}});
@@ -716,15 +716,33 @@ let novelCurrent=null;
 function readerBook(){if(ui.novelRegistry){const p=Profile.find(state,ui.novelRegistry);if(p?.developmentJournal)return p.developmentJournal.readers;return ui.guestReaders||(ui.guestReaders={});}return state.career?Development.ensure(state.career).readers:(ui.guestReaders||(ui.guestReaders={}));}
 function novelContext(sc){const archived=ui.novelRegistry?Profile.find(state,ui.novelRegistry):ui.page==='campaign'&&ui.campaignPlayer?Profile.find(state,ui.campaignPlayer):null,p=archived||state.career?.player,j=archived?.developmentJournal,rival=j?Development.rivals.find(r=>r.id===j.rival.cast):state.career?Development.rival(state.career):null;return {person:sc.person,playerName:p?.name||'主人公',rival,people:[sc.person,rival,...Object.values(Development.actors),...Object.values(Cast.map),...Bonds.B.heroines,...Object.entries(Story.speakers).map(([id,x])=>({id,...x})),Finale.king].filter(Boolean)};}
 function novelView(sc){const pages=Dialogue.pages(sc.body),book=readerBook(),key=Dialogue.bookmark(sc.key),i=Dialogue.cursor(book,key,pages.length),context=novelContext(sc),line=Dialogue.describe(pages[i],context);novelCurrent={...sc,key,pages,index:i,context};const person=line.person||sc.person,portrait=person?Bonds.portrait(person,true):'',last=i===pages.length-1;
- return '<section class="novel-stage novel-'+(sc.background||'harbor')+'" aria-label="'+esc(sc.title)+'"><div class="novel-backdrop"></div><div class="novel-top"><div><small>水面の物語</small><h2>'+esc(sc.title)+'</h2></div>'+(sc.mandatory?'':btn('閉じる','novelExit','','novel-close'))+'</div><div class="novel-cast '+(line.person?'is-speaking':'is-listening')+'">'+portrait+(person?'<span>'+esc(person.name)+'</span>':'')+'</div><div class="novel-bottom"><div class="novel-tools">'+btn('前へ','novelPrev','','text-btn',i===0)+'<span>'+ (i+1)+' / '+pages.length+'</span>'+btn('履歴','novelHistory','','text-btn')+'</div><button type="button" class="novel-box speaker-'+line.kind+'" data-action="novelNext" aria-label="次の文章へ"><span class="novel-speaker">'+esc(line.speaker)+'</span><span class="novel-text" aria-live="polite">'+esc(line.text)+'</span><span class="novel-hint">'+(last?(sc.choices?.length?'返答を選んでください':'タップして読み終える'):'タップで次へ')+' ▾</span></button>'+(last&&sc.choices?.length?'<div class="novel-choices">'+sc.choices.map(ch=>btn('<b>'+esc(ch.label)+'</b>'+(ch.note?'<small>'+esc(ch.note)+'</small>':''),ch.action,ch.value,'novel-choice',!!ch.disabled)).join('')+'</div>':'')+'</div></section>';
+ return '<section class="novel-stage novel-'+(sc.background||'harbor')+'" aria-label="'+esc(sc.title)+'"><div class="novel-backdrop"></div><div class="novel-top"><div><small>水面の物語</small><h2>'+esc(sc.title)+'</h2></div>'+btn('閉じる','novelExit','','novel-close')+'</div><div class="novel-cast '+(line.person?'is-speaking':'is-listening')+'">'+portrait+(person?'<span>'+esc(person.name)+'</span>':'')+'</div><div class="novel-bottom"><div class="novel-tools">'+btn('前へ','novelPrev','','text-btn',i===0)+'<span>'+ (i+1)+' / '+pages.length+'</span>'+(sc.finish==='campaignFinish'?btn('章一覧','campaignChapters',ui.campaignPlayer,'text-btn'):'')+btn('履歴','novelHistory','','text-btn')+'</div><button type="button" class="novel-box speaker-'+line.kind+'" data-action="novelNext" aria-label="次の文章へ"><span class="novel-speaker">'+esc(line.speaker)+'</span><span class="novel-text" aria-live="polite">'+esc(line.text)+'</span><span class="novel-hint">'+(last?(sc.choices?.length?'返答を選んでください':'タップして読み終える'):'タップで次へ')+' ▾</span></button>'+(last&&sc.choices?.length?'<div class="novel-choices">'+sc.choices.map(ch=>btn('<b>'+esc(ch.label)+'</b>'+(ch.note?'<small>'+esc(ch.note)+'</small>':''),ch.action,ch.value,'novel-choice',!!ch.disabled)).join('')+'</div>':'')+'</div></section>';
 }
 function openNovel(sc){if(ui.page!=='novel')ui.novelBack=ui.page;ui.novelRegistry=sc.registry||null;ui.novel=sc;navigate('novel');}
+// Closing dismisses the reader. Only reading to the end may open a following scene.
+function endNovel(advance=false){
+ const sc=novelCurrent;if(!sc)return;const c=state.career,q=c&&Affinity.offer(c);
+ if(!advance&&q)q.deferred=true;
+ let page=ui.page==='novel'?ui.novelBack:ui.page;
+ if(sc.exit==='mentorBack')page='mentor';
+ if(sc.exit==='bondBack'||sc.exit==='requestTalk')page='bonds';
+ if(sc.exit==='campaignExit'||sc.finish==='campaignFinish'){page=ui.campaignPlayer===c?.player.id?'stories':'profile';if(page==='profile')ui.profileId=ui.campaignPlayer;}
+ if(!page||['novel','campaign'].includes(page))page=careerPage();
+ if(c&&page==='mentor')Cast.routeDepart(c);
+ if(c&&page==='bonds')Bonds.depart(c);
+ novelCurrent=null;ui.novel=null;ui.novelBack=null;ui.novelRegistry=null;ui.bondOutcome=null;ui.mentorOutcome=null;
+ ui.backStack=(ui.backStack||[]).filter(p=>!['novel','campaign'].includes(p));ui.page=page;
+ closeModal();save();ui.closingNovel=!advance;
+ const next=advance&&(sc.finish||sc.exit);if(next&&actions[next])actions[next]();else navigate(page);
+}
+function requestBeforeRace(){if(!ui.quick&&state.career&&Affinity.offer(state.career)){actions.requestTalk();return true;}return false;}
+
 function outcomeNovel(z,person,background='workshop'){if(!z)return;const source=novelCurrent;openNovel({key:'reply:'+(source?.key||state.career?.stats.races+':'+(z.title||'')+':'+(z.note||'').slice(0,15)),title:z.title||'交わした言葉',body:[z.note,...(z.failed?['この相手とのルートは終了しました。今回の育成では再開できません。']:[]),...(z.rewards?.length?[z.rewards.join(' / ')]:[])],person,background,exit:z.exit||source?.exit});}
 
 function affinityMeter(c,kind,id){const g=Affinity.gate(c,kind,id),label=g.unlocked?'最終話 解放済み':g.open?'好感度条件 達成':'最終話まで あと'+g.remaining;return '<div class="affinity-meter '+(g.open?'ready':'')+'"><div><span>好感度 <b>'+g.current+'</b><small> / 100</small></span><strong>'+label+'</strong></div><div class="affinity-track" role="meter" aria-label="好感度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+g.current+'"><i style="width:'+g.current+'%"></i><em style="left:'+g.required+'%" aria-hidden="true"></em></div>'+(Affinity.guidance(c,kind,id)?'<p class="affinity-guidance">'+esc(Affinity.guidance(c,kind,id))+'</p>':'')+'</div>';}
 function affinityName(q,c){return q.kind==='rival'?Development.rival(c).name:q.kind==='mentor'?Cast.map[q.id]?.name:Bonds.B.map[q.id]?.name;}
 function affinityChanges(c,z){return z.affinity?.length?'<div class="affinity-result" aria-label="好感度の変化">'+z.affinity.map(q=>'<div><span>'+esc(affinityName(q,c))+'<small>'+esc(q.reason)+'</small></span><b class="'+(q.delta<0?'down':'up')+'">'+(q.delta>=0?'＋':'')+q.delta+'<small>好感度 '+q.after+'</small></b></div>').join('')+'</div>':'';}
-function requestPanel(c){const q=Affinity.active(c);if(!q)return '';const h=Bonds.B.map[q.heroine];return '<aside class="relationship-promise">'+Bonds.portrait(h.id)+'<div><small>'+h.name+'との約束</small><b>'+(q.status==='offer'?'おねだりへの返事を待っています':'次の公式レースで '+q.target+'着以内')+'</b><span>'+(q.status==='offer'?'贈り物か着順のお願い':'有効完走で達成 · あと1走')+'</span></div>'+(q.status==='offer'?btn('返事する','requestTalk','','primary'):'')+'</aside>';}
+function requestPanel(c){const q=Affinity.active(c);if(!q)return '';const h=Bonds.B.map[q.heroine];return '<aside class="relationship-promise">'+Bonds.portrait(h.id)+'<div><small>'+h.name+'との約束</small><b>'+(q.status==='offer'?'おねだりへの返事を待っています':'次の公式レースで '+q.target+'着以内')+'</b><span>'+(q.status==='offer'?'出走前に返答してください':'有効完走で達成 · あと1走')+'</span></div>'+(q.status==='offer'?btn('返事する','requestTalk','','primary'):'')+'</aside>';}
 function requestNovel(c){const sc=Affinity.requestScene(c,Bonds.B.map);return sc?{...sc,mandatory:true,choices:sc.choices.map((ch,i)=>({...ch,note:ch.disabled?'所持賞金が足りません':'',action:'requestChoice',value:Affinity.offer(c).id+'|'+i}))}:null;}
 
 function developmentStrip(c){const t=Development.ensure(c),p=Development.plan(c),r=Development.rival(c),canPlan=!p&&!c.ending&&['home','seriesIntro','action','preRace'].includes(c.status)&&(!c.series||c.series.round===0);return '<section class="development-strip"><div class="development-person">'+Bonds.portrait(r)+'<div><small>ライバル</small><b>'+r.name+'</b><span>'+r.wins+'勝 '+r.losses+'敗 · '+D.stats[r.key]+'の使い手</span></div>'+btn('話す','mainRival','','secondary')+'</div>'+affinityMeter(c,'rival')+'<div class="development-links">'+btn('技の成長','development','','secondary')+(canPlan?btn('今節の約束を決める','planOpen','','primary'):p?'<span>'+chip(Development.plans[p.arc][p.choice].short,'teal')+(p.arc==='shore'?' '+p.progress+' / '+(p.choice?2:3):'')+'</span>':'')+'</div></section>';}
@@ -801,7 +819,7 @@ function bondsView(){const c=state.career;if(!c)return heading('RELATIONSHIPS','
  html+='</div>'+developmentStrip(c)+'<details class="bond-record"><summary>二人で選んだ道 · '+t.log.length+'件</summary>'+bondJournal(t,c.story?.rivals||[])+'</details>';return html;}
 
 function campaignPicker(p){const unlocked=Development.unlocks(state);return (unlocked.length?'<fieldset class="campaign-picker"><legend>受け継ぐ練習ノート</legend>'+btn('好スタートで始める','curriculum','', 'secondary')+unlocked.map(k=>btn(D.stats[k]+'の基礎技で始める','curriculum',k,'secondary'+(p.curriculum===k?' selected':''))).join('')+'</fieldset>':'')+'<p class="origin-random">物語の出発点はデビュー時に抽選されます。勝ち負けと選んだ言葉で、その先が変わります。</p>';}
-function campaignPanel(c){const t=Campaign.ensure(c),unread=t.entries.filter(e=>!e.read),a=t.version===2?Drama.B.arcs[t.arc]:Campaign.B.map[t.arc];return '<aside class="campaign-strip" style="--story-accent:'+(a.color||'#f6c888')+'"><div><small>MAIN STORY'+(unread.length?' · 未読 '+unread.length:'')+'</small><b>'+a.title+'</b><span>'+Campaign.scene(t,(unread[0]||t.entries.at(-1)).id).title+'</span></div>'+btn(unread.length?'続きを読む':'読み返す','campaign',c.player.id,'secondary')+'</aside>';}
+function campaignPanel(c){const t=Campaign.ensure(c),unread=t.entries.filter(e=>!e.read),a=t.version===2?Drama.B.arcs[t.arc]:Campaign.B.map[t.arc];return '<aside class="campaign-strip" style="--story-accent:'+(a.color||'#f6c888')+'"><div><small>MAIN STORY'+(unread.length?' · 未読 '+unread.length:'')+'</small><b>'+a.title+'</b><span>'+Campaign.scene(t,(unread[0]||t.entries.at(-1)).id).title+'</span></div>'+btn(unread.length?'続きを読む':'読み返す','campaign',c.player.id,'secondary')+btn('章一覧','campaignChapters',c.player.id,'text-btn')+'</aside>';}
 function campaignSource(){const c=state.career;if(c&&ui.campaignPlayer===c.player.id)return Campaign.ensure(c);return Profile.find(state,ui.campaignPlayer)?.campaignJournal||null;}
 function campaignView(){const t=campaignSource();if(!t)return heading('物語','記録はありません')+btn('戻る','return');const entry=t.entries.find(e=>e.id===ui.campaignEntry)||t.entries[0],sc=Campaign.scene(t,entry.id),p=Profile.find(state,ui.campaignPlayer),active=p===state.career?.player;ui.novelRegistry=active?null:p?.id;const next=Drama.pending(t)[0],can=active&&sc.choices?.length&&next===entry;return novelView({key:'campaign:'+ui.campaignPlayer+':'+entry.id,title:sc.title,person:Development.actors[t.arc],background:t.arc==='shore'?'harbor':'workshop',body:[...sc.body,...(active&&sc.choices?.length&&!can?['先に残っている章の返事を選ぶと、この章でも決断できます。']:[])],choices:can?sc.choices.map((label,i)=>({label,action:'campaignChoice',value:entry.id+'|'+i})):[],finish:'campaignFinish',exit:'campaignExit'});}
 
@@ -900,6 +918,7 @@ function helpView(){return heading('HOW TO PLAY','遊び方')+btn('戻る','retu
 function slotPanel(){return box('3つの保存枠',slotStore.list().map(x=>'<div class="slot-card"><b>枠'+x.id+' · '+(x.empty?'空き':x.broken?'読込不可':esc(x.name))+'</b><div class="button-row">'+btn('現在を保存','slotSave',x.id,'secondary')+btn('読み込む','slotLoad',x.id,'secondary',x.empty||x.broken)+'</div></div>').join('')+'<p class="small muted">各枠は登録選手を含む独立したスナップショット。端末外へ残すには枠を読み込み、JSONを書き出してください。</p>')+box('更新前・上書き前バックアップ',slotStore.archives().map((x,i)=>'<div class="slot-card">'+esc(x.reason)+' · '+esc(x.date.slice(0,16))+btn('復元','archiveLoad',i,'text-btn')+'</div>').join('')+'<p class="small muted">上書き前4件＋更新前専用1件。更新前は移行前のJSONを保持。復元後の走行は現行版の仕様になります。</p>');}
 function dataView(){return heading('SAVE DATA','設定・データ管理')+btn('戻る','return','','text-btn')+displayPanel()+presentationPanel()+'<details class="settings-section"><summary>セーブ枠・更新前のバックアップ</summary>'+slotPanel()+'</details>'+'<div class="two-column">'+box('保存とバックアップ','<p class="notice '+(safeStorage.persistent?'':'warn')+'">'+(safeStorage.persistent?'この環境では自動保存が使えます。':'この環境では永続保存が使えません。ページを閉じる前にJSONを書き出してください。')+'</p><p class="small">現在の選手・進行中のレース・登録選手・ショップ在庫をまとめて保存します。</p>'+btn(root.KM_IPHONE?'JSONを共有・保存':'JSONファイルを書き出す','export','','primary large')+btn('コピー用テキストを表示','exportText','','secondary large')+'<p class="micro muted">ブラウザやファイルの置き場所を変えると、別のセーブ領域になる場合があります。</p>')+box('バックアップを読み込む','<label class="field-label" for="import-file">JSONファイルを選択</label><input type="file" id="import-file" accept="application/json,.json"><label class="field-label" for="import-text">またはJSONを貼り付け</label><textarea id="import-text" rows="6" spellcheck="false" placeholder="v80 / v70.1のセーブJSON"></textarea>'+btn('内容を確認して読み込む','import','','secondary large')+'<p class="small muted">読み込み時は現在の進行を置き換えます。v70.1のセーブも引き継げます。旧版の未完了レースはスタート地点から再開します。</p>')+'</div>';}
 function runWithoutDriving(){
+  if(requestBeforeRace())return;
   if(R.requiresManual(currentRace())){toast('決勝・準優勝戦は自分で操船します。');return;}
   if(driveController){driveController.destroy();driveController=null;}
   const r=prepareSpectator(state,ui.quick);if(!r)return;
@@ -907,7 +926,7 @@ function runWithoutDriving(){
   save();navigate('race');
 }
 function runInstant(){
- if(ui.resolving)return;if(ui.page==='preRace')ui.quick=false;const source=currentRace();if(!source||R.requiresManual(source)){toast('決勝・準優勝戦はスキップできません。');return;}
+ if(ui.resolving)return;if(ui.page==='preRace')ui.quick=false;if(requestBeforeRace())return;const source=currentRace();if(!source||R.requiresManual(source)){toast('決勝・準優勝戦はスキップできません。');return;}
  stopAuto();root.KM_PRESENTATION?.scene('race');if(driveController){driveController.destroy();driveController=null;}const r=prepareSkip(state,ui.quick);if(!r)return;
  if(r.done){save();navigate(ui.quick?'quickResult':'raceResult');return;}ui.resolving=true;save();
  app.innerHTML='<section class="skip-resolving" role="status"><span class="skip-orbit">↻</span><h2>3周の結果を計算中</h2><p>操船と同じ水面・能力・機材で進めています。</p></section>';
@@ -918,21 +937,22 @@ function runInstant(){
 function audioSceneInfo(){const c=state.career,r=ui.page==='race'?currentRace():null;return {stage:c?.stage,activeCareer:!!c,grade:r?.grade,type:r?.type,heroine:!!(c&&(ui.page==='novel'&&Bonds.B.map[ui.novel?.person?.id]||ui.page==='bonds'&&(c.bonds?.pending||ui.bondOutcome?.kind==='romance')||['action','preRace'].includes(ui.page)&&c.bonds?.reward?.raceId===c.series?.race?.id&&c.bonds?.reward))};}
 function syncAudioScene(){root.KM_AUDIO?.scene(ui.page,ui.page==='race'?currentRace()?.drive:null,audioSceneInfo());}
 function render(){
+  const closingNovel=!!ui.closingNovel;ui.closingNovel=false;
   novelCurrent=null;
   if(driveController){driveController.destroy();driveController=null;}
   const rid=++renderId;clearTimeout(cutinTimer);if(animationFrame)cancelAnimationFrame(animationFrame);
   let content='';const c=state.career;
   if(!c&&['home','seriesIntro','action','preRace','raceResult','seriesResult','shop','registration'].includes(ui.page))ui.page='title';
-  if(c&&!c.ending&&Affinity.offer(c)&&!['title','new','novel','data','catalog','registry','rivals','exhibition','quickResult','race'].includes(ui.page)){ui.novelBack=ui.page;ui.novel=requestNovel(c);ui.page='novel';}
+  if(c&&!c.ending&&Affinity.offer(c)&&!Affinity.offer(c).deferred&&!['title','new','novel','data','catalog','registry','rivals','exhibition','quickResult','race'].includes(ui.page)){ui.novelBack=ui.page;ui.novel=requestNovel(c);ui.page='novel';}
   switch(ui.page){case'title':content=titleView();break;case'new':content=newView();break;case'home':content=homeView();break;case'seriesIntro':content=seriesIntro();break;case'action':content=actionView();break;case'preRace':content=preView();break;case'race':content=raceView();break;case'raceResult':content=resultView();break;case'seriesResult':content=seriesResultView();break;case'shop':content=shopView();break;case'catalog':content=catalogView();break;case'registry':content=registryView();break;case'rivals':content=registryView(true);break;case'exhibition':content=exhibitionView();break;case'quickResult':content=quickResultView();break;case'help':content=helpView();break;case'data':content=dataView();break;case'profile':content=profileView();break;case'stories':content=storiesView();break;case'campaign':content=campaignView();break;case'novel':content=novelView(ui.novel);break;case'development':content=developmentView();break;case'bonds':content=bondsView();break;case'mentor':content=mentorView();break;case'registration':content=c.history.length?seriesResultView():heading('CAREER COMPLETE','今回の育成を登録する')+box('登録前ラストショップ',shopStock(c,true))+btn('選手を登録する','register','','primary large');break;default:content=titleView();}
   document.body.classList.toggle('large-type',state.settings.textSize==='large');document.body.classList.toggle('high-contrast',state.settings.contrast==='high');
   if(c&&['home','seriesIntro','action','preRace','raceResult','seriesResult','stories','bonds','mentor','development'].includes(ui.page)&&!content.includes('class="novel-stage'))content=opportunityTray(c)+content;
-  const reading=content.includes('class="novel-stage');document.body.classList.toggle('reading-novel',reading);
+  const reading=content.includes('class="novel-stage');if(c&&!reading&&Affinity.offer(c)?.deferred&&!['title','new','action','preRace','bonds','race','exhibition','quickResult','catalog','registry','rivals'].includes(ui.page))content=requestPanel(c)+content;document.body.classList.toggle('reading-novel',reading);
   app.innerHTML=content+(reading?'':(['title','race'].includes(ui.page)?'':footer())+(['home','seriesIntro','action','preRace','raceResult','seriesResult','profile','stories','campaign','bonds','mentor','shop','data','catalog','registry'].includes(ui.page)?nav():''));
   syncAudioScene();
   document.body.classList.toggle('in-race',ui.page==='race'&&!currentRace()?.watch);
   if(ui.page==='race'&&currentRace()?.drive&&!currentRace().watch)driveController=root.KM_DRIVE_UI.mount(currentRace(),state.settings,{save,skip:runWithoutDriving,finish(){completeDrive(state,ui.quick);save();},exit(){navigate('title');}});
-  root.KM_PRESENTATION?.scene(ui.page);if(!reading){playResultPresentation(c);playStoryPresentation(c);}
+  root.KM_PRESENTATION?.scene(ui.page);if(!reading&&!closingNovel){playResultPresentation(c);playStoryPresentation(c);}
   if(ui.page==='action'){const notice=takeExtraNotice(c.series.action);if(notice){save();toast(notice);}}
   if(ui.page==='race'&&currentRace()?.watch){animateTrack(rid);queueCutins(currentRace().cutins.slice(),rid);const log=document.querySelector('.spectator-log');if(log)log.scrollTop=log.scrollHeight;}
 }
@@ -986,12 +1006,13 @@ const actions105={
  campaignChoice(v){const sep=v.lastIndexOf('|'),c=state.career,z=Drama.choose(c,v.slice(0,sep),Number(v.slice(sep+1)),E);if(z){syncPlayerSnapshot(c);save();outcomeNovel(z,Development.actors[c.campaign.arc]);}},
 
  finalTalk(){const c=state.career,r=c?.series?.race;if(!r||r.type==='qualifier')return;const scene=Finale.finalScene(c);if(scene){openNovel(scene);return;}const f=Development.brief(c,r),person=r.castDuel?Cast.map[r.castDuel.castId]:r.runners.find(n=>n.id===f.opponentId);openNovel({key:'final:'+r.id,title:'水面に出る前に',person,background:'workshop',body:[f.opponent+'が、艇の準備を終えた。','主人公「'+f.weapon+'を使う所、映像で見てきた。簡単には先へ出さないつもりだ」',f.opponent+'「対策したなら、試してみてくれ。こっちも同じ走りとは限らない」',f.skill?'主人公「'+ability(f.skill).name+'も練習してきた。使う場所を選んで競る」':'主人公「まず、自分が準備した動きを使う。最初から無理に全部合わせるつもりはない」',f.tactic,'主人公「終わったら、今日の映像を見せてほしい。勝っても負けても、確認したいから」']});},
- novelNext(){const sc=novelCurrent;if(!sc)return;const book=readerBook();if(sc.index<sc.pages.length-1){Dialogue.remember(book,sc.key,sc.index+1);save();render();}else if(!sc.choices?.length){if(sc.finish)actions[sc.finish]();else actions.novelExit();}},
+ novelNext(){const sc=novelCurrent;if(!sc)return;const book=readerBook();if(sc.index<sc.pages.length-1){Dialogue.remember(book,sc.key,sc.index+1);save();render();}else if(!sc.choices?.length)endNovel(true);},
  novelPrev(){const sc=novelCurrent;if(!sc)return;Dialogue.remember(readerBook(),sc.key,Math.max(0,sc.index-1));save();render();},
  novelHistory(){const sc=novelCurrent;if(sc)openModal('会話の履歴',sc.pages.slice(0,sc.index+1).map(p=>{const q=Dialogue.describe(p,sc.context);return '<p class="novel-log"><b>'+esc(q.speaker)+'</b><span>'+esc(q.text)+'</span></p>';}).join(''));},
- novelExit(){const sc=novelCurrent;if(!sc||sc.mandatory&&Affinity.offer(state.career))return;const page=ui.page==='novel'&&ui.novelBack&&ui.novelBack!=='novel'?ui.novelBack:careerPage();novelCurrent=null;ui.novel=null;ui.novelBack=null;ui.novelRegistry=null;ui.bondOutcome=null;ui.mentorOutcome=null;if(ui.page==='novel')ui.page=page;if(sc.exit&&actions[sc.exit])actions[sc.exit]();else navigate(page);},
+ novelExit(){endNovel(false);},
  campaignFinish(){const t=campaignSource();if(t){Campaign.mark(t,ui.campaignEntry);save();}actions.campaignExit();},
- campaignExit(){const t=campaignSource();ui.novelRegistry=null;ui.novel=null;ui.page='stories';if(ui.campaignPlayer!==state.career?.player.id){ui.profileId=ui.campaignPlayer;ui.page='profile';}render();if(t)openModal('物語の章',t.entries.map(e=>btn((e.read?'既読 · ':'未読 · ')+esc(Campaign.scene(t,e.id).title),'openChapter',e.id,'secondary large')).join(''));},
+ campaignExit(){const t=campaignSource();ui.novelRegistry=null;ui.novel=null;ui.page='stories';if(ui.campaignPlayer!==state.career?.player.id){ui.profileId=ui.campaignPlayer;ui.page='profile';}render();},
+ campaignChapters(id){if(id)ui.campaignPlayer=id;const t=campaignSource();if(t)openModal('物語の章',t.entries.map(e=>btn((e.read?'既読 · ':'未読 · ')+esc(Campaign.scene(t,e.id).title),'openChapter',e.id,'secondary large')).join(''));},
  openChapter(id){closeModal();ui.campaignEntry=id;navigate('campaign');},
  recordRead(id){const sc=ui.sceneRecords?.[id];if(sc)openNovel(sc);}
 };
@@ -1038,7 +1059,7 @@ const actions={
   backAction(){if(state.career&&state.career.status==='preRace'){state.career.status='action';refreshCareer();}},
   tilt(v){const angle=Number(v);if([-.5,0,.5,1.5,3].includes(angle)&&state.career.status==='preRace'){state.career.series.race.tilt=angle;save();render();}},
   strategy(v){if(['balanced','attack','safe'].includes(v)&&state.career.status==='preRace'){state.career.series.race.strategy=v;save();render();}},
-  start(){if(state.career.status!=='preRace')return;ui.quick=false;takeControl(state,false);save();navigate('race');},
+  start(){if(state.career.status!=='preRace')return;ui.quick=false;if(requestBeforeRace()||!takeControl(state,false))return;save();navigate('race');},
   skipRace(){ui.quick=false;runWithoutDriving();},
   advance(){doAdvance();},choice(v){if(!ui.auto&&D.choices[currentRace().phase+1]?.some(o=>o.id===v))doAdvance(v);},
   auto(){if(currentRace().done)return;ui.auto=!ui.auto;if(ui.auto){render();scheduleAuto();}else{stopAuto();render();}},
