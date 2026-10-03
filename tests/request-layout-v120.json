@@ -1,0 +1,44 @@
+[
+  {
+    "id": "akari",
+    "width": 320,
+    "height": 568,
+    "large": true,
+    "bottom": 543.359375
+  },
+  {
+    "id": "mio",
+    "width": 320,
+    "height": 568,
+    "large": true,
+    "bottom": 564.359375
+  },
+  {
+    "id": "nagi",
+    "width": 320,
+    "height": 568,
+    "large": true,
+    "bottom": 543.359375
+  },
+  {
+    "id": "kanade",
+    "width": 320,
+    "height": 568,
+    "large": true,
+    "bottom": 564.359375
+  },
+  {
+    "id": "tsumugi",
+    "width": 320,
+    "height": 568,
+    "large": true,
+    "bottom": 543.359375
+  },
+  {
+    "id": "mizuki",
+    "width": 320,
+    "height": 568,
+    "large": true,
+    "bottom": 512.359375
+  }
+]

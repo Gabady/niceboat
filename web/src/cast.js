@@ -26,9 +26,20 @@ const retired=walls.splice(walls.findIndex(x=>x.id==='raiden'),1);
 const all=[...mentors,...walls,...retired],map=Object.fromEntries(all.map(x=>[x.id,x]));
 function ensure(c){if(!c.cast)c.cast={version:1,mentor:null,boss:null,mentorLocked:false,stages:[],schedule:null,duels:[],trained:0};return c.cast;}
 function record(id){return {id,wins:0,losses:0};}
-function select(c,id){const t=ensure(c);if(c.stage<2||t.mentorLocked||c.status!=='seriesIntro'||!mentors.some(x=>x.id===id))return false;t.mentor=record(id);t.route=null;A.ensure(c);return true;}
+// Selection is automatic and stable for the whole career, including reloads.
+function select(){return false;}
+function mentorPool(c){const Dev=root.KM_DEVELOPMENT||(typeof require==='function'?require('./development.js'):null);return mentors.filter(m=>m.key!==Dev.rival(c).key);}
+function assignMentor(c){
+ const t=ensure(c);if(c.stage<2)return t.mentor;
+ const pool=mentorPool(c);
+ // Preserve established relationships in imported saves. An unstarted assignment can be corrected.
+ if(!t.mentor||!t.mentorLocked&&!t.route?.step&&!t.route?.pending&&!pool.some(m=>m.id===t.mentor.id)){
+  t.mentor=record(pool[S.hash(c.player.id+':mentor120')%pool.length].id);t.route=null;
+ }
+ return t.mentor;
+}
 function setup(c){
- const t=ensure(c);if(c.stage>=2&&!t.mentor)t.mentor=record(mentors[S.hash(c.player.id+':mentor')%5].id);
+ const t=ensure(c);assignMentor(c);
  if(c.stage===8&&!t.boss)t.boss=record(walls[S.hash(c.player.id+':wall')%walls.length].id);
  A.ensure(c);if(t.stages.includes(c.stage))return;t.stages.push(c.stage);t.schedule=null;
  if(c.stage>=6&&c.stage<=7&&S.hash(c.player.id+':challenge:'+c.stage)%100<48){let round=3;if(c.story?.duel?.round===round)round=2;t.schedule={kind:'mentor',round};}
@@ -114,6 +125,5 @@ function valid(t){const count=v=>Number.isInteger(v)&&v>=0&&v<=60,entry=(v,list)
 }
 function portrait(id,large=false){const p=map[id];if(!p)return '';const P=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);return P?P.render({...p,role:'cast'},large):'';}
 
-const API={routeEpisode,loadouts,routes,routeState,routeGate,routeReward,routeOpen,routeScene,routeChoose,routeDepart,validRoute,mentors,walls,retired,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
+const API={mentorPool,assignMentor,routeEpisode,loadouts,routes,routeState,routeGate,routeReward,routeOpen,routeScene,routeChoose,routeDepart,validRoute,mentors,walls,retired,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
-

@@ -159,6 +159,21 @@
     "bytes": 58054,
     "sha256": "bed49eb69be39ab41ac589000daf81d4bc755c62dab56a95595d06907eab9bc4"
   },
+  "449b36e6db9f3ca550fa.png": {
+    "mime": "image/png",
+    "bytes": 2272418,
+    "sha256": "449b36e6db9f3ca550fa8592e9a89495192e0b23ba7f55d796f147fc3790e6cb"
+  },
+  "1befd95c4d89c084cf4d.png": {
+    "mime": "image/png",
+    "bytes": 2249110,
+    "sha256": "1befd95c4d89c084cf4d66b5ef3899cf2df774b248d256f796b1e932b2eb493c"
+  },
+  "d834d0161be8f3a8324c.png": {
+    "mime": "image/png",
+    "bytes": 2387424,
+    "sha256": "d834d0161be8f3a8324c748bfbf90efd3cbd99809774470259eecdf0a645693a"
+  },
   "9d56a498e861ae398a80.webp": {
     "mime": "image/webp",
     "bytes": 193470,

@@ -1,3 +1,15 @@
+# V120 素材について
+
+既存51素材はそのまま保持し、篠原・なつ・陸の専用肖像を追加しました。架空の人物をbuilt-in image_genで生成し、編集せず組み込んでいます。完全なプロンプトは `tools/portrait-prompts-v120.json` に収録しています。
+
+| 人物ID | 素材パス |
+|---|---|
+| shinohara | `web/assets/449b36e6db9f3ca550fa.png` |
+| natsu | `web/assets/1befd95c4d89c084cf4d.png` |
+| riku | `web/assets/d834d0161be8f3a8324c.png` |
+
+以下は旧版の素材記録です。
+
 # V119 素材について
 
 V118の画像・音源をそのまま使用しています。今回の新規素材生成はありません。

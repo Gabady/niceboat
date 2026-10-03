@@ -1,0 +1,17 @@
+{
+  "mode": "built-in image_gen",
+  "portraits": [
+    {
+      "id": "shinohara",
+      "prompt": "Use case: photorealistic-natural. Asset: ONE square character portrait for a Japanese boat-racing visual novel. Create a fictional person: 篠原, male Japanese veteran boat mechanic, around 58, lean oval face, silver side-parted medium-short hair, clean shaven, thin rectangular reading glasses, thoughtful kind gaze, beige canvas mechanic work shirt with blue undershirt, hints of blurred boat workshop behind him. Distinct from a broad stocky buzzcut mechanic. Natural cinematic photographic realism, chest-up centered framing, entire head with margin, portrait fits a square 1:1 thumbnail. Soft coastal daylight, subdued blue harbor palette, detailed real skin, shallow depth of field. Exactly one person. No letters, labels, text, logos, watermark or border. This must be a distinct individual, not a collage."
+    },
+    {
+      "id": "natsu",
+      "prompt": "Use case: photorealistic-natural. Asset: ONE square character portrait for a Japanese boat-racing visual novel. Create a fictional person: なつ, female Japanese hometown race supporter, around 27, bright attentive eyes, short dark brown bob, warm small smile, mustard cardigan over plain white T shirt, gently blurred harbor spectator walkway behind her. Everyday person, no uniform. Natural cinematic photographic realism, chest-up centered framing, entire head with margin, portrait fits a square 1:1 thumbnail. Soft coastal daylight, subdued blue harbor palette, detailed real skin, shallow depth of field. Exactly one person. No letters, labels, text, logos, watermark or border. This must be a distinct individual, not a collage."
+    },
+    {
+      "id": "riku",
+      "prompt": "Use case: photorealistic-natural. Asset: ONE square character portrait for a Japanese boat-racing visual novel. Create a fictional person: 陸, Japanese schoolboy about 11 years old, short straight black hair, curious earnest eyes, innocent restrained smile, green hoodie, gently blurred harbor-side family diner behind him. Natural ordinary child portrait, fully clothed, no accessories. Natural cinematic photographic realism, chest-up centered framing, entire head with margin, portrait fits a square 1:1 thumbnail. Soft coastal daylight, subdued blue harbor palette, detailed real skin, shallow depth of field. Exactly one person. No letters, labels, text, logos, watermark or border. This must be a distinct individual, not a collage."
+    }
+  ]
+}

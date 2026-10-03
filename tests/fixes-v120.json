@@ -1,0 +1,149 @@
+{
+  "checks": [
+    "5種のライバル × 残る4師匠に抽選が分散し、再表示・再読込で固定",
+    "旧セーブは未交流の重複だけ解消し、始まった師弟関係の記録は保持",
+    "B65・A80・S90からだけ成長を抑え、獲得済み数値を減らさない",
+    "直線の効率は連続・単調。加速とフィジカル両方の不足に段階的に反応",
+    "ライバル・師匠・主要脇役のIDは古いportraitKeyより優先する",
+    "話者は完全名・明示した別名のみ。曖昧な姓や未知の発話に別人を当てない",
+    "ブイ沿いに進んだ距離の欠落を旧エンジンで再現し、新版は保持",
+    "内外ブイに触れ続けても3周目の艇首通過で確定。2周・逆走・位置飛躍で短縮不可",
+    "旧版の途中レースはリプレイ位置から距離を復元し、再移行と確定結果に副作用なし",
+    "強敵報酬・恋愛条件・本文・能力配布の処理はV119を維持"
+  ],
+  "mentorPairs": {
+    "speed:power": 26,
+    "speed:turn": 26,
+    "speed:start": 24,
+    "speed:accel": 24,
+    "turn:power": 26,
+    "turn:speed": 26,
+    "turn:start": 24,
+    "turn:accel": 24,
+    "start:power": 26,
+    "start:speed": 26,
+    "start:turn": 24,
+    "start:accel": 24,
+    "accel:power": 26,
+    "accel:speed": 26,
+    "accel:turn": 24,
+    "accel:start": 24,
+    "power:accel": 26,
+    "power:speed": 26,
+    "power:turn": 24,
+    "power:start": 24
+  },
+  "support": [
+    {
+      "speed": 100,
+      "accel": 20,
+      "power": 20,
+      "effective": 62,
+      "support": 20,
+      "gap": 65,
+      "loss": 38
+    },
+    {
+      "speed": 100,
+      "accel": 35,
+      "power": 35,
+      "effective": 74,
+      "support": 35,
+      "gap": 50,
+      "loss": 26
+    },
+    {
+      "speed": 100,
+      "accel": 50,
+      "power": 50,
+      "effective": 86,
+      "support": 50,
+      "gap": 35,
+      "loss": 14
+    },
+    {
+      "speed": 100,
+      "accel": 65,
+      "power": 65,
+      "effective": 94.25,
+      "support": 65,
+      "gap": 20,
+      "loss": 5.75
+    },
+    {
+      "speed": 100,
+      "accel": 85,
+      "power": 85,
+      "effective": 100,
+      "support": 85,
+      "gap": 0,
+      "loss": 0
+    },
+    {
+      "speed": 100,
+      "accel": 100,
+      "power": 100,
+      "effective": 100,
+      "support": 100,
+      "gap": 0,
+      "loss": 0
+    }
+  ],
+  "growth": [
+    {
+      "value": 34,
+      "before": 1,
+      "after": 1
+    },
+    {
+      "value": 35,
+      "before": 0.9,
+      "after": 0.9
+    },
+    {
+      "value": 50,
+      "before": 0.8,
+      "after": 0.8
+    },
+    {
+      "value": 64.99,
+      "before": 0.8,
+      "after": 0.8
+    },
+    {
+      "value": 65,
+      "before": 0.7,
+      "after": 0.6
+    },
+    {
+      "value": 79.99,
+      "before": 0.7,
+      "after": 0.6
+    },
+    {
+      "value": 80,
+      "before": 0.5,
+      "after": 0.4
+    },
+    {
+      "value": 89.99,
+      "before": 0.5,
+      "after": 0.4
+    },
+    {
+      "value": 90,
+      "before": 0.2,
+      "after": 0.16
+    },
+    {
+      "value": 100,
+      "before": 0.2,
+      "after": 0.16
+    }
+  ],
+  "lapBug": {
+    "physicalAdvance": 0.25027145171884513,
+    "oldCounted": 0,
+    "newCounted": 0.25027145171884513
+  }
+}

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#071b2a">
   <meta name="description" content="選手を育て、五つの水面を駆ける。スマホで遊ぶ育成と一人称の操作型ボートレース『競艇物語』。">
-  <title>競艇物語 V119</title>
+  <title>競艇物語 V120</title>
   <style>
 /* 競艇物語 — Deep water, race-white numerals, signal amber. */
 :root {
@@ -2797,7 +2797,7 @@ body.high-contrast .bond-card,body.high-contrast .bond-scene{background:#102a3e;
 .craft-card summary,.craft-review summary,.craft-opponents summary{color:#244d52}.craft-card h3{color:#183e40}.craft-review details{border-color:#c8d6ce}
 
 
-/* V119 scenario synopses */
+/* V120 scenario synopses */
 .scenario-overview{margin:16px 0 24px}.scenario-selection{padding:12px 14px;border-left:3px solid #4cd5bf;background:#112f39;line-height:1.65;color:#ecfff9}.scenario-cards{display:grid;grid-template-columns:1fr;gap:14px}.scenario-card{padding:18px;border:1px solid #577077;border-radius:12px;background:#f2f5ed;color:#153b40}.scenario-card.selected{border:2px solid #1f8c79;padding:17px;box-shadow:0 0 0 2px #57d6bc33}.scenario-card .eyebrow{color:#28685f}.scenario-card h3{margin:7px 0 12px;line-height:1.5;font-size:19px}.scenario-card p{line-height:1.85;margin:10px 0}.scenario-card dl{margin:12px 0;font-size:13px;line-height:1.8}.scenario-card dt{font-weight:800;margin-top:8px;color:#246558}.scenario-card dd{margin:2px 0 0}.scenario-card .scenario-reading{font-size:12px;color:#45615e}.scenario-card button{width:100%;margin-top:8px;white-space:normal}.scenario-card.selected button{background:#146957;color:#fff;border-color:#146957}.scenario-card .secondary{min-height:44px}.scenario-selection:focus{outline-offset:3px}
 
 /* Keep final-page replies visible as scenes grow longer. */
@@ -2810,6 +2810,28 @@ body.high-contrast .bond-card,body.high-contrast .bond-scene{background:#102a3e;
 
 .scenario-card button{color:#f4fff9;background:#173c4a;border:1px solid #567979;border-radius:9px;padding:12px;font:inherit;cursor:pointer}
 @media(min-width:760px){.scenario-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.scenario-card{display:flex;flex-direction:column}.scenario-card button{margin-top:auto}}
+/* V120: reserve the reply area first; the portrait uses the remaining height. */
+.reading-novel .novel-stage{height:100svh;height:100dvh;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}
+.reading-novel .novel-top{padding:calc(max(12px,env(safe-area-inset-top)) + 62px) 16px 6px;gap:8px}
+.reading-novel .novel-top h2{font-size:clamp(17px,4.5vw,23px);line-height:1.3;margin:4px 0}
+.reading-novel .novel-top small{font-size:10px;letter-spacing:.12em}
+.reading-novel .novel-cast{display:flex;min-height:0;height:100%;padding:0 16px;overflow:hidden;align-items:flex-end}
+.reading-novel .novel-cast .portrait-face{height:100%!important;width:auto;max-height:min(37dvh,340px);max-width:72vw;aspect-ratio:1;flex-shrink:1;object-fit:cover}
+.reading-novel .novel-cast>span{left:50%;transform:translateX(-50%);bottom:4px;white-space:nowrap;font-size:12px;padding:4px 12px}
+.reading-novel .novel-bottom{padding:0 12px max(10px,env(safe-area-inset-bottom));max-height:calc(100dvh - 122px - env(safe-area-inset-top));overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.reading-novel .novel-tools{padding:0 4px;font-size:11px}.reading-novel .novel-tools .btn{min-height:40px;padding:8px 12px}
+.reading-novel .novel-box{min-height:0;padding:12px 15px 26px;border-radius:3px 3px 12px 12px}
+.reading-novel .novel-speaker{font-size:12px;margin-bottom:6px;line-height:1.3}
+.reading-novel .novel-text{font-size:clamp(16px,4.1vw,19px);line-height:1.65;letter-spacing:0}
+.reading-novel .novel-hint{bottom:7px;font-size:10px}
+.reading-novel .novel-choices{gap:6px;margin-top:8px}
+.reading-novel .novel-choice{min-height:46px;padding:9px 13px;font-size:14px;line-height:1.4}
+.reading-novel .novel-choice small{font-size:12px;line-height:1.4;margin-top:3px}
+.reading-novel .has-choices .novel-cast .portrait-face{max-height:min(16dvh,120px);max-width:34vw}
+.reading-novel.large-type .novel-text{font-size:21px;line-height:1.6}
+@media(min-width:700px){.reading-novel .novel-bottom{padding-left:40px;padding-right:40px}.reading-novel .novel-box{padding:16px 22px 28px}}
+@media(max-height:650px){.reading-novel .has-choices .novel-cast{display:none}.reading-novel .novel-top{padding-top:calc(max(10px,env(safe-area-inset-top)) + 56px)}.reading-novel .novel-top small{display:none}.reading-novel .novel-bottom{max-height:calc(100dvh - 103px - env(safe-area-inset-top));padding-bottom:max(6px,env(safe-area-inset-bottom))}.reading-novel.large-type .has-choices .novel-text{font-size:20px;line-height:1.55}.reading-novel .has-choices .novel-choice{padding-top:8px;padding-bottom:8px}}
+
 </style>
   
   
@@ -2817,7 +2839,7 @@ body.high-contrast .bond-card,body.high-contrast .bond-scene{background:#102a3e;
 
 </head>
 <body>
-  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v119</span></header>
+  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v120</span></header>
   <main id="app" tabindex="-1"><p class="loading">水面を準備しています…</p></main>
   <div id="toast" role="status" aria-live="polite"></div>
   <div id="modal" class="modal-root" hidden></div>

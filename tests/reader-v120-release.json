@@ -1,0 +1,98 @@
+{
+  "layouts": [
+    {
+      "width": 320,
+      "height": 568,
+      "large": false,
+      "allChoicesVisible": true
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "large": true,
+      "allChoicesVisible": true
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "large": false,
+      "allChoicesVisible": true
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "large": true,
+      "allChoicesVisible": true
+    },
+    {
+      "width": 360,
+      "height": 740,
+      "large": false,
+      "allChoicesVisible": true
+    },
+    {
+      "width": 360,
+      "height": 740,
+      "large": true,
+      "allChoicesVisible": true
+    },
+    {
+      "width": 393,
+      "height": 852,
+      "large": false,
+      "allChoicesVisible": true
+    },
+    {
+      "width": 393,
+      "height": 852,
+      "large": true,
+      "allChoicesVisible": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "large": false,
+      "allChoicesVisible": true
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "large": true,
+      "allChoicesVisible": true
+    }
+  ],
+  "interactions": [
+    "背景・人物・本文で一回ずつ進行",
+    "スワイプで進行しない",
+    "履歴・音量・前へは本文タップに波及しない",
+    "閉じると再開のしおりを維持",
+    "返答待ちの背景タップは選ばず、返答を一度だけ反映"
+  ],
+  "faces": [
+    {
+      "speaker": "陸",
+      "key": "riku"
+    },
+    {
+      "speaker": "見知らぬ客",
+      "key": null
+    },
+    {
+      "speaker": "紗枝",
+      "key": "rival_12"
+    },
+    {
+      "speaker": "相馬",
+      "key": "rival_03"
+    },
+    {
+      "speaker": "整備士 篠原",
+      "key": "shinohara"
+    },
+    {
+      "speaker": "なつ",
+      "key": "natsu"
+    }
+  ],
+  "errors": []
+}
