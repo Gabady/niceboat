@@ -608,12 +608,12 @@ function decode(text){if(typeof text!=='string'||text.length>5000000)throw new E
   const act=s.career?.series?.action;
   if(act&&!act.halfActions){act.halfActions={};for(const k of ['training','tune'])act.halfActions[k]=Math.max(0,act[k]-(s.career.series.race?.usedItems?.[k]?1:0));}
   oldRaces.forEach(r=>{if(!('tilt' in r))r.tilt=R.tiltValue(r);if(r.prepVersion!==87){if(!r.drive&&r.phase<0)r.buff=zeros();r.prepVersion=87;}});
-  if(!['88','89','90','91','92','93','94','95','96','97','98','99','100','101','102','103','104','105','106','107','108','109',D.build].includes(s.build)){
+  if(!['88','89','90','91','92','93','94','95','96','97','98','99','100','101','102','103','104','105','106','107','108','109','110','111',D.build].includes(s.build)){
    const players=[s.career?.player,...(s.registry||[]),...(s.rivals||[]),...(s.career?.series?.npcs||[]),...oldRaces.flatMap(r=>r.runners||[])].filter(Boolean);
    for(const p of players)if(p.adjust){for(const part of ['motor','prop'])p.adjust[part+'Success']=Math.min(70,p.adjust[part+'Success']);}
    s.build='88';s.migrationNotice='v88へ移行。基礎能力・賞金・走行位置を維持。整備の基礎成功率は上限70%に調整。進行中の行動残数は保持し、次走から練習1回＋調整1回。';
   }
-  if(s.build!==D.build){s.build=D.build;s.migrationNotice='v110へ更新しました。成長とティルトを調整しました。能力・好感度・選択結果・途中レースを引き継ぎます。';}
+  if(s.build!==D.build){s.build=D.build;s.migrationNotice='v112へ更新しました。会話の画面遷移と艇番表示を修正し、船体とブイの描画を更新しました。育成とレースの続きから遊べます。';}
   if(!validState(s))throw new Error('対応するセーブ形式ではないか、データが破損しています。');
   if(s.career){Affinity.ensure(s.career);Finale.ensure(s.career);Development.ensure(s.career);Bonds.ensure(s.career);if(s.career.campaign)Campaign.ensure(s.career);if(!s.career.campaign){Campaign.ensure(s.career);const z=s.career.history.at(-1);if(z&&z.stage===s.career.stage)Campaign.capture(s.career,z);}}
   oldRaces.forEach(r=>{if(r.watch&&!r.drive&&!r.done){startDrive(s.career&&s.career.series&&s.career.series.race===r?s.career:s,r);syncSpectator(r);}});
@@ -718,8 +718,8 @@ function novelContext(sc){const archived=ui.novelRegistry?Profile.find(state,ui.
 function novelView(sc){const pages=Dialogue.pages(sc.body),book=readerBook(),key=Dialogue.bookmark(sc.key),i=Dialogue.cursor(book,key,pages.length),context=novelContext(sc),line=Dialogue.describe(pages[i],context);novelCurrent={...sc,key,pages,index:i,context};const person=line.person||sc.person,portrait=person?Bonds.portrait(person,true):'',last=i===pages.length-1;
  return '<section class="novel-stage novel-'+(sc.background||'harbor')+'" aria-label="'+esc(sc.title)+'"><div class="novel-backdrop"></div><div class="novel-top"><div><small>水面の物語</small><h2>'+esc(sc.title)+'</h2></div>'+(sc.mandatory?'':btn('閉じる','novelExit','','novel-close'))+'</div><div class="novel-cast '+(line.person?'is-speaking':'is-listening')+'">'+portrait+(person?'<span>'+esc(person.name)+'</span>':'')+'</div><div class="novel-bottom"><div class="novel-tools">'+btn('前へ','novelPrev','','text-btn',i===0)+'<span>'+ (i+1)+' / '+pages.length+'</span>'+btn('履歴','novelHistory','','text-btn')+'</div><button type="button" class="novel-box speaker-'+line.kind+'" data-action="novelNext" aria-label="次の文章へ"><span class="novel-speaker">'+esc(line.speaker)+'</span><span class="novel-text" aria-live="polite">'+esc(line.text)+'</span><span class="novel-hint">'+(last?(sc.choices?.length?'返答を選んでください':'タップして読み終える'):'タップで次へ')+' ▾</span></button>'+(last&&sc.choices?.length?'<div class="novel-choices">'+sc.choices.map(ch=>btn('<b>'+esc(ch.label)+'</b>'+(ch.note?'<small>'+esc(ch.note)+'</small>':''),ch.action,ch.value,'novel-choice',!!ch.disabled)).join('')+'</div>':'')+'</div></section>';
 }
-function openNovel(sc){ui.novelRegistry=sc.registry||null;ui.novelBack=ui.page;ui.novel=sc;openAux('novel');}
-function outcomeNovel(z,person,background='workshop'){if(!z)return;openNovel({key:'reply:'+state.career?.stats.races+':'+(z.title||'')+':'+(z.note||'').slice(0,15),title:z.title||'交わした言葉',body:[z.note,...(z.failed?['この相手とのルートは終了しました。今回の育成では再開できません。']:[]),...(z.rewards?.length?[z.rewards.join(' / ')]:[])],person,background,exit:z.exit});}
+function openNovel(sc){if(ui.page!=='novel')ui.novelBack=ui.page;ui.novelRegistry=sc.registry||null;ui.novel=sc;navigate('novel');}
+function outcomeNovel(z,person,background='workshop'){if(!z)return;const source=novelCurrent;openNovel({key:'reply:'+(source?.key||state.career?.stats.races+':'+(z.title||'')+':'+(z.note||'').slice(0,15)),title:z.title||'交わした言葉',body:[z.note,...(z.failed?['この相手とのルートは終了しました。今回の育成では再開できません。']:[]),...(z.rewards?.length?[z.rewards.join(' / ')]:[])],person,background,exit:z.exit||source?.exit});}
 
 function affinityMeter(c,kind,id){const g=Affinity.gate(c,kind,id),label=g.unlocked?'最終話 解放済み':g.open?'好感度条件 達成':'最終話まで あと'+g.remaining;return '<div class="affinity-meter '+(g.open?'ready':'')+'"><div><span>好感度 <b>'+g.current+'</b><small> / 100</small></span><strong>'+label+'</strong></div><div class="affinity-track" role="meter" aria-label="好感度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+g.current+'"><i style="width:'+g.current+'%"></i><em style="left:'+g.required+'%" aria-hidden="true"></em></div>'+(Affinity.guidance(c,kind,id)?'<p class="affinity-guidance">'+esc(Affinity.guidance(c,kind,id))+'</p>':'')+'</div>';}
 function affinityName(q,c){return q.kind==='rival'?Development.rival(c).name:q.kind==='mentor'?Cast.map[q.id]?.name:Bonds.B.map[q.id]?.name;}
@@ -918,6 +918,7 @@ function runInstant(){
 function audioSceneInfo(){const c=state.career,r=ui.page==='race'?currentRace():null;return {stage:c?.stage,activeCareer:!!c,grade:r?.grade,type:r?.type,heroine:!!(c&&(ui.page==='novel'&&Bonds.B.map[ui.novel?.person?.id]||ui.page==='bonds'&&(c.bonds?.pending||ui.bondOutcome?.kind==='romance')||['action','preRace'].includes(ui.page)&&c.bonds?.reward?.raceId===c.series?.race?.id&&c.bonds?.reward))};}
 function syncAudioScene(){root.KM_AUDIO?.scene(ui.page,ui.page==='race'?currentRace()?.drive:null,audioSceneInfo());}
 function render(){
+  novelCurrent=null;
   if(driveController){driveController.destroy();driveController=null;}
   const rid=++renderId;clearTimeout(cutinTimer);if(animationFrame)cancelAnimationFrame(animationFrame);
   let content='';const c=state.career;
@@ -988,7 +989,7 @@ const actions105={
  novelNext(){const sc=novelCurrent;if(!sc)return;const book=readerBook();if(sc.index<sc.pages.length-1){Dialogue.remember(book,sc.key,sc.index+1);save();render();}else if(!sc.choices?.length){if(sc.finish)actions[sc.finish]();else actions.novelExit();}},
  novelPrev(){const sc=novelCurrent;if(!sc)return;Dialogue.remember(readerBook(),sc.key,Math.max(0,sc.index-1));save();render();},
  novelHistory(){const sc=novelCurrent;if(sc)openModal('会話の履歴',sc.pages.slice(0,sc.index+1).map(p=>{const q=Dialogue.describe(p,sc.context);return '<p class="novel-log"><b>'+esc(q.speaker)+'</b><span>'+esc(q.text)+'</span></p>';}).join(''));},
- novelExit(){const sc=novelCurrent;if(sc?.mandatory&&Affinity.offer(state.career))return;novelCurrent=null;ui.novelRegistry=null;ui.bondOutcome=null;ui.mentorOutcome=null;if(sc?.exit&&actions[sc.exit])actions[sc.exit]();else if(ui.page==='novel'){const page=ui.novelBack||careerPage();ui.backStack?.pop();navigate(page);}else navigate(careerPage());},
+ novelExit(){const sc=novelCurrent;if(!sc||sc.mandatory&&Affinity.offer(state.career))return;const page=ui.page==='novel'&&ui.novelBack&&ui.novelBack!=='novel'?ui.novelBack:careerPage();novelCurrent=null;ui.novel=null;ui.novelBack=null;ui.novelRegistry=null;ui.bondOutcome=null;ui.mentorOutcome=null;if(ui.page==='novel')ui.page=page;if(sc.exit&&actions[sc.exit])actions[sc.exit]();else navigate(page);},
  campaignFinish(){const t=campaignSource();if(t){Campaign.mark(t,ui.campaignEntry);save();}actions.campaignExit();},
  campaignExit(){const t=campaignSource();ui.novelRegistry=null;ui.novel=null;ui.page='stories';if(ui.campaignPlayer!==state.career?.player.id){ui.profileId=ui.campaignPlayer;ui.page='profile';}render();if(t)openModal('物語の章',t.entries.map(e=>btn((e.read?'既読 · ':'未読 · ')+esc(Campaign.scene(t,e.id).title),'openChapter',e.id,'secondary large')).join(''));},
  openChapter(id){closeModal();ui.campaignEntry=id;navigate('campaign');},
@@ -1006,11 +1007,11 @@ const actions={
   mentor(){ui.mentorOutcome=null;openAux('mentor');},
   mentorMeet(){if(Cast.routeOpen(state.career)){ui.mentorOutcome=null;save();render();}},
   mentorChoice(v){const i=v.lastIndexOf('|'),z=chooseMentor(state.career,v.slice(0,i),Number(v.slice(i+1)));if(z){ui.mentorOutcome=z;save();outcomeNovel({...z,rewards:[...(z.rewards||[]),...(z.skill?[ability(z.skill).name+'を伝授']:[])]},Cast.map[z.mentor]);}},
-  mentorBack(){Cast.routeDepart(state.career);save();render();},
+  mentorBack(){Cast.routeDepart(state.career);save();navigate('mentor');},
   bonds(){ui.bondOutcome=null;openAux('bonds');},
   meet(id){if(Bonds.open(state.career,id)){ui.bondOutcome=null;save();if(ui.page!=='bonds')openAux('bonds');else render();}},
   bondChoice(v){const i=v.lastIndexOf('|'),z=chooseBond(state.career,v.slice(0,i),Number(v.slice(i+1)));if(z){ui.bondOutcome=z;save();outcomeNovel({...z,exit:Affinity.offer(state.career)?'requestTalk':undefined},Bonds.B.map[z.heroine],'harbor');}},
-  bondBack(){if(state.career?.bonds){state.career.bonds.pending=null;save();render();}},
+  bondBack(){if(state.career?.bonds){state.career.bonds.pending=null;save();navigate('bonds');}},
   rivalTrain(v){const [id,method]=v.split('|'),z=state.career&&trainRival(state.career,id,method);if(z){ui.bondOutcome=z;save();render();toast(D.stats[z.stat]+'を練習しました'+(z.skill?' · '+ability(z.skill).name+'を獲得':''));}},
   scenario(){},
   campaign(id){const p=Profile.find(state,id);if(!p)return;ui.campaignPlayer=id;const t=p===state.career?.player?Campaign.ensure(state.career):p.campaignJournal;if(!t)return;ui.campaignEntry=(Drama.pending(t)[0]||t.entries.find(e=>!e.read)||t.entries.at(-1)).id;ui.novelRegistry=null;save();openAux('campaign');},
@@ -1070,7 +1071,7 @@ const actions={
   testCutin(){const r=currentRace();const p=r.runners.find(n=>n.isPlayer);queueCutins([{athleteId:p.id,name:p.name,frame:p.frame,abilityId:'mirror'}],renderId);},
   closeModal(){closeModal();},confirm(){const fn=confirmCallback;closeModal();if(fn)fn();}
 };
-document.addEventListener('click',event=>{if(ui.resolving)return;const node=event.target.closest('[data-action]');if(!node||node.disabled)return;const fn=actions[node.dataset.action];if(!fn)return;if(['bondChoice','mentorChoice','storyChoice','planChoice','campaignChoice','rivalChoice','rivalPathChoice','requestChoice'].includes(node.dataset.action)&&novelCurrent&&novelCurrent.index<novelCurrent.pages.length-1)return;try{fn(node.dataset.value);}catch(e){console.error(e);stopAuto();toast('処理を完了できませんでした。データ管理からバックアップを保存してください。');}});
+document.addEventListener('click',event=>{if(ui.resolving)return;const node=event.target.closest('[data-action]');if(!node||node.disabled)return;const fn=actions[node.dataset.action];if(!fn)return;if(['bondChoice','mentorChoice','storyChoice','planChoice','campaignChoice','rivalChoice','rivalPathChoice','requestChoice'].includes(node.dataset.action)&&(!novelCurrent||novelCurrent.index<novelCurrent.pages.length-1||!novelCurrent.choices?.some(ch=>ch.action===node.dataset.action&&String(ch.value)===String(node.dataset.value))))return;try{fn(node.dataset.value);}catch(e){console.error(e);stopAuto();toast('処理を完了できませんでした。データ管理からバックアップを保存してください。');}});
 document.addEventListener('input',event=>{if(event.target.id==='registry-search'){ui.registrySearch=event.target.value;document.getElementById('registry-results').innerHTML=registryCards();return;}if(event.target.id==='replay-seek'){stopReplay();ui.replayIndex=Number(event.target.value);paintReplay();return;}if(event.target.id==='ability-search'){ui.filter=event.target.value;document.getElementById('catalog-results').innerHTML=catalogList();}});
 document.addEventListener('change',event=>{const t=event.target;if(t.id==='registry-sort'||t.id==='favorites-only'){if(t.id==='registry-sort')ui.registrySort=t.value;else ui.favoritesOnly=t.checked;document.getElementById('registry-results').innerHTML=registryCards();return;}if(t.id==='text-size-setting'||t.id==='contrast-setting'){state.settings[t.id==='text-size-setting'?'textSize':'contrast']=t.value;save();document.body.classList.toggle('large-type',state.settings.textSize==='large');document.body.classList.toggle('high-contrast',state.settings.contrast==='high');return;}if(t.id==='rarity-filter'||t.id==='category-filter'){ui[t.id==='rarity-filter'?'rare':'category']=t.value;document.getElementById('catalog-results').innerHTML=catalogList();}
   if(t.id==='race-fx-setting'){state.settings.raceFX=t.value;save();}

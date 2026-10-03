@@ -1,0 +1,47 @@
+{
+  "build": 112,
+  "passed": 9,
+  "failed": 0,
+  "results": [
+    {
+      "name": "390px ライバル選択後の閉じると再読込で会話が再出現しない",
+      "passed": true
+    },
+    {
+      "name": "本編選択後は章一覧へ戻り本文へループしない",
+      "passed": true
+    },
+    {
+      "name": "360px 師匠会話を途中で閉じ 読んだ位置から再開 選択後も閉じられる",
+      "passed": true
+    },
+    {
+      "name": "320px ヒロイン返答から依頼へ続き 選択後は出走準備へ戻る",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html 人物画像と選択返答を表示 閉じて保存再開",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html 人物画像と選択返答を表示 閉じて保存再開",
+      "passed": true
+    },
+    {
+      "name": "390px auto描画 ボート ブイ 水面を表示し操船を開始",
+      "passed": true
+    },
+    {
+      "name": "390px canvas描画 ボート ブイ 水面を表示し操船を開始",
+      "passed": true
+    },
+    {
+      "name": "全画面の未処理JavaScriptエラーなし",
+      "passed": true
+    }
+  ],
+  "browser": "Chromium mobile touch emulation 390x844 360x740 320x700",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false
+}

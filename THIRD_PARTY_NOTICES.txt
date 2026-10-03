@@ -117,3 +117,5 @@ V105 dialogue background: assets/dialogue-workshop.webp is an original AI-genera
 
 V107 portraits:
 assets/portraits/mizuki.webp and assets/portraits/teiou.webp are newly AI-generated original fictional adult characters for this game. No stock-photo source or specific real-person likeness was used. Prompts and roles are described in V107_PORTRAITS.md. Existing user-provided MP3 files are unchanged.
+
+V111: User-supplied MP3 files 決戦前夜 and 最終決戦 are included byte-for-byte. Five fictional adult heroine portraits were regenerated with the built-in image-generation tool; source PNGs and prompts are included. No external stock photographs or real-person likenesses were added.

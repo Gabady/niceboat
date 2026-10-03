@@ -1,0 +1,44 @@
+{
+  "build": 112,
+  "passed": 9,
+  "failed": 0,
+  "results": [
+    {
+      "name": "新しい船体とブイは有限な三角形と単位法線を持つ",
+      "passed": true
+    },
+    {
+      "name": "1号艇の船体と船外機を実GLESで描画",
+      "passed": true
+    },
+    {
+      "name": "水際の襟と赤白の曲面ブイを実GLESで描画",
+      "passed": true
+    },
+    {
+      "name": "数字1の縦画・台座・上端がつながり欠けない",
+      "passed": true
+    },
+    {
+      "name": "遠方では小物を省略し描画量を抑制",
+      "passed": true
+    },
+    {
+      "name": "晴れの一人称描画 WebGL/Canvasで物理状態を維持",
+      "passed": true
+    },
+    {
+      "name": "雨の一人称描画 WebGL/Canvasで物理状態を維持",
+      "passed": true
+    },
+    {
+      "name": "自艇の頭部を描かず前方視界を確保",
+      "passed": true
+    },
+    {
+      "name": "演出短縮時はブイの揺れを固定",
+      "passed": true
+    }
+  ],
+  "method": "Native GLES and Skia Canvas plus geometry tests; not phone performance tests"
+}

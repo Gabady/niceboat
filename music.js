@@ -1,4 +1,4 @@
-/* v100: seven explicit soundtrack slots. package.py embeds existing local tracks into Safe HTML. */
+/* v111: all seven soundtrack slots supplied. Safe builds embed the original MP3 bytes. */
 (function(root){
 'use strict';
 const tracks={
@@ -7,8 +7,8 @@ const tracks={
  final:{title:'栄冠へ、波を裂け',src:'assets/audio/final.mp3'},
  sgLounge:{title:'静寂を破る航跡',src:'assets/audio/sg-lounge.mp3'},
  heroine:{title:'きみと、水面に恋をして',src:'assets/audio/heroine.mp3'},
- sgRace:{title:'SG通常レース',src:null,fallback:'race'},
- sgFinal:{title:'SG優勝戦',src:null,fallback:'final'}
+ sgRace:{title:'決戦前夜',src:'assets/audio/sg-race.mp3',fallback:'race'},
+ sgFinal:{title:'最終決戦',src:'assets/audio/sg-final.mp3',fallback:'final'}
 };
 function select(info={}){
  const racing=info.page==='race',sg=racing?(info.grade==='sg'):(info.stage===8&&info.activeCareer!==false&&!['title','new','registry','rivals','exhibition','quickResult'].includes(info.page));

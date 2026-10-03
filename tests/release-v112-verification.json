@@ -1,0 +1,131 @@
+{
+  "build": 112,
+  "passed": 166,
+  "failed": 0,
+  "suites": [
+    {
+      "file": "dialogue-v112-results.json",
+      "passed": 11,
+      "failed": 0
+    },
+    {
+      "file": "render-v112-results.json",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "file": "browser-v112-results.json",
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "file": "music-v112-results.json",
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "file": "android-update-results.json",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "file": "static-results.json",
+      "passed": 67,
+      "failed": 0
+    },
+    {
+      "file": "iphone-static-results.json",
+      "passed": 35,
+      "failed": 0
+    }
+  ],
+  "sourceHashes": {
+    "affinity.js": "a070c03fa4001b66cd81542765bdfc8d37afa56340151c4fd7f21bb49fa61141",
+    "audio-assets.js": "60595c37cd4a0f944573ddc7e8168a570c3ec15508a54754ac674a094898bd5a",
+    "audio.js": "411ccf6471a2e4bc1b0b07f93cecc61c5aa6709bebe7ff9870f9409ea081c6b4",
+    "bonds-data.js": "fc15cd62f55c46df5f7621a37c7f8238a418bc0e4497d9a4b0b8c5dde940d165",
+    "bonds.css": "4263a4a793ab08e10d25825c48554ea3fdef875b06fc099bec6cb7caec1d8242",
+    "bonds.js": "4b758415632fae777ed50543ab263d218da248a7a16c68ea6aa0dff81c9cf9aa",
+    "campaign-data.js": "6ab62da522a180067dfafc1f4e12f1af9f6f5b9e1960f813431d836a3372a638",
+    "campaign.js": "f43de8b3a6f757d8f41bbf635c4c57c8cacf1f2be5ed4c2a46f3e4d43ce43353",
+    "cast.js": "ca3ad57a8ca9db8097724ce20e8e589d818e5700a6c25742eac62706740b7f40",
+    "data.js": "fc827dd427b07b339b9d90fbc85613764182e97922af8102d2506673de66c60a",
+    "development.js": "d2e815f9b98dc97f2ce7e156924d219b8ca36c8e64ea0902087654bb4dbe27a0",
+    "dialogue.css": "c64e82ef15afefd977e8fde31602dd46411764ae9b89737a005eeb29d024b7ac",
+    "dialogue.js": "d714a58dbe1077f1a9e06912411137b0b25fa11e1e2c43e602d58c4884290df1",
+    "drama-data.js": "d2004d190311c60c991ba501460ddd19f0af39b14098c679baa9616e45000958",
+    "drama.js": "20b29daa74f6297179b546b2459d48497e8d7a158843a7fbd99049c12a827fe4",
+    "driving-ui.js": "75b7db2595dd80b43711d4e77119fc75121300ef113ff588513acd7a4b7ceb7b",
+    "finale.js": "c8eff0959119be7af9e7a80e822d976ed55f2bd81dc47cc97da8fcd8b6977dbf",
+    "index.html": "b35c8281dc59ca04bd1a8c5b47a04b98eb24bad29d06855135be27755095133f",
+    "index_android_safe.html": "0df76a7515f1554809b05ff444bcaa161bdb87f72c5aab11401288c01fcf1534",
+    "index_iphone_safe.html": "d4a7f8cd87907367a8af0e0e2c08e431b1778f10c9a50f834155f0a827b7b039",
+    "interface.css": "8a09c32696e88a491b0af822bafb5749c8a562d8ff564589bab8cd06a94f15fb",
+    "iphone-compat.js": "f4eee272f69417b96349616d4d0bc294d4c918ba06c4d4acf329dc9d81243ad3",
+    "iphone.css": "228d19ef161cb5156b427ec06f9470cc37ab18e1710e3e2118b7fcd912291f16",
+    "mentor-data.js": "f15d19c5b5cbb28e7ad6a54af20de93f35de48390cbd4ee3dc8d193a36401313",
+    "music.js": "f6814a2adc06707d3b1af2a8bc039f0814affc8f53583427a9127c0622e54f55",
+    "portrait-assets.js": "dd59d10a1f8c07e96f1555df6b3e87289fdcbb9d979b26baab0d20cf344e8654",
+    "portraits.js": "6120e23e728c46e2f8ece02bac0f90b77ad4fe5a09c47001ff8dcb043abc7161",
+    "presentation.js": "5b69b687daa9f8865d83a2272ec1fcc01644fcdbc1b1c05a2999f01faf919ce9",
+    "profile.js": "6c6e4e7f7c6a28c51b90f7dc09055dc004c915fb4f021b359ac75912393087e4",
+    "race-dialogue.js": "b36b7b22e3d8c92fa80631de83177d0b9adca8eacb6cc0569ee201e4e243e3fc",
+    "race-feedback.js": "55b623141b70b94f558bd7772c97fb0b8d56c5f2216ffe406e13afb451aa758e",
+    "race-renderer.js": "90c0cf4b8527741676dc710caf0e879af5cd15bbd05051e3f5eb2187ab065895",
+    "racing.js": "93b247b93872e1f8c54446accd06fd895a71d62453172b9449fa81ead0c2dddf",
+    "script.js": "64a3fcabf16568ba99809e53d3d4df0d44d23e1001605c47b179b8ee85475d45",
+    "story-extra.js": "f292d0446a47979dda1288c3ea3b97b55ee73e3bc833842453f7e80f8ec81a78",
+    "story.css": "ea8dd80b2c2a8e987f8bd3ec7838aa8facc701e31346414edb2e42e65bea382e",
+    "story.js": "1c365e448bb0078c17df18f8812aaf6f0567b3818aa3e1014ae9944ffaba2038",
+    "style.css": "a1219a21e75ffbb698780398f4d8f3896d32cfd376d0557536d6f38415db6080",
+    "thrill.js": "6aea33d758f49298cb6b2869b0ec12a76ae6ef1775543a7809b971d1db904bd9",
+    "visual-assets.js": "17f39748cc34f1e68d68e1707bfcefcb802cc7b610406fc5248c8ce0db48b2ac"
+  },
+  "unchangedFromV111": {
+    "affinity.js": "a070c03fa4001b66cd81542765bdfc8d37afa56340151c4fd7f21bb49fa61141",
+    "audio-assets.js": "60595c37cd4a0f944573ddc7e8168a570c3ec15508a54754ac674a094898bd5a",
+    "audio.js": "411ccf6471a2e4bc1b0b07f93cecc61c5aa6709bebe7ff9870f9409ea081c6b4",
+    "bonds-data.js": "fc15cd62f55c46df5f7621a37c7f8238a418bc0e4497d9a4b0b8c5dde940d165",
+    "bonds.css": "4263a4a793ab08e10d25825c48554ea3fdef875b06fc099bec6cb7caec1d8242",
+    "bonds.js": "4b758415632fae777ed50543ab263d218da248a7a16c68ea6aa0dff81c9cf9aa",
+    "campaign-data.js": "6ab62da522a180067dfafc1f4e12f1af9f6f5b9e1960f813431d836a3372a638",
+    "campaign.js": "f43de8b3a6f757d8f41bbf635c4c57c8cacf1f2be5ed4c2a46f3e4d43ce43353",
+    "cast.js": "ca3ad57a8ca9db8097724ce20e8e589d818e5700a6c25742eac62706740b7f40",
+    "development.js": "d2e815f9b98dc97f2ce7e156924d219b8ca36c8e64ea0902087654bb4dbe27a0",
+    "dialogue.css": "c64e82ef15afefd977e8fde31602dd46411764ae9b89737a005eeb29d024b7ac",
+    "dialogue.js": "d714a58dbe1077f1a9e06912411137b0b25fa11e1e2c43e602d58c4884290df1",
+    "drama-data.js": "d2004d190311c60c991ba501460ddd19f0af39b14098c679baa9616e45000958",
+    "drama.js": "20b29daa74f6297179b546b2459d48497e8d7a158843a7fbd99049c12a827fe4",
+    "driving-ui.js": "75b7db2595dd80b43711d4e77119fc75121300ef113ff588513acd7a4b7ceb7b",
+    "finale.js": "c8eff0959119be7af9e7a80e822d976ed55f2bd81dc47cc97da8fcd8b6977dbf",
+    "interface.css": "8a09c32696e88a491b0af822bafb5749c8a562d8ff564589bab8cd06a94f15fb",
+    "iphone-compat.js": "f4eee272f69417b96349616d4d0bc294d4c918ba06c4d4acf329dc9d81243ad3",
+    "iphone.css": "228d19ef161cb5156b427ec06f9470cc37ab18e1710e3e2118b7fcd912291f16",
+    "mentor-data.js": "f15d19c5b5cbb28e7ad6a54af20de93f35de48390cbd4ee3dc8d193a36401313",
+    "music.js": "f6814a2adc06707d3b1af2a8bc039f0814affc8f53583427a9127c0622e54f55",
+    "portrait-assets.js": "dd59d10a1f8c07e96f1555df6b3e87289fdcbb9d979b26baab0d20cf344e8654",
+    "portraits.js": "6120e23e728c46e2f8ece02bac0f90b77ad4fe5a09c47001ff8dcb043abc7161",
+    "presentation.js": "5b69b687daa9f8865d83a2272ec1fcc01644fcdbc1b1c05a2999f01faf919ce9",
+    "profile.js": "6c6e4e7f7c6a28c51b90f7dc09055dc004c915fb4f021b359ac75912393087e4",
+    "race-dialogue.js": "b36b7b22e3d8c92fa80631de83177d0b9adca8eacb6cc0569ee201e4e243e3fc",
+    "race-feedback.js": "55b623141b70b94f558bd7772c97fb0b8d56c5f2216ffe406e13afb451aa758e",
+    "racing.js": "93b247b93872e1f8c54446accd06fd895a71d62453172b9449fa81ead0c2dddf",
+    "story-extra.js": "f292d0446a47979dda1288c3ea3b97b55ee73e3bc833842453f7e80f8ec81a78",
+    "story.css": "ea8dd80b2c2a8e987f8bd3ec7838aa8facc701e31346414edb2e42e65bea382e",
+    "story.js": "1c365e448bb0078c17df18f8812aaf6f0567b3818aa3e1014ae9944ffaba2038",
+    "style.css": "a1219a21e75ffbb698780398f4d8f3896d32cfd376d0557536d6f38415db6080",
+    "thrill.js": "6aea33d758f49298cb6b2869b0ec12a76ae6ef1775543a7809b971d1db904bd9",
+    "visual-assets.js": "17f39748cc34f1e68d68e1707bfcefcb802cc7b610406fc5248c8ce0db48b2ac"
+  },
+  "assetsUnchangedFromV111": true,
+  "browser": "Chromium mobile touch emulation",
+  "rendering": "Mesa GLES and Skia Canvas plus Chromium WebGL/Canvas",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false,
+  "notes": [
+    "Only suites run on V112 are counted. Earlier reports, including the pre-fix reproduction failures, are historical.",
+    "No new career win-rate or real-device performance estimate.",
+    "Race physics, AI, stat growth and asset bytes are unchanged."
+  ]
+}

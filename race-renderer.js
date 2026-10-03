@@ -1,4 +1,4 @@
-/* v97 — Sculpted boats, articulated racers, layered reflective water. Rendering never changes race state. */
+/* v112 — Curved plywood hulls, mechanical outboards and soft moored turn buoys. Drawing never changes race state. */
 (function(root){
 'use strict';
 const R=root.KM_RACING||(typeof require==='function'?require('./racing.js'):null);
@@ -59,7 +59,21 @@ void main(){
   if(uWater>7.5&&uWater<8.5){roughness=.82;specular=.035;reflectivity=.01;}
   if(uWater>8.5&&uWater<9.5){roughness=.22;specular=.62;reflectivity=.31;}
   if(uWater>9.5&&uWater<10.5){roughness=.13;specular=.76;reflectivity=.52;}
-  if(uWater>10.5){roughness=.42;specular=.18;reflectivity=.05;float grain=sin(vLocal.y*178.+sin(vLocal.x*8.)*1.8)*.005*(1.-smoothstep(4.,22.,dist));base*=.98+grain;}
+  if(uWater>10.5&&uWater<11.5){
+   roughness=.32;specular=.30;reflectivity=.075;
+   float bend=sin(vLocal.x*2.4)*.8+sin(vLocal.x*.63)*1.6;
+   float grain=sin(vLocal.y*142.+bend)+sin(vLocal.y*317.+bend*1.8)*.28;
+   float pores=pow(abs(sin(vLocal.y*64.+bend*.45)),18.);
+   base*=.98+(grain*.025-pores*.042)*(1.-smoothstep(8.,28.,dist));
+  }
+  if(uWater>11.5&&uWater<12.5){roughness=.56;specular=.22;reflectivity=.08;
+   float weave=sin(vLocal.x*173.)*sin(vLocal.y*139.);
+   float weld=pow(abs(cos(atan(vLocal.y,vLocal.x)*4.)),90.);
+   base*=(.98+weave*.008-weld*.045)*(1.-smoothstep(5.,28.,dist)) + smoothstep(5.,28.,dist);
+   float wet=1.-smoothstep(.10,.42,vWorld.y);base*=1.-wet*.22;roughness-=wet*.25;reflectivity+=wet*.16;
+  }
+  if(uWater>12.5){gl_FragColor=vec4(mix(uColor,uFog,1.-exp(-dist*.0016)),1.);return;}
+  if(uWater>7.5&&uWater<8.5)base*=.985+sin(vLocal.x*190.)*sin(vLocal.y*180.)*.009;
   float skyReflection=pow(1.-max(dot(n,eye),0.),4.);
   vec3 color=base*(hemi+diffuse*.42);
   vec3 reflected=environment(reflect(-eye,n));
@@ -134,9 +148,14 @@ function stripeMesh(){const m=meshBuilder();m.quad([.5,.491,-.25],[1,.491,.20],[
 function smoothMesh(rows,cols,point,normal){const a=[];function v(i,j){const p=point(i/rows,j/cols),n=normal?normal(i/rows,j/cols):unit(p);a.push(...p,...n);}for(let i=0;i<rows;i++)for(let j=0;j<cols;j++){v(i,j);v(i+1,j);v(i+1,j+1);v(i,j);v(i+1,j+1);v(i,j+1);}return a;}
 function smoothSphere(rows=16,cols=10){return smoothMesh(rows,cols,(u,v)=>[Math.cos(u*Math.PI*2)*Math.sin(v*Math.PI),Math.cos(v*Math.PI),Math.sin(u*Math.PI*2)*Math.sin(v*Math.PI)]);}
 function smoothNormals(data){const sums=new Map(),key=(i)=>data.slice(i,i+3).map(x=>x.toFixed(5)).join(',');for(let i=0;i<data.length;i+=6){const k=key(i),n=sums.get(k)||[0,0,0];for(let c=0;c<3;c++)n[c]+=data[i+3+c];sums.set(k,n);}for(let i=0;i<data.length;i+=6){const n=unit(sums.get(key(i)));for(let c=0;c<3;c++)data[i+3+c]=n[c];}return data;}
-function hullShell(){const m=meshBuilder(),stations=[[-2.1,.76,.34],[-1.8,.92,.40],[-1.1,1.02,.43],[.0,1.02,.45],[.8,.96,.43],[1.6,.79,.38],[2.3,.52,.32],[2.75,.42,.30],[3.15,.25,.28]],section=([x,w,h])=>[[x,h,-w*.92],[x,h*.78,-w],[x,.06,-w*.90],[x,-.07,-w*.58],[x,-.10,0],[x,-.07,w*.58],[x,.06,w*.9],[x,h*.78,w],[x,h,w*.92]];
+// Catmull-Rom loft samples keep the original end stations and collision envelope.
+function loftRows(rows,steps=3){const out=[];for(let i=0;i<rows.length-1;i++)for(let j=0;j<steps;j++){const t=j/steps,a=rows[Math.max(0,i-1)],b=rows[i],c=rows[i+1],d=rows[Math.min(rows.length-1,i+2)];out.push(b.map((v,k)=>.5*((2*v)+(-a[k]+c[k])*t+(2*a[k]-5*v+4*c[k]-d[k])*t*t+(-a[k]+3*v-3*c[k]+d[k])*t*t*t)));}out.push(rows.at(-1));return out;}
+function roundedBoxMesh(radius=.22,steps=5){const out=[];for(let axis=0;axis<3;axis++)for(const sign of [-1,1]){const u=(axis+1)%3,v=(axis+2)%3;const part=smoothMesh(steps,steps,(a,b)=>{const p=[0,0,0];p[axis]=sign;p[u]=a*2-1;p[v]=b*2-1;const core=p.map(x=>R.clamp(x,-1+radius,1-radius)),n=unit(sub(p,core));return p.map((_,k)=>core[k]+n[k]*radius);},(a,b)=>{const p=[0,0,0];p[axis]=sign;p[u]=a*2-1;p[v]=b*2-1;return unit(sub(p,p.map(x=>R.clamp(x,-1+radius,1-radius))));});out.push(...part);}return out;}
+function latheProfile(rows,steps=32){const out=[];for(let j=0;j<rows.length-1;j++){const a=rows[j],b=rows[j+1],slope=(a[1]-b[1])/Math.max(.0001,b[0]-a[0]);for(let i=0;i<steps;i++){const v=(row,k)=>{const angle=k*Math.PI*2/steps,n=unit([Math.cos(angle),slope,Math.sin(angle)]);out.push(Math.cos(angle)*row[1],row[0],Math.sin(angle)*row[1],...n);};v(a,i);v(b,i);v(b,i+1);v(a,i);v(b,i+1);v(a,i+1);}}return smoothNormals(out);}
+function deckOne(){const m=meshBuilder(),rect=(x1,x2,z1,z2)=>m.quad([x1,0,z1],[x1,0,z2],[x2,0,z2],[x2,0,z1]);rect(-.5,-.34,-.30,.32);rect(-.34,.5,-.055,.13);m.quad([.10,0,-.29],[.28,0,-.055],[.5,0,-.055],[.31,0,-.29]);return m.data;}
+function hullShell(){const m=meshBuilder(),stations=loftRows([[-2.1,.76,.34],[-1.8,.92,.40],[-1.1,1.02,.43],[.0,1.02,.45],[.8,.96,.43],[1.6,.79,.38],[2.3,.52,.32],[2.75,.42,.30],[3.15,.25,.28]]),section=([x,w,h])=>[[x,h,-w*.92],[x,h*.78,-w],[x,.06,-w*.90],[x,-.07,-w*.58],[x,-.10,0],[x,-.07,w*.58],[x,.06,w*.9],[x,h*.78,w],[x,h,w*.92]];
  for(let i=0;i<stations.length-1;i++){const a=section(stations[i]),b=section(stations[i+1]);for(let j=0;j<a.length-1;j++)m.quad(a[j],b[j],b[j+1],a[j+1]);}const a=section(stations[0]),b=section(stations[stations.length-1]);for(let j=1;j<a.length-1;j++){m.tri(a[0],a[j],a[j+1]);m.tri(b[0],b[j+1],b[j]);}return smoothNormals(m.data);}
-function foreDeck(trim=false){const m=meshBuilder(),rows=[[.42,.94,.48],[.8,.96,.49],[1.2,.89,.46],[1.6,.79,.43],[2,.65,.38],[2.3,.52,.35],[2.6,.453,.345],[2.75,.42,.34],[3.15,.25,.31]];
+function foreDeck(trim=false){const m=meshBuilder(),rows=loftRows([[.42,.94,.48],[.8,.96,.49],[1.2,.89,.46],[1.6,.79,.43],[2,.65,.38],[2.3,.52,.35],[2.6,.453,.345],[2.75,.42,.34],[3.15,.25,.31]]);
  const point=(r,u)=>[r[0],r[2]+.018-.035*Math.pow(Math.abs(u),1.5),r[1]*u*.92];if(trim){for(let i=0;i<rows.length-1;i++)for(const side of [-1,1]){const p=(r,u)=>{const a=point(r,u);a[1]+=.005;return a;};m.quad(p(rows[i],side*.86),p(rows[i],side*.995),p(rows[i+1],side*.995),p(rows[i+1],side*.86));}const d=smoothNormals(m.data);for(let i=0;i<d.length;i+=6)if(d[i+4]<0){d[i+3]*=-1;d[i+4]*=-1;d[i+5]*=-1;}return d;}for(let i=0;i<rows.length-1;i++)for(let j=0;j<8;j++){const u=-1+j/4,v=u+.25;m.quad(point(rows[i],u),point(rows[i],v),point(rows[i+1],v),point(rows[i+1],u));}return smoothNormals(m.data);}
 function wingDeck(){const m=meshBuilder(),rows=[[-2.06,.7],[-1.7,.90],[-1.1,.94],[0,.94],[.42,.89]];for(let i=0;i<rows.length-1;i++){const a=rows[i],b=rows[i+1];m.quad([a[0],.47,.55],[a[0],.455,a[1]],[b[0],.455,b[1]],[b[0],.47,.55]);}return smoothNormals(m.data);}
 function torsoMesh(){const m=meshBuilder(),rows=[[-1,.70,.72],[-.7,.90,.88],[.15,1,.98],[.60,.98,1],[.85,.72,.77],[1,.45,.52]],pt=(r,a)=>[Math.cos(a)*r[1],r[0],Math.sin(a)*r[2]];for(let i=0;i<rows.length-1;i++)for(let j=0;j<12;j++){const a=j*Math.PI/6,b=(j+1)*Math.PI/6;m.quad(pt(rows[i],a),pt(rows[i+1],a),pt(rows[i+1],b),pt(rows[i],b));}const d=smoothNormals(m.data);for(let i=0;i<d.length;i+=6){if(d[i]*d[i+3]+d[i+2]*d[i+5]<0){d[i+3]*=-1;d[i+4]*=-1;d[i+5]*=-1;}}return d;}
@@ -148,8 +167,8 @@ function rotation(x=0,y=0,z=0){const c=Math.cos,s=Math.sin,rx=new Float32Array([
 function normalVector(m,n){const a=m[0]*m[0]+m[1]*m[1]+m[2]*m[2]||1,b=m[4]*m[4]+m[5]*m[5]+m[6]*m[6]||1,c=m[8]*m[8]+m[9]*m[9]+m[10]*m[10]||1,x=n[0]/a,y=n[1]/b,z=n[2]/c;let nx=m[0]*x+m[4]*y+m[8]*z,ny=m[1]*x+m[5]*y+m[9]*z,nz=m[2]*x+m[6]*y+m[10]*z;const l=Math.sqrt(nx*nx+ny*ny+nz*nz)||1;return [nx/l,ny/l,nz/l];}
 function segmentMatrix(a,b,rx,rz){const y=unit(sub(b,a)),x=unit(cross(y,[0,0,1])),z=cross(x,y),len=Math.hypot(...sub(b,a))*.5;return new Float32Array([x[0]*rx,x[1]*rx,x[2]*rx,0,y[0]*len,y[1]*len,y[2]*len,0,z[0]*rz,z[1]*rz,z[2]*rz,0,(a[0]+b[0])*.5,(a[1]+b[1])*.5,(a[2]+b[2])*.5,1]);}
 function racerPose(n,motion=true,time=0){const turn=R.clamp((n.steer||0)*.8+(n.yawRate||0)*.24,-1,1),speed=R.clamp(n.speed/23,0,1),posture=R.clamp(Number(n.posture)||0,-1,1),lean=turn*(.22+Math.max(0,posture)*.065),breathe=motion?Math.sin(time*2.3+n.frame)*.012:0;return {turn,lean,speed,hip:[-.88,.64+Math.max(0,posture)*.04,lean*.30],shoulder:[-.16+speed*.10-posture*.10,1.02+posture*.18+breathe,lean],head:[.21+speed*.08-posture*.17,1.37+posture*.22+breathe,lean*1.18],heel:motion?R.clamp(n.heel||0,-.65,.65)*.14:0,pitch:motion?speed*.014:0};}
-const BM={paint:7,fabric:8,metal:9,glass:10,wood:11};
-const BOAT_PALETTE={white:rgb('#e7e8df'),wood:rgb('#c4a77b'),rubber:rgb('#202c32'),steel:rgb('#9baeb5'),dark:rgb('#273941'),stitch:rgb('#c9d8d5')};
+const BM={paint:7,fabric:8,metal:9,glass:10,wood:11,buoy:12,decal:13};
+const BOAT_PALETTE={white:rgb('#e7e8df'),wood:rgb('#b89360'),rubber:rgb('#202c32'),steel:rgb('#9baeb5'),dark:rgb('#273941'),stitch:rgb('#c9d8d5')};
 function boatScene(n,d,settings,emit){
  const time=settings.motion===false?0:d.elapsed,pose=racerPose(n,settings.motion!==false,time),p=BOAT_PALETTE,color=rgb(COLORS[n.frame-1]);
  const bob=settings.motion===false?0:Math.sin(time*3+n.frame)*.022,base=multiply(model(n.x,.035+bob,n.z,n.heading),rotation(pose.heel,0,pose.pitch));
@@ -162,15 +181,15 @@ function boatScene(n,d,settings,emit){
   part('shell',identity(),p.white);part('deck',identity(),p.wood,BM.wood);part('deckTrim',identity(),p.white,BM.paint);
   add('box',-.66,.20,0,.85,.07,.56,p.rubber,BM.fabric);
   for(const side of [-1,1])add('wing',0,0,0,1,1,side,p.wood,BM.wood);
-  add('softLow',-2.08,.74,0,.34,.37,.35,p.dark,BM.paint);
-  add('softLow',-2.08,.96,0,.33,.12,.35,p.white,BM.paint);
+  add('rounded',-2.08,.73,0,.33,.30,.34,p.dark,BM.paint);
+  add('rounded',-2.08,.99,0,.34,.075,.35,p.white,BM.paint);
   part('torso',segmentMatrix(pose.hip,pose.shoulder,.32,.37),color,BM.fabric);
   add('helmetLow',...pose.head,.30,.323,.273,p.white,BM.paint);
   if(lod===1){
    add('visor',pose.head[0]+.008,pose.head[1],pose.head[2],.307,.331,.280,rgb('#163b4c'),BM.glass);
    for(const side of [-1,1]){part('softLow',segmentMatrix([pose.shoulder[0],pose.shoulder[1]-.05,pose.shoulder[2]+side*.31],[.39,.65,side*.39],.11,.10),color,BM.fabric);part('softLow',segmentMatrix([-.83,.50,side*.24],[-.13,.30,side*.30],.16,.15),color,BM.fabric);}
-   add('box',1.94,.416,0,.30,.006,.235,color,BM.paint,rotation(0,0,-.125));
-   add('digit'+n.frame,1.94,.428,0,.46,1,.46,n.frame===1||n.frame===5?p.dark:p.white,BM.fabric,rotation(0,0,-.125));
+   add('flat',1.94,.432,0,.65,1,.49,color,BM.decal,rotation(0,0,-.125));
+   add('digit'+n.frame,1.94,.434,0,.51,1,.49,n.frame===1||n.frame===5?p.dark:p.white,BM.decal,rotation(0,0,-.125));
   }
   return;
  }
@@ -183,21 +202,36 @@ function boatScene(n,d,settings,emit){
   seg([.60,.39,side*.89],[2.53,.29,side*.42],.031,.026,p.white,BM.paint);
   if(!n.isPlayer)add('soft',-.95,.10,side*.92,.65,.085,.075,p.dark,BM.fabric);
  }
+ // Waterline chine, dark seam and warm exposed plywood at the cockpit rim.
+ for(const side of [-1,1]){
+  seg([-1.79,.115,side*.88],[.68,.13,side*.87],.018,.018,p.dark,BM.fabric);
+  seg([.70,.13,side*.86],[2.48,.16,side*.40],.012,.012,p.dark,BM.fabric);
+ }
  // Deep cockpit, rear transom, deck seams and flush fasteners.
  add('box',-.56,.15,0,.91,.08,.56,p.rubber,BM.fabric);
  add('box',-1.77,.33,0,.23,.055,.66,p.wood,BM.wood);
  add('soft',.46,.43,0,.14,.16,.53,p.white);
  for(const x of [.88,1.95])for(const side of [-1,1])add('soft',x,x<1?.469:.376,side*(x<1?.73:.47),.032,.013,.032,p.steel,BM.metal);
  // Recessed number plate on the forward deck; large lane colour stays visible at distance.
- add('box',1.94,.416,0,.30,.006,.235,color,BM.paint,rotation(0,0,-.125));
- add('digit'+n.frame,1.94,.428,0,.46,1,.46,n.frame===1||n.frame===5?p.dark:p.white,BM.fabric,rotation(0,0,-.125));
+ add('flat',1.94,.432,0,.65,1,.49,color,BM.decal,rotation(0,0,-.125));
+ add('digit'+n.frame,1.94,.434,0,.51,1,.49,n.frame===1||n.frame===5?p.dark:p.white,BM.decal,rotation(0,0,-.125));
+ // A small stainless bow fitting and recessed deck screws catch the light.
+ add('rounded',2.75,.345,0,.085,.016,.095,p.steel,BM.metal);
+ add('wheel',2.76,.386,0,.060,.060,.060,p.steel,BM.metal,rotation(0,0,Math.PI/2));
+ for(const side of [-1,1])add('box',1.2,.477,side*.70,.09,.002,.004,p.dark,BM.fabric);
  // Compact outboard: rounded cowl, lower leg, mount and metallic cooling slots.
  add('box',-2.02,.40,0,.14,.28,.28,p.steel,BM.metal);
- add('soft',-2.12,.73,0,.33,.36,.36,p.dark,BM.paint);
- add('soft',-2.09,.95,0,.33,.13,.34,p.white,BM.paint);
+ add('rounded',-2.12,.73,0,.33,.30,.36,p.dark,BM.paint);
+ add('rounded',-2.12,1,0,.34,.075,.365,p.white,BM.paint);
  add('box',-2.33,.75,0,.018,.035,.27,color,BM.paint);
  for(let j=0;j<3;j++)add('box',-1.81,.73+j*.08,0,.015,.012,.24,p.rubber,BM.fabric);
- add('soft',-2.16,.15,0,.085,.40,.10,p.steel,BM.metal);
+ add('rounded',-2.16,.15,0,.085,.40,.10,p.steel,BM.metal);
+ for(const side of [-1,1]){
+  add('rounded',-2.13,.50,side*.29,.15,.05,.07,p.steel,BM.metal);
+  add('softLow',-2.00,.44,side*.31,.045,.045,.02,p.dark,BM.fabric);
+ }
+ add('box',-2.12,.942,0,.335,.012,.366,p.rubber,BM.fabric);
+ seg([-1.88,.62,.24],[-1.68,.39,.47],.018,.018,p.rubber,BM.fabric);
  // Steering wheel, tiller and human-scale gloves. The player view omits their own head/torso.
  const wheelZ=-.17,steer=pose.turn*.42;
  add('wheel',.49,.66,wheelZ,.25,.25,.25,p.rubber,BM.fabric,rotation(steer,0,-.38));
@@ -331,9 +365,9 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $
 
 */
 const digitGeometry={"digit1":[-0.5,0,-0.367017,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.321903,0,-0.33144,0,1,0,-0.321903,0,0.367017,0,1,0,-0.321903,0,0.140699,0,1,0,-0.5,0,0.33294,0,1,0,-0.5,0,0.33294,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.5,0,-0.367017,0,1,0,-0.5,0,0.33294,0,1,0,-0.321903,0,0.140699,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.321903,0,0.140699,0,1,0,0.324475,0,0.021539,0,1,0,0.5,0,0.054329,0,1,0,0.451779,0,-0.18742,0,1,0,0.324475,0,0.021539,0,1,0,0.324475,0,0.021539,0,1,0,0.451779,0,-0.18742,0,1,0,0.276254,0,-0.22171,0,1,0,0.324475,0,0.021539,0,1,0,0.5,0,0.299293,0,1,0,0.5,0,0.054329,0,1,0],"digit2":[-0.5,0,-0.426,0,1,0,-0.5,0,0.287263,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.312421,0,-0.389158,0,1,0,-0.313895,0,-0.103684,0,1,0,0.002737,0,0.028526,0,1,0,-0.5,0,-0.426,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.312421,0,-0.389158,0,1,0,0.002737,0,0.028526,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.129684,0,0.141789,0,1,0,0.271,0,-0.192789,0,1,0,0.434947,0,-0.242421,0,1,0,0.226316,0,-0.284526,0,1,0,0.302316,0,-0.110842,0,1,0,0.434947,0,-0.242421,0,1,0,0.271,0,-0.192789,0,1,0,0.258526,0,0.426,0,1,0,0.358579,0,0.404421,0,1,0,0.261684,0,0.159526,0,1,0,0.261684,0,0.159526,0,1,0,0.358579,0,0.404421,0,1,0,0.435158,0,0.339684,0,1,0,-0.313895,0,0.323263,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.5,0,0.287263,0,1,0,0.463579,0,-0.153789,0,1,0,0.434947,0,-0.242421,0,1,0,0.302316,0,-0.110842,0,1,0,0.002737,0,0.028526,0,1,0,-0.129684,0,0.141789,0,1,0,0.055684,0,0.088789,0,1,0,0.055684,0,0.088789,0,1,0,-0.129684,0,0.141789,0,1,0,-0.009211,0,0.289158,0,1,0,-0.009211,0,0.289158,0,1,0,0.109263,0,0.132737,0,1,0,0.055684,0,0.088789,0,1,0,0.5,0,0.103684,0,1,0,0.495947,0,0.018947,0,1,0,0.326947,0,0.028526,0,1,0,0.083579,0,0.373368,0,1,0,0.166789,0,0.412842,0,1,0,0.213895,0,0.168737,0,1,0,0.258526,0,0.426,0,1,0,0.261684,0,0.159526,0,1,0,0.213895,0,0.168737,0,1,0,0.213895,0,0.168737,0,1,0,0.166789,0,0.412842,0,1,0,0.258526,0,0.426,0,1,0,0.320789,0,-0.037474,0,1,0,0.463579,0,-0.153789,0,1,0,0.302316,0,-0.110842,0,1,0,0.483789,0,-0.066842,0,1,0,0.463579,0,-0.153789,0,1,0,0.320789,0,-0.037474,0,1,0,0.320789,0,-0.037474,0,1,0,0.495947,0,0.018947,0,1,0,0.483789,0,-0.066842,0,1,0,0.320789,0,-0.037474,0,1,0,0.326947,0,0.028526,0,1,0,0.495947,0,0.018947,0,1,0,0.297263,0,0.131895,0,1,0,0.483789,0,0.237632,0,1,0,0.5,0,0.103684,0,1,0,0.435158,0,0.339684,0,1,0,0.483789,0,0.237632,0,1,0,0.297263,0,0.131895,0,1,0,0.297263,0,0.131895,0,1,0,0.261684,0,0.159526,0,1,0,0.435158,0,0.339684,0,1,0,0.083579,0,0.373368,0,1,0,0.213895,0,0.168737,0,1,0,0.162368,0,0.159737,0,1,0,-0.009211,0,0.289158,0,1,0,0.083579,0,0.373368,0,1,0,0.162368,0,0.159737,0,1,0,0.162368,0,0.159737,0,1,0,0.109263,0,0.132737,0,1,0,-0.009211,0,0.289158,0,1,0,0.5,0,0.103684,0,1,0,0.326947,0,0.028526,0,1,0,0.319526,0,0.087632,0,1,0,0.319526,0,0.087632,0,1,0,0.297263,0,0.131895,0,1,0,0.5,0,0.103684,0,1,0],"digit3":[0.378279,0,0.400589,0,1,0,0.274788,0,0.1651,0,1,0,0.284342,0,0.421194,0,1,0,0.378279,0,0.400589,0,1,0,0.445672,0,0.338773,0,1,0,0.274788,0,0.1651,0,1,0,0.5,0,0.093369,0,1,0,0.306445,0,0.13427,0,1,0,0.486418,0,0.236315,0,1,0,0.274788,0,0.1651,0,1,0,0.445672,0,0.338773,0,1,0,0.486418,0,0.236315,0,1,0,0.486418,0,0.236315,0,1,0,0.306445,0,0.13427,0,1,0,0.274788,0,0.1651,0,1,0,-0.086139,0,0.347191,0,1,0,-0.179818,0,0.11258,0,1,0,-0.154617,0,0.357364,0,1,0,-0.154617,0,0.357364,0,1,0,-0.179818,0,0.11258,0,1,0,-0.297872,0,0.325656,0,1,0,-0.407457,0,0.230531,0,1,0,-0.297872,0,0.325656,0,1,0,-0.241841,0,0.096674,0,1,0,-0.297872,0,0.325656,0,1,0,-0.179818,0,0.11258,0,1,0,-0.241841,0,0.096674,0,1,0,0.332266,0,0.015286,0,1,0,0.489672,0,-0.052882,0,1,0,0.328703,0,-0.042088,0,1,0,0.300558,0,-0.170109,0,1,0,0.458686,0,-0.203057,0,1,0,0.276699,0,-0.238587,0,1,0,0.104524,0,0.046633,0,1,0,0.095332,0,-0.044206,0,1,0,-0.071938,0,0.003615,0,1,0,0.489672,0,-0.052882,0,1,0,0.332266,0,0.015286,0,1,0,0.497418,0,0.020657,0,1,0,0.328703,0,-0.042088,0,1,0,0.489672,0,-0.052882,0,1,0,0.476761,0,-0.127401,0,1,0,-0.497005,0,-0.200372,0,1,0,-0.5,0,-0.118364,0,1,0,-0.33082,0,-0.123528,0,1,0,-0.473043,0,-0.35189,0,1,0,-0.290229,0,-0.324416,0,1,0,-0.452076,0,-0.421194,0,1,0,-0.488019,0,-0.278248,0,1,0,-0.312435,0,-0.259244,0,1,0,-0.473043,0,-0.35189,0,1,0,-0.473043,0,-0.35189,0,1,0,-0.312435,0,-0.259244,0,1,0,-0.290229,0,-0.324416,0,1,0,-0.452076,0,-0.421194,0,1,0,-0.290229,0,-0.324416,0,1,0,-0.26038,0,-0.384425,0,1,0,0.124045,0,0.363974,0,1,0,0.175325,0,0.160607,0,1,0,0.070543,0,0.295239,0,1,0,0.175325,0,0.160607,0,1,0,0.124045,0,0.363974,0,1,0,0.23146,0,0.175377,0,1,0,0.23146,0,0.175377,0,1,0,0.124045,0,0.363974,0,1,0,0.19624,0,0.406889,0,1,0,0.284342,0,0.421194,0,1,0,0.274788,0,0.1651,0,1,0,0.23146,0,0.175377,0,1,0,0.23146,0,0.175377,0,1,0,0.19624,0,0.406889,0,1,0,0.284342,0,0.421194,0,1,0,-0.33082,0,-0.123528,0,1,0,-0.5,0,-0.118364,0,1,0,-0.320595,0,-0.025873,0,1,0,-0.5,0,-0.118364,0,1,0,-0.476864,0,0.079891,0,1,0,-0.320595,0,-0.025873,0,1,0,0.070543,0,0.295239,0,1,0,0.175325,0,0.160607,0,1,0,0.038525,0,0.203057,0,1,0,0.325811,0,0.084074,0,1,0,0.306445,0,0.13427,0,1,0,0.5,0,0.093369,0,1,0,0.5,0,0.093369,0,1,0,0.497418,0,0.020657,0,1,0,0.325811,0,0.084074,0,1,0,0.325811,0,0.084074,0,1,0,0.497418,0,0.020657,0,1,0,0.332266,0,0.015286,0,1,0,0.328703,0,-0.042088,0,1,0,0.476761,0,-0.127401,0,1,0,0.318013,0,-0.104317,0,1,0,0.458686,0,-0.203057,0,1,0,0.300558,0,-0.170109,0,1,0,0.318013,0,-0.104317,0,1,0,0.318013,0,-0.104317,0,1,0,0.476761,0,-0.127401,0,1,0,0.458686,0,-0.203057,0,1,0,-0.064759,0,-0.081595,0,1,0,-0.071938,0,0.003615,0,1,0,0.095332,0,-0.044206,0,1,0,-0.064759,0,-0.081595,0,1,0,0.095332,0,-0.14873,0,1,0,-0.064759,0,-0.180335,0,1,0,0.095332,0,-0.044206,0,1,0,0.095332,0,-0.14873,0,1,0,-0.064759,0,-0.081595,0,1,0,0.104524,0,0.046633,0,1,0,-0.071938,0,0.003615,0,1,0,-0.093472,0,0.064243,0,1,0,-0.093472,0,0.064243,0,1,0,0.038525,0,0.203057,0,1,0,0.104524,0,0.046633,0,1,0,-0.326224,0,-0.191334,0,1,0,-0.497005,0,-0.200372,0,1,0,-0.33082,0,-0.123528,0,1,0,-0.488019,0,-0.278248,0,1,0,-0.497005,0,-0.200372,0,1,0,-0.326224,0,-0.191334,0,1,0,-0.326224,0,-0.191334,0,1,0,-0.312435,0,-0.259244,0,1,0,-0.488019,0,-0.278248,0,1,0,-0.289919,0,0.048957,0,1,0,-0.320595,0,-0.025873,0,1,0,-0.476864,0,0.079891,0,1,0,-0.289919,0,0.048957,0,1,0,-0.476864,0,0.079891,0,1,0,-0.407457,0,0.230531,0,1,0,-0.407457,0,0.230531,0,1,0,-0.241841,0,0.096674,0,1,0,-0.289919,0,0.048957,0,1,0,0.104524,0,0.046633,0,1,0,0.038525,0,0.203057,0,1,0,0.132101,0,0.116298,0,1,0,0.132101,0,0.116298,0,1,0,0.038525,0,0.203057,0,1,0,0.175325,0,0.160607,0,1,0,0.038525,0,0.203057,0,1,0,-0.093472,0,0.064243,0,1,0,-0.129415,0,0.100496,0,1,0,0.013065,0,0.26792,0,1,0,0.038525,0,0.203057,0,1,0,-0.129415,0,0.100496,0,1,0,-0.129415,0,0.100496,0,1,0,-0.029436,0,0.31667,0,1,0,0.013065,0,0.26792,0,1,0,-0.129415,0,0.100496,0,1,0,-0.179818,0,0.11258,0,1,0,-0.086139,0,0.347191,0,1,0,-0.086139,0,0.347191,0,1,0,-0.029436,0,0.31667,0,1,0,-0.129415,0,0.100496,0,1,0],"digit4":[0.280326,0,0.130626,0,1,0,0.5,0,0.417167,0,1,0,0.5,0,0.123768,0,1,0,0.5,0,0.123768,0,1,0,-0.096871,0,-0.39252,0,1,0,0.280326,0,0.130626,0,1,0,-0.130947,0,0.293292,0,1,0,0.280326,0,0.130626,0,1,0,-0.130947,0,0.0494,0,1,0,-0.130947,0,0.293292,0,1,0,-0.317831,0,0.40045,0,1,0,-0.130947,0,0.436027,0,1,0,-0.130947,0,-0.225139,0,1,0,0.280326,0,0.130626,0,1,0,-0.096871,0,-0.39252,0,1,0,-0.130947,0,-0.225139,0,1,0,-0.096871,0,-0.39252,0,1,0,-0.317831,0,-0.436027,0,1,0,-0.317831,0,0.40045,0,1,0,-0.130947,0,0.293292,0,1,0,-0.317831,0,0.257715,0,1,0,-0.317831,0,0.257715,0,1,0,-0.130947,0,0.293292,0,1,0,-0.130947,0,0.0494,0,1,0,-0.317831,0,0.014038,0,1,0,-0.5,0,-0.022182,0,1,0,-0.5,0,0.222353,0,1,0,-0.5,0,0.222353,0,1,0,-0.317831,0,0.257715,0,1,0,-0.317831,0,0.014038,0,1,0,-0.317831,0,0.014038,0,1,0,-0.317831,0,0.257715,0,1,0,-0.130947,0,0.0494,0,1,0,-0.130947,0,0.0494,0,1,0,-0.130947,0,-0.225139,0,1,0,-0.317831,0,0.014038,0,1,0,-0.317831,0,0.014038,0,1,0,-0.130947,0,-0.225139,0,1,0,-0.317831,0,-0.436027,0,1,0],"digit5":[-0.003311,0,0.021074,0,1,0,0.178789,0,0.054656,0,1,0,0.177686,0,0.023176,0,1,0,-0.273597,0,0.061804,0,1,0,-0.471673,0,0.08971,0,1,0,-0.386693,0,0.243641,0,1,0,0.5,0,0.424427,0,1,0,0.5,0,-0.20433,0,1,0,0.313958,0,-0.03868,0,1,0,-0.471673,0,0.08971,0,1,0,-0.273597,0,0.061804,0,1,0,-0.314274,0,-0.010984,0,1,0,-0.276855,0,-0.313696,0,1,0,-0.235758,0,-0.385537,0,1,0,-0.434833,0,-0.424427,0,1,0,0.5,0,0.424427,0,1,0,0.313958,0,-0.03868,0,1,0,0.313958,0,0.38827,0,1,0,0.162182,0,-0.06832,0,1,0,0.313958,0,-0.03868,0,1,0,0.5,0,-0.20433,0,1,0,-0.008304,0,-0.171116,0,1,0,0.162182,0,-0.06832,0,1,0,-0.026225,0,-0.238228,0,1,0,0.5,0,-0.20433,0,1,0,-0.051818,0,-0.311331,0,1,0,-0.026225,0,-0.238228,0,1,0,-0.026225,0,-0.238228,0,1,0,0.162182,0,-0.06832,0,1,0,0.5,0,-0.20433,0,1,0,-0.2109,0,0.108629,0,1,0,-0.273597,0,0.061804,0,1,0,-0.386693,0,0.243641,0,1,0,-0.386693,0,0.243641,0,1,0,-0.253311,0,0.341707,0,1,0,-0.2109,0,0.108629,0,1,0,-0.327833,0,-0.104478,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.5,0,-0.110994,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.495953,0,-0.192033,0,1,0,-0.5,0,-0.110994,0,1,0,-0.5,0,-0.110994,0,1,0,-0.314274,0,-0.010984,0,1,0,-0.327833,0,-0.104478,0,1,0,-0.471673,0,0.08971,0,1,0,-0.314274,0,-0.010984,0,1,0,-0.5,0,-0.110994,0,1,0,-0.483813,0,-0.270759,0,1,0,-0.495953,0,-0.192033,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.031217,0,0.076939,0,1,0,0.178789,0,0.054656,0,1,0,-0.003311,0,0.021074,0,1,0,-0.031217,0,0.076939,0,1,0,0.161604,0,0.188564,0,1,0,0.178789,0,0.054656,0,1,0,0.110048,0,0.289678,0,1,0,-0.074732,0,0.112413,0,1,0,0.028116,0,0.353216,0,1,0,0.161604,0,0.188564,0,1,0,-0.031217,0,0.076939,0,1,0,0.110048,0,0.289678,0,1,0,0.110048,0,0.289678,0,1,0,-0.031217,0,0.076939,0,1,0,-0.074732,0,0.112413,0,1,0,0.028116,0,0.353216,0,1,0,-0.074732,0,0.112413,0,1,0,-0.080198,0,0.374396,0,1,0,-0.003311,0,0.021074,0,1,0,0.177686,0,0.023176,0,1,0,0.174375,0,-0.008198,0,1,0,-0.003311,0,0.021074,0,1,0,0.174375,0,-0.008198,0,1,0,0.005991,0,-0.051923,0,1,0,-0.30555,0,-0.244061,0,1,0,-0.483813,0,-0.270759,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.13128,0,0.124238,0,1,0,-0.2109,0,0.108629,0,1,0,-0.253311,0,0.341707,0,1,0,-0.253311,0,0.341707,0,1,0,-0.080198,0,0.374396,0,1,0,-0.13128,0,0.124238,0,1,0,-0.13128,0,0.124238,0,1,0,-0.080198,0,0.374396,0,1,0,-0.074732,0,0.112413,0,1,0,-0.463475,0,-0.347856,0,1,0,-0.276855,0,-0.313696,0,1,0,-0.434833,0,-0.424427,0,1,0,-0.463475,0,-0.347856,0,1,0,-0.30555,0,-0.244061,0,1,0,-0.276855,0,-0.313696,0,1,0,-0.483813,0,-0.270759,0,1,0,-0.30555,0,-0.244061,0,1,0,-0.463475,0,-0.347856,0,1,0,0.002417,0,-0.10926,0,1,0,0.162182,0,-0.06832,0,1,0,-0.008304,0,-0.171116,0,1,0,0.002417,0,-0.10926,0,1,0,0.005991,0,-0.051923,0,1,0,0.162182,0,-0.06832,0,1,0,0.162182,0,-0.06832,0,1,0,0.005991,0,-0.051923,0,1,0,0.169224,0,-0.038785,0,1,0,0.169224,0,-0.038785,0,1,0,0.005991,0,-0.051923,0,1,0,0.174375,0,-0.008198,0,1,0],"digit6":[-0.294206,0,-0.380861,0,1,0,-0.221132,0,-0.158851,0,1,0,-0.143049,0,-0.403429,0,1,0,-0.334435,0,-0.095177,0,1,0,-0.476709,0,-0.204142,0,1,0,-0.5,0,-0.058046,0,1,0,-0.215193,0,0.106899,0,1,0,-0.386181,0,0.241686,0,1,0,-0.256094,0,0.329064,0,1,0,0.108345,0,-0.363561,0,1,0,0.091407,0,-0.128486,0,1,0,0.219841,0,-0.315431,0,1,0,-0.221132,0,-0.158851,0,1,0,-0.294206,0,-0.380861,0,1,0,-0.272206,0,-0.151622,0,1,0,-0.272206,0,-0.151622,0,1,0,-0.294206,0,-0.380861,0,1,0,-0.406837,0,-0.313158,0,1,0,-0.28269,0,0.071266,0,1,0,-0.471545,0,0.1085,0,1,0,-0.386181,0,0.241686,0,1,0,-0.386181,0,0.241686,0,1,0,-0.215193,0,0.106899,0,1,0,-0.28269,0,0.071266,0,1,0,0.395579,0,-0.166701,0,1,0,0.272568,0,-0.038215,0,1,0,0.453522,0,-0.068168,0,1,0,0.195053,0,-0.097862,0,1,0,0.272568,0,-0.038215,0,1,0,0.395579,0,-0.166701,0,1,0,0.195053,0,-0.097862,0,1,0,0.219841,0,-0.315431,0,1,0,0.091407,0,-0.128486,0,1,0,0.091407,0,-0.128486,0,1,0,-0.064966,0,-0.111754,0,1,0,-0.019417,0,-0.057994,0,1,0,-0.143049,0,-0.403429,0,1,0,-0.221132,0,-0.158851,0,1,0,-0.13427,0,-0.147077,0,1,0,0.5,0,0.16918,0,1,0,0.48838,0,0.043948,0,1,0,0.337224,0,0.156166,0,1,0,-0.476709,0,-0.204142,0,1,0,-0.334435,0,-0.095177,0,1,0,-0.310576,0,-0.129932,0,1,0,-0.406837,0,-0.313158,0,1,0,-0.476709,0,-0.204142,0,1,0,-0.310576,0,-0.129932,0,1,0,-0.310576,0,-0.129932,0,1,0,-0.272206,0,-0.151622,0,1,0,-0.406837,0,-0.313158,0,1,0,-0.471545,0,0.1085,0,1,0,-0.28269,0,0.071266,0,1,0,-0.327463,0,0.017507,0,1,0,-0.5,0,-0.058046,0,1,0,-0.471545,0,0.1085,0,1,0,-0.327463,0,0.017507,0,1,0,0.48838,0,0.043948,0,1,0,0.453522,0,-0.068168,0,1,0,0.32106,0,0.047562,0,1,0,0.32106,0,0.047562,0,1,0,0.453522,0,-0.068168,0,1,0,0.272568,0,-0.038215,0,1,0,0.337224,0,0.156166,0,1,0,0.48838,0,0.043948,0,1,0,0.32106,0,0.047562,0,1,0,0.314708,0,-0.251188,0,1,0,0.195053,0,-0.097862,0,1,0,0.395579,0,-0.166701,0,1,0,0.219841,0,-0.315431,0,1,0,0.195053,0,-0.097862,0,1,0,0.314708,0,-0.251188,0,1,0,-0.014305,0,-0.393462,0,1,0,-0.13427,0,-0.147077,0,1,0,-0.064966,0,-0.111754,0,1,0,-0.014305,0,-0.393462,0,1,0,0.091407,0,-0.128486,0,1,0,0.108345,0,-0.363561,0,1,0,-0.014305,0,-0.393462,0,1,0,-0.064966,0,-0.111754,0,1,0,0.091407,0,-0.128486,0,1,0,-0.143049,0,-0.403429,0,1,0,-0.13427,0,-0.147077,0,1,0,-0.014305,0,-0.393462,0,1,0,0.305309,0,0.313881,0,1,0,0.280417,0,0.368519,0,1,0,0.458686,0,0.403429,0,1,0,0.33366,0,0.208428,0,1,0,0.5,0,0.16918,0,1,0,0.337224,0,0.156166,0,1,0,0.497418,0,0.22893,0,1,0,0.5,0,0.16918,0,1,0,0.33366,0,0.208428,0,1,0,0.476761,0,0.345022,0,1,0,0.305309,0,0.313881,0,1,0,0.458686,0,0.403429,0,1,0,0.32297,0,0.26069,0,1,0,0.305309,0,0.313881,0,1,0,0.476761,0,0.345022,0,1,0,0.085416,0,0.282586,0,1,0,-0.077412,0,0.11165,0,1,0,0.005474,0,0.339289,0,1,0,0.005474,0,0.339289,0,1,0,-0.077412,0,0.11165,0,1,0,-0.093886,0,0.35819,0,1,0,-0.093886,0,0.35819,0,1,0,-0.077412,0,0.11165,0,1,0,-0.132101,0,0.118777,0,1,0,-0.132101,0,0.118777,0,1,0,-0.215193,0,0.106899,0,1,0,-0.256094,0,0.329064,0,1,0,-0.256094,0,0.329064,0,1,0,-0.093886,0,0.35819,0,1,0,-0.132101,0,0.118777,0,1,0,-0.037286,0,0.090271,0,1,0,-0.077412,0,0.11165,0,1,0,0.085416,0,0.282586,0,1,0,0.085416,0,0.282586,0,1,0,0.138246,0,0.196344,0,1,0,-0.037286,0,0.090271,0,1,0,-0.342388,0,-0.049163,0,1,0,-0.334435,0,-0.095177,0,1,0,-0.5,0,-0.058046,0,1,0,-0.5,0,-0.058046,0,1,0,-0.327463,0,0.017507,0,1,0,-0.342388,0,-0.049163,0,1,0,-0.004235,0,0.009089,0,1,0,0.15188,0,0.030004,0,1,0,0.13995,0,-0.024995,0,1,0,0.32297,0,0.26069,0,1,0,0.476761,0,0.345022,0,1,0,0.489672,0,0.287131,0,1,0,0.497418,0,0.22893,0,1,0,0.33366,0,0.208428,0,1,0,0.489672,0,0.287131,0,1,0,0.489672,0,0.287131,0,1,0,0.33366,0,0.208428,0,1,0,0.32297,0,0.26069,0,1,0,-0.012497,0,0.055825,0,1,0,0.138246,0,0.196344,0,1,0,0.155856,0,0.088411,0,1,0,-0.012497,0,0.055825,0,1,0,-0.037286,0,0.090271,0,1,0,0.138246,0,0.196344,0,1,0,-0.012497,0,0.055825,0,1,0,0.15188,0,0.030004,0,1,0,-0.004235,0,0.009089,0,1,0,0.155856,0,0.088411,0,1,0,0.15188,0,0.030004,0,1,0,-0.012497,0,0.055825,0,1,0,0.091407,0,-0.128486,0,1,0,-0.019417,0,-0.057994,0,1,0,0.119965,0,-0.077412,0,1,0,0.119965,0,-0.077412,0,1,0,-0.019417,0,-0.057994,0,1,0,-0.004235,0,0.009089,0,1,0,-0.004235,0,0.009089,0,1,0,0.13995,0,-0.024995,0,1,0,0.119965,0,-0.077412,0,1,0]};
-const G={...digitGeometry,thin:smoothNormals(frustumMesh(1,1,-1,1,6)),softTiny:smoothSphere(6,4),helmetLow:smoothSphere(12,8),torso:torsoMesh(),helmetSeal:helmetSealMesh(),shell:hullShell(),deck:foreDeck(),deckTrim:foreDeck(true),wing:wingDeck(),soft:smoothSphere(),softLow:smoothSphere(8,5),helmet:smoothSphere(24,14),visor:visorMesh(),helmetStripe:helmetStripe(),wheel:wheelMesh(),box:boxMesh(),hull:hullMesh(),cone:coneMesh(),sphere:sphereMesh(),flat:planeMesh(1),slash:slashMesh(),stripe:stripeMesh(),
+const G={...digitGeometry,digit1:deckOne(),rounded:roundedBoxMesh(),thin:smoothNormals(frustumMesh(1,1,-1,1,6)),softTiny:smoothSphere(6,4),helmetLow:smoothSphere(12,8),torso:torsoMesh(),helmetSeal:helmetSealMesh(),shell:hullShell(),deck:foreDeck(),deckTrim:foreDeck(true),wing:wingDeck(),soft:smoothSphere(),softLow:smoothSphere(8,5),helmet:smoothSphere(24,14),visor:visorMesh(),helmetStripe:helmetStripe(),wheel:wheelMesh(),box:boxMesh(),hull:hullMesh(),cone:coneMesh(),sphere:sphereMesh(),flat:planeMesh(1),slash:slashMesh(),stripe:stripeMesh(),
 water:planeMesh(900,1),shore:ringMesh(90,235,.12),edge:ringMesh(87,90,.32),rope:ringMesh(R.C.inner-.06,R.C.inner+.06,.04),mountain:mountainMesh(270,0),farHill:mountainMesh(340,2),
-buoy1:frustumMesh(1,.70,0,.9),buoy2:frustumMesh(.70,.37,.9,1.9),buoy3:frustumMesh(.37,.01,1.9,2.9),float:frustumMesh(1,1,0,.16)};
+buoy1:latheProfile([[0,.88],[.07,.98],[.22,1],[.44,.94],[.67,.835],[.9,.72]]),buoy2:latheProfile([[.9,.72],[1.15,.61],[1.4,.51],[1.65,.405],[1.9,.30]]),buoy3:latheProfile([[1.9,.30],[2.15,.207],[2.4,.12],[2.63,.045],[2.68,.01]]),buoyCollar:latheProfile([[0,.93],[.035,1.10],[.11,1.13],[.18,1.06],[.205,.97]]),buoyBand:latheProfile([[.895,.729],[.924,.716]]),float:frustumMesh(1,1,0,.16)};
 const distantSphere=sphereMesh(8,4);
 const P={ink:rgb('#133346'),white:rgb('#fff5df'),foam:rgb('#e0fff4'),aqua:rgb('#49c5c2'),water:rgb('#137f9d'),steel:rgb('#87a9af'),red:rgb('#ee664e')};
 const segs={1:'bc',2:'abdeg',3:'abcdg',4:'bcfg',5:'acdfg',6:'acdefg'};
@@ -427,6 +461,18 @@ function crowdFor(r){
  crowdCommands=colors.map((c,i)=>{const key='crowd'+i;G[key]=builders[i].data;return [key,rgb(c)];});return crowdCommands;
 }
 
+function buoyScene(x,z,time,settings,emit){
+ const moving=settings.motion!==false,bob=moving?Math.sin(time*1.8+x)*.034:0,lean=moving?Math.sin(time*1.15+x)*.020:0;
+ const base=multiply(model(x,.035+bob,z),rotation(lean,0,lean*.7));
+ const part=(key,m,color,material=BM.buoy)=>emit(key,multiply(base,m),color,material);
+ part('buoyCollar',identity(),rgb('#4b3736'));
+ part('buoy1',model(0,.13,0),rgb('#c84227'));
+ part('buoy2',model(0,.13,0),rgb('#edeee2'));
+ part('buoy3',model(0,.13,0),rgb('#d94428'));
+ part('buoyBand',model(0,.13,0),rgb('#bdbeb3'));
+ if(settings.motion!==false)emit('flat',model(x,.045,z,0,3.15,1,3.15),[.14,1,1],5);
+}
+
 function scene(d,r,settings,emit){
 const player=R.own(d),time=settings.motion===false?0:d.elapsed,pal=palette(r);
 const add=(key,x,y,z,h,sx,sy,sz,col)=>emit(key,model(x,y,z,h,sx,sy,sz),col,key==='sphere'&&sx>5?3:0);
@@ -445,11 +491,7 @@ for(const side of [-1,1])for(let i=-4;i<=4;i++){const x=i*22,z=side*114;
 crowdFor(r).forEach(([key,col])=>emit(key,identity(),col,4));
 for(let s=0;s<R.C.length;s+=18){const p=R.pointAt(s,R.C.inner),bob=Math.sin(time*1.7+s)*.035;add('sphere',p.x,.13+bob,p.z,p.heading,.42,.22,.42,Math.floor(s/18)%2?P.white:P.red);}
 for(let s=0;s<R.C.length;s+=30){const p=R.pointAt(s,R.C.outer);add('sphere',p.x,.1,p.z,0,.36,.24,.36,P.white);}
-for(const side of [-1,1]){const x=side*(R.C.halfStraight+R.C.inner),bob=Math.sin(time*1.8+side)*.045;
-
- add('float',x,.02,0,0,1.25,1,1.25,P.ink);
- for(const [key,col] of [['buoy1',P.red],['buoy2',P.white],['buoy3',P.red]])add(key,x,.12+bob,0,0,1,1,1,col);
-}
+for(const side of [-1,1])buoyScene(side*(R.C.halfStraight+R.C.inner),0,time,settings,emit);
 const gx=R.pointAt(R.C.start).x;
 for(let j=0;j<16;j++)add('flat',gx,.045,R.C.inner+(j+.5)*(R.C.outer-R.C.inner)/16,0,1.5,1,(R.C.outer-R.C.inner)/16,j%2?P.white:P.ink);
 for(const z of [R.C.inner-2,R.C.outer+2]){add('box',gx,4,z,0,.11,4,.11,P.white);add('box',gx,7.2,z,0,.13,.7,.5,P.red);}
@@ -515,21 +557,23 @@ waterPainter.draw(ctx,cam,width,height,pal,weatherVector(r),t);
 const commands=[];
 function emit(key,m,col,material=0,anchor=null){if(material===5||material===6){const points=[[-.5,-.5],[-.5,.5],[.5,.5],[.5,-.5]].map(([x,z])=>cameraPoint([m[0]*x+m[8]*z+m[12],m[13],m[2]*x+m[10]*z+m[14]]));if(points.some(p=>p[2]<.25))return;const quad=points.map(screen);if(quad.every(p=>p[0]<0)||quad.every(p=>p[0]>width)||quad.every(p=>p[1]<0)||quad.every(p=>p[1]>height))return;commands.push({quad,shadow:material===6,alpha:col[0],depth:points.reduce((n,p)=>n+p[2],0)/4});return;}const center=cameraPoint([m[12],m[13],m[14]]),data=key==='sphere'&&center[2]>16?distantSphere:key==='soft'||key==='softLow'?G.softTiny:key==='helmet'?(center[2]>23?G.softLow:G.helmetLow):G[key];
 if(!key.startsWith('crowd')&&!['mountain','farHill','shore','edge','rope'].includes(key)){const radius=Math.max(Math.hypot(m[0],m[1],m[2]),Math.hypot(m[4],m[5],m[6]),Math.hypot(m[8],m[9],m[10]))*(['hull','stripe','shell','deck','deckTrim','wing'].includes(key)?4:key==='cone'||key.startsWith('buoy')?3:1.8);if(center[2]+radius<.16||Math.abs(center[0])-radius>Math.max(0,center[2]+radius)*width/(2*focal)||Math.abs(center[1])-radius>Math.max(0,center[2]+radius)*height/(2*focal))return;}
+const decalPolygons=material===BM.decal?[]:null;
 const partDepth=anchor?cameraPoint([anchor.x,.5,anchor.z])[2]-anchor.layer*.001:0,world=[m[12],m[13],m[14]],eye=unit(sub(cam.eye,world)),half=unit([eye[0]-.4,eye[1]+.88,eye[2]+.28]);
 for(let i=0;i<data.length;i+=18){const points=[];for(let k=0;k<3;k++){const j=i+k*6,x=data[j],y=data[j+1],z=data[j+2];points.push(cameraPoint([m[0]*x+m[4]*y+m[8]*z+m[12],m[1]*x+m[5]*y+m[9]*z+m[13],m[2]*x+m[6]*y+m[10]*z+m[14]]));}
 const clipped=clipNear(points);if(clipped.length<3)continue;const depth=clipped.reduce((v,p)=>v+p[2],0)/clipped.length;if(depth>600)continue;const polygon=clipped.map(screen);
 if(polygon.every(p=>p[0]<-2)||polygon.every(p=>p[0]>width+2)||polygon.every(p=>p[1]<-2)||polygon.every(p=>p[1]>height+2))continue;
 const normal=[0,1,2].map(c=>(data[i+3+c]+data[i+9+c]+data[i+15+c])/3),n=normalVector(m,normal),lit=-n[0]*.4+n[1]*.88+n[2]*.28,unlit=material===3||material===4;
-let fill;if(material>=7){
+let fill;if(material===BM.decal){fill=color(col,pal.fog,depth);}else if(material>=7){
  const power=material===8?25:material===9?120:material===10?140:material===11?65:95,spec=material===8?.035:material===9?.50:material===10?.65:.19;
  const shine=Math.pow(Math.max(0,dot(n,half)),power)*spec*(pal.rain?.42:pal.cloud?.66:1),facing=1-Math.max(0,dot(n,eye)),reflect=(material===10?.52:material===9?.26:.04)*(.35+Math.pow(facing,4)*.65),light=.47+.20*n[1]+Math.max(0,lit)*.42;
  const painted=col.map((v,c)=>(v*light*(1-reflect)+pal.fog[c]*reflect+shine*[1,.97,.87][c])*(.87+.13*R.clamp((world[1]-.10)/.42,0,1)));fill=color(painted,pal.fog,depth);
 }else fill=unlit?color(col,col,0):color(col,pal.fog,depth,lit>.5?1:lit>-.15?.82:.61);
-commands.push({polygon,depth:anchor?partDepth+depth*.0000001:depth,fill});
+if(decalPolygons)decalPolygons.push(polygon);else commands.push({polygon,depth:anchor?partDepth+depth*.0000001:depth,fill});
 }
+if(decalPolygons?.length)commands.push({polygons:decalPolygons,depth:anchor?partDepth:center[2],fill:color(col,pal.fog,Math.max(0,center[2]))});
 }
 scene(d,r,{...settings,paintedSky,lightweight:true},emit);commands.sort((a,b)=>b.depth-a.depth);
-for(const c of commands){if(c.quad){waterPainter.drawFoam(ctx,c);continue;}ctx.fillStyle=c.fill;ctx.beginPath();ctx.moveTo(...c.polygon[0]);for(let i=1;i<c.polygon.length;i++)ctx.lineTo(...c.polygon[i]);ctx.closePath();ctx.fill();ctx.strokeStyle=c.fill;ctx.lineWidth=.45;ctx.stroke();}
+for(const c of commands){if(c.quad){waterPainter.drawFoam(ctx,c);continue;}if(c.polygons){ctx.fillStyle=c.fill;ctx.beginPath();for(const p of c.polygons){ctx.moveTo(...p[0]);for(let i=1;i<p.length;i++)ctx.lineTo(...p[i]);ctx.closePath();}ctx.fill();continue;}ctx.fillStyle=c.fill;ctx.beginPath();ctx.moveTo(...c.polygon[0]);for(let i=1;i<c.polygon.length;i++)ctx.lineTo(...c.polygon[i]);ctx.closePath();ctx.fill();ctx.strokeStyle=c.fill;ctx.lineWidth=.45;ctx.stroke();}
 }
 return {canvas,mode:'canvas',diagnostic:null,draw,project,isLost:()=>false,get size(){return {width,height};},get frames(){return painted;},destroy(){disposed=true;}};
 }
@@ -543,6 +587,6 @@ function create(canvas,options={}){
 }
 
 
-const API={boatScene,racerPose,normalVector,BM,identity,rotation,weatherVector,waterNormal,geometry:G,panoramaU,audience,crowdFor,create,createWebGL,createCanvas,freshCanvas,clipNear,COLORS,vertex,fragment,multiply,perspective,lookAt,model,point:R.pointAt,boxMesh,hullMesh,coneMesh,planeMesh,ringMesh,scene,camera,sphereMesh,frustumMesh};
+const API={buoyScene,deckOne,boatScene,racerPose,normalVector,BM,identity,rotation,weatherVector,waterNormal,geometry:G,panoramaU,audience,crowdFor,create,createWebGL,createCanvas,freshCanvas,clipNear,COLORS,vertex,fragment,multiply,perspective,lookAt,model,point:R.pointAt,boxMesh,hullMesh,coneMesh,planeMesh,ringMesh,scene,camera,sphereMesh,frustumMesh};
 root.KM_RACE_RENDERER=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);

@@ -1,0 +1,59 @@
+{
+  "build": 111,
+  "passed": 12,
+  "failed": 0,
+  "results": [
+    {
+      "name": "390px akari の人物カードと会話に新しい肖像を表示",
+      "passed": true
+    },
+    {
+      "name": "390px mio の人物カードと会話に新しい肖像を表示",
+      "passed": true
+    },
+    {
+      "name": "390px nagi の人物カードと会話に新しい肖像を表示",
+      "passed": true
+    },
+    {
+      "name": "390px kanade の人物カードと会話に新しい肖像を表示",
+      "passed": true
+    },
+    {
+      "name": "390px tsumugi の人物カードと会話に新しい肖像を表示",
+      "passed": true
+    },
+    {
+      "name": "index.html 全29肖像の復号と7曲のMP3実再生",
+      "passed": true
+    },
+    {
+      "name": "index.html ミュート 再開と保存復元",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html 全29肖像の復号と7曲のMP3実再生",
+      "passed": true
+    },
+    {
+      "name": "index_android_safe.html ミュート 再開と保存復元",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html 全29肖像の復号と7曲のMP3実再生",
+      "passed": true
+    },
+    {
+      "name": "index_iphone_safe.html ミュート 再開と保存復元",
+      "passed": true
+    },
+    {
+      "name": "画像 音声 起動 会話中の未処理例外なし",
+      "passed": true
+    }
+  ],
+  "browser": "Chromium, actual HTMLAudioElement playback progression, 390/360/320px touch emulation",
+  "androidDeviceTested": false,
+  "iphoneDeviceTested": false,
+  "safariTested": false
+}

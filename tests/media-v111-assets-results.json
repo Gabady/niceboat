@@ -1,0 +1,120 @@
+{
+  "build": 111,
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "name": "瑞希と他の人物・既存5曲・背景を含む対象外54素材を維持",
+      "passed": true
+    },
+    {
+      "name": "akari 新しいPNG/WebP/原画を正しく復号",
+      "passed": true
+    },
+    {
+      "name": "mio 新しいPNG/WebP/原画を正しく復号",
+      "passed": true
+    },
+    {
+      "name": "nagi 新しいPNG/WebP/原画を正しく復号",
+      "passed": true
+    },
+    {
+      "name": "kanade 新しいPNG/WebP/原画を正しく復号",
+      "passed": true
+    },
+    {
+      "name": "tsumugi 新しいPNG/WebP/原画を正しく復号",
+      "passed": true
+    },
+    {
+      "name": "sg-race.mp3 元の長さを維持し全区間の音声を復号",
+      "passed": true
+    },
+    {
+      "name": "sg-final.mp3 元の長さを維持し全区間の音声を復号",
+      "passed": true
+    },
+    {
+      "name": "レース物理・音声再生処理・育成・物語・好感度のソースを維持",
+      "passed": true
+    },
+    {
+      "name": "5人の生成プロンプトと原画への対応を保持",
+      "passed": true
+    }
+  ],
+  "sha256": {
+    "assets/audio/final.mp3": "9331fb8ebec1a9133359154ebf3ca1519edd37d48a444d94685e2fbb70d87982",
+    "assets/audio/heroine.mp3": "3bbf8f01cbd7638b3b7eb7e0b10c8f784adeb50d72c7908b36880c0bac4dff5c",
+    "assets/audio/main.mp3": "d4ec072d3717a67d868ed1527c1f2026d4d1270b5e892ed5778aa2df921213fe",
+    "assets/audio/race.mp3": "fccbe1ca848cc3a54b569b81bf47997e06779d77a463316a473dbb548ab53f55",
+    "assets/audio/sg-final.mp3": "5a93e2365cac70cab75376ff920d8cd1e29c933f8e5960532f93d4b692152422",
+    "assets/audio/sg-lounge.mp3": "1b533947d741cfe7e102298bbeff993b29c6d9d74b210c5366e93c98849c91a3",
+    "assets/audio/sg-race.mp3": "9c622a6bc57694068f99aa2339166c134202b7ccbc616bcc050b4303264dfc38",
+    "assets/dialogue-workshop.webp": "d83a6f4f44707d640cadbf9d65669963fc6b29db0f0e51483f14e436d83c79f7",
+    "assets/key-art.webp": "050a9ef2d8691dfb02258891cb4035588ca24083a87c61f34ce03b7911e23ca9",
+    "assets/portrait-png/akamine.png": "aa919fc47f01289d1a6845fc8d3a157429d5d9c7627db9c0ade39ca93efcddc7",
+    "assets/portrait-png/akari.png": "02a7aa705dda58fd07279b4752ad7213e121014a8084ffe670970f6fb1deca36",
+    "assets/portrait-png/hayase.png": "45fb4f3d6a20317f7d3e18cf83fde59875f90af540f194b06f46b9ef4b4159c5",
+    "assets/portrait-png/iwase.png": "03562476520a71755499b1015426631e1508fd9b0cc56e60a5d9e4cf0b5a46a0",
+    "assets/portrait-png/kagura.png": "274b239e934a08b4bff431705aa5792e0f01108d8a732b4fd02f68de7c69284f",
+    "assets/portrait-png/kanade.png": "124d50b7ab58e2b2f1c7453a4d3415241a08892c286690f51667ab76ea2cf1a4",
+    "assets/portrait-png/kurose.png": "36ca780fba7d93935c6db8dec5361549939dfbcff410f46cd891e33755e95a68",
+    "assets/portrait-png/kuzumi.png": "5ec4b6d784fb3ad462e00dff673341aff4c2a296833f06d3d6ac60da971dd3fc",
+    "assets/portrait-png/mio.png": "5f21ba4df94e3ca731ba95f1492d56a48747f32112c5d463248acc8b68eb1df1",
+    "assets/portrait-png/nagi.png": "c81bb4db74cb86b46738a03c09584f5caaa39488869335b3a01f60c650bfdba7",
+    "assets/portrait-png/onizuka.png": "6a84732520f3e1e9ca71a880b092d55f1dabed73c35dafaf5220b7f796975c9c",
+    "assets/portrait-png/raiden.png": "3010de84f86a0e6f0b9b237286ebd4e5ff32b4ec7c10cd05db5043e279972489",
+    "assets/portrait-png/rival_01.png": "8d96420385430a8dbc7732592cf8b824472e99407b13eb4870b77657a1807ba2",
+    "assets/portrait-png/rival_02.png": "1b463a6577989ede7242f93c4465cba01557d1e39c97bf7134d733b056f9133f",
+    "assets/portrait-png/rival_03.png": "5bddc2dc863293cc382fc70e2012498f9b678b57c5a435b82f8f0416094b3f88",
+    "assets/portrait-png/rival_04.png": "625e9ba3c3a8f2106a93580f56363f65d914da4a8c73057f51dfea2e124b21ba",
+    "assets/portrait-png/rival_05.png": "579b0743659e90fdd2fc0730fbddba872d26b7cbd8665724e260d222654824e7",
+    "assets/portrait-png/rival_06.png": "dd7406c5546b591375c3d2396e34d5cd6c16a432c7b755daa3c889874483672b",
+    "assets/portrait-png/rival_07.png": "5a63ea4d09f001ed6b885e46ceb94e2115edd6b9faf1293af69a3fe2e6f7de1f",
+    "assets/portrait-png/rival_08.png": "4d558c5b0f2cd09d750db9198c4400338118605b919021657da46a80976d4ccd",
+    "assets/portrait-png/rival_09.png": "fd6900377c742294ff2e6cf34376971ef2bf6bd2a74babc58d735a85ca03f3fc",
+    "assets/portrait-png/rival_10.png": "19865654496368934ac7cd51208f5117a4dac619e1adb11bdacc9afa65b023b2",
+    "assets/portrait-png/rival_11.png": "2f0c1b253dd89ee3dabc028e829009d9bb0fe490475cfc987b231864ff1e7c33",
+    "assets/portrait-png/rival_12.png": "914d56f426a75236858d95f4e14925e7946f5b7694d9cd5711294e1165036585",
+    "assets/portrait-png/shirakami.png": "ac0662240517857292377a9a121bd6a4210632cefc75b307ca19d3bd73c38702",
+    "assets/portrait-png/tsukino.png": "7f0aa25db4dda27ab5f6332157f5dcfb81aafed9d5cb5c14de3e2c996d762f0d",
+    "assets/portrait-png/tsumugi.png": "1921a4ab2ac47311bb38dc21f3cc173b69622f360d6b363acb1e46c84287022f",
+    "assets/portrait-source-v111/akari.png": "955126bcc31ca48273d7062035050ef6fdddb2942ce7e001db8fad6b77f24035",
+    "assets/portrait-source-v111/kanade.png": "c174d0c35b94bb141648e474a969b502ce88b3ad6b9d597e42adcbddf1e8f70c",
+    "assets/portrait-source-v111/mio.png": "92a9e7835de2544b4f80d2da02f2383afcd7fb600263868d0e9316310fe3b7b4",
+    "assets/portrait-source-v111/nagi.png": "2e98e8efe1282c7023e55364b737c7f6eed347e51eb5f87cdb2e9ed0a0b491e7",
+    "assets/portrait-source-v111/tsumugi.png": "9201402f0bc7bdf3eca29bf4cfa6a3b26f28a917ab18dd04bcc008227e172bcc",
+    "assets/portraits/akamine.webp": "40554069897cd2e7af4546a803c6e419249c7b6b955d2c9203ad5a70b1e60c4a",
+    "assets/portraits/akari.webp": "af342b77ea8a1dbfa866cac21217a08b8100c05273cbce063746a088e40855f0",
+    "assets/portraits/hayase.webp": "5c81098eb2edd90ad23dc301ba33dc5a4a336d6b877f51da352ad1011de8a2b3",
+    "assets/portraits/iwase.webp": "facd050d06195b4b9d1487cca4105382e5bcec9c37b2b1fd58e98e7c5f56c00a",
+    "assets/portraits/kagura.webp": "9f20fbc4055ec802bbcc5f967f2b05b0ab81f26a6e854389129c6c92da104d64",
+    "assets/portraits/kanade.webp": "a8a552e38c4066cf471880893325efbf9e492d000b027c3dfd98c5a307c8d8dd",
+    "assets/portraits/kurose.webp": "3c1e4ba687f138373a2977276930638a7a0146db3828c251eac7dfc1fa44d760",
+    "assets/portraits/kuzumi.webp": "71be5dd79a9d4746012518dfbd85fab29485ba674920c074c53da87b7f4d5391",
+    "assets/portraits/mio.webp": "ffeb47a0e7ce7ce9e5589f90750aa6ed8083bf5033d0ef9e43f0600662cf033d",
+    "assets/portraits/mizuki.webp": "bf57a2b4fb8af6b8d0efb96a8bee08a5f78f06ea14f67b040a45a0fcd6a7dcb2",
+    "assets/portraits/nagi.webp": "79ef65310f70a32361765177b9e79aae489ccb72970a351ee835e25a1b2bbbae",
+    "assets/portraits/onizuka.webp": "21d1a79e6b46452a9fa6b0e96b8178568b889a3bbe483fe0061ea87ef9180c57",
+    "assets/portraits/raiden.webp": "0ff25956c7220dd1dc55fbfcba2edcaf938c6d60cfba405b865542e3149ef93d",
+    "assets/portraits/rival_01.webp": "034bd9e11ba96a9a7f4e3f226dc336da2ac752885a8687d93046e48a0c21433f",
+    "assets/portraits/rival_02.webp": "4c4cc5fcb8c0dcbdea71c755e7d242e72a4be871ee45c29f9de07a07b61e49c0",
+    "assets/portraits/rival_03.webp": "d2c973897df6062f795559895d7cba24fc49d026949e0827eea1f065ca64b42d",
+    "assets/portraits/rival_04.webp": "65b58603eaf2392d72bf12687b9671e85e1535d9de30fdc388865301cb4ed664",
+    "assets/portraits/rival_05.webp": "70ade62bc4fcb17a106bf414e6ff0d062f9664dd05601a54690b0db59a98df85",
+    "assets/portraits/rival_06.webp": "d0bc84da50825069c4e35c8e74ef7396bf7eb1b0aecb74f9092127314cb24678",
+    "assets/portraits/rival_07.webp": "99f97a15e3f960d8cb8a50a04cb3b929230de595d9cfbf60b92af028350eae11",
+    "assets/portraits/rival_08.webp": "2c0942e415d4bc37c681684c20218916f77f98084c32badbdddbbac5449176e6",
+    "assets/portraits/rival_09.webp": "eb0a4b035471979b336dd147e261df24624fd7c9508e062f2b68453dc43257cc",
+    "assets/portraits/rival_10.webp": "12c7ae8b4608711845649864a1973c6647293d3c2761a11e3ce624c680a5eeb7",
+    "assets/portraits/rival_11.webp": "0cdd5a373102dc5c90aee13199118bba8820bace63233a4c12becea0eb69d3e4",
+    "assets/portraits/rival_12.webp": "bed49eb69be39ab41ac589000daf81d4bc755c62dab56a95595d06907eab9bc4",
+    "assets/portraits/shirakami.webp": "7d15c33fec3907114e3063bd0815cafa9bb4edfda10006a2363ad04259d84b82",
+    "assets/portraits/teiou.webp": "24c26fd0e7a2c2dcfcb5a2d27b42d550476972a217cce5fb42d60b87ff145e76",
+    "assets/portraits/tsukino.webp": "98393435d65c16325049a5b35289d3a6d714b5ff8c494a2f4ce9e104eed9b486",
+    "assets/portraits/tsumugi.webp": "f7b4b0fb8e621842851d578b9b9ca014759d312cd2ffacea0e497ddb8a44cf6b",
+    "assets/shore-panorama.webp": "f182808207ebe70798aa45c49a7af386417316892d6532f65c6c5c12e8f8623b"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "build": 112,
+  "passed": 4,
+  "failed": 3,
+  "results": [
+    {
+      "name": "ライバルへ返答後 閉じるで出発画面に戻り 同じ返答を再表示しない",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'novel' !== 'action'\n\n    at /workspace/scratch/c938c42c53df/kyotei-v112/tests/dialogue-v112-tests.cjs:8:222\n    at test (/workspace/scratch/c938c42c53df/kyotei-v112/tests/dialogue-v112-tests.cjs:4:28)\n    at Object.<anonymous> (/workspace/scratch/c938c42c53df/kyotei-v112/tests/dialogue-v112-tests.cjs:8:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47"
+    },
+    {
+      "name": "今節の約束 選択後の返答を読み終えると元画面へ戻る",
+      "passed": true
+    },
+    {
+      "name": "本編の選択後は章一覧へ戻り 選択済み本文を自動で再表示しない",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'campaign'\n- 'stories'\n\n    at /workspace/scratch/c938c42c53df/kyotei-v112/tests/dialogue-v112-tests.cjs:10:227\n    at test (/workspace/scratch/c938c42c53df/kyotei-v112/tests/dialogue-v112-tests.cjs:4:28)\n    at Object.<anonymous> (/workspace/scratch/c938c42c53df/kyotei-v112/tests/dialogue-v112-tests.cjs:10:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47"
+    },
+    {
+      "name": "師匠会話の途中で閉じても 未選択のまま再開できる",
+      "passed": true
+    },
+    {
+      "name": "師匠の選択後 閉じるで人物画面へ戻り成長は1回だけ",
+      "passed": true
+    },
+    {
+      "name": "ヒロインの途中閉じと再開は読書位置を維持",
+      "passed": true
+    },
+    {
+      "name": "ライバル返答画面で戻る操作を繰り返しても報酬を再取得しない",
+      "passed": false,
+      "error": "AssertionError [ERR_ASSERTION]: Expected \"actual\" to be strictly unequal to:\n\n'novel'\n    at /workspace/scratch/c938c42c53df/kyotei-v112/tests/dialogue-v112-tests.cjs:14:312\n    at test (/workspace/scratch/c938c42c53df/kyotei-v112/tests/dialogue-v112-tests.cjs:4:28)\n    at Object.<anonymous> (/workspace/scratch/c938c42c53df/kyotei-v112/tests/dialogue-v112-tests.cjs:14:1)\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47"
+    }
+  ]
+}
