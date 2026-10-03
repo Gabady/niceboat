@@ -1,0 +1,316 @@
+{
+  "checks": [
+    "第6話は今育成のG1優勝が必須。高い好感度やG2優勝では解除しない",
+    "G1優勝だけでは好感度・信頼条件を飛び越えない",
+    "出会いの抽選は据え置き・遅い出会いも完走保証しない",
+    "未完走の結びは記録だけで能力・交際を付与しない",
+    "移行時に第6話を開いていた人物は進行を維持",
+    "恋愛完走のLRはSG優勝戦前のみ、一度だけ",
+    "協力は練習1回と交換・賞金不変・二重取得なし",
+    "贈り物を断っても好感度は下げず、無料の協力はできない",
+    "イベントの能力伝授は1シリーズ1回。ログ削除・再読込で復活しない",
+    "V117の返答待ちイベントにも伝授上限を移行して適用",
+    "本編の両方の選択を成長につなげる light 0",
+    "本編の両方の選択を成長につなげる light 1",
+    "本編の両方の選択を成長につなげる back 0",
+    "本編の両方の選択を成長につなげる back 1",
+    "本編の両方の選択を成長につなげる shore 0",
+    "本編の両方の選択を成長につなげる shore 1",
+    "本編の両方の選択を成長につなげる recovery 0",
+    "本編の両方の選択を成長につなげる recovery 1",
+    "本編最終の自動配布を抑える noG1",
+    "本編最終の自動配布を抑える noBloom",
+    "本編へ実レースの反応を固定して保存",
+    "技の実践は走った姿勢と区間を使用。失格には加算しない",
+    "再起の方針はG2から固定し3走でコツのみ獲得",
+    "練習条件の独立性 start",
+    "練習条件の独立性 turn",
+    "練習条件の独立性 wake",
+    "発進方針の実走 safe 30 無風",
+    "発進方針の実走 safe 30 向かい風",
+    "発進方針の実走 safe 30 追い風",
+    "発進方針の実走 safe 30 横風",
+    "発進方針の実走 safe 60 無風",
+    "発進方針の実走 safe 60 向かい風",
+    "発進方針の実走 safe 60 追い風",
+    "発進方針の実走 safe 60 横風",
+    "発進方針の実走 safe 100 無風",
+    "発進方針の実走 safe 100 向かい風",
+    "発進方針の実走 safe 100 追い風",
+    "発進方針の実走 safe 100 横風",
+    "発進方針の実走 attack 30 無風",
+    "発進方針の実走 attack 30 向かい風",
+    "発進方針の実走 attack 30 追い風",
+    "発進方針の実走 attack 30 横風",
+    "発進方針の実走 attack 60 無風",
+    "発進方針の実走 attack 60 向かい風",
+    "発進方針の実走 attack 60 追い風",
+    "発進方針の実走 attack 60 横風",
+    "発進方針の実走 attack 100 無風",
+    "発進方針の実走 attack 100 向かい風",
+    "発進方針の実走 attack 100 追い風",
+    "発進方針の実走 attack 100 横風",
+    "能力特化の実走・保存・区間記録 speed",
+    "能力特化の実走・保存・区間記録 turn",
+    "能力特化の実走・保存・区間記録 start",
+    "能力特化の実走・保存・区間記録 accel",
+    "能力特化の実走・保存・区間記録 power",
+    "V117の途中セーブを移行して既存能力・機材・既読を維持"
+  ],
+  "starts": [
+    {
+      "policy": "safe",
+      "stat": 30,
+      "wind": "無風",
+      "st": 0.1964982171309847,
+      "allowance": 0.06
+    },
+    {
+      "policy": "safe",
+      "stat": 30,
+      "wind": "向かい風",
+      "st": 0.1958746130000623,
+      "allowance": 0.06
+    },
+    {
+      "policy": "safe",
+      "stat": 30,
+      "wind": "追い風",
+      "st": 0.2026277238091634,
+      "allowance": 0.06
+    },
+    {
+      "policy": "safe",
+      "stat": 30,
+      "wind": "横風",
+      "st": 0.1964982171309847,
+      "allowance": 0.06
+    },
+    {
+      "policy": "safe",
+      "stat": 60,
+      "wind": "無風",
+      "st": 0.1392318041694701,
+      "allowance": 0.12
+    },
+    {
+      "policy": "safe",
+      "stat": 60,
+      "wind": "向かい風",
+      "st": 0.1510530824331182,
+      "allowance": 0.12
+    },
+    {
+      "policy": "safe",
+      "stat": 60,
+      "wind": "追い風",
+      "st": 0.1491124684816279,
+      "allowance": 0.12
+    },
+    {
+      "policy": "safe",
+      "stat": 60,
+      "wind": "横風",
+      "st": 0.1392318041694701,
+      "allowance": 0.12
+    },
+    {
+      "policy": "safe",
+      "stat": 100,
+      "wind": "無風",
+      "st": 0.10250257022868318,
+      "allowance": 0.2
+    },
+    {
+      "policy": "safe",
+      "stat": 100,
+      "wind": "向かい風",
+      "st": 0.09392942686436269,
+      "allowance": 0.2
+    },
+    {
+      "policy": "safe",
+      "stat": 100,
+      "wind": "追い風",
+      "st": 0.09901925145818018,
+      "allowance": 0.2
+    },
+    {
+      "policy": "safe",
+      "stat": 100,
+      "wind": "横風",
+      "st": 0.10250257022868318,
+      "allowance": 0.2
+    },
+    {
+      "policy": "attack",
+      "stat": 30,
+      "wind": "無風",
+      "st": 0.11316488379764723,
+      "allowance": 0.06
+    },
+    {
+      "policy": "attack",
+      "stat": 30,
+      "wind": "向かい風",
+      "st": 0.11254127966672481,
+      "allowance": 0.06
+    },
+    {
+      "policy": "attack",
+      "stat": 30,
+      "wind": "追い風",
+      "st": 0.10262772380915844,
+      "allowance": 0.06
+    },
+    {
+      "policy": "attack",
+      "stat": 30,
+      "wind": "横風",
+      "st": 0.11316488379764723,
+      "allowance": 0.06
+    },
+    {
+      "policy": "attack",
+      "stat": 60,
+      "wind": "無風",
+      "st": -0.010768195830537376,
+      "allowance": 0.12
+    },
+    {
+      "policy": "attack",
+      "stat": 60,
+      "wind": "向かい風",
+      "st": -0.015613584233556735,
+      "allowance": 0.12
+    },
+    {
+      "policy": "attack",
+      "stat": 60,
+      "wind": "追い風",
+      "st": -0.017554198185047068,
+      "allowance": 0.12
+    },
+    {
+      "policy": "attack",
+      "stat": 60,
+      "wind": "横風",
+      "st": -0.010768195830537376,
+      "allowance": 0.12
+    },
+    {
+      "policy": "attack",
+      "stat": 100,
+      "wind": "無風",
+      "st": -0.14749742977132926,
+      "allowance": 0.2
+    },
+    {
+      "policy": "attack",
+      "stat": 100,
+      "wind": "向かい風",
+      "st": -0.15607057313564973,
+      "allowance": 0.2
+    },
+    {
+      "policy": "attack",
+      "stat": 100,
+      "wind": "追い風",
+      "st": -0.15098074854183227,
+      "allowance": 0.2
+    },
+    {
+      "policy": "attack",
+      "stat": 100,
+      "wind": "横風",
+      "st": -0.14749742977132926,
+      "allowance": 0.2
+    }
+  ],
+  "practices": [
+    {
+      "kind": "start",
+      "time": 3.36666666666701,
+      "progress": 40.18150587171999,
+      "fault": null,
+      "contacts": 0
+    },
+    {
+      "kind": "turn",
+      "time": 21.19999999999917,
+      "progress": 345.1230347053938,
+      "fault": null,
+      "contacts": 1
+    },
+    {
+      "kind": "wake",
+      "time": 10.316666666666457,
+      "progress": 160.0012221797806,
+      "fault": null,
+      "contacts": 0
+    }
+  ],
+  "profiles": [
+    {
+      "key": "speed",
+      "place": 1,
+      "time": 102.54150398446218,
+      "contacts": 2,
+      "technique": {
+        "straightGood": 31.566666666666155,
+        "turnGood": 19.883333333333486,
+        "exitGood": 5,
+        "stableWater": 0
+      }
+    },
+    {
+      "key": "turn",
+      "place": 1,
+      "time": 99.71683950802029,
+      "contacts": 0,
+      "technique": {
+        "straightGood": 38.816666666665746,
+        "turnGood": 5.966666666666651,
+        "exitGood": 4,
+        "stableWater": 0
+      }
+    },
+    {
+      "key": "start",
+      "place": 1,
+      "time": 105.83907955872667,
+      "contacts": 0,
+      "technique": {
+        "straightGood": 46.099999999998666,
+        "turnGood": 5.28333333333332,
+        "exitGood": 6,
+        "stableWater": 0
+      }
+    },
+    {
+      "key": "accel",
+      "place": 1,
+      "time": 105.12229396544947,
+      "contacts": 0,
+      "technique": {
+        "straightGood": 46.39999999999865,
+        "turnGood": 5.116666666666654,
+        "exitGood": 6,
+        "stableWater": 0
+      }
+    },
+    {
+      "key": "power",
+      "place": 1,
+      "time": 101.73558134147109,
+      "contacts": 0,
+      "technique": {
+        "straightGood": 46.48333333333198,
+        "turnGood": 7.416666666666646,
+        "exitGood": 6,
+        "stableWater": 0
+      }
+    }
+  ],
+  "total": 56
+}

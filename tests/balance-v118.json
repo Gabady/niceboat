@@ -1,0 +1,255 @@
+{
+  "note": "固定条件の自動操船による比較。人間の手動操船の勝率を示すものではない。",
+  "rows": [
+    {
+      "key": "speed",
+      "wind": 0,
+      "course": 1,
+      "place": 4,
+      "time": 103.45102926501676,
+      "contacts": 8,
+      "stableWater": 20.30000000000013
+    },
+    {
+      "key": "speed",
+      "wind": 0,
+      "course": 6,
+      "place": 4,
+      "time": 101.81678042472025,
+      "contacts": 11,
+      "stableWater": 8.666666666666677
+    },
+    {
+      "key": "speed",
+      "wind": 8,
+      "course": 1,
+      "place": 3,
+      "time": 107.20133646055054,
+      "contacts": 5,
+      "stableWater": 56.533333333331406
+    },
+    {
+      "key": "speed",
+      "wind": 8,
+      "course": 6,
+      "place": 5,
+      "time": 109.85400730628506,
+      "contacts": 9,
+      "stableWater": 50.18333333333177
+    },
+    {
+      "key": "turn",
+      "wind": 0,
+      "course": 1,
+      "place": 6,
+      "time": 104.83663480934915,
+      "contacts": 2,
+      "stableWater": 40.93333333333229
+    },
+    {
+      "key": "turn",
+      "wind": 0,
+      "course": 6,
+      "place": 6,
+      "time": 105.15343664936762,
+      "contacts": 0,
+      "stableWater": 47.349999999998595
+    },
+    {
+      "key": "turn",
+      "wind": 8,
+      "course": 1,
+      "place": 6,
+      "time": 109.78554323851343,
+      "contacts": 0,
+      "stableWater": 77.79999999999687
+    },
+    {
+      "key": "turn",
+      "wind": 8,
+      "course": 6,
+      "place": 6,
+      "time": 110.14880756888851,
+      "contacts": 1,
+      "stableWater": 79.56666666666344
+    },
+    {
+      "key": "start",
+      "wind": 0,
+      "course": 1,
+      "place": 6,
+      "time": 109.22896604626351,
+      "contacts": 0,
+      "stableWater": 37.383333333332494
+    },
+    {
+      "key": "start",
+      "wind": 0,
+      "course": 6,
+      "place": 6,
+      "time": 109.41941562279513,
+      "contacts": 0,
+      "stableWater": 24.833333333333204
+    },
+    {
+      "key": "start",
+      "wind": 8,
+      "course": 1,
+      "place": 6,
+      "time": 116.31467067059954,
+      "contacts": 5,
+      "stableWater": 71.78333333333055
+    },
+    {
+      "key": "start",
+      "wind": 8,
+      "course": 6,
+      "place": 6,
+      "time": 114.2752074680833,
+      "contacts": 0,
+      "stableWater": 78.88333333333014
+    },
+    {
+      "key": "accel",
+      "wind": 0,
+      "course": 1,
+      "place": 6,
+      "time": 109.36085423838625,
+      "contacts": 0,
+      "stableWater": 25.449999999999836
+    },
+    {
+      "key": "accel",
+      "wind": 0,
+      "course": 6,
+      "place": 6,
+      "time": 109.14125986803778,
+      "contacts": 0,
+      "stableWater": 26.849999999999756
+    },
+    {
+      "key": "accel",
+      "wind": 8,
+      "course": 1,
+      "place": 6,
+      "time": 114.29473086031821,
+      "contacts": 0,
+      "stableWater": 78.64999999999682
+    },
+    {
+      "key": "accel",
+      "wind": 8,
+      "course": 6,
+      "place": 6,
+      "time": 113.82799935422639,
+      "contacts": 0,
+      "stableWater": 78.9499999999968
+    },
+    {
+      "key": "power",
+      "wind": 0,
+      "course": 1,
+      "place": 6,
+      "time": 106.52399071744763,
+      "contacts": 1,
+      "stableWater": 43.48333333333215
+    },
+    {
+      "key": "power",
+      "wind": 0,
+      "course": 6,
+      "place": 6,
+      "time": 106.98450120256773,
+      "contacts": 1,
+      "stableWater": 35.01666666666596
+    },
+    {
+      "key": "power",
+      "wind": 8,
+      "course": 1,
+      "place": 6,
+      "time": 112.39752190476423,
+      "contacts": 0,
+      "stableWater": 79.83333333333009
+    },
+    {
+      "key": "power",
+      "wind": 8,
+      "course": 6,
+      "place": 6,
+      "time": 112.76345183982586,
+      "contacts": 0,
+      "stableWater": 83.88333333332986
+    }
+  ],
+  "routes": [
+    {
+      "id": "akari",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "id": "mio",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "id": "nagi",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "id": "kanade",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "id": "tsumugi",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    },
+    {
+      "id": "mizuki",
+      "completedAt": 45,
+      "blockedBeforeG1": true
+    }
+  ],
+  "unchangedRewards": [
+    "Cast.settle",
+    "Story.settle",
+    "Finale.settle",
+    "Cast.routeReward"
+  ],
+  "summary": [
+    {
+      "key": "speed",
+      "averagePlace": 4,
+      "finishes": 4,
+      "meanFinish": 105.58078836414315
+    },
+    {
+      "key": "turn",
+      "averagePlace": 6,
+      "finishes": 4,
+      "meanFinish": 107.48110556652968
+    },
+    {
+      "key": "start",
+      "averagePlace": 6,
+      "finishes": 4,
+      "meanFinish": 112.30956495193537
+    },
+    {
+      "key": "accel",
+      "averagePlace": 6,
+      "finishes": 4,
+      "meanFinish": 111.65621108024216
+    },
+    {
+      "key": "power",
+      "averagePlace": 6,
+      "finishes": 4,
+      "meanFinish": 109.66736641615137
+    }
+  ]
+}

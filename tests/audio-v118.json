@@ -1,0 +1,24 @@
+[
+  {
+    "file": "release-v118/index_android_safe.html",
+    "initial": {
+      "documentBytes": 46632612,
+      "resourceBytes": 0,
+      "resourceCount": 0
+    },
+    "decodedEffects": 6,
+    "musicPlaying": true,
+    "errors": []
+  },
+  {
+    "file": "release-v118/web/index.html",
+    "initial": {
+      "documentBytes": 150540,
+      "resourceBytes": 1891837,
+      "resourceCount": 34
+    },
+    "decodedEffects": 6,
+    "musicPlaying": true,
+    "errors": []
+  }
+]
