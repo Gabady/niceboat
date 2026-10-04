@@ -1,0 +1,63 @@
+{
+  "build": "124",
+  "scope": "Release summary. See individual JSON reports for limitations.",
+  "sourceSyntax": {
+    "modules": 36,
+    "passed": true
+  },
+  "checks": {
+    "physics-v124": {
+      "file": "tests/physics-v124.json",
+      "checks": 15
+    },
+    "balance-v124": {
+      "file": "tests/balance-v124.json",
+      "checks": 7
+    },
+    "drive-ui-v124": {
+      "file": "tests/drive-ui-v124.json",
+      "checks": 10
+    },
+    "renderer-v124": {
+      "file": "tests/renderer-v124.json",
+      "checks": 7
+    },
+    "practice-v124": {
+      "file": "tests/practice-v124.json",
+      "checks": 19
+    },
+    "ui-logic-v124": {
+      "file": "tests/ui-logic-v124.json",
+      "checks": 19
+    },
+    "verification-v124-base": {
+      "file": "tests/verification-v124-base.json",
+      "checks": 29
+    },
+    "parity-v124": {
+      "file": "tests/parity-v124.json",
+      "checks": "see report"
+    },
+    "mesa-shader-v124": {
+      "file": "tests/mesa-shader-v124.json",
+      "checks": "see report"
+    },
+    "safe-sync-v124": {
+      "file": "tests/safe-sync-v124.json",
+      "scenarioRaceRuns": 12,
+      "passed": true
+    }
+  },
+  "physicalDevices": "Not tested",
+  "browserLayout": "Not tested",
+  "graphicsReview": {
+    "method": "Actual Node Canvas frames visually reviewed",
+    "frames": [
+      "after-rain-neutral.png",
+      "before-rain-neutral.png",
+      "after-sun-upright.png",
+      "after-sun-crouch.png"
+    ],
+    "browserOrPhysicalDevice": false
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "scope": "Real Canvas renderer in Node, not browser/device. Water/boat/background only; no HUD.",
+  "checks": [
+    {
+      "name": "姿勢を起こすと目線が高く、伏せると水面が近い",
+      "ok": true
+    },
+    {
+      "name": "揺れOFFでは経過時間・荒波・速度に揺らされない",
+      "ok": true
+    },
+    {
+      "name": "高フィジカルでは同じ条件の揺れが減衰する",
+      "ok": true
+    },
+    {
+      "name": "高速と荒波では揺れが増える",
+      "ok": true
+    },
+    {
+      "name": "カメラの変化に不連続な振動がない",
+      "ok": true
+    },
+    {
+      "name": "波の法線は有限・正規化、白波は荒天だけに控えめに出現",
+      "ok": true
+    },
+    {
+      "name": "描画は状態・物理乱数へ書き込まない",
+      "ok": true
+    }
+  ],
+  "frames": [
+    {
+      "file": "before-sun-crouch.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "before-sun-neutral.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "before-sun-upright.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "before-rain-crouch.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "before-rain-neutral.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "before-rain-upright.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "after-sun-crouch.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "after-sun-neutral.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "after-sun-upright.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "after-rain-crouch.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "after-rain-neutral.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "after-rain-upright.png",
+      "width": 960,
+      "height": 540,
+      "noStateMutation": true
+    },
+    {
+      "file": "after-sun-393.png",
+      "width": 393,
+      "height": 852
+    },
+    {
+      "file": "after-rain-393.png",
+      "width": 393,
+      "height": 852
+    }
+  ],
+  "benchmark": [
+    {
+      "variant": "before",
+      "quality": "full",
+      "medianMs": 296.19,
+      "samplesMs": [
+        291.72,
+        295.26,
+        296.19,
+        303.26,
+        340.16
+      ],
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "before",
+      "quality": "soft",
+      "medianMs": 296.35,
+      "samplesMs": [
+        292.72,
+        294.55,
+        296.35,
+        296.66,
+        301.11
+      ],
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "before",
+      "quality": "off",
+      "medianMs": 293.65,
+      "samplesMs": [
+        287.49,
+        292.4,
+        293.65,
+        294.1,
+        299.34
+      ],
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "after",
+      "quality": "full",
+      "medianMs": 319.09,
+      "samplesMs": [
+        315.95,
+        317.2,
+        319.09,
+        319.11,
+        320.08
+      ],
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "after",
+      "quality": "soft",
+      "medianMs": 281.89,
+      "samplesMs": [
+        278.83,
+        280.43,
+        281.89,
+        288.94,
+        290.03
+      ],
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "after",
+      "quality": "off",
+      "medianMs": 238.7,
+      "samplesMs": [
+        235.25,
+        238.04,
+        238.7,
+        242.39,
+        250.86
+      ],
+      "scope": "Node Canvas CPU time, not browser FPS"
+    }
+  ]
+}

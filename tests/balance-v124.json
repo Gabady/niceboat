@@ -1,0 +1,431 @@
+{
+  "build": "124",
+  "scope": "Fixed-seed headless physics; no browser/device or human win-rate claims",
+  "checks": [
+    "Actual emission/receiving coefficients stay near neutral and weaken monotonically with physical strength",
+    "Leader and follower physical effects combine within the intended small envelope at identical geometry",
+    "Real line crossing: just below B is F before zero; B and higher cross legally with their allowance",
+    "C-or-lower NPC launch matrix: no new early/late failures for ordinary legal AI goals",
+    "Identified elite runners follow the same B gate, including a saved start ability below B",
+    "Save/read before and after line crossing preserves deterministic continuation and settled start judgments",
+    "Representative calm/rough full races still finish under identical seed and do not amplify trail difference into instability"
+  ],
+  "isolatedWake": [
+    {
+      "power": 0,
+      "coefficient": 1.08,
+      "actualSpeed": 15.018200108430017,
+      "trailStrength": 0.810982805855221,
+      "load": 0.5951820923035515,
+      "outRatio": 1.08,
+      "inRatio": 1.08
+    },
+    {
+      "power": 25,
+      "coefficient": 1.04,
+      "actualSpeed": 15.027713421740986,
+      "trailStrength": 0.7814410979305312,
+      "load": 0.5731383111071237,
+      "outRatio": 1.04,
+      "inRatio": 1.0400000000000003
+    },
+    {
+      "power": 50,
+      "coefficient": 1,
+      "actualSpeed": 15.030765144167754,
+      "trailStrength": 0.7515382572083877,
+      "load": 0.5510945299106957,
+      "outRatio": 1,
+      "inRatio": 1
+    },
+    {
+      "power": 75,
+      "coefficient": 0.96,
+      "actualSpeed": 15.031545485586365,
+      "trailStrength": 0.7215141833081455,
+      "load": 0.529050748714268,
+      "outRatio": 0.96,
+      "inRatio": 0.9600000000000003
+    },
+    {
+      "power": 100,
+      "coefficient": 0.9199999999999999,
+      "actualSpeed": 15.032326214255843,
+      "trailStrength": 0.6914870058557687,
+      "load": 0.5070069675178401,
+      "outRatio": 0.9199999999999999,
+      "inRatio": 0.9200000000000002
+    },
+    {
+      "power": 125,
+      "coefficient": 0.92,
+      "actualSpeed": 15.033104297813889,
+      "trailStrength": 0.6915227976994389,
+      "load": 0.5070069675178401,
+      "outRatio": 0.92,
+      "inRatio": 0.9200000000000002
+    }
+  ],
+  "combinedWake": [
+    {
+      "leaderPower": 0,
+      "followerPower": 0,
+      "load": 0.6427966596878356,
+      "ratio": 1.1664
+    },
+    {
+      "leaderPower": 0,
+      "followerPower": 50,
+      "load": 0.5951820923035515,
+      "ratio": 1.08
+    },
+    {
+      "leaderPower": 0,
+      "followerPower": 100,
+      "load": 0.5475675249192674,
+      "ratio": 0.9936000000000003
+    },
+    {
+      "leaderPower": 50,
+      "followerPower": 0,
+      "load": 0.5951820923035515,
+      "ratio": 1.08
+    },
+    {
+      "leaderPower": 50,
+      "followerPower": 50,
+      "load": 0.5510945299106957,
+      "ratio": 1
+    },
+    {
+      "leaderPower": 50,
+      "followerPower": 100,
+      "load": 0.5070069675178401,
+      "ratio": 0.9200000000000002
+    },
+    {
+      "leaderPower": 100,
+      "followerPower": 0,
+      "load": 0.5475675249192673,
+      "ratio": 0.9936
+    },
+    {
+      "leaderPower": 100,
+      "followerPower": 50,
+      "load": 0.50700696751784,
+      "ratio": 0.9199999999999999
+    },
+    {
+      "leaderPower": 100,
+      "followerPower": 100,
+      "load": 0.46644641011641286,
+      "ratio": 0.8463999999999999
+    }
+  ],
+  "aiStarts": [
+    {
+      "start": 0,
+      "weather": "晴れ",
+      "wind": "無風",
+      "difficulty": "normal",
+      "seed": 20000,
+      "samples": 5,
+      "minST": 0.2500028407518294,
+      "maxST": 0.265054901253286,
+      "faults": 0
+    },
+    {
+      "start": 0,
+      "weather": "晴れ",
+      "wind": "無風",
+      "difficulty": "easy",
+      "seed": 20000,
+      "samples": 5,
+      "minST": 0.25318065991836813,
+      "maxST": 0.27367387340844707,
+      "faults": 0
+    },
+    {
+      "start": 0,
+      "weather": "雨",
+      "wind": "向かい風",
+      "difficulty": "normal",
+      "seed": 20001,
+      "samples": 5,
+      "minST": 0.2574809551819936,
+      "maxST": 0.28681032552478775,
+      "faults": 0
+    },
+    {
+      "start": 0,
+      "weather": "雨",
+      "wind": "向かい風",
+      "difficulty": "easy",
+      "seed": 20001,
+      "samples": 5,
+      "minST": 0.2614202653884772,
+      "maxST": 0.2828715759338172,
+      "faults": 0
+    },
+    {
+      "start": 0,
+      "weather": "雨",
+      "wind": "追い風",
+      "difficulty": "normal",
+      "seed": 20002,
+      "samples": 5,
+      "minST": 0.24705016487129972,
+      "maxST": 0.2849920921416914,
+      "faults": 0
+    },
+    {
+      "start": 0,
+      "weather": "雨",
+      "wind": "追い風",
+      "difficulty": "easy",
+      "seed": 20002,
+      "samples": 5,
+      "minST": 0.25947474702891377,
+      "maxST": 0.28652511601028696,
+      "faults": 0
+    },
+    {
+      "start": 50,
+      "weather": "晴れ",
+      "wind": "無風",
+      "difficulty": "normal",
+      "seed": 20500,
+      "samples": 5,
+      "minST": 0.115342472157378,
+      "maxST": 0.18057353315026706,
+      "faults": 0
+    },
+    {
+      "start": 50,
+      "weather": "晴れ",
+      "wind": "無風",
+      "difficulty": "easy",
+      "seed": 20500,
+      "samples": 5,
+      "minST": 0.15278778895871306,
+      "maxST": 0.17714231296833166,
+      "faults": 0
+    },
+    {
+      "start": 50,
+      "weather": "雨",
+      "wind": "向かい風",
+      "difficulty": "normal",
+      "seed": 20501,
+      "samples": 5,
+      "minST": 0.12454939854516882,
+      "maxST": 0.173589685398752,
+      "faults": 0
+    },
+    {
+      "start": 50,
+      "weather": "雨",
+      "wind": "向かい風",
+      "difficulty": "easy",
+      "seed": 20501,
+      "samples": 5,
+      "minST": 0.16739308605017836,
+      "maxST": 0.18422306862483329,
+      "faults": 0
+    },
+    {
+      "start": 50,
+      "weather": "雨",
+      "wind": "追い風",
+      "difficulty": "normal",
+      "seed": 20502,
+      "samples": 5,
+      "minST": 0.128557770368612,
+      "maxST": 0.16394365341710182,
+      "faults": 0
+    },
+    {
+      "start": 50,
+      "weather": "雨",
+      "wind": "追い風",
+      "difficulty": "easy",
+      "seed": 20502,
+      "samples": 5,
+      "minST": 0.16061168973288006,
+      "maxST": 0.1797572532183722,
+      "faults": 0
+    },
+    {
+      "start": 64,
+      "weather": "晴れ",
+      "wind": "無風",
+      "difficulty": "normal",
+      "seed": 20640,
+      "samples": 5,
+      "minST": 0.09223810823676168,
+      "maxST": 0.1418220728232899,
+      "faults": 0
+    },
+    {
+      "start": 64,
+      "weather": "晴れ",
+      "wind": "無風",
+      "difficulty": "easy",
+      "seed": 20640,
+      "samples": 5,
+      "minST": 0.13212018401907658,
+      "maxST": 0.14877572776696518,
+      "faults": 0
+    },
+    {
+      "start": 64,
+      "weather": "雨",
+      "wind": "向かい風",
+      "difficulty": "normal",
+      "seed": 20641,
+      "samples": 5,
+      "minST": 0.08937277118950493,
+      "maxST": 0.12916814823332043,
+      "faults": 0
+    },
+    {
+      "start": 64,
+      "weather": "雨",
+      "wind": "向かい風",
+      "difficulty": "easy",
+      "seed": 20641,
+      "samples": 5,
+      "minST": 0.13527405487960972,
+      "maxST": 0.15868061961674393,
+      "faults": 0
+    },
+    {
+      "start": 64,
+      "weather": "雨",
+      "wind": "追い風",
+      "difficulty": "normal",
+      "seed": 20642,
+      "samples": 5,
+      "minST": 0.10059199238137784,
+      "maxST": 0.15508339050371886,
+      "faults": 0
+    },
+    {
+      "start": 64,
+      "weather": "雨",
+      "wind": "追い風",
+      "difficulty": "easy",
+      "seed": 20642,
+      "samples": 5,
+      "minST": 0.1335731297940538,
+      "maxST": 0.15056907270989753,
+      "faults": 0
+    }
+  ],
+  "eliteStarts": [
+    {
+      "id": "cast_kagura",
+      "start": 64,
+      "st": 0.10447874114096406,
+      "fault": null
+    },
+    {
+      "id": "cast_kagura",
+      "start": 65,
+      "st": -0.29999899933614327,
+      "fault": null
+    },
+    {
+      "id": "cast_teiou",
+      "start": 64,
+      "st": 0.10139119466883055,
+      "fault": null
+    },
+    {
+      "id": "cast_teiou",
+      "start": 65,
+      "st": -0.2999989995278119,
+      "fault": null
+    },
+    {
+      "id": "main_izumi",
+      "start": 64,
+      "st": 0.10139119466883055,
+      "fault": null
+    },
+    {
+      "id": "main_izumi",
+      "start": 65,
+      "st": -0.2999989995278119,
+      "fault": null
+    }
+  ],
+  "continuations": [
+    {
+      "savedAt": 7,
+      "steps": 180,
+      "identical": true
+    },
+    {
+      "savedAt": 13,
+      "steps": 180,
+      "identical": true
+    }
+  ],
+  "raceSmoke": [
+    {
+      "power": 25,
+      "rough": false,
+      "seed": 345124,
+      "place": 6,
+      "finishTime": 109.80027716886688,
+      "wakeSeconds": 51.03333333333172,
+      "contacts": 5,
+      "boundaries": 0
+    },
+    {
+      "power": 25,
+      "rough": true,
+      "seed": 345124,
+      "place": 6,
+      "finishTime": 115.23696135735672,
+      "wakeSeconds": 84.64999999999648,
+      "contacts": 2,
+      "boundaries": 1
+    },
+    {
+      "power": 75,
+      "rough": false,
+      "seed": 345124,
+      "place": 6,
+      "finishTime": 104.51796870412272,
+      "wakeSeconds": 94.71666666666258,
+      "contacts": 5,
+      "boundaries": 0
+    },
+    {
+      "power": 75,
+      "rough": true,
+      "seed": 345124,
+      "place": 5,
+      "finishTime": 107.29211395448604,
+      "wakeSeconds": 100.76666666666223,
+      "contacts": 7,
+      "boundaries": 0
+    }
+  ],
+  "summary": {
+    "checks": 7,
+    "ordinaryNpcLaunches": 90,
+    "ordinaryNpcFaults": 0,
+    "eliteLaunches": 6,
+    "fullRaces": 4,
+    "combinedMinimum": 0.8463999999999999,
+    "combinedMaximum": 1.1664
+  },
+  "limitations": [
+    "Full-race placements/times include existing acceleration, grip, fatigue and AI effects from physical strength; they are not causal estimates of wake changes.",
+    "AI launch sample is a targeted boundary/weather regression, not an estimated population F rate.",
+    "No actual-device or browser frame-rate testing."
+  ]
+}

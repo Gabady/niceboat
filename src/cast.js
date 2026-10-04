@@ -57,7 +57,7 @@ const loadouts={
  iwase:{stats:[82,87,81,83,97],skills:['reflect','storm','anchor','rain'],note:'荒水面で姿勢を崩さない'},
  kurose:{stats:[120,82,82,88,84],skills:['legend_speed','wit_reply','straighten'],note:'直線 SS120 · 周回ごとに伸びを増す'},
  shirakami:{stats:[75,120,83,100,86],skills:['monkey_lr','split','feather'],note:'旋回 SS120 · 加速 S100 · 究極Vモンキー'},
- kagura:{stats:[84,88,120,89,83],skills:['doguchi_lr','inside','immune'],note:'スタート SS120 · 固有の先駆 −0.30秒（表示00:00） · 3周目は反動'},
+ kagura:{stats:[84,88,120,89,83],skills:['doguchi_lr','inside','immune'],note:'鋭いスタート · 固有の先駆で先行 · 3周目は反動'},
  raiden:{stats:[98,93,89,100,94],skills:['legend_tide','wit_unposted','wit_latefee','burst','accel_lock','wake_escape'],note:'出口と終盤で追い詰める追撃型'},
  onizuka:{stats:[85,89,82,85,120],skills:['dump','wit_elbow','anchor','power_drain'],note:'フィジカル SS120 · 強い引き波と接触圧'}
 };

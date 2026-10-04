@@ -22,7 +22,7 @@ function canonical(value,depth=0){
 }
 function pick(o,keys){const p={};for(const k of keys)if(o[k]!==undefined)p[k]=o[k];return p;}
 function boatValid(b){return object(b)&&typeof b.isPlayer==='boolean'&&object(b.stats)&&['speed','turn','start','accel','power'].every(k=>finite(b.stats[k],0,150))&&Array.isArray(b.skills)&&b.skills.length<=200&&b.skills.every(x=>typeof x==='string'&&x.length<100)&&object(b.mastery)&&Object.values(b.mastery).every(v=>finite(v,0,10000))&&object(b.equipment)&&['motor','prop','boat'].every(k=>object(b.equipment[k])&&Object.values(b.equipment[k]).every(v=>finite(v,-100,100)))&&Number.isInteger(b.course)&&finite(b.course,1,6)&&Number.isInteger(b.frame)&&finite(b.frame,1,6);}
-function descriptorValid(c){return object(c)&&c.revision===1&&KINDS.includes(c.kind)&&typeof c.assisted==='boolean'&&object(c.race)&&c.race.drill===c.kind&&finite(c.race.practiceLimit,1,1800)&&object(c.race.env)&&typeof c.race.env.weather==='string'&&typeof c.race.env.wind==='string'&&finite(c.race.env.windSpeed,0,100)&&object(c.drive)&&finite(c.drive.elapsed,0,283)&&Number.isInteger(c.drive.seed)&&finite(c.drive.seed,0,4294967295)&&Array.isArray(c.boats)&&c.boats.length===6&&c.boats.every(boatValid)&&c.boats.filter(b=>b.isPlayer).length===1&&new Set(c.boats.map(b=>b.course)).size===6&&new Set(c.boats.map(b=>b.frame)).size===6;}
+function descriptorValid(c){return object(c)&&[1,2].includes(c.revision)&&KINDS.includes(c.kind)&&typeof c.assisted==='boolean'&&object(c.race)&&c.race.drill===c.kind&&finite(c.race.practiceLimit,1,1800)&&object(c.race.env)&&typeof c.race.env.weather==='string'&&typeof c.race.env.wind==='string'&&finite(c.race.env.windSpeed,0,100)&&object(c.drive)&&finite(c.drive.elapsed,0,283)&&Number.isInteger(c.drive.seed)&&finite(c.drive.seed,0,4294967295)&&Array.isArray(c.boats)&&c.boats.length===6&&c.boats.every(boatValid)&&c.boats.filter(b=>b.isPlayer).length===1&&new Set(c.boats.map(b=>b.course)).size===6&&new Set(c.boats.map(b=>b.frame)).size===6;}
 function initial(t){
  const r=t?.initial,d=r?.drive;
  if(!KINDS.includes(t?.kind)||!object(r)||!object(d)||r.drill!==t.kind||!finite(r.practiceLimit,1,1800)||!finite(d.elapsed,0,283)||!Array.isArray(d.boats)||d.boats.length!==6||d.boats.filter(b=>b?.isPlayer).length!==1)return null;
@@ -43,7 +43,7 @@ function conditionKey(t){
    return v;
   });
   // Increase revision if a later update changes driving rules for these conditions.
-  const descriptor={revision:1,kind:t.kind,assisted:!!t.assistUsed,
+  const descriptor={revision:2,kind:t.kind,assisted:!!t.assistUsed,
    race:pick(r,['drill','practiceLimit','type','grade','env','buff','itemBoost','strategy','tilt','difficulty','controlMode','startPolicy','watch','auto']),
    venue:pick(r.venue||{},['id','stats','roughness','lane']),
    finalAlliance:ref(r.finalAlliance),
@@ -88,7 +88,9 @@ function sanitize(raw){
   if(!object(a)||!KINDS.includes(a.kind)||typeof a.key!=='string'||!a.key.startsWith('p122:')||a.key.length>LIMITS.keyChars||!Array.isArray(a.attempts))continue;
   // Check the structural identity as well as the string prefix on imported data.
   let condition;try{condition=JSON.parse(a.key.slice(5));if(!descriptorValid(condition)||condition.kind!==a.kind||'p122:'+canonical(condition)!==a.key)continue;}catch(_){continue;}
-  const allowance=R.startAllowance(condition.boats.find(b=>b.isPlayer));
+  const player=condition.boats.find(b=>b.isPlayer);
+  // Preserve completed V122/V123 records under their captured rule; revision 2 never compares with them.
+  const allowance=condition.revision===1&&finite(player.allowance,0,.30)?player.allowance:R.startAllowance(player);
   const attempts=a.attempts.slice(-LIMITS.attempts).map(x=>cleanSummary(x,a.kind)).filter(x=>x&&(!x.completed||x.metrics.st>=-allowance-1e-7&&x.metrics.time>0));
   let best=cleanBest(a.best,a.kind);if(best?.st!=null&&(best.st< -allowance-1e-7||best.st>=R.C.lateLimit-1e-7))delete best.st;
   if(best&&Object.keys(best).length===0)best=null;

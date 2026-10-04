@@ -185,8 +185,9 @@ function create(r,seed,options={}){
     const distance=b.course<=3?42+(b.course-1)*5:78+(b.course-4)*7;
     const start=pointAt(C.start-distance,b.lane);b.x=start.x;b.z=start.z;b.heading=start.heading;b.progress=-distance;b.lastS=C.start-distance;
   });
-  if(d.boats.some(b=>earlyStart(b)))log(d,d.boats.filter(earlyStart).map(b=>b.name).join('・')+'：先駆スタート（0.30秒先行／表示ST 00:00）。','phase');
-  recordReplay(d,true);log(d,'助走開始。1〜3コースはスロー、4〜6コースは後方からダッシュ。通過までは直進のみ。早発許容はスタート能力×0.002秒（最大0.20秒）。','phase');
+  d.boats.forEach(b=>{b.startAim=startTarget(b,r)+(earlyStart(b)?0:b.startRoll*.012);});
+  if(d.boats.some(b=>earlyStart(b)))log(d,d.boats.filter(earlyStart).map(b=>b.name).join('・')+'：先駆スタート。時計を先取りする強敵。','phase');
+  recordReplay(d,true);log(d,'助走開始。内側はスロー、外側は後方からダッシュ。通過までは直進のみ。早発への余裕が生まれるのはスタート B 以上。C 以下は時計が頂点に達してから通過しよう。','phase');
   return d;
 }
 function condition(a,b,d,env){switch(a.condition){case'rough':return env.weather==='雨'||env.windSpeed>=6;case'calm':return env.weather!=='雨'&&env.windSpeed<=3;case'inner':return b.course<=2;case'outer':return b.course>=4;case'rain':return env.weather==='雨';case'cross':return env.wind==='横風';case'behind':return place(d,b)>=3;default:return true;}}
@@ -281,6 +282,14 @@ function straightSupport(stats){
  const loss=Math.min(gap,15)*.20+clamp(gap-15,0,20)*.55+Math.max(0,gap-35)*.80;
  return {effective:speed-loss,support,gap,loss};
 }
+// V124: physical strength makes both the received wake and emitted wake modestly smoother.
+// Keep P50 at the prior base resistance (.30); each wake factor varies only +/-8%.
+// Effective power above 100 has no further wake bonus; skills still use their own caps.
+function physicalWake(power){
+ const p=clamp(Number(power)||0,0,100);
+ return {emission:1+(50-p)*.0016,resistance:.30+(p-50)*.00112};
+}
+function wakeStrength(speed,p){return clamp(Math.max(0,speed)/20*(1+(p.mechanics.wakeEmit||0))*p.wakeEmission,.1,2);}
 function performance(b,d,r){
   const spread=spectatorAdjustment(b,d,r),synergy=synergyState(b,d,r),s=Object.assign({},b.stats),buff={},debuff={},mechanics={...synergy.mechanics};let safety=0,skillSum=0,debuffSum=0;
   const unique=new Map();for(const e of b.effects)if(e.until>d.elapsed)unique.set(e.id+':'+e.kind,e);
@@ -302,9 +311,10 @@ function performance(b,d,r){
   const acceleration=clamp((1.05+s.accel*.049+s.start*.009+s.power*.005+gearAccel+tilt.accel+(mechanics.accel||0))*pace.accel*spread.accel,1.2,14);
   const grip=posture.grip*clamp(2.0+turn*.052+power*.036+gearTurn+(e.boat.stability-50)*.018+safety*1.5-wind*.09-rain*.28-fatigue*.014+tilt.grip+(mechanics.grip||0),2.3,16)*(1+pivot*3.8);
   const yawMax=posture.yaw*(.42+turn*.0081+gearTurn*.02)*clamp(.78+turn*.0022,.78,1)*(1+pivot*.85);
-  const wakeResistance=clamp(.10+power*.0040+safety*.35+(mechanics.wakeShield||0),0,.88);
+  const wakeBody=physicalWake(power),wakeEmission=wakeBody.emission;
+  const wakeResistance=clamp(wakeBody.resistance+safety*.35+(mechanics.wakeShield||0),0,.88);
   const wave=(.23+(100-Math.min(power,100))*.009+wind*.11+rain*.24+(r.venue.roughness||0)*.22+(mechanics.waveExtra||0))*(1-safety*.45)*(1-clamp(mechanics.waveShield||0,0,.8));
-  return {stats:s,straight,posture,tilt,topSpeed,acceleration,grip,yawMax,safety,gearSpeed,skillSum,debuffSum,wave,wakeResistance,mechanics,pace,pivot,spread,synergy:synergy.active,
+  return {stats:s,straight,posture,tilt,topSpeed,acceleration,grip,yawMax,safety,gearSpeed,skillSum,debuffSum,wave,wakeResistance,wakeEmission,mechanics,pace,pivot,spread,synergy:synergy.active,
     response:clamp((b.startTime===null?.35+clamp(s.start,0,125)*.055:.65+(s.accel*.55+s.start*.45)*.045)-fatigue*.006+(mechanics.response||0),.5,8),
     lateralDamping:posture.damping*Math.max(.3,(.23+turn*.011+power*.009+tilt.damping+safety*.5+(mechanics.damping||0))*(1+pivot*3.5)),mass:.65+power*.007};
 }
@@ -454,8 +464,10 @@ function turnDanger(b,p,wetGrip){
   return excess*Math.max(0,(b.speed-7)/12)*(1-p.safety*.65)*(1.18-power*.004);
 }
 // Role/identity, never a high stat alone, grants the three specified opponents their exception.
-const earlyStart=b=>!b.isPlayer&&((b.id==='cast_kagura'&&b.castId==='kagura'&&b.castRole==='boss')||(b.id==='cast_teiou'&&b.castRole==='king')||b.racePersona==='rival_final');
-const startAllowance=b=>earlyStart(b)?.30:.20*clamp(Number(b.stats?.start)||0,0,100)/100;
+const earlyStart=b=>Number(b.stats?.start)>=65&&!b.isPlayer&&((b.id==='cast_kagura'&&b.castId==='kagura'&&b.castRole==='boss')||(b.id==='cast_teiou'&&b.castRole==='king')||b.racePersona==='rival_final');
+// V124: only base start rank B or better qualifies; temporary effects do not change the rule.
+// Preserve existing B+ tuning and the qualified story opponents' separate signature start.
+const startAllowance=b=>Number(b.stats?.start)<65?0:earlyStart(b)?.30:.20*clamp(Number(b.stats?.start)||0,0,100)/100;
 function holdStartLine(b){if(b.startTime!==null)return;b.startLane=Number.isFinite(b.startLane)?b.startLane:clamp(b.z,C.inner+.1,C.outer-.1);b.z=b.startLane;b.heading=b.yawRate=b.steer=b.vz=b.heel=b.slip=0;}
 // Closed-loop throttle: predict with the same integrator and solve the first input.
 // No clock/position warp or retrospective forgiveness is used to hit the target.
@@ -635,7 +647,7 @@ function tick(d,r,input,dt=DT,allAI=false){
   if(!d.started&&d.countdown<1e-8){d.countdown=0;d.started=true;log(d,'時計が頂点。1.5秒未満にラインを通過しよう。','phase');}
   d.controls={steer:clamp(Number(input&&input.steer)||0,-1,1),throttle:clamp(Number(input&&input.throttle)||0,0,1),posture:postureStep(Number.isFinite(input?.posture)?input.posture:(own(d).postureTarget||0))};
   // All decisions see the same positions; no NPC bypasses the water physics or collisions.
-  d.boats.forEach(holdStartLine);
+  d.boats.forEach(b=>{holdStartLine(b);if(b.startTime===null)b.startAim=startTarget(b,r)+(earlyStart(b)?0:b.startRoll*.012);});
   const previousBows=d.boats.map(b=>b.x+Math.cos(b.heading)*3.5);
   const commands=d.boats.map(b=>b.isPlayer&&!allAI?d.controls:pilot(d,b,r));
   d.boats.forEach((b,i)=>integrate(d,b,r,commands[i],dt));
@@ -643,7 +655,7 @@ function tick(d,r,input,dt=DT,allAI=false){
   d.boats.forEach((b,i)=>{advanceProgress(b);startCrossing(d,b,previousBows[i],dt);finishCrossing(d,b,previousBows[i],dt);});
   d.wakeClock+=dt;
   if(d.wakeClock>=.35){d.wakeClock-=.35;d.wakes=d.wakes.filter(w=>d.elapsed-w.t<5);
-    for(const b of d.boats)if(activeBoat(b)&&b.speed>3){const p=performance(b,d,r);d.wakes.push({owner:b.id,x:b.x-Math.cos(b.heading)*2,z:b.z-Math.sin(b.heading)*2,fx:Math.cos(b.heading),fz:Math.sin(b.heading),t:d.elapsed,strength:clamp(b.speed/20*(1+(p.mechanics.wakeEmit||0)),.1,2)});}
+    for(const b of d.boats)if(activeBoat(b)&&b.speed>3){const p=performance(b,d,r);d.wakes.push({owner:b.id,x:b.x-Math.cos(b.heading)*2,z:b.z-Math.sin(b.heading)*2,fx:Math.cos(b.heading),fz:Math.sin(b.heading),t:d.elapsed,strength:wakeStrength(b.speed,p)});}
     if(d.wakes.length>96)d.wakes.splice(0,d.wakes.length-96);
   }
   const leader=ranks(d)[0];if(leader.id!==d.lastAnnouncedLeader&&raceTime(d)>3){d.lastAnnouncedLeader=leader.id;log(d,leader.frame+'号艇 '+leader.name+'が先頭。','lead',leader.id);}
@@ -699,7 +711,7 @@ function valid(d,r){
     (!('startLane' in b)||finite(b.startLane,C.inner,C.outer))&&(b.startTime===null||finite(b.startTime,-C.prestart,271))&&[null,'F','L'].includes(b.startFault)&&(!b.plan||['front','defend','sashi','outside','cross','clear'].includes(b.plan.id)&&finite(b.plan.lane,C.inner,C.outer)&&finite(b.plan.speed,.1,2))&&(b.lastZone===null||typeof b.lastZone==='string'&&b.lastZone.length<20)&&Array.isArray(b.effects)&&b.effects.length<150&&b.effects.every(e=>D.abilityMap[e.id]&&finite(e.until,0,310)&&finite(e.safety,0,2)&&(!e.mechanics||Object.values(e.mechanics).every(v=>finite(v,-5,5)))&&e.stats&&Object.entries(e.stats).every(([k,v])=>D.statKeys.includes(k)&&finite(v,-10000,10000)))&&Array.isArray(b.activations)&&b.activations.length<=100&&b.activations.every(active)&&Array.isArray(b.interference)&&b.interference.length<600&&Array.isArray(b.phaseHistory)&&b.phaseHistory.length<=24&&b.metrics&&Craft.validMetrics(b.metrics.craft)&&['contacts','boundaries','rescues','maxSpeed','slideSeconds','throttleSeconds','coastSeconds','wakeSeconds','lineChanges','contactImpulse','turnSpeedSum','turnSamples'].every(k=>finite(b.metrics[k],0,1e7))&&b.stats&&D.statKeys.every(k=>finite(b.stats[k],0,D.statCeiling(b,k)))&&Array.isArray(b.skills)&&b.skills.every(id=>D.abilityMap[id])&&b.mastery&&Object.values(b.mastery).every(n=>Number.isInteger(n)&&n>0&&n<10000)&&b.statsBuff&&D.statKeys.every(k=>finite(b.statsBuff[k]||0,0,100))&&b.equipment&&['motor','prop','boat'].every(k=>b.equipment[k]&&Object.values(b.equipment[k]).every(v=>finite(v,-100,100)));});
 }
 
-const R={migrateProgress,straightSupport,advanceProgress,C,DT,startTarget,earlyStart,startAllowance,eliteThrottle,holdStartLine,runOut,postureStep,postureTarget,postureEffects,movePosture,requiresManual,racingStyle,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
+const R={physicalWake,wakeStrength,migrateProgress,straightSupport,advanceProgress,C,DT,startTarget,earlyStart,startAllowance,eliteThrottle,holdStartLine,runOut,postureStep,postureTarget,postureEffects,movePosture,requiresManual,racingStyle,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
 root.KM_RACING=R;if(typeof module!=='undefined'&&module.exports)module.exports=R;
 })(typeof globalThis!=='undefined'?globalThis:window);
 

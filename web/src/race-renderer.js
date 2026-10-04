@@ -112,11 +112,12 @@ void main(){
   // Soft, broken foam; no opaque slash polygons. Local UV follows each wake patch.
   vec2 uv=vLocal*2.;float edge=max(0.,1.-dot(uv,uv));
   vec2 p=vWorld.xz;float lace=sin(p.x*5.7+sin(p.y*3.9+uTime)*1.5-uTime*.6)*sin(p.y*6.9-p.x*2.3+uTime*.7);
-  float bubbles=smoothstep(-.72,.7,lace);
-  float alpha=edge*edge*(.18+.65*bubbles)*uColor.r;
-  gl_FragColor=vec4(mix(vec3(.29,.62,.66),vec3(.91,.97,.92),bubbles),alpha);return;
+  float bubbles=smoothstep(-.65,.65,lace);
+  float pores=smoothstep(-.5,.8,sin(p.x*24.+p.y*11.)*sin(p.y*29.-p.x*9.));
+  float alpha=edge*edge*(.08+.70*bubbles)*(.63+.37*pores)*uColor.r;
+  gl_FragColor=vec4(mix(vec3(.40,.65,.67),vec3(.94,.98,.96),bubbles),alpha);return;
  }
- if(uWater>2.5){gl_FragColor=vec4(uColor,1.);return;}
+ if(uWater>2.5){gl_FragColor=vec4(mix(uColor,uFog,1.-exp(-dist*.0016)),1.);return;}
  if(uWater>1.5){vec3 ray=normalize((vWorld-uEye)*.002);gl_FragColor=vec4(environment(ray),1.);return;}
  vec3 n=normalize(vNormal);vec3 light=normalize(vec3(-.4,.88,.28));
  float sun=dot(n,light);float shade=sun>.5?1.0:sun>-.15?.82:.61;vec3 color=uColor*shade;
@@ -130,7 +131,7 @@ void main(){
   slope+=vec2(.18,.98)*cos(dot(p,vec2(.18,.98))*2.73-t*2.15+warp)*.027*fine;
   slope+=vec2(.97,-.24)*cos(dot(p,vec2(.97,-.24))*5.19+t*2.7)*.019*fine;
   slope+=vec2(-.73,.68)*cos(dot(p,vec2(-.73,.68))*8.17-t*3.3)*.010*fine;
-  slope*=.75+uWeather.x*.80+uWeather.y*.25;
+  slope*=(.75+uWeather.x*.80+uWeather.y*.25)*(.86+.14*sin(p.x*.13-p.y*.097+t*.31));
   n=normalize(vec3(-slope.x,1.,-slope.y));
   vec3 eye=normalize(uEye-vWorld);float facing=clamp(dot(n,eye),.015,1.);
   float fresnel=.025+.975*pow(1.-facing,5.);
@@ -140,9 +141,13 @@ void main(){
   body=mix(body,vec3(.055,.13,.17),uWeather.y*.35);
   color=mix(body,reflected*.86,fresnel*.82+.08);
   vec3 halfRay=normalize(eye+normalize(vec3(-.52,.48,.70)));
-  float highlight=pow(max(dot(n,halfRay),0.),140.);
+  float shine=max(dot(n,halfRay),0.);
+  float highlight=pow(shine,140.)*.78+pow(shine,48.)*.12;
   float silver=pow(max(dot(n,normalize(eye+vec3(.2,.72,-.52))),0.),32.)*.065;
   color+=vec3(1.,.94,.77)*highlight*(1.-uWeather.y*.94-uWeather.z*.65)*.85+silver;
+  float broken=smoothstep(.16,.29,abs(n.x)+abs(n.z))*smoothstep(.018,.075,abs(n.x+n.z));
+  float whitecap=broken*clamp((uWeather.x-.25)*.24+uWeather.y*.035,0.,.18)*(1.-smoothstep(14.,110.,dist));
+  color=mix(color,vec3(.69,.80,.79),whitecap);
   float fog=1.-exp(-dist*.0018);gl_FragColor=vec4(mix(color,uFog,fog),1.);return;
  }
  float fog=1.-exp(-dist*.0016);gl_FragColor=vec4(mix(color,uFog,fog),1.);}`;
@@ -446,17 +451,28 @@ $Id: LICENSE 2133 2007-11-28 02:46:28Z lechimp $
 
 */
 const digitGeometry={"digit1":[-0.5,0,-0.367017,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.321903,0,-0.33144,0,1,0,-0.321903,0,0.367017,0,1,0,-0.321903,0,0.140699,0,1,0,-0.5,0,0.33294,0,1,0,-0.5,0,0.33294,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.5,0,-0.367017,0,1,0,-0.5,0,0.33294,0,1,0,-0.321903,0,0.140699,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.321903,0,-0.103836,0,1,0,-0.321903,0,0.140699,0,1,0,0.324475,0,0.021539,0,1,0,0.5,0,0.054329,0,1,0,0.451779,0,-0.18742,0,1,0,0.324475,0,0.021539,0,1,0,0.324475,0,0.021539,0,1,0,0.451779,0,-0.18742,0,1,0,0.276254,0,-0.22171,0,1,0,0.324475,0,0.021539,0,1,0,0.5,0,0.299293,0,1,0,0.5,0,0.054329,0,1,0],"digit2":[-0.5,0,-0.426,0,1,0,-0.5,0,0.287263,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.312421,0,-0.389158,0,1,0,-0.313895,0,-0.103684,0,1,0,0.002737,0,0.028526,0,1,0,-0.5,0,-0.426,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.312421,0,-0.389158,0,1,0,0.002737,0,0.028526,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.129684,0,0.141789,0,1,0,0.271,0,-0.192789,0,1,0,0.434947,0,-0.242421,0,1,0,0.226316,0,-0.284526,0,1,0,0.302316,0,-0.110842,0,1,0,0.434947,0,-0.242421,0,1,0,0.271,0,-0.192789,0,1,0,0.258526,0,0.426,0,1,0,0.358579,0,0.404421,0,1,0,0.261684,0,0.159526,0,1,0,0.261684,0,0.159526,0,1,0,0.358579,0,0.404421,0,1,0,0.435158,0,0.339684,0,1,0,-0.313895,0,0.323263,0,1,0,-0.313895,0,-0.103684,0,1,0,-0.5,0,0.287263,0,1,0,0.463579,0,-0.153789,0,1,0,0.434947,0,-0.242421,0,1,0,0.302316,0,-0.110842,0,1,0,0.002737,0,0.028526,0,1,0,-0.129684,0,0.141789,0,1,0,0.055684,0,0.088789,0,1,0,0.055684,0,0.088789,0,1,0,-0.129684,0,0.141789,0,1,0,-0.009211,0,0.289158,0,1,0,-0.009211,0,0.289158,0,1,0,0.109263,0,0.132737,0,1,0,0.055684,0,0.088789,0,1,0,0.5,0,0.103684,0,1,0,0.495947,0,0.018947,0,1,0,0.326947,0,0.028526,0,1,0,0.083579,0,0.373368,0,1,0,0.166789,0,0.412842,0,1,0,0.213895,0,0.168737,0,1,0,0.258526,0,0.426,0,1,0,0.261684,0,0.159526,0,1,0,0.213895,0,0.168737,0,1,0,0.213895,0,0.168737,0,1,0,0.166789,0,0.412842,0,1,0,0.258526,0,0.426,0,1,0,0.320789,0,-0.037474,0,1,0,0.463579,0,-0.153789,0,1,0,0.302316,0,-0.110842,0,1,0,0.483789,0,-0.066842,0,1,0,0.463579,0,-0.153789,0,1,0,0.320789,0,-0.037474,0,1,0,0.320789,0,-0.037474,0,1,0,0.495947,0,0.018947,0,1,0,0.483789,0,-0.066842,0,1,0,0.320789,0,-0.037474,0,1,0,0.326947,0,0.028526,0,1,0,0.495947,0,0.018947,0,1,0,0.297263,0,0.131895,0,1,0,0.483789,0,0.237632,0,1,0,0.5,0,0.103684,0,1,0,0.435158,0,0.339684,0,1,0,0.483789,0,0.237632,0,1,0,0.297263,0,0.131895,0,1,0,0.297263,0,0.131895,0,1,0,0.261684,0,0.159526,0,1,0,0.435158,0,0.339684,0,1,0,0.083579,0,0.373368,0,1,0,0.213895,0,0.168737,0,1,0,0.162368,0,0.159737,0,1,0,-0.009211,0,0.289158,0,1,0,0.083579,0,0.373368,0,1,0,0.162368,0,0.159737,0,1,0,0.162368,0,0.159737,0,1,0,0.109263,0,0.132737,0,1,0,-0.009211,0,0.289158,0,1,0,0.5,0,0.103684,0,1,0,0.326947,0,0.028526,0,1,0,0.319526,0,0.087632,0,1,0,0.319526,0,0.087632,0,1,0,0.297263,0,0.131895,0,1,0,0.5,0,0.103684,0,1,0],"digit3":[0.378279,0,0.400589,0,1,0,0.274788,0,0.1651,0,1,0,0.284342,0,0.421194,0,1,0,0.378279,0,0.400589,0,1,0,0.445672,0,0.338773,0,1,0,0.274788,0,0.1651,0,1,0,0.5,0,0.093369,0,1,0,0.306445,0,0.13427,0,1,0,0.486418,0,0.236315,0,1,0,0.274788,0,0.1651,0,1,0,0.445672,0,0.338773,0,1,0,0.486418,0,0.236315,0,1,0,0.486418,0,0.236315,0,1,0,0.306445,0,0.13427,0,1,0,0.274788,0,0.1651,0,1,0,-0.086139,0,0.347191,0,1,0,-0.179818,0,0.11258,0,1,0,-0.154617,0,0.357364,0,1,0,-0.154617,0,0.357364,0,1,0,-0.179818,0,0.11258,0,1,0,-0.297872,0,0.325656,0,1,0,-0.407457,0,0.230531,0,1,0,-0.297872,0,0.325656,0,1,0,-0.241841,0,0.096674,0,1,0,-0.297872,0,0.325656,0,1,0,-0.179818,0,0.11258,0,1,0,-0.241841,0,0.096674,0,1,0,0.332266,0,0.015286,0,1,0,0.489672,0,-0.052882,0,1,0,0.328703,0,-0.042088,0,1,0,0.300558,0,-0.170109,0,1,0,0.458686,0,-0.203057,0,1,0,0.276699,0,-0.238587,0,1,0,0.104524,0,0.046633,0,1,0,0.095332,0,-0.044206,0,1,0,-0.071938,0,0.003615,0,1,0,0.489672,0,-0.052882,0,1,0,0.332266,0,0.015286,0,1,0,0.497418,0,0.020657,0,1,0,0.328703,0,-0.042088,0,1,0,0.489672,0,-0.052882,0,1,0,0.476761,0,-0.127401,0,1,0,-0.497005,0,-0.200372,0,1,0,-0.5,0,-0.118364,0,1,0,-0.33082,0,-0.123528,0,1,0,-0.473043,0,-0.35189,0,1,0,-0.290229,0,-0.324416,0,1,0,-0.452076,0,-0.421194,0,1,0,-0.488019,0,-0.278248,0,1,0,-0.312435,0,-0.259244,0,1,0,-0.473043,0,-0.35189,0,1,0,-0.473043,0,-0.35189,0,1,0,-0.312435,0,-0.259244,0,1,0,-0.290229,0,-0.324416,0,1,0,-0.452076,0,-0.421194,0,1,0,-0.290229,0,-0.324416,0,1,0,-0.26038,0,-0.384425,0,1,0,0.124045,0,0.363974,0,1,0,0.175325,0,0.160607,0,1,0,0.070543,0,0.295239,0,1,0,0.175325,0,0.160607,0,1,0,0.124045,0,0.363974,0,1,0,0.23146,0,0.175377,0,1,0,0.23146,0,0.175377,0,1,0,0.124045,0,0.363974,0,1,0,0.19624,0,0.406889,0,1,0,0.284342,0,0.421194,0,1,0,0.274788,0,0.1651,0,1,0,0.23146,0,0.175377,0,1,0,0.23146,0,0.175377,0,1,0,0.19624,0,0.406889,0,1,0,0.284342,0,0.421194,0,1,0,-0.33082,0,-0.123528,0,1,0,-0.5,0,-0.118364,0,1,0,-0.320595,0,-0.025873,0,1,0,-0.5,0,-0.118364,0,1,0,-0.476864,0,0.079891,0,1,0,-0.320595,0,-0.025873,0,1,0,0.070543,0,0.295239,0,1,0,0.175325,0,0.160607,0,1,0,0.038525,0,0.203057,0,1,0,0.325811,0,0.084074,0,1,0,0.306445,0,0.13427,0,1,0,0.5,0,0.093369,0,1,0,0.5,0,0.093369,0,1,0,0.497418,0,0.020657,0,1,0,0.325811,0,0.084074,0,1,0,0.325811,0,0.084074,0,1,0,0.497418,0,0.020657,0,1,0,0.332266,0,0.015286,0,1,0,0.328703,0,-0.042088,0,1,0,0.476761,0,-0.127401,0,1,0,0.318013,0,-0.104317,0,1,0,0.458686,0,-0.203057,0,1,0,0.300558,0,-0.170109,0,1,0,0.318013,0,-0.104317,0,1,0,0.318013,0,-0.104317,0,1,0,0.476761,0,-0.127401,0,1,0,0.458686,0,-0.203057,0,1,0,-0.064759,0,-0.081595,0,1,0,-0.071938,0,0.003615,0,1,0,0.095332,0,-0.044206,0,1,0,-0.064759,0,-0.081595,0,1,0,0.095332,0,-0.14873,0,1,0,-0.064759,0,-0.180335,0,1,0,0.095332,0,-0.044206,0,1,0,0.095332,0,-0.14873,0,1,0,-0.064759,0,-0.081595,0,1,0,0.104524,0,0.046633,0,1,0,-0.071938,0,0.003615,0,1,0,-0.093472,0,0.064243,0,1,0,-0.093472,0,0.064243,0,1,0,0.038525,0,0.203057,0,1,0,0.104524,0,0.046633,0,1,0,-0.326224,0,-0.191334,0,1,0,-0.497005,0,-0.200372,0,1,0,-0.33082,0,-0.123528,0,1,0,-0.488019,0,-0.278248,0,1,0,-0.497005,0,-0.200372,0,1,0,-0.326224,0,-0.191334,0,1,0,-0.326224,0,-0.191334,0,1,0,-0.312435,0,-0.259244,0,1,0,-0.488019,0,-0.278248,0,1,0,-0.289919,0,0.048957,0,1,0,-0.320595,0,-0.025873,0,1,0,-0.476864,0,0.079891,0,1,0,-0.289919,0,0.048957,0,1,0,-0.476864,0,0.079891,0,1,0,-0.407457,0,0.230531,0,1,0,-0.407457,0,0.230531,0,1,0,-0.241841,0,0.096674,0,1,0,-0.289919,0,0.048957,0,1,0,0.104524,0,0.046633,0,1,0,0.038525,0,0.203057,0,1,0,0.132101,0,0.116298,0,1,0,0.132101,0,0.116298,0,1,0,0.038525,0,0.203057,0,1,0,0.175325,0,0.160607,0,1,0,0.038525,0,0.203057,0,1,0,-0.093472,0,0.064243,0,1,0,-0.129415,0,0.100496,0,1,0,0.013065,0,0.26792,0,1,0,0.038525,0,0.203057,0,1,0,-0.129415,0,0.100496,0,1,0,-0.129415,0,0.100496,0,1,0,-0.029436,0,0.31667,0,1,0,0.013065,0,0.26792,0,1,0,-0.129415,0,0.100496,0,1,0,-0.179818,0,0.11258,0,1,0,-0.086139,0,0.347191,0,1,0,-0.086139,0,0.347191,0,1,0,-0.029436,0,0.31667,0,1,0,-0.129415,0,0.100496,0,1,0],"digit4":[0.280326,0,0.130626,0,1,0,0.5,0,0.417167,0,1,0,0.5,0,0.123768,0,1,0,0.5,0,0.123768,0,1,0,-0.096871,0,-0.39252,0,1,0,0.280326,0,0.130626,0,1,0,-0.130947,0,0.293292,0,1,0,0.280326,0,0.130626,0,1,0,-0.130947,0,0.0494,0,1,0,-0.130947,0,0.293292,0,1,0,-0.317831,0,0.40045,0,1,0,-0.130947,0,0.436027,0,1,0,-0.130947,0,-0.225139,0,1,0,0.280326,0,0.130626,0,1,0,-0.096871,0,-0.39252,0,1,0,-0.130947,0,-0.225139,0,1,0,-0.096871,0,-0.39252,0,1,0,-0.317831,0,-0.436027,0,1,0,-0.317831,0,0.40045,0,1,0,-0.130947,0,0.293292,0,1,0,-0.317831,0,0.257715,0,1,0,-0.317831,0,0.257715,0,1,0,-0.130947,0,0.293292,0,1,0,-0.130947,0,0.0494,0,1,0,-0.317831,0,0.014038,0,1,0,-0.5,0,-0.022182,0,1,0,-0.5,0,0.222353,0,1,0,-0.5,0,0.222353,0,1,0,-0.317831,0,0.257715,0,1,0,-0.317831,0,0.014038,0,1,0,-0.317831,0,0.014038,0,1,0,-0.317831,0,0.257715,0,1,0,-0.130947,0,0.0494,0,1,0,-0.130947,0,0.0494,0,1,0,-0.130947,0,-0.225139,0,1,0,-0.317831,0,0.014038,0,1,0,-0.317831,0,0.014038,0,1,0,-0.130947,0,-0.225139,0,1,0,-0.317831,0,-0.436027,0,1,0],"digit5":[-0.003311,0,0.021074,0,1,0,0.178789,0,0.054656,0,1,0,0.177686,0,0.023176,0,1,0,-0.273597,0,0.061804,0,1,0,-0.471673,0,0.08971,0,1,0,-0.386693,0,0.243641,0,1,0,0.5,0,0.424427,0,1,0,0.5,0,-0.20433,0,1,0,0.313958,0,-0.03868,0,1,0,-0.471673,0,0.08971,0,1,0,-0.273597,0,0.061804,0,1,0,-0.314274,0,-0.010984,0,1,0,-0.276855,0,-0.313696,0,1,0,-0.235758,0,-0.385537,0,1,0,-0.434833,0,-0.424427,0,1,0,0.5,0,0.424427,0,1,0,0.313958,0,-0.03868,0,1,0,0.313958,0,0.38827,0,1,0,0.162182,0,-0.06832,0,1,0,0.313958,0,-0.03868,0,1,0,0.5,0,-0.20433,0,1,0,-0.008304,0,-0.171116,0,1,0,0.162182,0,-0.06832,0,1,0,-0.026225,0,-0.238228,0,1,0,0.5,0,-0.20433,0,1,0,-0.051818,0,-0.311331,0,1,0,-0.026225,0,-0.238228,0,1,0,-0.026225,0,-0.238228,0,1,0,0.162182,0,-0.06832,0,1,0,0.5,0,-0.20433,0,1,0,-0.2109,0,0.108629,0,1,0,-0.273597,0,0.061804,0,1,0,-0.386693,0,0.243641,0,1,0,-0.386693,0,0.243641,0,1,0,-0.253311,0,0.341707,0,1,0,-0.2109,0,0.108629,0,1,0,-0.327833,0,-0.104478,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.5,0,-0.110994,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.495953,0,-0.192033,0,1,0,-0.5,0,-0.110994,0,1,0,-0.5,0,-0.110994,0,1,0,-0.314274,0,-0.010984,0,1,0,-0.327833,0,-0.104478,0,1,0,-0.471673,0,0.08971,0,1,0,-0.314274,0,-0.010984,0,1,0,-0.5,0,-0.110994,0,1,0,-0.483813,0,-0.270759,0,1,0,-0.495953,0,-0.192033,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.031217,0,0.076939,0,1,0,0.178789,0,0.054656,0,1,0,-0.003311,0,0.021074,0,1,0,-0.031217,0,0.076939,0,1,0,0.161604,0,0.188564,0,1,0,0.178789,0,0.054656,0,1,0,0.110048,0,0.289678,0,1,0,-0.074732,0,0.112413,0,1,0,0.028116,0,0.353216,0,1,0,0.161604,0,0.188564,0,1,0,-0.031217,0,0.076939,0,1,0,0.110048,0,0.289678,0,1,0,0.110048,0,0.289678,0,1,0,-0.031217,0,0.076939,0,1,0,-0.074732,0,0.112413,0,1,0,0.028116,0,0.353216,0,1,0,-0.074732,0,0.112413,0,1,0,-0.080198,0,0.374396,0,1,0,-0.003311,0,0.021074,0,1,0,0.177686,0,0.023176,0,1,0,0.174375,0,-0.008198,0,1,0,-0.003311,0,0.021074,0,1,0,0.174375,0,-0.008198,0,1,0,0.005991,0,-0.051923,0,1,0,-0.30555,0,-0.244061,0,1,0,-0.483813,0,-0.270759,0,1,0,-0.322262,0,-0.174795,0,1,0,-0.13128,0,0.124238,0,1,0,-0.2109,0,0.108629,0,1,0,-0.253311,0,0.341707,0,1,0,-0.253311,0,0.341707,0,1,0,-0.080198,0,0.374396,0,1,0,-0.13128,0,0.124238,0,1,0,-0.13128,0,0.124238,0,1,0,-0.080198,0,0.374396,0,1,0,-0.074732,0,0.112413,0,1,0,-0.463475,0,-0.347856,0,1,0,-0.276855,0,-0.313696,0,1,0,-0.434833,0,-0.424427,0,1,0,-0.463475,0,-0.347856,0,1,0,-0.30555,0,-0.244061,0,1,0,-0.276855,0,-0.313696,0,1,0,-0.483813,0,-0.270759,0,1,0,-0.30555,0,-0.244061,0,1,0,-0.463475,0,-0.347856,0,1,0,0.002417,0,-0.10926,0,1,0,0.162182,0,-0.06832,0,1,0,-0.008304,0,-0.171116,0,1,0,0.002417,0,-0.10926,0,1,0,0.005991,0,-0.051923,0,1,0,0.162182,0,-0.06832,0,1,0,0.162182,0,-0.06832,0,1,0,0.005991,0,-0.051923,0,1,0,0.169224,0,-0.038785,0,1,0,0.169224,0,-0.038785,0,1,0,0.005991,0,-0.051923,0,1,0,0.174375,0,-0.008198,0,1,0],"digit6":[-0.294206,0,-0.380861,0,1,0,-0.221132,0,-0.158851,0,1,0,-0.143049,0,-0.403429,0,1,0,-0.334435,0,-0.095177,0,1,0,-0.476709,0,-0.204142,0,1,0,-0.5,0,-0.058046,0,1,0,-0.215193,0,0.106899,0,1,0,-0.386181,0,0.241686,0,1,0,-0.256094,0,0.329064,0,1,0,0.108345,0,-0.363561,0,1,0,0.091407,0,-0.128486,0,1,0,0.219841,0,-0.315431,0,1,0,-0.221132,0,-0.158851,0,1,0,-0.294206,0,-0.380861,0,1,0,-0.272206,0,-0.151622,0,1,0,-0.272206,0,-0.151622,0,1,0,-0.294206,0,-0.380861,0,1,0,-0.406837,0,-0.313158,0,1,0,-0.28269,0,0.071266,0,1,0,-0.471545,0,0.1085,0,1,0,-0.386181,0,0.241686,0,1,0,-0.386181,0,0.241686,0,1,0,-0.215193,0,0.106899,0,1,0,-0.28269,0,0.071266,0,1,0,0.395579,0,-0.166701,0,1,0,0.272568,0,-0.038215,0,1,0,0.453522,0,-0.068168,0,1,0,0.195053,0,-0.097862,0,1,0,0.272568,0,-0.038215,0,1,0,0.395579,0,-0.166701,0,1,0,0.195053,0,-0.097862,0,1,0,0.219841,0,-0.315431,0,1,0,0.091407,0,-0.128486,0,1,0,0.091407,0,-0.128486,0,1,0,-0.064966,0,-0.111754,0,1,0,-0.019417,0,-0.057994,0,1,0,-0.143049,0,-0.403429,0,1,0,-0.221132,0,-0.158851,0,1,0,-0.13427,0,-0.147077,0,1,0,0.5,0,0.16918,0,1,0,0.48838,0,0.043948,0,1,0,0.337224,0,0.156166,0,1,0,-0.476709,0,-0.204142,0,1,0,-0.334435,0,-0.095177,0,1,0,-0.310576,0,-0.129932,0,1,0,-0.406837,0,-0.313158,0,1,0,-0.476709,0,-0.204142,0,1,0,-0.310576,0,-0.129932,0,1,0,-0.310576,0,-0.129932,0,1,0,-0.272206,0,-0.151622,0,1,0,-0.406837,0,-0.313158,0,1,0,-0.471545,0,0.1085,0,1,0,-0.28269,0,0.071266,0,1,0,-0.327463,0,0.017507,0,1,0,-0.5,0,-0.058046,0,1,0,-0.471545,0,0.1085,0,1,0,-0.327463,0,0.017507,0,1,0,0.48838,0,0.043948,0,1,0,0.453522,0,-0.068168,0,1,0,0.32106,0,0.047562,0,1,0,0.32106,0,0.047562,0,1,0,0.453522,0,-0.068168,0,1,0,0.272568,0,-0.038215,0,1,0,0.337224,0,0.156166,0,1,0,0.48838,0,0.043948,0,1,0,0.32106,0,0.047562,0,1,0,0.314708,0,-0.251188,0,1,0,0.195053,0,-0.097862,0,1,0,0.395579,0,-0.166701,0,1,0,0.219841,0,-0.315431,0,1,0,0.195053,0,-0.097862,0,1,0,0.314708,0,-0.251188,0,1,0,-0.014305,0,-0.393462,0,1,0,-0.13427,0,-0.147077,0,1,0,-0.064966,0,-0.111754,0,1,0,-0.014305,0,-0.393462,0,1,0,0.091407,0,-0.128486,0,1,0,0.108345,0,-0.363561,0,1,0,-0.014305,0,-0.393462,0,1,0,-0.064966,0,-0.111754,0,1,0,0.091407,0,-0.128486,0,1,0,-0.143049,0,-0.403429,0,1,0,-0.13427,0,-0.147077,0,1,0,-0.014305,0,-0.393462,0,1,0,0.305309,0,0.313881,0,1,0,0.280417,0,0.368519,0,1,0,0.458686,0,0.403429,0,1,0,0.33366,0,0.208428,0,1,0,0.5,0,0.16918,0,1,0,0.337224,0,0.156166,0,1,0,0.497418,0,0.22893,0,1,0,0.5,0,0.16918,0,1,0,0.33366,0,0.208428,0,1,0,0.476761,0,0.345022,0,1,0,0.305309,0,0.313881,0,1,0,0.458686,0,0.403429,0,1,0,0.32297,0,0.26069,0,1,0,0.305309,0,0.313881,0,1,0,0.476761,0,0.345022,0,1,0,0.085416,0,0.282586,0,1,0,-0.077412,0,0.11165,0,1,0,0.005474,0,0.339289,0,1,0,0.005474,0,0.339289,0,1,0,-0.077412,0,0.11165,0,1,0,-0.093886,0,0.35819,0,1,0,-0.093886,0,0.35819,0,1,0,-0.077412,0,0.11165,0,1,0,-0.132101,0,0.118777,0,1,0,-0.132101,0,0.118777,0,1,0,-0.215193,0,0.106899,0,1,0,-0.256094,0,0.329064,0,1,0,-0.256094,0,0.329064,0,1,0,-0.093886,0,0.35819,0,1,0,-0.132101,0,0.118777,0,1,0,-0.037286,0,0.090271,0,1,0,-0.077412,0,0.11165,0,1,0,0.085416,0,0.282586,0,1,0,0.085416,0,0.282586,0,1,0,0.138246,0,0.196344,0,1,0,-0.037286,0,0.090271,0,1,0,-0.342388,0,-0.049163,0,1,0,-0.334435,0,-0.095177,0,1,0,-0.5,0,-0.058046,0,1,0,-0.5,0,-0.058046,0,1,0,-0.327463,0,0.017507,0,1,0,-0.342388,0,-0.049163,0,1,0,-0.004235,0,0.009089,0,1,0,0.15188,0,0.030004,0,1,0,0.13995,0,-0.024995,0,1,0,0.32297,0,0.26069,0,1,0,0.476761,0,0.345022,0,1,0,0.489672,0,0.287131,0,1,0,0.497418,0,0.22893,0,1,0,0.33366,0,0.208428,0,1,0,0.489672,0,0.287131,0,1,0,0.489672,0,0.287131,0,1,0,0.33366,0,0.208428,0,1,0,0.32297,0,0.26069,0,1,0,-0.012497,0,0.055825,0,1,0,0.138246,0,0.196344,0,1,0,0.155856,0,0.088411,0,1,0,-0.012497,0,0.055825,0,1,0,-0.037286,0,0.090271,0,1,0,0.138246,0,0.196344,0,1,0,-0.012497,0,0.055825,0,1,0,0.15188,0,0.030004,0,1,0,-0.004235,0,0.009089,0,1,0,0.155856,0,0.088411,0,1,0,0.15188,0,0.030004,0,1,0,-0.012497,0,0.055825,0,1,0,0.091407,0,-0.128486,0,1,0,-0.019417,0,-0.057994,0,1,0,0.119965,0,-0.077412,0,1,0,0.119965,0,-0.077412,0,1,0,-0.019417,0,-0.057994,0,1,0,-0.004235,0,0.009089,0,1,0,-0.004235,0,0.009089,0,1,0,0.13995,0,-0.024995,0,1,0,0.119965,0,-0.077412,0,1,0]};
-const G={roundedLow:roundedBoxMesh(.22,2),coamingLow:coamingMesh("shell",true),coamingInsideLow:coamingMesh("inside",true),liveryLow:coamingMesh("livery",true),jacketLow:tailoredMesh([[-1,.68,.73],[-.7,.91,.86],[.28,1,.97],[.68,.95,1],[.93,.69,.74],[1,.46,.55]],10,1),sleeveLow:tailoredMesh([[-1,.72,.72],[-.8,.98,.95],[-.2,1,1],[.55,.81,.83],[1,.63,.69]],8,1),trouserLow:tailoredMesh([[-1,.68,.76],[-.7,.95,1],[.1,1,.94],[.72,.80,.77],[1,.64,.66]],8,1),coaming:coamingMesh(),coamingInside:coamingMesh("inside"),livery:coamingMesh("livery"),pennant:pennantMesh(),jacket:tailoredMesh([[-1,.68,.73],[-.7,.91,.86],[.28,1,.97],[.68,.95,1],[.93,.69,.74],[1,.46,.55]]),sleeve:tailoredMesh([[-1,.72,.72],[-.8,.98,.95],[-.2,1,1],[.55,.81,.83],[1,.63,.69]],10),trouser:tailoredMesh([[-1,.68,.76],[-.7,.95,1],[.1,1,.94],[.72,.80,.77],[1,.64,.66]],10),raceHelmet:raceHelmet(),raceHelmetLow:raceHelmet("shell",12),raceVisor:raceHelmet("visor",24),raceSeal:raceHelmet("seal",24),chinBand:raceHelmet("chin",24),...digitGeometry,digit1:deckOne(),rounded:roundedBoxMesh(),thin:smoothNormals(frustumMesh(1,1,-1,1,6)),softTiny:smoothSphere(6,4),helmetLow:smoothSphere(12,8),torso:torsoMesh(),helmetSeal:helmetSealMesh(),shell:hullShell(),deck:foreDeck(),deckTrim:foreDeck(true),wing:wingDeck(),soft:smoothSphere(),softLow:smoothSphere(8,5),helmet:smoothSphere(24,14),visor:visorMesh(),helmetStripe:helmetStripe(),wheel:wheelMesh(),box:boxMesh(),hull:hullMesh(),cone:coneMesh(),sphere:sphereMesh(),flat:planeMesh(1),slash:slashMesh(),stripe:stripeMesh(),
+const G={spray:sphereMesh(6,3),waterfront:ringMesh(90,130,.14),wetedge:ringMesh(86.4,87,.08),roundedLow:roundedBoxMesh(.22,2),coamingLow:coamingMesh("shell",true),coamingInsideLow:coamingMesh("inside",true),liveryLow:coamingMesh("livery",true),jacketLow:tailoredMesh([[-1,.68,.73],[-.7,.91,.86],[.28,1,.97],[.68,.95,1],[.93,.69,.74],[1,.46,.55]],10,1),sleeveLow:tailoredMesh([[-1,.72,.72],[-.8,.98,.95],[-.2,1,1],[.55,.81,.83],[1,.63,.69]],8,1),trouserLow:tailoredMesh([[-1,.68,.76],[-.7,.95,1],[.1,1,.94],[.72,.80,.77],[1,.64,.66]],8,1),coaming:coamingMesh(),coamingInside:coamingMesh("inside"),livery:coamingMesh("livery"),pennant:pennantMesh(),jacket:tailoredMesh([[-1,.68,.73],[-.7,.91,.86],[.28,1,.97],[.68,.95,1],[.93,.69,.74],[1,.46,.55]]),sleeve:tailoredMesh([[-1,.72,.72],[-.8,.98,.95],[-.2,1,1],[.55,.81,.83],[1,.63,.69]],10),trouser:tailoredMesh([[-1,.68,.76],[-.7,.95,1],[.1,1,.94],[.72,.80,.77],[1,.64,.66]],10),raceHelmet:raceHelmet(),raceHelmetLow:raceHelmet("shell",12),raceVisor:raceHelmet("visor",24),raceSeal:raceHelmet("seal",24),chinBand:raceHelmet("chin",24),...digitGeometry,digit1:deckOne(),rounded:roundedBoxMesh(),thin:smoothNormals(frustumMesh(1,1,-1,1,6)),softTiny:smoothSphere(6,4),helmetLow:smoothSphere(12,8),torso:torsoMesh(),helmetSeal:helmetSealMesh(),shell:hullShell(),deck:foreDeck(),deckTrim:foreDeck(true),wing:wingDeck(),soft:smoothSphere(),softLow:smoothSphere(8,5),helmet:smoothSphere(24,14),visor:visorMesh(),helmetStripe:helmetStripe(),wheel:wheelMesh(),box:boxMesh(),hull:hullMesh(),cone:coneMesh(),sphere:sphereMesh(),flat:planeMesh(1),slash:slashMesh(),stripe:stripeMesh(),
 water:planeMesh(900,1),shore:ringMesh(90,235,.12),edge:ringMesh(87,90,.32),rope:ringMesh(R.C.inner-.06,R.C.inner+.06,.04),mountain:mountainMesh(270,0),farHill:mountainMesh(340,2),
 buoy1:latheProfile([[0,.88],[.07,.98],[.22,1],[.44,.94],[.67,.835],[.9,.72]]),buoy2:latheProfile([[.9,.72],[1.15,.61],[1.4,.51],[1.65,.405],[1.9,.30]]),buoy3:latheProfile([[1.9,.30],[2.15,.207],[2.4,.12],[2.63,.045],[2.68,.01]]),buoyCollar:latheProfile([[0,.93],[.035,1.10],[.11,1.13],[.18,1.06],[.205,.97]]),buoyBand:latheProfile([[.895,.729],[.924,.716]]),float:frustumMesh(1,1,0,.16)};
 for(const side of [-1,1]){const suffix=side===1?'R':'L';G['sidePlate'+suffix]=sideMarkMesh(planeMesh(1,8),side);for(let frame=1;frame<=6;frame++)G['sideDigit'+frame+suffix]=sideMarkMesh(G['digit'+frame],side,true);}
 const distantSphere=sphereMesh(8,4);
 const P={ink:rgb('#133346'),white:rgb('#fff5df'),foam:rgb('#e0fff4'),aqua:rgb('#49c5c2'),water:rgb('#137f9d'),steel:rgb('#87a9af'),red:rgb('#ee664e')};
 const segs={1:'bc',2:'abdeg',3:'abcdg',4:'bcfg',5:'acdfg',6:'acdefg'};
-function camera(d,width,height,motion,thrill=false){const b=R.own(d),fx=Math.cos(b.heading),fz=Math.sin(b.heading),t=motion?d.elapsed:0,bob=motion?Math.sin(t*4.3)*Math.min(.09,b.speed*.0015+b.wakeLoad*.05):0,roll=motion?b.heel*.16:0;
-const eye=[b.x-fx*.75,1.65+(motion?R.clamp(Number(b.posture)||0,-1,1)*.12:0)+bob,b.z-fz*.75],up=[-fz*Math.sin(roll),Math.cos(roll),fx*Math.sin(roll)],view=lookAt(eye,[eye[0]+fx*24,eye[1]-.72,eye[2]+fz*24],up);
-const fov=80+(motion&&thrill?R.clamp((b.speed*3.6-52)/5,0,6):0);
-return {eye,view,vp:multiply(perspective(fov*Math.PI/180,width/height,.14,650),view),focal:height/(2*Math.tan(fov*.5*Math.PI/180))};}
+function camera(d,width,height,motion,thrill=false,r=null){
+ const b=R.own(d),fx=Math.cos(b.heading),fz=Math.sin(b.heading),t=motion?d.elapsed:0;
+ const posture=R.clamp(Number(b.posture)||0,-1,1),speed=R.clamp((Number(b.speed)||0)/27,0,1.2),power=R.clamp(Number(b.stats?.power)||0,0,100);
+ const damping=1-power*.0048,rough=R.clamp((r?.env?.windSpeed||0)*.075+(r?.env?.weather==='雨'?.22:0)+(r?.venue?.roughness||0)*.22,0,1.4),wake=R.clamp(Number(b.wakeLoad)||0,0,1.5);
+ // Smooth wave bands add heave, pitch and roll without a new simulation state or RNG.
+ const energy=(.018+speed*speed*.078+rough*(.018+speed*.052)+wake*.047)*damping;
+ const bob=motion?(Math.sin(t*4.3+b.x*.014)*.72+Math.sin(t*7.1+b.z*.019)*.28)*energy:0;
+ const pitch=motion?(Math.sin(t*3.4+b.x*.012)*.69+Math.sin(t*6.8+b.z*.023)*.31)*energy*.24:0;
+ const roll=motion?R.clamp((Number(b.heel)||0)*.17*damping+(Math.sin(t*3.1+b.z*.018)*.68+Math.sin(t*5.7+b.x*.021)*.32)*energy*.29,-.075,.075):0;
+ // Upright gives a clear view over the bow; crouching brings the water close.
+ const setback=.75+posture*.16,eye=[b.x-fx*setback,1.65+posture*.31+bob,b.z-fz*setback],lookDown=.030+posture*.017+pitch;
+ const up=[-fz*Math.sin(roll),Math.cos(roll),fx*Math.sin(roll)],view=lookAt(eye,[eye[0]+fx*24,eye[1]-lookDown*24,eye[2]+fz*24],up);
+ const fov=80-posture*2.8+(motion&&thrill?R.clamp((b.speed*3.6-52)/5,0,5):0);
+ return {eye,view,vp:multiply(perspective(fov*Math.PI/180,width/height,.14,650),view),focal:height/(2*Math.tan(fov*.5*Math.PI/180)),fov,bob,pitch,roll,damping,rough};
+}
 function palette(r){const rain=r.env.weather==='雨',cloud=r.env.weather==='曇り';return {fog:rgb(rain?'#9aaeb2':cloud?'#b6d3df':'#b9e5ef'),water:rgb(rain?'#1b4655':cloud?'#1c5966':'#125d65'),rain,cloud};}
 function weatherVector(r){return [R.clamp((r.env.windSpeed||0)/10,0,1),r.env.weather==='雨'?1:0,r.env.weather==='曇り'?1:0];}
 // Same six wave bands as GLES. No random calls or mutable simulation data.
@@ -466,7 +482,12 @@ const waveBands=[[.94,.34,.41,1.28,.095,.8],[-.38,.92,.69,-.92,.064,.5],[.79,-.6
 function waterNormal(x,z,t,weather,dist,out=[0,0,0]){
  const q=R.clamp((dist-12)/73,0,1),fine=1-q*q*(3-2*q),warp=fastSin(x*.071+z*.047+t*.24);let sx=0,sz=0;
  for(let i=0;i<6;i++){const w=waveBands[i],a=fastSin((x*w[0]+z*w[1])*w[2]+t*w[3]+warp*w[5]+Math.PI/2)*w[4]*(i>2?fine:1);sx+=w[0]*a;sz+=w[1]*a;}
- const rough=.75+weather[0]*.8+weather[1]*.25;sx*=rough;sz*=rough;const len=Math.sqrt(sx*sx+1+sz*sz);out[0]=-sx/len;out[1]=1/len;out[2]=-sz/len;return out;
+ const rough=(.75+weather[0]*.8+weather[1]*.25)*(.86+.14*fastSin(x*.13-z*.097+t*.31));sx*=rough;sz*=rough;const len=Math.sqrt(sx*sx+1+sz*sz);out[0]=-sx/len;out[1]=1/len;out[2]=-sz/len;return out;
+}
+function smoothstep(a,b,v){const q=R.clamp((v-a)/(b-a),0,1);return q*q*(3-2*q);}
+function waterWhitecap(x,z,t,weather,dist,n=null){
+ const normal=n||waterNormal(x,z,t,weather,dist);
+ return smoothstep(.16,.29,Math.abs(normal[0])+Math.abs(normal[2]))*smoothstep(.018,.075,Math.abs(normal[0]+normal[2]))*R.clamp((weather[0]-.25)*.24+weather[1]*.035,0,.18)*(1-smoothstep(14,110,dist));
 }
 function offscreen(w,h){
  try{let c;if(root.OffscreenCanvas)c=new root.OffscreenCanvas(w,h);else if(root.document?.createElement){c=root.document.createElement('canvas');c.width=w;c.height=h;}return c&&c.getContext('2d')?c:null;}catch(_){return null;}
@@ -484,6 +505,12 @@ function rainyEnvironment(art,longitude,angle,out=[0,0,0]){
  return out;
 }
 let rainyPanorama=null,rainyPanoramaSource=null;
+function paintPanorama(ctx,art,cam,width,height,heading){
+ const focal=cam.focal,v=cam.view,horizon=height/2-focal*v[6]/v[5],dw=focal*Math.PI,dh=focal/.9,offset=R.mod(heading/(Math.PI*2)+.5,1)*2;
+ // Pitch and roll apply to the panorama as well as the water and boats.
+ ctx.save();ctx.translate(width/2,horizon);ctx.rotate(Math.atan(v[4]/v[5]));
+ for(let i=Math.floor(offset)-2;i<=Math.floor(offset)+2;i++){const x=(i-offset)*dw;ctx.save();ctx.translate(x+(R.mod(i,2)?dw:0),0);if(R.mod(i,2))ctx.scale(-1,1);ctx.drawImage(art,-.5,-dh*.905,dw+1,dh);ctx.restore();}ctx.restore();
+}
 function createRainSkyPainter(){
  let surface=offscreen(1,1),cx=surface?.getContext('2d',{willReadFrequently:true});let image=null;
  return function(ctx,cam,width,height,heading){
@@ -497,20 +524,20 @@ function createRainSkyPainter(){
     rainyEnvironment(rgb,(x+.5)/sw*.5,angle,out);for(let c=0;c<3;c++)pixels.data[k+c]=Math.round(out[c]*255);
    }}cx.putImageData(pixels,0,0);image=art;rainyPanorama=surface;rainyPanoramaSource=art;
   }catch(_){return false;}}
-  const focal=cam.focal,horizon=height/2-focal*.03,dw=focal*Math.PI,dh=focal/.9,offset=R.mod(heading/(Math.PI*2)+.5,1)*2,y=horizon-dh*.905;
-  for(let i=Math.floor(offset)-1;i<=Math.floor(offset)+1;i++){const x=width/2+(i-offset)*dw;ctx.save();ctx.translate(x+(R.mod(i,2)?dw:0),0);if(R.mod(i,2))ctx.scale(-1,1);ctx.drawImage(surface,-.5,y,dw+1,dh);ctx.restore();}return true;
+  paintPanorama(ctx,surface,cam,width,height,heading);return true;
  };
 }
 function createWaterPainter(){
  const surface=offscreen(1,1),cx=surface?.getContext('2d',{willReadFrequently:true});let pixels=null,skySource=null,skyPixels=null,sw=192,sh=96;
  const skyCanvas=offscreen(sw,sh),skyCtx=skyCanvas?.getContext('2d',{willReadFrequently:true});
  const foam=offscreen(96,96),fc=foam?.getContext('2d'),shadow=offscreen(96,96),sc=shadow?.getContext('2d');
- if(fc){const f=fc.createImageData(96,96);for(let y=0;y<96;y++)for(let x=0;x<96;x++){const u=(x+ .5)/48-1,v=(y+.5)/48-1,edge=Math.max(0,1-u*u-v*v),noise=(Math.sin(x*.59+Math.sin(y*.51)*1.5)*Math.sin(y*.73-x*.23)+1)*.5,k=(y*96+x)*4;f.data[k]=165+noise*67;f.data[k+1]=204+noise*41;f.data[k+2]=202+noise*34;f.data[k+3]=255*edge*edge*(.08+.84*noise*noise);}fc.putImageData(f,0,0);if(sc){for(let i=0;i<f.data.length;i+=4){const px=(i/4)%96,py=Math.floor(i/4/96),edge=Math.max(0,1-Math.pow((px+.5)/48-1,2)-Math.pow((py+.5)/48-1,2));f.data[i]=2;f.data[i+1]=12;f.data[i+2]=15;f.data[i+3]=255*edge*edge;}sc.putImageData(f,0,0);}}
- function draw(ctx,cam,width,height,pal,weather,t){
+ if(fc){const f=fc.createImageData(96,96);for(let y=0;y<96;y++)for(let x=0;x<96;x++){const u=(x+ .5)/48-1,v=(y+.5)/48-1,edge=Math.max(0,1-u*u-v*v),noise=(Math.sin(x*.59+Math.sin(y*.51)*1.5)*Math.sin(y*.73-x*.23)+1)*.5,pores=(Math.sin(x*2.47+y*1.13)*Math.sin(y*2.97-x*.93)+1)*.5,k=(y*96+x)*4;f.data[k]=129+noise*110;f.data[k+1]=183+noise*67;f.data[k+2]=186+noise*59;f.data[k+3]=255*edge*edge*(.06+.88*noise*noise)*(.63+.37*pores);}fc.putImageData(f,0,0);if(sc){for(let i=0;i<f.data.length;i+=4){const px=(i/4)%96,py=Math.floor(i/4/96),edge=Math.max(0,1-Math.pow((px+.5)/48-1,2)-Math.pow((py+.5)/48-1,2));f.data[i]=2;f.data[i+1]=12;f.data[i+2]=15;f.data[i+3]=255*edge*edge;}sc.putImageData(f,0,0);}}
+ function draw(ctx,cam,width,height,pal,weather,t,quality='full'){
   if(!cx?.createImageData||!ctx.drawImage)return false;
   const image=getSky();if(image&&image.width>0&&skyCtx&&skySource!==image){try{skyCtx.drawImage(image,0,0,sw,sh);skyPixels=skyCtx.getImageData(0,0,sw,sh).data;skySource=image;}catch(_){skyPixels=null;}}
   const v=cam.view,f=cam.focal,eye=cam.eye,horizon=height/2-f*v[6]/v[5],top=Math.max(0,Math.floor(horizon-Math.abs(v[4]/v[5])*width/2-2));
-  const w=Math.min(216,Math.max(160,Math.round(width*.5))),h=Math.min(144,Math.max(80,Math.round((height-top)*.4)));
+  const budget=quality==='off'?[176,112]:quality==='soft'?[192,128]:[216,144];
+  const w=Math.min(budget[0],Math.max(160,Math.round(width*.5))),h=Math.min(budget[1],Math.max(80,Math.round((height-top)*.4)));
   if(surface.width!==w||surface.height!==h){surface.width=w;surface.height=h;pixels=cx.createImageData(w,h);}if(!pixels)pixels=cx.createImageData(w,h);
   const dark=[.018,.15,.19],lit=[.027,.27,.30],overcast=[.38,.49,.57],rainBody=[.055,.13,.17],sunColor=[1,.94,.77],skyBlue=[.2,.43,.64];
   const data=pixels.data,n=[0,0,0],rain=weather[1],cloud=weather[2],gray=cloud*.28,reflectedRGB=[0,0,0];
@@ -521,7 +548,8 @@ function createWaterPainter(){
     waterNormal(wx,wz,t,weather,dist,n);const nd=-(n[0]*rx+n[1]*ry+n[2]*rz),face=R.clamp(nd,.015,1),falloff=1-face,fresnel=(.025+.975*falloff*falloff*falloff*falloff*falloff)*.82+.08;
     const ex=rx+2*nd*n[0],ey=ry+2*nd*n[1],ez=rz+2*nd*n[2],angle=Math.atan2(Math.max(.006,ey),Math.sqrt(ex*ex+ez*ez));
     const u=panoramaU(Math.atan2(ez,ex)/(2*Math.PI)+.5),vv=R.clamp(.095+angle*.9,0,1),fog=1-Math.exp(-dist*.0018),bodyMix=R.clamp(.48-n[0]/n[1]*.9+n[2]/n[1]*.6,0,1);
-    const hx=-rx-.524,hy=-ry+.484,hz=-rz+.705,hl=Math.sqrt(hx*hx+hy*hy+hz*hz),spec=(n[0]*hx+n[1]*hy+n[2]*hz)/hl,highlight=(spec>.91?Math.pow(spec,140):0)*(1-rain*.94-cloud*.65)*.85;
+    const hx=-rx-.524,hy=-ry+.484,hz=-rz+.705,hl=Math.sqrt(hx*hx+hy*hy+hz*hz),spec=Math.max(0,(n[0]*hx+n[1]*hy+n[2]*hz)/hl),highlight=(spec>.86?Math.pow(spec,140)*.78+Math.pow(spec,48)*.12:0)*(1-rain*.94-cloud*.65)*.85;
+    const shx=-rx+.2,shy=-ry+.72,shz=-rz-.52,shl=Math.sqrt(shx*shx+shy*shy+shz*shz),shdot=(n[0]*shx+n[1]*shy+n[2]*shz)/shl,silver=shdot>.75?Math.pow(shdot,32)*.065:0,whitecap=waterWhitecap(wx,wz,t,weather,dist,n);
     const below=1-R.clamp((ey+.08)/.13,0,1),far=R.clamp((dist-65)/165,0,1)*.70;
     const sx=u*(sw-1),sy=(1-vv)*(sh-1),ix=Math.floor(sx),iy=Math.floor(sy),tx=sx-ix,ty=sy-iy,at=(iy*sw+ix)*4,at2=(Math.min(sh-1,iy+1)*sw+ix)*4,extra=ix<sw-1?4:0;
     for(let c=0;c<3;c++){
@@ -535,7 +563,7 @@ function createWaterPainter(){
      reflected=reflected*(1-below*.78)+pal.fog[c]*.8*below*.78;
      reflected=reflected*(1-far)+pal.fog[c]*.82*far;reflected=reflected*(1-gray)+overcast[c]*gray;
      let body=dark[c]*(1-bodyMix)+lit[c]*bodyMix;body=body*(1-rain*.35)+rainBody[c]*rain*.35;
-     const color=body*(1-fresnel)+reflected*.86*fresnel+highlight*sunColor[c];data[k+c]=Math.min(255,Math.max(0,Math.round((color*(1-fog)+pal.fog[c]*fog)*255)));
+     let color=body*(1-fresnel)+reflected*.86*fresnel+highlight*sunColor[c]+silver;color=color*(1-whitecap)+[.69,.80,.79][c]*whitecap;data[k+c]=Math.min(255,Math.max(0,Math.round((color*(1-fog)+pal.fog[c]*fog)*255)));
     }data[k+3]=255;
    }
   }
@@ -594,16 +622,18 @@ function scene(d,r,settings,emit){
 const player=R.own(d),time=settings.motion===false?0:d.elapsed,pal=palette(r);
 const add=(key,x,y,z,h,sx,sy,sz,col)=>emit(key,model(x,y,z,h,sx,sy,sz),col,key==='sphere'&&sx>5?3:0);
 if(!settings.paintedSky){emit('farHill',identity(),rgb('#8aadb5'),3);emit('mountain',identity(),rgb('#528987'),3);}
-emit('shore',identity(),rgb('#6ba78f'));emit('edge',identity(),rgb('#bed2c6'));emit('rope',identity(),rgb('#e8b269'));
+emit('shore',identity(),rgb('#78927c'));emit('waterfront',identity(),rgb('#929b96'));emit('edge',identity(),rgb('#a6afaa'));emit('wetedge',identity(),rgb('#405e59'));emit('rope',identity(),rgb('#d9ae6f'));
 // Distant clouds are sculpted clusters; no textures, fetches or random calls.
 if(!settings.paintedSky&&!pal.rain)for(let i=0;i<13;i++){const a=i*Math.PI*2/13,cx=Math.cos(a)*245,cz=Math.sin(a)*245;for(let j=0;j<3;j++){add('sphere',cx-Math.sin(a)*(j-1)*14,34+(j===1?8:0)+i%3*7,cz+Math.cos(a)*(j-1)*14,0,17,6+(j===1?4:0),9,pal.rain?rgb('#a0b4c1'):rgb('#eff9ed'));}}
 // Two shore grandstands: canopy, terraces, windows, supports and seat ribbons.
 for(const side of [-1,1])for(let i=-4;i<=4;i++){const x=i*22,z=side*114;
- add('box',x,1.5,z,0,10.5,1.5,9,rgb('#d2dccd'));add('box',x,5.1,z+side*3,0,10.5,1.3,6,rgb('#345f72'));
+ add('box',x,1.5,z,0,10.5,1.5,9,rgb('#abb5b2'));add('box',x,5.1,z+side*3,0,10.5,1.3,6,rgb('#34515e'));
  for(let row=0;row<3;row++)add('box',x,3+row*.72,z-side*(8-row*2),0,10,.18,.55,row%2?P.red:rgb('#cedbce'));
- add('box',x,8.2,z,0,12,.22,12,P.ink);add('box',x,8.48,z,0,12,.12,12,P.white);
+ add('box',x,8.2,z,0,12,.22,12,rgb('#334951'));add('box',x,8.48,z,0,12,.12,12,rgb('#d2d9d7'));
+ add('box',x,6.54,z-side*3.3,0,10.5,.14,1.2,rgb('#253e48'));add('box',x,3.68,z-side*9.15,0,10.4,.055,.055,rgb('#b4c3c3'));
+ for(const dx of [-7,0,7])add('box',x+dx,3.3,z-side*9.15,0,.045,.38,.045,rgb('#698183'));
  for(const dx of [-9,9])add('box',x+dx,5,z-side*8,0,.12,3.2,.12,P.steel);
- for(let j=-2;j<=2;j++)add('box',x+j*4,5.2,z-side*3.1,0,1.7,.85,.1,rgb('#78a8b8'));
+ for(let j=-2;j<=2;j++){emit('box',model(x+j*4,5.2,z-side*3.1,0,1.7,.85,.1),rgb('#618894'),BM.metal);add('box',x+j*4,5.2,z-side*3.23,0,.025,.85,.025,rgb('#bac9c9'));}
 }
 crowdFor(r).forEach(([key,col])=>emit(key,identity(),col,4));
 for(let s=0;s<R.C.length;s+=18){const p=R.pointAt(s,R.C.inner),bob=Math.sin(time*1.7+s)*.035;add('sphere',p.x,.13+bob,p.z,p.heading,.42,.22,.42,Math.floor(s/18)%2?P.white:P.red);}
@@ -613,6 +643,20 @@ const gx=R.pointAt(R.C.start).x;
 for(let j=0;j<16;j++)add('flat',gx,.045,R.C.inner+(j+.5)*(R.C.outer-R.C.inner)/16,0,1.5,1,(R.C.outer-R.C.inner)/16,j%2?P.white:P.ink);
 for(const z of [R.C.inner-2,R.C.outer+2]){add('box',gx,4,z,0,.11,4,.11,P.white);add('box',gx,7.2,z,0,.13,.7,.5,P.red);}
 if(settings.guide!==false)for(let i=1;i<=12;i++){const p=R.pointAt(R.C.start+player.progress+i*8);add('slash',p.x,.07,p.z,p.heading,1.25,1,.22,rgb('#ffd17f'));}
+// Sparse wind-broken crests are anchored to the basin, rather than the screen.
+// Small textured patches keep the Canvas surface crisp without raising its raster budget.
+const chop=R.clamp(((r.env.windSpeed||0)-2)*.11+(pal.rain?.16:0),0,.85);
+if(chop>0&&settings.raceFX!=='off'){
+ const gx=Math.floor(player.x/8),gz=Math.floor(player.z/8),modulus=settings.raceFX==='soft'?7:4;
+ for(let ix=gx-6;ix<=gx+6;ix++)for(let iz=gz-6;iz<=gz+6;iz++){
+  if(R.mod(ix*23+iz*37,modulus))continue;
+  const x=ix*8+fastSin(ix*2.3+iz)*2,z=iz*8+fastSin(iz*1.7-ix)*2,range=Math.hypot(x-player.x,z-player.z);
+  if(range<5||range>52||Math.hypot(x-R.clamp(x,-R.C.halfStraight,R.C.halfStraight),z)>86)continue;
+  const life=Math.max(0,fastSin(time*.85+x*.41+z*.23)),fade=life*life*(1-range/56)*chop;
+  if(fade<.018)continue;
+  emit('flat',model(x,.022,z,.58,2.7+life,1,.23+life*.14),[fade*.43,1,1],5);
+ }
+}
 // World-space foam patches follow the actual turning wake, and fade with its age.
 for(const w of d.wakes){const age=d.elapsed-w.t;if(age<0||age>4.5||Math.hypot(w.x-player.x,w.z-player.z)>100)continue;
  const heading=Math.atan2(w.fz,w.fx),spread=.85+age*1.28,fade=Math.pow(1-age/4.5,1.6)*R.clamp(w.strength,.2,1.25);
@@ -622,8 +666,17 @@ for(const w of d.wakes){const age=d.elapsed-w.t;if(age<0||age>4.5||Math.hypot(w.
 for(const n of d.boats){
  emit('flat',model(n.x,.021,n.z,n.heading,6.9,1,2.9),[.44,1,1],6);boatScene(n,d,settings,emit);
  if(n.speed>3&&!n.capsized){const fx=Math.cos(n.heading),fz=Math.sin(n.heading);
- for(let i=0;i<3;i++){const tail=2.7+i*1.55;emit('flat',model(n.x-fx*tail,.052,n.z-fz*tail,n.heading,3.8,1,1.4+i*.45),[R.clamp(n.speed/24,.15,.9)*(1-i*.16),1,1],5);}
- if(settings.motion!==false)for(let i=0;i<8;i++){const age=(time*1.7+i*.137)%1,side=i%2?1:-1,scale=(1-age)*.065,x=.1-age*(2+n.speed*.18),z=side*(.90+age*1.8);add('sphere',n.x+x*fx-z*fz,.18+Math.sin(age*Math.PI)*(.25+n.speed*.022),n.z+x*fz+z*fx,n.heading,scale*2,scale,scale,P.foam);}
+  const wash=R.clamp(n.speed/24,.15,.95),turn=R.clamp(Math.abs(n.steer||0)+Math.abs(n.yawRate||0)*.4,0,1);
+ for(let i=0;i<3;i++){const tail=2.7+i*1.7;emit('flat',model(n.x-fx*tail,.052,n.z-fz*tail,n.heading,4.2,1,1.15+i*.50),[wash*(1-i*.17),1,1],5);}
+ // Bow shoulders produce narrow outward sheets; the centre line remains readable.
+ for(const side of [-1,1]){const spread=side*(1.0+turn*.13),x=-.30;emit('flat',model(n.x+x*fx-spread*fz,.048,n.z+x*fz+spread*fx,n.heading-side*.27,3.2,1,.48+turn*.3),[wash*.57,1,1],5);}
+ const distance=Math.hypot(n.x-player.x,n.z-player.z),particles=settings.raceFX==='off'?0:settings.raceFX==='soft'?6:14;
+ if(settings.motion!==false&&distance<65)for(let i=0;i<particles;i++){
+  const age=R.mod(time*(1.35+(i%3)*.16)+i*.137+n.frame*.071,1),side=i%2?1:-1;
+  const scale=(1-age)*(.020+(i%4)*.007),x=.1-age*(2+n.speed*.16),z=side*(.92+age*(1.65+turn*.7));
+  const y=.11+Math.sin(age*Math.PI)*(.24+n.speed*.014+turn*.22),heading=n.heading+side*.30;
+  add('spray',n.x+x*fx-z*fz,y,n.z+x*fz+z*fx,heading,scale*(1.4+age),scale*.75,scale*.65,rgb(i%3?'#d9e8e5':'#f3f9f5'));
+ }
  }
 
 }
@@ -645,12 +698,12 @@ const position=gl.getAttribLocation(program,'aPosition'),normal=gl.getAttribLoca
 const meshes={};for(const [key,data]of Object.entries(G)){const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(data),gl.STATIC_DRAW);meshes[key]={buffer,count:data.length/6,source:data};}
 const texture=gl.createTexture();gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,1,1,0,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([170,215,230,255]));gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.uniform1i(uniforms.Sky,0);
 let width=1,height=1,vp=identity(),drawCamera=null,disposed=false,skyReady=false;
-function emit(key,m,col,water=0){if(drawCamera&&water!==2&&key!=='water'&&!key.startsWith('crowd')&&!['mountain','farHill','shore','edge','rope'].includes(key)){const v=drawCamera.view,x=v[0]*m[12]+v[4]*m[13]+v[8]*m[14]+v[12],y=v[1]*m[12]+v[5]*m[13]+v[9]*m[14]+v[13],z=-(v[2]*m[12]+v[6]*m[13]+v[10]*m[14]+v[14]),radius=Math.max(Math.hypot(m[0],m[2]),Math.abs(m[5]),Math.hypot(m[8],m[10]))*(['hull','stripe','shell','deck','deckTrim','wing','coaming','coamingInside','livery'].includes(key)||key.startsWith('side')?4:key==='cone'||key.startsWith('buoy')?3:1.8);if(z+radius<.14||Math.abs(x)-radius>Math.max(0,z+radius)*width/(2*drawCamera.focal)||Math.abs(y)-radius>Math.max(0,z+radius)*height/(2*drawCamera.focal))return;}let g=meshes[key];if(!g||g.source!==G[key]){const buffer=g?g.buffer:gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(G[key]),gl.STATIC_DRAW);g=meshes[key]={buffer,count:G[key].length/6,source:G[key]};}gl.bindBuffer(gl.ARRAY_BUFFER,g.buffer);gl.vertexAttribPointer(position,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(normal,3,gl.FLOAT,false,24,12);gl.uniformMatrix4fv(uniforms.Model,false,m);gl.uniform3fv(uniforms.Color,col);gl.uniform1f(uniforms.Water,water);if(water===5||water===6){gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);}gl.drawArrays(gl.TRIANGLES,0,g.count);if(water===5||water===6){gl.depthMask(true);gl.disable(gl.BLEND);}}
+function emit(key,m,col,water=0){if(drawCamera&&water!==2&&key!=='water'&&!key.startsWith('crowd')&&!['mountain','farHill','shore','edge','rope','waterfront','wetedge'].includes(key)){const v=drawCamera.view,x=v[0]*m[12]+v[4]*m[13]+v[8]*m[14]+v[12],y=v[1]*m[12]+v[5]*m[13]+v[9]*m[14]+v[13],z=-(v[2]*m[12]+v[6]*m[13]+v[10]*m[14]+v[14]),radius=Math.max(Math.hypot(m[0],m[2]),Math.abs(m[5]),Math.hypot(m[8],m[10]))*(['hull','stripe','shell','deck','deckTrim','wing','coaming','coamingInside','livery'].includes(key)||key.startsWith('side')?4:key==='cone'||key.startsWith('buoy')?3:1.8);if(z+radius<.14||Math.abs(x)-radius>Math.max(0,z+radius)*width/(2*drawCamera.focal)||Math.abs(y)-radius>Math.max(0,z+radius)*height/(2*drawCamera.focal))return;}let g=meshes[key];if(!g||g.source!==G[key]){const buffer=g?g.buffer:gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(G[key]),gl.STATIC_DRAW);g=meshes[key]={buffer,count:G[key].length/6,source:G[key]};}gl.bindBuffer(gl.ARRAY_BUFFER,g.buffer);gl.vertexAttribPointer(position,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(normal,3,gl.FLOAT,false,24,12);gl.uniformMatrix4fv(uniforms.Model,false,m);gl.uniform3fv(uniforms.Color,col);gl.uniform1f(uniforms.Water,water);if(water===5||water===6){gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);}gl.drawArrays(gl.TRIANGLES,0,g.count);if(water===5||water===6){gl.depthMask(true);gl.disable(gl.BLEND);}}
 function draw(d,r,settings={}){if(disposed||gl.isContextLost())return;width=Math.max(1,canvas.clientWidth);height=Math.max(1,canvas.clientHeight);const scale=Math.min(root.devicePixelRatio||1,1.5,Math.sqrt(1050000/(width*height))),w=Math.round(width*scale),h=Math.round(height*scale);
 if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;gl.viewport(0,0,w,h);}
 const image=getSky();if(!skyReady&&image&&image.width>0){try{gl.bindTexture(gl.TEXTURE_2D,texture);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,image);skyReady=true;}catch(_){/* Retain procedural sky when images cannot decode. */}}
 gl.uniform1f(uniforms.SkyReady,skyReady?1:0);gl.uniform3fv(uniforms.Weather,weatherVector(r));
-const cam=camera(d,width,height,settings.motion!==false,settings.raceFX==='full'),pal=palette(r);drawCamera=cam;vp=cam.vp;gl.clearColor(...pal.fog,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.uniformMatrix4fv(uniforms.VP,false,vp);gl.uniform3fv(uniforms.Eye,cam.eye);gl.uniform3fv(uniforms.Fog,pal.fog);gl.uniform1f(uniforms.Time,settings.motion===false?0:d.elapsed);
+const cam=camera(d,width,height,settings.motion!==false,settings.raceFX==='full',r),pal=palette(r);drawCamera=cam;vp=cam.vp;gl.clearColor(...pal.fog,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.uniformMatrix4fv(uniforms.VP,false,vp);gl.uniform3fv(uniforms.Eye,cam.eye);gl.uniform3fv(uniforms.Fog,pal.fog);gl.uniform1f(uniforms.Time,settings.motion===false?0:d.elapsed);
 emit('sphere',model(cam.eye[0],cam.eye[1],cam.eye[2],0,480,480,480),pal.fog,2);emit('water',identity(),pal.water,1);scene(d,r,{...settings,paintedSky:skyReady},emit);
 }
 function project(x,y,z){const v=[x,y,z,1],a=[0,0,0,0];for(let i=0;i<4;i++)for(let k=0;k<4;k++)a[i]+=vp[k*4+i]*v[k];if(a[3]<=.16)return null;return {x:(a[0]/a[3]*.5+.5)*width,y:(.5-a[1]/a[3]*.5)*height,depth:a[3],visible:Math.abs(a[0]/a[3])<1.1&&Math.abs(a[1]/a[3])<1.1};}
@@ -689,15 +742,15 @@ const color=(base,fog,depth,light=1)=>{const t=1-Math.exp(-depth*.0016);return '
 function draw(d,r,settings={}){
 if(disposed)return;painted++;width=Math.max(1,canvas.clientWidth);height=Math.max(1,canvas.clientHeight);const scale=Math.min(root.devicePixelRatio||1,1.25,Math.sqrt(650000/(width*height))),w=Math.round(width*scale),h=Math.round(height*scale);
 if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}ctx.setTransform(w/width,0,0,h/height,0,0);
-const cam=camera(d,width,height,settings.motion!==false,settings.raceFX==='full'),pal=palette(r),b=R.own(d),t=settings.motion===false?0:d.elapsed;view=cam.view;focal=cam.focal;
-const horizon=height/2-focal*.03,sky=ctx.createLinearGradient(0,0,0,horizon);sky.addColorStop(0,pal.rain?'#4c6068':'#398ecc');sky.addColorStop(1,color(pal.fog,pal.fog,0));ctx.fillStyle=sky;ctx.fillRect(0,0,width,height);
-const art=getSky(),paintedSky=!!(art&&art.width>0&&ctx.drawImage);if(paintedSky&&!pal.rain){const dw=focal*Math.PI,dh=focal/.9,offset=R.mod(b.heading/(Math.PI*2)+.5,1)*2,y=horizon-dh*.905;for(let i=Math.floor(offset)-1;i<=Math.floor(offset)+1;i++){const x=width/2+(i-offset)*dw;ctx.save();ctx.translate(x+(R.mod(i,2)?dw:0),0);if(R.mod(i,2))ctx.scale(-1,1);ctx.drawImage(art,0,y,dw,dh);ctx.restore();}}
+const cam=camera(d,width,height,settings.motion!==false,settings.raceFX==='full',r),pal=palette(r),b=R.own(d),t=settings.motion===false?0:d.elapsed;view=cam.view;focal=cam.focal;
+const horizon=height/2-focal*view[6]/view[5],sky=ctx.createLinearGradient(0,0,0,horizon);sky.addColorStop(0,pal.rain?'#4c6068':'#398ecc');sky.addColorStop(1,color(pal.fog,pal.fog,0));ctx.fillStyle=sky;ctx.fillRect(0,0,width,height);
+const art=getSky(),paintedSky=!!(art&&art.width>0&&ctx.drawImage);if(paintedSky&&!pal.rain)paintPanorama(ctx,art,cam,width,height,b.heading);
 if(pal.rain)rainSkyPainter(ctx,cam,width,height,b.heading);
-const water=ctx.createLinearGradient(0,horizon,0,height);water.addColorStop(0,color(pal.water,pal.fog,140));water.addColorStop(.35,color(pal.water,pal.fog,50));water.addColorStop(1,pal.rain?'#1e647f':'#076383');ctx.fillStyle=water;ctx.fillRect(0,horizon,width,height-horizon);
-waterPainter.draw(ctx,cam,width,height,pal,weatherVector(r),t);
+const water=ctx.createLinearGradient(0,horizon,0,height);water.addColorStop(0,color(pal.water,pal.fog,140));water.addColorStop(.35,color(pal.water,pal.fog,50));water.addColorStop(1,pal.rain?'#1e647f':'#076383');ctx.fillStyle=water;ctx.fillRect(0,horizon+Math.abs(view[4]/view[5])*width/2+1,width,height-horizon);
+waterPainter.draw(ctx,cam,width,height,pal,weatherVector(r),t,settings.raceFX||'full');
 const commands=[];
 function emit(key,m,col,material=0,anchor=null){if(material===5||material===6){const points=[[-.5,-.5],[-.5,.5],[.5,.5],[.5,-.5]].map(([x,z])=>cameraPoint([m[0]*x+m[8]*z+m[12],m[13],m[2]*x+m[10]*z+m[14]]));if(points.some(p=>p[2]<.25))return;const quad=points.map(screen);if(quad.every(p=>p[0]<0)||quad.every(p=>p[0]>width)||quad.every(p=>p[1]<0)||quad.every(p=>p[1]>height))return;commands.push({quad,shadow:material===6,alpha:col[0],depth:points.reduce((n,p)=>n+p[2],0)/4});return;}const center=cameraPoint([m[12],m[13],m[14]]),data=key==='sphere'&&center[2]>16?distantSphere:key==='soft'||key==='softLow'?G.softTiny:key==='helmet'?(center[2]>23?G.softLow:G.helmetLow):key==='raceHelmet'?G.raceHelmetLow:['rounded','coaming','coamingInside','livery','jacket','sleeve','trouser'].includes(key)?G[key+'Low']:G[key];
-if(!key.startsWith('crowd')&&!['mountain','farHill','shore','edge','rope'].includes(key)){const radius=Math.max(Math.hypot(m[0],m[1],m[2]),Math.hypot(m[4],m[5],m[6]),Math.hypot(m[8],m[9],m[10]))*(['hull','stripe','shell','deck','deckTrim','wing','coaming','coamingInside','livery'].includes(key)||key.startsWith('side')?4:key==='cone'||key.startsWith('buoy')?3:1.8);if(center[2]+radius<.16||Math.abs(center[0])-radius>Math.max(0,center[2]+radius)*width/(2*focal)||Math.abs(center[1])-radius>Math.max(0,center[2]+radius)*height/(2*focal))return;}
+if(!key.startsWith('crowd')&&!['mountain','farHill','shore','edge','rope','waterfront','wetedge'].includes(key)){const radius=Math.max(Math.hypot(m[0],m[1],m[2]),Math.hypot(m[4],m[5],m[6]),Math.hypot(m[8],m[9],m[10]))*(['hull','stripe','shell','deck','deckTrim','wing','coaming','coamingInside','livery'].includes(key)||key.startsWith('side')?4:key==='cone'||key.startsWith('buoy')?3:1.8);if(center[2]+radius<.16||Math.abs(center[0])-radius>Math.max(0,center[2]+radius)*width/(2*focal)||Math.abs(center[1])-radius>Math.max(0,center[2]+radius)*height/(2*focal))return;}
 
 const world=[m[12],m[13],m[14]],eye=unit(sub(cam.eye,world)),half=unit([eye[0]-.4,eye[1]+.88,eye[2]+.28]);
 for(let i=0;i<data.length;i+=18){const points=[];for(let k=0;k<3;k++){const j=i+k*6,x=data[j],y=data[j+1],z=data[j+2];points.push(cameraPoint([m[0]*x+m[4]*y+m[8]*z+m[12],m[1]*x+m[5]*y+m[9]*z+m[13],m[2]*x+m[6]*y+m[10]*z+m[14]]));}
@@ -710,7 +763,7 @@ let fill;if(material===BM.decal){fill=color(col,pal.fog,depth);}else if(material
  const power=material===8?25:material===9?120:material===10?140:material===11?65:95,spec=material===8?.035:material===9?.50:material===10?.65:.19;
  const shine=Math.pow(Math.max(0,dot(n,half)),power)*spec*(pal.rain?.42:pal.cloud?.66:1),facing=1-Math.max(0,dot(n,eye)),reflect=(material===10?.52:material===9?.26:.04)*(.35+Math.pow(facing,4)*.65),light=.47+.20*n[1]+Math.max(0,lit)*.42;
  const painted=col.map((v,c)=>(v*light*(1-reflect)+pal.fog[c]*reflect+shine*[1,.97,.87][c])*(.87+.13*R.clamp((world[1]-.10)/.42,0,1)));fill=color(painted,pal.fog,depth);
-}else fill=unlit?color(col,col,0):color(col,pal.fog,depth,lit>.5?1:lit>-.15?.82:.61);
+}else fill=unlit?color(col,pal.fog,depth):color(col,pal.fog,depth,lit>.5?1:lit>-.15?.82:.61);
 commands.push({polygon,z:clipped.map(p=>p[2]),depth,fill});
 }
 
@@ -731,9 +784,7 @@ function create(canvas,options={}){
 }
 
 
-const API={stormSky,rainyEnvironment,buoyScene,deckOne,boatScene,racerPose,normalVector,BM,identity,rotation,weatherVector,waterNormal,geometry:G,panoramaU,audience,crowdFor,create,createWebGL,createCanvas,freshCanvas,clipNear,COLORS,vertex,fragment,multiply,perspective,lookAt,model,point:R.pointAt,boxMesh,hullMesh,coneMesh,planeMesh,ringMesh,scene,camera,sphereMesh,frustumMesh};
+const API={waterWhitecap,paintPanorama,stormSky,rainyEnvironment,buoyScene,deckOne,boatScene,racerPose,normalVector,BM,identity,rotation,weatherVector,waterNormal,geometry:G,panoramaU,audience,crowdFor,create,createWebGL,createCanvas,freshCanvas,clipNear,COLORS,vertex,fragment,multiply,perspective,lookAt,model,point:R.pointAt,boxMesh,hullMesh,coneMesh,planeMesh,ringMesh,scene,camera,sphereMesh,frustumMesh};
 root.KM_RACE_RENDERER=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
-
-
 
