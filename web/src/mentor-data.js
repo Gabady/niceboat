@@ -1,3 +1,5 @@
+
+
 /* V118: character-specific middle scenes and recovery continuity. */
 (function(root){'use strict';const data={
   "hayase": {
@@ -1067,3 +1069,5 @@
     ]
   }
 };root.KM_MENTOR_DATA=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;})(globalThis);
+
+

@@ -69,7 +69,8 @@ test('旧版の途中レースはリプレイ位置から距離を復元し、�
  const done=structuredClone(d);delete done.progressRule;done.finalized=true;const before=JSON.stringify(done.boats);R.migrateProgress(done);assert.equal(JSON.stringify(done.boats),before);
 });
 test('強敵報酬・恋愛条件・本文・能力配布の処理はV119を維持',()=>{
- for(const name of ['bonds','bonds-data','mentor-data','story','story-extra','development','drama','drama-data','campaign','campaign-data','finale','affinity','craft118'])assert.equal(fs.readFileSync(path.join(__dirname,'../src/'+name+'.js'),'utf8'),fs.readFileSync(path.join(__dirname,'fixtures/v119-source/'+name+'.js'),'utf8'),name);
+ // extract_source.py includes the line breaks surrounding each inline script.
+ for(const name of ['bonds','bonds-data','mentor-data','story','story-extra','development','drama','drama-data','campaign','campaign-data','finale','affinity','craft118'])assert.equal(fs.readFileSync(path.join(__dirname,'../src/'+name+'.js'),'utf8').trim(),fs.readFileSync(path.join(__dirname,'fixtures/v119-source/'+name+'.js'),'utf8').trim(),name);
  const old=fs.readFileSync(path.join(__dirname,'fixtures/v119-source/cast.js'),'utf8'),now=fs.readFileSync(path.join(__dirname,'../src/cast.js'),'utf8');assert.equal(now.slice(now.indexOf('function settle('),now.indexOf('function routeState(')),old.slice(old.indexOf('function settle('),old.indexOf('function routeState(')));
 });
 fs.writeFileSync(path.join(__dirname,'fixes-v120.json'),JSON.stringify(out,null,2));console.log(JSON.stringify({checks:out.checks.length,mentorPairs:Object.keys(out.mentorPairs).length,lapBug:out.lapBug,support:out.support}));

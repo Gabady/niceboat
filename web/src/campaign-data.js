@@ -1,4 +1,6 @@
 
+
+
 /* Original main scenarios. Result variants are selected from recorded career results. */
 (function(root){
 'use strict';
@@ -43,4 +45,6 @@ const arcs=[
 ];
 const data={arcs,map:Object.fromEntries(arcs.map(a=>[a.id,a])),stages:[1,3,5,7,8]};root.KM_CAMPAIGN_DATA=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

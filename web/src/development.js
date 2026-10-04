@@ -1,4 +1,6 @@
 
+
+
 /* v105: finite training choices, persistent rival and recorded scenario decisions. No DOM. */
 (function(root){'use strict';
 const A=root.KM_AFFINITY||(typeof require==='function'?require('./affinity.js'):null);
@@ -94,4 +96,6 @@ function valid(t){const n=(v,max=1000)=>Number.isFinite(v)&&v>=0&&v<=max,str=(v,
 }
 const API={paths,rivals,actors,plans,ensure,rival,plan,planScene,choosePlan,applyPlan,growth,afterTune,series,training,ready,blossom,taskMet,settle,brief,finale,archive,unlocks,valid};root.KM_DEVELOPMENT=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

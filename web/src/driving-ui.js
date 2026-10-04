@@ -1,4 +1,6 @@
 
+
+
 /* 競艇物語 v85 — mobile controls, fixed-step loop, HUD and first-person race view (v80.1 Android fallback). */
 (function(root){
 'use strict';
@@ -220,4 +222,6 @@ function mount(r,settings,callbacks){
 }
 const API={postureDrag,postureDisplay,clockGuide,guidePath,startClockAngle,startClockView,steerDrag,steeringDisplay,signatureCaption,FX_THRESHOLDS,effectLevels,paintWeather,view,mount,attachControlEvents,clock,minimapPoint,mapLabels,steerFromPointer};root.KM_DRIVE_UI=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

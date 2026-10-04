@@ -1,0 +1,22 @@
+{
+  "build": "121",
+  "sourceSha256": "7aa0bc1c07f70f545ccf4e4e755504aa7524c6d886123531a087b22c43b2351a",
+  "entries": [
+    {
+      "file": "index_android_safe.html",
+      "fullContentEqual": true
+    },
+    {
+      "file": "index_iphone_safe.html",
+      "fullContentEqual": true
+    },
+    {
+      "file": "index_editable.html",
+      "fullContentEqual": true
+    },
+    {
+      "file": "web/index.html",
+      "fullContentEqual": true
+    }
+  ]
+}

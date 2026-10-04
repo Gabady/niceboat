@@ -1,4 +1,6 @@
 
+
+
 /* v114: one MP3 player, title-only change notification and gesture-unlocked effects. */
 (function(root){
 'use strict';
@@ -58,4 +60,6 @@ root.KM_AUDIO={scene(value,d,info={}){scene=Music?Music.select({...info,page:val
  diagnostics(){const m=music?.diagnostics();return {...prefs,ready:Object.keys(buffers).length,context:context?.state||'idle',tracks:[...Object.keys(tracks).filter(k=>tracks[k]),...(m?.playing?['mp3:'+m.track]:[])],voices:voices.size,blocked:blocked||!!m?.blocked,music:m,gestureRequired};}};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});else mount();
 })(globalThis);
+
+
 

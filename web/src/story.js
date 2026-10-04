@@ -1,4 +1,6 @@
 
+
+
 /* v94: deterministic career stories and one scheduled duel per series. No DOM. */
 (function(root){
 'use strict';
@@ -178,4 +180,6 @@ function validJournal(j){return !!j&&valid({version:1,seed:0,serial:2000,chapter
 const API={chapter,stageName,Extra,fame,resolve,arcStatus,routeNote,validJournal,finish,speakers,chapters,events,eventMap,hash,ensure,series,lineUp,eligible,prepare,begin,choose,settle,valid,effectLabel};
 root.KM_STORY=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

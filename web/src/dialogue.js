@@ -1,4 +1,6 @@
 
+
+
 /* V109 shared reader: explicit speakers; each authored utterance is one tap. */
 (function(root){'use strict';
 const version='dialogue118';
@@ -21,3 +23,5 @@ function remember(book,key,index){if(!Object.prototype.hasOwnProperty.call(book,
 function bookmark(key){return version+':'+key;}
 const API={pages,parse,describe,prose,cursor,move,remember,bookmark,version};root.KM_DIALOGUE=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(globalThis);
+
+

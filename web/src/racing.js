@@ -1,4 +1,6 @@
 
+
+
 /* 競艇物語 v85 — fixed-step, free-position driving on an anticlockwise water course.
  * No DOM, no predetermined finish order. x/z are metres, time is seconds.
  */
@@ -700,3 +702,5 @@ function valid(d,r){
 const R={migrateProgress,straightSupport,advanceProgress,C,DT,startTarget,earlyStart,startAllowance,eliteThrottle,holdStartLine,runOut,postureStep,postureTarget,postureEffects,movePosture,requiresManual,racingStyle,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
 root.KM_RACING=R;if(typeof module!=='undefined'&&module.exports)module.exports=R;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+

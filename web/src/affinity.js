@@ -1,4 +1,6 @@
 
+
+
 /* V108: relationship progression. Saved, independent random stream; no race physics changes. */
 (function(root){'use strict';
 const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null);
@@ -76,4 +78,6 @@ function valid(a){if(a===undefined)return true;const n=(x,l,h)=>Number.isInteger
 }
 const API={thresholds,ensure,value,gate,guidance,unlock,change,scaled,train,choice,offer,active,afterChapter,requestScene,reply,settle,valid};root.KM_AFFINITY=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(globalThis);
+
+
 

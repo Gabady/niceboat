@@ -1,4 +1,6 @@
 
+
+
 /* v101: mentors, five-chapter routes, final rivals and raster portrait delegation. */
 (function(root){
 'use strict';
@@ -127,3 +129,5 @@ function portrait(id,large=false){const p=map[id];if(!p)return '';const P=root.K
 
 const API={mentorPool,assignMentor,routeEpisode,loadouts,routes,routeState,routeGate,routeReward,routeOpen,routeScene,routeChoose,routeDepart,validRoute,mentors,walls,retired,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+

@@ -1,3 +1,5 @@
+
+
 /* V118: recorded practice, recovery and transparent progression. No DOM or RNG. */
 (function(root){'use strict';
 const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null);
@@ -75,3 +77,5 @@ function practice(E,kind,player,seed=118){if(!['start','turn','wake'].includes(k
  return {s,r,kind,seed};}
 const API={ensure,g1Champion,romanceGate,romanceOutlook,waitLength,recoveryPath,recoveryKey,trainingHint,summary,observe,analysis,settle,storyBeat,opponent,journey,epilogue,valid,validMetrics,practice};root.KM_CRAFT=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(globalThis);
+
+

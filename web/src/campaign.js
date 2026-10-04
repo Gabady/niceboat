@@ -1,4 +1,6 @@
 
+
+
 (function(root){
 'use strict';
 const B=root.KM_CAMPAIGN_DATA||(typeof require==='function'?require('./campaign-data.js'):null),D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null);
@@ -25,4 +27,6 @@ function valid(t){const n=(x,a,b)=>Number.isInteger(x)&&x>=a&&x<=b;if(!t||t.vers
  return ['gate','early'].includes(e.kind)&&e.id===e.kind&&i===t.entries.length-1&&t.closed&&(e.kind!=='gate'||e.stage>=7);});}
 const Legacy={B,build,ensure,outcome,capture,close,mark,scene,valid,copy};const N=root.KM_DRAMA||(typeof require==='function'?require('./drama.js'):null);const API={...Legacy,ensure:c=>N.ensure(c,Legacy),capture:(c,z)=>N.capture(c,z,Legacy),close:(c,k='early')=>N.close(c,k,Legacy),scene:(t,id)=>N.scene(t,id,Legacy),valid:t=>N.valid(t,Legacy)};root.KM_CAMPAIGN=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

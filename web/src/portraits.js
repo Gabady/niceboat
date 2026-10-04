@@ -1,4 +1,6 @@
 
+
+
 /* v101: generated raster portraits. No procedural facial geometry. */
 (function(root){'use strict';
 const A=root.KM_PORTRAIT_ASSETS||(typeof require==='function'?require('./portrait-assets.js'):{});
@@ -15,3 +17,5 @@ function assign(person,used=[]){if(!person)return;const d=definition(person);if(
 function render(person,large=false,emotion=null){if(!person)return '';if(typeof person==='string')person={id:person,name:person};const d=definition(person),cast=person.role==='cast'||!!person.castId;const X=root.KM_PORTRAIT_EXPRESSIONS||(typeof require==='function'?require('./portrait-expressions.js'):{});if(emotion&&X[d.key]){const phase=({calm:0,thoughtful:1,warm:2})[emotion]??0;return '<div role="img" class="portrait-face expression-portrait '+(cast?'cast-face':'bond-face')+(large?' large':'')+'" aria-label="'+esc(person.name||d.id)+'の表情" data-face="'+esc(d.id)+'" data-portrait="'+d.key+'" data-emotion="'+emotion+'" style="background-image:url('+X[d.key]+');background-position:'+(phase*50)+'% 50%"></div>';}return '<img class="portrait-face '+(cast?'cast-face':'bond-face')+(large?' large':'')+'" src="'+esc(d.src||A.rival_01)+'" width="512" height="512" alt="'+esc(person.name||d.id)+'の肖像" data-face="'+esc(d.id)+'" data-portrait="'+d.key+'" loading="lazy" decoding="async" draggable="false">';}
 const API={fixed,pool,identities,aliases,supporting,definition,render,assign,hash};root.KM_PORTRAITS=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+

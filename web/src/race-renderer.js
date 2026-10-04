@@ -1,4 +1,6 @@
 
+
+
 /* v116 — Japanese racing hydroplanes, sculpted safety gear and clear six-lane liveries. Drawing never changes race state. */
 (function(root){
 'use strict';
@@ -681,4 +683,6 @@ function create(canvas,options={}){
 const API={buoyScene,deckOne,boatScene,racerPose,normalVector,BM,identity,rotation,weatherVector,waterNormal,geometry:G,panoramaU,audience,crowdFor,create,createWebGL,createCanvas,freshCanvas,clipNear,COLORS,vertex,fragment,multiply,perspective,lookAt,model,point:R.pointAt,boxMesh,hullMesh,coneMesh,planeMesh,ringMesh,scene,camera,sphereMesh,frustumMesh};
 root.KM_RACE_RENDERER=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

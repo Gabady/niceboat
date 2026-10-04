@@ -1,4 +1,6 @@
 
+
+
 /* V110 authored dialogue. IDs, effects and choice ordering retained. */
 (function(root){'use strict';
 const data={
@@ -2965,4 +2967,6 @@ const data={
 
 root.KM_STORY_EXTRA=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;
 })(globalThis);
+
+
 

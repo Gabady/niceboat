@@ -1,4 +1,6 @@
 
+
+
 /* v95: race feedback only. This module never changes race state or random seeds. */
 (function(root){
 'use strict';
@@ -37,4 +39,6 @@ function paint(ctx,w,h,v,t,reduced=false){
 }
 const API={level,create,update,paint};root.KM_THRILL=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

@@ -1,4 +1,6 @@
 
+
+
 /* v115: rebalance regular encounters and racer discovery; preserve saved encounters and routes. */
 (function(root){
 'use strict';
@@ -117,4 +119,6 @@ function portrait(person,large=false,emotion=null){const h=typeof person==='stri
 
 const API={outlook:Craft.romanceOutlook,episode,finalBody,B,discoverRacer,encounterRates,racerEncounterRate,encounter,metHeroines,finalLock,shortcutGate,shortcut,ensure,gate,open,scene,choose,depart,final,rivalInfo,train,status,valid,portrait,writable};root.KM_BONDS=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

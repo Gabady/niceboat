@@ -1,4 +1,6 @@
 
+
+
 /* v97: restrained metallic reward presentation only. Never awards prizes or runs story RNG. */
 (function(root){
 'use strict';
@@ -52,4 +54,6 @@ const API={medalSVG,rewardMarkup,scene,cancel,show,pulse,allowedPage,resultInfo,
 root.KM_PRESENTATION=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 if(root.document){root.document.addEventListener('visibilitychange',()=>{if(root.document.hidden)cancel();});root.document.addEventListener('keydown',e=>{if(e.key==='Escape'&&host)cancel();});root.addEventListener?.('pagehide',cancel);}
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

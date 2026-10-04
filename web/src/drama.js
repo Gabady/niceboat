@@ -1,4 +1,6 @@
 
+
+
 /* V106: recorded story branches and thematic decisions. No DOM or random draws on reads. */
 (function(root){'use strict';
 const A=root.KM_AFFINITY||(typeof require==='function'?require('./affinity.js'):null);
@@ -81,4 +83,6 @@ function opportunities(c,api){if(!c||c.status==='race'||c.status==='registration
 }
 const API={B,freezeScene,gain,ensure,capture,close,scene,pending,choose,valid,rivalState,rivalGate,rivalScene,rivalRead,chooseRival,validRival,opportunities};root.KM_DRAMA=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(globalThis);
+
+
 

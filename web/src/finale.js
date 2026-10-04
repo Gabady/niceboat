@@ -1,4 +1,6 @@
 
+
+
 /* V107: persistent final opponents, growing rival and racer heroine. Pure state transitions. */
 (function(root){'use strict';
 const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null),S=root.KM_STORY||(typeof require==='function'?require('./story.js'):null),Dev=root.KM_DEVELOPMENT||(typeof require==='function'?require('./development.js'):null),Cast=root.KM_CAST||(typeof require==='function'?require('./cast.js'):null),Bonds=root.KM_BONDS||(typeof require==='function'?require('./bonds.js'):null);
@@ -65,4 +67,6 @@ function valid(f){if(f==null)return true;const n=(v,a,b)=>Number.isInteger(v)&&v
 
 const API={finalScene,outcomeScene,validGrid,king,roleNames,ensure,series,lineUp,attach,settle,gate,routeGate,routeScene,chooseRoute,growRival,rivalSkills,valid};root.KM_FINALE=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(globalThis);
+
+
 

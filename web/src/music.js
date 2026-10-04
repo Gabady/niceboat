@@ -1,4 +1,6 @@
 
+
+
 /* v114: announce only successfully playing tracks; safe builds embed the original MP3 bytes. */
 (function(root){
 'use strict';
@@ -42,4 +44,6 @@ function create(options={}){
 }
 const API={tracks,select,resolve,create};root.KM_MUSIC=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

@@ -1,4 +1,6 @@
 
+
+
 /* v92: observational coaching and a short-horizon water forecast. No RNG or mutations. */
 (function(root){
 'use strict';
@@ -44,4 +46,6 @@ function reviewHTML(d){const x=review(d);if(!x)return '';return '<section class=
 function meterHTML(values){return values.map(v=>'<div class="water-meter level-'+v.level+'" aria-label="'+v.name+' '+['低','注意','高'][v.level]+'"><span>'+v.icon+' '+v.name+'</span><i><b style="width:'+Math.floor(v.value*100)+'%"></b></i><small>'+['余裕','注意','高負荷'][v.level]+'</small></div>').join('');}
 const API={forecast,review,reviewHTML,meterHTML};root.KM_FEEDBACK=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
+
+
 

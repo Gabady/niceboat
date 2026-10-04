@@ -1,4 +1,6 @@
 
+
+
 /* V107: presentation only. No random draws or changes to physics/results. */
 (function(root){'use strict';
 const R=root.KM_RACING||(typeof require==='function'?require('./racing.js'):null),P=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);
@@ -37,4 +39,6 @@ const esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 function html(q){return (q?.items||[]).slice(0,2).map(x=>'<div class="race-voice voice-'+x.frame+'" data-speaker="'+esc(x.athleteId)+'">'+P.render(x.person)+'<div><small><i class="mini-boat boat-'+x.frame+'">'+x.frame+'</i>'+esc(x.person.name)+'</small><p>'+esc(x.text)+'</p></div></div>').join('');}
 const API={lines,keys,actor,create,update,html};root.KM_RACE_DIALOGUE=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(globalThis);
+
+
 
