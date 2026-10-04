@@ -1,0 +1,41 @@
+{
+  "build": 126,
+  "status": "pass",
+  "groups": 7,
+  "chapters": 14,
+  "visits": 2,
+  "preFinalScenes": 2,
+  "utterances": 325,
+  "expressionCues": 29,
+  "results": [
+    {
+      "name": "one Natsu, canonical name and existing six stories preserved",
+      "status": "pass"
+    },
+    {
+      "name": "browser script ordering loads the same route without CommonJS",
+      "status": "pass"
+    },
+    {
+      "name": "all fourteen chapters honor the existing gate and choice contract",
+      "status": "pass"
+    },
+    {
+      "name": "good choices meet chapter thresholds without negative-path lock bypass",
+      "status": "pass"
+    },
+    {
+      "name": "recovery has separate authored bodies and independent choice objects",
+      "status": "pass"
+    },
+    {
+      "name": "every authored expression cue exists, and both routes cover all six faces",
+      "status": "pass"
+    },
+    {
+      "name": "dialogue is readable without unresolved markup or unsupported speakers",
+      "status": "pass"
+    }
+  ],
+  "scope": "Narrative data, browser module loading and shared reader/expression integration; no browser or device execution."
+}

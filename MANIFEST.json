@@ -1,6 +1,6 @@
 {
-  "build": "125",
-  "packageRevision": "speed-start-growth-mentor-expressions-2026-10-04",
+  "build": "126",
+  "packageRevision": "endings-cheer-natsu-introductions-2026-10-04",
   "files": [
     {
       "path": "AGENTS.md",
@@ -14,18 +14,18 @@
     },
     {
       "path": "CHANGES_AT.md",
-      "bytes": 85892,
-      "sha256": "ed6a7dbe39fc405e4e8102a11ca18327d796ef1f35294738251eee5ba773f680"
+      "bytes": 86327,
+      "sha256": "a17f5e4ee9da2c5ec2336b09a2d3b5bec1988caf80aa933469a07bde67960bdf"
     },
     {
       "path": "IPHONE_README.md",
-      "bytes": 2969,
-      "sha256": "ee21870947f2f2da7ba05fd06808690792d30af5a8a20faa77053a91c21c5c58"
+      "bytes": 737,
+      "sha256": "00477f6fb1fd9c31649f978fd698c7eb97a4ceb3ef1dcb4964f42efc3d026695"
     },
     {
       "path": "README.md",
-      "bytes": 6901,
-      "sha256": "07cc7d397b8a111063892d2771b2a65e0d15fb2523c35b48c6ddb113887e1872"
+      "bytes": 7141,
+      "sha256": "934ffee804d0abdd0c34f363eba7d23de0e37b46a7a59088ee6dc3a4f7e825e9"
     },
     {
       "path": "README_V120.md",
@@ -53,6 +53,11 @@
       "sha256": "dcb219a42c46ed03c814d7e068ce1c1e3fb47219b69cc1e8a72ad4150c98a1af"
     },
     {
+      "path": "README_V125.md",
+      "bytes": 6901,
+      "sha256": "07cc7d397b8a111063892d2771b2a65e0d15fb2523c35b48c6ddb113887e1872"
+    },
+    {
       "path": "art-reference/akari.webp",
       "bytes": 70672,
       "sha256": "af342b77ea8a1dbfa866cac21217a08b8100c05273cbce063746a088e40855f0"
@@ -78,6 +83,11 @@
       "sha256": "79ef65310f70a32361765177b9e79aae489ccb72970a351ee835e25a1b2bbbae"
     },
     {
+      "path": "art-reference/natsu.webp",
+      "bytes": 2249110,
+      "sha256": "1befd95c4d89c084cf4d66b5ef3899cf2df774b248d256f796b1e932b2eb493c"
+    },
+    {
       "path": "art-reference/tsumugi.webp",
       "bytes": 66908,
       "sha256": "f7b4b0fb8e621842851d578b9b9ca014759d312cd2ffacea0e497ddb8a44cf6b"
@@ -91,6 +101,11 @@
       "path": "assets/heroine-expressions/akari-v125.webp",
       "bytes": 268276,
       "sha256": "f028245264e05139b092d133c784b733c216d54f151d3e9974b8fdf17a4a3c0e"
+    },
+    {
+      "path": "assets/heroine-expressions/generation-prompts-v126.json",
+      "bytes": 2726,
+      "sha256": "81c73087f7ffc8332fdc207462a1fc8a2d4f8b72262646b1aa6f50584504efda"
     },
     {
       "path": "assets/heroine-expressions/generation-prompts.json",
@@ -138,6 +153,16 @@
       "sha256": "dc5538d2a5fa96d961e55cf4c611281bc35502b00d767cd3639e5c46ee6e0b86"
     },
     {
+      "path": "assets/heroine-expressions/natsu-v126.png",
+      "bytes": 2484287,
+      "sha256": "8037b394a710f8741ee2dce1286907a4a214edff308e8eb5d88cd5540e55c7d7"
+    },
+    {
+      "path": "assets/heroine-expressions/natsu-v126.webp",
+      "bytes": 241854,
+      "sha256": "97af7cc1ee08f3af6c7684c82189705d7c258335502860109960bf9958da0885"
+    },
+    {
       "path": "assets/heroine-expressions/tsumugi-v125.png",
       "bytes": 2621068,
       "sha256": "e6639a8dd3f667933e7da0a4b3ab0227791f33ce0d78e6fcac3ec54ed0c085e9"
@@ -149,28 +174,28 @@
     },
     {
       "path": "index.html",
-      "bytes": 57419760,
-      "sha256": "b9f8cc0d07decce504a03391fa6da023419a7b3789daf7a2c4fa3c655b16af30"
+      "bytes": 57881476,
+      "sha256": "7747751288aa512a79cd370474e72ec446b26bb26931ecfd33e65de213b9285f"
     },
     {
       "path": "index_android_safe.html",
-      "bytes": 57419883,
-      "sha256": "697ad667e1ad604ca309ea1f492a13dbc385f1b1a70c9476e2dbcd8de7a8b00d"
+      "bytes": 57881599,
+      "sha256": "85a8233238400e01c7bc90c7e8df57c9a6f0c4eeedc1fd03d517e52fe0f2b5cc"
     },
     {
       "path": "index_editable.html",
-      "bytes": 1588404,
-      "sha256": "79c6d71a5a28e50368ab9fd522636095e25d9ed4d809d902c18fbf8fc7056956"
+      "bytes": 1592032,
+      "sha256": "72b51746f5d11a0d2c7f52eeaebc7a259dd8ceaa5f21997072b62bdb37a5c26b"
     },
     {
       "path": "index_iphone_safe.html",
-      "bytes": 57421554,
-      "sha256": "63268a21ec174f66ea40502c0fce0b919e297b18e097ecff4ed0135bc2dff6dd"
+      "bytes": 57883270,
+      "sha256": "3e7ccde689497c7324a49fb16696b07ceab4bee2cf0bf98db30c5356a81a97cb"
     },
     {
       "path": "src/affinity.js",
-      "bytes": 14298,
-      "sha256": "314471da789f0408c1ab811c2dfc5cc1a2dc9356b85b932ce87d2e7cf92a434f"
+      "bytes": 14804,
+      "sha256": "311caba3e6469600fc7e91b19f5bd0a13068ee635ff7fac9588176eb805c8802"
     },
     {
       "path": "src/audio-assets.js",
@@ -184,13 +209,13 @@
     },
     {
       "path": "src/bonds-data.js",
-      "bytes": 218560,
-      "sha256": "892c797b7bb547822f5799a011313ee2807e40421d0b4a20bdf94bb4f625143b"
+      "bytes": 218732,
+      "sha256": "906fde6ed5f10785dcb7fa6fe23c2bf5637be187c301d82e059bbb86ed4d322f"
     },
     {
       "path": "src/bonds.js",
-      "bytes": 21250,
-      "sha256": "e1fb1eec0a7c51cdcc7a0450535d6bdcf59dd81b3bb911af6121b1e08fd2ecfa"
+      "bytes": 26417,
+      "sha256": "9c35b48658225605b175096151233ce74602c83dd94f816cf1d74963275a2ead"
     },
     {
       "path": "src/campaign-data.js",
@@ -208,19 +233,24 @@
       "sha256": "bdea1ce1c8335c3a48a87d666e1b3d409ae1217c606a1c729a4caf8cf0d98e41"
     },
     {
+      "path": "src/cheer126.js",
+      "bytes": 4031,
+      "sha256": "baa85ba1dba3090212191f73814839e6b101ece676da577f5eb0d02141c41c45"
+    },
+    {
       "path": "src/coaching121.js",
       "bytes": 3357,
       "sha256": "2fdbd55f2c83bd7c27fd50c579d1406c945d0e30712bf13edeca12e044a0f640"
     },
     {
       "path": "src/craft118.js",
-      "bytes": 14374,
-      "sha256": "de1558bfa9757dd15dc5eef82fe1bc692b9128b11b1f8a958caacb8e5ad6db93"
+      "bytes": 14382,
+      "sha256": "b85c5ef5aae8cb9b9e4717aa5e41e583d930c0f43008f1279ab226e41ce75295"
     },
     {
       "path": "src/data.js",
-      "bytes": 39685,
-      "sha256": "15012022d25d8aa2e5be021317a4dc1726a11599fb7e1b8399b1eb400fa1f61f"
+      "bytes": 39937,
+      "sha256": "247b2d548977382f42676212630a90842fede6970013a5548821078c6cfe4111"
     },
     {
       "path": "src/development.js",
@@ -229,8 +259,8 @@
     },
     {
       "path": "src/dialogue.js",
-      "bytes": 6682,
-      "sha256": "d32d899a9e7b763a6c24bae86ceea81a320fb14a20f5fbe23110cc479836262b"
+      "bytes": 7309,
+      "sha256": "49c10d1b4c70a1a38bf8d1a0b036c3e645e35884a72810b2e9a1c0ce63b6aec7"
     },
     {
       "path": "src/drama-data.js",
@@ -244,8 +274,13 @@
     },
     {
       "path": "src/driving-ui.js",
-      "bytes": 38867,
-      "sha256": "731ddc00cbf73236752eac719dcebdbf0df18c07ae8c5094f3d3ab0048559545"
+      "bytes": 40415,
+      "sha256": "7733fe02d8a81bc46d3352aef681feba9535198d103a1131139c3fed82b8364b"
+    },
+    {
+      "path": "src/epilogues126.js",
+      "bytes": 70955,
+      "sha256": "1ae807545b1b555162fab1536777a408c08567679e7e87fd8d40eb5499390db3"
     },
     {
       "path": "src/finale.js",
@@ -258,6 +293,11 @@
       "sha256": "9a4b84799b954188d0490d17722e1bbd24157806d36b9a7cd12b4b8d49429ab7"
     },
     {
+      "path": "src/introductions126.js",
+      "bytes": 7956,
+      "sha256": "de23f60cd27bd5736d2267bbdb677c18109207089bc899b5a163df45ac6b8d88"
+    },
+    {
       "path": "src/mentor-data.js",
       "bytes": 69688,
       "sha256": "9e0819611b3f2e105c7d3f34c00b80ebcb61e3cb3de0c25a5101b0d553218d30"
@@ -268,19 +308,24 @@
       "sha256": "0d169c30ca722a5e789fdca2ba6b72b7cbdf39a8c4310b6224fa3d4aad12275b"
     },
     {
+      "path": "src/natsu-data126.js",
+      "bytes": 40018,
+      "sha256": "680192abcf6d55ecc48420099d2b44df23eac2db6506aec6c5a14e911d1bc109"
+    },
+    {
       "path": "src/portrait-assets.js",
       "bytes": 11439857,
       "sha256": "48afed37797769a340e31279c08c8c52b106720d296ebf21911821628352d17e"
     },
     {
       "path": "src/portrait-expressions.js",
-      "bytes": 2267264,
-      "sha256": "6047b08db907ae2a53be680717e7301c39b2d998640860aa6a3f6b517f1aadc2"
+      "bytes": 2589878,
+      "sha256": "643cfc9b0eb81bae49aa431c669f347d871b8646b1841a2306aa800a039d6e6a"
     },
     {
       "path": "src/portraits.js",
-      "bytes": 4927,
-      "sha256": "3bab9a6b1cf1df2813c1d66cb7195175e3e72a9335a47a9ca06b113427abe54b"
+      "bytes": 4976,
+      "sha256": "0838180ffd310f4386e7b10b16918b728293a9340348ec8f809d57ace5029758"
     },
     {
       "path": "src/practice122.js",
@@ -324,8 +369,8 @@
     },
     {
       "path": "src/script.js",
-      "bytes": 244242,
-      "sha256": "269e823db87c3b918aa64dddccbefd1158ac58fe24484824f08c2d8761116da2"
+      "bytes": 248202,
+      "sha256": "39bbc0cfd03f5dd91f6ee592b37ef24165e32c7b15d58204f54a0773e770ded1"
     },
     {
       "path": "src/storage122.js",
@@ -339,8 +384,8 @@
     },
     {
       "path": "src/story.js",
-      "bytes": 41468,
-      "sha256": "c217ad4593713cb7da6a9192b8f948ac56918e441644ff9f3a49f870988fe25e"
+      "bytes": 41790,
+      "sha256": "a547972010189efc32411471a3537aedcb17cfcd6355ae774deebb3632ac6503"
     },
     {
       "path": "src/thrill.js",
@@ -391,6 +436,16 @@
       "path": "tests/browser-verification-v120-release.json",
       "bytes": 1478,
       "sha256": "9e3786c7f6c8e96dbf5a946ab4226cf361891111511dd354b20f9a290bb97f1d"
+    },
+    {
+      "path": "tests/cheer-v126.cjs",
+      "bytes": 10857,
+      "sha256": "db3f3bc71a03ccac07ea4491be47a21a9ff94f1953b4e41f1665cddc64cd861d"
+    },
+    {
+      "path": "tests/cheer-v126.json",
+      "bytes": 2921,
+      "sha256": "be360fd1c9ddd4b84cd893d0fdd2949006a3b5e76ae28158b04c3a1f0f056c57"
     },
     {
       "path": "tests/coaching-v121.cjs",
@@ -448,6 +503,26 @@
       "sha256": "ba216b2816cad90265077efc04f2b6b4026bf0261196d2c3571fc8aa6952be16"
     },
     {
+      "path": "tests/drive-ui-v126.cjs",
+      "bytes": 9169,
+      "sha256": "192e42c8fcd9ab4edc461661872d1d55b5668e726df20ffc3777ba641d6e8ec9"
+    },
+    {
+      "path": "tests/drive-ui-v126.json",
+      "bytes": 1230,
+      "sha256": "3f13393960eb61aaf2b02d673d9b6ea38494e1566504dfe189b42fff42b1f73c"
+    },
+    {
+      "path": "tests/epilogues-v126.cjs",
+      "bytes": 10223,
+      "sha256": "939898b00a1df12ebbd3d84771f3d0374ab7afe5b2ce56523de0fc6eda9b315a"
+    },
+    {
+      "path": "tests/epilogues-v126.json",
+      "bytes": 1524,
+      "sha256": "b173619145c7a73367e6bb034e1bcb82bd1dcc1f94826dc4618bc172cce0c21b"
+    },
+    {
       "path": "tests/expressions-v125.cjs",
       "bytes": 8998,
       "sha256": "cf06e255469703d49c16df0f5180145706cf0ebf54f09fb8fe26f58c13153746"
@@ -456,6 +531,16 @@
       "path": "tests/expressions-v125.json",
       "bytes": 1825,
       "sha256": "3011d5edba0c886dc1a44b2b1fb0de2211228806156d4af41f03bcd08eb1b5b9"
+    },
+    {
+      "path": "tests/expressions-v126.cjs",
+      "bytes": 9715,
+      "sha256": "7fe84786d3af86636d6813ade11f70d23761082643211b17d2cf59afaf47782c"
+    },
+    {
+      "path": "tests/expressions-v126.json",
+      "bytes": 1805,
+      "sha256": "aeb4c6584dc7cf528411ede48f1f4a64ce66fe7dde8263efbafeb096af866c18"
     },
     {
       "path": "tests/fixes-v120.cjs",
@@ -478,6 +563,11 @@
       "sha256": "0906631fdc612aa21d8b4d771e94695e58e899c98e619db8166ff1d3116c76ce"
     },
     {
+      "path": "tests/fixtures/introductions-v125.json",
+      "bytes": 161411,
+      "sha256": "87a712672187f53cbbd9ba979f3a282aeae4ddaf36f04a669715931b2ee94d52"
+    },
+    {
       "path": "tests/fixtures/legacy-start-v124-king.json",
       "bytes": 69474,
       "sha256": "90af85a50f6682f34a359bac38fb9704b58086c779ded89e06158ae2c54cd38c"
@@ -491,6 +581,11 @@
       "path": "tests/fixtures/mentor-v124.json",
       "bytes": 182389,
       "sha256": "7b1d776e595eb7ba96bfbdbd61acec3ce999c38adffcc9628dae2d3c799d302a"
+    },
+    {
+      "path": "tests/fixtures/natsu-v125.json",
+      "bytes": 13189,
+      "sha256": "3bec466b9edcf651b4dcff3db2de6b6327ffdd600878210be00c6cbeed68a477"
     },
     {
       "path": "tests/fixtures/practice-v123.json",
@@ -683,6 +778,16 @@
       "sha256": "94c9f401d419be422c302dcd577116000090756c1059e27b192924a414eb85b6"
     },
     {
+      "path": "tests/growth-v126.cjs",
+      "bytes": 7838,
+      "sha256": "bd560a0f35ce1bc15bfb86bd3b597d63ce291dde0bfd66060de511dba6ebdb57"
+    },
+    {
+      "path": "tests/growth-v126.json",
+      "bytes": 20041,
+      "sha256": "2f5869ac7b09cafc00101aa259b0684b3913da8b12e7a18d35c1088697dc3ba6"
+    },
+    {
       "path": "tests/gui-reader-v123.cjs",
       "bytes": 7929,
       "sha256": "1c02b78a2468afd2e96e600f60afa70c22be603a724c11635a30d713325ece96"
@@ -696,6 +801,16 @@
       "path": "tests/heroine-art-v125.json",
       "bytes": 6245,
       "sha256": "c78d16f339151c4642eab72f5e74ac76be76c90e7882ea0dd05056b9c42e0e19"
+    },
+    {
+      "path": "tests/introductions-v126.cjs",
+      "bytes": 8757,
+      "sha256": "8f036fb203e40b4dbfbca71224e408e52cd88b13803112d214e502e62323f96c"
+    },
+    {
+      "path": "tests/introductions-v126.json",
+      "bytes": 1789,
+      "sha256": "e783870012db634b52b12f1965c28ce2afce2f63233d3851d60f2725ef86264b"
     },
     {
       "path": "tests/legacy-start-v125.cjs",
@@ -733,6 +848,36 @@
       "sha256": "14fdfed2e469d73743275c4d5a3ef76072ebef43eaed85aa33acb02a085fe7c2"
     },
     {
+      "path": "tests/narrative-review-v126.json",
+      "bytes": 1517,
+      "sha256": "83b7ecab856d0fd6bc1bb334528deaf8117ccffa3007d6411d5dee9ef2c39262"
+    },
+    {
+      "path": "tests/natsu-art-v126.json",
+      "bytes": 1254,
+      "sha256": "7811f0807e24e1e26f45c7d81bf2bbf23380397c30f8df431f78c58f81c9d79a"
+    },
+    {
+      "path": "tests/natsu-logic-v126.cjs",
+      "bytes": 13837,
+      "sha256": "9a102ac140fee7a1864ec5e4d9f20962d94fcac84421c673f3e45e3c43318264"
+    },
+    {
+      "path": "tests/natsu-logic-v126.json",
+      "bytes": 15181,
+      "sha256": "b67764574286cf5c18893de119c048c1ed5b36ab6bc8b729f28c92d9a1f0784d"
+    },
+    {
+      "path": "tests/natsu-story-v126.cjs",
+      "bytes": 6296,
+      "sha256": "88d20c1d649a35c015e7438fcd5d0e92a0b7466c4d807d788e353edb5fcab8f6"
+    },
+    {
+      "path": "tests/natsu-story-v126.json",
+      "bytes": 1146,
+      "sha256": "949983edf2e029cd8551b140031e15193b181bb068e3c5ea9645ee2cdae7f2ff"
+    },
+    {
       "path": "tests/parity-v121.json",
       "bytes": 452,
       "sha256": "6ab02c5542ab5a308fa0a678dabc0673bba03aac4ed0e32b3178658f95304beb"
@@ -756,6 +901,11 @@
       "path": "tests/parity-v125.json",
       "bytes": 452,
       "sha256": "6be6f4fde0a5d5e395694c73c621bc8bead10a27bb0636377adb640daea4a089"
+    },
+    {
+      "path": "tests/parity-v126.json",
+      "bytes": 452,
+      "sha256": "477e219492de7983779583ad5d39549071d74ab49bac7905346104b037228925"
     },
     {
       "path": "tests/physics-v124.cjs",
@@ -841,6 +991,11 @@
       "path": "tests/release-v125.json",
       "bytes": 1906,
       "sha256": "47c0e13d88d40b3bbaed34c8cfc6166aa2f1d07e9aa65d874d79008ce1ff3368"
+    },
+    {
+      "path": "tests/release-v126.json",
+      "bytes": 2239,
+      "sha256": "30fc80a3c78adb0f3caf4c1bd9d903400c016ec5ae3fdeaccae57db00141c63c"
     },
     {
       "path": "tests/renderer-v124.cjs",
@@ -933,6 +1088,16 @@
       "sha256": "a443c18ec51a0e845555b6ef240ec7f52d46d00ff91b5a61c3506c445f035cac"
     },
     {
+      "path": "tests/safe-sync-v126.cjs",
+      "bytes": 3935,
+      "sha256": "747c2fdea8bf4075ea40a4563196273e1f69b6a7543f0a3ba716e470d30baaf2"
+    },
+    {
+      "path": "tests/safe-sync-v126.json",
+      "bytes": 1533,
+      "sha256": "8faf2c1d45c58b67786ea41e2a1a292acb4d6b66488aef664fd859225fe82761"
+    },
+    {
       "path": "tests/shaders-v122.json",
       "bytes": 7832,
       "sha256": "e35af78f158e5716afcb078f26761bea7eb8baccea38a6bdeed797a5fd52f7d8"
@@ -1003,6 +1168,16 @@
       "sha256": "1eaab3087f1ee78e3ccef7132533a6ad32aa922456673db59b848429790e8c00"
     },
     {
+      "path": "tests/start-v126.cjs",
+      "bytes": 9669,
+      "sha256": "9c34b991ae1695b36bb27a5894a5ff36a1bcf590e3f1f1dbfe9416ed8f77b1c7"
+    },
+    {
+      "path": "tests/start-v126.json",
+      "bytes": 4707,
+      "sha256": "e11654b1f1490b6ade453eb5041296adc3972da6c49bcd710b7d3fd180399132"
+    },
+    {
       "path": "tests/storage-v122.cjs",
       "bytes": 7335,
       "sha256": "619e7def63b4df8890850b6c0fd8c4dabaa26ac7f87ef0c0be541aa8498e4f93"
@@ -1051,6 +1226,16 @@
       "path": "tests/story-heroine-v123.json",
       "bytes": 610,
       "sha256": "1a3f156ad4b4a4e0ff0b6d15b0be1988df3fff0e2072a9efe83aa06f17290b7c"
+    },
+    {
+      "path": "tests/story-integration-v126.cjs",
+      "bytes": 9566,
+      "sha256": "b8d7dfda0d45dda03ce10f320f36de09669c1cc30fd32e8732dbe3013995265e"
+    },
+    {
+      "path": "tests/story-integration-v126.json",
+      "bytes": 882,
+      "sha256": "0ca7d0d9740ed8a1dfc231b0f7b6079726c42dcbe8a0b0e2af31aefb7b2a9db6"
     },
     {
       "path": "tests/story-support-v123.cjs",
@@ -1111,6 +1296,16 @@
       "path": "tests/ui-logic-v125.json",
       "bytes": 1999,
       "sha256": "8a9dddfece64101a59276c38367d4471406f2cba4c93deb129fded55e2dd432d"
+    },
+    {
+      "path": "tests/ui-logic-v126.cjs",
+      "bytes": 17674,
+      "sha256": "01ddcee6c37819d793e66d9532b45ff7521f6720573b4d107ac527cfdcb1c57b"
+    },
+    {
+      "path": "tests/ui-logic-v126.json",
+      "bytes": 1999,
+      "sha256": "71dbb08a376c8aa53abeb5c799fb113fb6ae4be1b705b9905be4e28e58b935b7"
     },
     {
       "path": "tests/unchanged-rules-v121.json",
@@ -1188,6 +1383,11 @@
       "sha256": "9821528b0c966781a5129cb59d152ce24eb7ceb21072c0d813b1977b7f02852a"
     },
     {
+      "path": "tests/verification-v126-base.json",
+      "bytes": 8398,
+      "sha256": "9821528b0c966781a5129cb59d152ce24eb7ceb21072c0d813b1977b7f02852a"
+    },
+    {
       "path": "tests/verify-v120-base.cjs",
       "bytes": 7568,
       "sha256": "acf23c9c27ef8492549c8c0eebf71ffc00594829e0e546296bb7c6d1acf0c129"
@@ -1218,9 +1418,19 @@
       "sha256": "22867c7bc5152f9526007cdd7020b9e4c8469bf0c3ca6cb40bed18cfc0f3e5a5"
     },
     {
+      "path": "tests/verify-v126-base.cjs",
+      "bytes": 7618,
+      "sha256": "aecee7fef4cf45b9eb02367d2b5c6c553a6a89821f8aefb6225a6f5f72eb1403"
+    },
+    {
       "path": "tools/build_all.py",
       "bytes": 718,
       "sha256": "92552be57ac87ed7cf9ab096d79fb682e1fe82f09cb6d18be88ca909b75c6332"
+    },
+    {
+      "path": "tools/cheer126.css",
+      "bytes": 1841,
+      "sha256": "51c876a72139c097f394d58c5f444fa13feddf0babcaebfbe47eab7c442a804b"
     },
     {
       "path": "tools/extract_source.py",
@@ -1249,8 +1459,8 @@
     },
     {
       "path": "tools/script_order.json",
-      "bytes": 580,
-      "sha256": "b18767a7e9888393ccb20823033c1188b13056ee577df408b77f9a08f9b72dec"
+      "bytes": 653,
+      "sha256": "8980bc70ee0df1387b8a967b214af031c66a0ff24f0c7335befa66e910635010"
     },
     {
       "path": "tools/sync_safe.py",
@@ -1260,7 +1470,7 @@
     {
       "path": "tools/verify_all.py",
       "bytes": 2728,
-      "sha256": "eafd70290039cf722edf114438d1373d371d306c03e91797a4ee72827d2de935"
+      "sha256": "a9709b6a74f42dbeea655f05aa0bd4db9d69e92c11af533578545977dbd2e04b"
     },
     {
       "path": "web/assets/034bd9e11ba96a9a7f4e.webp",
@@ -1433,6 +1643,11 @@
       "sha256": "9331fb8ebec1a9133359154ebf3ca1519edd37d48a444d94685e2fbb70d87982"
     },
     {
+      "path": "web/assets/97af7cc1ee08f3af6c76.webp",
+      "bytes": 241854,
+      "sha256": "97af7cc1ee08f3af6c7684c82189705d7c258335502860109960bf9958da0885"
+    },
+    {
       "path": "web/assets/98393435d65c16325049.webp",
       "bytes": 59270,
       "sha256": "98393435d65c16325049a5b35289d3a6d714b5ff8c494a2f4ce9e104eed9b486"
@@ -1564,18 +1779,18 @@
     },
     {
       "path": "web/assets-manifest.json",
-      "bytes": 9574,
-      "sha256": "82aab96eb42fecaac7597c0bd2ecf8a7c10df8406d4fcf7f366498cc0a6aa536"
+      "bytes": 9740,
+      "sha256": "39922ff1da8d1e1497a9f8b8f742cde52b674da972da0bc0e4d6161f838fe737"
     },
     {
       "path": "web/index.html",
-      "bytes": 175387,
-      "sha256": "7e5d0cabd65b4753e22c791e7427bfb89467e6812e58c507c1c4c14547168a00"
+      "bytes": 179015,
+      "sha256": "27ba21cb78df46827bfe88f9ae61dafd1067c01b0da880bf8bb379f2c2578cb5"
     },
     {
       "path": "web/src/affinity.js",
-      "bytes": 14300,
-      "sha256": "ab022500563e53b7e42ece9007863c750341a349634a73a9dab4b7f47cfe7fa8"
+      "bytes": 14806,
+      "sha256": "adc5a82b043c8b5702b20b4f79624b71ed781fc9f69c98143746a654fc8b1ce3"
     },
     {
       "path": "web/src/audio-assets.js",
@@ -1589,13 +1804,13 @@
     },
     {
       "path": "web/src/bonds-data.js",
-      "bytes": 218562,
-      "sha256": "f9ec10f9c52b73257c08b65ee3d383c536efa0e497b605de9a09fc109c20d63b"
+      "bytes": 218734,
+      "sha256": "a8edb85aa0eddfcbf0d97dfa0ffc45fd83bc901c21fd21bdc8afe0b66b56fd3b"
     },
     {
       "path": "web/src/bonds.js",
-      "bytes": 21252,
-      "sha256": "571970ef39564431ad5e7c3abc549246e0ca1e95e3adb54e98660f108e690aee"
+      "bytes": 26419,
+      "sha256": "31c3bdc3113ba2ff20f7b0f54e36ac1e9cd228a4dc0b3df7d0c306f390a9880e"
     },
     {
       "path": "web/src/campaign-data.js",
@@ -1613,19 +1828,24 @@
       "sha256": "80d8bed79553147e03d077103457d0fe7d983d63472bba2b977af8daf1361bec"
     },
     {
+      "path": "web/src/cheer126.js",
+      "bytes": 4033,
+      "sha256": "f7ea8f198899fcad1b60e977e2922257a65c42833256700e0f05a37b872b810e"
+    },
+    {
       "path": "web/src/coaching121.js",
       "bytes": 3359,
       "sha256": "d57b006ca96e5542ea25b0d46f08d72129071abfe1beebb02570694375fdea93"
     },
     {
       "path": "web/src/craft118.js",
-      "bytes": 14376,
-      "sha256": "764a5d27d9623098c9bf8d96ec0fe6d119cf78a87ad553b502d6d2170254f0ad"
+      "bytes": 14384,
+      "sha256": "1db91dedc9a98644f4045aa9c37440ee19efe702405ea9ff7cfebc411c5195c6"
     },
     {
       "path": "web/src/data.js",
-      "bytes": 39687,
-      "sha256": "f0c8555ab7834eefbab3e0f8936a43ec3d696d7caf4d05c46309c891a1a2234d"
+      "bytes": 39939,
+      "sha256": "0a7f9d12eebbc7f66bcaf0d9fe65f78b4c2215b82f73a78e7fc42dc7262aab2b"
     },
     {
       "path": "web/src/development.js",
@@ -1634,8 +1854,8 @@
     },
     {
       "path": "web/src/dialogue.js",
-      "bytes": 6684,
-      "sha256": "e32c38e8b52b2959a9f7a820f63e1493464c20e7000d5f923d5a1797a33f8dde"
+      "bytes": 7311,
+      "sha256": "2459b34b461c0e91bd55ac6e2824f8644f523a6f9004ab13475f04294bdeb3d0"
     },
     {
       "path": "web/src/drama-data.js",
@@ -1649,8 +1869,13 @@
     },
     {
       "path": "web/src/driving-ui.js",
-      "bytes": 38869,
-      "sha256": "c06daae75641ec05f899534cd01c6372bd099d539dca59f7417c33eddd8f8805"
+      "bytes": 40417,
+      "sha256": "643d4224061c2670465f8bef232ed54d0f060953210f51bd916507e6215e6fbf"
+    },
+    {
+      "path": "web/src/epilogues126.js",
+      "bytes": 70957,
+      "sha256": "4b4aca45c6bb159b320c821547f2e47cc59089dc0f9af8b4d54ce6995826c3fa"
     },
     {
       "path": "web/src/finale.js",
@@ -1663,6 +1888,11 @@
       "sha256": "f6703199e9b85b61ce404cbb582379ae5a24385feacc932613952a99bed80f44"
     },
     {
+      "path": "web/src/introductions126.js",
+      "bytes": 7958,
+      "sha256": "20b4801c45b5c952bcd4014a0b1e4a34f2bd030fd321fa612d1a53bfa46c52da"
+    },
+    {
       "path": "web/src/mentor-data.js",
       "bytes": 69690,
       "sha256": "331bf70b749464fd88eccf2ae8181f69264d10f821a04344ad636c8683c6a1c8"
@@ -1673,19 +1903,24 @@
       "sha256": "307f7e476e09a4e54427bf7ec38862d602b232cb5a4e6cfb4c8f83c9f734823d"
     },
     {
+      "path": "web/src/natsu-data126.js",
+      "bytes": 40020,
+      "sha256": "abb81175406bf407011c568ec42a279f94c4a2aaf8bffff9589f51584fc886e8"
+    },
+    {
       "path": "web/src/portrait-assets.js",
       "bytes": 1747,
       "sha256": "7fafef170260ec3baedcdfc76b51cb6a419bb34c271549082711fa4219a2bca5"
     },
     {
       "path": "web/src/portrait-expressions.js",
-      "bytes": 1230,
-      "sha256": "08d9d71eeb2b99d71697494e97897102d7526fddb7b741439c513aae3ffa92f6"
+      "bytes": 1381,
+      "sha256": "0e70c473e0ba0a9de8af3c8bcaa2ef87c2fd2627af3689f89355c5f8fc53f454"
     },
     {
       "path": "web/src/portraits.js",
-      "bytes": 4929,
-      "sha256": "3f9089526b1349ced0ac493e87314615350a596a9f12f78ccfed7028d5c9d879"
+      "bytes": 4978,
+      "sha256": "22bee047f61011847bb4b8e722c34f8d38d261fb288337373ce3204d497132b8"
     },
     {
       "path": "web/src/practice122.js",
@@ -1729,8 +1964,8 @@
     },
     {
       "path": "web/src/script.js",
-      "bytes": 244244,
-      "sha256": "803eb17b93b6d1b4b79441c1ebe56490dd445a8e3ac4385115658a24a88e093e"
+      "bytes": 248204,
+      "sha256": "1e8ff40c141d9e1d1ec8482be926d785cce9bee4fefb9068dacaab978faa8abc"
     },
     {
       "path": "web/src/storage122.js",
@@ -1744,8 +1979,8 @@
     },
     {
       "path": "web/src/story.js",
-      "bytes": 41470,
-      "sha256": "31f358d8de2664d1c048aab4993777eb0a85f714dd2ef3bfb38255f657222500"
+      "bytes": 41792,
+      "sha256": "61daf35d160f4b7ff460254c4be294019dd5d89223ead435f46ae0bf7fce3354"
     },
     {
       "path": "web/src/thrill.js",

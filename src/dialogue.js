@@ -4,6 +4,7 @@
 (function(root){'use strict';
 const version='dialogue118';
 const expressionCues=root.KM_HEROINE_EXPRESSIONS125||(typeof require==='function'?require('./heroine-expressions125.js'):null);
+const natsuData=root.KM_NATSU_DATA||(typeof require==='function'?require('./natsu-data126.js'):null);
 function parse(raw){const text=String(raw||'').trim(),m=text.match(/^([^「」。！？\n]{1,24})「([\s\S]*)」$/u);return m?{speaker:m[1].trim(),text:m[2]}:{speaker:null,text};}
 function split(text,limit){const chars=Array.from(text),out=[];while(chars.length>limit){let cut=limit;for(let i=limit-1;i>=Math.floor(limit*.5);i--)if(/[。！？、]/u.test(chars[i])){cut=i+1;break;}out.push(chars.splice(0,cut).join(''));}if(chars.length)out.push(chars.join(''));return out;}
 function pages(body){const out=[];for(const raw of (Array.isArray(body)?body:[body]))for(const line of String(raw||'').split(/\r?\n/)){const p=parse(line);if(!p.text)continue;const prefix=p.speaker?p.speaker+'「':'';for(const part of split(p.text,Math.max(60,105-Array.from(prefix).length-(p.speaker?1:0))))out.push(p.speaker?prefix+part+'」':part);}return out.length?out:['……'];}
@@ -15,12 +16,17 @@ function describe(page,context={}){const p=parse(page),norm=s=>String(s||'').rep
  else if(p.text.startsWith('「')&&context.person){speaker=context.person.name;person=context.person;kind='person';}
  return {speaker:speaker||'語り',text:prose(p.text,context),person,kind,roleLabel:kind==='player'?'あなた':kind==='person'?'会話':'情景'};}
 const emotions=new Set(['calm','warm','thoughtful','determined','surprised','blush']);
+function cueEmotion(cues,text){if(!cues||typeof cues!=='object')return null;for(const state of emotions)if(Array.isArray(cues[state])&&cues[state].includes(text))return state;return null;}
 function portraitEmotion(line,person,{scene={},index=0}={}){
  // A displayed listener never inherits the player's feelings, narration or a
  // different speaker's cue. Scene-wide cues belong only to their named person.
  if(!person||line.kind!=='person'||line.person?.id!==person.id)return 'calm';
  if(scene.person?.id===person.id&&emotions.has(scene.emotion))return scene.emotion;
- const source=pageSource(scene.body,index),raw=source?parse(source).text:line.text,authored=expressionCues?.get(person.id,raw);
+ const source=pageSource(scene.body,index),raw=source?parse(source).text:line.text;
+ // Scene cues use original utterances, so introduction prefixes and wrapping
+ // cannot shift the performance. Cues belong only to this scene's named person.
+ const authored=(scene.person?.id===person.id?cueEmotion(scene.expressionCues,raw):null)||
+  (person.id==='natsu'?cueEmotion((root.KM_NATSU_DATA||natsuData)?.expressionCues,raw):null)||expressionCues?.get(person.id,raw);
  if(authored)return authored;
  // Future/older uncued utterances use restrained cues. Negative/mixed emotions
  // take priority over gratitude; quoted laughter is not a smile instruction.

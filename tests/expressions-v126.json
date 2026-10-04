@@ -1,0 +1,67 @@
+{
+  "version": 126,
+  "scope": "Node presentation logic, original dialogue cues, actual image dimensions and atlas metadata; not browser/device rendering",
+  "checks": [
+    {
+      "name": "New Natsu sheet is a real six-cell atlas with distinct visible faces",
+      "passed": true,
+      "width": 1536,
+      "height": 1024,
+      "cells": 6
+    },
+    {
+      "name": "All eight preexisting expression sheets and base portraits remain byte-identical",
+      "passed": true,
+      "preserved": [
+        "nagi",
+        "mizuki",
+        "akamine",
+        "rival_03",
+        "akari",
+        "mio",
+        "kanade",
+        "tsumugi"
+      ]
+    },
+    {
+      "name": "All seven heroines render six exact atlas positions and accessible labels",
+      "passed": true,
+      "heroines": 7,
+      "frames": 42
+    },
+    {
+      "name": "Natsu, fan, and Japanese name aliases retain one portrait identity",
+      "passed": true
+    },
+    {
+      "name": "Natsu authored cues are original utterances and reach the correct expression",
+      "passed": true,
+      "cues": 29,
+      "states": 6
+    },
+    {
+      "name": "Natsu route and recovery chapters have authored facial performances",
+      "passed": true,
+      "scenes": 18
+    },
+    {
+      "name": "Existing six heroines preserve all authored expression cues",
+      "passed": true,
+      "cues": 213
+    },
+    {
+      "name": "Narration, player and other speakers never give the listener their expression",
+      "passed": true
+    },
+    {
+      "name": "Negated joy, wrapped dialogue and old three-panel portraits remain correct",
+      "passed": true
+    },
+    {
+      "name": "Scene-specific cues follow the named speaker, original utterance and introduction prefixes",
+      "passed": true
+    }
+  ],
+  "passed": 10,
+  "failed": 0
+}

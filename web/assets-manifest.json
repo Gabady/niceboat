@@ -199,6 +199,11 @@
     "bytes": 219820,
     "sha256": "2ab4a06e2ee29032f25bc23da206797947d51fcadfdbbe44f9ec35acc3fc1911"
   },
+  "97af7cc1ee08f3af6c76.webp": {
+    "mime": "image/webp",
+    "bytes": 241854,
+    "sha256": "97af7cc1ee08f3af6c7684c82189705d7c258335502860109960bf9958da0885"
+  },
   "38981c4078befe9e5d09.wav": {
     "mime": "audio/wav",
     "bytes": 512044,

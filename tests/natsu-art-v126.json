@@ -1,0 +1,41 @@
+{
+  "build": 126,
+  "count": 1,
+  "totalStates": 6,
+  "method": "built-in image_gen",
+  "asset": {
+    "id": "natsu",
+    "width": 1536,
+    "height": 1024,
+    "states": [
+      "calm",
+      "warm",
+      "thoughtful",
+      "determined",
+      "surprised",
+      "blush"
+    ],
+    "webpBytes": 241854,
+    "webpSha256": "97af7cc1ee08f3af6c7684c82189705d7c258335502860109960bf9958da0885",
+    "pngSha256": "8037b394a710f8741ee2dce1286907a4a214edff308e8eb5d88cd5540e55c7d7",
+    "cellSha256": [
+      "9f869aa9de88642950e63ece33fcc74fc41f8176b6a3e6df8856c8955e595deb",
+      "eb6698657f3a0496a452bc7437c565f0f31c7831c25919cf09455d3c67857f0a",
+      "3af208d607bb6a58c2203363cfd3f86cae4e4eafc3fd8ef9a94da3d347e708a3",
+      "e3a53b5757cb0995deb5706a756e21673b855d0cd492e8de5e60a714b9ce666e",
+      "eb9704cf6d4cbbca5baafdc87006b6fdfe5861bf374162b78d5beaa5d558765b",
+      "3a214b7f5010afa2269b2e5ea6b68ec005cee5e853b9f68e3cc4e0f147cca426"
+    ],
+    "visualReview": "Generated atlas and original portrait viewed: identity, mustard cardigan, short brown bob, waterside background and six expressions retained."
+  },
+  "preservedLegacy": [
+    "akari",
+    "mio",
+    "nagi",
+    "kanade",
+    "tsumugi",
+    "mizuki",
+    "akamine",
+    "rival_03"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "build": "126",
+  "method": "Independent manual source review with original character dialogue comparison; syntax checked with node --check",
+  "reviewed": [
+    "epilogues126.js: 51 authored ending episodes, short acquaintance/friend/apart endings, introduction-only mentor variants and relationship selection",
+    "natsu-data126.js: 7 ordinary chapters, 7 recovery chapters, 2 visits, 2 pre-final episodes and choices",
+    "Existing context: bonds-data.js character roles/final chapters/visits, mentor-data.js introductions, drama-data.js rival voice"
+  ],
+  "resolved": [
+    "Ren's first/second person restored to boku/kimi; Izumi's first person restored to watashi; Sou avoids newly introduced ore",
+    "Mizuki placed ending no longer asserts an overtake occurred",
+    "Akamine/Iwase endings no longer assert unrecorded joint training",
+    "Tsukino short ending and Mizuki/Natsu short congratulations preserve established speech",
+    "Remote-contact endings do not end by leaving an in-person seat",
+    "Removed duplicated wording introduced by mechanical season substitution",
+    "Unverified-result and disqualification introductions use in-world prose"
+  ],
+  "findingsAfterCorrections": "No remaining concrete contradiction found within reviewed result, relationship, occupation and location conditions.",
+  "limits": "Manual editorial review is not proof of every future scenario combination. Runtime result classification and selection regression is owned by the ending implementation tests."
+}

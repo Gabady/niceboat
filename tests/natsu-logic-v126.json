@@ -1,0 +1,732 @@
+{
+  "scope": "V126 なつ条件付き恋愛・独立抽選・旧セーブ互換・会話/お願い・実日程に沿った7話/報酬",
+  "checks": [
+    "G3〜G1前期・会話選択完了2回・交際/完走なしを満たした場合だけ候補になる",
+    "一度のレース準備で当選/落選を確定し、保存復元・画面閲覧・連打では再抽選しない",
+    "専用抽選が通常の出会い・レース・物語・好感度の乱数を消費しない",
+    "交流回数はfanイベントの選択完了だけを数え、中断/見送り/他人物は数えない",
+    "V125の6人および旧5人・v1/v2の実データ由来セーブを先行validで受け入れ、6人の進行/旧記録を維持する",
+    "未知人物・欠けた必須人物・不正な追加乱数や重複/範囲外raceキーを拒否する",
+    "ナツの日常/他交際時の告白は本人の語調となり、友人分岐と失敗分岐も保存できる",
+    "ナツのお願いは贈与・辞退・時間支援・次走の約束に対応し、undefined表示や不正な人物制限がない",
+    "最速/中盤/最終解放日の1育成日程で待ち走数・G1優勝・好感度・7話・SG優勝戦特能まで到達する",
+    "実際の物語抽選を通す100育成の代表seedで、ナツの解放が条件成立後かつG1前期までに収まる",
+    "瑞希が同じSG優勝戦に出る場合の約束は新規/復帰とも同時出走に一致し、非出場時の本文を変えない"
+  ],
+  "timetables": [
+    {
+      "metRace": 12,
+      "difficulty": "normal",
+      "arc": "shore",
+      "meetings": [
+        {
+          "races": 12,
+          "stage": 2,
+          "round": 0,
+          "kind": "chapter",
+          "step": 1
+        },
+        {
+          "races": 14,
+          "stage": 2,
+          "round": 2,
+          "kind": "chapter",
+          "step": 2
+        },
+        {
+          "races": 16,
+          "stage": 2,
+          "round": 4,
+          "kind": "chapter",
+          "step": 3
+        },
+        {
+          "races": 18,
+          "stage": 3,
+          "round": 0,
+          "kind": "chapter",
+          "step": 4
+        },
+        {
+          "races": 21,
+          "stage": 3,
+          "round": 3,
+          "kind": "chapter",
+          "step": 5
+        },
+        {
+          "races": 24,
+          "stage": 4,
+          "round": 0,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 27,
+          "stage": 4,
+          "round": 3,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 30,
+          "stage": 5,
+          "round": 0,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 33,
+          "stage": 5,
+          "round": 3,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 36,
+          "stage": 6,
+          "round": 0,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 39,
+          "stage": 6,
+          "round": 3,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 42,
+          "stage": 7,
+          "round": 0,
+          "kind": "chapter",
+          "step": 6
+        },
+        {
+          "races": 45,
+          "stage": 7,
+          "round": 3,
+          "kind": "chapter",
+          "step": 7
+        },
+        {
+          "races": 48,
+          "stage": 8,
+          "round": 0,
+          "kind": "visit",
+          "step": 7
+        },
+        {
+          "races": 51,
+          "stage": 8,
+          "round": 3,
+          "kind": "visit",
+          "step": 7
+        }
+      ],
+      "reward": "bond_natsu"
+    },
+    {
+      "metRace": 29,
+      "difficulty": "normal",
+      "arc": "shore",
+      "meetings": [
+        {
+          "races": 29,
+          "stage": 4,
+          "round": 5,
+          "kind": "chapter",
+          "step": 1
+        },
+        {
+          "races": 31,
+          "stage": 5,
+          "round": 1,
+          "kind": "chapter",
+          "step": 2
+        },
+        {
+          "races": 33,
+          "stage": 5,
+          "round": 3,
+          "kind": "chapter",
+          "step": 3
+        },
+        {
+          "races": 35,
+          "stage": 5,
+          "round": 5,
+          "kind": "chapter",
+          "step": 4
+        },
+        {
+          "races": 38,
+          "stage": 6,
+          "round": 2,
+          "kind": "chapter",
+          "step": 5
+        },
+        {
+          "races": 41,
+          "stage": 6,
+          "round": 5,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 44,
+          "stage": 7,
+          "round": 2,
+          "kind": "chapter",
+          "step": 6
+        },
+        {
+          "races": 47,
+          "stage": 7,
+          "round": 5,
+          "kind": "chapter",
+          "step": 7
+        },
+        {
+          "races": 50,
+          "stage": 8,
+          "round": 2,
+          "kind": "visit",
+          "step": 7
+        },
+        {
+          "races": 53,
+          "stage": 8,
+          "round": 5,
+          "kind": "visit",
+          "step": 7
+        }
+      ],
+      "reward": "bond_natsu"
+    },
+    {
+      "metRace": 41,
+      "difficulty": "normal",
+      "arc": "shore",
+      "meetings": [
+        {
+          "races": 41,
+          "stage": 6,
+          "round": 5,
+          "kind": "chapter",
+          "step": 1
+        },
+        {
+          "races": 42,
+          "stage": 7,
+          "round": 0,
+          "kind": "chapter",
+          "step": 2
+        },
+        {
+          "races": 43,
+          "stage": 7,
+          "round": 1,
+          "kind": "chapter",
+          "step": 3
+        },
+        {
+          "races": 44,
+          "stage": 7,
+          "round": 2,
+          "kind": "chapter",
+          "step": 4
+        },
+        {
+          "races": 46,
+          "stage": 7,
+          "round": 4,
+          "kind": "chapter",
+          "step": 5
+        },
+        {
+          "races": 48,
+          "stage": 8,
+          "round": 0,
+          "kind": "chapter",
+          "step": 6
+        },
+        {
+          "races": 50,
+          "stage": 8,
+          "round": 2,
+          "kind": "chapter",
+          "step": 7
+        },
+        {
+          "races": 52,
+          "stage": 8,
+          "round": 4,
+          "kind": "visit",
+          "step": 7
+        }
+      ],
+      "reward": "bond_natsu"
+    },
+    {
+      "metRace": 41,
+      "difficulty": "easy",
+      "arc": "shore",
+      "meetings": [
+        {
+          "races": 41,
+          "stage": 6,
+          "round": 5,
+          "kind": "chapter",
+          "step": 1
+        },
+        {
+          "races": 42,
+          "stage": 7,
+          "round": 0,
+          "kind": "chapter",
+          "step": 2
+        },
+        {
+          "races": 43,
+          "stage": 7,
+          "round": 1,
+          "kind": "chapter",
+          "step": 3
+        },
+        {
+          "races": 44,
+          "stage": 7,
+          "round": 2,
+          "kind": "chapter",
+          "step": 4
+        },
+        {
+          "races": 46,
+          "stage": 7,
+          "round": 4,
+          "kind": "chapter",
+          "step": 5
+        },
+        {
+          "races": 48,
+          "stage": 8,
+          "round": 0,
+          "kind": "chapter",
+          "step": 6
+        },
+        {
+          "races": 50,
+          "stage": 8,
+          "round": 2,
+          "kind": "chapter",
+          "step": 7
+        },
+        {
+          "races": 52,
+          "stage": 8,
+          "round": 4,
+          "kind": "visit",
+          "step": 7
+        }
+      ],
+      "reward": "bond_natsu_ur"
+    },
+    {
+      "metRace": 12,
+      "difficulty": "normal",
+      "arc": "recovery",
+      "meetings": [
+        {
+          "races": 12,
+          "stage": 2,
+          "round": 0,
+          "kind": "chapter",
+          "step": 1
+        },
+        {
+          "races": 14,
+          "stage": 2,
+          "round": 2,
+          "kind": "chapter",
+          "step": 2
+        },
+        {
+          "races": 16,
+          "stage": 2,
+          "round": 4,
+          "kind": "chapter",
+          "step": 3
+        },
+        {
+          "races": 18,
+          "stage": 3,
+          "round": 0,
+          "kind": "chapter",
+          "step": 4
+        },
+        {
+          "races": 21,
+          "stage": 3,
+          "round": 3,
+          "kind": "chapter",
+          "step": 5
+        },
+        {
+          "races": 24,
+          "stage": 4,
+          "round": 0,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 27,
+          "stage": 4,
+          "round": 3,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 30,
+          "stage": 5,
+          "round": 0,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 33,
+          "stage": 5,
+          "round": 3,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 36,
+          "stage": 6,
+          "round": 0,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 39,
+          "stage": 6,
+          "round": 3,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 42,
+          "stage": 7,
+          "round": 0,
+          "kind": "chapter",
+          "step": 6
+        },
+        {
+          "races": 45,
+          "stage": 7,
+          "round": 3,
+          "kind": "chapter",
+          "step": 7
+        },
+        {
+          "races": 48,
+          "stage": 8,
+          "round": 0,
+          "kind": "visit",
+          "step": 7
+        },
+        {
+          "races": 51,
+          "stage": 8,
+          "round": 3,
+          "kind": "visit",
+          "step": 7
+        }
+      ],
+      "reward": "bond_natsu"
+    },
+    {
+      "metRace": 29,
+      "difficulty": "normal",
+      "arc": "recovery",
+      "meetings": [
+        {
+          "races": 29,
+          "stage": 4,
+          "round": 5,
+          "kind": "chapter",
+          "step": 1
+        },
+        {
+          "races": 31,
+          "stage": 5,
+          "round": 1,
+          "kind": "chapter",
+          "step": 2
+        },
+        {
+          "races": 33,
+          "stage": 5,
+          "round": 3,
+          "kind": "chapter",
+          "step": 3
+        },
+        {
+          "races": 35,
+          "stage": 5,
+          "round": 5,
+          "kind": "chapter",
+          "step": 4
+        },
+        {
+          "races": 38,
+          "stage": 6,
+          "round": 2,
+          "kind": "chapter",
+          "step": 5
+        },
+        {
+          "races": 41,
+          "stage": 6,
+          "round": 5,
+          "kind": "visit",
+          "step": 5
+        },
+        {
+          "races": 44,
+          "stage": 7,
+          "round": 2,
+          "kind": "chapter",
+          "step": 6
+        },
+        {
+          "races": 47,
+          "stage": 7,
+          "round": 5,
+          "kind": "chapter",
+          "step": 7
+        },
+        {
+          "races": 50,
+          "stage": 8,
+          "round": 2,
+          "kind": "visit",
+          "step": 7
+        },
+        {
+          "races": 53,
+          "stage": 8,
+          "round": 5,
+          "kind": "visit",
+          "step": 7
+        }
+      ],
+      "reward": "bond_natsu"
+    },
+    {
+      "metRace": 41,
+      "difficulty": "normal",
+      "arc": "recovery",
+      "meetings": [
+        {
+          "races": 41,
+          "stage": 6,
+          "round": 5,
+          "kind": "chapter",
+          "step": 1
+        },
+        {
+          "races": 42,
+          "stage": 7,
+          "round": 0,
+          "kind": "chapter",
+          "step": 2
+        },
+        {
+          "races": 43,
+          "stage": 7,
+          "round": 1,
+          "kind": "chapter",
+          "step": 3
+        },
+        {
+          "races": 44,
+          "stage": 7,
+          "round": 2,
+          "kind": "chapter",
+          "step": 4
+        },
+        {
+          "races": 46,
+          "stage": 7,
+          "round": 4,
+          "kind": "chapter",
+          "step": 5
+        },
+        {
+          "races": 48,
+          "stage": 8,
+          "round": 0,
+          "kind": "chapter",
+          "step": 6
+        },
+        {
+          "races": 50,
+          "stage": 8,
+          "round": 2,
+          "kind": "chapter",
+          "step": 7
+        },
+        {
+          "races": 52,
+          "stage": 8,
+          "round": 4,
+          "kind": "visit",
+          "step": 7
+        }
+      ],
+      "reward": "bond_natsu"
+    },
+    {
+      "metRace": 41,
+      "difficulty": "easy",
+      "arc": "recovery",
+      "meetings": [
+        {
+          "races": 41,
+          "stage": 6,
+          "round": 5,
+          "kind": "chapter",
+          "step": 1
+        },
+        {
+          "races": 42,
+          "stage": 7,
+          "round": 0,
+          "kind": "chapter",
+          "step": 2
+        },
+        {
+          "races": 43,
+          "stage": 7,
+          "round": 1,
+          "kind": "chapter",
+          "step": 3
+        },
+        {
+          "races": 44,
+          "stage": 7,
+          "round": 2,
+          "kind": "chapter",
+          "step": 4
+        },
+        {
+          "races": 46,
+          "stage": 7,
+          "round": 4,
+          "kind": "chapter",
+          "step": 5
+        },
+        {
+          "races": 48,
+          "stage": 8,
+          "round": 0,
+          "kind": "chapter",
+          "step": 6
+        },
+        {
+          "races": 50,
+          "stage": 8,
+          "round": 2,
+          "kind": "chapter",
+          "step": 7
+        },
+        {
+          "races": 52,
+          "stage": 8,
+          "round": 4,
+          "kind": "visit",
+          "step": 7
+        }
+      ],
+      "reward": "bond_natsu_ur"
+    }
+  ],
+  "discoverySamples": [
+    {
+      "seed": 1,
+      "eligibleAt": 20,
+      "metAt": 26
+    },
+    {
+      "seed": 2,
+      "eligibleAt": 26,
+      "metAt": 37
+    },
+    {
+      "seed": 3,
+      "eligibleAt": 15,
+      "metAt": 15
+    },
+    {
+      "seed": 4,
+      "eligibleAt": 16,
+      "metAt": 21
+    },
+    {
+      "seed": 5,
+      "eligibleAt": 16,
+      "metAt": 27
+    },
+    {
+      "seed": 6,
+      "eligibleAt": 15,
+      "metAt": 15
+    },
+    {
+      "seed": 7,
+      "eligibleAt": 13,
+      "metAt": 13
+    },
+    {
+      "seed": 8,
+      "eligibleAt": 15,
+      "metAt": 19
+    },
+    {
+      "seed": 9,
+      "eligibleAt": 18,
+      "metAt": 21
+    },
+    {
+      "seed": 10,
+      "eligibleAt": 17,
+      "metAt": 24
+    },
+    {
+      "seed": 11,
+      "eligibleAt": 17,
+      "metAt": 22
+    },
+    {
+      "seed": 12,
+      "eligibleAt": 18,
+      "metAt": 33
+    },
+    {
+      "seed": 100,
+      "eligibleAt": 14,
+      "metAt": 32
+    }
+  ],
+  "discoverySummary": {
+    "samples": 100,
+    "conditionsReached": 100,
+    "unlocked": 100,
+    "earliest": 13,
+    "latest": 40,
+    "meaning": "固定天候・順当な人気推移・fanを含む全提示イベントへの応答を行う代表日程。実プレイの解放率推定ではない。"
+  },
+  "passed": 11
+}

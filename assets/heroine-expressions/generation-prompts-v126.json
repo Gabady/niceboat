@@ -1,0 +1,22 @@
+{
+  "build": 126,
+  "id": "natsu",
+  "prompt": "Use case: identity-preserve.\nAsset type: photoreal portrait expression atlas for an offline Japanese story game.\nEdit target: the supplied reference portrait of the adult woman Natsu. Produce ONE single atlas image in landscape aspect ratio 3:2, ideally 1536 x 1024, arranged as EXACTLY THREE COLUMNS and TWO ROWS of equally sized SQUARE portraits. All six portraits show exactly the same adult woman from the input image, at exactly the same head-and-upper-chest scale and face position. Each square is filled edge-to-edge with her portrait and the same existing backdrop. No gutters, borders, labels, writing, watermark or decorative panels.\nPreserve her individual identity very carefully: exact facial proportions, brown eyes, skin texture, short chestnut-dark brown bob with natural bangs and off-center part, mustard yellow knitted cardigan over a plain white crew-neck shirt, sunlit waterside viewing area with blurred blue water and blue mountains behind. Do not beautify or change apparent age. Keep her whole hair and face within each square, gaze broadly near camera and body posture consistent. Change only facial expression through clearly legible natural eyebrow, eyelid, lip and cheek changes.\nSix square cells in this exact row-major order:\nTOP LEFT: calm / composed, neutral relaxed closed lips, attentive eyes.\nTOP CENTER: warm / gentle happiness, noticeably smiling lips and softly smiling eyes, friendly warmth.\nTOP RIGHT: thoughtful / troubled and a little sad, inner eyebrows gently raised, mouth subdued, eyes showing concern.\nBOTTOM LEFT: determined / serious resolve, brows slightly drawn down, eyes firm and focused, closed firm lips; no anger or exaggerated scowl.\nBOTTOM CENTER: surprised / natural moderate surprise, clearly widened eyes and raised eyebrows, slightly parted lips; still realistic.\nBOTTOM RIGHT: blush / shy affection, subtly rosy cheeks, slightly bashful softer gaze with a small hesitant smile; no hands over face.\nMake all six expressions noticeably different while staying mature, plausible and photorealistic. Keep lighting, backdrop, camera angle, pose, crop and clothing consistent in all six cells. Use the exact woman from the reference.",
+  "method": "built-in image_gen",
+  "reference": "art-reference/natsu.webp",
+  "source": "/workspace/scratch/88c0c72d6de7/generated_images/exec-10921597-5cbf-4b62-959d-b3191334fb2d.png",
+  "png": "assets/heroine-expressions/natsu-v126.png",
+  "webp": "assets/heroine-expressions/natsu-v126.webp",
+  "layout": {
+    "columns": 3,
+    "rows": 2,
+    "states": [
+      "calm",
+      "warm",
+      "thoughtful",
+      "determined",
+      "surprised",
+      "blush"
+    ]
+  }
+}

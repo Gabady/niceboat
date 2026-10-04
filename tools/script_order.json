@@ -7,10 +7,12 @@
   "racing",
   "profile",
   "story-extra",
+  "introductions126",
   "story",
   "portrait-assets",
   "portrait-expressions",
   "portraits",
+  "natsu-data126",
   "bonds-data",
   "bonds",
   "mentor-data",
@@ -26,6 +28,7 @@
   "visual-assets",
   "race-renderer",
   "race-dialogue",
+  "cheer126",
   "driving-ui",
   "development",
   "finale",
@@ -35,5 +38,6 @@
   "review122",
   "practice122",
   "coaching121",
+  "epilogues126",
   "script"
 ]

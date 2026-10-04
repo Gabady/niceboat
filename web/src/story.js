@@ -4,6 +4,7 @@
 /* v94: deterministic career stories and one scheduled duel per series. No DOM. */
 (function(root){
 'use strict';
+const Introductions=root.KM_INTRODUCTIONS126||(typeof require==='function'?require('./introductions126.js'):null);
 const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null);
 const Extra=root.KM_STORY_EXTRA||(typeof require==='function'?require('./story-extra.js'):null);
 const N=root.KM_DRAMA_DATA||(typeof require==='function'?require('./drama-data.js'):null);
@@ -101,7 +102,7 @@ events.push(...Extra.events);surges.push(...Extra.events.filter(e=>e.tone==='sur
 Extra.arcs.push(...N.dailyArcs);events.push(...N.daily,...N.surges);surges.push(...N.surges);
 for(const e of events)if(N.eventDialogue?.[e.id])e.text=N.eventDialogue[e.id];
 const eventMap=Object.assign(Object.create(null),Object.fromEntries(events.map(e=>[e.id,e])));
-function ensure(c){if(!c.story)c.story={version:1,seed:hash(c.player.id+':story'),chapters:[],gates:[],seen:{},bonds:{mentor:0,mechanic:0},pending:null,rivals:[],duel:null,log:[],shown:[],serial:0};if(!c.story.arcs)c.story.arcs={};if(!c.story.skillStages)c.story.skillStages=[...new Set(c.story.log.filter(l=>l.kind==='event'&&l.skill).map(l=>l.stage))];return c.story;}
+function ensure(c){const legacy=!!c.story&&!c.story.introductions;if(!c.story)c.story={version:1,seed:hash(c.player.id+':story'),chapters:[],gates:[],seen:{},bonds:{mentor:0,mechanic:0},pending:null,rivals:[],duel:null,log:[],shown:[],serial:0};if(!c.story.arcs)c.story.arcs={};if(!c.story.skillStages)c.story.skillStages=[...new Set(c.story.log.filter(l=>l.kind==='event'&&l.skill).map(l=>l.stage))];Introductions?.ensure(c,{legacy,eventMap});return c.story;}
 function log(c,entry){const t=ensure(c);t.log.push({...entry,index:++t.serial,stage:c.stage});if(t.log.length>72)t.log.shift();}
 function series(c){const t=ensure(c);if(t.chapters.includes(c.stage))return;t.chapters.push(c.stage);t.pending=null;t.duel=null;log(c,{kind:'chapter',title:chapter(c)[0],note:chapter(c)[1]});}
 function lineUp(c,people){const q=c.story?.duel;if(!q||q.status!=='scheduled'||q.round!==c.series.round)return people;const rival=c.series.npcs.find(n=>n.id===q.rivalId);if(!rival||people.some(n=>n.id===rival.id))return people;return [...people.slice(0,5),rival];}
@@ -166,6 +167,7 @@ function settle(c,r,result,api){
 }
 function finish(c){const t=ensure(c);if(!c.ending||t.closed)return;t.closed=c.ending;log(c,{kind:'chapter',title:c.ending==='sgChampion'?'水面に刻んだ名前':c.ending==='gate'?'まだ、物語の途中':'最高峰の、その先へ',note:c.ending==='sgChampion'?'表彰台から、あの横断幕が見えた。朝倉と篠原、七瀬もいる。勝ったのは一艇。でも、ここまで来たのは一人ではなかった。':c.ending==='gate'?'最高峰への条件には届かなかった。練習帳を開くと、最初の頃にはできなかった動きが何度も書かれている。朝倉が隣に座った。「悔しいな。落ち着いたら、次の練習を考えよう」':'最高峰の水面から戻ると、篠原はいつものように艇を受け止めた。「次は、どんな走りにしようか」物語は、まだ続いている。'});}
 function valid(t){
+ if(t?.introductions!==undefined&&!Introductions?.valid(t.introductions))return false;
  const str=(s,n)=>typeof s==='string'&&s.length<=n,num=(v,a,b)=>Number.isInteger(v)&&v>=a&&v<=b,id=s=>str(s,110)&&/^[a-zA-Z0-9_:-]+$/.test(s);
  if(t?.skillStages&&(!Array.isArray(t.skillStages)||t.skillStages.length>9||new Set(t.skillStages).size!==t.skillStages.length||!t.skillStages.every(v=>num(v,0,8))))return false;
  if(t?.arcs&&(typeof t.arcs!=='object'||Array.isArray(t.arcs)||!Object.entries(t.arcs).every(([k,a])=>Extra.arcs.some(x=>x.id===k)&&a&&num(a.step,1,3)&&num(a.route,0,1)&&num(a.lastStage,0,8)&&(a.insight===undefined||num(a.insight,0,a.step)))))return false;
@@ -176,7 +178,7 @@ function valid(t){
  const q=t.duel;if(q&&(!num(q.stage,0,8)||!num(q.round,1,4)||!['scheduled','offered','accepted','declined','settled'].includes(q.status)||!id(q.rivalId)||!str(q.rivalName,30)||!num(q.money,0,150)||(q.raceId!==null&&!id(q.raceId))||!t.rivals.some(n=>n.id===q.rivalId)))return false;
  return true;
 }
-function validJournal(j){return !!j&&valid({version:1,seed:0,serial:2000,chapters:[],gates:[],seen:{},bonds:{mentor:0,mechanic:0},pending:null,rivals:j.rivals,duel:null,log:j.log,shown:[],arcs:j.arcs});}
+function validJournal(j){return !!j&&valid({version:1,seed:0,serial:2000,chapters:[],gates:[],seen:{},bonds:{mentor:0,mechanic:0},pending:null,rivals:j.rivals,duel:null,log:j.log,shown:[],arcs:j.arcs,introductions:j.introductions});}
 const API={chapter,stageName,Extra,fame,resolve,arcStatus,routeNote,validJournal,finish,speakers,chapters,events,eventMap,hash,ensure,series,lineUp,eligible,prepare,begin,choose,settle,valid,effectLabel};
 root.KM_STORY=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);

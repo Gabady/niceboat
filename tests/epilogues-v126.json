@@ -1,0 +1,50 @@
+{
+  "build": 126,
+  "pass": true,
+  "tests": [
+    {
+      "name": "Clean championship places: first is win; all 2–6 are placed",
+      "pass": true
+    },
+    {
+      "name": "F/L/capsize/DNF never become placing endings even when displayed first or second",
+      "pass": true
+    },
+    {
+      "name": "Consolation first, qualifier elimination, and SG gate use other without championship claims",
+      "pass": true
+    },
+    {
+      "name": "Early registration and in-progress SG never capture a final epilogue",
+      "pass": true
+    },
+    {
+      "name": "A historical champion flag cannot invent a clean first place without matching real result",
+      "pass": true
+    },
+    {
+      "name": "All 51 authored result-specific episodes are reachable, distinct, and valid",
+      "pass": true
+    },
+    {
+      "name": "Met but incomplete, friend, and separated relationships do not become lovers",
+      "pass": true
+    },
+    {
+      "name": "Unintroduced mentors stay absent; pre-apprenticeship meetings never invent a mentor relation",
+      "pass": true
+    },
+    {
+      "name": "One snapshot survives later state changes and registration; reader APIs cannot mutate it",
+      "pass": true
+    },
+    {
+      "name": "Save validation rejects cross-kind identities, duplicate cards, invalid outcomes and cue injection",
+      "pass": true
+    }
+  ],
+  "authoredEpisodes": 51,
+  "uniqueBodies": 51,
+  "expressionCueCount": 71,
+  "verification": "Node state/reader logic; no browser or device validation"
+}

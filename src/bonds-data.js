@@ -3634,5 +3634,4 @@
       ]
     }
   ]
-};data.map=Object.fromEntries(data.heroines.map(h=>[h.id,h]));root.KM_BOND_DATA=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;})(globalThis);
-
+};const natsu=root.KM_NATSU_DATA||(typeof require==='function'?require('./natsu-data126.js'):null);if(natsu&&!data.heroines.some(h=>h.id===natsu.id))data.heroines.push(natsu);data.map=Object.fromEntries(data.heroines.map(h=>[h.id,h]));root.KM_BOND_DATA=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;})(globalThis);

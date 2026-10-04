@@ -1,0 +1,20 @@
+/* V126: a quiet send-off inside the existing, paused pre-race dialog. */
+.drive-dialog.cheer-dialog126{width:min(100%,430px);text-align:left}
+.cheer-dialog126>h2{margin:.45rem 0 .8rem;font-size:clamp(1.22rem,5vw,1.65rem)}
+.final-cheer126{display:flex;align-items:center;gap:1rem;margin:.65rem 0 1.1rem;padding:1rem;background:linear-gradient(135deg,#223b49e8,#152a35e8);border:1px solid #adc8c337;border-left:3px solid #d4c496;border-radius:14px}
+.final-cheer126 .portrait-face{width:86px;height:86px;flex:0 0 86px;border-radius:9px;border:1px solid #c8d7d442}
+.final-cheer126 small{display:block;color:#b3c7c7;font-size:.69rem;letter-spacing:.03em;margin-bottom:.15rem}
+.final-cheer126 b{display:block;color:#f1eadb;font-size:1rem;font-weight:700}
+.final-cheer126 p{font-size:.87rem;line-height:1.85;margin:.45rem 0 0;color:#eef2ee;text-align:left;overflow-wrap:anywhere}
+.final-cheer126.full{animation:cheer126-arrive .5s ease-out both}
+.final-cheer126.short{padding:.8rem;gap:.8rem}
+.final-cheer126.short .portrait-face{width:64px;height:64px;flex-basis:64px}
+.final-cheer126.plain{padding:.8rem;background:#192e36;border-left-width:1px}
+.cheer-dialog126>.drive-button.primary{width:100%;min-height:48px;margin:.15rem 0 .6rem}
+.cheer-controls126{margin:.6rem 0;color:#b9cbcc;font-size:.76rem}
+.cheer-controls126 summary{padding:.55rem 0;cursor:pointer}
+.cheer-controls126 p{font-size:.76rem;line-height:1.8}
+.cheer-dialog126 .drive-menu-row{justify-content:center;margin-top:.55rem}
+@keyframes cheer126-arrive{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:360px){.final-cheer126{gap:.7rem;padding:.8rem}.final-cheer126 .portrait-face{width:68px;height:68px;flex-basis:68px}.final-cheer126 p{font-size:.81rem}}
+@media(prefers-reduced-motion:reduce){.final-cheer126.full{animation:none}}

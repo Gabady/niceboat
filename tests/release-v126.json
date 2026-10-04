@@ -1,0 +1,87 @@
+{
+  "build": "126",
+  "scope": "Current V126 release; prior-version JSON reports are historical.",
+  "sourceSyntax": {
+    "modules": 41,
+    "passed": true,
+    "method": "Node syntax and execution of delivered inline modules"
+  },
+  "checks": {
+    "start-v126": {
+      "file": "tests/start-v126.json",
+      "groups": 13
+    },
+    "growth-v126": {
+      "file": "tests/growth-v126.json",
+      "groups": 6
+    },
+    "cheer-v126": {
+      "file": "tests/cheer-v126.json",
+      "groups": 12
+    },
+    "drive-ui-v126": {
+      "file": "tests/drive-ui-v126.json",
+      "groups": 12
+    },
+    "epilogues-v126": {
+      "file": "tests/epilogues-v126.json",
+      "groups": 10
+    },
+    "expressions-v126": {
+      "file": "tests/expressions-v126.json",
+      "groups": 10
+    },
+    "introductions-v126": {
+      "file": "tests/introductions-v126.json",
+      "groups": 12
+    },
+    "natsu-logic-v126": {
+      "file": "tests/natsu-logic-v126.json",
+      "groups": 11
+    },
+    "natsu-story-v126": {
+      "file": "tests/natsu-story-v126.json",
+      "groups": 7
+    },
+    "story-integration-v126": {
+      "file": "tests/story-integration-v126.json",
+      "groups": 7
+    },
+    "ui-logic-v126": {
+      "file": "tests/ui-logic-v126.json",
+      "groups": 23
+    },
+    "verification-v126-base": {
+      "file": "tests/verification-v126-base.json",
+      "groups": 29
+    }
+  },
+  "checkGroups": 152,
+  "htmlParity": {
+    "entries": 5,
+    "passed": true,
+    "file": "tests/parity-v126.json"
+  },
+  "inlineEntryPoints": {
+    "scenarioRaceRuns": 12,
+    "passed": true,
+    "file": "tests/safe-sync-v126.json"
+  },
+  "narrative": {
+    "authoredEndingEpisodes": 51,
+    "natsuScenes": 18,
+    "independentReview": "tests/narrative-review-v126.json"
+  },
+  "graphics": {
+    "natsuStates": 6,
+    "allHeroineStates": 42,
+    "visualReview": "Generated Natsu atlas and crop layout visually reviewed",
+    "report": "tests/natsu-art-v126.json"
+  },
+  "browserLayout": "Not tested",
+  "physicalDevices": "Not tested",
+  "limits": [
+    "DOM adapter checks logic/markup but does not test layout, touch, audio or FPS.",
+    "Old already-registered careers without final race evidence do not receive inferred ending episodes."
+  ]
+}

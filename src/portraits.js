@@ -7,8 +7,8 @@ const names=['akari','mio','nagi','kanade','tsumugi','hayase','tsukino','kuzumi'
 const fixed=Object.fromEntries(names.map(id=>[id,{id,src:A[id]}])),pool=Array.from({length:12},(_,i)=>'rival_'+String(i+1).padStart(2,'0'));
 // One identity table for dialogue, journals, roster cards and final-race snapshots.
 const identities={haruto:'rival_01',ren:'rival_04',izumi:'rival_07',sou:'rival_10',ibuki:'rival_09',campaign_father:'rival_08',campaign_kanato:'rival_06',campaign_sae:'rival_12',campaign_soma:'rival_03',asakura:'rival_02',nanase:'rival_05',hiiragi:'rival_11'};
-const aliases={mentor:'asakura',mechanic:'shinohara',manager:'nanase',fan:'natsu',press:'hiiragi',campaign_riku:'riku'};
-const supporting={mentor:{id:'asakura',name:'先輩 朝倉',aliases:['朝倉']},mechanic:{id:'shinohara',name:'整備士 篠原',aliases:['篠原']},manager:{id:'nanase',name:'担当 七瀬',aliases:['七瀬']},fan:{id:'natsu',name:'なつ'},press:{id:'hiiragi',name:'柊'}};
+const aliases={mentor:'asakura',mechanic:'shinohara',manager:'nanase',fan:'natsu',なつ:'natsu',ナツ:'natsu',press:'hiiragi',campaign_riku:'riku'};
+const supporting={mentor:{id:'asakura',name:'先輩 朝倉',aliases:['朝倉']},mechanic:{id:'shinohara',name:'整備士 篠原',aliases:['篠原']},manager:{id:'nanase',name:'担当 七瀬',aliases:['七瀬']},fan:{id:'natsu',name:'なつ',aliases:['ナツ']},press:{id:'hiiragi',name:'柊'}};
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function hash(s){let h=2166136261;for(const c of String(s)){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
 function definition(person){if(typeof person==='string')person={id:person};let id=String(person.id||person.name||'racer').replace(/^cast_/, '').replace(/^main_/, '');id=aliases[id]||id;const owned=fixed[id]?id:identities[id],key=owned||((fixed[person.portraitKey]||pool.includes(person.portraitKey))?person.portraitKey:pool.includes(id)?id:pool[hash(id)%pool.length]);return {id,key,src:A[key],fixed:!!owned};}

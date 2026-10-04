@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#071b2a">
   <meta name="description" content="選手を育て、五つの水面を駆ける。スマホで遊ぶ育成と一人称の操作型ボートレース『競艇物語』。">
-  <title>競艇物語 V125</title>
+  <title>競艇物語 V126</title>
   <style>
 /* 競艇物語 — Deep water, race-white numerals, signal amber. */
 :root {
@@ -2996,6 +2996,38 @@ body:not(.in-race) .entry-choice123{display:grid;grid-template-columns:34px minm
 .driving-tip124 summary{font-size:13px;line-height:1.6;min-height:24px;color:#c2d7db}
 .driving-tip124 p{font-size:14px;line-height:1.8;margin:12px 0 8px}
 .driving-tip124 small{font-size:12px;line-height:1.7;display:block}
+
+/* V126 final heroine cheer */
+/* V126: a quiet send-off inside the existing, paused pre-race dialog. */
+.drive-dialog.cheer-dialog126{width:min(100%,430px);text-align:left}
+.cheer-dialog126>h2{margin:.45rem 0 .8rem;font-size:clamp(1.22rem,5vw,1.65rem)}
+.final-cheer126{display:flex;align-items:center;gap:1rem;margin:.65rem 0 1.1rem;padding:1rem;background:linear-gradient(135deg,#223b49e8,#152a35e8);border:1px solid #adc8c337;border-left:3px solid #d4c496;border-radius:14px}
+.final-cheer126 .portrait-face{width:86px;height:86px;flex:0 0 86px;border-radius:9px;border:1px solid #c8d7d442}
+.final-cheer126 small{display:block;color:#b3c7c7;font-size:.69rem;letter-spacing:.03em;margin-bottom:.15rem}
+.final-cheer126 b{display:block;color:#f1eadb;font-size:1rem;font-weight:700}
+.final-cheer126 p{font-size:.87rem;line-height:1.85;margin:.45rem 0 0;color:#eef2ee;text-align:left;overflow-wrap:anywhere}
+.final-cheer126.full{animation:cheer126-arrive .5s ease-out both}
+.final-cheer126.short{padding:.8rem;gap:.8rem}
+.final-cheer126.short .portrait-face{width:64px;height:64px;flex-basis:64px}
+.final-cheer126.plain{padding:.8rem;background:#192e36;border-left-width:1px}
+.cheer-dialog126>.drive-button.primary{width:100%;min-height:48px;margin:.15rem 0 .6rem}
+.cheer-controls126{margin:.6rem 0;color:#b9cbcc;font-size:.76rem}
+.cheer-controls126 summary{padding:.55rem 0;cursor:pointer}
+.cheer-controls126 p{font-size:.76rem;line-height:1.8}
+.cheer-dialog126 .drive-menu-row{justify-content:center;margin-top:.55rem}
+@keyframes cheer126-arrive{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:360px){.final-cheer126{gap:.7rem;padding:.8rem}.final-cheer126 .portrait-face{width:68px;height:68px;flex-basis:68px}.final-cheer126 p{font-size:.81rem}}
+@media(prefers-reduced-motion:reduce){.final-cheer126.full{animation:none}}
+
+
+/* V126 ending episode cards */
+.epilogue-panel126{margin:16px 0;padding:18px;border:1px solid #91cfc84a;border-radius:18px;background:linear-gradient(145deg,#173438,#102028);box-shadow:0 8px 24px #0002}
+.epilogue-panel126 h2{margin:4px 0 0;font-size:1.25rem}.epilogue-panel126>.section-line{gap:8px;flex-wrap:wrap}.epilogue-panel126>p{color:#cbdad9;font-size:.9rem;margin:10px 0 14px}
+.epilogue-cards126{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:10px 0}
+.epilogue-person126{display:flex;align-items:center;gap:12px;width:100%;min-width:0;padding:12px;text-align:left;color:#edf5f3;border:1px solid #b4d7cf36;border-radius:12px;background:#ffffff07;cursor:pointer;font:inherit}
+.epilogue-person126:focus-visible{outline:2px solid #9de0cf;outline-offset:3px}.epilogue-person126:hover{background:#b4d7cf15}.epilogue-person126 .portrait-face{width:56px;height:56px;flex:0 0 56px;border-radius:10px;object-fit:cover}.epilogue-person126>span{min-width:0}.epilogue-person126 small,.epilogue-person126 b,.epilogue-person126 em{display:block}.epilogue-person126 small{color:#b9cece;font-size:.7rem}.epilogue-person126 b{font-size:.95rem;margin:4px 0;line-height:1.5}.epilogue-person126 em{font-style:normal;color:#9bdfc9;font-size:.73rem}.epilogue-person126 em svg{width:12px;height:12px}.epilogue-others126{margin:10px 0}.epilogue-others126>summary{padding:10px 0;cursor:pointer;color:#c7d8d6}
+@media(max-width:380px){.epilogue-panel126{padding:12px}.epilogue-cards126{grid-template-columns:1fr}.epilogue-person126{padding:10px;gap:9px}}
+
 </style>
   
   
@@ -3048,10 +3080,12 @@ if(root.visualViewport)root.visualViewport.addEventListener('resize',schedule);
 <script src="src/racing.js"></script>
 <script src="src/profile.js"></script>
 <script src="src/story-extra.js"></script>
+<script src="src/introductions126.js"></script>
 <script src="src/story.js"></script>
 <script src="src/portrait-assets.js"></script>
 <script src="src/portrait-expressions.js"></script>
 <script src="src/portraits.js"></script>
+<script src="src/natsu-data126.js"></script>
 <script src="src/bonds-data.js"></script>
 <script src="src/bonds.js"></script>
 <script src="src/mentor-data.js"></script>
@@ -3067,6 +3101,7 @@ if(root.visualViewport)root.visualViewport.addEventListener('resize',schedule);
 <script src="src/visual-assets.js"></script>
 <script src="src/race-renderer.js"></script>
 <script src="src/race-dialogue.js"></script>
+<script src="src/cheer126.js"></script>
 <script src="src/driving-ui.js"></script>
 <script src="src/development.js"></script>
 <script src="src/finale.js"></script>
@@ -3076,6 +3111,7 @@ if(root.visualViewport)root.visualViewport.addEventListener('resize',schedule);
 <script src="src/review122.js"></script>
 <script src="src/practice122.js"></script>
 <script src="src/coaching121.js"></script>
+<script src="src/epilogues126.js"></script>
 <script src="src/script.js"></script>
 </body>
 </html>
