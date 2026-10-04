@@ -5,13 +5,13 @@ const Bonds=root.KM_BONDS||(typeof require==='function'?require('./bonds.js'):nu
 const Portraits=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const voices={
- akari:{emotion:'warm',line:'帰ったら、今日の走りを聞かせてください。一着って書けるように、私も最後まで応援しています。'},
- mio:{emotion:'determined',line:'今日は手帳を出しません。勝った話を聞きたいです。一着、取りにいってください。'},
- nagi:{emotion:'warm',line:'一度、ゆっくり息を吐きましょう。ここまで来た走りを、信じています。帰ってからの話も、聞かせてくださいね。'},
- kanade:{emotion:'warm',line:'最初の音の後にも、続きがあります。いいスタートも、その先の走りも、最後まで見ていますから。'},
- tsumugi:{emotion:'determined',line:'私もここで見たくて、来たんです。一着を取りにいってください。帰ったら、まず私の感想も聞いてくださいね。'},
- mizuki:{emotion:'determined',line:'今日は私も、一着を取りに行く。あなたも、自分の走りを最後まで。水面では、遠慮しないからね。',offGrid:'あなたの勝ちたい気持ち、同じ選手だからわかるよ。最後の出口まで、自分で選んで走ってきて。'},
- natsu:{emotion:'warm',line:'いつもの「行ってらっしゃい」だけど、今日は少し特別。あなたが帰ってくるまで、ちゃんと見てるから。'}
+ akari:{emotion:'warm',line:'心配なんか……しますよ、好きなんですから。行ってきてください。帰ったら、一番に私のところへ。'},
+ mio:{emotion:'determined',line:'今は記者じゃなく、あなたの恋人です。一着、取りにいって。格好いい顔、今日は私に独占させてね。'},
+ nagi:{emotion:'warm',line:'大丈夫、あなたの走りを信じてる。帰ってきたら、ぎゅっとさせてね。今日は私の方が、待ちきれないの。'},
+ kanade:{emotion:'warm',line:'大好きです。……今、言いたかったんです。どんな歓声の中でも、私があなたを見ていること、覚えていてください。'},
+ tsumugi:{emotion:'determined',line:'今はみんなの前で、一番格好よく走ってきて。でも、帰ってきたあなたを最初に抱きしめるのは、私がいいな。'},
+ mizuki:{emotion:'determined',line:'好きだからって、一着は譲らないよ。水面では全力で勝負。終わったら、どっちが先でも恋人に戻ろうね。',offGrid:'私の好きな人は、最後まで勝ちにいく人。思いきり走っておいで。帰ってきたら、照れるくらい抱きしめてあげる。'},
+ natsu:{emotion:'warm',line:'行ってらっしゃい、大好き！　今だけ応援団に戻るね。終わったら恋人の番だから、いっぱい甘えさせてよ。'}
 };
 function map(){return (root.KM_BONDS||Bonds)?.B?.map||{};}
 function ready(c,r){

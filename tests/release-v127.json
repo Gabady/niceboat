@@ -1,0 +1,26 @@
+{
+  "build": "127",
+  "status": "pass",
+  "authoredScenes": 125,
+  "expressionCues": 645,
+  "groups": {
+    "romance": 12,
+    "uiLogic": 23,
+    "storyIntegration": 7
+  },
+  "entrypointModules": 46,
+  "htmlVariants": 5,
+  "inlineVariantScenarioRaceRuns": 12,
+  "sourceSha256": "0662e73656d11a4a4d95438306e0ddfd4ab450b765b3c085c2347025498dbfea",
+  "oldSaveCompatible": true,
+  "physicalDeviceTested": false,
+  "browserTested": false,
+  "validationScope": "Node engine, DOM adapter, actual delivered inline scripts and complete five-entry HTML/CSS/assets parity. No browser layout, touch, audio or FPS verification.",
+  "reports": [
+    "tests/romance-v127.json",
+    "tests/ui-logic-v127.json",
+    "tests/story-integration-v127.json",
+    "tests/safe-sync-v127.json",
+    "tests/parity-v127.json"
+  ]
+}

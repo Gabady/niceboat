@@ -27,6 +27,7 @@ function portraitEmotion(line,person,{scene={},index=0}={}){
  // Scene cues use original utterances, so introduction prefixes and wrapping
  // cannot shift the performance. Cues belong only to this scene's named person.
  const authored=(scene.person?.id===person.id?cueEmotion(scene.expressionCues,raw):null)||
+  root.KM_ROMANCE127?.expression(person.id,raw)||
   (person.id==='natsu'?cueEmotion((root.KM_NATSU_DATA||natsuData)?.expressionCues,raw):null)||expressionCues?.get(person.id,raw);
  if(authored)return authored;
  // Future/older uncued utterances use restrained cues. Negative/mixed emotions

@@ -1,6 +1,6 @@
 {
-  "build": "126",
-  "packageRevision": "endings-cheer-natsu-introductions-2026-10-04",
+  "build": "127",
+  "packageRevision": "character-romance-dates-2026-10-04",
   "files": [
     {
       "path": "AGENTS.md",
@@ -19,13 +19,13 @@
     },
     {
       "path": "IPHONE_README.md",
-      "bytes": 737,
-      "sha256": "00477f6fb1fd9c31649f978fd698c7eb97a4ceb3ef1dcb4964f42efc3d026695"
+      "bytes": 744,
+      "sha256": "043ca2cfc6f743532b6e07b0931b4466c961b4223ff6cae212c21a4b210c36dc"
     },
     {
       "path": "README.md",
-      "bytes": 7141,
-      "sha256": "934ffee804d0abdd0c34f363eba7d23de0e37b46a7a59088ee6dc3a4f7e825e9"
+      "bytes": 3997,
+      "sha256": "27ff34fffd814e49f452e6e5f20948e3b735872a69a65fd59b72a69898250254"
     },
     {
       "path": "README_V120.md",
@@ -56,6 +56,11 @@
       "path": "README_V125.md",
       "bytes": 6901,
       "sha256": "07cc7d397b8a111063892d2771b2a65e0d15fb2523c35b48c6ddb113887e1872"
+    },
+    {
+      "path": "README_V126.md",
+      "bytes": 7141,
+      "sha256": "934ffee804d0abdd0c34f363eba7d23de0e37b46a7a59088ee6dc3a4f7e825e9"
     },
     {
       "path": "art-reference/akari.webp",
@@ -174,23 +179,23 @@
     },
     {
       "path": "index.html",
-      "bytes": 57881476,
-      "sha256": "7747751288aa512a79cd370474e72ec446b26bb26931ecfd33e65de213b9285f"
+      "bytes": 58156314,
+      "sha256": "0662e73656d11a4a4d95438306e0ddfd4ab450b765b3c085c2347025498dbfea"
     },
     {
       "path": "index_android_safe.html",
-      "bytes": 57881599,
-      "sha256": "85a8233238400e01c7bc90c7e8df57c9a6f0c4eeedc1fd03d517e52fe0f2b5cc"
+      "bytes": 58156437,
+      "sha256": "e43dbe17109a366062a4845af51622e03d79ae8f85b70f18c484afc13c90aa59"
     },
     {
       "path": "index_editable.html",
-      "bytes": 1592032,
-      "sha256": "72b51746f5d11a0d2c7f52eeaebc7a259dd8ceaa5f21997072b62bdb37a5c26b"
+      "bytes": 1592935,
+      "sha256": "c18c96c86032d923173d2e1532f0566b07b8abacf4626ec3aa355ea8dcedbac0"
     },
     {
       "path": "index_iphone_safe.html",
-      "bytes": 57883270,
-      "sha256": "3e7ccde689497c7324a49fb16696b07ceab4bee2cf0bf98db30c5356a81a97cb"
+      "bytes": 58158108,
+      "sha256": "7cf6a06293e9c0fd725f47e40a2df3833aea85127378c19c943d067652f4d5ae"
     },
     {
       "path": "src/affinity.js",
@@ -209,13 +214,13 @@
     },
     {
       "path": "src/bonds-data.js",
-      "bytes": 218732,
-      "sha256": "906fde6ed5f10785dcb7fa6fe23c2bf5637be187c301d82e059bbb86ed4d322f"
+      "bytes": 218849,
+      "sha256": "368c91f8b9dc2c641b12ee1b8b02ff95b89926f0b1633dbf3e1a3e2dd2339866"
     },
     {
       "path": "src/bonds.js",
-      "bytes": 26417,
-      "sha256": "9c35b48658225605b175096151233ce74602c83dd94f816cf1d74963275a2ead"
+      "bytes": 27310,
+      "sha256": "d5789633b6463309388e24fdcb0ed527093c60499533a4618bab5e6870af55af"
     },
     {
       "path": "src/campaign-data.js",
@@ -234,8 +239,8 @@
     },
     {
       "path": "src/cheer126.js",
-      "bytes": 4031,
-      "sha256": "baa85ba1dba3090212191f73814839e6b101ece676da577f5eb0d02141c41c45"
+      "bytes": 4103,
+      "sha256": "151ae8188c8b2085cf0ac749dde18d671555e3f9a8fb517ad84a50ff8dc973e3"
     },
     {
       "path": "src/coaching121.js",
@@ -250,7 +255,7 @@
     {
       "path": "src/data.js",
       "bytes": 39937,
-      "sha256": "247b2d548977382f42676212630a90842fede6970013a5548821078c6cfe4111"
+      "sha256": "f5c5b5c46f8250a4592d872698dff069cd68cb8f00ffd8560f0ac4a5451e4571"
     },
     {
       "path": "src/development.js",
@@ -259,8 +264,8 @@
     },
     {
       "path": "src/dialogue.js",
-      "bytes": 7309,
-      "sha256": "49c10d1b4c70a1a38bf8d1a0b036c3e645e35884a72810b2e9a1c0ce63b6aec7"
+      "bytes": 7359,
+      "sha256": "a301ae594e156d965395b7f4f0c940898fd556da4a86bc42f7b9a333a7306dbb"
     },
     {
       "path": "src/drama-data.js",
@@ -279,8 +284,8 @@
     },
     {
       "path": "src/epilogues126.js",
-      "bytes": 70955,
-      "sha256": "1ae807545b1b555162fab1536777a408c08567679e7e87fd8d40eb5499390db3"
+      "bytes": 71114,
+      "sha256": "1eebf8fa760eaf4639b71812abf8d026a0f8dc1aae78a98ff3e1e26aaeb59e9e"
     },
     {
       "path": "src/finale.js",
@@ -368,9 +373,34 @@
       "sha256": "d84543bc7707582a71bd7a80d1e2a8ecc6bdfff3c362a5580bd3b3fe654b0716"
     },
     {
+      "path": "src/romance127-akari-mio.js",
+      "bytes": 65025,
+      "sha256": "bb933fe8a49be49ef2437bff04eff2eeaa11f5529defe644a27ad821a7da3218"
+    },
+    {
+      "path": "src/romance127-mizuki-natsu.js",
+      "bytes": 96050,
+      "sha256": "e74bafb29f7a44c3c91deba5a39fc8939e69ccfb96d250c9f5129aeba2bd0858"
+    },
+    {
+      "path": "src/romance127-nagi-kanade.js",
+      "bytes": 66449,
+      "sha256": "e0a3d64923f54bffa74ad669576ace859f5d821244d988dcedd0e8cb90d7a18a"
+    },
+    {
+      "path": "src/romance127-tsumugi.js",
+      "bytes": 40853,
+      "sha256": "d95719894b6cbde2f89cd78b71ccac86422ad730d886abeb229d16e8d213c39b"
+    },
+    {
+      "path": "src/romance127.js",
+      "bytes": 3963,
+      "sha256": "1a0eccc9818db834e99b89c51e733a0c88e28ddbdbe8ab376ca10eedfc0aa5cb"
+    },
+    {
       "path": "src/script.js",
-      "bytes": 248202,
-      "sha256": "39bbc0cfd03f5dd91f6ee592b37ef24165e32c7b15d58204f54a0773e770ded1"
+      "bytes": 248659,
+      "sha256": "1d2348c9ff82481bdac0465c844fdb72b533e79fff3a4235cebceb3301bfc0a4"
     },
     {
       "path": "src/storage122.js",
@@ -908,6 +938,11 @@
       "sha256": "477e219492de7983779583ad5d39549071d74ab49bac7905346104b037228925"
     },
     {
+      "path": "tests/parity-v127.json",
+      "bytes": 452,
+      "sha256": "62fe71fcf2cdcb5ee6330a63547a4be7be8b34bebd5c87e27cd42ff3c42d4ccc"
+    },
+    {
       "path": "tests/physics-v124.cjs",
       "bytes": 8860,
       "sha256": "3856994813835c72b31f1549af52710d24e3b596777006407658a0f7c8f081b8"
@@ -998,6 +1033,11 @@
       "sha256": "30fc80a3c78adb0f3caf4c1bd9d903400c016ec5ae3fdeaccae57db00141c63c"
     },
     {
+      "path": "tests/release-v127.json",
+      "bytes": 804,
+      "sha256": "f5f66e843e603285ceaa165233ace42b1377cd4eaeaeafe1fe38ae28ab61f29d"
+    },
+    {
       "path": "tests/renderer-v124.cjs",
       "bytes": 6130,
       "sha256": "275d694ef56244a7feeeec5ef66387d5a56c7adcf168e942daa4531f59d6cd2a"
@@ -1026,6 +1066,16 @@
       "path": "tests/review-v122.json",
       "bytes": 1211,
       "sha256": "0a67220d491d515506302d8226e6385d7c8878a701b2e40314b50069691d0950"
+    },
+    {
+      "path": "tests/romance-v127.cjs",
+      "bytes": 51914,
+      "sha256": "9a5ede73898b3a9ba7cf745c92b13e28318d45f129182c228ce56223a96f3677"
+    },
+    {
+      "path": "tests/romance-v127.json",
+      "bytes": 1680,
+      "sha256": "57028ed24d0fd25a9c48aa64ba06ba6520f8fc9d8d995f76966deedfde70ec37"
     },
     {
       "path": "tests/safe-sync-v120.cjs",
@@ -1096,6 +1146,16 @@
       "path": "tests/safe-sync-v126.json",
       "bytes": 1533,
       "sha256": "8faf2c1d45c58b67786ea41e2a1a292acb4d6b66488aef664fd859225fe82761"
+    },
+    {
+      "path": "tests/safe-sync-v127.cjs",
+      "bytes": 3935,
+      "sha256": "b5b4d7eef6ba22cc7a4c293d5de9b0cd2eb8c3fdccf2e00e6ba9cce8d2ae0448"
+    },
+    {
+      "path": "tests/safe-sync-v127.json",
+      "bytes": 1533,
+      "sha256": "8488e598fc16dac3da95d5025d22eb49af92fbdc14fd852fdaadcb24fdb443b1"
     },
     {
       "path": "tests/shaders-v122.json",
@@ -1238,6 +1298,16 @@
       "sha256": "0ca7d0d9740ed8a1dfc231b0f7b6079726c42dcbe8a0b0e2af31aefb7b2a9db6"
     },
     {
+      "path": "tests/story-integration-v127.cjs",
+      "bytes": 9566,
+      "sha256": "5fe00d0ec4f66e3e3ca72f717f16453d1485aa1f365fd2491fd2094b62a71053"
+    },
+    {
+      "path": "tests/story-integration-v127.json",
+      "bytes": 882,
+      "sha256": "878197464007a99947376c6f160d815208a31a47b550a76b2c578acc7a1c3f66"
+    },
+    {
       "path": "tests/story-support-v123.cjs",
       "bytes": 8227,
       "sha256": "ccc36d4495f9b10d4a3ea98fc54d1197231d4e8aa81169208209c98f6da60315"
@@ -1306,6 +1376,16 @@
       "path": "tests/ui-logic-v126.json",
       "bytes": 1999,
       "sha256": "71dbb08a376c8aa53abeb5c799fb113fb6ae4be1b705b9905be4e28e58b935b7"
+    },
+    {
+      "path": "tests/ui-logic-v127.cjs",
+      "bytes": 17674,
+      "sha256": "66275d7ff94959ddfe0ca0b8fce8262d2f4231fef52fd4f2d19812157b7c4be1"
+    },
+    {
+      "path": "tests/ui-logic-v127.json",
+      "bytes": 1999,
+      "sha256": "23d78af2ab37d502d9930a240f1c03bda59ffdb9895571529f92346d75f4a287"
     },
     {
       "path": "tests/unchanged-rules-v121.json",
@@ -1459,8 +1539,8 @@
     },
     {
       "path": "tools/script_order.json",
-      "bytes": 653,
-      "sha256": "8980bc70ee0df1387b8a967b214af031c66a0ff24f0c7335befa66e910635010"
+      "bytes": 776,
+      "sha256": "99ce964070858e847c55d2c128502ac44fe61120f5a9727ca229d800b886b058"
     },
     {
       "path": "tools/sync_safe.py",
@@ -1470,7 +1550,7 @@
     {
       "path": "tools/verify_all.py",
       "bytes": 2728,
-      "sha256": "a9709b6a74f42dbeea655f05aa0bd4db9d69e92c11af533578545977dbd2e04b"
+      "sha256": "6dea44c25323777abcf0983405317d566f9eaed1feb64161112db0002ce1afa2"
     },
     {
       "path": "web/assets/034bd9e11ba96a9a7f4e.webp",
@@ -1784,8 +1864,8 @@
     },
     {
       "path": "web/index.html",
-      "bytes": 179015,
-      "sha256": "27ba21cb78df46827bfe88f9ae61dafd1067c01b0da880bf8bb379f2c2578cb5"
+      "bytes": 179918,
+      "sha256": "f5c6fd5d5e0ba4885816dd0b333822c1b2113a23bcb0ec3f38620efca1424d09"
     },
     {
       "path": "web/src/affinity.js",
@@ -1804,13 +1884,13 @@
     },
     {
       "path": "web/src/bonds-data.js",
-      "bytes": 218734,
-      "sha256": "a8edb85aa0eddfcbf0d97dfa0ffc45fd83bc901c21fd21bdc8afe0b66b56fd3b"
+      "bytes": 218851,
+      "sha256": "c938eb3ee5fd31bb55fad2a6b589b649f93a36201c7e34c5cbf0f181cf2ed35d"
     },
     {
       "path": "web/src/bonds.js",
-      "bytes": 26419,
-      "sha256": "31c3bdc3113ba2ff20f7b0f54e36ac1e9cd228a4dc0b3df7d0c306f390a9880e"
+      "bytes": 27312,
+      "sha256": "f89ce84537fcbaf60ad989a96e2e2879acd082c25dce266e485b14625be83021"
     },
     {
       "path": "web/src/campaign-data.js",
@@ -1829,8 +1909,8 @@
     },
     {
       "path": "web/src/cheer126.js",
-      "bytes": 4033,
-      "sha256": "f7ea8f198899fcad1b60e977e2922257a65c42833256700e0f05a37b872b810e"
+      "bytes": 4105,
+      "sha256": "2a193946b57bb1f18c4d4abc8170b1f72a60a501fc0cc0f3e7714be5cb5ffda7"
     },
     {
       "path": "web/src/coaching121.js",
@@ -1845,7 +1925,7 @@
     {
       "path": "web/src/data.js",
       "bytes": 39939,
-      "sha256": "0a7f9d12eebbc7f66bcaf0d9fe65f78b4c2215b82f73a78e7fc42dc7262aab2b"
+      "sha256": "f70299650e89a540fd6973910da23a4d522eb1cd0e5017c8258ac186d2870d11"
     },
     {
       "path": "web/src/development.js",
@@ -1854,8 +1934,8 @@
     },
     {
       "path": "web/src/dialogue.js",
-      "bytes": 7311,
-      "sha256": "2459b34b461c0e91bd55ac6e2824f8644f523a6f9004ab13475f04294bdeb3d0"
+      "bytes": 7361,
+      "sha256": "8e0533fe2595baed3694a04a399590ab5e0cf54448a0f3425788959bcee5b301"
     },
     {
       "path": "web/src/drama-data.js",
@@ -1874,8 +1954,8 @@
     },
     {
       "path": "web/src/epilogues126.js",
-      "bytes": 70957,
-      "sha256": "4b4aca45c6bb159b320c821547f2e47cc59089dc0f9af8b4d54ce6995826c3fa"
+      "bytes": 71116,
+      "sha256": "4e73537becc418d0dc8d8a490c40b93d7bc402b2004c5003913202e366539ec5"
     },
     {
       "path": "web/src/finale.js",
@@ -1963,9 +2043,34 @@
       "sha256": "507450c8cabcf14e4deb391b2d6ace70f7a07cad2e9ff3f93cded84c7f21523f"
     },
     {
+      "path": "web/src/romance127-akari-mio.js",
+      "bytes": 65027,
+      "sha256": "ce18ab3d7f4587fef31562a1b87f67ecfe63aedee2409fed5724ccd0aa9c5d8d"
+    },
+    {
+      "path": "web/src/romance127-mizuki-natsu.js",
+      "bytes": 96052,
+      "sha256": "cf540c54a3590381a85bd2f7df8a2f324506bfcf565d8b979f13815c5c59981b"
+    },
+    {
+      "path": "web/src/romance127-nagi-kanade.js",
+      "bytes": 66451,
+      "sha256": "28775cce4ae3480fb9fbd5912dc9e07cff81167f72fbf20d36d2994eb0138d79"
+    },
+    {
+      "path": "web/src/romance127-tsumugi.js",
+      "bytes": 40855,
+      "sha256": "1bedbf1d82f3ed3f8745df15076b37bcd8ace4eba63d46d55a892cbf241316e8"
+    },
+    {
+      "path": "web/src/romance127.js",
+      "bytes": 3965,
+      "sha256": "9e99154214e0fa7aab8dc467d7166fab2f4f505ef2ffefdae1e17158de92e716"
+    },
+    {
       "path": "web/src/script.js",
-      "bytes": 248204,
-      "sha256": "1e8ff40c141d9e1d1ec8482be926d785cce9bee4fefb9068dacaab978faa8abc"
+      "bytes": 248661,
+      "sha256": "484ecbba106123f68c3c23c11da9b165111f899a0ddccdad7058464abb53fa3a"
     },
     {
       "path": "web/src/storage122.js",
