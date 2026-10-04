@@ -1,0 +1,1048 @@
+{
+  "build": "125",
+  "scope": "Permanent ability growth, all five stats; actual engine entry points and threshold math",
+  "checks": [
+    "B/A/S の減衰係数、5能力共通、C以下の係数維持",
+    "5能力の全境界で大きい報酬を区間ごとに減衰、端数・上限維持",
+    "負の増分は成長減衰・恒久成長倍率を掛けず、ゼロは値維持",
+    "V124との150組比較：C以下は維持、B以上は各実成長経路で減速",
+    "恒久能力への直接代入は初期生成/NPCのみ、全獲得元の減衰呼出を監査",
+    "既存保存データを読み込んでも能力を削減しない"
+  ],
+  "rates": [
+    {
+      "value": 45,
+      "old": 0.9,
+      "current": 0.9,
+      "reductionPercent": 0
+    },
+    {
+      "value": 60,
+      "old": 0.8,
+      "current": 0.8,
+      "reductionPercent": 0
+    },
+    {
+      "value": 70,
+      "old": 0.6,
+      "current": 0.45,
+      "reductionPercent": 25
+    },
+    {
+      "value": 85,
+      "old": 0.4,
+      "current": 0.2,
+      "reductionPercent": 50
+    },
+    {
+      "value": 95,
+      "old": 0.16,
+      "current": 0.07,
+      "reductionPercent": 56.25
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "師匠合同練習",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 1.94,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 1.94,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバル合同練習",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 1.97
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 1.97
+      }
+    },
+    {
+      "name": "ライバルの個別特訓",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.5
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.5
+      }
+    },
+    {
+      "name": "能力の新規獲得",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 1.49,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 1.49,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "メインシナリオの選択",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0.2,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0.2,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバルシナリオの選択",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.43
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.43
+      }
+    },
+    {
+      "name": "師匠シナリオの選択",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.31,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.31,
+        "power": 0
+      }
+    },
+    {
+      "name": "通常イベントの選択",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.5,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.5,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "約束達成の報酬",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.99
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.99
+      }
+    },
+    {
+      "name": "レース結果の基本成長",
+      "level": 45,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0.55,
+        "turn": 0.55,
+        "start": 0.55,
+        "accel": 0.55,
+        "power": 0.55
+      },
+      "oldGains": {
+        "speed": 0.55,
+        "turn": 0.55,
+        "start": 0.55,
+        "accel": 0.55,
+        "power": 0.55
+      }
+    },
+    {
+      "name": "師匠合同練習",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 1.72,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 1.72,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバル合同練習",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 1.75
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 1.75
+      }
+    },
+    {
+      "name": "ライバルの個別特訓",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.44
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.44
+      }
+    },
+    {
+      "name": "能力の新規獲得",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 1.32,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 1.32,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "メインシナリオの選択",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0.18,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0.18,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバルシナリオの選択",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.39
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.39
+      }
+    },
+    {
+      "name": "師匠シナリオの選択",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.28,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.28,
+        "power": 0
+      }
+    },
+    {
+      "name": "通常イベントの選択",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.44,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.44,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "約束達成の報酬",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.88
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.88
+      }
+    },
+    {
+      "name": "レース結果の基本成長",
+      "level": 60,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0.62,
+        "turn": 0.62,
+        "start": 0.62,
+        "accel": 0.62,
+        "power": 0.62
+      },
+      "oldGains": {
+        "speed": 0.62,
+        "turn": 0.62,
+        "start": 0.62,
+        "accel": 0.62,
+        "power": 0.62
+      }
+    },
+    {
+      "name": "師匠合同練習",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.97,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 1.29,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバル合同練習",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.99
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 1.32
+      }
+    },
+    {
+      "name": "ライバルの個別特訓",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.25
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.33
+      }
+    },
+    {
+      "name": "能力の新規獲得",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.75,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.99,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "メインシナリオの選択",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0.1,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0.13,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバルシナリオの選択",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.22
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.29
+      }
+    },
+    {
+      "name": "師匠シナリオの選択",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.16,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.21,
+        "power": 0
+      }
+    },
+    {
+      "name": "通常イベントの選択",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.25,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.33,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "約束達成の報酬",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.5
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.66
+      }
+    },
+    {
+      "name": "レース結果の基本成長",
+      "level": 70,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0.35,
+        "turn": 0.35,
+        "start": 0.35,
+        "accel": 0.35,
+        "power": 0.35
+      },
+      "oldGains": {
+        "speed": 0.46,
+        "turn": 0.46,
+        "start": 0.46,
+        "accel": 0.46,
+        "power": 0.46
+      }
+    },
+    {
+      "name": "師匠合同練習",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.43,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.86,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバル合同練習",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.44
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.88
+      }
+    },
+    {
+      "name": "ライバルの個別特訓",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.11
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.22
+      }
+    },
+    {
+      "name": "能力の新規獲得",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.33,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.66,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "メインシナリオの選択",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0.04,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0.09,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバルシナリオの選択",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.1
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.19
+      }
+    },
+    {
+      "name": "師匠シナリオの選択",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.07,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.14,
+        "power": 0
+      }
+    },
+    {
+      "name": "通常イベントの選択",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.11,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.22,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "約束達成の報酬",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.22
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.44
+      }
+    },
+    {
+      "name": "レース結果の基本成長",
+      "level": 85,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0.15,
+        "turn": 0.15,
+        "start": 0.15,
+        "accel": 0.15,
+        "power": 0.15
+      },
+      "oldGains": {
+        "speed": 0.31,
+        "turn": 0.31,
+        "start": 0.31,
+        "accel": 0.31,
+        "power": 0.31
+      }
+    },
+    {
+      "name": "師匠合同練習",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.15,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.34,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバル合同練習",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.15
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.35
+      }
+    },
+    {
+      "name": "ライバルの個別特訓",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.04
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.09
+      }
+    },
+    {
+      "name": "能力の新規獲得",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.12,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.26,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "メインシナリオの選択",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0.02,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0.04,
+        "start": 0,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "ライバルシナリオの選択",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.03
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.08
+      }
+    },
+    {
+      "name": "師匠シナリオの選択",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.02,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0.06,
+        "power": 0
+      }
+    },
+    {
+      "name": "通常イベントの選択",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.04,
+        "accel": 0,
+        "power": 0
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0.09,
+        "accel": 0,
+        "power": 0
+      }
+    },
+    {
+      "name": "約束達成の報酬",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.08
+      },
+      "oldGains": {
+        "speed": 0,
+        "turn": 0,
+        "start": 0,
+        "accel": 0,
+        "power": 0.18
+      }
+    },
+    {
+      "name": "レース結果の基本成長",
+      "level": 95,
+      "stage": 2,
+      "mode": "normal",
+      "gains": {
+        "speed": 0.05,
+        "turn": 0.05,
+        "start": 0.05,
+        "accel": 0.05,
+        "power": 0.05
+      },
+      "oldGains": {
+        "speed": 0.12,
+        "turn": 0.12,
+        "start": 0.12,
+        "accel": 0.12,
+        "power": 0.12
+      }
+    }
+  ],
+  "samples": 150,
+  "passed": 6
+}

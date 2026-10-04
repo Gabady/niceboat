@@ -1,0 +1,66 @@
+{
+  "version": 125,
+  "scope": "Node presentation logic, authored dialogue and atlas metadata; not browser/phone rendering",
+  "checks": [
+    {
+      "name": "Six identities each have authored joy, doubt, resolve, surprise and affection cues",
+      "passed": true,
+      "count": 213,
+      "perHeroine": {
+        "akari": 32,
+        "mio": 31,
+        "nagi": 43,
+        "kanade": 32,
+        "tsumugi": 30,
+        "mizuki": 45
+      }
+    },
+    {
+      "name": "Main chapters, daily visits, recovery chapters and finales use authored performances",
+      "passed": true,
+      "main": 42,
+      "visits": 12,
+      "recovery": 14,
+      "finales": 8
+    },
+    {
+      "name": "Player, unknown speaker, and narration never borrow the heroine smile",
+      "passed": true
+    },
+    {
+      "name": "Negated and mixed joy never uses a smile or blush through keyword matching",
+      "passed": true
+    },
+    {
+      "name": "Each confession changes expression only on the heroine utterance",
+      "passed": true
+    },
+    {
+      "name": "Authored cues remain stable through actual long-utterance page splitting",
+      "passed": true
+    },
+    {
+      "name": "Explicit scene emotion belongs to its actual speaker and is validated",
+      "passed": true
+    },
+    {
+      "name": "Three-by-two atlas uses all six exact positions with stable identity and accessible labels",
+      "passed": true
+    },
+    {
+      "name": "Existing three-panel characters and base portrait fallback retain identity",
+      "passed": true
+    },
+    {
+      "name": "Bonds story, choices and rewards remain byte-identical to V124",
+      "passed": true
+    },
+    {
+      "name": "Actual heroine sheets declare the required six-state layout",
+      "passed": true,
+      "available": 6
+    }
+  ],
+  "passed": 11,
+  "failed": 0
+}

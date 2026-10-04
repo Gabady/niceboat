@@ -1,0 +1,161 @@
+{
+  "build": 125,
+  "count": 6,
+  "totalStates": 36,
+  "preservedLegacy": [
+    "akamine",
+    "rival_03"
+  ],
+  "assets": [
+    {
+      "id": "akari",
+      "width": 1536,
+      "height": 1024,
+      "states": [
+        "calm",
+        "warm",
+        "thoughtful",
+        "determined",
+        "surprised",
+        "blush"
+      ],
+      "webpBytes": 268276,
+      "pngSha256": "2737e41aa00bbc6a1f3cb854ce548988fedc41aaf8d886fc4b12d5bf5de68b5a",
+      "webpSha256": "f028245264e05139b092d133c784b733c216d54f151d3e9974b8fdf17a4a3c0e",
+      "visualReview": "source identity, six expressions, matching costume/backdrop and 3x2 crop layout inspected",
+      "cellSha256": [
+        "40dc93fafdd008dd199ab46d934ad3ad23378dc9fed780cd78b2d7e1c4b4bc63",
+        "63094a06ee9bcc2364b1c5f8a87c90f60b58edb9c9e125c99e8be9825e3ab208",
+        "93d09323779f7f944291d5f5ebb0e1e908ef432ccae3370fa1285badacc13624",
+        "51d74b21e060325f9ea0c0649b9a74deb2579349309ff3b986f545a5c245d32e",
+        "d4ceb5ba98d16670556bb080b0b522aadc562c412cecef9f8e294c8c696432e6",
+        "405df1b9c669ab59d07852f46919c5281e58fd09be9f7ceead89f4ef48132022"
+      ]
+    },
+    {
+      "id": "mio",
+      "width": 1536,
+      "height": 1024,
+      "states": [
+        "calm",
+        "warm",
+        "thoughtful",
+        "determined",
+        "surprised",
+        "blush"
+      ],
+      "webpBytes": 181624,
+      "pngSha256": "2ffaf8e16e2e26076f9c97359d163acd8c5b3579a9a7af8b2f5a782b7b2c9bf3",
+      "webpSha256": "80e0b9f009755ee356407dda81b43edeb8b7a085bfe6d19e39c3c3c68fb735c6",
+      "visualReview": "source identity, six expressions, matching costume/backdrop and 3x2 crop layout inspected",
+      "cellSha256": [
+        "c858cfb8b3528d37451cdcce693b4e84078e90f8895038fdbf2b008919a5be4e",
+        "722d2dc534869feac6c83c9aac971838895dcc731da9f0b77ad70cc1502d1cef",
+        "028eadb2d8cf04a70841af3cacff05513b7ff796d187e1a1e1ebbd5676accbf3",
+        "ca5c9b2de95f29ec1ce595b465f16d42e79c95b6a3002c625a2b850fa1005330",
+        "5a2cf8e13746e96203ad437417764a6e19cb94d3db2a21fbb0510c7da8de1c27",
+        "c53fe72b4dcf06ab4e7b7de74e2c1a181fefaf941bd75560ec1bf09d8d7c228b"
+      ]
+    },
+    {
+      "id": "nagi",
+      "width": 1536,
+      "height": 1024,
+      "states": [
+        "calm",
+        "warm",
+        "thoughtful",
+        "determined",
+        "surprised",
+        "blush"
+      ],
+      "webpBytes": 254554,
+      "pngSha256": "f5360b90477fcca7aab3028c215fa657df3ce98e2c0c0271faf00acf6c3fa715",
+      "webpSha256": "dc5538d2a5fa96d961e55cf4c611281bc35502b00d767cd3639e5c46ee6e0b86",
+      "visualReview": "source identity, six expressions, matching costume/backdrop and 3x2 crop layout inspected",
+      "cellSha256": [
+        "1b44ad7dee071b68a64490a1e0e460b839cfab7e1840216f2519b9539fa9a76d",
+        "04919135c8e2e4d4944b32b715916335a756c865ac33e3238602aa0492b1e922",
+        "88f345b2325afdf1b0b0ee99be8f848a7d41205c66208a5833af81d159c13304",
+        "5e1355ad636d802ea010567f4b8c413299b8d24789ca6fa08c6ff9691a1e32ba",
+        "9805721098ed0f336bfe4cfb1b61f24fa89690d524031c2febee997256e184ae",
+        "c7c41e264f34c42d93e65ab5dd4b60b39d367f0248dc5f45697890842e0bde3e"
+      ]
+    },
+    {
+      "id": "kanade",
+      "width": 1536,
+      "height": 1024,
+      "states": [
+        "calm",
+        "warm",
+        "thoughtful",
+        "determined",
+        "surprised",
+        "blush"
+      ],
+      "webpBytes": 198824,
+      "pngSha256": "a1368f44c4e61585e85fcdc15e78ec265440f7a08d8d5b0ebb1f2a1274878a13",
+      "webpSha256": "805dc67aa03ee30dfd2a888aef8b627c3df84d5e03cb37b137b5ab6610138e39",
+      "visualReview": "source identity, six expressions, matching costume/backdrop and 3x2 crop layout inspected",
+      "cellSha256": [
+        "84bbc145457d456c524a02311ea5fda4fe5bcc7520bdb4728e13e3ce6ed553a0",
+        "2e67c0e89e7506d1e72e8f3477904c6e84221e68155b5ef36042f99ceab86a6d",
+        "cff41e233b4b903a578ae3b8234cfb1a5139f552bcc58a5fdb43209fa67c88db",
+        "d84297764d5908e3476578dffea89f9edb6f91b1c536f8359b125a5caf97c704",
+        "147fe3346888ad2aee165d54a9b0cc9a0ea316e331e210d58782a7e7ebe8b171",
+        "0e6e03278c428e431857a8b7a80844ff6834498c15ae96602a06422f316405d8"
+      ]
+    },
+    {
+      "id": "tsumugi",
+      "width": 1536,
+      "height": 1024,
+      "states": [
+        "calm",
+        "warm",
+        "thoughtful",
+        "determined",
+        "surprised",
+        "blush"
+      ],
+      "webpBytes": 219820,
+      "pngSha256": "e6639a8dd3f667933e7da0a4b3ab0227791f33ce0d78e6fcac3ec54ed0c085e9",
+      "webpSha256": "2ab4a06e2ee29032f25bc23da206797947d51fcadfdbbe44f9ec35acc3fc1911",
+      "visualReview": "source identity, six expressions, matching costume/backdrop and 3x2 crop layout inspected",
+      "cellSha256": [
+        "d03c06c5db9bde56bb829e63e16c01ed1c4f69539a1d2844811e6458c93875f3",
+        "8896035d51f58d93e5a801cdaf0a2c3be8baf709fac5ba4b79171789d3a35bf7",
+        "8a7e500e39c6b7e8564866c9ed2d6421fa5da93946b9996eacf20313fd5c19ee",
+        "4751874ad0f7285bdac6bd935aba5809c8dfe84408a29bfc1c794309f1297eae",
+        "f94f79cbe02431b76d4c178a97078d7bf1249e3f3012da7768bdefa8a11843ac",
+        "7b1a90fe57e4baf2997079cfdf44f30d198f58c38dd5c5740b150755a1247216"
+      ]
+    },
+    {
+      "id": "mizuki",
+      "width": 1536,
+      "height": 1024,
+      "states": [
+        "calm",
+        "warm",
+        "thoughtful",
+        "determined",
+        "surprised",
+        "blush"
+      ],
+      "webpBytes": 228970,
+      "pngSha256": "bfe9b6e0709b81a6004fafce8b06d9ef9fb50d10fe5d7f1617fe2bea1105267b",
+      "webpSha256": "0a41e6fe7223c81d2aa556dabab9249b4d00a965182836fdc450bd9628bffb53",
+      "visualReview": "source identity, six expressions, matching costume/backdrop and 3x2 crop layout inspected",
+      "cellSha256": [
+        "7569fb9a88ed8410de3f74adcd9ed7f315e93fca546430fdf94bea3650a93386",
+        "8d99dc952cd5dd210044e69e076bd599dd01e73f8e1d6861a76834e08495785c",
+        "9d632db4bf9ae8a3dd6d4b7de6a6cd86ec89a118085319ae45f4698fe75640c7",
+        "cd647910355f299088d353fae38ebbbbdea23e91746dc9f7c4ac31628b76e19b",
+        "8e742e152c4b0274a25fe8681ce14e85fa86158d912ebd4aef5fb8386710402c",
+        "c3de172ca5af827df9be3b2acb14c8184fbe8b313df012ec8c44bc498cb046eb"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 
 
-/* 競艇物語 V124 — mobile controls, fixed-step loop, concise HUD and peripheral water spray. */
+/* 競艇物語 V125 — mobile controls, fixed-step loop, concise HUD and peripheral water spray. */
 (function(root){
 'use strict';
 const R=root.KM_RACING||(typeof require==='function'?require('./racing.js'):null);
@@ -38,17 +38,17 @@ function postureDisplay(b,r,assist=false){
 }
 function steeringDisplay(b,p,wanted){const limits=R.steeringLimits(b,p);return {actual:b.steer,requested:R.clamp(wanted,-1,1),limit:limits.limit,load:limits.load,label:limits.load>1.1?'舵が重い':limits.load>.45?'水圧あり':'舵は軽め'};}
 function signatureCaption(event){return event.variant==='boost'?'1周目 · 出力上昇':event.variant==='recoil'?'3周目 · 反動':event.variant==='pivot'?(event.lap||1)+'周目 · 全速旋回':'';}
-const FX_THRESHOLDS={speedKmh:55,wind:6,rain:.6};
+const FX_THRESHOLDS={speedKmh:48,wind:6,rain:.6};
 function effectLevels(d,r){
  const b=R.own(d),kmh=b.speed*3.6,wind=r.env.windSpeed||0,rain=r.env.weather==='雨'?.65+wind*.025:0;
  const rough=R.clamp(wind*.06+(rain?.24:0)+(r.venue?.roughness||0)*.28+R.clamp(b.wakeLoad||0,0,1)*.36,0,1);
- const planing=R.clamp((kmh-24)/52,0,1);
- return {speed:kmh>=FX_THRESHOLDS.speedKmh?R.clamp(.15+(kmh-55)/35,0,1):0,
+ const ramp=R.clamp((kmh-24)/52,0,1),planing=ramp*ramp*(3-2*ramp),fast=R.clamp((kmh-FX_THRESHOLDS.speedKmh)/40,0,1);
+ return {speed:fast*fast*(3-2*fast),
   wind:wind>=FX_THRESHOLDS.wind?R.clamp(.2+(wind-6)*.2,0,1):0,rain:rain>=FX_THRESHOLDS.rain?rain:0,
   spray:planing*(.35+rough*.65),rough,
   side:r.env.wind==='横風'?1:r.env.wind==='向かい風'?-.3:.25};
 }
-// Visual-only streaks: deterministic, no game RNG, no physics mutations, no image assets.
+// Rain and hull spray only: deterministic, no screen-space speed lines or neon edges.
 function paintWeather(ctx,w,h,levels,time,motion=true,quality='full'){
  ctx.clearRect(0,0,w,h);if(quality==='off')return 0;
  const t=Number.isFinite(time)?time:0,frac=n=>n-Math.floor(n),soft=quality==='soft';let count=0;
@@ -65,23 +65,17 @@ function paintWeather(ctx,w,h,levels,time,motion=true,quality='full'){
    }
   }
  }
- if(levels.wind){const n=Math.floor((5+levels.wind*7)*(soft?.5:1));
-  for(let i=0;i<n;i++){const side=i%2?-1:1,x=side>0?w*.94:w*.06,y=(.25+frac(i*.618+t*.18)*.46)*h;line(x,y,-side*(10+levels.wind*22),5+levels.wind*7,.11+levels.wind*.10);}
- }
- if(levels.speed){const n=Math.floor((8+levels.speed*12)*(soft?.5:1));
-  for(let i=0;i<n;i++){const side=i%2?-1:1,p=frac(i*.618+t*(.5+levels.speed*.7)),x=w*.5+side*w*(.36+p*.16),y=h*(.38+frac(i*.417)*.36);line(x,y,side*(9+levels.speed*26),(y-h*.4)*.18,.10+levels.speed*.16);}
- }
  if(levels.spray>0){
   // A thin, short-lived spray sheds from the hull into the lower outer edges.
   // Keep droplets away from the racing line; no opaque screen-sized foam or stored particles.
-  const energy=R.clamp(levels.spray,0,1),n=Math.floor((8+energy*18)*(soft?.45:1)),scale=R.clamp(Math.min(w,h)/393,.8,1.55);
+  const energy=R.clamp(levels.spray,0,1),n=soft?10:24,scale=R.clamp(Math.min(w,h)/393,.8,1.55);
   for(let i=0;i<n;i++){
-   const side=i%2?1:-1,seed=i+31,life=.32+frac(seed*.56984)*.28,age=frac(t/life+seed*.618034);
-   const fade=Math.sin(age*Math.PI)*(soft?.62:1),spread=.29+frac(seed*.754877)*.07+age*(.08+energy*.075);
-   const lift=.48+energy*.10+frac(seed*.41421)*.14,x=w*(.5+side*spread),y=h*(.89-lift*age+.48*age*age);
-   if(x<0||x>w||fade<.12)continue;
-   const size=(1.2+frac(seed*.27183)*1.9)*scale,dx=side*size*(.6+age),dy=size*(-.9+age*2.2);
-   line(x,y,dx,dy,(.14+energy*.18)*fade,(.65+frac(seed*.14142)*.75)*scale);
+   const side=i%2?1:-1,seed=i+31,life=.30+frac(seed*.56984)*.22,age=frac(t/life+seed*.618034);
+   const fade=Math.sin(age*Math.PI)*(soft?.62:1)*energy,spread=.31+frac(seed*.754877)*.06+age*.14;
+   const lift=.43+frac(seed*.41421)*.16,x=w*(.5+side*spread),y=h*(.92-lift*age+.46*age*age);
+   if(x<0||x>w||fade<.003)continue;
+   const size=(.8+frac(seed*.27183)*1.55)*scale,dx=side*size*(.6+age),dy=size*(-.9+age*2.2);
+   line(x,y,dx,dy,.32*fade,(.55+frac(seed*.14142)*.60)*scale);
   }
  }
  return count;
@@ -126,7 +120,7 @@ function mount(r,settings,callbacks){
   const scale=Math.min(1.5,root.devicePixelRatio||1),rw=Math.round(w*scale),rh=Math.round(h*scale);
   if(fxCanvas.width!==rw||fxCanvas.height!==rh){fxCanvas.width=rw;fxCanvas.height=rh;}
   fxContext.setTransform(scale,0,0,scale,0,0);
-  if(d.paused||d.finished)fxContext.clearRect(0,0,w,h);else {paintWeather(fxContext,w,h,effectLevels(d,r),d.elapsed,motion,settings.raceFX||'full');if(settings.raceFX!=='off')T.paint(fxContext,w,h,thrillVisual,d.elapsed,!motion||settings.raceFX==='soft');}
+  if(d.paused||d.finished)fxContext.clearRect(0,0,w,h);else paintWeather(fxContext,w,h,effectLevels(d,r),d.elapsed,motion,settings.raceFX||'full');
  }
  let motion=settings.motion!==false&&!(root.matchMedia&&root.matchMedia('(prefers-reduced-motion: reduce)').matches);
  function resetInput(){input.steer=input.throttle=0;input.posture=R.postureStep(R.own(d).postureTarget);keys.clear();Object.keys(pointers).forEach(k=>pointers[k]=null);d.controls={steer:0,throttle:0,posture:input.posture};node('throttle-pedal').classList.remove('held');}
@@ -136,7 +130,7 @@ function mount(r,settings,callbacks){
   const area=node('drive-overlay');if(!d.paused&&!error&&!r.done){area.hidden=true;return;}area.hidden=false;
   const b=R.own(d);if(error){area.innerHTML='<div class="drive-dialog"><span class="drive-eyebrow">描画の準備</span><h2>レースは一時停止中</h2><p>'+esc(error)+'</p>'+button('描画を再開','retry','primary')+(r.done?'<button class="btn primary large" data-action="result">リザルトへ</button>':(R.requiresManual(r)?button('軽量表示で再開','light'):button('観戦モードに切り替える','skip')))+button('タイトルへ戻る','exit')+'</div>';return;}
   if(r.done){area.innerHTML='<div class="drive-dialog finish-dialog"><span class="drive-eyebrow">FINISH</span>'+(R.dramaticRace(d)?'<div class="dramatic-race"><strong>DramaticRace</strong><p>'+esc(R.dramaticRace(d))+'</p></div>':'')+'<h2>'+(b.capsized?'転覆':b.startFault==='F'?'フライング（F）':b.startFault==='L'?'出遅れ（L）':b.dnf?'リタイア':R.place(d,b)+'着')+'</h2><p>'+esc(b.name)+' · '+clock(b.finishTime)+'</p><button class="btn primary large" data-action="result">リザルトへ</button>'+debugHTML()+'</div>';return;}
-  area.innerHTML='<div class="drive-dialog"><span class="drive-eyebrow">'+(r.drill?'PRACTICE':d.started?'PAUSED':'FIRST PERSON / 3 LAPS')+'</span><h2>'+(r.drill?'短い区間を、もう一度。':d.started?'水面で、ひと息。':'自分の手で、3周。')+'</h2><p class="drive-instructions"><b>左下を左右に動かして舵　姿勢は3段階</b><br>直線は伏せる、旋回は起こす。姿勢ボタンをタップ、または左下を上下に短く動かすと1段切り替え。指を離しても維持します。<br><b>右下を押し続けて加速</b><br>全開中は旋回でも速度を維持。姿勢だけで曲がれないときは、手前でアクセルを離します。ライン通過までは直進固定。時計が頂点でスタート、色帯は踏み始めの目安です。</p><details class="drive-start-tips"><summary>スタートのコツ</summary><p>スタート能力がB以上なら、早めの通過に少し余裕があります。C以下はスタート時刻前の通過でフライングです。B以上でも、早すぎる通過はフライングになります。</p></details><div class="drive-mini-guide"><span>← 左回り</span><span>'+(r.drill?'練習区間で終了 · 成績には反映なし':'600m × 3周 · ブイの外を回る')+'</span></div>'+button(d.started?'操船を再開':'水面へ出る','resume','primary')+'<div class="drive-options"><label><input id="drive-posture-setting" type="checkbox"'+(settings.postureAssist?' checked':'')+'> 姿勢を自動で補助</label><label><input id="drive-haptics-setting" type="checkbox"'+(settings.haptics?' checked':'')+'> 接触・高速・能力の振動</label><label><input id="drive-guide-setting" type="checkbox"'+(settings.guide!==false?' checked':'')+'> 水面の進行ガイド</label><label><input id="drive-motion-setting" type="checkbox"'+(motion?' checked':'')+'> 視点の揺れ・雨風の動き</label><label><input id="drive-render-setting" type="checkbox"'+(renderer?.mode==='canvas'?' checked':'')+'> 軽量表示</label></div>'+(d.started?button('立て直す · 4秒停止','rescue'):'')+(r.drill?'<p>練習の結果は育成に反映されません。</p>':R.requiresManual(r)?'<p class="final-entry-note">決勝・準優勝戦は自分で操船します。</p>':button(d.started?'ここから観戦に切り替える':'観戦モードに切り替える','skip'))+'<div class="drive-menu-row">'+button(r.drill?'練習を選び直す':'タイトルへ','exit')+(d.started&&!r.drill?button('このレースをリタイア','retire'):'')+'</div><p class="drive-key-hint">PC: ← → / A D 操舵 · ↑ ↓ 姿勢 · W / Space 加速 · Esc 一時停止</p>'+debugHTML()+'</div>';
+  area.innerHTML='<div class="drive-dialog"><span class="drive-eyebrow">'+(r.drill?'PRACTICE':d.started?'PAUSED':'FIRST PERSON / 3 LAPS')+'</span><h2>'+(r.drill?'短い区間を、もう一度。':d.started?'水面で、ひと息。':'自分の手で、3周。')+'</h2><p class="drive-instructions"><b>左下を左右に動かして舵　姿勢は3段階</b><br>直線は伏せる、旋回は起こす。姿勢ボタンをタップ、または左下を上下に短く動かすと1段切り替え。指を離しても維持します。<br><b>右下を押し続けて加速</b><br>全開中は旋回でも速度を維持。姿勢だけで曲がれないときは、手前でアクセルを離します。ライン通過までは直進固定。時計が頂点でスタート、色帯は踏み始めの目安です。</p><details class="drive-start-tips"><summary>スタートのコツ</summary><p>スタート能力がA以上なら、早めの通過に少し余裕があります。B以下は時計が頂点に戻る前の通過でフライングです。ただし、早発を支える特殊能力がある場合は例外です。A以上でも、早すぎる通過はフライングになります。</p></details><div class="drive-mini-guide"><span>← 左回り</span><span>'+(r.drill?'練習区間で終了 · 成績には反映なし':'600m × 3周 · ブイの外を回る')+'</span></div>'+button(d.started?'操船を再開':'水面へ出る','resume','primary')+'<div class="drive-options"><label><input id="drive-posture-setting" type="checkbox"'+(settings.postureAssist?' checked':'')+'> 姿勢を自動で補助</label><label><input id="drive-haptics-setting" type="checkbox"'+(settings.haptics?' checked':'')+'> 接触・高速・能力の振動</label><label><input id="drive-guide-setting" type="checkbox"'+(settings.guide!==false?' checked':'')+'> 水面の進行ガイド</label><label><input id="drive-motion-setting" type="checkbox"'+(motion?' checked':'')+'> 視点の揺れ・雨風の動き</label><label><input id="drive-render-setting" type="checkbox"'+(renderer?.mode==='canvas'?' checked':'')+'> 軽量表示</label></div>'+(d.started?button('立て直す · 4秒停止','rescue'):'')+(r.drill?'<p>練習の結果は育成に反映されません。</p>':R.requiresManual(r)?'<p class="final-entry-note">決勝・準優勝戦は自分で操船します。</p>':button(d.started?'ここから観戦に切り替える':'観戦モードに切り替える','skip'))+'<div class="drive-menu-row">'+button(r.drill?'練習を選び直す':'タイトルへ','exit')+(d.started&&!r.drill?button('このレースをリタイア','retire'):'')+'</div><p class="drive-key-hint">PC: ← → / A D 操舵 · ↑ ↓ 姿勢 · W / Space 加速 · Esc 一時停止</p>'+debugHTML()+'</div>';
  }
  function setUpRenderer(forcedMode){
   if(renderer){renderer.destroy();renderer=null;}canvas=root.KM_RACE_RENDERER.freshCanvas(canvas);
@@ -224,7 +218,7 @@ function mount(r,settings,callbacks){
   const recent=d.logs.filter(l=>['phase','lead','capsize','debuff','reflect','warning','goal','ability','weak'].includes(l.kind)).slice(-1)[0]||d.logs[d.logs.length-1];if(recent&&logCount!==recent.text){node('drive-live-text').textContent=recent.text;logCount=recent.text;}
   if(renderer){const visible=ranked.filter(n=>!n.isPlayer).map(n=>({n,p:renderer.project(n.x,n.capsized?.5:2,n.z)})).filter(x=>x.p&&x.p.visible&&x.p.depth<120).sort((a,b)=>a.p.x-b.p.x);const placed=[];
    node('opponent-labels').innerHTML=visible.map(({n,p})=>{let y=p.y;for(const q of placed)if(Math.abs(p.x-q.x)<46&&Math.abs(y-q.y)<26)y=q.y-27;placed.push({x:p.x,y});return '<span class="world-boat-label" style="left:'+p.x+'px;top:'+y+'px"><i class="mini-boat boat-'+n.frame+'">'+n.frame+'</i>'+(n.capsized?'転':R.place(d,n)+'位')+'</span>';}).join('');}
-  const fx=effectLevels(d,r);node('weather-fx-label').textContent=[fx.speed?'速度風':null,fx.wind?'強風':null,fx.rain?'雨脚':null,R.tiltInstability(b,R.performance(b,d,r))>.15?'ティルト不安定':null].filter(Boolean).join(' / ');
+  const fx=effectLevels(d,r);node('weather-fx-label').textContent=[fx.wind?'強風':null,fx.rain?'雨脚':null,R.tiltInstability(b,R.performance(b,d,r))>.15?'ティルト不安定':null].filter(Boolean).join(' / ');
   updateEvents(now);
   if(root.KM_RACE_DIALOGUE&&!r.drill){talkState=root.KM_RACE_DIALOGUE.update(talkState,d,r);shell.classList.toggle('speaking',talkState.items.length>0&&!cutinShown);const key=(cutinShown?'hidden:':'shown:')+talkState.items.map(x=>x.id).join(':');if(key!==talkKey){talkKey=key;node('race-voices').innerHTML=cutinShown?'':root.KM_RACE_DIALOGUE.html(talkState);}}
   if(b.finishTime!==null)node('drive-warning').textContent='FINISH · '+place+'着 · '+clock(b.finishTime);

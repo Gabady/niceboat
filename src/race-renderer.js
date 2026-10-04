@@ -1,6 +1,6 @@
 
 
-/* v116 — Japanese racing hydroplanes, sculpted safety gear and clear six-lane liveries. Drawing never changes race state. */
+/* v125 — Hydrodynamic bow sheets and fine spray with Japanese racing hydroplanes. Drawing never changes race state. */
 (function(root){
 'use strict';
 const R=root.KM_RACING||(typeof require==='function'?require('./racing.js'):null);
@@ -617,6 +617,36 @@ function buoyScene(x,z,time,settings,emit){
  if(settings.motion!==false)emit('flat',model(x,.045,z,0,3.15,1,3.15),[.14,1,1],5);
 }
 
+// Local sheets split at the bow and are carried aft along each side of the hull.
+// Their position is in metres, so projection, turns and posture supply the speed
+// sensation naturally.  Fixed particle slots fade continuously with hull speed.
+function washProfile(n){
+ const v=R.clamp((Number(n.speed)||0)/25,0,1),planing=v*v*(3-2*v);
+ const turn=R.clamp(Math.abs(n.steer||0)+Math.abs(n.yawRate||0)*.4,0,1);
+ return {planing,turn,wash:planing*.92};
+}
+function hullWashScene(n,d,settings,player,emit){
+ if(n.speed<=.1||n.capsized)return;
+ const fx=Math.cos(n.heading),fz=Math.sin(n.heading),time=d.elapsed,{planing,turn,wash}=washProfile(n);
+ for(let i=0;i<3;i++){const tail=2.7+i*1.7;emit('flat',model(n.x-fx*tail,.052,n.z-fz*tail,n.heading,4.2,1,1.15+i*.50),[wash*(1-i*.17),1,1],5);}
+ for(const side of [-1,1]){const spread=side*(.96+turn*.13),x=.40;emit('flat',model(n.x+x*fx-spread*fz,.048,n.z+x*fz+spread*fx,n.heading-side*.21,2.8,1,.22+planing*.18+turn*.16),[wash*.57,1,1],5);}
+ if(settings.motion===false||settings.raceFX==='off')return;
+ const distance=Math.hypot(n.x-player.x,n.z-player.z);if(distance>=55)return;
+ const soft=settings.raceFX==='soft',own=n.id===player.id,slots=own?(soft?6:12):(soft?2:4);
+ for(let i=0;i<slots;i++){
+  const side=i%2?1:-1,age=R.mod(time*1.7+i*.618034+n.frame*.071,1),fade=Math.sin(age*Math.PI)*planing;
+  const x=1.40-age*(2.9+planing*2.3),z=side*(.78+age*(.82+turn*.5));
+  emit('flat',model(n.x+x*fx-z*fz,.032,n.z+x*fz+z*fx,n.heading-side*(.10+age*.22),.38+age*.96,1,.07+age*.17),[fade*.40,1,1],5);
+ }
+ const particles=own?(soft?8:22):(soft?4:8);
+ for(let i=0;i<particles;i++){
+  const age=R.mod(time*(1.50+(i%3)*.14)+i*.618034+n.frame*.071,1),side=i%2?1:-1;
+  const lift=(.10+planing*.38+turn*.18),x=1.32-age*(2.8+planing*3.4),z=side*(.79+age*(1.2+turn*.68));
+  const y=.08+Math.sin(age*Math.PI)*lift,scale=Math.sin(age*Math.PI)*planing*(.008+(i%4)*.0035);
+  emit('spray',model(n.x+x*fx-z*fz,y,n.z+x*fz+z*fx,n.heading+side*.22,scale*(1.7+age),scale*.65,scale*.60),rgb(i%4?'#c1d7d7':'#eef3ed'));
+ }
+}
+
 function scene(d,r,settings,emit){
 const player=R.own(d),time=settings.motion===false?0:d.elapsed,pal=palette(r);
 const add=(key,x,y,z,h,sx,sy,sz,col)=>emit(key,model(x,y,z,h,sx,sy,sz),col,key==='sphere'&&sx>5?3:0);
@@ -664,19 +694,7 @@ for(const w of d.wakes){const age=d.elapsed-w.t;if(age<0||age>4.5||Math.hypot(w.
 }
 for(const n of d.boats){
  emit('flat',model(n.x,.021,n.z,n.heading,6.9,1,2.9),[.44,1,1],6);boatScene(n,d,settings,emit);
- if(n.speed>3&&!n.capsized){const fx=Math.cos(n.heading),fz=Math.sin(n.heading);
-  const wash=R.clamp(n.speed/24,.15,.95),turn=R.clamp(Math.abs(n.steer||0)+Math.abs(n.yawRate||0)*.4,0,1);
- for(let i=0;i<3;i++){const tail=2.7+i*1.7;emit('flat',model(n.x-fx*tail,.052,n.z-fz*tail,n.heading,4.2,1,1.15+i*.50),[wash*(1-i*.17),1,1],5);}
- // Bow shoulders produce narrow outward sheets; the centre line remains readable.
- for(const side of [-1,1]){const spread=side*(1.0+turn*.13),x=-.30;emit('flat',model(n.x+x*fx-spread*fz,.048,n.z+x*fz+spread*fx,n.heading-side*.27,3.2,1,.48+turn*.3),[wash*.57,1,1],5);}
- const distance=Math.hypot(n.x-player.x,n.z-player.z),particles=settings.raceFX==='off'?0:settings.raceFX==='soft'?6:14;
- if(settings.motion!==false&&distance<65)for(let i=0;i<particles;i++){
-  const age=R.mod(time*(1.35+(i%3)*.16)+i*.137+n.frame*.071,1),side=i%2?1:-1;
-  const scale=(1-age)*(.020+(i%4)*.007),x=.1-age*(2+n.speed*.16),z=side*(.92+age*(1.65+turn*.7));
-  const y=.11+Math.sin(age*Math.PI)*(.24+n.speed*.014+turn*.22),heading=n.heading+side*.30;
-  add('spray',n.x+x*fx-z*fz,y,n.z+x*fz+z*fx,heading,scale*(1.4+age),scale*.75,scale*.65,rgb(i%3?'#d9e8e5':'#f3f9f5'));
- }
- }
+ hullWashScene(n,d,settings,player,emit);
 
 }
 }
@@ -783,6 +801,6 @@ function create(canvas,options={}){
 }
 
 
-const API={waterWhitecap,paintPanorama,stormSky,rainyEnvironment,buoyScene,deckOne,boatScene,racerPose,normalVector,BM,identity,rotation,weatherVector,waterNormal,geometry:G,panoramaU,audience,crowdFor,create,createWebGL,createCanvas,freshCanvas,clipNear,COLORS,vertex,fragment,multiply,perspective,lookAt,model,point:R.pointAt,boxMesh,hullMesh,coneMesh,planeMesh,ringMesh,scene,camera,sphereMesh,frustumMesh};
+const API={washProfile,hullWashScene,waterWhitecap,paintPanorama,stormSky,rainyEnvironment,buoyScene,deckOne,boatScene,racerPose,normalVector,BM,identity,rotation,weatherVector,waterNormal,geometry:G,panoramaU,audience,crowdFor,create,createWebGL,createCanvas,freshCanvas,clipNear,COLORS,vertex,fragment,multiply,perspective,lookAt,model,point:R.pointAt,boxMesh,hullMesh,coneMesh,planeMesh,ringMesh,scene,camera,sphereMesh,frustumMesh};
 root.KM_RACE_RENDERER=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);

@@ -35,7 +35,7 @@ function assignMentor(c){
  const pool=mentorPool(c);
  // Preserve established relationships in imported saves. An unstarted assignment can be corrected.
  if(!t.mentor||!t.mentorLocked&&!t.route?.step&&!t.route?.pending&&!pool.some(m=>m.id===t.mentor.id)){
-  t.mentor=record(pool[S.hash(c.player.id+':mentor120')%pool.length].id);t.route=null;
+  t.mentor=record(pool[S.hash(c.player.id+':mentor120')%pool.length].id);t.route=null;t.introduction={id:t.mentor.id,step:0};
  }
  return t.mentor;
 }
@@ -46,7 +46,7 @@ function setup(c){
  if(c.stage>=6&&c.stage<=7&&S.hash(c.player.id+':challenge:'+c.stage)%100<48){let round=3;if(c.story?.duel?.round===round)round=2;t.schedule={kind:'mentor',round};}
  if(c.stage===8){let round=4;if(c.story?.duel?.round===round)round=3;t.schedule={kind:'boss',round};}
 }
-function growth(c,key){const m=c.cast?.mentor;return m&&map[m.id].key===key?1.25:1;}
+function growth(c,key){const m=c.cast?.mentor;return m&&introduced(c)&&map[m.id].key===key?1.25:1;}
 function train(c,key){if(growth(c,key)===1)return null;c.cast.trained++;return map[c.cast.mentor.id];}
 // Fixed identities: no random skill lottery and no position-based catch-up power.
 const loadouts={
@@ -57,7 +57,7 @@ const loadouts={
  iwase:{stats:[82,87,81,83,97],skills:['reflect','storm','anchor','rain'],note:'荒水面で姿勢を崩さない'},
  kurose:{stats:[120,82,82,88,84],skills:['legend_speed','wit_reply','straighten'],note:'直線 SS120 · 周回ごとに伸びを増す'},
  shirakami:{stats:[75,120,83,100,86],skills:['monkey_lr','split','feather'],note:'旋回 SS120 · 加速 S100 · 究極Vモンキー'},
- kagura:{stats:[84,88,120,89,83],skills:['doguchi_lr','inside','immune'],note:'鋭いスタート · 固有の先駆で先行 · 3周目は反動'},
+ kagura:{stats:[84,88,120,89,83],skills:['doguchi_lr','inside','immune','pioneer_start'],note:'鋭いスタート · 固有の先駆で先行 · 3周目は反動'},
  raiden:{stats:[98,93,89,100,94],skills:['legend_tide','wit_unposted','wit_latefee','burst','accel_lock','wake_escape'],note:'出口と終盤で追い詰める追撃型'},
  onizuka:{stats:[85,89,82,85,120],skills:['dump','wit_elbow','anchor','power_drain'],note:'フィジカル SS120 · 強い引き波と接触圧'}
 };
@@ -68,7 +68,7 @@ function profile(c,kind,template){
  n.skills=spec.skills.slice();n.mastery={};n.popularity=kind==='boss'?600:260;return n;
 }
 function lineUp(c,people,type){
- setup(c);const t=c.cast;if(t.mentor&&!t.mentorLocked){const st=S.ensure(c),p=map[t.mentor.id];st.log.push({index:++st.serial,stage:c.stage,kind:'event',title:'師匠との出会い',note:p.name+'「'+p.quote+'」',rewards:[D.stats[p.key]+'の練習を指導']});st.log=st.log.slice(-72);}t.mentorLocked=!!t.mentor;
+ setup(c);const t=c.cast;if(t.mentor&&!t.mentorLocked&&introduced(c)){const st=S.ensure(c),p=map[t.mentor.id];st.log.push({index:++st.serial,stage:c.stage,kind:'event',title:'師匠との出会い',note:p.name+'「'+p.quote+'」',rewards:[D.stats[p.key]+'の練習を指導']});st.log=st.log.slice(-72);}t.mentorLocked=!!t.mentor;
  const kind=c.stage===8&&type==='championship'?'boss':type==='qualifier'&&t.schedule?.round===c.series.round?t.schedule.kind:null;
  if(!kind)return people;
  // Keep the player, registered guests and the scheduled rival; replace one ordinary NPC.
@@ -95,10 +95,35 @@ function settle(c,r,result,api){
  result.castDuel=z;const st=S.ensure(c);st.log.push({index:++st.serial,stage:c.stage,kind:'duelResult',title:(q.kind==='boss'?'最強の壁':'師匠')+(won?'を越えた':'との一戦'),note:def.name+'「'+(won?'今日は、見事だった。また競おう。':def.quote)+'」',rewards:[]});
  st.log[st.log.length-1].rewards=won?[z.money+'万円',D.abilityMap[z.skill]?.name].filter(Boolean):[];st.log=st.log.slice(-72);return z;
 }
+// Missing introduction means an established relationship from an older save.
+// Only assignMentor creates the new prelude; reading a legacy save never adds it.
+function introduced(c){const t=c?.cast;return !!t?.mentor&&(!t.introduction||t.introduction.id===t.mentor.id&&t.introduction.step===2);}
+function introductionScene(c){
+ const t=c?.cast,q=t?.introduction;if(!q||introduced(c)||q.id!==t.mentor?.id||c.ending||c.status==='race'||c.series?.race?.drive&&!c.series.race.done)return null;
+ const ep=routes[q.id]?.introduction?.[q.step];if(!ep)return null;
+ const body=ep.body.slice();
+ if(q.step===0&&c.campaign?.arc==='recovery')body.unshift('G1で走っていた頃の記録より、今の自分の艇を見てほしい。そう思いながら、主人公は練習の映像を開いていた。');
+ if(q.step===1&&q.id==='akamine'&&c.campaign?.arc==='recovery'){
+  body[0]='主人公「復帰して、前と同じように握れないと焦ります。赤嶺さんに、今の自分から加速をつなぐ方法を教わりたいです」';
+  body[1]='赤嶺「俺にも復帰で迷った時期はある。ただ、お前の身体と同じだとは決めつけないぞ」';
+ }
+ return {key:'mentor-introduction:'+q.id+':'+q.step,title:ep.title,body,person:map[q.id],mentor:map[q.id],background:'workshop',step:q.step,actionLabel:q.step===0?'教わりたいことを整理する':'教えを受ける約束をする'};
+}
+function introductionAdvance(c,key){
+ const sc=introductionScene(c);if(!sc||sc.key!==key)return null;
+ const t=c.cast,q=t.introduction;q.step++;t.mentorLocked=true;
+ if(q.step===2){const st=S.ensure(c),p=map[q.id];st.log.push({index:++st.serial,stage:c.stage,kind:'event',title:p.name+'への弟子入り',note:'出会いを通じて、自分が教わりたい理由を伝えた。'+p.name+'もそれを受け止め、継続して練習を見てくれることになった。',rewards:[D.stats[p.key]+'の合同練習が可能に']});st.log=st.log.slice(-72);}
+ return {id:q.id,step:q.step,completed:q.step===2};
+}
 function routeState(c){const t=ensure(c),id=t.mentor?.id;if(!id)return null;if(!t.route)t.route={id,step:0,nextAt:0,choices:[],log:[],pending:null,reward:null,rules:2,legacySteps:0};else if(!t.route.rules&&t.route.step<5){t.route.rules=2;t.route.legacySteps=t.route.step;}return t.route;}
 function routeReward(c){const q=routeState(c),r=q&&routes[q.id];return r?(c.player.difficulty==='easy'?r.easyReward:r.reward):null;}
-const routeEpisode=(c,r,i)=>(c.campaign?.arc==='recovery'&&r.recoveryChapters?r.recoveryChapters:r.chapters)[i];
+function routeEpisode(c,r,i){const ep=(c.campaign?.arc==='recovery'&&r.recoveryChapters?r.recoveryChapters:r.chapters)[i];
+ if(!ep||i!==0||c.cast?.introduction?.step!==2)return ep;
+ const p=map[c.cast.mentor.id],opening={hayase:'早瀬は、教わりたいと頼んだ日に描いた二本の航跡を、今日の映像の横へ置いた。',tsukino:'月野との練習には、出会った日に線を引き直したノートを持ってきた。風と出口を記す欄が、少しずつ埋まっていた。',kuzumi:'久住との練習で、握り始めと艇が動いた時刻を分けて記録した。今日は、そのずれを一緒に確かめる。',akamine:'赤嶺に教わると決めてから、速かった一本だけでなく、出口で跳ねた映像も残すようにしていた。',iwase:'岩瀬との練習では、最初に身体の状態を伝える約束を守った。今日は、揺れを受けた後の動きを確かめる。'};
+ return {...ep,body:[opening[p.id],...ep.body]};
+}
 function routeGate(c){if(!c?.player||!c.cast?.mentor)return {open:false,reason:'G3から師匠に出会えます'};const q=routeState(c),r=routes[q.id],episode=routeEpisode(c,r,q.step);
+ if(!introduced(c))return {open:false,introduction:true,reason:c.cast.introduction.step===0?'まずはピットで話を聞いてみましょう':'教わりたい理由を伝え、入門の相談をしましょう'};
  if(!episode)return {open:false,completed:true,reason:q.reward?'全5話を完了し、奥義を習得しました':'全5話を完了。奥義の習得条件には届きませんでした'};
  if(c.ending||c.status==='race'||c.series?.race?.drive&&!c.series.race.done)return {open:false,reason:c.ending?'今回の育成は終了しました':'レース後に話せます'};
  if(c.stage<episode.stage)return {open:false,reason:D.stages[episode.stage].name+'から続きが届きます'};
@@ -122,10 +147,10 @@ function validRoute(q,mentor){if(q===null||q===undefined)return true;const num=(
 }
 
 function valid(t){const count=v=>Number.isInteger(v)&&v>=0&&v<=60,entry=(v,list)=>v===null||v&&list.some(x=>x.id===v.id)&&count(v.wins)&&count(v.losses);
- return !!t&&validRoute(t.route,t.mentor)&&t.version===1&&typeof t.mentorLocked==='boolean'&&entry(t.mentor,mentors)&&entry(t.boss,[...walls,...retired])&&Number.isInteger(t.trained)&&t.trained>=0&&t.trained<=1000&&Array.isArray(t.stages)&&t.stages.length<=9&&t.stages.every(x=>Number.isInteger(x)&&x>=0&&x<=8)&&(!t.schedule||['mentor','boss'].includes(t.schedule.kind)&&[1,2,3,4].includes(t.schedule.round))&&Array.isArray(t.duels)&&t.duels.length<=12&&new Set(t.duels.map(x=>x.raceId)).size===t.duels.length&&t.duels.every(x=>typeof x.raceId==='string'&&x.raceId.length<110&&(x.kind==='boss'?[...walls,...retired]:mentors).some(d=>d.id===x.id)&&['mentor','boss'].includes(x.kind)&&['active','settled'].includes(x.status));
+ return !!t&&(t.introduction===undefined||!!t.introduction&&t.introduction.id===t.mentor?.id&&mentors.some(m=>m.id===t.introduction.id)&&Number.isInteger(t.introduction.step)&&t.introduction.step>=0&&t.introduction.step<=2&&(t.introduction.step===2||!t.route?.step&&!t.route?.pending))&&validRoute(t.route,t.mentor)&&t.version===1&&typeof t.mentorLocked==='boolean'&&entry(t.mentor,mentors)&&entry(t.boss,[...walls,...retired])&&Number.isInteger(t.trained)&&t.trained>=0&&t.trained<=1000&&Array.isArray(t.stages)&&t.stages.length<=9&&t.stages.every(x=>Number.isInteger(x)&&x>=0&&x<=8)&&(!t.schedule||['mentor','boss'].includes(t.schedule.kind)&&[1,2,3,4].includes(t.schedule.round))&&Array.isArray(t.duels)&&t.duels.length<=12&&new Set(t.duels.map(x=>x.raceId)).size===t.duels.length&&t.duels.every(x=>typeof x.raceId==='string'&&x.raceId.length<110&&(x.kind==='boss'?[...walls,...retired]:mentors).some(d=>d.id===x.id)&&['mentor','boss'].includes(x.kind)&&['active','settled'].includes(x.status));
 }
 function portrait(id,large=false){const p=map[id];if(!p)return '';const P=root.KM_PORTRAITS||(typeof require==='function'?require('./portraits.js'):null);return P?P.render({...p,role:'cast'},large):'';}
 
-const API={mentorPool,assignMentor,routeEpisode,loadouts,routes,routeState,routeGate,routeReward,routeOpen,routeScene,routeChoose,routeDepart,validRoute,mentors,walls,retired,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
+const API={introduced,introductionScene,introductionAdvance,mentorPool,assignMentor,routeEpisode,loadouts,routes,routeState,routeGate,routeReward,routeOpen,routeScene,routeChoose,routeDepart,validRoute,mentors,walls,retired,map,ensure,setup,select,growth,train,profile,lineUp,attach,settle,valid,portrait};root.KM_CAST=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
 

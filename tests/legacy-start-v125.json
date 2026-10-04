@@ -1,0 +1,111 @@
+{
+  "build": "125",
+  "checks": [
+    "V124実SGセーブの先駆移行・通過済み結果保持: legacy-start-v124-king.json",
+    "V124実SGセーブの先駆移行・通過済み結果保持: legacy-start-v124-rival.json",
+    "既存の一般選手・旧主人公・現役ライバルには先駆を付与しない",
+    "先駆だけを所持するSG招待選手に先着しても固有特性を獲得しない",
+    "通常のスタート補助特能はSG先着報酬で取得可能: zero",
+    "通常のスタート補助特能はSG先着報酬で取得可能: legend_start",
+    "先駆は一般報酬・NPC抽選・ショップ共通の候補から除外"
+  ],
+  "migrations": [
+    {
+      "fixture": "legacy-start-v124-king.json",
+      "changes": [
+        {
+          "where": "npcs",
+          "id": "cast_teiou"
+        },
+        {
+          "where": "npcs",
+          "id": "cast_kagura"
+        },
+        {
+          "where": "runners",
+          "id": "cast_kagura"
+        },
+        {
+          "where": "runners",
+          "id": "cast_teiou"
+        },
+        {
+          "where": "boats",
+          "id": "cast_kagura"
+        },
+        {
+          "where": "boats",
+          "id": "cast_teiou"
+        }
+      ],
+      "passedPreserved": true
+    },
+    {
+      "fixture": "legacy-start-v124-rival.json",
+      "changes": [
+        {
+          "where": "rivals",
+          "id": "main_ibuki"
+        },
+        {
+          "where": "npcs",
+          "id": "main_ibuki"
+        },
+        {
+          "where": "npcs",
+          "id": "cast_kagura"
+        },
+        {
+          "where": "runners",
+          "id": "cast_kagura"
+        },
+        {
+          "where": "runners",
+          "id": "main_ibuki"
+        },
+        {
+          "where": "boats",
+          "id": "cast_kagura"
+        },
+        {
+          "where": "boats",
+          "id": "main_ibuki"
+        }
+      ],
+      "passedPreserved": true
+    }
+  ],
+  "rewards": [
+    {
+      "skill": "pioneer_start",
+      "awards": [],
+      "acquired": [
+        "prep_lr",
+        "legend_tide"
+      ]
+    },
+    {
+      "skill": "zero",
+      "awards": [
+        "zero"
+      ],
+      "acquired": [
+        "legend_tide",
+        "zero",
+        "doguchi_lr"
+      ]
+    },
+    {
+      "skill": "legend_start",
+      "awards": [
+        "legend_start"
+      ],
+      "acquired": [
+        "legend_tide",
+        "legend_start",
+        "mirror"
+      ]
+    }
+  ],
+  "passed": 7
+}

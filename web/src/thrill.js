@@ -1,7 +1,7 @@
 
 
 
-/* v95: race feedback only. This module never changes race state or random seeds. */
+/* v125: race feedback only. This module never changes race state or random seeds. */
 (function(root){
 'use strict';
 const R=root.KM_RACING||(typeof require==='function'?require('./racing.js'):null),D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null);
@@ -27,16 +27,10 @@ function update(st,d,r,settings={},now=0){
  if(st.banner&&now>=st.until)st.banner=null;
  return {...v,active:true,event,banner:st.banner};
 }
-function paint(ctx,w,h,v,t,reduced=false){
- if(!v.active||reduced||v.intensity<.03)return 0;const x0=w*.5,y0=h*.45,n=Math.floor(12+v.intensity*24);ctx.save();let count=0;
- // Keep the navigable centre clear; jets stretch towards the screen edges.
- for(let i=0;i<n;i++){const side=i%2?1:-1,f=(i*.618+t*(.9+v.intensity))%1,y=h*(.48+(i*.313%1)*.42),x=x0+side*w*(.32+f*.18),len=(.04+v.intensity*.10)*w;
-  ctx.strokeStyle='rgba(191,245,255,'+(.05+v.intensity*.14)*(1-f)+')';ctx.lineWidth=1+(i%3===0?1:0);ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+side*len,y+(y-y0)*.2);ctx.stroke();count++;
- }
- if(v.intensity>.4){for(const side of [-1,1]){const g=ctx.createLinearGradient(side<0?0:w,h*.8,side<0?w*.1:w*.9,h*.8);g.addColorStop(0,'rgba(90,234,255,'+(v.intensity*.17)+')');g.addColorStop(1,'rgba(90,234,255,0)');ctx.fillStyle=g;ctx.fillRect(side<0?0:w*.9,h*.30,w*.10,h*.55);}}
- for(let i=0;i<14;i++){const side=i%2?1:-1,f=(i*.317+t*(.8+v.intensity*.5))%1,x=w*(.5+side*(.52-f*.17)),y=h*(.79-f*.26);ctx.fillStyle='rgba(225,253,255,'+((1-f)*v.intensity*.38)+')';ctx.beginPath();ctx.arc(x,y,1+(i%3)*.65,0,Math.PI*2);ctx.fill();}
- ctx.restore();return count;
-}
+// Speed is communicated by the water, bow spray and camera parallax.  Keep this
+// public hook for old integrations without painting a second screen-space layer.
+function paint(){return 0;}
+
 const API={level,create,update,paint};root.KM_THRILL=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
 

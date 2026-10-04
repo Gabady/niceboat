@@ -1,0 +1,51 @@
+{
+  "build": "125",
+  "sourceSha256": "b9f8cc0d07decce504a03391fa6da023419a7b3789daf7a2c4fa3c655b16af30",
+  "gameScripts": 37,
+  "entries": [
+    {
+      "file": "index.html",
+      "sha256": "b9f8cc0d07decce504a03391fa6da023419a7b3789daf7a2c4fa3c655b16af30",
+      "allGameScriptsEqual": true,
+      "fullHtmlAndAssetsEqual": true,
+      "inlineCodeExecuted": true,
+      "scenariosTested": 4,
+      "seededGameplaySha256": "89690167cc75962bad317da8729f15b281285a91cc0f5e924b2f97431328c459",
+      "oldSaves": [
+        116,
+        117
+      ],
+      "passed": true
+    },
+    {
+      "file": "index_android_safe.html",
+      "sha256": "697ad667e1ad604ca309ea1f492a13dbc385f1b1a70c9476e2dbcd8de7a8b00d",
+      "allGameScriptsEqual": true,
+      "fullHtmlAndAssetsEqual": true,
+      "inlineCodeExecuted": true,
+      "scenariosTested": 4,
+      "seededGameplaySha256": "89690167cc75962bad317da8729f15b281285a91cc0f5e924b2f97431328c459",
+      "oldSaves": [
+        116,
+        117
+      ],
+      "passed": true
+    },
+    {
+      "file": "index_iphone_safe.html",
+      "sha256": "63268a21ec174f66ea40502c0fce0b919e297b18e097ecff4ed0135bc2dff6dd",
+      "allGameScriptsEqual": true,
+      "fullHtmlAndAssetsEqual": true,
+      "inlineCodeExecuted": true,
+      "scenariosTested": 4,
+      "seededGameplaySha256": "89690167cc75962bad317da8729f15b281285a91cc0f5e924b2f97431328c459",
+      "oldSaves": [
+        116,
+        117
+      ],
+      "passed": true
+    }
+  ],
+  "browserRetested": false,
+  "physicalDevicesTested": false
+}

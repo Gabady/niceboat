@@ -56,7 +56,7 @@ function series(c){const t=ensure(c),def=rival(c),n=c.series.npcs[0],tier=c.seri
 }
 function learned(c,key,api){const q=ensure(c).paths[key];if(!q.learned&&q.hints>=2&&q.practice>=2){q.learned=true;return api.acquire(c,c.player,paths[key].base,'実践からの習得');}return null;}
 function training(c,key,method,api){if(!writable(c)||c.status!=='action'||!paths[key]||!['solo','mentor','rival'].includes(method))return null;
- const def=rival(c),mentor=c.cast?.mentor&&api.Cast.map[c.cast.mentor.id];if(method==='mentor'&&(!mentor||mentor.key!==key)||method==='rival'&&key!==def.key)return null;
+ const def=rival(c),mentor=c.cast?.mentor&&api.Cast.map[c.cast.mentor.id];if(method==='mentor'&&(!mentor||!api.Cast.introduced(c)||mentor.key!==key)||method==='rival'&&key!==def.key)return null;
  const t=ensure(c),p=plan(c),result=api.train(c,key,'focus',{method,multiplier:(method==='mentor'?.66:method==='rival'?.84:1)*growth(c,key,method),mentor:method==='mentor'});if(!result)return null;
  const q=t.paths[key],scale=c.series.action.effectScale;
  q.hints=Math.min(12,q.hints+Craft.trainingHint(c,key)+(method==='mentor'?1.25:method==='rival'?.9:.35)*scale+(p?.arc==='back'&&p.choice===1&&method!=='solo'?.2*scale:0));

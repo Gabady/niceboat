@@ -1,6 +1,4 @@
 
-
-/* V118: generated expression atlases, calm / thoughtful / warm. */
-(function(root){const data={"nagi":"assets/9d56a498e861ae398a80.webp","mizuki":"assets/b85cbf686992046938f9.webp","akamine":"assets/c033f91f47dd01b7755f.webp","rival_03":"assets/c292b5dd667c02078b8d.webp"};root.KM_PORTRAIT_EXPRESSIONS=data;if(typeof module!=='undefined'&&module.exports)module.exports=data;})(globalThis);
-
+/* V125: heroine expression atlases (3 x 2); legacy 3 x 1 portraits retained. */
+(function(root){const data={"nagi":"assets/dc5538d2a5fa96d961e5.webp","mizuki":"assets/0a41e6fe7223c81d2aa5.webp","akamine":"assets/c033f91f47dd01b7755f.webp","rival_03":"assets/c292b5dd667c02078b8d.webp","akari":"assets/f028245264e05139b092.webp","mio":"assets/80e0b9f009755ee35640.webp","kanade":"assets/805dc67aa03ee30dfd2a.webp","tsumugi":"assets/2ab4a06e2ee29032f25b.webp"};root.KM_PORTRAIT_EXPRESSIONS=data;root.KM_PORTRAIT_EXPRESSION_LAYOUTS={"akari":{"columns":3,"rows":2,"states":["calm","warm","thoughtful","determined","surprised","blush"]},"mio":{"columns":3,"rows":2,"states":["calm","warm","thoughtful","determined","surprised","blush"]},"nagi":{"columns":3,"rows":2,"states":["calm","warm","thoughtful","determined","surprised","blush"]},"kanade":{"columns":3,"rows":2,"states":["calm","warm","thoughtful","determined","surprised","blush"]},"tsumugi":{"columns":3,"rows":2,"states":["calm","warm","thoughtful","determined","surprised","blush"]},"mizuki":{"columns":3,"rows":2,"states":["calm","warm","thoughtful","determined","surprised","blush"]}};if(typeof module!=='undefined'&&module.exports)module.exports=data;})(globalThis);
 

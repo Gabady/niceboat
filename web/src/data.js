@@ -49,12 +49,12 @@
   a('anchor', '不動のターン', 'SSR', '防御', [1,3], .7, {stats:{turn:12,power:16},safety:.7}, '旋回＋12、フィジカル＋16。グリップを強め、波と傾きの蓄積を軽減。', ['ターン']);
   a('storm', '嵐の先導者', 'SSR', '環境', [0,1,2,3,4], .65, {stats:{turn:14,power:16,speed:7},safety:.45}, '荒天時、旋回＋14、フィジカル＋16、直線＋7。転覆を軽減。', [], 'rough');
   a('reflect', '妨害返し', 'UR', '防御', [0,1,2,3,4], 1, {type:'defense',reflect:.5}, '妨害を無効化し、効果量の50%を攻撃者へ返す。再反射しない。', []);
-  a('zero', '零の踏み込み', 'UR', '強化', [0,1], .72, {stats:{start:25,accel:18,turn:8}}, 'スタート＋25、加速＋18、旋回＋8。', ['序盤']);
+  a('zero', '零の踏み込み', 'UR', '強化', [0,1], .72, {stats:{start:25,accel:18,turn:8},startAllowance:.06}, 'スタート＋25、加速＋18、旋回＋8。所持中は能力ランクにかかわらず早発にわずかな余裕が生まれる。', ['序盤']);
   a('comet', '彗星航路', 'UR', '戦術', [2,4], .7, {stats:{speed:26,accel:20},tactic:'gamble'}, '直線＋26、加速＋20。直線での最高速と再加速を高める。', ['直線']);
   a('wave', '波を支配する', 'UR', '環境', [1,3], .76, {stats:{turn:24,power:22},safety:.65}, '旋回＋24、フィジカル＋22。グリップを強め、波と傾きの蓄積を軽減。', ['ターン']);
   a('craft', '匠の設計', 'UR', '整備', [], 1, {type:'tuning',success:16}, '両機材の調整成功率＋16。成功率上限は92%。', []);
   a('mirror', '鏡面水域', 'LR', '防御', [0,1,2,3,4], 1, {type:'defense',reflect:1}, '妨害を完全無効化し、効果をすべて攻撃者へ返す。再反射しない。', []);
-  a('legend_start', '一閃の境地', 'LR', '強化', [0,1], .84, {stats:{start:31,turn:20,accel:20}}, 'スタート＋31、旋回・加速＋20。', ['序盤']);
+  a('legend_start', '一閃の境地', 'LR', '強化', [0,1], .84, {stats:{start:31,turn:20,accel:20},startAllowance:.10}, 'スタート＋31、旋回・加速＋20。所持中は能力ランクにかかわらず早発に少し余裕が生まれる。', ['序盤']);
   a('legend_speed', '水上の軌跡', 'LR', '強化', [2,4], .84, {stats:{speed:33,accel:25,power:14}}, '直線＋33、加速＋25、フィジカル＋14。', ['直線']);
   a('legend_turn', '王者の旋回', 'LR', '戦術', [1,3], .86, {stats:{turn:32,power:26,accel:20},safety:.8,tactic:'sashi'}, '旋回＋32、フィジカル＋26、加速＋20。転覆を大きく軽減。', ['ターン']);
   a('legend_tide', '逆潮を越えて', 'LR', '戦術', [3,4], .88, {stats:{speed:30,accel:30,power:20},tactic:'gamble'}, '3位以下で直線・加速＋30、フィジカル＋20。', [], 'behind');
@@ -113,11 +113,11 @@
     anchor:{mechanics:{contactShield:.55,damping:.65,wakeShield:.25},text:'接触と引き波で振られにくい、収まりのよいターン。'},
     storm:{mechanics:{waveShield:.45,wakeShield:.3},text:'荒天時の横波・引き波の負荷を抑え、失速を軽減。'},
     reflect:{mechanics:{contactShield:.5},text:'妨害の能力低下と水面効果を50%反射。再反射しない。'},
-    zero:{mechanics:{response:1.7},text:'助走時の立ち上がりと応答を強める。早く踏めばフライングにはなる。'},
+    zero:{mechanics:{response:1.7},text:'助走時の立ち上がりと応答を強める。所持による早発の余裕は常時有効だが、早過ぎる通過はフライング。'},
     comet:{mechanics:{speed:1.25,accel:.85,wakeEmit:.65},text:'伸びと再加速を強め、通過した引き波も大きくする。'},
     wave:{mechanics:{wakeShield:.45,damping:.65},text:'ターン中に引き波の負荷を軽減し、横滑りを速く収束。'},
     mirror:{mechanics:{contactShield:.65,wakeShield:.4},text:'水面効果も完全反射し、直後4秒間の接触と引き波も軽減。再反射しない。'},
-    legend_start:{mechanics:{response:2.5,damping:.5},text:'助走応答とスタート直後の艇の収まりを大幅強化。F判定は全艇共通。'},
+    legend_start:{mechanics:{response:2.5,damping:.5},text:'助走応答とスタート直後の艇の収まりを大幅強化。所持による早発の余裕は常時有効。他の許容効果と加算されず、早過ぎる通過はフライング。'},
     legend_speed:{mechanics:{speed:1.5,accel:1,wakeEmit:.65,economy:.2},text:'強い伸び・再加速・引き波を生み、消耗も抑える。'},
     legend_turn:{when:'inside',mechanics:{grip:1.2,damping:.75,wakeShield:.45,contactShield:.4},text:'内を回る高グリップ旋回。引き波と接触にも強い。'},
     legend_tide:{mechanics:{speed:1.5,accel:1.5,wakeShield:.7},text:'後方から先行艇の引き波を越える追走加速。'},
@@ -176,6 +176,10 @@
     drive.text='イージー専用UR版。'+drive.text;witty(id,a.name+'・絆','UR',a.category,a.phases,Math.round(a.chance*.86*100)/100,effect,'イージーでのSG優勝戦の約束。LR版より発動率と補助量を抑える。',drive,a.condition);
     abilities[abilities.length-1].exclusive='romance';easyRewardMap[a.id]=id;
   });
+  // V125: a permanent story trait makes the established opponents' early start explicit.
+  a('pioneer_start','先駆の心得','LR','戦術',[],1,{type:'startAllowance',allowance:.30},'所持中はスタート能力のランクにかかわらず、先行するスタートを可能にする。早過ぎる通過はフライング。',['固有','序盤']);
+  abilities[abilities.length-1].exclusive='story';
+  driving.pioneer_start={text:'所持している間は常時有効。通常の許容や他の特性とは加算せず、もっとも広い余裕を適用。物語の相手専用で、先着報酬では獲得しない。'};
   // v103: presentation names change; persistent ability IDs and rarity effects stay stable.
   var skillNames={"bond_twinwake":"双璧の航跡","bond_twinwake_ur":"双璧の絆","push":"伸び足","grip":"波越え","stout":"体幹安定","practice":"鍛錬","inside":"先手必勝","outside":"外伸び","mentor":"反復鍛錬","spanner":"精密整備","engineer":"整備巧者","student":"強化練習","power_drain":"消耗戦","comeback":"逆境突破","wave":"波乗りの極意","legend_speed":"絶対艇速","legend_tide":"逆潮突破","weak_rain":"雨天不慣れ","weak_wind":"横風不慣れ","doguchi_sr":"洞口スペシャル","doguchi_ssr":"真洞口スペシャル","doguchi_ur":"極洞口スペシャル","doguchi_lr":"究極洞口スペシャル","prep_n":"水面研究","prep_r":"展開予測","prep_sr":"集中研鑽","prep_ssr":"水面同調","prep_ur":"臨戦覚醒","feather":"抜き技","straighten":"舵戻し","wake_escape":"引き波離脱","wit_breath":"静心","wit_receipt":"整備記録","wit_clockout":"終盤集中","wit_rudder":"立ち上がり巧者","wit_weather":"風読み","wit_afteryou":"先手旋回","wit_slipstream":"引き波突破","wit_overtime":"旋回収束","wit_latebird":"追撃加速","wit_bill":"追走圧力","wit_elbow":"接戦不動","wit_lastrain":"雨水制御","wit_latefee":"終盤解放","wit_nosignal":"大外強襲","wit_harbor":"不屈の体幹","wit_unposted":"逆転の覇道","wit_norefund":"不撓の旋回","wit_reply":"一気呵成","bond_reignite":"再起の炎","bond_headline":"未来を拓く航跡","bond_breakwater":"守護の水域","bond_clockletter":"暁の旋律","bond_lastorder":"宵の逆転","bond_reignite_ur":"再起の絆","bond_headline_ur":"未来への絆","bond_breakwater_ur":"守護の絆","bond_clockletter_ur":"旋律の絆","bond_lastorder_ur":"宵の絆"};
   abilities.forEach(function(skill){if(skillNames[skill.id])skill.name=skillNames[skill.id];});
@@ -243,7 +247,7 @@
     {id:'duel',name:'攻防一体',groups:[['speed_lock','turn_press','start_check','accel_lock','power_drain','dump'],['immune','reflect','mirror']],need:{start:35,power:35},description:'他艇18m以内で応答・接触耐性を強化。伸び足を少し犠牲にする。'},
     {id:'craftline',name:'整備の継走',groups:[['doguchi_sr','doguchi_ssr','doguchi_ur','doguchi_lr'],['mechanic','spanner','engineer','craft']],need:{accel:40},description:'2周目の機材応答と持久力を改善。伸び足は控えめ。洞口スペシャルの3周目の反動は残る。'}
   ];
-  var D = {statCeiling:statCeiling,easyRewardMap:easyRewardMap,version:80,build:'124',permanentGrowthScale:.92,driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
+  var D = {statCeiling:statCeiling,easyRewardMap:easyRewardMap,version:80,build:'125',permanentGrowthScale:.92,driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
     easy:{id:'easy',name:'イージー',growth:.75,rewardDrop:1,shopMax:'SSR',ai:'easy'},
     normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'}
   },stats:stats,statKeys:Object.keys(stats),categories:categories,

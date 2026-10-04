@@ -1,0 +1,131 @@
+{
+  "build": 125,
+  "assets": [
+    {
+      "id": "akari",
+      "prompt": "Use case: identity-preserve. Asset type: portrait expression atlas for an offline Japanese story game.\nEdit target: the supplied reference portrait. Produce ONE single atlas image in landscape aspect ratio 3:2, ideally 1536 x 1024, arranged as EXACTLY THREE COLUMNS and TWO ROWS of equally sized SQUARE portraits. All six portraits show exactly the same adult woman from the input image, at exactly the same head-and-upper-chest scale and face position. Each square is filled edge-to-edge with her portrait and the same existing backdrop. No gutters, borders, labels, writing, watermark or decorative panels.\nPreserve her individual identity very carefully: exact facial proportions, hair style and colour, skin texture, hairstyle, costume, accessories, lighting and photorealistic rendering style of the input. Do not beautify or change her apparent age. Keep gaze broadly near camera and body posture consistent. Change only facial expression, including clearly legible natural eyebrow, eyelid, lip and cheek changes.\nSix square cells in this exact row-major order:\nTOP LEFT: calm / composed, neutral relaxed closed lips, attentive eyes.\nTOP CENTER: warm / gentle happiness, noticeably smiling lips and softly smiling eyes, restrained friendly warmth.\nTOP RIGHT: thoughtful / troubled and a little sad, inner eyebrows gently raised, mouth subdued, eyes showing concern.\nBOTTOM LEFT: determined / serious resolve, brows slightly drawn down, eyes firm and focused, closed firm lips; no anger or exaggerated scowl.\nBOTTOM CENTER: surprised / natural moderate surprise, clearly widened eyes and raised eyebrows, slightly parted lips; still realistic.\nBOTTOM RIGHT: blush / shy affection, subtly rosy cheeks, slightly bashful softer gaze with a small hesitant smile; no hands over face.\nMake all six expressions noticeably different while staying mature, plausible and photorealistic. Keep every full face and hair within its own cell so the atlas can be cropped automatically.\nSubject invariants specific to this reference: short tousled brown hair, faint freckles, orange-and-navy work coveralls over a pale grey crewneck shirt, sunlit blue boat workshop behind her. Use the exact woman from the reference.",
+      "method": "built-in image_gen",
+      "reference": "art-reference/akari.webp",
+      "source": "/workspace/scratch/88c0c72d6de7/generated_images/exec-e7d927fa-f60f-4a2c-b9a9-ccd7a49455ae.png",
+      "png": "assets/heroine-expressions/akari-v125.png",
+      "webp": "assets/heroine-expressions/akari-v125.webp",
+      "layout": {
+        "columns": 3,
+        "rows": 2,
+        "states": [
+          "calm",
+          "warm",
+          "thoughtful",
+          "determined",
+          "surprised",
+          "blush"
+        ]
+      }
+    },
+    {
+      "id": "mio",
+      "prompt": "Use case: identity-preserve. Asset type: portrait expression atlas for an offline Japanese story game.\nEdit target: the supplied reference portrait. Produce ONE single atlas image in landscape aspect ratio 3:2, ideally 1536 x 1024, arranged as EXACTLY THREE COLUMNS and TWO ROWS of equally sized SQUARE portraits. All six portraits show exactly the same adult woman from the input image, at exactly the same head-and-upper-chest scale and face position. Each square is filled edge-to-edge with her portrait and the same existing backdrop. No gutters, borders, labels, writing, watermark or decorative panels.\nPreserve her individual identity very carefully: exact facial proportions, hair style and colour, skin texture, hairstyle, costume, accessories, lighting and photorealistic rendering style of the input. Do not beautify or change her apparent age. Keep gaze broadly near camera and body posture consistent. Change only facial expression, including clearly legible natural eyebrow, eyelid, lip and cheek changes.\nSix square cells in this exact row-major order:\nTOP LEFT: calm / composed, neutral relaxed closed lips, attentive eyes.\nTOP CENTER: warm / gentle happiness, noticeably smiling lips and softly smiling eyes, restrained friendly warmth.\nTOP RIGHT: thoughtful / troubled and a little sad, inner eyebrows gently raised, mouth subdued, eyes showing concern.\nBOTTOM LEFT: determined / serious resolve, brows slightly drawn down, eyes firm and focused, closed firm lips; no anger or exaggerated scowl.\nBOTTOM CENTER: surprised / natural moderate surprise, clearly widened eyes and raised eyebrows, slightly parted lips; still realistic.\nBOTTOM RIGHT: blush / shy affection, subtly rosy cheeks, slightly bashful softer gaze with a small hesitant smile; no hands over face.\nMake all six expressions noticeably different while staying mature, plausible and photorealistic. Keep every full face and hair within its own cell so the atlas can be cropped automatically.\nSubject invariants specific to this reference: Black hair in a neat low ponytail, thin round metal-frame glasses, navy blazer over pale ivory blouse, the same daylight boat-workshop window backdrop. Keep glasses identical across every expression.\nUse the exact woman from this reference image.",
+      "method": "built-in image_gen",
+      "reference": "art-reference/mio.webp",
+      "source": "/workspace/scratch/88c0c72d6de7/generated_images/exec-fda2b51d-6d9c-4f63-b1cb-3acce0f04649.png",
+      "png": "assets/heroine-expressions/mio-v125.png",
+      "webp": "assets/heroine-expressions/mio-v125.webp",
+      "layout": {
+        "columns": 3,
+        "rows": 2,
+        "states": [
+          "calm",
+          "warm",
+          "thoughtful",
+          "determined",
+          "surprised",
+          "blush"
+        ]
+      }
+    },
+    {
+      "id": "nagi",
+      "prompt": "Use case: identity-preserve. Asset type: portrait expression atlas for an offline Japanese story game.\nEdit target: the supplied reference portrait. Produce ONE single atlas image in landscape aspect ratio 3:2, ideally 1536 x 1024, arranged as EXACTLY THREE COLUMNS and TWO ROWS of equally sized SQUARE portraits. All six portraits show exactly the same adult woman from the input image, at exactly the same head-and-upper-chest scale and face position. Each square is filled edge-to-edge with her portrait and the same existing backdrop. No gutters, borders, labels, writing, watermark or decorative panels.\nPreserve her individual identity very carefully: exact facial proportions, hair style and colour, skin texture, hairstyle, costume, accessories, lighting and photorealistic rendering style of the input. Do not beautify or change her apparent age. Keep gaze broadly near camera and body posture consistent. Change only facial expression, including clearly legible natural eyebrow, eyelid, lip and cheek changes.\nSix square cells in this exact row-major order:\nTOP LEFT: calm / composed, neutral relaxed closed lips, attentive eyes.\nTOP CENTER: warm / gentle happiness, noticeably smiling lips and softly smiling eyes, restrained friendly warmth.\nTOP RIGHT: thoughtful / troubled and a little sad, inner eyebrows gently raised, mouth subdued, eyes showing concern.\nBOTTOM LEFT: determined / serious resolve, brows slightly drawn down, eyes firm and focused, closed firm lips; no anger or exaggerated scowl.\nBOTTOM CENTER: surprised / natural moderate surprise, clearly widened eyes and raised eyebrows, slightly parted lips; still realistic.\nBOTTOM RIGHT: blush / shy affection, subtly rosy cheeks, slightly bashful softer gaze with a small hesitant smile; no hands over face.\nMake all six expressions noticeably different while staying mature, plausible and photorealistic. Keep every full face and hair within its own cell so the atlas can be cropped automatically.\nSubject invariants specific to this reference: Warm brown hair loosely tied up with wisps, muted sage-green chunky knitted cardigan over a white blouse, sunlit riverside promenade with distant city and tree bokeh.\nUse the exact woman from this reference image.",
+      "method": "built-in image_gen",
+      "reference": "art-reference/nagi.webp",
+      "source": "/workspace/scratch/88c0c72d6de7/generated_images/exec-8d8ca19a-60a5-4379-a07c-b6e95c041a25.png",
+      "png": "assets/heroine-expressions/nagi-v125.png",
+      "webp": "assets/heroine-expressions/nagi-v125.webp",
+      "layout": {
+        "columns": 3,
+        "rows": 2,
+        "states": [
+          "calm",
+          "warm",
+          "thoughtful",
+          "determined",
+          "surprised",
+          "blush"
+        ]
+      }
+    },
+    {
+      "id": "kanade",
+      "prompt": "Use case: identity-preserve. Asset type: portrait expression atlas for an offline Japanese story game.\nEdit target: the supplied reference portrait. Produce ONE single atlas image in landscape aspect ratio 3:2, ideally 1536 x 1024, arranged as EXACTLY THREE COLUMNS and TWO ROWS of equally sized SQUARE portraits. All six portraits show exactly the same adult woman from the input image, at exactly the same head-and-upper-chest scale and face position. Each square is filled edge-to-edge with her portrait and the same existing backdrop. No gutters, borders, labels, writing, watermark or decorative panels.\nPreserve her individual identity very carefully: exact facial proportions, hair style and colour, skin texture, hairstyle, costume, accessories, lighting and photorealistic rendering style of the input. Do not beautify or change her apparent age. Keep gaze broadly near camera and body posture consistent. Change only facial expression, including clearly legible natural eyebrow, eyelid, lip and cheek changes.\nSix square cells in this exact row-major order:\nTOP LEFT: calm / composed, neutral relaxed closed lips, attentive eyes.\nTOP CENTER: warm / gentle happiness, noticeably smiling lips and softly smiling eyes, restrained friendly warmth.\nTOP RIGHT: thoughtful / troubled and a little sad, inner eyebrows gently raised, mouth subdued, eyes showing concern.\nBOTTOM LEFT: determined / serious resolve, brows slightly drawn down, eyes firm and focused, closed firm lips; no anger or exaggerated scowl.\nBOTTOM CENTER: surprised / natural moderate surprise, clearly widened eyes and raised eyebrows, slightly parted lips; still realistic.\nBOTTOM RIGHT: blush / shy affection, subtly rosy cheeks, slightly bashful softer gaze with a small hesitant smile; no hands over face.\nMake all six expressions noticeably different while staying mature, plausible and photorealistic. Keep every full face and hair within its own cell so the atlas can be cropped automatically.\nSubject invariants specific to this reference: Long straight dark brown hair with fine wispy bangs, lavender pleated modest blouse, same softly lit waterside music room and piano backdrop.\nUse the exact woman from this reference image.",
+      "method": "built-in image_gen",
+      "reference": "art-reference/kanade.webp",
+      "source": "/workspace/scratch/88c0c72d6de7/generated_images/exec-b9d5ee67-cfd4-43b9-a354-7ed56bdb2f90.png",
+      "png": "assets/heroine-expressions/kanade-v125.png",
+      "webp": "assets/heroine-expressions/kanade-v125.webp",
+      "layout": {
+        "columns": 3,
+        "rows": 2,
+        "states": [
+          "calm",
+          "warm",
+          "thoughtful",
+          "determined",
+          "surprised",
+          "blush"
+        ]
+      }
+    },
+    {
+      "id": "tsumugi",
+      "prompt": "Use case: identity-preserve. Asset type: portrait expression atlas for an offline Japanese story game.\nEdit target: the supplied reference portrait. Produce ONE single atlas image in landscape aspect ratio 3:2, ideally 1536 x 1024, arranged as EXACTLY THREE COLUMNS and TWO ROWS of equally sized SQUARE portraits. All six portraits show exactly the same adult woman from the input image, at exactly the same head-and-upper-chest scale and face position. Each square is filled edge-to-edge with her portrait and the same existing backdrop. No gutters, borders, labels, writing, watermark or decorative panels.\nPreserve her individual identity very carefully: exact facial proportions, hair style and colour, skin texture, hairstyle, costume, accessories, lighting and photorealistic rendering style of the input. Do not beautify or change her apparent age. Keep gaze broadly near camera and body posture consistent. Change only facial expression, including clearly legible natural eyebrow, eyelid, lip and cheek changes.\nSix square cells in this exact row-major order:\nTOP LEFT: calm / composed, neutral relaxed closed lips, attentive eyes.\nTOP CENTER: warm / gentle happiness, noticeably smiling lips and softly smiling eyes, restrained friendly warmth.\nTOP RIGHT: thoughtful / troubled and a little sad, inner eyebrows gently raised, mouth subdued, eyes showing concern.\nBOTTOM LEFT: determined / serious resolve, brows slightly drawn down, eyes firm and focused, closed firm lips; no anger or exaggerated scowl.\nBOTTOM CENTER: surprised / natural moderate surprise, clearly widened eyes and raised eyebrows, slightly parted lips; still realistic.\nBOTTOM RIGHT: blush / shy affection, subtly rosy cheeks, slightly bashful softer gaze with a small hesitant smile; no hands over face.\nMake all six expressions noticeably different while staying mature, plausible and photorealistic. Keep every full face and hair within its own cell so the atlas can be cropped automatically.\nSubject invariants specific to this reference: Shoulder-length wavy chestnut-brown hair, distinctive small beauty mark on her cheek, off-white linen collared blouse with brown apron, warmly lit waterside café interior.\nUse the exact woman from this reference image.",
+      "method": "built-in image_gen",
+      "reference": "art-reference/tsumugi.webp",
+      "source": "/workspace/scratch/88c0c72d6de7/generated_images/exec-ea1acb36-2daf-4780-82a8-6ea3eb5b5c5a.png",
+      "png": "assets/heroine-expressions/tsumugi-v125.png",
+      "webp": "assets/heroine-expressions/tsumugi-v125.webp",
+      "layout": {
+        "columns": 3,
+        "rows": 2,
+        "states": [
+          "calm",
+          "warm",
+          "thoughtful",
+          "determined",
+          "surprised",
+          "blush"
+        ]
+      }
+    },
+    {
+      "id": "mizuki",
+      "prompt": "Use case: identity-preserve. Asset type: portrait expression atlas for an offline Japanese story game.\nEdit target: the supplied reference portrait. Produce ONE single atlas image in landscape aspect ratio 3:2, ideally 1536 x 1024, arranged as EXACTLY THREE COLUMNS and TWO ROWS of equally sized SQUARE portraits. All six portraits show exactly the same adult woman from the input image, at exactly the same head-and-upper-chest scale and face position. Each square is filled edge-to-edge with her portrait and the same existing backdrop. No gutters, borders, labels, writing, watermark or decorative panels.\nPreserve her individual identity very carefully: exact facial proportions, hair style and colour, skin texture, hairstyle, costume, accessories, lighting and photorealistic rendering style of the input. Do not beautify or change her apparent age. Keep gaze broadly near camera and body posture consistent. Change only facial expression, including clearly legible natural eyebrow, eyelid, lip and cheek changes.\nSix square cells in this exact row-major order:\nTOP LEFT: calm / composed, neutral relaxed closed lips, attentive eyes.\nTOP CENTER: warm / gentle happiness, noticeably smiling lips and softly smiling eyes, restrained friendly warmth.\nTOP RIGHT: thoughtful / troubled and a little sad, inner eyebrows gently raised, mouth subdued, eyes showing concern.\nBOTTOM LEFT: determined / serious resolve, brows slightly drawn down, eyes firm and focused, closed firm lips; no anger or exaggerated scowl.\nBOTTOM CENTER: surprised / natural moderate surprise, clearly widened eyes and raised eyebrows, slightly parted lips; still realistic.\nBOTTOM RIGHT: blush / shy affection, subtly rosy cheeks, slightly bashful softer gaze with a small hesitant smile; no hands over face.\nMake all six expressions noticeably different while staying mature, plausible and photorealistic. Keep every full face and hair within its own cell so the atlas can be cropped automatically.\nSubject invariants specific to this reference: Short asymmetrical dark-brown bob swept to one side, white and dark teal waterproof jacket with black padded buoyancy vest, sunset boat-racing pit with warm water reflections. Reframe at upper chest into a square cell while keeping her whole hair and face visible.\nUse the exact woman from this reference image.",
+      "method": "built-in image_gen",
+      "reference": "art-reference/mizuki.webp",
+      "source": "/workspace/scratch/88c0c72d6de7/generated_images/exec-2fc53a6f-65eb-4a08-af69-d53a455ca799.png",
+      "png": "assets/heroine-expressions/mizuki-v125.png",
+      "webp": "assets/heroine-expressions/mizuki-v125.webp",
+      "layout": {
+        "columns": 3,
+        "rows": 2,
+        "states": [
+          "calm",
+          "warm",
+          "thoughtful",
+          "determined",
+          "surprised",
+          "blush"
+        ]
+      }
+    }
+  ]
+}

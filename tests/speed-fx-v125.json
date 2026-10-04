@@ -1,0 +1,117 @@
+{
+  "build": 125,
+  "scope": "Real Canvas renderer + effects, no browser/HUD/device test",
+  "checks": [
+    "放射線・ネオン縁・風の集中線を描かない。単独の速度値では画面に線を足さない",
+    "晴天時の飛沫は画面下部の外側だけ、中央の操船視界と上部HUD領域は透明",
+    "加速・減速では演出量が連続して増減し、従来の速度境界で点滅しない",
+    "泡と微細飛沫は艇の座標・旋回方向に追従し、ゲーム乱数を使わない",
+    "控えめでは飛沫を削減、演出なし・動き停止では追加の航走演出を停止",
+    "V124の速度・荒波・フィジカル・姿勢によるカメラは同一",
+    "全晴雨・速度の描画でゲーム状態の変更なし"
+  ],
+  "frames": [
+    {
+      "file": "v124-sun-48.png",
+      "kmh": 48,
+      "weather": "晴れ",
+      "noGameMutation": true,
+      "width": 393,
+      "height": 852
+    },
+    {
+      "file": "v124-sun-84.png",
+      "kmh": 84,
+      "weather": "晴れ",
+      "noGameMutation": true,
+      "width": 393,
+      "height": 852
+    },
+    {
+      "file": "v124-rain-48.png",
+      "kmh": 48,
+      "weather": "雨",
+      "noGameMutation": true,
+      "width": 393,
+      "height": 852
+    },
+    {
+      "file": "v124-rain-84.png",
+      "kmh": 84,
+      "weather": "雨",
+      "noGameMutation": true,
+      "width": 393,
+      "height": 852
+    },
+    {
+      "file": "v125-sun-48.png",
+      "kmh": 48,
+      "weather": "晴れ",
+      "noGameMutation": true,
+      "width": 393,
+      "height": 852
+    },
+    {
+      "file": "v125-sun-84.png",
+      "kmh": 84,
+      "weather": "晴れ",
+      "noGameMutation": true,
+      "width": 393,
+      "height": 852
+    },
+    {
+      "file": "v125-rain-48.png",
+      "kmh": 48,
+      "weather": "雨",
+      "noGameMutation": true,
+      "width": 393,
+      "height": 852
+    },
+    {
+      "file": "v125-rain-84.png",
+      "kmh": 84,
+      "weather": "雨",
+      "noGameMutation": true,
+      "width": 393,
+      "height": 852
+    }
+  ],
+  "benchmark": [
+    {
+      "variant": "v124",
+      "quality": "full",
+      "medianMs": 324.93,
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "v124",
+      "quality": "soft",
+      "medianMs": 286.25,
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "v124",
+      "quality": "off",
+      "medianMs": 248.78,
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "v125",
+      "quality": "full",
+      "medianMs": 329.05,
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "v125",
+      "quality": "soft",
+      "medianMs": 294.41,
+      "scope": "Node Canvas CPU time, not browser FPS"
+    },
+    {
+      "variant": "v125",
+      "quality": "off",
+      "medianMs": 241.73,
+      "scope": "Node Canvas CPU time, not browser FPS"
+    }
+  ]
+}

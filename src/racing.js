@@ -186,7 +186,7 @@ function create(r,seed,options={}){
   });
   d.boats.forEach(b=>{b.startAim=startTarget(b,r)+(earlyStart(b)?0:b.startRoll*.012);});
   if(d.boats.some(b=>earlyStart(b)))log(d,d.boats.filter(earlyStart).map(b=>b.name).join('・')+'：先駆スタート。時計を先取りする強敵。','phase');
-  recordReplay(d,true);log(d,'助走開始。内側はスロー、外側は後方からダッシュ。通過までは直進のみ。早発への余裕が生まれるのはスタート B 以上。C 以下は時計が頂点に達してから通過しよう。','phase');
+  recordReplay(d,true);log(d,'助走開始。内側はスロー、外側は後方からダッシュ。通過までは直進のみ。通常の早発への余裕が生まれるのはスタート A 以上。B 以下は時計が頂点に達してから通過しよう。早発を補助する特能には例外がある。','phase');
   return d;
 }
 function condition(a,b,d,env){switch(a.condition){case'rough':return env.weather==='雨'||env.windSpeed>=6;case'calm':return env.weather!=='雨'&&env.windSpeed<=3;case'inner':return b.course<=2;case'outer':return b.course>=4;case'rain':return env.weather==='雨';case'cross':return env.wind==='横風';case'behind':return place(d,b)>=3;default:return true;}}
@@ -331,7 +331,7 @@ function launchForecast(d,b,r,p=performance(b,d,r)){
   const uncertainty=earlyStart(b)?0:.03+Math.pow(1-clamp(p.stats.start/100,0,1),1.35)*.46;
   return {seconds:t,uncertainty,launchIn:startAt(d)-d.elapsed-t,precision:p.stats.start>=80?'精密':p.stats.start>=50?'標準':'粗め'};
 }
-function startTarget(b,r){if(earlyStart(b))return -.30;const stat=clamp(b.stats.start,0,100),uncertainty=.03+Math.pow(1-stat/100,1.35)*.46;
+function startTarget(b,r){if(earlyStart(b))return -pioneerAllowance(b);const stat=clamp(b.stats.start,0,100),uncertainty=.03+Math.pow(1-stat/100,1.35)*.46;
  const policy=b.isPlayer?(r.startPolicy||'safe'):(normalAI(r)&&b.aiBias>-.25?'attack':'safe');
  return policy==='attack'?-startAllowance(b)+.03+uncertainty*.42:.08+uncertainty*.35;
 }
@@ -462,16 +462,30 @@ function turnDanger(b,p,wetGrip){
   const excess=Math.max(0,load-(1.08+power*.003+p.safety*.25));
   return excess*Math.max(0,(b.speed-7)/12)*(1-p.safety*.65)*(1.18-power*.004);
 }
-// Role/identity, never a high stat alone, grants the three specified opponents their exception.
-const earlyStart=b=>Number(b.stats?.start)>=65&&!b.isPlayer&&((b.id==='cast_kagura'&&b.castId==='kagura'&&b.castRole==='boss')||(b.id==='cast_teiou'&&b.castRole==='king')||b.racePersona==='rival_final');
-// V124: only base start rank B or better qualifies; temporary effects do not change the rule.
-// Preserve existing B+ tuning and the qualified story opponents' separate signature start.
-const startAllowance=b=>Number(b.stats?.start)<65?0:earlyStart(b)?.30:.20*clamp(Number(b.stats?.start)||0,0,100)/100;
+// V125: a permanent, explicitly owned start-allowance ability is the only exception.
+// Identity/role and temporary stat bonuses never grant this permission.
+const specialStartAllowance=b=>(Array.isArray(b.skills)?b.skills:[]).reduce((best,id)=>{
+ const a=D.abilityMap[id],value=Number(a?.type==='startAllowance'?a.effect?.allowance:a?.effect?.startAllowance)||0;
+ return Number.isFinite(value)?Math.max(best,clamp(value,0,.30)):best;
+},0);
+const pioneerAllowance=b=>b.skills?.includes('pioneer_start')?clamp(Number(D.abilityMap.pioneer_start?.effect.allowance)||0,0,.30):0;
+const earlyStart=b=>!b.isPlayer&&pioneerAllowance(b)>0;
+// Base start rank A or better qualifies. Ability permission is not added to the normal window.
+const startAllowance=b=>Math.max(Number(b.stats?.start)>=80?.20*clamp(Number(b.stats.start),0,100)/100:0,specialStartAllowance(b));
+// Only the legacy import path calls this identity-to-ability migration. Current race creation
+// never silently regrants a removed ability; all live permission checks inspect owned skills.
+function migrateStartSkills(p){
+ if(!p||p.isPlayer||!Array.isArray(p.skills)||!D.abilityMap.pioneer_start||p.skills.includes('pioneer_start'))return false;
+ const legacy=(p.id==='cast_kagura'&&p.castId==='kagura'&&p.castRole==='boss')||
+  (p.id==='cast_teiou'&&p.castId==='teiou'&&p.castRole==='king')||
+  (/^main_(haruto|ren|izumi|sou|ibuki)$/.test(p.id)&&p.racePersona==='rival_final'&&!p.castRole&&!p.castId);
+ if(!legacy)return false;p.skills.push('pioneer_start');return true;
+}
 function holdStartLine(b){if(b.startTime!==null)return;b.startLane=Number.isFinite(b.startLane)?b.startLane:clamp(b.z,C.inner+.1,C.outer-.1);b.z=b.startLane;b.heading=b.yawRate=b.steer=b.vz=b.heel=b.slip=0;}
 // Closed-loop throttle: predict with the same integrator and solve the first input.
 // No clock/position warp or retrospective forgiveness is used to hit the target.
 function eliteThrottle(d,b,p,dt){
- const remaining=startAt(d)-.30+1e-6-(d.elapsed-dt),left=pointAt(C.start).x-b.x-3.5;
+ const remaining=startAt(d)-pioneerAllowance(b)+1e-6-(d.elapsed-dt),left=pointAt(C.start).x-b.x-3.5;
  if(remaining<=0||left<=0)return 1;
  const travel=first=>{let time=0,v=b.vx,engine=b.engine,distance=0;
   while(time<remaining-1e-9){const q=forwardStep(v,engine,time===0?first:1,p,dt,true),step=Math.min(dt,remaining-time);distance+=q.speed*step;v=q.speed;engine=q.engine;time+=step;}return distance;};
@@ -556,7 +570,7 @@ function integrate(d,b,r,input,dt){
   let forward=b.vx*fx+b.vz*fz,lateral=b.vx*rx+b.vz*rz;
   const wind=r.env.wind==='向かい風'?-r.env.windSpeed*.065:r.env.wind==='追い風'?r.env.windSpeed*.065:0;
   const speedLimit=p.topSpeed+wind,launch=b.startTime===null||raceTime(d)<3,oldEngine=b.engine;
-  if(startLocked&&earlyStart(b)){throttle=eliteThrottle(d,b,{...p,topSpeed:speedLimit},dt);b.throttle=throttle;b.startAim=-.30;}
+  if(startLocked&&earlyStart(b)){throttle=eliteThrottle(d,b,{...p,topSpeed:speedLimit},dt);b.throttle=throttle;b.startAim=-pioneerAllowance(b);}
   const q=forwardStep(forward,oldEngine,throttle,{...p,topSpeed:speedLimit},dt,launch);
   forward=q.speed;b.engine=q.engine;
   // At high yaw load the hull planes sideways; releasing throttle reduces speed but retains inertia.
@@ -710,7 +724,7 @@ function valid(d,r){
     (!('startLane' in b)||finite(b.startLane,C.inner,C.outer))&&(b.startTime===null||finite(b.startTime,-C.prestart,271))&&[null,'F','L'].includes(b.startFault)&&(!b.plan||['front','defend','sashi','outside','cross','clear'].includes(b.plan.id)&&finite(b.plan.lane,C.inner,C.outer)&&finite(b.plan.speed,.1,2))&&(b.lastZone===null||typeof b.lastZone==='string'&&b.lastZone.length<20)&&Array.isArray(b.effects)&&b.effects.length<150&&b.effects.every(e=>D.abilityMap[e.id]&&finite(e.until,0,310)&&finite(e.safety,0,2)&&(!e.mechanics||Object.values(e.mechanics).every(v=>finite(v,-5,5)))&&e.stats&&Object.entries(e.stats).every(([k,v])=>D.statKeys.includes(k)&&finite(v,-10000,10000)))&&Array.isArray(b.activations)&&b.activations.length<=100&&b.activations.every(active)&&Array.isArray(b.interference)&&b.interference.length<600&&Array.isArray(b.phaseHistory)&&b.phaseHistory.length<=24&&b.metrics&&Craft.validMetrics(b.metrics.craft)&&['contacts','boundaries','rescues','maxSpeed','slideSeconds','throttleSeconds','coastSeconds','wakeSeconds','lineChanges','contactImpulse','turnSpeedSum','turnSamples'].every(k=>finite(b.metrics[k],0,1e7))&&b.stats&&D.statKeys.every(k=>finite(b.stats[k],0,D.statCeiling(b,k)))&&Array.isArray(b.skills)&&b.skills.every(id=>D.abilityMap[id])&&b.mastery&&Object.values(b.mastery).every(n=>Number.isInteger(n)&&n>0&&n<10000)&&b.statsBuff&&D.statKeys.every(k=>finite(b.statsBuff[k]||0,0,100))&&b.equipment&&['motor','prop','boat'].every(k=>b.equipment[k]&&Object.values(b.equipment[k]).every(v=>finite(v,-100,100)));});
 }
 
-const R={physicalWake,wakeStrength,migrateProgress,straightSupport,advanceProgress,C,DT,startTarget,earlyStart,startAllowance,eliteThrottle,holdStartLine,runOut,postureStep,postureTarget,postureEffects,movePosture,requiresManual,racingStyle,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
+const R={physicalWake,wakeStrength,migrateProgress,straightSupport,advanceProgress,C,DT,startTarget,earlyStart,specialStartAllowance,migrateStartSkills,startAllowance,eliteThrottle,holdStartLine,runOut,postureStep,postureTarget,postureEffects,movePosture,requiresManual,racingStyle,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
 root.KM_RACING=R;if(typeof module!=='undefined'&&module.exports)module.exports=R;
 })(typeof globalThis!=='undefined'?globalThis:window);
 

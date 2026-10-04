@@ -1,0 +1,77 @@
+{
+  "build": "125",
+  "scope": "Current release validation. Individual reports state methods and limits.",
+  "sourceSyntax": {
+    "modules": 37,
+    "passed": true
+  },
+  "checks": {
+    "start-v125": {
+      "file": "tests/start-v125.json",
+      "checks": 13
+    },
+    "legacy-start-v125": {
+      "file": "tests/legacy-start-v125.json",
+      "checks": 7
+    },
+    "growth-v125": {
+      "file": "tests/growth-v125.json",
+      "checks": 6
+    },
+    "mentor-v125": {
+      "file": "tests/mentor-v125.json",
+      "checks": 10
+    },
+    "expressions-v125": {
+      "file": "tests/expressions-v125.json",
+      "checks": 11
+    },
+    "speed-fx-v125": {
+      "file": "tests/speed-fx-v125.json",
+      "checks": 7
+    },
+    "drive-ui-v125": {
+      "file": "tests/drive-ui-v125.json",
+      "checks": 12
+    },
+    "ui-logic-v125": {
+      "file": "tests/ui-logic-v125.json",
+      "checks": 23
+    },
+    "verification-v125-base": {
+      "file": "tests/verification-v125-base.json",
+      "checks": 29
+    }
+  },
+  "checkGroups": 118,
+  "htmlParity": {
+    "entries": 5,
+    "passed": true,
+    "file": "tests/parity-v125.json"
+  },
+  "inlineEntryPoints": {
+    "scenarioRaceRuns": 12,
+    "passed": true,
+    "file": "tests/safe-sync-v125.json"
+  },
+  "shaderCompileAndLink": {
+    "passed": true,
+    "file": "tests/mesa-shader-v125.json"
+  },
+  "heroineArt": {
+    "heroines": 6,
+    "statesEach": 6,
+    "file": "tests/heroine-art-v125.json"
+  },
+  "graphicsReview": {
+    "method": "Actual Node Canvas frames and generated atlas cells visually reviewed",
+    "comparison": "tests/speed-fx-previews/speed-effects-v125-comparison.png",
+    "browserOrPhysicalDevice": false
+  },
+  "browserLayout": "Not tested",
+  "physicalDevices": "Not tested",
+  "notes": [
+    "Old V124 test reports are historical, not current release results.",
+    "CPU drawing timing is not browser or device FPS."
+  ]
+}
