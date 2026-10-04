@@ -45,5 +45,5 @@ for file in ['index_editable.html', 'web/index.html']:
     frame = lambda x: re.sub(r'\s+', ' ', re.sub(pattern, '<script></script>', x, flags=re.S)).strip()
     assert frame(html) == frame(base), file + ': HTML/CSS mismatch'
     report['entries'].append({'file': file, 'fullContentEqual': True})
-(root / 'tests/parity-v122.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+(root / 'tests/parity-v123.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
 print('基本・Android Safe・iPhone Safe・編集用・素材分離版：内容一致 PASS')

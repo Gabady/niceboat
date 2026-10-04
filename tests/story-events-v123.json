@@ -1,0 +1,12 @@
+{
+  "version": 123,
+  "passed": true,
+  "eventsReviewed": 123,
+  "extraEvents": 72,
+  "chapters": 18,
+  "choiceRuns": 858,
+  "rulesPreserved": true,
+  "branchesPreserved": true,
+  "insufficientFundsAndSkillCapCovered": true,
+  "scope": "story-extra.js and story.js, excluding drama-data.js dialogue overrides"
+}

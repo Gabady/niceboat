@@ -19,7 +19,7 @@ const mentors=[
 const walls=[
  {id:'kurose',name:'黒瀬 零',key:'speed',title:'水平線の彼方',color:'#58cfff',hair:2,quote:'届くなら、追いかけてこい。'},
  {id:'shirakami',name:'白神 凛',key:'turn',title:'水面の支配者',color:'#d2a8ff',hair:1,quote:'この水面に、私の知らない線はない。'},
- {id:'kagura',name:'神楽 瞬',key:'start',title:'零秒の王者',color:'#ffda85',hair:0,quote:'始まる前に、勝負は始まっている。'},
+ {id:'kagura',name:'神楽 瞬',key:'start',title:'零秒の王者',color:'#ffda85',hair:0,quote:'最初の一瞬は、譲らない。'},
  {id:'raiden',name:'雷堂 迅',key:'accel',title:'波を裂く閃光',color:'#ff828f',hair:3,quote:'並んだ瞬間が、お前の最後のチャンスだ。'},
  {id:'onizuka',name:'鬼塚 巌',key:'power',title:'不動の砦',color:'#78efc7',hair:4,quote:'どんな波でも、俺はここにいる。'}
 ];
@@ -93,18 +93,18 @@ function settle(c,r,result,api){
   const rar=api.rewardRarity(p,q.kind==='boss'?(r.type==='championship'?'LR':'UR'):'SSR');let pool=D.abilities.filter(a=>!a.exclusive&&a.rarity===rar&&a.category!=='弱点'&&!p.skills.includes(a.id));if(!pool.length)pool=D.abilities.filter(a=>!a.exclusive&&a.rarity===rar&&a.category!=='弱点');
   const id=pool[S.hash(r.id+':castReward')%pool.length]?.id;if(id){z.skill=id;result.acquired.push(api.acquire(c,p,id,q.kind==='boss'?'最強の壁に先着':'師匠に先着'));}
  }
- result.castDuel=z;const st=S.ensure(c);st.log.push({index:++st.serial,stage:c.stage,kind:'duelResult',title:(q.kind==='boss'?'最強の壁':'師匠')+(won?'を越えた':'との一戦'),note:def.name+'「'+(won?'今日の航跡は、お前のものだ。':def.quote)+'」',rewards:[]});
+ result.castDuel=z;const st=S.ensure(c);st.log.push({index:++st.serial,stage:c.stage,kind:'duelResult',title:(q.kind==='boss'?'最強の壁':'師匠')+(won?'を越えた':'との一戦'),note:def.name+'「'+(won?'今日は、見事だった。また競おう。':def.quote)+'」',rewards:[]});
  st.log[st.log.length-1].rewards=won?[z.money+'万円',D.abilityMap[z.skill]?.name].filter(Boolean):[];st.log=st.log.slice(-72);return z;
 }
 function routeState(c){const t=ensure(c),id=t.mentor?.id;if(!id)return null;if(!t.route)t.route={id,step:0,nextAt:0,choices:[],log:[],pending:null,reward:null,rules:2,legacySteps:0};else if(!t.route.rules&&t.route.step<5){t.route.rules=2;t.route.legacySteps=t.route.step;}return t.route;}
 function routeReward(c){const q=routeState(c),r=q&&routes[q.id];return r?(c.player.difficulty==='easy'?r.easyReward:r.reward):null;}
 const routeEpisode=(c,r,i)=>(c.campaign?.arc==='recovery'&&r.recoveryChapters?r.recoveryChapters:r.chapters)[i];
 function routeGate(c){if(!c?.player||!c.cast?.mentor)return {open:false,reason:'G3から師匠に出会えます'};const q=routeState(c),r=routes[q.id],episode=routeEpisode(c,r,q.step);
- if(!episode)return {open:false,completed:true,reason:q.reward?'伝授を受け 全5話を修了しました':'全5話終了 · 教えを受け継ぐ条件には届かず 今回の伝授はありません'};
+ if(!episode)return {open:false,completed:true,reason:q.reward?'全5話を完了し、奥義を習得しました':'全5話を完了。奥義の習得条件には届きませんでした'};
  if(c.ending||c.status==='race'||c.series?.race?.drive&&!c.series.race.done)return {open:false,reason:c.ending?'今回の育成は終了しました':'レース後に話せます'};
  if(c.stage<episode.stage)return {open:false,reason:D.stages[episode.stage].name+'から続きが届きます'};
  if(c.stats.races<q.nextAt)return {open:false,reason:'あと'+(q.nextAt-c.stats.races)+'走で続きが届きます'};
- const affinity=A.gate(c,'mentor',q.id);if(q.step===4&&!affinity.open)return {open:false,affinity,reason:'最終話まで 好感度あと'+affinity.remaining+'。さらに信頼を深める必要があります。レースで上位を重ねましょう。'};
+ const affinity=A.gate(c,'mentor',q.id);if(q.step===4&&!affinity.open)return {open:false,affinity,reason:'最終話の解放まで、好感度があと'+affinity.remaining+'必要です。レースで上位に入ると好感度が上がります。'};
  return {open:true,episode,reason:'第'+(q.step+1)+'話を進められます'};
 }
 function routeOpen(c){const g=routeGate(c);if(!g.open)return null;const t=ensure(c),q=routeState(c);t.mentorLocked=true;if(q.step===4)A.unlock(c,'mentor',q.id);q.pending={key:q.id+':mentor:'+q.step+':'+c.stats.races,step:q.step,stamp:c.stats.races};return routeScene(c);}
@@ -112,7 +112,7 @@ function routeScene(c){const q=routeState(c),p=q?.pending;if(!p)return null;cons
 function routeChoose(c,key,index,api){const q=routeState(c),p=q?.pending,g=routeGate(c);if(!p||!g.open||p.key!==key||p.step!==q.step||p.stamp!==c.stats.races||!Number.isInteger(index))return null;const ch=g.episode.choices[index];if(!ch)return null;
  const person=map[q.id],stat=ch.key||person.key,before=Math.floor(c.player.stats[stat]);if(ch.aligned)api.growStat(c.player,stat,.25*1.5*api.statGrowthRate(c.player.stats[stat])*api.growthFactor(c.player));q.pending=null;q.choices.push(index);q.step++;q.nextAt=c.stats.races+2;
  let skill=null;const understood=q.choices.filter((v,i)=>i<(q.legacySteps||0)||routes[q.id].chapters[i].choices[v].aligned).length;if(q.step===5&&!q.reward&&ch.aligned&&understood>=4){const acquired=api.acquire(c,c.player,routeReward(c),person.name+'からの伝授');skill=acquired.id;q.reward={skill,stage:c.stage};}
- const z={kind:'mentorRoute',mentor:q.id,title:g.episode.title,note:ch.reply+(q.step===5?(skill?'\n教わった技を獲得した。':' 五話を終えたが、理解を積み重ねて最後の問いに答える条件には届かなかった。今回は伝授なし。この育成での師匠ルートは終了した。'):''),aligned:!!ch.aligned,choice:ch.label,stat,gain:Math.floor(c.player.stats[stat])-before,skill,races:c.stats.races,stage:c.stage};const affection=A.choice(c,'mentor',q.id,!!ch.aligned);z.affinity=affection;z.rewards=['好感度 '+(affection.delta>=0?'＋':'')+affection.delta];q.log.push(z);return copy(z);
+ const z={kind:'mentorRoute',mentor:q.id,title:g.episode.title,note:ch.reply+(q.step===5?(skill?'\n教わった技を獲得した。':'\n全5話を完了。奥義の習得には、全5回のうち4回以上で教えに沿う選択をし、最終話でもその選択をする必要がある。今回は条件に届かなかったため、この育成では習得できない。'):''),aligned:!!ch.aligned,choice:ch.label,stat,gain:Math.floor(c.player.stats[stat])-before,skill,races:c.stats.races,stage:c.stage};const affection=A.choice(c,'mentor',q.id,!!ch.aligned);z.affinity=affection;z.rewards=['好感度 '+(affection.delta>=0?'＋':'')+affection.delta];q.log.push(z);return copy(z);
 }
 function routeDepart(c){if(c.cast?.route)c.cast.route.pending=null;}
 function validRoute(q,mentor){if(q===null||q===undefined)return true;const num=(x,a,b)=>Number.isInteger(x)&&x>=a&&x<=b,str=(x,n)=>typeof x==='string'&&x.length<=n,r=routes[q.id];

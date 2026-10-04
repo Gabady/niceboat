@@ -29,11 +29,11 @@ function settle(c,r,result,api){const f=ensure(c);if(f.settled.includes(r.id))re
  const n=c.series.npcs.find(n=>n.id===Dev.rival(c).id);if(n&&r.type==='qualifier')growRival(c,n);
  if(c.stage===8&&r.type==='qualifier'&&result.castDuel?.kind==='boss'&&result.castDuel.won&&!f.wallDefeated){f.wallDefeated={raceId:r.id,id:result.castDuel.id};note(c,'頂点への招待','前哨の壁を越えた。優勝戦へ進めば、'+(f.rival.route==='duel'?Dev.rival(c).name:'挺王')+'が最後の相手になる。');result.finaleNotice=f.log.at(-1).text;}
  const meet=Bonds.discoverRacer(c,r,result);if(meet){result.finaleNotice='朝凪 瑞希がピットで待っています。物語から会いに行けます。';note(c,'勝負のあとで','朝凪 瑞希との物語が始まった。');}
- if(r.type==='championship'&&c.stage===8){const target=result.finish.find(n=>['cast_teiou',Dev.rival(c).id].includes(n.id)&&r.runners.find(p=>p.id===n.id)?.racePersona?.match(/king|rival_final/)),me=result.finish.find(n=>n.isPlayer);if(target){const won=!!me&&!me.dnf&&!me.capsized&&!me.startFault&&me.place<target.place;result.finalChallenge={id:target.id,won,champion:won&&me.place===1};if(won){const skill=api.acquire(c,c.player,api.rewardRarity(c.player,'LR')==='UR'?'comet':'legend_speed','最後の壁を越えた');result.acquired.push(skill);}note(c,won?'その背中の先へ':'次の航跡へ',won?(me.place===1?'誰の席も譲られず、自分の一着をつかんだ。':'最後の相手に先着した。優勝は別の艇へ。次は一着で、この岸に戻る。'):'届かなかった距離を、二人は言い訳にしなかった。次に何を変えるかを、岸で話した。');}}
+ if(r.type==='championship'&&c.stage===8){const target=result.finish.find(n=>['cast_teiou',Dev.rival(c).id].includes(n.id)&&r.runners.find(p=>p.id===n.id)?.racePersona?.match(/king|rival_final/)),me=result.finish.find(n=>n.isPlayer);if(target){const won=!!me&&!me.dnf&&!me.capsized&&!me.startFault&&me.place<target.place;result.finalChallenge={id:target.id,won,champion:won&&me.place===1};if(won){const skill=api.acquire(c,c.player,api.rewardRarity(c.player,'LR')==='UR'?'comet':'legend_speed','最後の壁を越えた');result.acquired.push(skill);}note(c,won?'その背中の先へ':'次の航跡へ',won?(me.place===1?'最後の相手に先着し、優勝をつかんだ。':'最後の相手に先着した。優勝は別の艇へ。次は一着で、この岸に戻る。'):'最後の相手に先着できなかった。悔しさを抱えたまま、ピットで言葉を交わした。');}}
 }
 function routeGate(c){const f=ensure(c),n=Dev.rival(c);return !!c&&!c.ending&&!['race','registration'].includes(c.status)&&!(c.series?.race?.drive&&!c.series.race.done)&&!(c.stage===8&&c.series?.race?.type==='championship')&&c.stage>=4&&n.wins+n.losses>=2&&f.rival.route==='open';}
 function routeScene(c){const n=Dev.rival(c),t=ensure(c),ahead=n.wins>=n.losses;return {key:'rival-path:'+n.id,person:n,title:'頂点へ向かう約束',background:'harbor',body:[
- '二人の対戦表を広げた。先着は'+n.wins+'回、後着は'+n.losses+'回。',
+ '二人の対戦表を広げた。自分の先着は'+n.wins+'回、後着は'+n.losses+'回。',
  n.name+'「'+(ahead?'負けた後、お前の映像を何度も見た。次にどこで抜くか、ずっと考えてた。':'先に出ても、後ろが気になった。お前が追ってくるから、勝った日も練習を変えた。')+'」',
  '主人公「自分も、出走表で真っ先に名前を探してたよ」',
  n.name+'「ここから先も、互いを一番倒したい相手として走るか。それとも、弱点まで見せて一緒に頂点へ挑むか」',
@@ -41,10 +41,10 @@ function routeScene(c){const n=Dev.rival(c),t=ensure(c),ahead=n.wins>=n.losses;r
  n.name+'「それは同じ。譲られて取る一着なら、欲しくない」',
  t.wallDefeated?'主人公「壁は越えた。次の優勝戦で、どう競うか決めよう」':'主人公「まずは最高峰の壁を越える。その先のためにも、今決めたい」'
  ],choices:[{label:'最後は互いを倒すために 競い続けよう',note:'宿命のライバル'},{label:'弱点を教え合い 一緒に頂点へ挑もう',note:'頂点への共闘'}]};}
-function chooseRoute(c,index){if(!routeGate(c)||![0,1].includes(index))return null;const f=ensure(c);f.rival.route=index===0?'duel':'ally';f.rival.chosenAt=c.stats.races;const n=c.series?.npcs.find(p=>p.id===Dev.rival(c).id);if(n)growRival(c,n);const z={title:index===0?'最後の相手は お前だ':'二人で頂点へ挑む',note:index===0?'{{rival}}「分かった。次に並ぶ時は、もっと強くなっておく」\n主人公「こっちもだ。今日より簡単に勝てると思うなよ」':'{{rival}}「じゃあ、見せたくなかった失敗から出す。先に笑うなよ」\n主人公「こっちのも見せる。直した上で競おう。その方が勝ちたい」'};note(c,z.title,z.note);return z;}
+function chooseRoute(c,index){if(!routeGate(c)||![0,1].includes(index))return null;const f=ensure(c);f.rival.route=index===0?'duel':'ally';f.rival.chosenAt=c.stats.races;const n=c.series?.npcs.find(p=>p.id===Dev.rival(c).id);if(n)growRival(c,n);const z={title:index===0?'最後の相手は お前だ':'二人で頂点へ挑む',note:index===0?'{{rival}}「分かった。次に並ぶまでに、もっと強くなっておく」\n主人公「こっちもだ。今日より簡単に勝てると思うなよ」':'{{rival}}「じゃあ、見せたくなかった失敗から出す。先に笑うなよ」\n主人公「こっちのも見せる。直した上で競おう。その方が勝ちたい」'};note(c,z.title,z.note);return z;}
 function finalScene(c){const r=c.series?.race;if(!r||c.stage!==8||r.type!=='championship')return null;const target=r.runners.find(n=>['king','rival_final'].includes(n.racePersona));if(!target)return null;const ally=ensure(c).rival.route==='ally',rival=Dev.rival(c),nemesis=target.racePersona==='rival_final';return {key:'final-promise:'+r.id,person:nemesis?rival:king,title:nemesis?'最後の相手は お前だ':'挺王との優勝戦',background:'workshop',body:[
  '優勝戦の出走表に、'+target.name+'の名前がある。',
- ...(nemesis?[rival.name+'「最初に競った頃より、ずいぶんできることが増えたな」','主人公「前の癖を狙っても、もう通らないぞ」',rival.name+'「分かってる。負けた日も、教え合ったことも、今日は全部使う」','主人公「それで来い。勝ったから今まで全部正しかった、とは言わない。でも今日は勝ちたい」']:[
+ ...(nemesis?[rival.name+'「最初に競った頃より、ずいぶんできることが増えたな」','主人公「前の癖を狙っても、もう通らないぞ」',rival.name+'「分かってる。負けた日も、教え合ったことも、今日は全部使う」','主人公「こっちも全部使う。最後の一着は譲らないからな」']:[
  '挺王「前哨を越えたそうだな。次は俺か」','主人公「はい。ここで満足して帰るつもりはありません」','挺王「なら、準備したことを使え。名前を見て走りを変えるな」','主人公「無視できる名前でもないですけど」','挺王「それなら最後まで追ってこい。俺も、後ろを確認する」']),
  ...(ally?[rival.name+'「映像で調べた出口、同じ場所だけを取りに行くなよ」','主人公「分かってる。相談はここまでだ。先に出た方も一着を狙う」']:[]),
  ...(r.runners.some(n=>n.id==='mizuki')?['瑞希「特別な対決の途中でも、私が先に出たらそのまま行くよ」','主人公「忘れてない。六艇、全部相手だ」']:['ほかの艇も、出走の準備を終えた。']),
@@ -53,10 +53,10 @@ function finalScene(c){const r=c.series?.race;if(!r||c.stage!==8||r.type!=='cham
 function outcomeScene(c){const z=c.lastResult,r=c.series?.race,target=z?.finalChallenge&&r?.runners.find(n=>n.id===z.finalChallenge.id);if(!target)return null;const nemesis=target.racePersona==='rival_final',person=nemesis?Dev.rival(c):king,q=z.finalChallenge;return {key:'last-shore:'+r.id,person,title:q.champion?'優勝を確かめて':q.won?'先着した相手と 次の課題':'届かなかった一戦',background:'harbor',body:[
  q.champion?'結果表の一番上に、自分の名前がある。':q.won?'対決の相手には先着した。優勝したのは、別の選手だった。':'結果表を確かめ、先に戻っていた相手へ歩み寄った。',
  ...(nemesis?(q.won?[person.name+'「悔しい。今すぐ、いい勝負だったって顔はできない」','主人公「しなくていい。こっちだって逆なら、そうなる」',person.name+'「でも映像は見る。どこを変えたか、後で聞かせろ」']:[person.name+'「次は何を変える？」','主人公「今は、悔しいって言うので精いっぱいだ」',person.name+'「分かった。少し待つ。でも、次の話も聞きたい」']):(q.won?[
- '挺王「今日は、お前が先だった。最後まで確認したが、届かなかった」','主人公「勝つために、何度も映像を見ました」','挺王「次はこちらが見る。今日の走りを、同じままで終わらせるなよ」']:[
- '挺王「何が足りなかった？」','主人公「競った後に、立て直す判断が遅れました。映像で確かめたいです」','挺王「では、そこを直してまた来い。俺も同じままでは待たない」'])),
- ...(ensure(c).rival.route==='ally'?['{{rival}}「二人分の映像、持ってきた。落ち着いたら一緒に見よう」','主人公「ありがとう。自分の失敗からでも逃げないから、少し待ってくれ」']:[]),
- q.champion?'主人公「今日はまず、勝てたって報告する。直したい所は、その後ちゃんと残す」':'主人公「この映像は消さない。今すぐ平気にはならないけど、次に使える所まで確かめる」'
+ '挺王「今日は、お前が先だった。この勝負は、お前の勝ちだ」','主人公「勝つために、何度も映像を見ました」','挺王「次はこちらが見る。今日の走りを、同じままで終わらせるなよ」']:[
+ '挺王「何が足りなかった？」','主人公「まだ、うまく言えません。映像を見直してから答えたいです」','挺王「なら、見つけてまた来い。俺も同じままでは待たない」'])),
+ ...(ensure(c).rival.route==='ally'?['{{rival}}「二人分の映像、持ってきた。落ち着いたら一緒に見よう」','主人公「ありがとう。後で見せてくれ。今は少し、気持ちを落ち着けたい」']:[]),
+ q.champion?'主人公「まずは、勝ったって報告してくる。今日は、ありがとう」':'主人公「今すぐ平気な顔はできない。でも、この映像は取っておく。次の準備に使いたい」'
  ]};}
 function validGrid(g){return !g||Array.isArray(g.ids)&&g.ids.length===6&&new Set(g.ids).size===6&&g.ids.every(id=>typeof id==='string'&&id.length<=110)&&['king','nemesis','ally','heroine'].every(k=>typeof g[k]==='boolean')&&!(g.king&&g.nemesis);}
 function valid(f){if(f==null)return true;const n=(v,a,b)=>Number.isInteger(v)&&v>=a&&v<=b,str=(v,k)=>typeof v==='string'&&v.length<=k;if(f.version!==1||!f.rival||!['open','duel','ally'].includes(f.rival.route)||!(f.rival.chosenAt===null||n(f.rival.chosenAt,0,54))||!n(f.rival.growth,0,54)||!Array.isArray(f.settled)||f.settled.length>54||new Set(f.settled).size!==f.settled.length||!f.settled.every(id=>str(id,110)))return false;

@@ -15,8 +15,8 @@ function capture(c,z){const t=ensure(c);if(t.closed)return t;const i=B.stages.in
 function close(c,kind='early'){const t=ensure(c);if(t.closed)return t;t.entries.push({id:kind,kind,stage:c.stage,outcome:'setback',...build(c.player),read:false});t.closed=true;return t;}
 function mark(t,id){const e=t?.entries.find(e=>e.id===id);if(!e)return false;e.read=true;return true;}
 function scene(t,id){const a=B.map[t.arc],e=t.entries.find(e=>e.id===id);if(!a||!e)return null;
- let title,body;if(e.kind==='opening'){title='プロローグ';body=a.intro.slice();if(e.late)body.unshift('ここまでの走りを経て、デビューの日のことを思い返す。これは、この選手が水面に出た理由の物語。');}
- else if(e.kind==='season'){const i=B.stages.indexOf(e.stage),ch=a.chapters[i];title=ch.title;body=[...ch.body,ch.variants[e.outcome]];if([3,7,8].includes(e.stage)){body.push(a.craft[e.strong]);if(e.weak)body.push(D.stats[e.weak]+'には、まだ課題が残る。今ある強みだけでは届かない場所を、次に練習する理由として覚えておく。');}}
+ let title,body;if(e.kind==='opening'){title='プロローグ';body=a.intro.slice();if(e.late)body.unshift('これまでの走りを振り返るうち、デビューの日のことを思い出した。あの日、どんな思いで艇に乗ったのか。');}
+ else if(e.kind==='season'){const i=B.stages.indexOf(e.stage),ch=a.chapters[i];title=ch.title;body=[...ch.body,ch.variants[e.outcome]];if([3,7,8].includes(e.stage)){body.push(a.craft[e.strong]);if(e.weak)body.push(D.stats[e.weak]+'は、ほかの能力に比べてまだ低い。次はそこを練習して、得意な走りを生かしたい。');}}
  else{title=e.kind==='gate'?'届かなかった先へ':'自分で決めた区切り';body=[a[e.kind]];}
  return {title,body,arc:a.title,stage:e.stage,kind:e.kind,result:e.result||null};}
 function valid(t){const n=(x,a,b)=>Number.isInteger(x)&&x>=a&&x<=b;if(!t||t.version!==1||!B.map[t.arc]||!n(t.origin,0,8)||typeof t.closed!=='boolean'||!Array.isArray(t.entries)||!t.entries.length||t.entries.length>7)return false;

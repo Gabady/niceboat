@@ -58,7 +58,14 @@ function open(c,id){const g=gate(c,id);if(!g.open)return null;const t=ensure(c),
 const visitDialogue={"akari": ["灯「今日は、仕事の話からでもいいですか。試していて気になる所があって」", "主人公「聞くよ。答えられるかは分からないけど」", "灯「すぐに答えが欲しいわけではないので。そちらの練習の話も、後で聞かせてください」"], "mio": ["澪「今日は録音しません。最近どうしていたか、聞きたくて」", "主人公「取材じゃない方が、どこまで話すか迷うな」", "澪「話したくない所は、そう言ってください。私の近況も、少し聞いてもらえますか」"], "nagi": ["凪「今日は、ちゃんと座って話せますか」", "主人公「はい。途中で練習を一つ足す、はやめておきます」", "凪「私も仕事の連絡を置いてきました。短い時間ですが、ゆっくりしましょう」"], "kanade": ["奏「最近、教室で同じ曲ばかり弾いていて。帰り道まで頭の中で続くんです」", "主人公「こっちはエンジンの音が残る日がある。少し似てるかも」", "奏「では今日は、違う話もしてみましょう。音楽以外の近況も聞いてほしいです」"], "tsumugi": ["紬「今日はお茶を置いたら、私も座ります」", "主人公「ずっと立ったまま聞いてくれなくていいよ」", "紬「そうします。そちらの話の後で、私の一日も聞いてください」"], "mizuki": ["瑞希「今日は、映像を出す前に話そう。出したら時間が足りなくなりそう」", "主人公「話したいこと、そんなにある？」", "瑞希「あるよ。レース以外のことも。そっちの近況も聞きたいし」"]};
 function scene(c){const t=ensure(c),p=t.pending;if(!p)return null;const h=B.map[p.id],q=t.heroines[h.id];if(p.kind==='chapter'){
  const sc={...episode(c,h,p.step),heroine:h,kind:'chapter',key:p.key};
- if(p.step===5&&finalLock(t,h.id)){sc.title='別々の未来、その手前';sc.body=[h.name+'「大切な相手がいるのは、知っています。今日は、これからの距離を話したいです」','主人公「曖昧にしたまま会うのは、よくないよね」',h.name+'「はい。今までの話が全部なくなるわけではないけれど、恋人としての約束はできません」'];sc.choices=sc.choices.map(ch=>ch.code===0?{...ch,label:'友人として、これからも話を聞きたい',reply:h.name+'「分かりました。友人として、ここからの話をしましょう」'}:ch.code===1?{...ch,label:'ここで関係に区切りをつける'}:{...ch,label:'恋人より自分を優先してほしいと言う'});}
+ if(p.step===5&&finalLock(t,h.id)){
+  const line=(formal,casual)=>h.name+'「'+(h.id==='mizuki'?casual:formal)+'」';
+  sc.title='別々の未来、その手前';
+  sc.body=[line('大切な相手がいるのは、知っています。今日は、これからの距離を話したいです','大切な相手がいるのは知ってる。今日は、これからどう会うか話しておきたい'),
+   '主人公「曖昧にしたまま会うのは、よくないよね」',
+   line('はい。今までの話が全部なくなるわけではないけれど、恋人としての約束はできません','うん。今までの話がなくなるわけじゃないけど、恋人としての約束はできないよ')];
+  sc.choices=sc.choices.map(ch=>ch.code===0?{...ch,label:'友人として、これからも話を聞きたい',reply:line('分かりました。これからは友人として、会って話しましょう','分かった。これからは友達として、会って話そう。勝負では遠慮しないけどね')}:ch.code===1?{...ch,label:'恋愛の話はここまでにして、友人として応援する',reply:line('気持ちを聞かせてくれて、ありがとうございます。寂しいですが、これからは友人として応援します','うん。寂しいけど、返事は受け取った。これからは友達として応援するね')}:{...ch,label:'今の恋人と別れず、こちらとも付き合いたい',reply:line('その約束はできません。大切な相手がいるまま私とも付き合いたいと言われても、受け入れられません','それはできない。大切な相手がいるまま私とも付き合いたいと言われても、受け入れられないよ')});
+ }
  return sc;
  }return {heroine:h,kind:'visit',key:p.key,title:q.dated?'二人の休み時間':'次の話までの、ひととき',body:(h.visits?.[t.log.filter(e=>e.kind==='romance'&&e.heroine===h.id).length%h.visits.length]||visitDialogue[h.id]).slice(),choices:[{label:'話を聞き、一緒に過ごす'},{label:'自分の近況を話し、相手の近況も聞く'}]};}
 function choose(c,key,index){if(!writable(c))return null;const t=ensure(c),p=t.pending;if(!p||p.key!==key||p.stamp!==c.stats.races||c.stats.races<t.nextAt)return null;const h=B.map[p.id],q=t.heroines[p.id],sc=scene(c);if(!Number.isInteger(index)||!sc.choices[index]||!q.met||q.failed||!gate(c,h.id).open)return null;
@@ -94,7 +101,7 @@ function train(c,id,method,api){if(!writable(c)||!['parallel','review','duel'].i
  const won=method==='duel'&&score>=n.level*.94,amount=method==='duel'?(won?.65:.2):method==='review'?.42:.4;
  const before=Math.floor(c.player.stats[key]);api.growStat(c.player,key,amount*1.5*api.statGrowthRate(c.player.stats[key])*api.growthFactor(c.player));rec.bond+=method==='duel'&&won?2:1;
  let skill=null;if(rec.bond>=3&&!rec.learned){const id=({speed:'wit_slipstream',turn:'wit_overtime',start:'wit_afteryou',accel:'wit_rudder',power:'wit_weather'})[n.key];skill=api.acquire(c,c.player,id,n.name+'との特訓');rec.learned=true;}
- const z={kind:'training',rivalId:id,portraitKey:n.portraitKey||null,title:n.name+'との特訓',note:method==='duel'?(won?'一本勝負に先着。相手も笑って、次の挑戦を約束した。':'一本勝負には届かず。それでも、相手の出口から学ぶものがあった。'):method==='review'?'互いの課題を言葉にし、苦手を一つだけ練習した。':'競いすぎず併走し、相手の得意な動きを確かめた。',choice:({parallel:'併走で学ぶ',review:'弱点を指摘し合う',duel:'一本勝負'})[method],stat:key,gain:Math.floor(c.player.stats[key])-before,skill:skill?.id||null,won};record(c,z);return z;
+ const z={kind:'training',rivalId:id,portraitKey:n.portraitKey||null,title:n.name+'との特訓',note:method==='duel'?(won?'一本勝負に先着。相手も笑って、次の挑戦を約束した。':'一本勝負では後着。それでも、相手が旋回を抜けて加速する動きから、学ぶものがあった。'):method==='review'?'互いの課題を言葉にし、苦手を一つだけ練習した。':'競いすぎず併走し、相手の得意な動きを確かめた。',choice:({parallel:'併走で学ぶ',review:'弱点を指摘し合う',duel:'一本勝負'})[method],stat:key,gain:Math.floor(c.player.stats[key])-before,skill:skill?.id||null,won};record(c,z);return z;
 }
 function status(c,id){const t=ensure(c),q=t.heroines[id];return !q.met?'未発見':q.failed?'ルート終了':t.completed===id?'完走・交際中':q.step===6&&finalLock(t,id)?'最終話は進行不可':q.dated?'交際中':q.step===6?'最終話を待つ':q.step>=4?'物語の終盤':q.step>=2?'心を開く頃':q.step?'顔なじみ':'出会ったばかり';}
 function valid(t){const num=(v,a,b)=>Number.isInteger(v)&&v>=a&&v<=b,str=(v,n)=>typeof v==='string'&&v.length<=n;

@@ -1,0 +1,32 @@
+{
+  "build": "123",
+  "unchangedModules": [
+    "racing.js",
+    "race-renderer.js",
+    "driving-ui.js",
+    "storage122.js",
+    "review122.js",
+    "practice122.js"
+  ],
+  "changedModules": [
+    "affinity.js",
+    "bonds-data.js",
+    "bonds.js",
+    "campaign-data.js",
+    "campaign.js",
+    "cast.js",
+    "craft118.js",
+    "data.js",
+    "development.js",
+    "dialogue.js",
+    "drama-data.js",
+    "drama.js",
+    "finale.js",
+    "mentor-data.js",
+    "race-dialogue.js",
+    "script.js",
+    "story-extra.js",
+    "story.js"
+  ],
+  "note": "表示改稿とGUI、版番号・移行通知。レース・雨天描画・入力・保存・助言・練習計測のモジュールはV122とバイト一致。"
+}

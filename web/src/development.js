@@ -11,7 +11,7 @@ const Craft=root.KM_CRAFT||(typeof require==='function'?require('./craft118.js')
 const paths={
  speed:{name:'伸び足の道',base:'straighten',task:'直線で伏せて横滑りを抑える・8秒以上',branches:['burst','wit_slipstream'],styles:['直線で突き放す','引き波を抜ける']},
  turn:{name:'旋回の道',base:'slice',task:'旋回で上体を起こし 5秒以上安定・境界接触1回以下',branches:['split','monkey_ssr'],styles:['出口の差し','全速旋回']},
- start:{name:'先手の道',base:'inside',task:'ST 00:25以内で有効完走・合法の早発も対象',branches:['entry','immune'],styles:['進入から先手','先頭を守る']},
+ start:{name:'先手の道',base:'inside',task:'ST 0.25秒以内で有効完走・ゲーム内の早発許容も対象',branches:['entry','immune'],styles:['進入から先手','先頭を守る']},
  accel:{name:'出足の道',base:'wit_rudder',task:'出口3秒で1.5m/s以上再加速を2回・接触なし',branches:['wit_latebird','burst'],styles:['後半の追撃','直線への接続']},
  power:{name:'波越えの道',base:'rain',task:'強風や引き波の中で6秒以上安定・立て直しなし',branches:['anchor','storm'],styles:['接戦で踏ん張る','荒天で攻める']}
 };
@@ -25,22 +25,22 @@ const rivals=[
 const actors={light:{id:'campaign_father',name:'父',portraitKey:'rival_08'},back:{id:'campaign_kanato',name:'奏斗',portraitKey:'rival_06'},shore:{id:'campaign_sae',name:'紗枝',portraitKey:'rival_12'}};
 actors.recovery={id:'campaign_soma',name:'相馬',portraitKey:'rival_03'};
 const plans={
- light:[{label:'今節の機材を仕上げる',short:'現場仕上げ',effect:'機材の状態を整える',text:"主人公「今回は、今使う機材を仕上げたい」\n父「なら、今の音を先に覚えろ。変えた後と比べる」\n主人公「同じ形にして終わり、にはしないよ」"},
- {label:'次につながる調整を学ぶ',short:'共同研究',effect:'調整の学びと 技のコツ',text:"主人公「今日は、なぜその調整をするか教えてほしい」\n父「理由まで聞くなら、先に記録を開け」\n主人公「分かった。自分で試した結果も書き足す」"}],
+ light:[{label:'今節の機材を仕上げる',short:'現場仕上げ',effect:'機材の状態を整える',text:"主人公「今回は、今使っている機材を仕上げたい」\n父「なら、今の音を先に覚えろ。変えた後と比べる」\n主人公「分かった。調整したら、走った時の感触も比べてみる」"},
+ {label:'次につながる調整を学ぶ',short:'共同研究',effect:'調整の学びと技のコツ',text:"主人公「今日は、なぜその調整をするか教えてほしい」\n父「理由まで聞くなら、先に記録を開け」\n主人公「分かった。自分で試した結果も書き足す」"}],
  back:[{label:'今の苦手を二人で直す',short:'課題克服',effect:'苦手の自主練が充実',text:"奏斗「苦手な所から見るんだな」\n主人公「うん。隠しても、本番で出るから」\n奏斗「じゃあ、俺の失敗も並べよう。何を変えるか、一つずつ決める」"},
- {label:'自分だけの得意技を磨く',short:'得意技研究',effect:'合同練習で コツを深める',text:"主人公「得意な走りを、もう少し通せるようにしたい」\n奏斗「俺の真似じゃなく、君が使いたい動きだね」\n主人公「そう。相手が変わっても使えるか、一緒に見てほしい」"}],
- shore:[{label:'最後まで走り切る姿を見せる',short:'完走の約束',effect:'有効完走3回で 苦手を補強',text:"主人公「まず最後まで、準備した走りを続けたい」\n陸「途中で離れても？」\n主人公「うん。そこで投げない所を見ててくれ」\n陸「分かった。最後まで見る」"},
- {label:'表彰台を目指すと約束する',short:'挑戦の約束',effect:'3着以内2回で 得意を強化',text:"主人公「今節は表彰台を狙いたい」\n紗枝「応援に応えなきゃ、だけで決めてない？」\n主人公「自分が立ちたいんだ。だから準備する」\n紗枝「なら、私たちも楽しみにしてる」"}]
+ {label:'自分だけの得意技を磨く',short:'得意技研究',effect:'合同練習でコツを深める',text:"主人公「得意な走りを、もう少し通せるようにしたい」\n奏斗「俺の真似じゃなく、お前が使いたい動きってことか」\n主人公「そう。相手が変わっても使えるか、一緒に見てほしい」"}],
+ shore:[{label:'最後まで走り切る姿を見せる',short:'完走の約束',effect:'有効完走3回で苦手を補強',text:"主人公「まず最後まで、準備した走りを続けたい」\n陸「途中で離れても？」\n主人公「うん。そこで諦めずに走るところを見ててくれ」\n陸「分かった。最後まで見る」"},
+ {label:'3着以内を目指すと約束する',short:'挑戦の約束',effect:'3着以内2回で得意を強化',text:"主人公「今節は3着以内を狙いたい」\n紗枝「応援に応えなきゃって、背負いすぎてない？」\n主人公「自分が上位に入りたいんだ。そのために準備するよ」\n紗枝「なら、私たちも楽しみにしてる」"}]
 };
 plans.recovery=[
- {label:'今の走りを崩さず完走を重ねる',short:'再起の土台',effect:'有効完走3回で フィジカルを補強',text:'相馬「順位は後で確認できる。今日は最後まで、決めた準備を使えるか見よう」\n主人公「投げずに走る。無理を隠して完走する約束にはしない」'},
- {label:'新しい出口で表彰台を狙う',short:'新しい勝ち筋',effect:'3着以内2回で 加速を強化',text:'主人公「今の身体で使える出口を、勝負で試したい」\n相馬「昔と同じ形かではなく、今日前へ進んだかを見よう」'}
+ {label:'今の走りを崩さず完走を重ねる',short:'再起の土台',effect:'有効完走3回でフィジカルを補強',text:'相馬「まずは、練習した走りを本番で試そう。無理をせず、最後まで続けられるかだ」\n主人公「うん。途中で諦めない。でも、身体の異変まで我慢はしないよ」'},
+ {label:'ターン後の加速で3着以内を狙う',short:'新しい勝ち筋',effect:'3着以内2回で加速を強化',text:'主人公「今の身体に合ったターンの抜け方を、本番で試したい」\n相馬「出口の加速を見てみよう。昔のフォームに戻すことだけが、答えじゃないからな」'}
 ];
 function ensure(c){if(!c.development){const def=rivals[S.hash(c.player.id+':main-rival')%rivals.length];c.development={version:1,rival:{id:'main_'+def.id,cast:def.id,met:c.stage,history:[],training:0},paths:Object.fromEntries(D.statKeys.map(k=>[k,{hints:0,practice:0,learned:false,branch:null}])),plans:[],settled:[],training:[],finals:{},readers:{},outcomes:[],archive:null};}return c.development;}
 function rival(c){const t=ensure(c);return {...rivals.find(x=>x.id===t.rival.cast),id:t.rival.id,wins:t.rival.history.filter(x=>x.won).length,losses:t.rival.history.filter(x=>!x.won).length};}
 function writable(c){return !!c&&!c.ending&&!['race','registration'].includes(c.status)&&!(c.series?.race?.drive&&!c.series.race.done);}
 function plan(c){return ensure(c).plans.find(x=>x.stage===c.stage)||null;}
-function planScene(c){const a=c.campaign?.arc||'light',last=c.history.at(-1),p=plan(c),previous=ensure(c).plans.at(-1);return {key:'plan:'+c.stage,title:'今節の約束',person:actors[a],background:a==='shore'?'harbor':'workshop',body:[c.stage===0?(a==='recovery'?'復帰シリーズの朝。今の身体で取り組むことを相談した。':'デビューの朝。今節に取り組むことを相談した。'):last?.champion?'前節は優勝。次の準備を始めた。':'前節の結果を確認して、次の準備を始めた。',...(previous&&previous.stage<c.stage?['前節の約束：'+plans[a][previous.choice].short]:[]),...({recovery:['相馬「今の走りを固めるか、新しい出口を勝負で試すか。今節はどちらを先にする？」','主人公「昔と比べて焦る前に、今できる準備から選ぶよ」'],light:['父「今日は、今の艇を仕上げるか。次も使える調整を調べるか」','主人公「どっちも欲しいけど、時間は限られてるな」','父「先に目的を決めよう。今の艇を見てからでいい」'],back:['奏斗「苦手を直すか、得意を伸ばすか。今日はどうしたい？」','主人公「自分で決めると、見たい方ばかり選びそうだ」','奏斗「それでも選ぶのは君。理由を聞いて、練習には付き合う」'],shore:['紗枝「今節は、どこを見てほしい？」','主人公「結果の約束だけじゃなく、準備して試すことを決めたい」','陸「決まったら教えて。そこを見て、後で聞くから」']})[a]],choices:p?[]:plans[a].map(x=>({label:x.label,note:x.effect}))};}
+function planScene(c){const a=c.campaign?.arc||'light',last=c.history.at(-1),p=plan(c),previous=ensure(c).plans.at(-1);return {key:'plan:'+c.stage,title:'今節の約束',person:actors[a],background:a==='shore'?'harbor':'workshop',body:[c.stage===0?(a==='recovery'?'復帰シリーズの朝。今の身体で取り組むことを相談した。':'デビューの朝。今節に取り組むことを相談した。'):last?.champion?'前節は優勝。次の準備を始めた。':'前節の結果を確認して、次の準備を始めた。',...(previous&&previous.stage<c.stage?['前節の約束：'+plans[a][previous.choice].short]:[]),...({recovery:['相馬「まずは完走を重ねるか、ターン後の加速で上位を狙うか。今節はどちらに取り組む？」','主人公「焦って昔の走りを追いかけるより、今できることから選ぶよ」'],light:['父「今日は、今の艇を仕上げるか。次も使える調整を調べるか」','主人公「どっちも欲しいけど、時間は限られてるな」','父「先に目的を決めよう。今の艇を見てからでいい」'],back:['奏斗「苦手を直すか、得意を伸ばすか。今日はどうしたい？」','主人公「得意な方ばかり練習したくなるんだよな」','奏斗「今日は何を目指したい？　それを聞いてから、一緒に練習を考えよう」'],shore:['紗枝「今節は、どこを見てほしい？」','主人公「まずは完走を重ねるか、上位を狙うか。今の自分に必要な方を決めたい」','陸「決まったら教えて。僕もそこを見て応援する」']})[a]],choices:p?[]:plans[a].map(x=>({label:x.label,note:x.effect}))};}
 function choosePlan(c,index){if(!writable(c)||!Number.isInteger(index)||index<0||index>1||plan(c)||!['home','seriesIntro','action','preRace'].includes(c.status)||c.series&&c.series.round>0)return null;
  const a=c.campaign.arc,p={stage:c.stage,arc:a,choice:index,progress:0,completed:false,applied:false};ensure(c).plans.push(p);applyPlan(c);return {title:plans[a][index].short,note:plans[a][index].text,person:actors[a]};}
 function applyPlan(c){const p=plan(c);if(!p||p.applied||!c.player.equipment||!c.series)return;p.applied=true;if(p.arc==='light'){if(p.choice===0){for(const g of ['motor','prop'])c.player.equipment[g].condition=Math.min(100,c.player.equipment[g].condition+6);}else{const key=strong(c.player);ensure(c).paths[key].hints=Math.min(12,ensure(c).paths[key].hints+1);}}}
@@ -79,7 +79,7 @@ function settle(c,r,z,api){const t=ensure(c);if(t.settled.includes(r.id))return;
 }
 function brief(c,r){const t=ensure(c),def=rival(c),boss=r.runners.find(n=>['king','rival_final'].includes(n.racePersona))||(r.castDuel&&r.runners.find(n=>n.id===r.castDuel.id)),op=boss||r.runners.find(n=>n.id===def.id)||r.runners.filter(n=>!n.isPlayer).sort((a,b)=>b.stats[strong(b)]-a.stats[strong(a)])[0],key=strong(c.player),target=op?strong(op):'speed';
  const opened=D.statKeys.filter(k=>t.paths[k].branch!==null),focus=opened[0]||key;
- const tips={speed:'舵を戻した直線で伸び足を使う',turn:'ターン出口を空けて差しをつなぐ',start:'助走を合わせて最初の位置を取る',accel:'出口で姿勢を戻し再加速する',power:'荒れた水面でも無理なく姿勢を守る'};
+ const tips={speed:'舵を戻した直線で伸び足を使う',turn:'ターン出口に空いた艇間を見て差しを狙う',start:'助走を合わせて最初の位置を取る',accel:'ターン出口で舵を戻し、伏せて再加速する',power:'荒れた水面でも無理なく姿勢を守る'};
  return {opponent:op?.name||'決勝の相手',opponentId:op?.id||'',weapon:D.stats[target],key:focus,tactic:tips[focus],bond:t.rival.history.length?def.name+'との対戦 '+def.wins+'勝 '+def.losses+'敗':'積み上げた準備を この一走へ',skill:opened.length?paths[focus].branches[t.paths[focus].branch]:null};}
 function finale(c){const t=ensure(c),key=strong(c.player),low=weak(c.player),def=rival(c),opened=D.statKeys.filter(k=>t.paths[k].branch!==null);return {title:({speed:'直線で道を拓いた',turn:'旋回で道を拓いた',start:'先手で道を拓いた',accel:'出口から追い上げた',power:'荒波を走り抜いた'})[key]+(c.ending==='sgChampion'?'覇者':'挑戦者'),key,weak:low,rival:def.name,wins:def.wins,losses:def.losses,opened:opened.map(k=>D.abilityMap[paths[k].branches[t.paths[k].branch]].name),next:low===key?'違う水面で 自分の走りを試そう':D.stats[low]+'を補い 次の勝ち筋を作ろう',plans:t.plans.map(p=>plans[p.arc][p.choice].short)};}
 function archive(c){const t=ensure(c);t.archive=finale(c);return clone(t);}
