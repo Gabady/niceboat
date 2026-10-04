@@ -1,0 +1,30 @@
+{
+  "environment": "Node @napi-rs/canvas, not browser FPS",
+  "samples": [
+    {
+      "variant": "before",
+      "warmFrames": 3,
+      "drawMs": [
+        264.38,
+        267.91,
+        287.11,
+        291.01,
+        292
+      ],
+      "medianMs": 287.11
+    },
+    {
+      "variant": "after",
+      "warmFrames": 3,
+      "drawMs": [
+        294.32,
+        297.82,
+        301.14,
+        303.14,
+        304.17
+      ],
+      "medianMs": 301.14
+    }
+  ],
+  "changePercent": 4.89
+}

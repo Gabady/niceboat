@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#071b2a">
   <meta name="description" content="選手を育て、五つの水面を駆ける。スマホで遊ぶ育成と一人称の操作型ボートレース『競艇物語』。">
-  <title>競艇物語 V121</title>
+  <title>競艇物語 V122</title>
   <style>
 /* 競艇物語 — Deep water, race-white numerals, signal amber. */
 :root {
@@ -2874,6 +2874,17 @@ body.high-contrast .bond-card,body.high-contrast .bond-scene{background:#102a3e;
 .series-recap121{border-left:3px solid var(--teal)}
 @media(max-width:600px){.prep-hub121,.support121,.advice121,.series-recap121{padding:15px;margin-bottom:14px}.advice-options121{grid-template-columns:1fr;gap:16px}.prep-hub121 h2{font-size:1.03rem}.prep-opportunities121{gap:8px}.prep-opportunities121 .btn{flex-shrink:0}.support-numbers121 strong{font-size:1.5rem}#save-health121:not([hidden]){margin:0 8px}.prep-details121{padding-left:12px;padding-right:12px}}
 
+
+/* V122: result first, one review, comparable practice and per-destination saves. */
+.review122,.practice-comparison122{border:1px solid var(--edge);border-radius:15px;background:var(--surface);padding:20px;margin:18px 0;min-width:0;overflow-wrap:anywhere}
+.review122 h2{font-size:1.1rem;margin:0}.review122 h3{font-size:1rem;margin:6px 0}.review122>.section-line{flex-wrap:wrap;gap:8px}
+.review-facts122{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:15px 0}.review-facts122 small,.review-facts122 b{display:block}.review-facts122 small,.review-task122>small{color:var(--muted);font-size:.75rem}.review-facts122 b{font-size:.93rem}
+.review-task122{border-left:3px solid var(--teal);padding:4px 0 4px 14px;margin:14px 0}.review-task122 .button-row{margin-bottom:4px}.review-mode122{background:#082433;border-radius:8px;padding:9px 12px;font-size:.83rem}.review122 details{margin-top:16px}.review122 summary{min-height:44px;cursor:pointer}.review122>.muted{font-size:.75rem;display:block;margin-top:12px}
+.result-growth122{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--edge);border-radius:12px;background:#103347;margin:14px 0;padding:12px 6px;gap:4px}.result-growth122 div{text-align:center;min-width:0}.result-growth122 small,.result-growth122 b{display:block}.result-growth122 small{font-size:.68rem;color:var(--muted)}.result-growth122 b{font-size:1.1rem;color:var(--teal)}
+.save-row122{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--edge);padding:7px 0;font-size:.82rem}.save-row122 span{text-align:right;color:var(--muted)}#save-health121.partial{background:#193e43;border-color:#80bcae}
+.practice-comparison122 h2{font-size:1rem;margin:0 0 8px}.practice-comparison122 table{width:100%;font-size:.85rem}.practice-comparison122 td,.practice-comparison122 th{padding:10px 7px;text-align:right;white-space:nowrap}.practice-comparison122 td:first-child,.practice-comparison122 th:first-child{text-align:left}.practice-comparison122 .improved{color:var(--teal)}.practice-comparison122 .delta{display:block;font-size:.7rem;color:var(--muted)}.practice-comparison122 .practice-note122{font-size:.77rem;color:var(--muted);margin-top:12px}.practice-comparison122 .practice-bests122{padding:8px 12px;background:#16413d;border-radius:9px;color:var(--teal);font-size:.85rem}
+@media(max-width:600px){.review122,.practice-comparison122{padding:15px}.review-facts122{grid-template-columns:1fr;gap:12px}.review-task122{padding-left:10px}.review-task122 .btn{width:100%;min-height:44px}.practice-comparison122 table{font-size:.76rem}.practice-comparison122 td,.practice-comparison122 th{padding:8px 4px}.save-row122{flex-wrap:wrap}.save-row122 span{text-align:left}}
+
 </style>
   
   
@@ -2915,7 +2926,10 @@ body.high-contrast .bond-card,body.high-contrast .bond-scene{background:#102a3e;
   <script src="src/development.js"></script>
 <script src="src/finale.js"></script>
 <script src="src/dialogue.js"></script>
-  <script src="src/coaching121.js"></script>
+  <script src="src/storage122.js"></script>
+<script src="src/review122.js"></script>
+<script src="src/practice122.js"></script>
+<script src="src/coaching121.js"></script>
 <script src="src/script.js"></script>
 </body>
 </html>

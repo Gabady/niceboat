@@ -1,0 +1,19 @@
+{
+  "build": "122",
+  "suite": "per-key storage and UTF-8 limits",
+  "passed": 12,
+  "cases": [
+    "backup failure does not block later main or slot writes",
+    "partial retry attempts every key and retains only failed jobs",
+    "full storage can read existing data without creating a probe",
+    "memory retains newest failed save and next direct write can recover",
+    "failed read preserves cached value and recovers independently",
+    "unavailable storage at startup can recover without losing queued values",
+    "deletion is retried without restoring an old value",
+    "a newer set supersedes queued deletion and newer deletion supersedes a set",
+    "listeners see both failed and restored states, and cannot break saving",
+    "status snapshots cannot mutate internal failures or pending queues",
+    "file bytes and text validation agree for Japanese, emoji and lone surrogates",
+    "UTF-8 fallback matches TextEncoder without browser-only dependencies"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "build": "122",
+  "scope": "deterministic graphics and real driving event handlers with DOM adapter",
+  "checks": [
+    "rain layers are deterministic, finite, center sight line softened",
+    "reduced motion and FX off leave no frozen rain/speed scratches",
+    "rain atmosphere and weather draw never change race state or use game RNG",
+    "two pointers control steer and throttle independently, global release and lost capture clear them",
+    "blur, hidden and pagehide save a transition once, clear held input and never auto-resume",
+    "rotation pauses safely and destroy removes input/lifecycle handlers",
+    "fallback touchcancel releases the matching touch, unrelated IDs are ignored"
+  ]
+}

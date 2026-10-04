@@ -1,0 +1,89 @@
+{
+  "scope": "Real Canvas renderer + weather overlay in Node. No browser/DOM or device verification.",
+  "frames": [
+    {
+      "file": "rain-393-full.png",
+      "css": [
+        393,
+        852
+      ],
+      "backing": [
+        393,
+        852
+      ],
+      "renderMs": 440,
+      "noStateMutation": true,
+      "noSunnyBlueSky": true
+    },
+    {
+      "file": "rain-393-soft.png",
+      "css": [
+        393,
+        852
+      ],
+      "backing": [
+        393,
+        852
+      ],
+      "renderMs": 144,
+      "noStateMutation": true,
+      "noSunnyBlueSky": true
+    },
+    {
+      "file": "rain-393-off.png",
+      "css": [
+        393,
+        852
+      ],
+      "backing": [
+        393,
+        852
+      ],
+      "renderMs": 109,
+      "noStateMutation": true,
+      "noSunnyBlueSky": true
+    },
+    {
+      "file": "rain-1280-full.png",
+      "css": [
+        1280,
+        720
+      ],
+      "backing": [
+        1075,
+        605
+      ],
+      "renderMs": 287,
+      "noStateMutation": true,
+      "noSunnyBlueSky": true
+    },
+    {
+      "file": "rain-1280-soft.png",
+      "css": [
+        1280,
+        720
+      ],
+      "backing": [
+        1075,
+        605
+      ],
+      "renderMs": 225,
+      "noStateMutation": true,
+      "noSunnyBlueSky": true
+    },
+    {
+      "file": "rain-1280-off.png",
+      "css": [
+        1280,
+        720
+      ],
+      "backing": [
+        1075,
+        605
+      ],
+      "renderMs": 229,
+      "noStateMutation": true,
+      "noSunnyBlueSky": true
+    }
+  ]
+}

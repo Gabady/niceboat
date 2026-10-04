@@ -36,12 +36,26 @@ varying highp vec3 vWorld;
 varying mediump vec3 vWorld;
 #endif
 varying mediump vec3 vNormal;varying mediump vec2 vLocal;
+// Rain has its own overcast sky; the panorama survives only along the distant shore.
+vec3 stormSky(float longitude,float angle){
+ float a=(1.-abs(2.*fract(longitude)-1.))*6.2831853;
+ float low=sin(a*3.+angle*7.+sin(a*2.)*.8);
+ float billow=sin(a*7.-angle*15.+low*1.3)*.5+sin(a*13.+angle*23.)*.20;
+ float height=clamp(angle*.85,0.,1.);
+ vec3 gray=mix(vec3(.60,.67,.69),vec3(.25,.32,.36),sqrt(height));
+ return gray+vec3(.045,.049,.05)*(low*.6+billow)*smoothstep(.015,.22,angle);
+}
+vec3 rainyEnvironment(vec3 art,float longitude,float angle){
+ float gray=dot(art,vec3(.25,.60,.15));
+ vec3 shore=vec3(.065,.09,.10)+gray*vec3(.70,.73,.73);
+ return mix(shore,stormSky(longitude,angle),smoothstep(.045,.235,angle));
+}
 vec3 environment(vec3 ray){
  float angle=atan(max(.006,ray.y),length(ray.xz));
  float longitude=fract(atan(ray.z,ray.x)/6.2831853+.5);
  vec3 sky=mix(uFog,vec3(.20,.43,.64),clamp(angle*.8,0.,1.));
  if(uSkyReady>.5)sky=texture2D(uSky,vec2(1.-abs(2.*longitude-1.),clamp(.095+angle*.9,0.,1.))).rgb;
- return mix(sky,vec3(.38,.49,.57),uWeather.y*.66+uWeather.z*.28);
+ return uWeather.y>.5?rainyEnvironment(sky,longitude,angle):mix(sky,vec3(.38,.49,.57),uWeather.z*.28);
 }
 vec3 waterReflection(vec3 ray,float distance){
  float angle=atan(max(.006,ray.y),length(ray.xz));float lon=fract(atan(ray.z,ray.x)/6.2831853+.5);
@@ -49,9 +63,10 @@ vec3 waterReflection(vec3 ray,float distance){
  vec3 sky=mix(uFog,vec3(.20,.43,.64),clamp(angle*.8,0.,1.));
  if(uSkyReady>.5){float blur=.003+smoothstep(15.,140.,distance)*.012;
  sky=texture2D(uSky,uv).rgb*.4+(texture2D(uSky,clamp(uv+vec2(blur,blur*.7),0.,1.)).rgb+texture2D(uSky,clamp(uv-vec2(blur,blur*.7),0.,1.)).rgb)*.3;}
+ if(uWeather.y>.5)sky=rainyEnvironment(sky,lon,angle);
  sky=mix(sky,uFog*.8,(1.-smoothstep(-.08,.05,ray.y))*.78);
  sky=mix(sky,uFog*.82,smoothstep(65.,230.,distance)*.70);
- return mix(sky,vec3(.38,.49,.57),uWeather.y*.66+uWeather.z*.28);
+ return mix(sky,vec3(.38,.49,.57),uWeather.z*.28);
 }
 void main(){
  float dist=length(vWorld-uEye);
@@ -442,7 +457,7 @@ function camera(d,width,height,motion,thrill=false){const b=R.own(d),fx=Math.cos
 const eye=[b.x-fx*.75,1.65+(motion?R.clamp(Number(b.posture)||0,-1,1)*.12:0)+bob,b.z-fz*.75],up=[-fz*Math.sin(roll),Math.cos(roll),fx*Math.sin(roll)],view=lookAt(eye,[eye[0]+fx*24,eye[1]-.72,eye[2]+fz*24],up);
 const fov=80+(motion&&thrill?R.clamp((b.speed*3.6-52)/5,0,6):0);
 return {eye,view,vp:multiply(perspective(fov*Math.PI/180,width/height,.14,650),view),focal:height/(2*Math.tan(fov*.5*Math.PI/180))};}
-function palette(r){const rain=r.env.weather==='雨',cloud=r.env.weather==='曇り';return {fog:rgb(rain?'#9db9c7':cloud?'#b6d3df':'#b9e5ef'),water:rgb(rain?'#1b4655':cloud?'#1c5966':'#125d65'),rain,cloud};}
+function palette(r){const rain=r.env.weather==='雨',cloud=r.env.weather==='曇り';return {fog:rgb(rain?'#9aaeb2':cloud?'#b6d3df':'#b9e5ef'),water:rgb(rain?'#1b4655':cloud?'#1c5966':'#125d65'),rain,cloud};}
 function weatherVector(r){return [R.clamp((r.env.windSpeed||0)/10,0,1),r.env.weather==='雨'?1:0,r.env.weather==='曇り'?1:0];}
 // Same six wave bands as GLES. No random calls or mutable simulation data.
 const trigTable=Float32Array.from({length:4097},(_,i)=>Math.sin(i*Math.PI/2048));
@@ -456,6 +471,36 @@ function waterNormal(x,z,t,weather,dist,out=[0,0,0]){
 function offscreen(w,h){
  try{let c;if(root.OffscreenCanvas)c=new root.OffscreenCanvas(w,h);else if(root.document?.createElement){c=root.document.createElement('canvas');c.width=w;c.height=h;}return c&&c.getContext('2d')?c:null;}catch(_){return null;}
 }
+// Shared visual formula with stormSky/rainyEnvironment in GLES. No game RNG.
+function stormSky(longitude,angle,out=[0,0,0]){
+ const a=panoramaU(longitude)*Math.PI*2,low=Math.sin(a*3+angle*7+Math.sin(a*2)*.8),billow=Math.sin(a*7-angle*15+low*1.3)*.5+Math.sin(a*13+angle*23)*.20;
+ const height=Math.sqrt(R.clamp(angle*.85,0,1)),q=R.clamp((angle-.015)/.205,0,1),shade=(low*.6+billow)*q*q*(3-2*q);
+ for(let c=0;c<3;c++)out[c]=[.60,.67,.69][c]*(1-height)+[.25,.32,.36][c]*height+[.045,.049,.05][c]*shade;
+ return out;
+}
+function rainyEnvironment(art,longitude,angle,out=[0,0,0]){
+ const gray=art[0]*.25+art[1]*.60+art[2]*.15,q=R.clamp((angle-.045)/.19,0,1),mix=q*q*(3-2*q);stormSky(longitude,angle,out);
+ for(let c=0;c<3;c++)out[c]=([.065,.09,.10][c]+gray*[.70,.73,.73][c])*(1-mix)+out[c]*mix;
+ return out;
+}
+let rainyPanorama=null,rainyPanoramaSource=null;
+function createRainSkyPainter(){
+ let surface=offscreen(1,1),cx=surface?.getContext('2d',{willReadFrequently:true});let image=null;
+ return function(ctx,cam,width,height,heading){
+  if(!cx)return false;const art=getSky();if(!art||!art.width)return false;
+  if(rainyPanoramaSource===art){surface=rainyPanorama;image=art;}
+  // Build once at panorama resolution: distant stands must not become pixel blocks.
+  if(art!==image){try{surface=offscreen(1,1);cx=surface.getContext('2d',{willReadFrequently:true});surface.width=Math.min(2172,art.width);surface.height=Math.round(art.height*surface.width/art.width);cx.drawImage(art,0,0,surface.width,surface.height);
+   const pixels=cx.getImageData(0,0,surface.width,surface.height),rgb=[0,0,0],out=[0,0,0],sw=surface.width,sh=surface.height;
+   for(let y=0;y<sh;y++){const angle=Math.max(.006,((1-(y+.5)/sh)-.095)/.9);for(let x=0;x<sw;x++){
+    const k=(y*sw+x)*4;for(let c=0;c<3;c++)rgb[c]=pixels.data[k+c]/255;
+    rainyEnvironment(rgb,(x+.5)/sw*.5,angle,out);for(let c=0;c<3;c++)pixels.data[k+c]=Math.round(out[c]*255);
+   }}cx.putImageData(pixels,0,0);image=art;rainyPanorama=surface;rainyPanoramaSource=art;
+  }catch(_){return false;}}
+  const focal=cam.focal,horizon=height/2-focal*.03,dw=focal*Math.PI,dh=focal/.9,offset=R.mod(heading/(Math.PI*2)+.5,1)*2,y=horizon-dh*.905;
+  for(let i=Math.floor(offset)-1;i<=Math.floor(offset)+1;i++){const x=width/2+(i-offset)*dw;ctx.save();ctx.translate(x+(R.mod(i,2)?dw:0),0);if(R.mod(i,2))ctx.scale(-1,1);ctx.drawImage(surface,-.5,y,dw+1,dh);ctx.restore();}return true;
+ };
+}
 function createWaterPainter(){
  const surface=offscreen(1,1),cx=surface?.getContext('2d',{willReadFrequently:true});let pixels=null,skySource=null,skyPixels=null,sw=192,sh=96;
  const skyCanvas=offscreen(sw,sh),skyCtx=skyCanvas?.getContext('2d',{willReadFrequently:true});
@@ -468,7 +513,7 @@ function createWaterPainter(){
   const w=Math.min(216,Math.max(160,Math.round(width*.5))),h=Math.min(144,Math.max(80,Math.round((height-top)*.4)));
   if(surface.width!==w||surface.height!==h){surface.width=w;surface.height=h;pixels=cx.createImageData(w,h);}if(!pixels)pixels=cx.createImageData(w,h);
   const dark=[.018,.15,.19],lit=[.027,.27,.30],overcast=[.38,.49,.57],rainBody=[.055,.13,.17],sunColor=[1,.94,.77],skyBlue=[.2,.43,.64];
-  const data=pixels.data,n=[0,0,0],rain=weather[1],cloud=weather[2],gray=rain*.66+cloud*.28;
+  const data=pixels.data,n=[0,0,0],rain=weather[1],cloud=weather[2],gray=cloud*.28,reflectedRGB=[0,0,0];
   for(let row=0;row<h;row++){const y=top+(row+.5)*(height-top)/h,dy=(height/2-y)/f;
    for(let col=0;col<w;col++){const k=(row*w+col)*4,dx=((col+.5)*width/w-width/2)/f;
     let rx=v[0]*dx+v[1]*dy-v[2],ry=v[4]*dx+v[5]*dy-v[6],rz=v[8]*dx+v[9]*dy-v[10];
@@ -482,6 +527,11 @@ function createWaterPainter(){
     for(let c=0;c<3;c++){
      let reflected;if(skyPixels)reflected=((skyPixels[at+c]*(1-tx)+skyPixels[at+extra+c]*tx)*(1-ty)+(skyPixels[at2+c]*(1-tx)+skyPixels[at2+extra+c]*tx)*ty)/255;
      else reflected=pal.fog[c]*(1-Math.min(1,angle*.8))+skyBlue[c]*Math.min(1,angle*.8);
+     reflectedRGB[c]=reflected;
+    }
+    if(rain)rainyEnvironment(reflectedRGB,Math.atan2(ez,ex)/(2*Math.PI)+.5,angle,reflectedRGB);
+    for(let c=0;c<3;c++){
+     let reflected=reflectedRGB[c];
      reflected=reflected*(1-below*.78)+pal.fog[c]*.8*below*.78;
      reflected=reflected*(1-far)+pal.fog[c]*.82*far;reflected=reflected*(1-gray)+overcast[c]*gray;
      let body=dark[c]*(1-bodyMix)+lit[c]*bodyMix;body=body*(1-rain*.35)+rainBody[c]*rain*.35;
@@ -546,7 +596,7 @@ const add=(key,x,y,z,h,sx,sy,sz,col)=>emit(key,model(x,y,z,h,sx,sy,sz),col,key==
 if(!settings.paintedSky){emit('farHill',identity(),rgb('#8aadb5'),3);emit('mountain',identity(),rgb('#528987'),3);}
 emit('shore',identity(),rgb('#6ba78f'));emit('edge',identity(),rgb('#bed2c6'));emit('rope',identity(),rgb('#e8b269'));
 // Distant clouds are sculpted clusters; no textures, fetches or random calls.
-if(!settings.paintedSky)for(let i=0;i<13;i++){const a=i*Math.PI*2/13,cx=Math.cos(a)*245,cz=Math.sin(a)*245;for(let j=0;j<3;j++){add('sphere',cx-Math.sin(a)*(j-1)*14,34+(j===1?8:0)+i%3*7,cz+Math.cos(a)*(j-1)*14,0,17,6+(j===1?4:0),9,pal.rain?rgb('#a0b4c1'):rgb('#eff9ed'));}}
+if(!settings.paintedSky&&!pal.rain)for(let i=0;i<13;i++){const a=i*Math.PI*2/13,cx=Math.cos(a)*245,cz=Math.sin(a)*245;for(let j=0;j<3;j++){add('sphere',cx-Math.sin(a)*(j-1)*14,34+(j===1?8:0)+i%3*7,cz+Math.cos(a)*(j-1)*14,0,17,6+(j===1?4:0),9,pal.rain?rgb('#a0b4c1'):rgb('#eff9ed'));}}
 // Two shore grandstands: canopy, terraces, windows, supports and seat ribbons.
 for(const side of [-1,1])for(let i=-4;i<=4;i++){const x=i*22,z=side*114;
  add('box',x,1.5,z,0,10.5,1.5,9,rgb('#d2dccd'));add('box',x,5.1,z+side*3,0,10.5,1.3,6,rgb('#345f72'));
@@ -631,7 +681,7 @@ function createDepthPainter(){
 }
 function createCanvas(canvas){
 const ctx=canvas.getContext('2d',{alpha:false});if(!ctx)throw Error('この環境では水面を描画できません。観戦モードをご利用ください。');
-let width=1,height=1,view=identity(),focal=1,disposed=false,painted=0;const waterPainter=createWaterPainter(),depthPainter=createDepthPainter();
+let width=1,height=1,view=identity(),focal=1,disposed=false,painted=0;const waterPainter=createWaterPainter(),depthPainter=createDepthPainter(),rainSkyPainter=createRainSkyPainter();
 const cameraPoint=p=>[view[0]*p[0]+view[4]*p[1]+view[8]*p[2]+view[12],view[1]*p[0]+view[5]*p[1]+view[9]*p[2]+view[13],-(view[2]*p[0]+view[6]*p[1]+view[10]*p[2]+view[14])];
 const screen=p=>[width/2+p[0]*focal/p[2],height/2-p[1]*focal/p[2]];
 function project(x,y,z){const p=cameraPoint([x,y,z]);if(p[2]<=.16)return null;const q=screen(p);return {x:q[0],y:q[1],depth:p[2],visible:q[0]>-15&&q[0]<width+15&&q[1]>-15&&q[1]<height+15};}
@@ -640,8 +690,9 @@ function draw(d,r,settings={}){
 if(disposed)return;painted++;width=Math.max(1,canvas.clientWidth);height=Math.max(1,canvas.clientHeight);const scale=Math.min(root.devicePixelRatio||1,1.25,Math.sqrt(650000/(width*height))),w=Math.round(width*scale),h=Math.round(height*scale);
 if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}ctx.setTransform(w/width,0,0,h/height,0,0);
 const cam=camera(d,width,height,settings.motion!==false,settings.raceFX==='full'),pal=palette(r),b=R.own(d),t=settings.motion===false?0:d.elapsed;view=cam.view;focal=cam.focal;
-const horizon=height/2-focal*.03,sky=ctx.createLinearGradient(0,0,0,horizon);sky.addColorStop(0,pal.rain?'#6c899f':'#398ecc');sky.addColorStop(1,color(pal.fog,pal.fog,0));ctx.fillStyle=sky;ctx.fillRect(0,0,width,height);
-const art=getSky(),paintedSky=!!(art&&art.width>0&&ctx.drawImage);if(paintedSky){const dw=focal*Math.PI,dh=focal/.9,offset=R.mod(b.heading/(Math.PI*2)+.5,1)*2,y=horizon-dh*.905;for(let i=Math.floor(offset)-1;i<=Math.floor(offset)+1;i++){const x=width/2+(i-offset)*dw;ctx.save();ctx.translate(x+(R.mod(i,2)?dw:0),0);if(R.mod(i,2))ctx.scale(-1,1);ctx.drawImage(art,0,y,dw,dh);ctx.restore();}if(pal.rain){ctx.globalAlpha=.6;ctx.fillStyle='#4f708f';ctx.fillRect(0,0,width,height);ctx.globalAlpha=1;}}
+const horizon=height/2-focal*.03,sky=ctx.createLinearGradient(0,0,0,horizon);sky.addColorStop(0,pal.rain?'#4c6068':'#398ecc');sky.addColorStop(1,color(pal.fog,pal.fog,0));ctx.fillStyle=sky;ctx.fillRect(0,0,width,height);
+const art=getSky(),paintedSky=!!(art&&art.width>0&&ctx.drawImage);if(paintedSky&&!pal.rain){const dw=focal*Math.PI,dh=focal/.9,offset=R.mod(b.heading/(Math.PI*2)+.5,1)*2,y=horizon-dh*.905;for(let i=Math.floor(offset)-1;i<=Math.floor(offset)+1;i++){const x=width/2+(i-offset)*dw;ctx.save();ctx.translate(x+(R.mod(i,2)?dw:0),0);if(R.mod(i,2))ctx.scale(-1,1);ctx.drawImage(art,0,y,dw,dh);ctx.restore();}}
+if(pal.rain)rainSkyPainter(ctx,cam,width,height,b.heading);
 const water=ctx.createLinearGradient(0,horizon,0,height);water.addColorStop(0,color(pal.water,pal.fog,140));water.addColorStop(.35,color(pal.water,pal.fog,50));water.addColorStop(1,pal.rain?'#1e647f':'#076383');ctx.fillStyle=water;ctx.fillRect(0,horizon,width,height-horizon);
 waterPainter.draw(ctx,cam,width,height,pal,weatherVector(r),t);
 const commands=[];
@@ -680,7 +731,7 @@ function create(canvas,options={}){
 }
 
 
-const API={buoyScene,deckOne,boatScene,racerPose,normalVector,BM,identity,rotation,weatherVector,waterNormal,geometry:G,panoramaU,audience,crowdFor,create,createWebGL,createCanvas,freshCanvas,clipNear,COLORS,vertex,fragment,multiply,perspective,lookAt,model,point:R.pointAt,boxMesh,hullMesh,coneMesh,planeMesh,ringMesh,scene,camera,sphereMesh,frustumMesh};
+const API={stormSky,rainyEnvironment,buoyScene,deckOne,boatScene,racerPose,normalVector,BM,identity,rotation,weatherVector,waterNormal,geometry:G,panoramaU,audience,crowdFor,create,createWebGL,createCanvas,freshCanvas,clipNear,COLORS,vertex,fragment,multiply,perspective,lookAt,model,point:R.pointAt,boxMesh,hullMesh,coneMesh,planeMesh,ringMesh,scene,camera,sphereMesh,frustumMesh};
 root.KM_RACE_RENDERER=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
 
