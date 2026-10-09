@@ -139,7 +139,7 @@ function choose(c,key,index,api,forced=false){
  let k=x.stat;if(x.best||x.worst)k=D.statKeys.slice().sort((a,b)=>x.best?p.stats[b]-p.stats[a]:p.stats[a]-p.stats[b])[0];
  if(k){const old=Math.floor(p.stats[k]),gain=(x.value||x.best||x.worst)*1.5*api.statGrowthRate(p.stats[k])*api.growthFactor(p);api.growStat(p,k,gain);rewards.push(D.stats[k]+'＋'+(Math.floor(p.stats[k])-old)+(Math.floor(p.stats[k])===old?'（端数蓄積）':''));}
  if(x.gear&&p.equipment){const g=p.equipment[x.gear],old=Math.floor(g.condition);g.condition=clamp(g.condition+x.value,25,100);const delta=Math.floor(g.condition)-old;rewards.push((x.gear==='motor'?'モーター':'プロペラ')+'状態'+(delta>=0?'＋':'')+delta);}
- if(x.learn){const k=x.learn+'Success',old=Math.floor(p.adjust[k]);p.adjust[k]=Math.min(70,p.adjust[k]+x.value*Math.pow(clamp((70-p.adjust[k])/20,0,1),2));rewards.push((x.learn==='motor'?'モーター':'プロペラ')+'成功率＋'+(Math.floor(p.adjust[k])-old)+(Math.floor(p.adjust[k])===old?'（経験蓄積）':''));}
+ if(x.learn){const W=root.KM_WORKSHOP128||(typeof require==='function'?require('./workshop128.js'):null);W.learn(p,x.learn,x.value*.25);rewards.push(W.parts[x.learn].name+'の整備経験を積んだ');}
  if(x.fame){const old=p.popularity;p.popularity=Math.max(0,p.popularity+x.fame);const v=p.popularity-old;rewards.push('人気'+(v>=0?'＋':'')+v);}
  if(x.bond){t.bonds[x.bond]++;rewards.push(speakers[x.bond].name+'との信頼↑');}
  if(x.money){p.money+=x.money;rewards.push('支援金 '+x.money+'万円');}

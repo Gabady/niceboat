@@ -1,0 +1,34 @@
+{
+  "build": "128",
+  "modules": 47,
+  "sourceSha256": "bc3c2ceb6bc4767eca3b0ec7f30dc5bd474b09480dc0ff785d6ad062cde21802",
+  "engineChecks": 14,
+  "uiChecks": 25,
+  "storyIntegrationChecks": 7,
+  "deliveredInlineRaceRuns": 12,
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "oldSaves": [
+    116,
+    117,
+    121,
+    122,
+    123,
+    124,
+    125,
+    127
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "DOM adapter verifies markup generation, not screen layout.",
+    "No physical-device touch, audio or FPS test.",
+    "Maintenance rank estimates assume 54 normal attempts across 9 completed series.",
+    "No large-scale win-rate measurement."
+  ]
+}

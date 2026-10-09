@@ -4,6 +4,7 @@
 /* v101: mentors, five-chapter routes, final rivals and raster portrait delegation. */
 (function(root){
 'use strict';
+const Hard=root.KM_HARD129||(typeof require==='function'?require('./hard129.js'):null);
 const A=root.KM_AFFINITY||(typeof require==='function'?require('./affinity.js'):null);
 
 const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null),S=root.KM_STORY||(typeof require==='function'?require('./story.js'):null);
@@ -66,7 +67,7 @@ function profile(c,kind,template){
  const entry=kind==='boss'?c.cast.boss:c.cast.mentor,def=map[entry.id],n=copy(template),easy=c.player.difficulty==='easy',spec=loadouts[def.id];
  n.id='cast_'+def.id;n.name=def.name;n.castId=def.id;n.castRole=kind;n.special=false;n.racePersona=kind==='boss'?'wall_'+def.key:'mentor';
  D.statKeys.forEach((k,i)=>n.stats[k]=spec.stats[i]-(easy&&k!==def.key?(kind==='boss'?5:4):0));
- n.skills=spec.skills.slice();n.mastery={};n.popularity=kind==='boss'?600:260;return n;
+ n.skills=spec.skills.slice();n.mastery={};n.popularity=kind==='boss'?600:260;return Hard.npc(c,n);
 }
 function lineUp(c,people,type){
  setup(c);const t=c.cast;if(t.mentor&&!t.mentorLocked&&introduced(c)){const st=S.ensure(c),p=map[t.mentor.id];st.log.push({index:++st.serial,stage:c.stage,kind:'event',title:'師匠との出会い',note:p.name+'「'+p.quote+'」',rewards:[D.stats[p.key]+'の練習を指導']});st.log=st.log.slice(-72);}t.mentorLocked=!!t.mentor;
@@ -129,7 +130,7 @@ function routeGate(c){if(!c?.player||!c.cast?.mentor)return {open:false,reason:'
  if(c.ending||c.status==='race'||c.series?.race?.drive&&!c.series.race.done)return {open:false,reason:c.ending?'今回の育成は終了しました':'レース後に話せます'};
  if(c.stage<episode.stage)return {open:false,reason:D.stages[episode.stage].name+'から続きが届きます'};
  if(c.stats.races<q.nextAt)return {open:false,reason:'あと'+(q.nextAt-c.stats.races)+'走で続きが届きます'};
- const affinity=A.gate(c,'mentor',q.id);if(q.step===4&&!affinity.open)return {open:false,affinity,reason:'最終話の解放まで、好感度があと'+affinity.remaining+'必要です。レースで上位に入ると好感度が上がります。'};
+ const affinity=A.gate(c,'mentor',q.id);if(q.step===4&&!affinity.open)return {open:false,affinity,reason:'最終話の解放まで、好感度があと'+affinity.remaining+'必要です。交流イベントや合同練習で信頼を育てましょう。'};
  return {open:true,episode,reason:'第'+(q.step+1)+'話を進められます'};
 }
 function routeOpen(c){const g=routeGate(c);if(!g.open)return null;const t=ensure(c),q=routeState(c);t.mentorLocked=true;if(q.step===4)A.unlock(c,'mentor',q.id);q.pending={key:q.id+':mentor:'+q.step+':'+c.stats.races,step:q.step,stamp:c.stats.races};return routeScene(c);}

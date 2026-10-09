@@ -47,7 +47,7 @@ function applyPlan(c){const p=plan(c);if(!p||p.applied||!c.player.equipment||!c.
 function strong(p){return D.statKeys.slice().sort((a,b)=>p.stats[b]-p.stats[a])[0];}
 function weak(p){return D.statKeys.slice().sort((a,b)=>p.stats[a]-p.stats[b])[0];}
 function growth(c,key,method){const p=plan(c);return p?.arc==='back'&&p.choice===0&&method==='solo'&&key===weak(c.player)?1.12:1;}
-function afterTune(c,target,api){const p=plan(c);if(p?.arc==='light'&&p.choice===1){const key=target+'Success';c.player.adjust[key]=Math.min(70,c.player.adjust[key]+.45*api.tuningLearning(c.player.adjust[key])*c.series.action.effectScale);}}
+function afterTune(c,target,api){const p=plan(c);if(p?.arc==='light'&&p.choice===1){api.Workshop.learn(c.player,target,.06*c.series.action.effectScale);}}
 function series(c){const t=ensure(c),def=rival(c),n=c.series.npcs[0],tier=c.series.tier,base=D.tiers[tier].base+(c.stage%2?2:0),normal=c.player.difficulty!=='easy';
  n.id=def.id;n.name=def.name;n.portraitKey=def.portraitKey;n.skills=def.skills.slice(0,c.stage<2?1:c.stage<4?2:c.stage<6?3:4);n.mastery={};
  D.statKeys.forEach((k,i)=>{n.stats[k]=clamp(base+(normal?D.npcGradeStats[tier]||0:-(base-D.tiers.rookie.base)*(1-D.easyNpcGrowth))+(k===def.key?7:((i+S.hash(def.id))%3-1)*2),20,96);});
@@ -61,6 +61,7 @@ function training(c,key,method,api){if(!writable(c)||c.status!=='action'||!paths
  const q=t.paths[key],scale=c.series.action.effectScale;
  q.hints=Math.min(12,q.hints+Craft.trainingHint(c,key)+(method==='mentor'?1.25:method==='rival'?.9:.35)*scale+(p?.arc==='back'&&p.choice===1&&method!=='solo'?.2*scale:0));
  let affinity=null;if(method==='rival'){t.rival.training++;affinity=A.train(c,c.series.race.id,scale);if(affinity)c.series.action.logs.push(def.name+' 好感度 '+(affinity.delta>=0?'＋':'')+affinity.delta);}
+ if(method==='mentor')affinity=A.change(c,'mentor',mentor.id,1,'合同練習');
  t.training.push({key,method,raceId:c.series.race.id});t.training=t.training.slice(-100);const z=learned(c,key,api);
  c.series.action.logs.push((method==='mentor'?mentor.name+'との合同練習':method==='rival'?def.name+'との特訓':'自主練習')+' · '+paths[key].name+'のコツを蓄積');if(z)c.series.action.logs.push(D.abilityMap[z.id].name+'を習得');api.syncPlayerSnapshot(c);return {...result,learned:z,method,affinity};
 }

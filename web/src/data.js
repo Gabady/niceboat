@@ -6,7 +6,7 @@
   'use strict';
   var stats = { speed: '直線', turn: '旋回', start: 'スタート', accel: '加速', power: 'フィジカル' };
   var categories = ['強化', '戦術', '妨害', '防御', '整備', '育成', '人気', '環境', '弱点'];
-  var ranks = ['N', 'R', 'SR', 'SSR', 'UR', 'LR'];
+  var ranks = ['N', 'R', 'SR', 'SSR', 'UR', 'LR', 'MLR'];
   var phases = ['スタート', '1マーク', 'バック直線', '2マーク', '最終直線'];
   var abilities = [];
   function a(id, name, rarity, category, phase, chance, effect, description, tags, condition) {
@@ -19,7 +19,7 @@
   a('push', '小さな伸び', 'N', '強化', [2,4], .44, {stats:{speed:6}}, '直線を＋6。', ['直線']);
   a('grip', '水面をつかむ', 'N', '強化', [1,2], .42, {stats:{accel:7}}, '加速を＋7。', ['ターン']);
   a('stout', '体幹の基礎', 'N', '防御', [0,1,3,4], .32, {stats:{power:6}, safety:.15}, 'フィジカル＋6、水面の揺れと傾きの蓄積を軽減。', []);
-  a('mechanic', '整備の心得', 'N', '整備', [], 1, {type:'tuning',success:5}, 'モーター・プロペラの調整成功率＋5。', []);
+  a('mechanic', '整備の心得', 'N', '整備', [], 1, {type:'tuning',success:5}, '両方の整備力を少し補う。熟練した整備はSまで届く。', []);
   a('practice', '積み重ね', 'N', '育成', [], 1, {type:'growth',multiplier:1.08}, 'レース後と練習の基礎成長を8%増やす。', []);
   a('smile', 'ファンサービス', 'N', '人気', [], 1, {type:'fame',value:2}, '出走ごとに人気を追加で＋2。', []);
   a('stretch', '伸び足強化', 'R', '強化', [2,4], .5, {stats:{speed:12}}, '直線を＋12。', ['直線']);
@@ -30,7 +30,7 @@
   a('outside', '外の伸び', 'R', '戦術', [1,2], .55, {stats:{speed:10,accel:8},tactic:'outside'}, '進入4〜6コースで直線＋10、加速＋8。外攻めと好相性。', ['直線'], 'outer');
   a('calm', '静水の集中', 'R', '環境', [0,3], .6, {stats:{start:10,turn:8}}, '雨以外・風速10.8 km/h以下でスタート＋10、旋回＋8。', [], 'calm');
   a('mentor', '反復の才', 'R', '育成', [], 1, {type:'growth',multiplier:1.14}, 'レース後と練習の基礎成長を14%増やす。', []);
-  a('spanner', '熟練の手元', 'R', '整備', [], 1, {type:'tuning',success:9}, '両機材の調整成功率＋9。', []);
+  a('spanner', '熟練の手元', 'R', '整備', [], 1, {type:'tuning',success:9}, '両方の整備力を補う。熟練した整備はSまで届く。', []);
   a('engineer', '整備の余白', 'SR', '整備', [], .4, {type:'extra',action:'tune'}, '各レース前40%で調整専用の追加行動を1回得る。追加分の成長・調整効果は50%。', []);
   a('student', '朝練の習慣', 'SR', '育成', [], .4, {type:'extra',action:'training'}, '各レース前40%で練習専用の追加行動を1回得る。追加分の成長・調整効果は50%。', []);
   a('speed_lock', '直線封じ', 'SR', '妨害', [2,4], .42, {type:'debuff',stat:'speed',amount:14,target:'ahead'}, '直前の相手の直線をこのフェーズだけ−14。先頭なら2位を狙う。', ['直線']);
@@ -52,7 +52,7 @@
   a('zero', '零の踏み込み', 'UR', '強化', [0,1], .72, {stats:{start:25,accel:18,turn:8},startAllowance:.06}, 'スタート＋25、加速＋18、旋回＋8。所持中は能力ランクにかかわらず早発にわずかな余裕が生まれる。', ['序盤']);
   a('comet', '彗星航路', 'UR', '戦術', [2,4], .7, {stats:{speed:26,accel:20},tactic:'gamble'}, '直線＋26、加速＋20。直線での最高速と再加速を高める。', ['直線']);
   a('wave', '波を支配する', 'UR', '環境', [1,3], .76, {stats:{turn:24,power:22},safety:.65}, '旋回＋24、フィジカル＋22。グリップを強め、波と傾きの蓄積を軽減。', ['ターン']);
-  a('craft', '匠の設計', 'UR', '整備', [], 1, {type:'tuning',success:16}, '両機材の調整成功率＋16。成功率上限は92%。', []);
+  a('craft', '匠の設計', 'UR', '整備', [], 1, {type:'tuning',success:16}, '両方の整備力を大きく補う。補正後の整備力はSが上限。', []);
   a('mirror', '鏡面水域', 'LR', '防御', [0,1,2,3,4], 1, {type:'defense',reflect:1}, '妨害を完全無効化し、効果をすべて攻撃者へ返す。再反射しない。', []);
   a('legend_start', '一閃の境地', 'LR', '強化', [0,1], .84, {stats:{start:31,turn:20,accel:20},startAllowance:.10}, 'スタート＋31、旋回・加速＋20。所持中は能力ランクにかかわらず早発に少し余裕が生まれる。', ['序盤']);
   a('legend_speed', '水上の軌跡', 'LR', '強化', [2,4], .84, {stats:{speed:33,accel:25,power:14}}, '直線＋33、加速＋25、フィジカル＋14。', ['直線']);
@@ -142,7 +142,7 @@
   // Wit comes with a role: timing, water and position matter more than a flat upgrade.
   function witty(id,name,rarity,category,phase,chance,effect,description,drive,condition){a(id,name,rarity,category,phase,chance,effect,description,['物語'],condition);driving[id]=drive;}
   witty('wit_breath','まずは深呼吸','N','強化',[0],.5,{stats:{start:3}},'助走でスタート＋3。焦って踏みすぎればFになる。',{mechanics:{response:.25},text:'助走のエンジン応答を小さく改善。F判定は変わらない。'});
-  witty('wit_receipt','領収書あります','N','整備',[],1,{type:'tuning',success:2},'記録を残して迷いを減らす。両機材の調整成功率＋2。',{text:'モーター・プロペラの調整成功率＋2。上限92%。'});
+  witty('wit_receipt','領収書あります','N','整備',[],1,{type:'tuning',success:2},'記録を残して迷いを減らす。両方の整備力をわずかに補う。',{text:'両方の整備力をわずかに補う。補正後はSが上限。'});
   witty('wit_clockout','定時でゴール','N','防御',[4],.55,{stats:{power:3}},'ホーム直線で力みを抑える。フィジカル＋3。',{mechanics:{economy:.16},text:'ホーム直線の消耗を控えめにする。'});
   witty('wit_rudder','急がば舵戻せ','R','戦術',[2,4],.62,{stats:{accel:6}},'直線へ入る時、舵を中央近くに戻していると立ち上がりを補助。',{when:'composed',mechanics:{response:.6,accel:.25},text:'直線入口で実舵20%未満・アクセル60%以上なら抽選。'});
   witty('wit_weather','風向きだけ空気読む','R','環境',[1,3],.62,{stats:{power:6,turn:3}},'横風のターンでフィジカル＋6、旋回＋3。',{mechanics:{waveShield:.18,damping:.15},text:'横風の横波を軽減し、横流れを少し早く収める。'},'cross');
@@ -168,7 +168,7 @@
    ['bond_natsu','声の帰る岸','強化',[2,4],.84,{stats:{accel:16,power:18}},{when:'finalLap',mechanics:{accel:.65,damping:.38,economy:.25},text:'最終周の直線で抽選。立ち上がりと姿勢を支え、消耗を抑える。'},'なつ'],
    ['bond_lastorder','閉店後の逆転劇','戦術',[2,4],.88,{stats:{speed:18,accel:20}},{when:'finalLap',mechanics:{accel:.9,wakeShield:.3,economy:.25},text:'3周目かつ3位以下の直線で追走を強化。'},'橘 紬','behind']
   ].forEach(function(x){witty(x[0],x[1],'LR',x[2],x[3],x[4],x[5],x[7]+'と交際中にSG優勝戦へ進出すると、ノーマルでLR、イージーではUR版を獲得。'+x[6].text,x[6],x[8]);abilities[abilities.length-1].exclusive='romance';});
-  function statCeiling(p,k){return !p.isPlayer&&p.castRole==='boss'&&p.id==='cast_'+p.castId&&({kurose:'speed',shirakami:'turn',kagura:'start',onizuka:'power'})[p.castId]===k?120:100;}
+  function statCeiling(p,k){if(p.difficulty==='hard')return 120;return !p.isPlayer&&p.castRole==='boss'&&p.id==='cast_'+p.castId&&({kurose:'speed',shirakami:'turn',kagura:'start',onizuka:'power'})[p.castId]===k?120:100;}
   var easyRewardMap={mirror:'reflect',legend_start:'zero',legend_speed:'comet',legend_turn:'monkey_ur',legend_tide:'comet',doguchi_lr:'doguchi_ur',monkey_lr:'monkey_ur',prep_lr:'prep_ur',wit_unposted:'wit_nosignal',wit_norefund:'wit_harbor',wit_reply:'comet'};
   abilities.filter(function(a){return a.exclusive==='romance';}).slice().forEach(function(a){
     var id=a.id+'_ur',effect=JSON.parse(JSON.stringify(a.effect)),drive=JSON.parse(JSON.stringify(driving[a.id]));
@@ -235,7 +235,7 @@
     {id:'boost',name:'集中ドリンク',price:65,description:'次の1レースだけ全基礎能力＋5。1走1本。'},
     {id:'lane',name:'1号艇指定券',price:180,description:'次走の枠番を1号艇へ変更。進入能力による移動は有効。'},
     {id:'training',name:'追加練習券',price:105,description:'次走前のトレーニングを1回追加。1走1枚。'},
-    {id:'tune',name:'追加調整券',price:105,description:'次走前の機材調整を1回追加。1走1枚。'},
+    {id:'tune',name:'追加調整券',price:105,description:'次走前の整備を1回追加。経験・効果は通常の半分。1走1枚。'},
     {id:'growth',name:'成長型再抽選券',price:750,description:'成長型を現在と異なる型に再抽選。基礎能力は維持。'},
     {id:'cure',name:'弱点克服手帳',price:480,description:'所持している弱点を選んで1つ除去。'}
   ];
@@ -248,18 +248,49 @@
     {id:'duel',name:'攻防一体',groups:[['speed_lock','turn_press','start_check','accel_lock','power_drain','dump'],['immune','reflect','mirror']],need:{start:35,power:35},description:'他艇18m以内で応答・接触耐性を強化。伸び足を少し犠牲にする。'},
     {id:'craftline',name:'整備の継走',groups:[['doguchi_sr','doguchi_ssr','doguchi_ur','doguchi_lr'],['mechanic','spanner','engineer','craft']],need:{accel:40},description:'2周目の機材応答と持久力を改善。伸び足は控えめ。洞口スペシャルの3周目の反動は残る。'}
   ];
-  var D = {statCeiling:statCeiling,easyRewardMap:easyRewardMap,version:80,build:'127',permanentGrowthScale:.92,driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
+  // Main-story rewards: never enter shops, random draws or inherited prize pools.
+  [
+    ['sc128_tools','継承の工具','SR',{type:'tuning',success:8},'父から受け継いだ工具。両方の整備力を補い、熟練すればSへ届く。'],
+    ['sc128_sound','音を聴く整備','SSR',{type:'tuning',success:6},'始動音の違いを仕上げに生かす。両方の整備力をさらに補う。上限S。'],
+    ['sc128_focus','映像の焦点','SR',{type:'scenario'},'「冷たい勝算」の分析対象を、練習と本番でさらに少し後押しする。'],
+    ['sc128_plan','勝算の組み立て','SSR',{type:'scenario'},'「冷たい勝算」の分析を深め、課題の練習と本番での働きを少し高める。'],
+    ['sc128_home','帰る岸の声','SR',{type:'scenario'},'「沈まない旗」で有効完走を重ねた時の粘りと体づくりを少し強める。'],
+    ['sc128_flag','胸を張る旗','SSR',{type:'scenario'},'「沈まない旗」の応援を力に変え、完走で育つ粘りと体づくりをさらに支える。'],
+    ['sc128_axis','今の身体の軸','SR',{type:'scenario'},'「折れた航跡」で今の身体に合う練習と、回復した感覚による再加速を後押しする。'],
+    ['sc128_return','再起の踏み込み','SSR',{type:'scenario'},'「折れた航跡」で選んだ走り方の練習と、感覚回復による再加速をさらに支える。']
+  ].forEach(function(x){a(x[0],x[1],x[2],x[3].type==='tuning'?'整備':'育成',[],1,x[3],x[4],['物語']);abilities[abilities.length-1].exclusive='scenario128';});
+  // Each positive ability has its own MLR counterpart. Acquisition is SG-hard only.
+  abilities.slice().filter(x=>x.category!=='弱点').forEach(function(base){
+    const x=JSON.parse(JSON.stringify(base)),positive=Object.entries(base.effect.stats||{}).filter(q=>q[1]>0).sort((a,b)=>b[1]-a[1]);
+    const focus=positive[0]?.[0]||({整備:'accel',育成:'power',人気:'start',防御:'power',妨害:base.effect.stat||'turn',環境:'power'})[base.category]||'speed';
+    x.id='mlr_'+base.id;x.name='極界・'+base.name;x.rarity='MLR';x.exclusive='hard129';x.chance=1;
+    if(x.effect.stats)for(const k of Object.keys(x.effect.stats))x.effect.stats[k]=Math.min(75,Math.max(0,x.effect.stats[k])*2.5);
+    if(x.type==='debuff')x.effect.amount=Math.min(60,x.effect.amount*2.5);
+    if(x.type==='defense')x.effect.reflect=Math.max(1.25,x.effect.reflect||0);
+    if(x.type==='growth')x.effect.multiplier=1.6;
+    if(x.type==='tuning')x.effect.success=18;
+    if(x.type==='fame')x.effect.value=12;
+    if(x.type==='prep')x.effect.amount=Math.min(60,(x.effect.amount||0)*2.5);
+    const bonusStats=Object.fromEntries(Object.keys(stats).map(k=>[k,k===focus?50:18]));
+    x.mlr129={origin:base.id,stats:bonusStats,mechanics:{speed:2.8,accel:1.8,grip:1.8,response:1.2,wakeShield:.35}};
+    x.tags=[...x.tags,'最優秀','ハード限定'];
+    x.description='ハード最優秀の極限能力。常時'+({speed:'直線',turn:'旋回',start:'スタート',accel:'加速',power:'フィジカル'})[focus]+'＋50、他能力＋18。伸び・再加速・グリップも大幅強化。元の「'+base.name+'」の効果を強化して引き継ぐ。発動条件は元の技に従い、条件成立時の抽選は必ず成功。常時補正は複数所持時に上限あり。';
+    abilities.push(x);
+  });
+  var D = {statCeiling:statCeiling,easyRewardMap:easyRewardMap,version:80,build:'130',raceGrowthScale:.55,permanentGrowthScale:.92,driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
     easy:{id:'easy',name:'イージー',growth:.75,rewardDrop:1,shopMax:'SSR',ai:'easy'},
-    normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'}
+    normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'},
+    hard:{id:'hard',name:'ハード',growth:1.2,rewardDrop:0,shopMax:'UR',ai:'hard'}
   },stats:stats,statKeys:Object.keys(stats),categories:categories,
     rarities:ranks,phases:phases,abilities:abilities,abilityMap:Object.fromEntries(abilities.map(function(x){return [x.id,x];})),
     stages:stages,tiers:tiers,venues:venues,growth:growth,choices:choices,items:items,
     prices:{N:95,R:185,SR:260,SSR:560,UR:1650,LR:99999},
     points:[10,8,6,4,2,1],prizes:{qualifier:[60,32,20,12,7,4],championship:[350,175,105,60,35,20],consolation:[105,60,35,20,12,7]},
-    sgThreshold:1800,nonSG:{money:.5,raceGrowth:.6,trainingGrowth:.6,tuningGrowth:.7},
+    sgThreshold:3200,nonSG:{money:.5,raceGrowth:.6,trainingGrowth:.6,tuningGrowth:.7},
     phaseWeights:[{start:.69,power:.2,accel:.11},{turn:.5,accel:.28,power:.16,start:.06},{speed:.7,accel:.25,power:.05},{turn:.64,power:.26,accel:.1},{speed:.6,accel:.25,power:.15}],
     lastNames:['青井','水瀬','桐生','朝倉','瀬戸','小波','碧川','月城','神崎','湊','白石','真壁','相沢','橘','風間','八雲','鳴海','久遠','夏目','冬木','三浦','高瀬'],
     firstNames:['湊','玲','翔','凪','悠','真琴','颯太','律','楓','遥','大河','奏','光','志帆','蓮','蒼','千尋','海斗','陽菜','一真']};
+  D.npcPace.hard={...D.npcPace.normal};D.spectatorAssist.hard={...D.spectatorAssist.normal};D.gradePace.hard={...D.gradePace.normal};D.raceGrowthByPlace.hard=D.raceGrowthByPlace.normal.slice();D.prices.MLR=999999;
   root.KM_DATA = D;
   if (typeof module !== 'undefined' && module.exports) module.exports = D;
 })(typeof globalThis !== 'undefined' ? globalThis : window);

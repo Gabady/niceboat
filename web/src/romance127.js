@@ -32,13 +32,13 @@ function apply(B){
 }
 function locked(t,id){const partner=t?.completed||t?.partner;return !!partner&&partner!==id;}
 function chapter(c,h,i){
- const old=locked(c.bonds,h.id)&&originals[h.id],recovery=c.campaign?.arc==='recovery';
+ const old=h.routeEdition!==130&&locked(c.bonds,h.id)&&originals[h.id],recovery=c.campaign?.arc==='recovery';
  return old?(recovery&&old.recoveryChapters||old.chapters)[i]:(recovery&&h.recoveryChapters||h.chapters)[i];
 }
 function stage(q,t,id){
  if(!q?.met||q.failed||locked(t,id))return null;
- if(q.step===7&&q.dated&&t?.completed===id&&t?.partner===id)return 'partner';
- if(q.step>=5&&q.step<7)return 'late';
+ if(q.dated&&t?.partner===id)return 'partner';
+ if(q.step>=5&&q.step<8)return 'late';
  return q.step>=3&&q.step<5?'middle':null;
 }
 const labels={middle:'近づく想い',late:'伝えたい気持ち',partner:'恋人との時間'};
@@ -49,7 +49,7 @@ function visit(c,h,q,t){
  return {...copy(scenes[count%scenes.length]),readerVersion:'romance127',romancePhase:phase,romanceLabel:labels[phase]};
 }
 function ending(id,outcome){const sc=data[id]?.endings?.[outcome];return sc?copy(sc):null;}
-function expression(id,text){return cues[id]?.[text]||null;}
+function expression(id,text){return root.KM_ROUTES130?.expression(id,text)||cues[id]?.[text]||null;}
 function finalBody(c,h,r){
  const d=data[h.id];if(!d)return null;
  const onGrid=h.id==='mizuki'&&c.stage===8&&r===c.series?.race&&r?.type==='championship'&&r.runners?.some(n=>n.id==='mizuki');

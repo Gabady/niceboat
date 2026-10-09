@@ -1,0 +1,49 @@
+{
+  "build": "129",
+  "modules": 50,
+  "sourceSha256": "9f990d342e8540513c3d0ec4eb62e464ff19a8ef21005bb23ce17dc37808296b",
+  "engineChecks": 30,
+  "hardRaceComparison": {
+    "normal": {
+      "meanSeconds": 94.77273917076103,
+      "contacts": 386,
+      "invalid": 0
+    },
+    "hard": {
+      "meanSeconds": 94.44370907824738,
+      "contacts": 284,
+      "invalid": 0
+    }
+  },
+  "hardFinalRuns": 2,
+  "legacy128Checked": true,
+  "uiChecks": 30,
+  "storyIntegrationChecks": 7,
+  "deliveredInlineRaceRuns": 36,
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "oldSaves": [
+    116,
+    117,
+    121,
+    122,
+    123,
+    124,
+    125,
+    127,
+    128
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "DOM adapter verifies markup generation, not screen layout.",
+    "No physical-device touch, audio or FPS test.",
+    "Maintenance rank estimates assume 54 normal attempts across 9 completed series.",
+    "AI comparison uses eight fixed conditions, not a population win-rate measurement."
+  ]
+}

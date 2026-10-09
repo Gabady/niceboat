@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#071b2a">
   <meta name="description" content="選手を育て、五つの水面を駆ける。スマホで遊ぶ育成と一人称の操作型ボートレース『競艇物語』。">
-  <title>競艇物語 V127</title>
+  <title>競艇物語 V130</title>
   <style>
 /* 競艇物語 — Deep water, race-white numerals, signal amber. */
 :root {
@@ -3035,6 +3035,30 @@ body:not(.in-race) .entry-choice123{display:grid;grid-template-columns:34px minm
 .novel-romance127 .novel-choice{border-color:rgba(232,162,178,.42)}
 .novel-romance127 .novel-choice:hover,.novel-romance127 .novel-choice:focus-visible{border-color:#f3c0ca;background:#352a3d}
 .bond-romance127{margin:8px 0 14px;padding:8px 12px;border-left:2px solid var(--bond-color,#eda4b4);color:var(--text);font-size:.86rem;line-height:1.7;background:rgba(229,163,181,.06)}
+
+/* V128: two maintenance choices; an independent, always-visible landscape portrait. */
+.workshop-choices128{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.workshop-choices128 .tune-card{margin:0;display:flex;flex-direction:column;min-width:0}.workshop-choices128 .btn{margin-top:auto;width:100%}
+.workshop-tip128{font-size:.82rem;color:#bed0d2}.workshop-tip128 summary{padding:10px 0;cursor:pointer}.workshop-tip128 p{line-height:1.7}
+.scenario-feature128{padding:12px 16px;border-left:3px solid #7ec7b7;background:#b0d8cf0b;margin:12px 0;border-radius:6px;font-size:.86rem;line-height:1.65}.scenario-feature128 b{display:block;color:#a6dfd0}.scenario-feature128 p{margin:4px 0}.scenario-feature128 small{color:#b3c7c9}.scenario-result128{color:#b2d5cc;font-size:.82rem;margin:8px 0 18px}
+.novel-compact-cast128{display:none}
+@media(max-width:460px){.workshop-choices128{grid-template-columns:1fr}.workshop-choices128 .tune-card{padding:12px}.workshop-choices128 .tune-card p{margin:4px 0 10px}}
+@media(orientation:landscape) and (max-height:650px){
+ .reading-novel .novel-stage .novel-cast{display:none}
+ .reading-novel .novel-top{position:relative;align-items:center;gap:12px;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+ .reading-novel .novel-compact-cast128{display:flex;align-items:center;gap:8px;flex:0 1 160px;min-width:86px;max-width:26vw}
+ .reading-novel .novel-compact-cast128 .portrait-face{display:block!important;width:48px!important;height:48px!important;max-height:48px!important;min-height:48px!important;max-width:48px;flex:0 0 48px;object-fit:cover;border-radius:8px}
+ .reading-novel .novel-compact-cast128 span{display:block;font-size:11px;line-height:1.35;overflow-wrap:anywhere}
+ .reading-novel .novel-top .novel-title128{flex:1;min-width:0}.reading-novel .novel-top h2{font-size:15px;line-height:1.35;margin:0}
+ .reading-novel .novel-top .novel-close{position:static;flex:0 0 auto;max-width:110px;white-space:normal;font-size:12px}
+ .reading-novel .novel-stage .novel-bottom{flex:1 1 auto;min-height:0}
+}
+
+
+/* V129: separate boat performance from workshop experience, and identify the new tier. */
+.gear-summary129{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 16px}.gear-summary129>div{padding:12px;border:1px solid #60898c;border-radius:10px;background:#102f40;display:flex;flex-direction:column;gap:5px}.gear-summary129 small{font-size:11px;color:#bdced0}.gear-summary129 b{font-size:21px}.gear-summary129 span{font-size:12px}
+.novel-tools{flex-wrap:wrap}.novel-skip129{border:1px solid #b4d5cb!important;color:#c9f3de!important}
+.skill-chip.mlr,.rarity-text.mlr,.drive-cutin.mlr,.cutin.mlr,.reward-showcase.mlr .reward-focus,.thrill-callout.mlr{background:linear-gradient(120deg,#58276c,#14546b,#683867);border:1px solid #e6b4fb;color:#fff2ff;box-shadow:0 0 16px #d97cff44}.grade-SS{color:#f9d5ff;border-color:#dd9bea}.difficulty-option:has(input[value=hard]:checked){border-color:#df9dec}
 </style>
   
   
@@ -3042,16 +3066,20 @@ body:not(.in-race) .entry-choice123{display:grid;grid-template-columns:34px minm
 
 </head>
 <body>
-  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v120</span></header>
+  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v130</span></header>
   <main id="app" tabindex="-1"><p class="loading">水面を準備しています…</p></main>
   <aside id="save-health121" role="status" aria-live="polite" hidden></aside>
   <div id="toast" role="status" aria-live="polite"></div>
   <div id="modal" class="modal-root" hidden></div>
   <noscript>このゲームを遊ぶにはJavaScriptを有効にしてください。</noscript>
   <script src="src/data.js"></script>
+<script src="src/workshop128.js"></script>
+<script src="src/hard129.js"></script>
 <script src="src/affinity.js"></script>
+<script src="src/social129.js"></script>
 <script src="src/craft118.js"></script>
 <script src="src/drama-data.js"></script>
+<script src="src/routes130.js"></script>
 <script src="src/drama.js"></script>
 <script src="src/racing.js"></script>
 <script src="src/profile.js"></script>
@@ -3088,6 +3116,7 @@ body:not(.in-race) .entry-choice123{display:grid;grid-template-columns:34px minm
 <script src="src/finale.js"></script>
 <script src="src/heroine-expressions125.js"></script>
 <script src="src/dialogue.js"></script>
+<script src="src/reader129.js"></script>
 <script src="src/storage122.js"></script>
 <script src="src/review122.js"></script>
 <script src="src/practice122.js"></script>

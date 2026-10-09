@@ -4,6 +4,10 @@ from sync_safe import sync_safe
 root=Path(__file__).resolve().parents[1]
 names=json.loads((root/'tools/script_order.json').read_text())
 html=(root/'index.html').read_text()
+build=re.search(r"build:'(\d+)'",(root/'src/data.js').read_text())
+if not build:raise ValueError('ビルド番号が見つかりません')
+html=re.sub(r'<title>競艇物語 V\d+</title>','<title>競艇物語 V'+build[1]+'</title>',html,count=1)
+html=re.sub(r'<span class="version">v\d+</span>','<span class="version">v'+build[1]+'</span>',html,count=1)
 pattern=r'<script[^>]*>.*?</script>'
 matches=list(re.finditer(pattern,html,re.S))
 if not matches:raise ValueError('スクリプト挿入位置が見つかりません')

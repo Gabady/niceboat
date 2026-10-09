@@ -1,0 +1,42 @@
+{
+  "build": "128",
+  "resumedAt": "2026-10-07T23:20:33.411938+00:00",
+  "source": "Saved V128 release downloaded and revalidated",
+  "changes": [
+    "Visible version v120 corrected to v128 in all 5 HTML entrypoints",
+    "Build tool now derives title and visible version from src/data.js"
+  ],
+  "rerun": {
+    "balance": {
+      "passed": true,
+      "checks": 14
+    },
+    "ui-logic": {
+      "passed": true,
+      "checks": 25
+    },
+    "story-integration": {
+      "passed": true,
+      "checks": 7
+    },
+    "safe-sync": {
+      "passed": true,
+      "htmlEntrypoints": 3,
+      "scenarioRaceRuns": 12,
+      "sourceSha256": "bc3c2ceb6bc4767eca3b0ec7f30dc5bd474b09480dc0ff785d6ad062cde21802"
+    }
+  },
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "browserLimitation": "Playwright Chromium installation failed: downloaded archive was not a valid ZIP. No browser rendering, touch, audio or FPS validation completed.",
+  "htmlParity": {
+    "passed": true,
+    "entries": 5,
+    "modules": 47
+  },
+  "labelVerification": {
+    "passed": true,
+    "entries": 5,
+    "inlineGameCodeChanged": false
+  }
+}

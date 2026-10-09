@@ -17,7 +17,7 @@ function map(){return (root.KM_BONDS||Bonds)?.B?.map||{};}
 function ready(c,r){
  if(!c||!r||c.stage!==8||r!==c.series?.race||r.type!=='championship'||r.grade&&r.grade!=='sg'||r.done||r.drive&&(r.drive.elapsed>0||r.drive.started||r.drive.finished))return null;
  const t=c.bonds,id=t?.completed,h=map()[id],q=t?.heroines?.[id];
- return h&&voices[id]&&t.partner===id&&q?.step===7&&q.dated&&!q.failed?h:null;
+ return h&&voices[id]&&(root.KM_BONDS||Bonds).Routes.complete(t,id)?h:null;
 }
 function prepare(c,r){
  if(r?.cheer126)return valid(r.cheer126,r)?r.cheer126:null;

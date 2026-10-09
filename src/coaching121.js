@@ -9,7 +9,7 @@ const finite=v=>Number.isFinite(v)?v:0;
 
 function support(player){
  const stats=player.stats,base=R.straightSupport(stats);
- const alternatives=['accel','power'].map(key=>{const amount=Math.min(5,Math.max(0,100-stats[key]));return {key,amount,effective:R.straightSupport({...stats,[key]:stats[key]+amount}).effective};});
+ const alternatives=['accel','power'].map(key=>{const amount=Math.min(5,Math.max(0,D.statCeiling(player,key)-stats[key]));return {key,amount,effective:R.straightSupport({...stats,[key]:stats[key]+amount}).effective};});
  return {...base,speed:stats.speed,accel:stats.accel,power:stats.power,alternatives};
 }
 function advice(c){

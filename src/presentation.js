@@ -41,6 +41,7 @@ function show(info,settings={}){
 function resultInfo(z,dramatic){
  if(!z)return null;
  const best=(z.acquired||[]).slice().sort((a,b)=>D.rarities.indexOf(D.abilityMap[b.id]?.rarity)-D.rarities.indexOf(D.abilityMap[a.id]?.rarity))[0],a=best&&D.abilityMap[best.id];
+ if(a?.rarity==='MLR')return {kind:'rare',kicker:'MLR / 最優秀でつかんだ力',title:a.name,note:best.source,reward:'極限特殊能力を獲得',rarity:'MLR'};
  if(z.castDuel?.won)return {kind:'rare',kicker:z.castDuel.kind==='boss'?'最強の壁、突破':'師匠との約束',title:z.castDuel.name+'に先着',note:'積み重ねた走りが、届いた。',reward:z.castDuel.money+'万円 ＋ '+(D.abilityMap[z.castDuel.skill]?.name||''),rarity:z.castDuel.kind==='boss'?'LR':'UR'};
  if(z.duel?.won)return {kind:'duel',kicker:'好敵手との一戦',title:'ライバルに先着',note:z.duel.rivalName+'との対決に勝利',reward:z.duel.money+'万円'+(z.duel.skill?' ＋ '+D.abilityMap[z.duel.skill].name:''),rarity:a?.rarity||'SR'};
  if(a)return {kind:D.rarities.indexOf(a.rarity)>=4?'rare':'skill',kicker:a.rarity+' / '+(best.duplicate?'熟練が深まる':'新しい力'),title:a.name,note:best.source,reward:best.duplicate?'習熟 Lv.'+best.level:'特殊能力を獲得',rarity:a.rarity};

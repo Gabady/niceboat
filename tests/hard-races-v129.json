@@ -1,0 +1,144 @@
+{
+  "build": "129",
+  "scope": "Deterministic CPU simulation; matched stats for AI comparison. No browser FPS measurement.",
+  "pairs": [
+    {
+      "seed": 1,
+      "weather": "晴れ",
+      "normal": {
+        "meanSeconds": 93.11475759020027,
+        "contacts": 50,
+        "invalid": 0
+      },
+      "hard": {
+        "meanSeconds": 92.02787328097008,
+        "contacts": 24,
+        "invalid": 0
+      }
+    },
+    {
+      "seed": 2,
+      "weather": "雨",
+      "normal": {
+        "meanSeconds": 97.98649502750249,
+        "contacts": 58,
+        "invalid": 0
+      },
+      "hard": {
+        "meanSeconds": 97.66475221684027,
+        "contacts": 46,
+        "invalid": 0
+      }
+    },
+    {
+      "seed": 3,
+      "weather": "晴れ",
+      "normal": {
+        "meanSeconds": 92.45157257555599,
+        "contacts": 34,
+        "invalid": 0
+      },
+      "hard": {
+        "meanSeconds": 92.88637034704675,
+        "contacts": 54,
+        "invalid": 0
+      }
+    },
+    {
+      "seed": 4,
+      "weather": "雨",
+      "normal": {
+        "meanSeconds": 94.95375214976714,
+        "contacts": 80,
+        "invalid": 0
+      },
+      "hard": {
+        "meanSeconds": 95.06064604669314,
+        "contacts": 54,
+        "invalid": 0
+      }
+    },
+    {
+      "seed": 5,
+      "weather": "晴れ",
+      "normal": {
+        "meanSeconds": 93.49917814418593,
+        "contacts": 66,
+        "invalid": 0
+      },
+      "hard": {
+        "meanSeconds": 92.71227224219642,
+        "contacts": 46,
+        "invalid": 0
+      }
+    },
+    {
+      "seed": 6,
+      "weather": "雨",
+      "normal": {
+        "meanSeconds": 97.04587518489785,
+        "contacts": 38,
+        "invalid": 0
+      },
+      "hard": {
+        "meanSeconds": 96.7354570558648,
+        "contacts": 18,
+        "invalid": 0
+      }
+    },
+    {
+      "seed": 7,
+      "weather": "晴れ",
+      "normal": {
+        "meanSeconds": 92.93269705766012,
+        "contacts": 18,
+        "invalid": 0
+      },
+      "hard": {
+        "meanSeconds": 92.34264872020526,
+        "contacts": 22,
+        "invalid": 0
+      }
+    },
+    {
+      "seed": 8,
+      "weather": "雨",
+      "normal": {
+        "meanSeconds": 96.19758563631838,
+        "contacts": 42,
+        "invalid": 0
+      },
+      "hard": {
+        "meanSeconds": 96.11965271616221,
+        "contacts": 20,
+        "invalid": 0
+      }
+    }
+  ],
+  "hardFinals": [
+    {
+      "seed": 22,
+      "place": 6,
+      "invalid": 0,
+      "mlr": 1
+    },
+    {
+      "seed": 23,
+      "place": 6,
+      "invalid": 0,
+      "mlr": 1
+    }
+  ],
+  "comparison": {
+    "normal": {
+      "meanSeconds": 94.77273917076103,
+      "contacts": 386,
+      "invalid": 0
+    },
+    "hard": {
+      "meanSeconds": 94.44370907824738,
+      "contacts": 284,
+      "invalid": 0
+    }
+  }
+}

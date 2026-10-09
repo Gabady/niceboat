@@ -1,0 +1,13 @@
+const fs=require('fs'),path=require('path'),assert=require('node:assert/strict'),E=require('../src/script.js'),R=E.R;
+const report={build:'129',scope:'Deterministic CPU simulation; matched stats for AI comparison. No browser FPS measurement.',pairs:[],hardFinals:[]};
+function setup(seed,mode='normal',stage=0){const s=E.newState(seed),p=E.character(s,'走行検証');p.difficulty=mode;p.scenario='light';E.createCareer(s,p);s.career.stage=stage;s.career.player.totalEarnings=5000;E.startSeries(s);E.prepareRace(s);return s;}
+function run(r,seed){const d=R.create(r,seed);d.paused=false;for(let i=0;i<24000&&!d.finished;i++)R.tick(d,r,{},R.DT,true);assert.ok(d.finished);return d;}
+for(let seed=1;seed<=8;seed++){
+ const s=setup(seed),r=s.career.series.race;r.env={weather:seed%2?'晴れ':'雨',wind:seed%2?'無風':'横風',windSpeed:seed%2?0:6};
+ r.runners.forEach(p=>{p.isPlayer=false;p.skills=[];p.stats={speed:75,turn:75,start:75,accel:75,power:75};});const pair={seed,weather:r.env.weather};
+ for(const mode of ['normal','hard']){const race=E.clone(r);race.difficulty=mode;const d=run(race,9000+seed);pair[mode]={meanSeconds:d.boats.reduce((n,b)=>n+(b.finishTime??240),0)/6,contacts:d.boats.reduce((n,b)=>n+b.metrics.contacts,0),invalid:d.boats.filter(b=>b.startFault||b.dnf||b.capsized).length};}report.pairs.push(pair);
+}
+report.comparison=Object.fromEntries(['normal','hard'].map(mode=>[mode,{meanSeconds:report.pairs.reduce((n,x)=>n+x[mode].meanSeconds,0)/8,contacts:report.pairs.reduce((n,x)=>n+x[mode].contacts,0),invalid:report.pairs.reduce((n,x)=>n+x[mode].invalid,0)}]));
+assert.ok(report.comparison.hard.contacts<report.comparison.normal.contacts,'予測回避で接触が減る');assert.ok(report.comparison.hard.meanSeconds<report.comparison.normal.meanSeconds*1.04,'回避のために大幅な失速をしない');
+for(const seed of [22,23]){const s=setup(seed,'hard',8),c=s.career;c.series.round=5;c.status='between';c.player.points=1000;E.prepareRace(s);const r=c.series.race;assert.ok(r.runners.every(p=>p.skills.some(id=>E.D.abilityMap[id].rarity==='MLR')));c.status='preRace';assert.ok(E.takeControl(s,false));const d=r.drive;d.paused=false;for(let i=0;i<24000&&!d.finished;i++)R.tick(d,r,{},R.DT,true);assert.ok(d.finished);assert.ok(E.validState(s));E.completeDrive(s,false);assert.ok(E.validState(E.decode(JSON.stringify(s))));report.hardFinals.push({seed,place:c.lastResult.place,invalid:d.boats.filter(b=>b.dnf||b.startFault||b.capsized).length,mlr:c.player.skills.filter(id=>E.D.abilityMap[id].rarity==='MLR').length});E.finishSeries(s);assert.ok(E.validState(s));}
+fs.writeFileSync(path.join(__dirname,'hard-races-v129.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));

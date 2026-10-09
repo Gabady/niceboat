@@ -718,7 +718,7 @@ function capture(c){
  const result=classify(c);if(!result)return null;
  const entries=[],b=c.bonds;
  for(const id of heroineIds){const q=b?.heroines?.[id];if(!q?.met)continue;
-  const completed=b.completed===id&&b.partner===id&&q.step>=7&&q.dated&&!q.failed;
+  const completed=b.partner===id&&q.dated&&!q.failed;
   const relationship=completed?'partner':q.failed?(String(q.reason||'').includes('友人')?'friend':'apart'):'acquaintance';
   const story=completed?(Romance?.ending(id,result.outcome)||stories[id][result.outcome]):shortHeroine(id,result.outcome,relationship);
   entries.push(entry('heroine',id,relationship,q.step||0,result,story));
@@ -745,7 +745,7 @@ function valid(s){
   if(!e||!['heroine','mentor','rival'].includes(e.kind)||!e.person||!people[e.person.id]||!string(e.person.name,40)||!string(e.person.portraitKey,60)||e.person.name!==people[e.person.id].name||e.person.portraitKey!==people[e.person.id].portraitKey||e.id!==e.kind+':'+e.person.id||e.key!=='epilogue126:'+e.id||seen.has(e.key)||e.outcome!==s.outcome||!string(e.title,100)||!['harbor','workshop','cafe'].includes(e.background)||!Array.isArray(e.body)||e.body.length<5||e.body.length>16||!e.body.every(x=>string(x,800)))return false;
   if(e.expressionCues!=null&&(typeof e.expressionCues!=='object'||Array.isArray(e.expressionCues)||Object.entries(e.expressionCues).some(([state,words])=>!['calm','warm','thoughtful','determined','surprised','blush'].includes(state)||!Array.isArray(words)||words.length>16||words.some(word=>!string(word,800)||!e.body.some(line=>line===people[e.person.id].call+'「'+word+'」')))))return false;
   seen.add(e.key);
-  if(e.kind==='heroine')return heroineIds.includes(e.person.id)&&['partner','acquaintance','friend','apart'].includes(e.relationship)&&integer(e.chapterStep,0,7)&&(e.relationship!=='partner'||e.chapterStep===7);
+  if(e.kind==='heroine')return heroineIds.includes(e.person.id)&&['partner','acquaintance','friend','apart'].includes(e.relationship)&&integer(e.chapterStep,0,10)&&(e.relationship!=='partner'||e.chapterStep>=6);
   if(e.kind==='mentor')return ++mentors<=1&&mentorIds.includes(e.person.id)&&['mentor','senior'].includes(e.relationship)&&integer(e.chapterStep,0,5);
   return ++rivals<=1&&rivalIds.includes(e.person.id)&&e.relationship==='rival'&&integer(e.chapterStep,0,12);
  });
