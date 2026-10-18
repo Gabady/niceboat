@@ -17,10 +17,10 @@ const kmh=v=>Math.floor(Math.max(0,v)*3.6);
 const speedText=v=>(Math.round(Math.max(0,v)*36)/10)+' km/h';
 // ST is seconds:hundredths, with legal early crossings displayed as 00:00.
 const startText=t=>{if(!Number.isFinite(t))return '—';const n=Math.max(0,Math.round(t*100));return String(Math.floor(n/100)).padStart(2,'0')+':'+String(n%100).padStart(2,'0');};
-const tiltValue=r=>Number.isFinite(r.tilt)?clamp(r.tilt,-.5,3):r.strategy==='attack'?1.5:r.strategy==='safe'?-.5:0;
+const tiltValue=r=>Number.isFinite(r.tilt)?clamp(r.tilt,-1,r.tilt131?1:3):r.strategy==='attack'?1.5:r.strategy==='safe'?-.5:0;
 // V110: the added acceleration is modest and depends on effective physical strength.
 // V128 scales new-race tilt by workmanship; legacy races retain their full setting.
-function tiltEffects(r,b,power=b.stats?.power||0){const angle=b.isPlayer?tiltValue(r)*(r.workshop128?r.workshop128.tiltFactor:1):0,efficiency=.25+.75*clamp(power,0,100)/100;return {angle,efficiency,accel:Math.max(0,angle)*.12*efficiency,speed:angle<0?angle*1.6:angle*.65,grip:angle<0?-angle*1.2:-angle*.45,damping:angle<0?-angle*.3:-angle*.10};}
+function tiltEffects(r,b,power=b.stats?.power||0){const angle=b.isPlayer?tiltValue(r)*(r.tilt131?1:r.workshop128?r.workshop128.tiltFactor:1):0,efficiency=.25+.75*clamp(power,0,100)/100;return {angle,efficiency,accel:Math.max(0,angle)*.12*efficiency,speed:angle<0?angle*1.6:angle*.65,grip:angle<0?-angle*1.2:-angle*.45,damping:angle<0?-angle*.3:-angle*.10};}
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const mod=(v,m)=>(v%m+m)%m;
 const wrap=a=>mod(a+Math.PI,TAU)-Math.PI;

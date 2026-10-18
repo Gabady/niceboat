@@ -1,0 +1,507 @@
+{
+  "version": 80,
+  "build": "131",
+  "seed": 4167085033,
+  "career": {
+    "player": {
+      "id": "p6um95oyukufd",
+      "name": "旧版本文検証",
+      "stats": {
+        "speed": 36,
+        "turn": 36,
+        "start": 39,
+        "accel": 51,
+        "power": 36
+      },
+      "adjust": {
+        "motorVar": 42,
+        "motorSuccess": 18,
+        "propVar": 60,
+        "propSuccess": 18
+      },
+      "growth": "charger",
+      "skills": [
+        "quick"
+      ],
+      "mastery": {},
+      "popularity": 0,
+      "money": 0,
+      "totalEarnings": 0,
+      "inventory": {},
+      "equipment": null,
+      "points": 0,
+      "finishes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "scoreTotal": 0,
+      "tie": 0.7637372899334878,
+      "scenario": "light",
+      "profile": {
+        "region": "",
+        "motto": "",
+        "color": "lagoon",
+        "emblem": "wave",
+        "favorite": false
+      },
+      "difficulty": "normal"
+    },
+    "seed": 830894158,
+    "stage": 1,
+    "status": "home",
+    "series": null,
+    "history": [],
+    "shop": null,
+    "lastShop": null,
+    "balance": {
+      "last": null,
+      "streak": 0
+    },
+    "stats": {
+      "races": 5,
+      "wins": 0,
+      "capsizes": 0
+    },
+    "lastResult": null,
+    "ending": null,
+    "development": {
+      "version": 1,
+      "rival": {
+        "id": "main_ren",
+        "cast": "ren",
+        "met": 0,
+        "history": [],
+        "training": 0,
+        "drama": {
+          "version": 2,
+          "entries": [
+            {
+              "index": 0,
+              "stage": 1,
+              "record": null,
+              "decision": null,
+              "prose": {
+                "title": "濡れた図面",
+                "body": [
+                  "◇場面◇{\"when\":\"艇を片づける頃\",\"place\":\"ピット\",\"caption\":\"\"}",
+                  "蓮のノートは、艇のそばでも開いたままだった。主人公は通り道を避けようとしたが、濡れた手袋から水が落ちた。",
+                  "紙へ向かう蓮の手の速さに、主人公は立ち止まった。書いてあった線の意味は、まだ何も知らなかった。",
+                  "◇場面◇{\"when\":\"それから\",\"place\":\"ピット\",\"caption\":\"\"}",
+                  "瀬尾蓮のノートに水が跳ねた。主人公が謝ると、蓮は返事より先に頁を押さえた。",
+                  "蓮「そこ、まだ写してない」",
+                  "線が滲んだのは、一周目の出口だった。乾いた紙を持ってくると、蓮は鉛筆を一本よこした。",
+                  "主人公「自分で描いていいの？」",
+                  "蓮「君が通った所は、君の方が覚えてるだろ」",
+                  "主人公の線は、蓮が引いていた線より大きく外へ膨らんだ。",
+                  "蓮「そんなに外だった？」",
+                  "二人で映像を戻した。正しかったのは、どちらの線でもなかった。"
+                ]
+              },
+              "choiceLabels130": [
+                "この線は消さずに、映像の線も足そう",
+                "映像があれば、ノートはいらないんじゃない？"
+              ]
+            }
+          ],
+          "reward": null
+        }
+      },
+      "paths": {
+        "speed": {
+          "hints": 0,
+          "practice": 0,
+          "learned": false,
+          "branch": null
+        },
+        "turn": {
+          "hints": 0,
+          "practice": 0,
+          "learned": false,
+          "branch": null
+        },
+        "start": {
+          "hints": 0,
+          "practice": 0,
+          "learned": false,
+          "branch": null
+        },
+        "accel": {
+          "hints": 0,
+          "practice": 0,
+          "learned": false,
+          "branch": null
+        },
+        "power": {
+          "hints": 0,
+          "practice": 0,
+          "learned": false,
+          "branch": null
+        }
+      },
+      "plans": [],
+      "settled": [],
+      "training": [],
+      "finals": {},
+      "readers": {
+        "dialogue118:bond:akari:5:2:2:131": 5
+      },
+      "outcomes": [],
+      "archive": null
+    },
+    "campaign": {
+      "version": 2,
+      "arc": "light",
+      "edition": 119,
+      "origin": 0,
+      "entries": [
+        {
+          "choiceMode": "paths",
+          "observation": null,
+          "id": "opening",
+          "kind": "opening",
+          "stage": 0,
+          "outcome": "steady",
+          "strong": "accel",
+          "weak": null,
+          "read": false,
+          "late": false,
+          "legacy": false,
+          "branch": "contest",
+          "wins": 0,
+          "races": 0,
+          "prior": null,
+          "priorText": "",
+          "priorAligned": null,
+          "choiceSpec": 0,
+          "decision": null,
+          "prose": {
+            "title": "序章 · 灯を継ぐ",
+            "body": [
+              "◇場面◇{\"when\":\"育成の始まる前\",\"place\":\"父のいる工房\",\"caption\":\"\"}",
+              "工房へ向かう道を歩くと、子供の頃に通った角が見えた。今なら話せると思ったことが、近づくほど喉につかえる。",
+              "扉の前で鞄を持ち直した。父に聞かれるより先に、自分から今日の話をしようと思った。",
+              "◇場面◇{\"when\":\"話をする時間\",\"place\":\"父のいる工房\",\"caption\":\"\"}",
+              "工房の戸を開けると、湯を沸かす音だけが聞こえた。子供の頃は、その音が工具の音に隠れていた。",
+              "作業台の高さは変わらない。昔は踏み台が要った場所に、今は自分の出走用の鞄が届く。",
+              "父「そこに置くな。油が付く」",
+              "主人公「もう付いてる。向こうのピットで」",
+              "父「なら、帰ってきたからって余計に汚すな」",
+              "いつものやり取りに安心しかけて、棚の空白に気づいた。",
+              "毎朝同じ場所にあった工具が、新聞紙に包まれている。包みの横には引き取り先の名前があった。",
+              "主人公「片づけるって、少し整理するだけかと思ってた」",
+              "父「そう聞こえるように言ったのかもしれんな」",
+              "父は湯飲みを二つ出した。片方を持つ時だけ、反対の手を添えた。",
+              "主人公は鞄から出走表を出し、賞金の欄が見えないように折った。隠した数字ほど、頭の中では大きかった。",
+              "父は売却予定の工具に付けた札を裏返した。一番古いレンチだけ、値段が空欄だった。",
+              "主人公「それは売らないのか」",
+              "父「値段を決められないだけだ。若い頃から使ってるからな」",
+              "父が落としたボルトを拾い、作業台へ置いた。",
+              "主人公「手、また痛むのか」",
+              "父「寒いだけだ。それより、お前の出走表を見せろ」",
+              "主人公「先に店の話をしたい。工具、売るつもりなんだろ」",
+              "父「使えなくなる前に、使う奴へ渡す。それでいい」",
+              "主人公「よくない。賞金を稼ぐ。修理代も、店の金も」",
+              "父「そのために選手になったのか？」",
+              "主人公「……それだけじゃない。でも、放っておけないだろ」",
+              "父「ありがたいよ。ただ、お前が負けるたびに店まで背負われちゃ、俺も応援しづらい」",
+              "父は出走表を作業台に広げた。",
+              "父「俺が見たいのは、お前のレースだ。まず何を変えたい？」",
+              "父「それで、今はどう考えてる？　お前の返事を聞かせてくれ。」"
+            ]
+          }
+        }
+      ],
+      "closed": false,
+      "dominance": false
+    },
+    "story": {
+      "version": 1,
+      "seed": 4113011319,
+      "chapters": [],
+      "gates": [],
+      "seen": {},
+      "bonds": {
+        "mentor": 0,
+        "mechanic": 0
+      },
+      "pending": null,
+      "rivals": [],
+      "duel": null,
+      "log": [],
+      "shown": [],
+      "serial": 0,
+      "arcs": {},
+      "skillStages": [],
+      "introductions": {
+        "version": 1,
+        "known": [],
+        "scenes": []
+      }
+    },
+    "bonds": {
+      "version": 3,
+      "partner": null,
+      "completed": null,
+      "nextAt": 4,
+      "waitHeroine": "akari",
+      "shortcutUsed": false,
+      "encounters": {
+        "seed": 569181029,
+        "rolled": [],
+        "notice": null
+      },
+      "pending": {
+        "id": "akari",
+        "kind": "chapter",
+        "step": 2,
+        "stamp": 5,
+        "key": "akari:5:2:2"
+      },
+      "heroines": {
+        "akari": {
+          "met": true,
+          "metStage": 0,
+          "metRace": 0,
+          "step": 2,
+          "trust": 20,
+          "affection": 20,
+          "failed": false,
+          "reason": "",
+          "dated": false,
+          "choices": [
+            0,
+            0
+          ]
+        },
+        "mio": {
+          "met": false,
+          "metStage": null,
+          "metRace": null,
+          "step": 0,
+          "trust": 0,
+          "affection": 0,
+          "failed": false,
+          "reason": "",
+          "dated": false,
+          "choices": []
+        },
+        "nagi": {
+          "met": false,
+          "metStage": null,
+          "metRace": null,
+          "step": 0,
+          "trust": 0,
+          "affection": 0,
+          "failed": false,
+          "reason": "",
+          "dated": false,
+          "choices": []
+        },
+        "kanade": {
+          "met": false,
+          "metStage": null,
+          "metRace": null,
+          "step": 0,
+          "trust": 0,
+          "affection": 0,
+          "failed": false,
+          "reason": "",
+          "dated": false,
+          "choices": []
+        },
+        "tsumugi": {
+          "met": false,
+          "metStage": null,
+          "metRace": null,
+          "step": 0,
+          "trust": 0,
+          "affection": 0,
+          "failed": false,
+          "reason": "",
+          "dated": false,
+          "choices": []
+        },
+        "mizuki": {
+          "met": false,
+          "metStage": null,
+          "metRace": null,
+          "step": 0,
+          "trust": 0,
+          "affection": 0,
+          "failed": false,
+          "reason": "",
+          "dated": false,
+          "choices": []
+        },
+        "natsu": {
+          "met": false,
+          "metStage": null,
+          "metRace": null,
+          "step": 0,
+          "trust": 0,
+          "affection": 0,
+          "failed": false,
+          "reason": "",
+          "dated": false,
+          "choices": []
+        }
+      },
+      "training": {
+        "stages": [],
+        "rivals": {}
+      },
+      "log": [
+        {
+          "kind": "romance",
+          "heroine": "akari",
+          "title": "段差ひとつ",
+          "note": "灯「明日。……笑うかと思った。来るなら、午後にしてください」",
+          "choice": "四回目はいつ試すの？",
+          "scene130": {
+            "title": "段差ひとつ",
+            "body": [
+              "◇場面◇{\"when\":\"競走場からの帰り道\",\"place\":\"工房の前\",\"caption\":\"\"}",
+              "道を間違えたと気づいたのは、案内板が見えなくなってからだった。鞄の持ち手を握り直し、来た道へ戻ろうとした。",
+              "その時、金属が路面をこする音がした。誰かが困っている。足だけが先に、音の方へ向いていた。",
+              "◇場面◇{\"when\":\"その日の工房前\",\"place\":\"段差ひとつ\",\"caption\":\"\"}",
+              "工房の前で、台車の車輪が溝にはまっていた。主人公が手を伸ばすと、作業着の女性が肘で止めた。",
+              "灯「そこ、熱いです。持つなら黒い取っ手」",
+              "二人で押すと、台車は拍子抜けするほど軽く動いた。彼女だけが勢い余って一歩走った。",
+              "主人公「慣れてるんじゃなかった？」",
+              "灯「一人では、です」",
+              "灯は名札の油を親指で拭いた。汐見灯。主人公が名乗る間も、空いた手で車輪を押さえている。",
+              "主人公「もう離しても平気そうだけど」",
+              "灯「……そうですね。ありがとうございます」",
+              "工房の中には、同じ大きさの部品が三つ並んでいた。値札の裏に、違う日付が書いてある。",
+              "灯「同じ失敗を三回。見なかったことにしてください」"
+            ]
+          },
+          "dated": false,
+          "failed": false,
+          "startedDating": false,
+          "completed": false,
+          "emotion": "warm",
+          "expressionCues": {
+            "warm": [
+              "そこ、熱いです。持つなら黒い取っ手",
+              "一人では、です",
+              "……そうですね。ありがとうございます",
+              "同じ失敗を三回。見なかったことにしてください"
+            ]
+          },
+          "index": 1,
+          "races": 0,
+          "stage": 0
+        },
+        {
+          "kind": "romance",
+          "heroine": "akari",
+          "title": "赤い線の残し方",
+          "note": "灯「ここの角度だけは、変えたいんです。理由も聞いてもらえますか」",
+          "choice": "横に置いて、灯さんの線を見せて",
+          "scene130": {
+            "title": "赤い線の残し方",
+            "body": [
+              "◇場面◇{\"when\":\"約束の前日\",\"place\":\"宿舎\",\"caption\":\"\"}",
+              "試走の感想を三行にまとめた。専門用語で埋めた最初の紙は捨てた。灯に聞かれたのは、自分が何を感じたかだった。",
+              "書き直した紙を鞄へ入れる。明日は読んでもらえるだろうか。それを気にしている自分に、少し驚いた。",
+              "◇場面◇{\"when\":\"翌日の工房\",\"place\":\"赤い線の残し方\",\"caption\":\"\"}",
+              "約束の午後、灯は椅子の座面を拭いていた。床より椅子の方がきれいで、主人公は鞄を膝に載せた。",
+              "灯「鞄はそこへ。椅子は人用です」",
+              "図面の上を、赤鉛筆の線が何本も横切っている。灯の筆箱に赤鉛筆はなかった。",
+              "主人公「これは、お父さんの？」",
+              "灯「はい。直すたびに青で描くから、だんだん読めなくなって」",
+              "主人公「新しい紙に描いたら？」",
+              "灯「それだと、全部自分で決めたみたいで」",
+              "主人公も、練習ノートの最初のページを長く捨てられなかった話をした。今より大きな字で、先輩の言葉だけが並んでいた。",
+              "灯「まだ持ってます？」",
+              "主人公「うん。でも、今日の練習には持っていかない」",
+              "灯は紙を一枚取り出した。赤い図面は、捨てずに左側へ置いた。"
+            ]
+          },
+          "dated": false,
+          "failed": false,
+          "startedDating": false,
+          "completed": false,
+          "emotion": "determined",
+          "expressionCues": {
+            "thoughtful": [
+              "鞄はそこへ。椅子は人用です",
+              "はい。直すたびに青で描くから、だんだん読めなくなって",
+              "それだと、全部自分で決めたみたいで",
+              "まだ持ってます？"
+            ]
+          },
+          "index": 2,
+          "races": 2,
+          "stage": 0
+        }
+      ],
+      "serial": 2,
+      "reward": null
+    },
+    "finale": {
+      "version": 1,
+      "wallDefeated": null,
+      "rival": {
+        "route": "open",
+        "chosenAt": null,
+        "growth": 0
+      },
+      "settled": [],
+      "log": [],
+      "finalGrid": null
+    },
+    "affinity": {
+      "version": 1,
+      "rival": 8,
+      "mentors": {},
+      "unlocked": [],
+      "settled": [],
+      "trained": [],
+      "requests": [],
+      "rolled": [
+        "akari:1",
+        "akari:2",
+        "akari:3",
+        "akari:4",
+        "akari:5",
+        "akari:6"
+      ],
+      "seed": 2874425081,
+      "log": []
+    },
+    "refinement": {
+      "version": 1,
+      "grandfather": [],
+      "races": [],
+      "recovery": null
+    },
+    "scenario128": {
+      "version": 1,
+      "arc": "light",
+      "analysisKey": "speed",
+      "streak": 0,
+      "recovery": 0,
+      "settled": [],
+      "awarded": []
+    }
+  },
+  "registry": [],
+  "rivals": [],
+  "coins": 1000,
+  "quick": null,
+  "settings": {
+    "speed": 1,
+    "postureAssist": false,
+    "haptics": true,
+    "raceFX": "full",
+    "textSize": "normal",
+    "contrast": "standard"
+  },
+  "savedAt": null
+}

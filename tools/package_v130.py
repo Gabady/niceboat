@@ -4,7 +4,7 @@ import hashlib,json,zipfile,shutil
 root=Path(__file__).resolve().parents[1]
 dest=root.parent/'deliverables-v130';dest.mkdir(exist_ok=True)
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-required=['routes','legacy','balance','features','ui-logic','story-integration','safe-sync','parity']
+required=['routes','legacy','balance','features','ui-logic','story-integration','safe-sync','parity','resume']
 reports={n:json.loads((root/'tests'/f'{n}-v130.json').read_text()) for n in required}
 assert all(r['build']=='130' for r in reports.values())
 for n in ['safe-sync','parity']:assert reports[n]['sourceSha256']==sha(root/'index.html')
@@ -14,9 +14,11 @@ release={'build':'130','modules':len(json.loads((root/'tools/script_order.json')
  'checks':{n:len(r['checks']) for n,r in reports.items() if 'checks' in r},
  'deliveredInlineRaceRuns':36,'htmlEntrypoints':['index.html','index_android_safe.html','index_iphone_safe.html','index_editable.html','web/index.html'],
  'legacyRouteSaves':10,'browserTested':False,'physicalDevicesTested':False,
+ 'resumedVerificationAt':reports['resume']['verifiedAt'],
  'limitations':['DOM adapter verifies markup and actions, not layout.','No physical-device touch, audio or FPS test.','Route availability still depends on encounters, choices, affection and racing results.']}
 (root/'tests/release-v130.json').write_text(json.dumps(release,ensure_ascii=False,indent=2)+'\n')
 files=sorted(p for p in root.rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.name!='MANIFEST.sha256' and not p.name.endswith('.pyc') and not p.name.startswith('.'))
+(root/'MANIFEST.json').write_text(json.dumps({'build':'130','packageRevision':'routes-resumed-2026-10-08','files':[{'path':p.relative_to(root).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p)} for p in files if p.name!='MANIFEST.json']},ensure_ascii=False,indent=2)+'\n')
 (root/'MANIFEST.sha256').write_text('\n'.join(sha(p)+'  '+p.relative_to(root).as_posix() for p in files)+'\n');files.append(root/'MANIFEST.sha256')
 for name in ['index_android_safe.html','index_iphone_safe.html']:shutil.copyfile(root/name,dest/name)
 archive=dest/'kyotei_monogatari_v130.zip'

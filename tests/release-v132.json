@@ -1,0 +1,33 @@
+{
+  "build": "132",
+  "modules": 54,
+  "sourceSha256": "b529855ff3957886b9a07289ff1a0f4b5e1cf32ecfe55c66a5c7a6a8eebe9fc1",
+  "heroineEpisodes": 70,
+  "rivalEpisodes": 40,
+  "checks": {
+    "routes": 19,
+    "legacy": 3,
+    "balance": 14,
+    "features": 16,
+    "flow": 16,
+    "resume": 3,
+    "narrative": 8
+  },
+  "deliveredInlineRaceRuns": 36,
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "legacySavesVerified": 13,
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "resumedVerificationAt": "2026-10-18T15:06:32.598Z",
+  "limitations": [
+    "DOM adapter verifies markup and actions, not layout.",
+    "No physical-device touch, audio or FPS test.",
+    "Route availability still depends on encounters, choices, affection and racing results."
+  ]
+}

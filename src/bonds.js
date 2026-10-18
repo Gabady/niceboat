@@ -3,6 +3,7 @@
 /* V126: conditional Natsu romance, saved independent discovery and legacy relationship migration. */
 (function(root){
 'use strict';
+const Choices133=root.KM_CHOICES133||(typeof require==='function'?require('./choices133.js'):null);
 const A=root.KM_AFFINITY||(typeof require==='function'?require('./affinity.js'):null);
 
 const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null),B=root.KM_BOND_DATA||(typeof require==='function'?require('./bonds-data.js'):null),S=root.KM_STORY||(typeof require==='function'?require('./story.js'):null);
@@ -87,14 +88,13 @@ function finalBody(c,h,r=c.series?.race){
  return body.map(line=>together[line]||line);
 }
 function gate(c,id){const h=B.map[id];if(!c||!h)return {open:false,reason:'人物が見つかりません'};const t=ensure(c),q=t.heroines[id],e=episode(c,h,q.step);
- if(A.offer(c))return {open:false,reason:'先におねだりへの返事を決めてください'};
+ if(A.offer(c))return {open:false,reason:'先に次走の約束への返事を決めてください'};
  if(!q.met)return {open:false,undiscovered:true,reason:'まだ出会っていません'};
  if(q.failed)return {open:false,failed:true,reason:'ルート終了：'+q.reason};
- const lock=q.step===7&&finalLock(t,id);if(lock)return {open:false,locked:true,reason:t.completed?B.map[lock].name+'のルートを完走済みのため、最終話は進行できません':B.map[lock].name+'との交際を継続中のため、最終話は進行できません'};
+ const lock=q.step===7&&finalLock(t,id);if(lock)return {open:false,locked:true,reason:t.completed?B.map[lock].name+'のルートを完走済みのため、第8話の交際には進めません':B.map[lock].name+'との交際を継続中のため、第8話の交際には進めません'};
  if(!writable(c))return {open:false,reason:c.ending?'今回の育成は終了しました':'レース後に会えます'};
  if(q.step===9&&(!q.dated||t.partner!==id||!Routes.qualifiedFinal(c)))return {open:false,finalOnly:true,reason:'第10話は最優秀シリーズ優勝戦への出場で解放されます。出走前に会いに来てください。'};
  const affinity=A.gate(c,'heroine',id),relationshipNeeded=!!e&&(q.step===7&&!affinity.open||q.trust<e.trust||q.affection<e.affection),needs=[];
- if(!Craft.romanceGate(c,id))needs.push('今回の育成でG1前期または後期を優勝');
  if(q.step===7&&!affinity.open)needs.push('交際の約束まで 好感度あと'+affinity.remaining);
  if(e){if(c.stats.races<e.races)needs.push('あと'+(e.races-c.stats.races)+'走');if(c.stage<e.stage)needs.push(D.stages[e.stage].name+'以降');if(q.trust<e.trust)needs.push('信頼が不足');if(q.affection<e.affection&&!(q.step===7&&!affinity.open))needs.push('好感度が不足');}
  const hint=relationshipNeeded?'さらに交流を深める必要があります。会える日に会って話しましょう。':'';
@@ -120,7 +120,7 @@ function choose(c,key,index){if(!writable(c))return null;const t=ensure(c),p=t.p
  if(p.kind==='chapter'&&(q.step!==p.step||!gate(c,h.id).chapter))return null;
  const ch=sc.choices[index];t.pending=null;let title=sc.title,note,startedDating=false,completed=false;
  if(p.kind==='visit'){if(sc.romancePhase){q.romanceVisits||={middle:0,late:0,partner:0};q.romanceVisits[sc.romancePhase]++;}q.trust=clamp(q.trust+5,0,100);q.affection=clamp(q.affection+5,0,100);note=ch.reply||h.visitReply||({akari:'灯「聞いてもらうと、次に試すことが整理できますね。また、そちらの話も聞かせてください」',mio:'澪「話してくれてありがとう。今日は私のことも聞いてもらえて、うれしかったです」',nagi:'凪「急いで元気な顔を作らなくても話せて、よかったです。また時間を合わせましょう」',kanade:'奏「話したいこと、忘れる前に言えてよかった。次に会う日も、少し時間を空けておきます」',tsumugi:'紬「私も座って話すと、いつもと少し違いますね。今日は聞いてもらえて、うれしいです」',mizuki:'瑞希「レース以外の話もできてよかった。次は、映像を見る時間も残そうね」',natsu:'なつ「自分の話も聞いてもらえて、うれしかった。次に会う時までに、また話したいことを覚えておくね」'})[h.id];}
- else{q.trust=clamp(q.trust+ch.trust,0,100);q.affection=clamp(q.affection+ch.affection,0,100);q.choices.push(ch.code);q.step++;note=ch.reply;
+ else{q.trust=clamp(q.trust+ch.trust,0,100);q.affection=clamp(q.affection+ch.affection,0,100);q.choices.push(ch.code);q.step++;Choices133.remember(q,sc,ch);note=ch.reply;
   if(ch.break||ch.friend){q.failed=true;q.reason=ch.friend?'友人として歩むことを選びました':'大切な約束を守れず、交際には進めなくなりました';q.dated=false;if(t.partner===h.id)t.partner=null;title='ルート終了 · '+h.name;note=ch.reply;}
   else if(sc.resolution){t.completed=h.id;completed=true;title='ルート完走 · '+h.name;}
   else if(sc.confession){t.partner=h.id;q.dated=true;startedDating=true;title='交際が始まりました · '+h.name;}
@@ -154,7 +154,7 @@ function train(c,id,method,api){if(!writable(c)||!['parallel','review','duel'].i
 function status(c,id){const t=ensure(c),q=t.heroines[id];return !q.met?'未発見':q.failed?'ルート終了':q.step===10&&t.completed===id?'完走・交際中':q.step===7&&finalLock(t,id)?'交際には進行不可':finalLock(t,id)?'友人として交流':q.dated?'交際中':q.step===7?'想いを伝える前に':q.step>=4?'恋を意識する頃':q.step>=3?'近づく二人':q.step>=2?'心を開く頃':q.step?'顔なじみ':'出会ったばかり';}
 function valid(t){const num=(v,a,b)=>Number.isInteger(v)&&v>=a&&v<=b,str=(v,n)=>typeof v==='string'&&v.length<=n;
  if(!t||![1,2,3].includes(t.version)||!(t.partner===null||B.map[t.partner])||!num(t.nextAt,0,1000)||!num(t.serial,0,500)||!t.heroines||Array.isArray(t.heroines)||Object.keys(t.heroines).some(id=>!B.map[id])||B.heroines.some(h=>!t.heroines[h.id]&&!legacyOptionalHeroines.has(h.id)))return false;
- for(const h of B.heroines){const q=t.heroines[h.id];if(q===undefined&&!Object.prototype.hasOwnProperty.call(t.heroines,h.id)&&legacyOptionalHeroines.has(h.id))continue;if(!q||!num(q.step,0,t.version===3?10:7)||!num(q.trust,0,100)||!num(q.affection,0,100)||typeof q.failed!=='boolean'||typeof q.dated!=='boolean'||!str(q.reason,100)||!Array.isArray(q.choices)||q.choices.length!==q.step||!q.choices.every((v,i)=>num(v,0,2)||t.version===3&&v===null&&i===5&&q.legacy130?.step>=6)||q.dated&&(q.step<(t.version===3?(q.legacy130?.dated?7:8):6)||t.partner!==h.id||q.failed))return false;}
+ for(const h of B.heroines){const q=t.heroines[h.id];if(q===undefined&&!Object.prototype.hasOwnProperty.call(t.heroines,h.id)&&legacyOptionalHeroines.has(h.id))continue;if(!q||!Choices133.valid(q)||!num(q.step,0,t.version===3?10:7)||!num(q.trust,0,100)||!num(q.affection,0,100)||typeof q.failed!=='boolean'||typeof q.dated!=='boolean'||!str(q.reason,100)||!Array.isArray(q.choices)||q.choices.length!==q.step||!q.choices.every((v,i)=>num(v,0,2)||t.version===3&&v===null&&i===5&&q.legacy130?.step>=6)||q.dated&&(q.step<(t.version===3?(q.legacy130?.dated?7:8):6)||t.partner!==h.id||q.failed))return false;}
  for(const q of Object.values(t.heroines)){const v=q.romanceVisits;if(v!==undefined&&(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).length!==3||!['middle','late','partner'].every(k=>num(v[k],0,500))))return false;}
  if(t.partner&&!t.heroines[t.partner]?.dated)return false;
  if(t.version>=2){

@@ -1,7 +1,7 @@
 {
   "build": "130",
   "modules": 51,
-  "sourceSha256": "55ccad3a3394358fe3cb33ed4f0012a9e46befa07d85d48bca00a77d0c96a99a",
+  "sourceSha256": "2400ef8d9776a69d391fa39d815c2d947716e31c8ccf915dea517b6b166be758",
   "heroineEpisodes": 70,
   "rivalEpisodes": 40,
   "checks": {
@@ -10,7 +10,8 @@
     "balance": 14,
     "features": 16,
     "ui-logic": 34,
-    "story-integration": 7
+    "story-integration": 7,
+    "resume": 3
   },
   "deliveredInlineRaceRuns": 36,
   "htmlEntrypoints": [
@@ -23,6 +24,7 @@
   "legacyRouteSaves": 10,
   "browserTested": false,
   "physicalDevicesTested": false,
+  "resumedVerificationAt": "2026-10-08T08:41:02.290Z",
   "limitations": [
     "DOM adapter verifies markup and actions, not layout.",
     "No physical-device touch, audio or FPS test.",

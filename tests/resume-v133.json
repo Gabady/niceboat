@@ -1,0 +1,20 @@
+{
+  "build": "133",
+  "verifiedAt": "2026-10-18T16:15:53.012Z",
+  "scope": "Engine execution and save roundtrip; no browser layout or physical-device test",
+  "checks": [
+    "第1〜9話を順に選択し、第8話だけで交際が始まる",
+    "予選5走の実計算で優勝戦へ進出した時だけ第10話を解放する",
+    "優勝戦前に保存復元して第10話を読了し、LR相当の伝授は一度だけ"
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "browserLimitation": "Engine and DOM adapter only; no browser or physical-device verification in this release.",
+  "qualifierResults": [
+    1,
+    4,
+    2,
+    1,
+    2
+  ]
+}

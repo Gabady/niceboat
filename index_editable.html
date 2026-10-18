@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#071b2a">
   <meta name="description" content="選手を育て、五つの水面を駆ける。スマホで遊ぶ育成と一人称の操作型ボートレース『競艇物語』。">
-  <title>競艇物語 V130</title>
+  <title>競艇物語 V134</title>
   <style>
 /* 競艇物語 — Deep water, race-white numerals, signal amber. */
 :root {
@@ -3059,6 +3059,20 @@ body:not(.in-race) .entry-choice123{display:grid;grid-template-columns:34px minm
 .gear-summary129{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 16px}.gear-summary129>div{padding:12px;border:1px solid #60898c;border-radius:10px;background:#102f40;display:flex;flex-direction:column;gap:5px}.gear-summary129 small{font-size:11px;color:#bdced0}.gear-summary129 b{font-size:21px}.gear-summary129 span{font-size:12px}
 .novel-tools{flex-wrap:wrap}.novel-skip129{border:1px solid #b4d5cb!important;color:#c9f3de!important}
 .skill-chip.mlr,.rarity-text.mlr,.drive-cutin.mlr,.cutin.mlr,.reward-showcase.mlr .reward-focus,.thrill-callout.mlr{background:linear-gradient(120deg,#58276c,#14546b,#683867);border:1px solid #e6b4fb;color:#fff2ff;box-shadow:0 0 16px #d97cff44}.grade-SS{color:#f9d5ff;border-color:#dd9bea}.difficulty-option:has(input[value=hard]:checked){border-color:#df9dec}
+
+/* V131 scene pacing and independent adjustment. */
+.tilt-options131{display:flex;flex-wrap:wrap;gap:.45rem;margin:.8rem 0}.tilt-options131 button{flex:1;min-width:56px;min-height:44px}.flow-resume131{display:flex;gap:1rem;align-items:center;justify-content:space-between;border:1px solid #d6ba72;background:#fff9e9;color:#243544;border-radius:16px;padding:1rem;margin:0 0 1rem}.flow-resume131 p{margin:.4rem 0;font-size:.88rem}.novel-stage .novel-text{line-height:1.9;letter-spacing:.035em;text-wrap:pretty}.novel-stage .novel-speaker{padding-bottom:.45rem}.novel-stage .novel-box{min-height:150px;box-shadow:0 10px 34px #102c3b24}.novel-stage .novel-choice{min-height:58px;line-height:1.65}.novel-bridge131{background:radial-gradient(ellipse at 45% 15%,#214958,#0d2332 70%);color:#fff;min-height:70svh;display:flex;flex-direction:column}.novel-bridge131 .novel-top{position:relative;display:flex;align-items:center;justify-content:space-between;background:transparent}.novel-bridge131 .novel-top h2{font-size:1rem;color:#dfeced}.bridge-card131{flex:1;text-align:center;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:3rem 1.2rem;animation:bridge131 .38s ease-out}.bridge-card131 small{font-size:.72rem;letter-spacing:.22em;color:#a7c2c9}.bridge-time131{margin:1rem 0 .4rem;font-size:1.1rem;letter-spacing:.12em}.bridge-card131 h3{font-size:clamp(1.4rem,5vw,2rem);color:#fff;margin:.4rem 0}.novel-bridge131 .novel-bottom{position:relative;padding:1rem;inset:auto;background:transparent}.novel-bridge131 .novel-tools{color:#d5e5e8}.novel-bridge131 .text-btn{color:#d5e5e8}.novel-bridge131 .novel-next123{width:100%}@keyframes bridge131{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.bridge-card131{animation:none}}@media(max-width:560px){.flow-resume131{align-items:stretch;flex-direction:column}.novel-stage .novel-box{min-height:158px}.novel-stage .novel-text{font-size:1rem}}
+
+.reading-novel .novel-bridge131 .bridge-card131{min-height:0;overflow-y:auto;flex:1 1 auto;padding:clamp(.5rem,5vh,2rem) 1rem}.reading-novel .novel-bridge131 .novel-bottom{flex:0 0 auto}.reading-novel .novel-bridge131 .novel-top h2{padding-right:90px}@media(orientation:landscape) and (max-height:500px){.bridge-card131 small{display:none}.bridge-time131{margin:.3rem 0}.bridge-card131 h3{font-size:1.2rem}.reading-novel .novel-bridge131 .novel-top h2{padding-right:0}}
+
+/* Inner voices retain the normal legibility and separate semantic speaker role. */
+.novel-box.is-monologue132{border-inline-start:4px solid #a9b8df;background:linear-gradient(130deg,#1d2945,#142033)}
+.novel-box.is-monologue132 .novel-speaker-role123{color:#d7def5}
+
+/* V134: compact opportunities and read-only journey records. */
+.opportunity134,.rival-memory134,.journey-journal134{margin:14px 0;padding:16px;border:1px solid #5b9c9b66;border-radius:14px;background:#0b2638;color:#eaf4ee;overflow-wrap:anywhere}
+.opportunity134 h3,.journey-journal134 h2{margin:6px 0 10px}.opportunity134 p,.rival-memory134 p{line-height:1.7}.journey-journal134 details{margin-top:12px}.choice-history134{padding-left:1.5em}.choice-history134 li{padding:10px 0;border-bottom:1px solid #ffffff20}.choice-history134 b,.choice-history134 span{display:block}.choice-history134 span{margin-top:6px;line-height:1.7}.review134>details{margin-top:14px}.review134 .review-task122{margin-top:10px}.opportunity134 summary,.rival-memory134 summary,.journey-journal134 summary,.review134 summary{min-height:44px;cursor:pointer;line-height:1.6;padding:8px 0}
+@media(max-width:480px){.opportunity134,.journey-journal134,.rival-memory134{padding:12px}.review134 .button-row{display:grid;grid-template-columns:1fr}}
 </style>
   
   
@@ -3066,19 +3080,24 @@ body:not(.in-race) .entry-choice123{display:grid;grid-template-columns:34px minm
 
 </head>
 <body>
-  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v130</span></header>
+  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v134</span></header>
   <main id="app" tabindex="-1"><p class="loading">水面を準備しています…</p></main>
   <aside id="save-health121" role="status" aria-live="polite" hidden></aside>
   <div id="toast" role="status" aria-live="polite"></div>
   <div id="modal" class="modal-root" hidden></div>
   <noscript>このゲームを遊ぶにはJavaScriptを有効にしてください。</noscript>
   <script src="src/data.js"></script>
+<script src="src/practice133.js"></script>
+<script src="src/journey134.js"></script>
 <script src="src/workshop128.js"></script>
 <script src="src/hard129.js"></script>
 <script src="src/affinity.js"></script>
 <script src="src/social129.js"></script>
 <script src="src/craft118.js"></script>
 <script src="src/drama-data.js"></script>
+<script src="src/scene131.js"></script>
+<script src="src/narrative132.js"></script>
+<script src="src/choices133.js"></script>
 <script src="src/routes130.js"></script>
 <script src="src/drama.js"></script>
 <script src="src/racing.js"></script>
@@ -3122,6 +3141,7 @@ body:not(.in-race) .entry-choice123{display:grid;grid-template-columns:34px minm
 <script src="src/practice122.js"></script>
 <script src="src/coaching121.js"></script>
 <script src="src/epilogues126.js"></script>
+<script src="src/flow131.js"></script>
 <script src="src/script.js"></script>
 </body>
 </html>

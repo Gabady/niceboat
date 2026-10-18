@@ -9,7 +9,7 @@ const arcs={
  shore:{title:'帰りを待つ岸の声',text:'順位にかかわらず有効完走を続けると、次走のフィジカルと旋回を少し支える。支えが育つと体づくりも進めやすい。',skills:['sc128_home','sc128_flag'],lines:['紗枝が差し出したタオルを受け取る。「着順も見てたよ。でも、最後まで走ったのも見てた」帰る場所があると思えた。','陸が旗を広げた。「今日は最後のターンまで見えた！」結果だけではない走りを、ここで見てくれる人がいる。']},
  recovery:{title:'今の身体で走り直す',text:'有効完走を重ねて走る感覚を回復。体づくりと再加速を助け、走り方を選んだ後はその能力の練習を後押しする。',skills:['sc128_axis','sc128_return'],lines:['相馬が映像を巻き戻した。「ここ、無理に昔へ戻そうとしてないな」主人公は自分の姿を見直す。今の身体で走れる軸が、少し見えてきた。','「この踏み込みなら、もう一度試せる」主人公の言葉を聞き、相馬がペンを置いた。「ああ。次は、お前がつかんだ感覚から始めよう」']}
 };
-const parts={motor:{name:'ティルト',use:'水面に合わせて直線・安定を整える'},prop:{name:'プロペラ',use:'旋回とターン後の加速を整える'}};
+const parts={motor:{name:'モーター',use:'直線の伸び・加速・機関の状態を整える'},prop:{name:'プロペラ',use:'旋回とターン後の加速を整える'}};
 function rank(v){return v>=90?'S':v>=80?'A':v>=65?'B':v>=50?'C':v>=35?'D':'E';}
 function effective(p,part){const bonus=(p.skills||[]).reduce((sum,id)=>sum+(D.abilityMap[id]?.type==='tuning'?D.abilityMap[id].effect.success:0),0);return Math.min(100,Math.min(88,p.adjust[part+'Success'])+Math.min(18,bonus));}
 function learning(v){return v>=88?0:v>=80?.45:v>=65?.9:v>=50?1.6:v>=35?2.2:2.6;}
@@ -40,7 +40,7 @@ function raceStats(q){const s=Object.fromEntries(D.statKeys.map(k=>[k,0]));if(!q
  if(q.arc==='recovery'){s.power=q.recovery*.5;s.accel=q.recovery*(.25+n*.05);}
  return s;
 }
-function attach(c,r){ensure(c);r.workshop128={version:1,focus:null,quality:null,tiltFactor:0};r.tilt=0;r.scenario128=snapshot(c);}
+function attach(c,r){ensure(c);r.workshop128={version:1,focus:null,quality:null,tiltFactor:0};r.tilt=0;r.tilt131={version:1};r.scenario128=snapshot(c);}
 function settle(c,r,z){const q=ensure(c);if(q.settled.includes(r.id))return;const good=!z.startFault&&!z.capsized&&!z.dnf;q.settled.push(r.id);q.settled=q.settled.slice(-54);q.analysisKey=weak(c.player);q.streak=good?Math.min(3,q.streak+1):0;if(good)q.recovery=Math.min(6,q.recovery+1);z.scenario128=summary(c);}
 function storyReward(c,e,api){if(e.kind!=='season'||!e.decision)return [];const q=ensure(c),spec=arcs[q.arc],out=[];for(let i=0;i<2;i++){const id=spec.skills[i];if(e.stage<[3,5][i]||q.awarded.includes(id))continue;q.awarded.push(id);if(c.player.skills.includes(id))continue;api.acquire(c,c.player,id,'物語で身につけた技');out.push({id,text:spec.lines[i]});}return out;}
 function summary(c){const q=state(c);if(q.arc==='light')return '父の教え：整備の経験を少し多く積める。';if(q.arc==='back')return '次走の分析課題：'+D.stats[q.analysisKey]+'。練習と本番を少し後押し。';if(q.arc==='shore')return q.streak===0?'岸の応援：まず一走を有効完走して、次走の支えに。':q.streak<3?'岸の応援が育っている。次走の粘りと旋回を支える。':'岸の応援が充実。次走の粘り・旋回と体づくりを支える。';return q.recovery===0?'走り直し：体づくりから、一走ずつ感覚を確かめる。':q.recovery<6?'走る感覚を取り戻している。完走の経験が粘りと再加速へ。':'走る感覚が戻ってきた。今の身体に合う練習を続けよう。';}
@@ -48,6 +48,10 @@ const integer=(v,max)=>Number.isInteger(v)&&v>=0&&v<=max,ids=(xs,allowed,max)=>A
 function valid(q,arc){return q===undefined||!!q&&q.version===1&&!!arcs[q.arc]&&(!arc||q.arc===arc)&&D.statKeys.includes(q.analysisKey)&&integer(q.streak,3)&&integer(q.recovery,6)&&Array.isArray(q.settled)&&q.settled.length<=54&&new Set(q.settled).size===q.settled.length&&q.settled.every(x=>typeof x==='string'&&x.length<=120)&&ids(q.awarded,arcs[q.arc].skills,2);}
 function validSnapshot(q){return q===undefined||!!q&&q.version===1&&!!arcs[q.arc]&&D.statKeys.includes(q.analysisKey)&&integer(q.streak,3)&&integer(q.recovery,6)&&ids(q.traits,arcs[q.arc].skills,2);}
 function validRace(q){return q===undefined||!!q&&q.version===1&&(q.focus===null||!!parts[q.focus])&&[null,'normal','high','quiet'].includes(q.quality)&&Number.isFinite(q.tiltFactor)&&q.tiltFactor>=0&&q.tiltFactor<=1;}
-const W={gearValue,drawQuality,arcs,parts,rank,effective,learning,learn,strength,chance,outcome,state,ensure,snapshot,training,learningFactor,raceStats,attach,settle,storyReward,summary,valid,validSnapshot,validRace};root.KM_WORKSHOP128=W;if(typeof module!=='undefined'&&module.exports)module.exports=W;
+const tiltAngles=Object.freeze([-1,-.5,0,.5,1]),tiltSkills=['spanner','craft','sc128_tools','sc128_sound'];
+function tiltGate(p){const skill=(p.skills||[]).find(id=>tiltSkills.includes(id.replace(/^mlr_/,''))),value=effective(p,'motor');return {open:!!skill||value>=65,value,skill:skill||null,reason:skill?D.abilityMap[skill].name+'で解放':value>=65?'モーター整備力B以上で解放':'モーター整備力B以上、または熟練の手元・匠の設計・継承の工具・音を聴く整備で解放'};}
+function setTilt(c,angle){const r=c?.series?.race;if(!r||r.done||r.drive||!['action','preRace'].includes(c.status)||!tiltAngles.includes(angle)||!tiltGate(c.player).open)return false;r.tilt131={version:1};r.tilt=angle;return true;}
+function validTilt(r){return r.tilt131===undefined?(!('tilt' in r)||[-.5,0,.5,1.5,3].includes(r.tilt)):!!r.tilt131&&r.tilt131.version===1&&tiltAngles.includes(r.tilt);}
+const W={tiltAngles,tiltSkills,tiltGate,setTilt,validTilt,gearValue,drawQuality,arcs,parts,rank,effective,learning,learn,strength,chance,outcome,state,ensure,snapshot,training,learningFactor,raceStats,attach,settle,storyReward,summary,valid,validSnapshot,validRace};root.KM_WORKSHOP128=W;if(typeof module!=='undefined'&&module.exports)module.exports=W;
 })(typeof globalThis!=='undefined'?globalThis:this);
 

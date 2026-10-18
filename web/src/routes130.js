@@ -828,7 +828,7 @@ const data={
    {
     "title": "近いほど書けない",
     "body": [
-     "澪が担当変更の申請を出したと聞いた。主人公は電話で聞き返した。",
+     "電話では担当変更の理由まで聞けなかった。仕事の終わった澪と会い、主人公は改めて尋ねた。",
      "主人公「自分の記事、何かまずかった？」",
      "澪「記事ではなく、私の方です」",
      "会って説明すると言ったのに、澪は向かいの椅子から話し始めなかった。",
@@ -3624,7 +3624,7 @@ const data={
      "主人公「見つけたいと思ってる」",
      "なつ「うん。でも今日は、それだけだと、期待したまま帰っちゃう」",
      "なつは手を出しかけ、膝の上に戻した。",
-     "なつ「ちゃんと返事を聞いてから。今日は、そこを勇気にしたい」",
+    "なつ「……ごめん、先に手をつなごうとしちゃった。返事、聞いてからにする」",
      "遠くで、仲間が片づける旗の金具が鳴った。なつは、そちらを振り返らなかった。"
     ],
     "choices": [
@@ -3666,7 +3666,7 @@ const data={
       "好きです。旗を持ってない日の私とも、付き合ってほしい",
       "応援する人がたくさんいるの、うれしいよ。でも、たまに、その中から私を見つけてほしいって思う",
       "うん。でも今日は、それだけだと、期待したまま帰っちゃう",
-      "ちゃんと返事を聞いてから。今日は、そこを勇気にしたい"
+      "……ごめん、先に手をつなごうとしちゃった。返事、聞いてからにする"
      ]
     }
    },
@@ -3878,11 +3878,11 @@ const data={
     [
      "空欄の勝ち数",
      [
-      "晴人が、二人の対戦成績を書いた紙を持ってきた。一つだけ、日付の隣が空欄になっている。",
-      "晴人「お前が完走しなかった日。勝ちに入れるか迷った」",
-      "主人公「記録なら、お前の先着だろ」",
+      "晴人が、二人で走った練習の記録を持ってきた。一つだけ、日付の隣が空欄になっている。",
+      "晴人「途中で艇を戻した日。あの練習、勝ちに入れるか迷った」",
+      "主人公「自分が引き返したんだから、お前の勝ちでいいだろ」",
       "晴人「分かってる。けど、ここに丸を付けると、喜んだみたいで」",
-      "主人公にも、その日の記憶は苦かった。それでも紙を伏せられる方が、つらかった。",
+      "調子が戻らず、練習を切り上げた日だった。主人公にも苦い記憶だ。それでも紙を伏せられる方が、つらかった。",
       "主人公「気を使って、なかったことにはしないで」",
       "晴人は鉛筆を持ったまま、うなずいた。丸を書いた後、小さく次の日付を足す。",
       "晴人「こっちは空欄。まだ走ってないから」"
@@ -4711,7 +4711,8 @@ function chapter(c,h,i){const sc=copy((c.campaign?.arc==='recovery'?h.recoveryCh
   '瑞希「それなら、ちゃんと応援できる」':'瑞希「私も。一着は譲らない。終わったら、一緒に映像を見よう」'
  };sc.body=sc.body.map(x=>replacements[x]||x);const ch=sc.choices.find(x=>x.code===1);ch.label='同じ一着を取りにいこう。水面で会おう';ch.reply='瑞希「うん。終わったら、どっちが先でも話そう。今夜は時間を空けてある」';
  }
- return sc;
+ const narrated=(root.KM_NARRATIVE132||(typeof require==='function'?require('./narrative132.js'):null)).heroine(sc,c,h.id,i);
+ return (root.KM_CHOICES133||(typeof require==='function'?require('./choices133.js'):null)).heroine(narrated,c,h.id,i);
 }
 function expression(id,text){for(const ch of data.heroines[id]||[]){for(const [emotion,words]of Object.entries(ch.expressionCues||{}))if(words.includes(text))return emotion;for(const q of ch.choices)if(q.reply.includes('「'+text+'」'))return q.emotion;}return null;}
 const API={data,apply,applyRivals,legacyRivals,qualifiedFinal,complete,chapter,expression};root.KM_ROUTES130=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;

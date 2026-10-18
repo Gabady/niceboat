@@ -95,7 +95,7 @@ function valid(t){const n=(v,max=1000)=>Number.isFinite(v)&&v>=0&&v<=max,str=(v,
  if(!t.finals||Array.isArray(t.finals)||Object.keys(t.finals).length>9||!Object.values(t.finals).every(f=>str(f.opponent)&&str(f.opponentId)&&str(f.weapon)&&paths[f.key]&&str(f.tactic)&&str(f.bond)&&(!f.skill||D.abilityMap[f.skill])&&n(f.place,6)&&typeof f.won==='boolean'&&Array.isArray(f.skills)&&f.skills.every(k=>D.abilityMap[k])))return false;
  return t.archive===null||!!t.archive&&str(t.archive.title)&&paths[t.archive.key]&&paths[t.archive.weak]&&Array.isArray(t.archive.opened)&&t.archive.opened.every(x=>str(x))&&Array.isArray(t.archive.plans)&&t.archive.plans.every(x=>str(x));
 }
-const API={paths,rivals,actors,plans,ensure,rival,plan,planScene,choosePlan,applyPlan,growth,afterTune,series,training,ready,blossom,taskMet,settle,brief,finale,archive,unlocks,valid};root.KM_DEVELOPMENT=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
+const API={paths,rivals,actors,plans,ensure,rival,plan,planScene,choosePlan,applyPlan,growth,afterTune,series,learned,training,ready,blossom,taskMet,settle,brief,finale,archive,unlocks,valid};root.KM_DEVELOPMENT=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;
 })(typeof globalThis!=='undefined'?globalThis:window);
 
 
