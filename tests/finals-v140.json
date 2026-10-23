@@ -1,0 +1,233 @@
+{
+  "build": "140",
+  "currentRacingSha256": "395d6de2246546128258664d9c461485b01a8230ace67b58f6a4dd6365086187",
+  "scope": "Fixed-step AI surrogate, paired seeds/courses/equipment/weather. Not human win rates. Manual mode uses the existing autopilot on the unassisted player physics; spectator mode uses its actual player pace. Distance gaps are sampled at player 300 m / 1200 m. Duels mean another active boat within 15 m progress after 150 m. Overtakes require a change from >2 m behind to >2 m ahead of an active boat.",
+  "baselineSha256": "e4c6922d1ffa0292e97fe3c89a375a512258ac6e06a98e1d1970087896507d0e",
+  "races": [
+    {
+      "stage": 8,
+      "build": "final-105",
+      "seed": 1401,
+      "control": "manual",
+      "extraMLR": false,
+      "playerMLR": [
+        "mlr_steady"
+      ],
+      "cpuMLR": [
+        [
+          "mlr_burst"
+        ],
+        [
+          "mlr_wake_escape"
+        ],
+        [
+          "mlr_wit_overtime"
+        ],
+        [
+          "mlr_sweep"
+        ],
+        [
+          "mlr_wit_elbow"
+        ]
+      ],
+      "before": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 71.04767703217416,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 35.73000000000002,
+        "finalLapLeaderGap": 70.97000000000003,
+        "duelSeconds": 29.5,
+        "finalLapDuelSeconds": 4,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 3,
+        "finished": true,
+        "finishTime": 70.99283932405915,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 59.6400000000001,
+        "duelSeconds": 60,
+        "finalLapDuelSeconds": 21,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "final-105",
+      "seed": 1401,
+      "control": "manual",
+      "extraMLR": true,
+      "playerMLR": [
+        "mlr_steady",
+        "mlr_burst"
+      ],
+      "cpuMLR": [
+        [
+          "mlr_burst"
+        ],
+        [
+          "mlr_wake_escape"
+        ],
+        [
+          "mlr_wit_overtime"
+        ],
+        [
+          "mlr_sweep"
+        ],
+        [
+          "mlr_wit_elbow"
+        ]
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 66.80694719668932,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 44.5,
+        "finalLapDuelSeconds": 6,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 67.7100141024064,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 12.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "final-105",
+      "seed": 1402,
+      "control": "manual",
+      "extraMLR": false,
+      "playerMLR": [
+        "mlr_burst"
+      ],
+      "cpuMLR": [
+        [
+          "mlr_wit_lastrain"
+        ],
+        [
+          "mlr_wake_escape"
+        ],
+        [
+          "mlr_wit_overtime"
+        ],
+        [
+          "mlr_wit_elbow"
+        ],
+        [
+          "mlr_wake_escape"
+        ]
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 69.2366962146926,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 27,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 70.85447127125215,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 15.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "final-105",
+      "seed": 1402,
+      "control": "manual",
+      "extraMLR": true,
+      "playerMLR": [
+        "mlr_steady",
+        "mlr_burst"
+      ],
+      "cpuMLR": [
+        [
+          "mlr_wit_lastrain"
+        ],
+        [
+          "mlr_wake_escape"
+        ],
+        [
+          "mlr_wit_overtime"
+        ],
+        [
+          "mlr_wit_elbow"
+        ],
+        [
+          "mlr_wake_escape"
+        ]
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 67.80425114384857,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 3.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 70.45673336522584,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 5.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    }
+  ],
+  "checks": [
+    "paired-races-complete-with-valid-drive"
+  ]
+}

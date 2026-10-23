@@ -1,0 +1,49 @@
+{
+  "build": "145",
+  "revision": "review-and-fixed-challenges-cd-2026-10-22",
+  "modules": 67,
+  "sourceSha256": "c275f24268e240422d8ed6dde47b1093298b228f36816ed3999aa8a7aed907c5",
+  "checks": {
+    "progress": 81,
+    "cpu-stats": 8,
+    "hard": 16,
+    "cpu-start": 13,
+    "rules": 15,
+    "improve": 24,
+    "controls": 10,
+    "continuity": 29,
+    "after": 19,
+    "progression": 15,
+    "review": 14,
+    "challenge": 22
+  },
+  "checksTotal": 266,
+  "deliveredInlineChecks": 243,
+  "improvementSuiteSimulatedRaces": 10,
+  "afterSuiteSimulatedRaces": 5,
+  "reviewSuiteSimulatedRaces": 2,
+  "challengeSuiteSimulatedRaces": 28,
+  "scope": [
+    "evidence versus hypotheses in race review",
+    "voluntary training or tuning goal linked to next-race conditions and measurements",
+    "three fixed challenges with frozen entrants, CPU, gear, weather and courses",
+    "separate manual and auto records, settings groups, cosmetic honors and saved bests",
+    "old-save, stale-action, ordinary cup and career isolation"
+  ],
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "Production DOM/input handlers run in adapters, not real layout or touchscreen.",
+    "No browser screenshots or physical-device/audio/FPS verification.",
+    "Reports named V144 and earlier are historical.",
+    "Fixed challenges are local records, not an online verified leaderboard.",
+    "Short careers stop after two qualifiers and, when qualified, one final; they do not advance the ten-part heroine routes."
+  ]
+}

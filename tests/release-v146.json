@@ -1,0 +1,54 @@
+{
+  "build": "146",
+  "revision": "story-memory-and-local-support-ef-2026-10-22",
+  "modules": 70,
+  "sourceSha256": "22c354f2300ffb80e4a15173cd6771d51f43f7a8e42518b2791a0810fca076a2",
+  "checks": {
+    "progress": 92,
+    "cpu-stats": 8,
+    "hard": 16,
+    "cpu-start": 13,
+    "rules": 15,
+    "improve": 24,
+    "controls": 10,
+    "continuity": 29,
+    "after": 19,
+    "progression": 15,
+    "review": 14,
+    "challenge": 22,
+    "memory": 24,
+    "support": 9
+  },
+  "checksTotal": 310,
+  "deliveredInlineChecks": 276,
+  "improvementSuiteSimulatedRaces": 10,
+  "afterSuiteSimulatedRaces": 5,
+  "reviewSuiteSimulatedRaces": 2,
+  "groundedHeroineMoments": 42,
+  "mainStateVariants": 24,
+  "rivalCallbacks": 10,
+  "challengeSuiteSimulatedRaces": 28,
+  "scope": [
+    "grounded heroine moments, main practice and rival callbacks with frozen old prose",
+    "optional read-only recap without unseen dialogue",
+    "single play launcher, platform guidance, save transfer and four update-impact categories",
+    "bounded private local diagnostic preview, copy and download, separate full-save confirmation",
+    "old-save, stale-action, race-physics and A-D regression checks"
+  ],
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "Production DOM/input handlers run in adapters, not real layout or touchscreen.",
+    "No browser screenshots or physical-device/audio/FPS verification.",
+    "Reports named V144 and earlier are historical.",
+    "Fixed challenges are local records, not an online verified leaderboard.",
+    "Short careers stop after two qualifiers and, when qualified, one final; they do not advance the ten-part heroine routes."
+  ]
+}

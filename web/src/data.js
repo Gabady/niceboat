@@ -259,6 +259,8 @@
     ['sc128_axis','今の身体の軸','SR',{type:'scenario'},'「折れた航跡」で今の身体に合う練習と、回復した感覚による再加速を後押しする。'],
     ['sc128_return','再起の踏み込み','SSR',{type:'scenario'},'「折れた航跡」で選んだ走り方の練習と、感覚回復による再加速をさらに支える。']
   ].forEach(function(x){a(x[0],x[1],x[2],x[3].type==='tuning'?'整備':'育成',[],1,x[3],x[4],['物語']);abilities[abilities.length-1].exclusive='scenario128';});
+  // V137: only these start specialists retain strong CPU opening thrust below S.
+  abilities.forEach(function(a){if(['zero','legend_start','pioneer_start'].includes(a.id))a.cpuStartBurst=true;});
   // Each positive ability has its own MLR counterpart. Acquisition is SG-hard only.
   abilities.slice().filter(x=>x.category!=='弱点').forEach(function(base){
     const x=JSON.parse(JSON.stringify(base)),positive=Object.entries(base.effect.stats||{}).filter(q=>q[1]>0).sort((a,b)=>b[1]-a[1]);
@@ -274,13 +276,13 @@
     const bonusStats=Object.fromEntries(Object.keys(stats).map(k=>[k,k===focus?50:18]));
     x.mlr129={origin:base.id,stats:bonusStats,mechanics:{speed:2.8,accel:1.8,grip:1.8,response:1.2,wakeShield:.35}};
     x.tags=[...x.tags,'最優秀','ハード限定'];
-    x.description='ハード最優秀の極限能力。常時'+({speed:'直線',turn:'旋回',start:'スタート',accel:'加速',power:'フィジカル'})[focus]+'＋50、他能力＋18。伸び・再加速・グリップも大幅強化。元の「'+base.name+'」の効果を強化して引き継ぐ。発動条件は元の技に従い、条件成立時の抽選は必ず成功。常時補正は複数所持時に上限あり。';
+    x.description='ハード最優秀の極限能力。常時'+({speed:'直線',turn:'旋回',start:'スタート',accel:'加速',power:'フィジカル'})[focus]+'＋50、他能力＋18。伸び・再加速・グリップも強化。元の「'+base.name+'」の効果を強化して引き継ぐ。発動条件は元の技に従い、条件成立時の抽選は必ず成功。複数所持時の常時能力補正は、能力ごとの最大値に残りの25％を加算し、各65まで。常時の走行強化も重ねるほど緩やかになる。';
     abilities.push(x);
   });
-  var D = {statCeiling:statCeiling,easyRewardMap:easyRewardMap,version:80,build:'134',raceGrowthScale:.55,permanentGrowthScale:.92,driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
+  var D = {statCeiling:statCeiling,easyRewardMap:easyRewardMap,version:80,build:'147',raceGrowthScale:.55,permanentGrowthScale:.92,driveEffectCaps:{speed:2.4,accel:1.6,response:2.5,grip:1.8,damping:1.2,wakeShield:.55,contactShield:.55,waveShield:.55},spectatorAssist:{easy:{speed:.995,accel:1.005,turn:1},normal:{speed:.968,accel:.985,turn:.99}},gradePace:{easy:{rookie:1,g3:1.008,g2:1.015,g1:1.021,sg:1.026},normal:{rookie:1,g3:1.018,g2:1.032,g1:1.045,sg:1.058}},sgNpcRarities:['SR','SR','SSR','SSR','SSR','UR'],npcGradeStats:{rookie:0,g3:.5,g2:1,g1:1.5,sg:2},easyNpcGrowth:.82,raceGrowthByPlace:{easy:[.78,.71,.63,.56,.5,.45],normal:[.78,.74,.70,.66,.62,.58]},spectatorSpread:{weight:.82,cap:4.5,speed:.012,accel:.02},synergies:synergies,npcTimeScale:.945,npcPace:{easy:{speed:1.16,accel:1.16},normal:{speed:1.265,accel:1.28}},difficulties:{
     easy:{id:'easy',name:'イージー',growth:.75,rewardDrop:1,shopMax:'SSR',ai:'easy'},
     normal:{id:'normal',name:'ノーマル',growth:1,rewardDrop:0,shopMax:'UR',ai:'normal'},
-    hard:{id:'hard',name:'ハード',growth:1.2,rewardDrop:0,shopMax:'UR',ai:'hard'}
+    hard:{id:'hard',name:'ハード',growth:1.4,rewardDrop:0,shopMax:'UR',ai:'hard'}
   },stats:stats,statKeys:Object.keys(stats),categories:categories,
     rarities:ranks,phases:phases,abilities:abilities,abilityMap:Object.fromEntries(abilities.map(function(x){return [x.id,x];})),
     stages:stages,tiers:tiers,venues:venues,growth:growth,choices:choices,items:items,

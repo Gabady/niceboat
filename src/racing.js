@@ -63,12 +63,21 @@ const own=d=>d.boats.find(b=>b.isPlayer)||d.boats[0];
 const normalAI=r=>(r.difficulty||'normal')!=='easy';
 const hardAI=(r,b)=>r.difficulty==='hard'&&!b.isPlayer;
 const skillId=(b,id)=>b.skills.includes('mlr_'+id)?'mlr_'+id:b.skills.includes(id)?id:null;
-const requiresManual=r=>['championship','consolation'].includes(r?.type);
+// V147: only the career's SG final requires control, in either play style.
+// Practice copied from a final and registered-racer challenges remain skippable.
+const requiresManual=r=>!!r&&!r.drill&&r.grade==='sg'&&['championship','consolation'].includes(r.type);
 const spectating=r=>!!r.watch||['auto','assisted','spectator','skip'].includes(r.controlMode);
 function raceGrade(r){return D.tiers[r.grade]?r.grade:'rookie';}
-function npcPace(b,r){
+// New races carry their rules in the drive snapshot. A missing marker is legacy physics.
+const balance140=d=>!d||d.balanceRule140===140;
+// SG already has higher base stats and more high-rarity skills; do not stack a second grade uplift.
+const hardPace140={rookie:{speed:1.08,accel:1.06,turn:.96},g3:{speed:1.09,accel:1.07,turn:.97},g2:{speed:1.10,accel:1.08,turn:.98},g1:{speed:1.11,accel:1.09,turn:.99},sg:{speed:1.04,accel:1.03,turn:.985}};
+function npcPace(b,r,d=r.drive){
  if(b.isPlayer&&!spectating(r))return {speed:1,accel:1,turn:1};
  const mode=r.difficulty||'normal',time=D.npcTimeScale;
+ const revised=mode==='hard'&&balance140(d),level=hardPace140[raceGrade(r)];
+ // Spectating uses the same grade curve on both sides; manual player physics stays 1x.
+ if(b.isPlayer&&revised)return {speed:level.speed*.985,accel:level.accel*.99,turn:level.turn*.995};
  if(b.isPlayer){const p=D.npcPace[mode],a=D.spectatorAssist[mode];return {speed:p.speed*time*a.speed,accel:p.accel*time*time*a.accel,turn:time*a.turn};}
  const p=D.npcPace[mode],grade=D.gradePace[mode][raceGrade(r)];
  // Final characters do not also inherit the generic NPC speed uplift.
@@ -77,7 +86,24 @@ function npcPace(b,r){
  if(['rival','rival_ally','heroine'].includes(b.racePersona)&&r.grade==='sg')return {speed:mode==='easy'?.975:1.01,accel:1.02,turn:1};
  if(r.grade==='sg'&&r.type==='championship'&&!b.racePersona)return {speed:mode==='easy'?.98:1.02,accel:1.04,turn:1};
  if(b.racePersona==='mentor'&&r.grade==='sg')return {speed:mode==='easy'?.975:1.015,accel:1.02,turn:1};
- return {speed:p.speed*time*grade,accel:p.accel*time*time*grade*grade,turn:time*grade};
+ return revised?{...level}:{speed:p.speed*time*grade,accel:p.accel*time*time*grade*grade,turn:time*grade};
+}
+// V137: opening thrust is earned by the base start rank or an explicitly owned trait.
+// Temporary buffs, venue bonuses, unrelated MLRs and character identities do not qualify.
+function cpuStartProfile(b){
+ const stat=floor(Number(b.stats?.start)||0),skill=(b.skills||[]).find(id=>D.abilityMap[id]?.cpuStartBurst)||null;
+ return {eligible:stat>=90||!!skill,rank:rank(floor(stat)),skill,cap:skill?1.60:stat>100?1.55:stat>=90?1.40:1.08};
+}
+function launchMultiplier(b,d,stats,pace){
+ const previous=.65+stats.start*.0085;
+ if(b.isPlayer||d.cpuStartRule!==137)return previous;
+ const profile=cpuStartProfile(b),extraPace=Math.max(0,pace.accel-1);
+ // S eligibility remains a gate, but its benefit grows continuously from 90 to 110.
+ const cap=balance140(d)&&!profile.skill?1.08+.47*clamp((b.stats.start-90)/20,0,1):profile.cap;
+ const thrust=Math.min(previous*(profile.eligible?1:.90),cap)*(1+extraPace*.5)/(1+extraPace);
+ // Ease back into ordinary acceleration; no speed jump when the opening ends.
+ const weight=b.startTime===null?1:clamp(3-raceTime(d),0,1);
+ return 1+(thrust-1)*weight;
 }
 function spectatorAdjustment(b,d,r){
  if(!spectating(r))return {stats:{},speed:1,accel:1,form:0};
@@ -168,7 +194,7 @@ function dramaticRace(d){
  return null;
 }
 function create(r,seed,options={}){
-  const d={version:2,progressRule:120,seed:seed>>>0,frame:0,elapsed:0,startAt:C.prestart,countdown:C.prestart,started:false,finished:false,paused:true,boats:[],events:[],eventSequence:0,logs:[],
+  const d={version:2,progressRule:120,cpuStartRule:137,balanceRule140:140,controlUse141:{manual:0,auto:0},seed:seed>>>0,frame:0,elapsed:0,startAt:C.prestart,countdown:C.prestart,started:false,finished:false,paused:true,boats:[],events:[],eventSequence:0,logs:[],
     laps:C.laps,goal:C.goal,controls:{steer:0,throttle:0,posture:0},replay:{version:1,from:0,frames:[],events:[]},lastAnnouncedLeader:null,finalized:false,wakes:[],wakeClock:0};
   r.runners.slice().sort((a,b)=>a.frame-b.frame).forEach(p=>{
     const b={id:p.id,name:p.name,frame:p.frame,course:p.course,isPlayer:!!p.isPlayer,difficulty:p.difficulty||r.difficulty||'normal',stats:clone(p.stats),equipment:clone(p.equipment),skills:p.skills.slice(),mastery:clone(p.mastery||{}),racePersona:p.racePersona||null,castId:p.castId||null,castRole:p.castRole||null,portraitKey:p.portraitKey||null,
@@ -292,15 +318,27 @@ function physicalWake(power){
  return {emission:1+(50-p)*.0016,resistance:.30+(p-50)*.00112};
 }
 function wakeStrength(speed,p){return clamp(Math.max(0,speed)/20*(1+(p.mechanics.wakeEmit||0))*p.wakeEmission,.1,2);}
+// Shared by player and CPU. First stat bonus is preserved; additional copies cannot double it.
+function mythicBonus(b,d){
+ const traits=b.skills.map(id=>D.abilityMap[id]).filter(a=>a?.mlr129),stats={},mechanics={};
+ for(const group of ['stats','mechanics']){
+  const out=group==='stats'?stats:mechanics,keys=new Set(traits.flatMap(a=>Object.keys(a.mlr129[group])));
+  for(const k of keys){const values=traits.map(a=>a.mlr129[group][k]||0),sum=values.reduce((x,y)=>x+y,0),largest=Math.max(...values);
+   out[k]=balance140(d)?(group==='stats'?Math.min(65,largest+(sum-largest)*.25):Math.min(largest*1.5,largest+(sum-largest)*.25)*.65):(group==='stats'?Math.min(80,sum):sum);
+  }
+ }
+ return {count:traits.length,stats,mechanics};
+}
 function performance(b,d,r){
   const scenario=b.isPlayer?(root.KM_WORKSHOP128||(typeof require==='function'?require('./workshop128.js'):null)).raceStats(r.scenario128):{};
   const spread=spectatorAdjustment(b,d,r),synergy=synergyState(b,d,r),s=Object.assign({},b.stats),buff={},debuff={},mechanics={...synergy.mechanics};let safety=0,skillSum=0,debuffSum=0;
   const unique=new Map();for(const e of b.effects)if(e.until>d.elapsed)unique.set(e.id+':'+e.kind,e);
   for(const e of unique.values()){if(e.until<=d.elapsed||(e.kind==='pivot'&&(b.throttle<.98||b.steer>=-.2||![1,3].includes(phaseAt(b.progress)))))continue;safety=Math.max(safety,e.safety||0);for(const [k,v] of Object.entries(e.stats)){if(v>=0)buff[k]=(buff[k]||0)+v;else debuff[k]=(debuff[k]||0)+v;}for(const [k,v] of Object.entries(e.mechanics||{}))mechanics[k]=(mechanics[k]||0)+v;}
   const mlr=b.skills.map(id=>D.abilityMap[id]).filter(a=>a.mlr129),myth={};
-  for(const a of mlr){for(const [k,v] of Object.entries(a.mlr129.stats))myth[k]=Math.min(80,(myth[k]||0)+v);for(const [k,v] of Object.entries(a.mlr129.mechanics))mechanics[k]=(mechanics[k]||0)+v;}
+  if(balance140(d)){const bonus=mythicBonus(b,d);Object.assign(myth,bonus.stats);for(const [k,v] of Object.entries(bonus.mechanics))mechanics[k]=(mechanics[k]||0)+v;}
+  else for(const a of mlr){for(const [k,v] of Object.entries(a.mlr129.stats))myth[k]=Math.min(80,(myth[k]||0)+v);for(const [k,v] of Object.entries(a.mlr129.mechanics))mechanics[k]=(mechanics[k]||0)+v;}
   D.statKeys.forEach(k=>{let up=buff[k]||0;if(up>36)up=Math.min(mlr.length?80:48,36+(up-36)*(mlr.length?.55:.25));skillSum+=up/5;debuffSum+=(debuff[k]||0)/5;s[k]=clamp(s[k]+(myth[k]||0)+(scenario[k]||0)+(spread.stats[k]||0)+up+(debuff[k]||0)+(b.statsBuff[k]||0)+b.itemBoost+(r.venue.stats[k]||0),0,mlr.length?180:150);});
-  const caps=mlr.length?{...D.driveEffectCaps,speed:4.8,accel:3.6,grip:3.6,response:4,damping:2,wakeShield:.72,contactShield:.72,waveShield:.72}:D.driveEffectCaps;
+  const caps=mlr.length?(balance140(d)?{...D.driveEffectCaps,speed:3.2,accel:2.4,grip:2.6,response:3.2,damping:1.6,wakeShield:.62,contactShield:.62,waveShield:.62}:{...D.driveEffectCaps,speed:4.8,accel:3.6,grip:3.6,response:4,damping:2,wakeShield:.72,contactShield:.72,waveShield:.72}):D.driveEffectCaps;
   for(const [key,limit] of Object.entries(caps))if(mechanics[key]>limit)mechanics[key]=limit;
   // Four distinct walls: bounded mechanics, no catch-up based on the player position.
   if(b.racePersona==='wall_power'){mechanics.wakeEmit=(mechanics.wakeEmit||0)+.28;mechanics.contactShield=Math.min(.55,(mechanics.contactShield||0)+.12);}
@@ -310,7 +348,7 @@ function performance(b,d,r){
   const gearSpeed=e.motor.speed*mc*.14,gearAccel=(e.motor.accel*mc+e.prop.accel*pc+e.boat.accel)*.055;
   const gearTurn=e.prop.turn*pc*.11+e.boat.turn*.085,wind=r.env.windSpeed||0,rain=r.env.weather==='雨'?1:0;
   const tilt=tiltEffects(r,b,s.power),fatigue=Math.max(0,60-b.stamina),turn=clamp(s.turn,0,125),power=clamp(s.power,0,125);
-  const pace=npcPace(b,r),pivot=b.throttle>=.98&&b.steer<-.2&&[1,3].includes(phaseAt(b.progress))?clamp(mechanics.pivot||0,0,.9):0;
+  const pace=npcPace(b,r,d),pivot=b.throttle>=.98&&b.steer<-.2&&[1,3].includes(phaseAt(b.progress))?clamp(mechanics.pivot||0,0,.9):0;
   const posture=postureEffects(b,d);
   const straight=straightSupport(s);
   const topSpeed=posture.speed*clamp((10.8+straight.effective*.130+gearSpeed+tilt.speed-fatigue*.065+(mechanics.speed||0))*pace.speed*spread.speed,9,38);
@@ -320,13 +358,13 @@ function performance(b,d,r){
   const wakeBody=physicalWake(power),wakeEmission=wakeBody.emission;
   const wakeResistance=clamp(wakeBody.resistance+safety*.35+(mechanics.wakeShield||0),0,.88);
   const wave=(.23+(100-Math.min(power,100))*.009+wind*.11+rain*.24+(r.venue.roughness||0)*.22+(mechanics.waveExtra||0))*(1-safety*.45)*(1-clamp(mechanics.waveShield||0,0,.8));
-  return {stats:s,straight,posture,tilt,topSpeed,acceleration,grip,yawMax,safety,gearSpeed,skillSum,debuffSum,wave,wakeResistance,wakeEmission,mechanics,pace,pivot,spread,synergy:synergy.active,
+  return {stats:s,straight,posture,tilt,topSpeed,acceleration,grip,yawMax,safety,gearSpeed,skillSum,debuffSum,wave,wakeResistance,wakeEmission,mechanics,pace,pivot,spread,synergy:synergy.active,launchMultiplier:launchMultiplier(b,d,s,pace),
     response:clamp((b.startTime===null?.35+clamp(s.start,0,125)*.055:.65+(s.accel*.55+s.start*.45)*.045)-fatigue*.006+(mechanics.response||0),.5,8),
     lateralDamping:posture.damping*Math.max(.3,(.23+turn*.011+power*.009+tilt.damping+safety*.5+(mechanics.damping||0))*(1+pivot*3.5)),mass:.65+power*.007};
 }
 function forwardStep(v,engine,throttle,p,dt,launch=false){
   const rev=engine+(throttle-engine)*(1-Math.exp(-p.response*dt));
-  const drive=p.acceleration*rev*(launch?(.65+p.stats.start*.0085):1);
+  const drive=p.acceleration*rev*(launch?(p.launchMultiplier??(.65+p.stats.start*.0085)):1);
   const drag=p.acceleration*Math.pow(Math.max(0,v)/p.topSpeed,2)+(.24+(1-rev)*.52+(p.mechanics.drag||0))*Math.min(v,1);
   return {speed:clamp(v+(drive-drag)*dt,0,p.topSpeed*1.12),engine:rev};
 }
@@ -677,6 +715,8 @@ function activateCapsize(d,b){addEvent(d,{kind:'capsize',phase:b.phase,athleteId
 function tick(d,r,input,dt=DT,allAI=false){
   if(d.finished||d.paused)return false;
   if(Math.abs(dt-DT)>.000001)throw Error('Drive tick requires fixed 1/60s');
+  // Count only while the player can race. Resolving remaining NPCs is not a mode switch.
+  if(d.controlUse141&&activeBoat(own(d)))d.controlUse141[allAI?'auto':'manual']++;
   d.frame++;d.elapsed+=dt;d.countdown=Math.max(0,startAt(d)-d.elapsed);
   if(!d.started&&d.countdown<1e-8){d.countdown=0;d.started=true;log(d,'時計が頂点。1.5秒未満にラインを通過しよう。','phase');}
   d.controls={steer:clamp(Number(input&&input.steer)||0,-1,1),throttle:clamp(Number(input&&input.throttle)||0,0,1),posture:postureStep(Number.isFinite(input?.posture)?input.posture:(own(d).postureTarget||0))};
@@ -724,7 +764,8 @@ function runAI(r,seed,maxSeconds=C.timeLimit){const d=create(r,seed);d.paused=fa
 
 function valid(d,r){
   const finite=(v,lo,hi)=>Number.isFinite(v)&&v>=lo&&v<=hi;
-  if(!d||d.version!==2||('progressRule' in d&&d.progressRule!==120)||('startAt' in d&&![10,12].includes(d.startAt))||!Number.isInteger(d.seed)||d.seed<0||d.seed>4294967295||!Number.isInteger(d.frame)||d.frame<0||d.frame>18000||!finite(d.elapsed,0,283)||!finite(d.countdown,0,C.prestart)||!['paused','finished','started','finalized'].every(k=>typeof d[k]==='boolean')||!Array.isArray(d.boats)||d.boats.length!==6||d.laps!==C.laps||d.goal!==C.goal)return false;
+  if(d?.controlUse141!==undefined&&(!d.controlUse141||!['manual','auto'].every(k=>Number.isInteger(d.controlUse141[k])&&finite(d.controlUse141[k],0,18000))||d.controlUse141.manual+d.controlUse141.auto>d.frame))return false;
+  if(!d||d.version!==2||('balanceRule140' in d&&d.balanceRule140!==140)||('cpuStartRule' in d&&d.cpuStartRule!==137)||('progressRule' in d&&d.progressRule!==120)||('startAt' in d&&![10,12].includes(d.startAt))||!Number.isInteger(d.seed)||d.seed<0||d.seed>4294967295||!Number.isInteger(d.frame)||d.frame<0||d.frame>18000||!finite(d.elapsed,0,283)||!finite(d.countdown,0,C.prestart)||!['paused','finished','started','finalized'].every(k=>typeof d[k]==='boolean')||!Array.isArray(d.boats)||d.boats.length!==6||d.laps!==C.laps||d.goal!==C.goal)return false;
   if(!Array.isArray(d.wakes)||d.wakes.length>96||!finite(d.wakeClock,0,.36)||!d.wakes.every(w=>finite(w.x,-500,500)&&finite(w.z,-500,500)&&finite(w.fx,-1.01,1.01)&&finite(w.fz,-1.01,1.01)&&finite(w.t,0,283)&&finite(w.strength,0,2)&&d.boats.some(b=>b.id===w.owner)))return false;
   if(d.replay&&!validReplay(d.replay))return false; if(r.done!==d.finalized||r.done&&!d.finished)return false;
   const ids=new Set(r.runners.map(n=>n.id)),controls=d.controls;
@@ -745,7 +786,7 @@ function valid(d,r){
     (!('startLane' in b)||finite(b.startLane,C.inner,C.outer))&&(b.startTime===null||finite(b.startTime,-C.prestart,271))&&[null,'F','L'].includes(b.startFault)&&(!b.plan||['front','defend','sashi','outside','cross','clear'].includes(b.plan.id)&&finite(b.plan.lane,C.inner,C.outer)&&finite(b.plan.speed,.1,2))&&(b.lastZone===null||typeof b.lastZone==='string'&&b.lastZone.length<20)&&Array.isArray(b.effects)&&b.effects.length<150&&b.effects.every(e=>D.abilityMap[e.id]&&finite(e.until,0,310)&&finite(e.safety,0,2)&&(!e.mechanics||Object.values(e.mechanics).every(v=>finite(v,-5,5)))&&e.stats&&Object.entries(e.stats).every(([k,v])=>D.statKeys.includes(k)&&finite(v,-10000,10000)))&&Array.isArray(b.activations)&&b.activations.length<=100&&b.activations.every(active)&&Array.isArray(b.interference)&&b.interference.length<600&&Array.isArray(b.phaseHistory)&&b.phaseHistory.length<=24&&b.metrics&&Craft.validMetrics(b.metrics.craft)&&['contacts','boundaries','rescues','maxSpeed','slideSeconds','throttleSeconds','coastSeconds','wakeSeconds','lineChanges','contactImpulse','turnSpeedSum','turnSamples'].every(k=>finite(b.metrics[k],0,1e7))&&b.stats&&D.statKeys.every(k=>finite(b.stats[k],0,D.statCeiling(b,k)))&&Array.isArray(b.skills)&&b.skills.every(id=>D.abilityMap[id])&&b.mastery&&Object.values(b.mastery).every(n=>Number.isInteger(n)&&n>0&&n<10000)&&b.statsBuff&&D.statKeys.every(k=>finite(b.statsBuff[k]||0,0,100))&&b.equipment&&['motor','prop','boat'].every(k=>b.equipment[k]&&Object.values(b.equipment[k]).every(v=>finite(v,-100,100)));});
 }
 
-const R={hardAI,skillId,physicalWake,wakeStrength,migrateProgress,straightSupport,advanceProgress,C,DT,startTarget,earlyStart,specialStartAllowance,migrateStartSkills,startAllowance,eliteThrottle,holdStartLine,runOut,postureStep,postureTarget,postureEffects,movePosture,requiresManual,racingStyle,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
+const R={mythicBonus,balance140,hardPace140,cpuStartProfile,launchMultiplier,hardAI,skillId,physicalWake,wakeStrength,migrateProgress,straightSupport,advanceProgress,C,DT,startTarget,earlyStart,specialStartAllowance,migrateStartSkills,startAllowance,eliteThrottle,holdStartLine,runOut,postureStep,postureTarget,postureEffects,movePosture,requiresManual,racingStyle,recordReplay,validReplay,dramaticRace,tiltInstability,finishCrossing,operationSkills,contactType,CONTACT,spectatorPace,startAt,kmh,speedText,startText,tiltValue,tiltEffects,raceGrade,spectatorAdjustment,buildLinks,synergyState,spectating,canQuickRecover,quickRecover,raceTime,npcPace,bestSignature,updateSignatures,steeringLimits,moveSteering,normalAI,contactStress,turnDanger,forwardStep,launchForecast,startCrossing,sampleWake,hullContacts,contact,constrain,tacticalPlan,driveCondition,create,tick,runAI,finishOthers,rescue,pointAt,project,phaseAt,performance,pilot,ranks,place,own,valid,wrap,clamp,mod,display,gradeValue,equipmentRange,floor};
 root.KM_RACING=R;if(typeof module!=='undefined'&&module.exports)module.exports=R;
 })(typeof globalThis!=='undefined'?globalThis:window);
 

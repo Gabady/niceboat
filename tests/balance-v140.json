@@ -1,0 +1,2091 @@
+{
+  "build": "140",
+  "currentRacingSha256": "395d6de2246546128258664d9c461485b01a8230ace67b58f6a4dd6365086187",
+  "scope": "Fixed-step AI surrogate, paired seeds/courses/equipment/weather. Not human win rates. Manual mode uses the existing autopilot on the unassisted player physics; spectator mode uses its actual player pace. Distance gaps are sampled at player 300 m / 1200 m. Duels mean another active boat within 15 m progress after 150 m. Overtakes require a change from >2 m behind to >2 m ahead of an active boat.",
+  "baselineSha256": "e4c6922d1ffa0292e97fe3c89a375a512258ac6e06a98e1d1970087896507d0e",
+  "races": [
+    {
+      "stage": 7,
+      "build": "balanced",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 95,
+        "turn": 95,
+        "start": 95,
+        "accel": 95,
+        "power": 95
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "burst",
+        "split"
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 79.61964921236579,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 22.5,
+        "finalLapDuelSeconds": 2,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 78.58976935090315,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 2.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "balanced",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 95,
+        "turn": 95,
+        "start": 95,
+        "accel": 95,
+        "power": 95
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "burst",
+        "split"
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 78.77216480487392,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 11.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 77.82120114002684,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 6.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "balanced",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 95,
+        "turn": 95,
+        "start": 95,
+        "accel": 95,
+        "power": 95
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "burst",
+        "split"
+      ],
+      "before": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 88.79819680042243,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 45.77999999999997,
+        "finalLapLeaderGap": 145.3499999999999,
+        "duelSeconds": 60.5,
+        "finalLapDuelSeconds": 10,
+        "overtakes": 2,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 86.31856737210761,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 53.5,
+        "finalLapDuelSeconds": 26.5,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "balanced",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 95,
+        "turn": 95,
+        "start": 95,
+        "accel": 95,
+        "power": 95
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "burst",
+        "split"
+      ],
+      "before": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 83.67431548436024,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 34.88000000000011,
+        "duelSeconds": 44,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 82.37570428083765,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 6,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "start",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 110,
+        "accel": 90,
+        "power": 85
+      },
+      "skills": [
+        "quick",
+        "wake_escape",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 80.6783066934474,
+        "earlyPlace": 2,
+        "earlyLeaderGap": 5.029999999999973,
+        "finalLapLeaderGap": 37.909999999999854,
+        "duelSeconds": 39,
+        "finalLapDuelSeconds": 1.5,
+        "overtakes": 1,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 79.83435927821381,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 4,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "start",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 110,
+        "accel": 90,
+        "power": 85
+      },
+      "skills": [
+        "quick",
+        "wake_escape",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 76.6433899136689,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 28.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 77.67739572925055,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 7.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "start",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 110,
+        "accel": 90,
+        "power": 85
+      },
+      "skills": [
+        "quick",
+        "wake_escape",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 3,
+        "finished": true,
+        "finishTime": 87.21680452777896,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 54.51999999999998,
+        "finalLapLeaderGap": 118.12000000000012,
+        "duelSeconds": 64.5,
+        "finalLapDuelSeconds": 16,
+        "overtakes": 3,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 87.04179698217446,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 45,
+        "finalLapDuelSeconds": 25,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "start",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 110,
+        "accel": 90,
+        "power": 85
+      },
+      "skills": [
+        "quick",
+        "wake_escape",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 86.18085528115832,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 68.04999999999995,
+        "duelSeconds": 45.5,
+        "finalLapDuelSeconds": 15,
+        "overtakes": 0,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 86.93319844902318,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 9.860000000000127,
+        "duelSeconds": 60,
+        "finalLapDuelSeconds": 9.5,
+        "overtakes": 1,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "straight",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 110,
+        "turn": 85,
+        "start": 85,
+        "accel": 105,
+        "power": 90
+      },
+      "skills": [
+        "steady",
+        "sweep",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 78.74066162955243,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 1,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 78.32666498902249,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 7,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "straight",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 110,
+        "turn": 85,
+        "start": 85,
+        "accel": 105,
+        "power": 90
+      },
+      "skills": [
+        "steady",
+        "sweep",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 78.60365685601882,
+        "earlyPlace": 2,
+        "earlyLeaderGap": 0.6200000000000045,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 38,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 77.71819992528701,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 6,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "straight",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 110,
+        "turn": 85,
+        "start": 85,
+        "accel": 105,
+        "power": 90
+      },
+      "skills": [
+        "steady",
+        "sweep",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 3,
+        "finished": true,
+        "finishTime": 86.98007530216275,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 11.329999999999984,
+        "finalLapLeaderGap": 58.87000000000012,
+        "duelSeconds": 74,
+        "finalLapDuelSeconds": 27,
+        "overtakes": 2,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 84.03261651576285,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 48.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "straight",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 110,
+        "turn": 85,
+        "start": 85,
+        "accel": 105,
+        "power": 90
+      },
+      "skills": [
+        "steady",
+        "sweep",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 84.51325359514671,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 44.75,
+        "duelSeconds": 27,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 1,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 82.82634637923735,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 5.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "turn",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 115,
+        "start": 85,
+        "accel": 100,
+        "power": 85
+      },
+      "skills": [
+        "feather",
+        "wake_escape",
+        "split",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 86.28694706155521,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 37.48000000000002,
+        "finalLapLeaderGap": 108.38000000000011,
+        "duelSeconds": 36.5,
+        "finalLapDuelSeconds": 8,
+        "overtakes": 0,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 84.48069071800371,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 22.950000000000045,
+        "duelSeconds": 24.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "turn",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 115,
+        "start": 85,
+        "accel": 100,
+        "power": 85
+      },
+      "skills": [
+        "feather",
+        "wake_escape",
+        "split",
+        "anchor"
+      ],
+      "before": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 81.08732492252523,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 11.850000000000023,
+        "finalLapLeaderGap": 38.570000000000164,
+        "duelSeconds": 22.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 82.88757539551598,
+        "earlyPlace": 2,
+        "earlyLeaderGap": 4.009999999999991,
+        "finalLapLeaderGap": 6.080000000000155,
+        "duelSeconds": 38,
+        "finalLapDuelSeconds": 5,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "turn",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 115,
+        "start": 85,
+        "accel": 100,
+        "power": 85
+      },
+      "skills": [
+        "feather",
+        "wake_escape",
+        "split",
+        "anchor"
+      ],
+      "before": {
+        "place": 4,
+        "finished": true,
+        "finishTime": 90.2374282462509,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 63.75,
+        "finalLapLeaderGap": 148.11000000000013,
+        "duelSeconds": 62,
+        "finalLapDuelSeconds": 16.5,
+        "overtakes": 3,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 89.7563833865099,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 12.490000000000009,
+        "finalLapLeaderGap": 34.59999999999991,
+        "duelSeconds": 72.5,
+        "finalLapDuelSeconds": 20,
+        "overtakes": 7,
+        "lostPositions": 5,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "turn",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 115,
+        "start": 85,
+        "accel": 100,
+        "power": 85
+      },
+      "skills": [
+        "feather",
+        "wake_escape",
+        "split",
+        "anchor"
+      ],
+      "before": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 84.5515012317565,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 34.289999999999964,
+        "duelSeconds": 25,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 86.41258983129694,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 32,
+        "finalLapDuelSeconds": 12,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "power",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 85,
+        "accel": 90,
+        "power": 110
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "storm",
+        "anchor"
+      ],
+      "before": {
+        "place": 4,
+        "finished": true,
+        "finishTime": 84.83289334143963,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 21.760000000000048,
+        "finalLapLeaderGap": 84.28999999999996,
+        "duelSeconds": 64,
+        "finalLapDuelSeconds": 17.5,
+        "overtakes": 2,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 80.99009336055191,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 9,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "power",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 85,
+        "accel": 90,
+        "power": 110
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "storm",
+        "anchor"
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 79.41291636398273,
+        "earlyPlace": 2,
+        "earlyLeaderGap": 6.519999999999982,
+        "finalLapLeaderGap": 2.119999999999891,
+        "duelSeconds": 72.5,
+        "finalLapDuelSeconds": 26,
+        "overtakes": 0,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 79.9408449380663,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 22,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "power",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 85,
+        "accel": 90,
+        "power": 110
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "storm",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 91.50206215712002,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 72.79000000000002,
+        "finalLapLeaderGap": 197.19000000000005,
+        "duelSeconds": 41.5,
+        "finalLapDuelSeconds": 7,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 88.07090418549377,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 10.939999999999998,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 47.5,
+        "finalLapDuelSeconds": 1.5,
+        "overtakes": 4,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 7,
+      "build": "power",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 85,
+        "accel": 90,
+        "power": 110
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "storm",
+        "anchor"
+      ],
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 83.41487987593236,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 14.5,
+        "finalLapDuelSeconds": 12.5,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 82.95252050067418,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 4.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "balanced",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 95,
+        "turn": 95,
+        "start": 95,
+        "accel": 95,
+        "power": 95
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "burst",
+        "split"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 81.98469724839231,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 59.379999999999995,
+        "finalLapLeaderGap": 165.72000000000003,
+        "duelSeconds": 12.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 81.61371459799133,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 38.04000000000002,
+        "finalLapLeaderGap": 39.09999999999991,
+        "duelSeconds": 74.5,
+        "finalLapDuelSeconds": 27.5,
+        "overtakes": 3,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "balanced",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 95,
+        "turn": 95,
+        "start": 95,
+        "accel": 95,
+        "power": 95
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "burst",
+        "split"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 79.88316917422162,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 48.75,
+        "finalLapLeaderGap": 142.05999999999995,
+        "duelSeconds": 67.63,
+        "finalLapDuelSeconds": 24.129999999999995,
+        "overtakes": 1,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 79.0913309690492,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 32.90999999999997,
+        "finalLapLeaderGap": 10.180000000000064,
+        "duelSeconds": 51,
+        "finalLapDuelSeconds": 15,
+        "overtakes": 1,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "balanced",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 95,
+        "turn": 95,
+        "start": 95,
+        "accel": 95,
+        "power": 95
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "burst",
+        "split"
+      ],
+      "before": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 83.134633930125,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 51.710000000000036,
+        "finalLapLeaderGap": 185.39999999999986,
+        "duelSeconds": 25,
+        "finalLapDuelSeconds": 1.5,
+        "overtakes": 2,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 86.8017335946576,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 17.50999999999999,
+        "finalLapLeaderGap": 81.62000000000012,
+        "duelSeconds": 70.5,
+        "finalLapDuelSeconds": 20,
+        "overtakes": 3,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "balanced",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 95,
+        "turn": 95,
+        "start": 95,
+        "accel": 95,
+        "power": 95
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "burst",
+        "split"
+      ],
+      "before": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 81.4636326545469,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 42.420000000000016,
+        "finalLapLeaderGap": 157.28999999999996,
+        "duelSeconds": 60.5,
+        "finalLapDuelSeconds": 22.5,
+        "overtakes": 1,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 84.08001120101439,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 18.02000000000004,
+        "finalLapLeaderGap": 103.37999999999988,
+        "duelSeconds": 76.5,
+        "finalLapDuelSeconds": 27.5,
+        "overtakes": 4,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "start",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 110,
+        "accel": 90,
+        "power": 85
+      },
+      "skills": [
+        "quick",
+        "wake_escape",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 81.49421313293642,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 62.870000000000005,
+        "finalLapLeaderGap": 162.96000000000004,
+        "duelSeconds": 49.5,
+        "finalLapDuelSeconds": 11.5,
+        "overtakes": 1,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 4,
+        "finished": true,
+        "finishTime": 84.04826837057084,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 53.110000000000014,
+        "finalLapLeaderGap": 116.44000000000005,
+        "duelSeconds": 64.5,
+        "finalLapDuelSeconds": 17,
+        "overtakes": 3,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "start",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 110,
+        "accel": 90,
+        "power": 85
+      },
+      "skills": [
+        "quick",
+        "wake_escape",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 79.87165822285849,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 52.620000000000005,
+        "finalLapLeaderGap": 164.07000000000016,
+        "duelSeconds": 54.5,
+        "finalLapDuelSeconds": 9.5,
+        "overtakes": 4,
+        "lostPositions": 5,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 81.98544031107699,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 44.420000000000016,
+        "finalLapLeaderGap": 95.43000000000006,
+        "duelSeconds": 69,
+        "finalLapDuelSeconds": 25.5,
+        "overtakes": 3,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "start",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 110,
+        "accel": 90,
+        "power": 85
+      },
+      "skills": [
+        "quick",
+        "wake_escape",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 85.70460412113644,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 54.44,
+        "finalLapLeaderGap": 213.61000000000013,
+        "duelSeconds": 5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 90.34310324342428,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 64.12,
+        "finalLapLeaderGap": 253.06999999999994,
+        "duelSeconds": 72.5,
+        "finalLapDuelSeconds": 28.5,
+        "overtakes": 3,
+        "lostPositions": 5,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "start",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 110,
+        "accel": 90,
+        "power": 85
+      },
+      "skills": [
+        "quick",
+        "wake_escape",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 84.2528778567694,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 60.19999999999999,
+        "finalLapLeaderGap": 226.25,
+        "duelSeconds": 6.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 89.72812769850208,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 32.089999999999975,
+        "finalLapLeaderGap": 224.79999999999995,
+        "duelSeconds": 48.5,
+        "finalLapDuelSeconds": 3,
+        "overtakes": 0,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "straight",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 110,
+        "turn": 85,
+        "start": 85,
+        "accel": 105,
+        "power": 90
+      },
+      "skills": [
+        "steady",
+        "sweep",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 4,
+        "finished": true,
+        "finishTime": 78.59567321879913,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 42.98000000000002,
+        "finalLapLeaderGap": 146.20000000000005,
+        "duelSeconds": 70,
+        "finalLapDuelSeconds": 24,
+        "overtakes": 4,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 81.25477415295921,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 22.400000000000034,
+        "finalLapLeaderGap": 90.06000000000017,
+        "duelSeconds": 73.5,
+        "finalLapDuelSeconds": 25.5,
+        "overtakes": 3,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "straight",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 110,
+        "turn": 85,
+        "start": 85,
+        "accel": 105,
+        "power": 90
+      },
+      "skills": [
+        "steady",
+        "sweep",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 4,
+        "finished": true,
+        "finishTime": 78.34559336519764,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 53.139999999999986,
+        "finalLapLeaderGap": 137.76,
+        "duelSeconds": 67,
+        "finalLapDuelSeconds": 22,
+        "overtakes": 3,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 2,
+        "finished": true,
+        "finishTime": 78.17694398822825,
+        "earlyPlace": 2,
+        "earlyLeaderGap": 7.949999999999989,
+        "finalLapLeaderGap": 19.420000000000073,
+        "duelSeconds": 44.5,
+        "finalLapDuelSeconds": 17.5,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "straight",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 110,
+        "turn": 85,
+        "start": 85,
+        "accel": 105,
+        "power": 90
+      },
+      "skills": [
+        "steady",
+        "sweep",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 85.60111473181104,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 67.43,
+        "finalLapLeaderGap": 212.33999999999992,
+        "duelSeconds": 25,
+        "finalLapDuelSeconds": 4.5,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 3,
+        "finished": true,
+        "finishTime": 88.74670903158803,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 42.660000000000025,
+        "finalLapLeaderGap": 157.27999999999997,
+        "duelSeconds": 78.5,
+        "finalLapDuelSeconds": 28.5,
+        "overtakes": 2,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "straight",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 110,
+        "turn": 85,
+        "start": 85,
+        "accel": 105,
+        "power": 90
+      },
+      "skills": [
+        "steady",
+        "sweep",
+        "burst",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 84.13500969647163,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 77.81,
+        "finalLapLeaderGap": 227.46000000000004,
+        "duelSeconds": 28.5,
+        "finalLapDuelSeconds": 3,
+        "overtakes": 0,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 3,
+        "finished": true,
+        "finishTime": 86.49858121008464,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 31.029999999999973,
+        "finalLapLeaderGap": 119.63999999999987,
+        "duelSeconds": 56.5,
+        "finalLapDuelSeconds": 21.5,
+        "overtakes": 2,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "turn",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 115,
+        "start": 85,
+        "accel": 100,
+        "power": 85
+      },
+      "skills": [
+        "feather",
+        "wake_escape",
+        "split",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 83.88927442037118,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 76.35000000000002,
+        "finalLapLeaderGap": 194.52999999999997,
+        "duelSeconds": 4.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 85.97075786498706,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 47.5,
+        "finalLapLeaderGap": 120.58000000000015,
+        "duelSeconds": 77.5,
+        "finalLapDuelSeconds": 28,
+        "overtakes": 3,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "turn",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 115,
+        "start": 85,
+        "accel": 100,
+        "power": 85
+      },
+      "skills": [
+        "feather",
+        "wake_escape",
+        "split",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 80.23220900487603,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 55.10000000000002,
+        "finalLapLeaderGap": 145.07999999999993,
+        "duelSeconds": 72.5,
+        "finalLapDuelSeconds": 26,
+        "overtakes": 1,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 4,
+        "finished": true,
+        "finishTime": 84.90164713319335,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 39.31,
+        "finalLapLeaderGap": 123.79000000000019,
+        "duelSeconds": 77,
+        "finalLapDuelSeconds": 27.5,
+        "overtakes": 3,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "turn",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 115,
+        "start": 85,
+        "accel": 100,
+        "power": 85
+      },
+      "skills": [
+        "feather",
+        "wake_escape",
+        "split",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 89.26021238762395,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 94.41000000000003,
+        "finalLapLeaderGap": 293.40999999999985,
+        "duelSeconds": 6.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 89.36953597695985,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 51,
+        "finalLapLeaderGap": 164.32000000000016,
+        "duelSeconds": 81,
+        "finalLapDuelSeconds": 29,
+        "overtakes": 3,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "turn",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 115,
+        "start": 85,
+        "accel": 100,
+        "power": 85
+      },
+      "skills": [
+        "feather",
+        "wake_escape",
+        "split",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 86.71234444861116,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 80.63,
+        "finalLapLeaderGap": 235.6400000000001,
+        "duelSeconds": 17,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 5,
+        "finished": true,
+        "finishTime": 88.32317419248024,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 37.5,
+        "finalLapLeaderGap": 154.3900000000001,
+        "duelSeconds": 79.5,
+        "finalLapDuelSeconds": 29.5,
+        "overtakes": 1,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "power",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 85,
+        "accel": 90,
+        "power": 110
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "storm",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 81.95066139696186,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 52.539999999999964,
+        "finalLapLeaderGap": 187.08999999999992,
+        "duelSeconds": 17.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 4,
+        "finished": true,
+        "finishTime": 84.81749194121333,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 35,
+        "finalLapLeaderGap": 131.81999999999994,
+        "duelSeconds": 75.8,
+        "finalLapDuelSeconds": 25.799999999999997,
+        "overtakes": 2,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "power",
+      "seed": 1401,
+      "control": "spectator",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 85,
+        "accel": 90,
+        "power": 110
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "storm",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 80.46882793014225,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 40.110000000000014,
+        "finalLapLeaderGap": 158.01999999999998,
+        "duelSeconds": 53.5,
+        "finalLapDuelSeconds": 7.5,
+        "overtakes": 1,
+        "lostPositions": 3,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 3,
+        "finished": true,
+        "finishTime": 83.41968778186978,
+        "earlyPlace": 3,
+        "earlyLeaderGap": 30.49000000000001,
+        "finalLapLeaderGap": 113.52999999999997,
+        "duelSeconds": 64.5,
+        "finalLapDuelSeconds": 15,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "power",
+      "seed": 1402,
+      "control": "manual",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 85,
+        "accel": 90,
+        "power": 110
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "storm",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 86.13322561026196,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 69.96000000000004,
+        "finalLapLeaderGap": 219.51,
+        "duelSeconds": 11,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 1,
+        "lostPositions": 1,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 89.05604674409325,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 64.77000000000004,
+        "finalLapLeaderGap": 242.6099999999999,
+        "duelSeconds": 39.97,
+        "finalLapDuelSeconds": 5.969999999999999,
+        "overtakes": 1,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "power",
+      "seed": 1402,
+      "control": "spectator",
+      "weather": {
+        "weather": "雨",
+        "wind": "向かい風",
+        "windSpeed": 6
+      },
+      "stats": {
+        "speed": 90,
+        "turn": 100,
+        "start": 85,
+        "accel": 90,
+        "power": 110
+      },
+      "skills": [
+        "steady",
+        "wake_escape",
+        "storm",
+        "anchor"
+      ],
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 84.01608747285283,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 81.56,
+        "finalLapLeaderGap": 180.2099999999998,
+        "duelSeconds": 7.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 4,
+        "finished": true,
+        "finishTime": 88.08998881473428,
+        "earlyPlace": 4,
+        "earlyLeaderGap": 48.81,
+        "finalLapLeaderGap": 163.24,
+        "duelSeconds": 61.5,
+        "finalLapDuelSeconds": 11.5,
+        "overtakes": 1,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    }
+  ],
+  "checks": [
+    "paired-races-complete-with-valid-drive"
+  ]
+}

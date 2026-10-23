@@ -1,0 +1,75 @@
+{
+  "build": "147",
+  "browserTested": true,
+  "physicalDevicesTested": false,
+  "webkitTested": false,
+  "checks": [
+    "web/index.html 起動・ガイド・戻るを実DOMで操作",
+    "web/index.html 通常決勝の途中から結果へスキップして次へ進める",
+    "最優秀の優勝戦・順位決定戦は両スタイルでスキップ入口がない",
+    "読書の中断・再読込・選択・読了からシリーズ進行へ戻れる",
+    "実ブラウザーでJSON貼付・確認・復元し旧版データを引き継ぐ",
+    "pagehideで中断保存し、再読込後に位置と入力解除を保持する",
+    "index_android_safe.html 起動・ガイド・戻るを実DOMで操作",
+    "index_android_safe.html 通常決勝の途中から結果へスキップして次へ進める",
+    "index_iphone_safe.html 起動・ガイド・戻るを実DOMで操作",
+    "index_iphone_safe.html 通常決勝の途中から結果へスキップして次へ進める",
+    "index.html 起動・ガイド・戻るを実DOMで操作",
+    "index.html 通常決勝の途中から結果へスキップして次へ進める",
+    "index_editable.html 起動・ガイド・戻るを実DOMで操作"
+  ],
+  "entries": {
+    "web/index.html": {
+      "sha256": "a1907fba56fd8c9ba9532042f58275155adb7e1439552bf55cd47c45595d7d6f",
+      "device": "Galaxy S24",
+      "viewport": {
+        "width": 740,
+        "height": 360
+      },
+      "pageErrors": []
+    },
+    "index_android_safe.html": {
+      "sha256": "70307895b273d0ae0dfb1a9902f2821f3f2799f78c7915f7926c790f8dc43f92",
+      "device": "Galaxy S24",
+      "viewport": {
+        "width": 360,
+        "height": 740
+      },
+      "pageErrors": []
+    },
+    "index_iphone_safe.html": {
+      "sha256": "48e8d2129b11c739d18579fa0c8ad1a0a0dd169675bbccdc0ba57a9cc56a4ce7",
+      "device": "iPhone 13",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "pageErrors": []
+    },
+    "index.html": {
+      "sha256": "2f2d9d4c1a69137c7d92b572ad471eebaf83db039045193046a48bfba3558138",
+      "device": "Desktop Chrome",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "pageErrors": []
+    },
+    "index_editable.html": {
+      "sha256": "48ace17518911f251c1a2bf506c156075fd1f747b546fa3fa532ffbc10c1478a",
+      "device": "Desktop Chrome",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      }
+    }
+  },
+  "limitations": [
+    "Chromium mobile emulation only; Safari/WebKit dependencies unavailable.",
+    "No physical touchscreen, OS file preview, audio or FPS certification.",
+    "Page lifecycle events below are synthetic; reloads and persisted storage use the real browser."
+  ],
+  "browserVersion": "134.0.6998.35",
+  "sourceSha256": "2f2d9d4c1a69137c7d92b572ad471eebaf83db039045193046a48bfba3558138",
+  "passed": true
+}

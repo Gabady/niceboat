@@ -1,0 +1,114 @@
+{
+  "build": "137",
+  "modules": 58,
+  "sourceSha256": "d51007027aacff1b48df0727eb68d0f17a5b64d43717fccde620fdd299136deb",
+  "heroineEpisodes": 70,
+  "rivalEpisodes": 40,
+  "cpuStart": {
+    "baseStartMinimum": 90,
+    "skills": [
+      "zero",
+      "legend_start",
+      "pioneer_start",
+      "mlr_zero",
+      "mlr_legend_start",
+      "mlr_pioneer_start"
+    ],
+    "allDifficulties": true,
+    "normalMultiplierScale": 0.9,
+    "caps": {
+      "ordinary": 1.08,
+      "S": 1.4,
+      "SS": 1.55,
+      "special": 1.6
+    },
+    "extraNpcPaceScale": 0.5,
+    "secondsAfterStart": 3,
+    "fadeSeconds": 1,
+    "ongoingLegacyRacesPreserved": true
+  },
+  "physicsBaselineSha256": "6e20cf4b1dcf0b3f85c0e84c417a2d3656149508a900b0da0f4844c2bf1fc507",
+  "openingComparisons": [
+    {
+      "mode": "easy",
+      "start": 65,
+      "beforeKmh": 75.85676154848095,
+      "afterKmh": 71.09164440068588
+    },
+    {
+      "mode": "easy",
+      "start": 80,
+      "beforeKmh": 80.3909656613998,
+      "afterKmh": 71.52862086085975
+    },
+    {
+      "mode": "easy",
+      "start": 89,
+      "beforeKmh": 82.98180908557515,
+      "afterKmh": 71.74329005362006
+    },
+    {
+      "mode": "normal",
+      "start": 65,
+      "beforeKmh": 81.47333361071442,
+      "afterKmh": 74.55063175631204
+    },
+    {
+      "mode": "normal",
+      "start": 80,
+      "beforeKmh": 86.337867310216,
+      "afterKmh": 75.00178483631181
+    },
+    {
+      "mode": "normal",
+      "start": 89,
+      "beforeKmh": 89.17130822635256,
+      "afterKmh": 75.2738698988438
+    },
+    {
+      "mode": "hard",
+      "start": 65,
+      "beforeKmh": 80.76699119698202,
+      "afterKmh": 73.92167875893756
+    },
+    {
+      "mode": "hard",
+      "start": 80,
+      "beforeKmh": 85.65485399139077,
+      "afterKmh": 74.41844732798216
+    },
+    {
+      "mode": "hard",
+      "start": 89,
+      "beforeKmh": 88.42840853769083,
+      "afterKmh": 74.66550455400701
+    }
+  ],
+  "checks": {
+    "legacy": 3,
+    "balance": 14,
+    "features": 16,
+    "progress": 23,
+    "hard": 16,
+    "cpu-start": 13,
+    "start-rules": 13,
+    "resume": 3
+  },
+  "deliveredInlineClickChecks": 69,
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "legacySavesVerified": 13,
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "resumedVerificationAt": "2026-10-19T01:48:58.047Z",
+  "limitations": [
+    "DOM adapter verifies markup and actions, not layout.",
+    "No physical-device touch, audio or FPS test.",
+    "Route availability still depends on encounters, choices, affection and racing results."
+  ]
+}

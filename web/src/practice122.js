@@ -22,7 +22,7 @@ function canonical(value,depth=0){
 }
 function pick(o,keys){const p={};for(const k of keys)if(o[k]!==undefined)p[k]=o[k];return p;}
 function boatValid(b){return object(b)&&typeof b.isPlayer==='boolean'&&object(b.stats)&&['speed','turn','start','accel','power'].every(k=>finite(b.stats[k],0,150))&&Array.isArray(b.skills)&&b.skills.length<=200&&b.skills.every(x=>typeof x==='string'&&x.length<100)&&object(b.mastery)&&Object.values(b.mastery).every(v=>finite(v,0,10000))&&object(b.equipment)&&['motor','prop','boat'].every(k=>object(b.equipment[k])&&Object.values(b.equipment[k]).every(v=>finite(v,-100,100)))&&Number.isInteger(b.course)&&finite(b.course,1,6)&&Number.isInteger(b.frame)&&finite(b.frame,1,6);}
-function descriptorValid(c){return object(c)&&[1,2,3].includes(c.revision)&&KINDS.includes(c.kind)&&typeof c.assisted==='boolean'&&object(c.race)&&c.race.drill===c.kind&&finite(c.race.practiceLimit,1,1800)&&object(c.race.env)&&typeof c.race.env.weather==='string'&&typeof c.race.env.wind==='string'&&finite(c.race.env.windSpeed,0,100)&&object(c.drive)&&finite(c.drive.elapsed,0,283)&&Number.isInteger(c.drive.seed)&&finite(c.drive.seed,0,4294967295)&&Array.isArray(c.boats)&&c.boats.length===6&&c.boats.every(boatValid)&&c.boats.filter(b=>b.isPlayer).length===1&&new Set(c.boats.map(b=>b.course)).size===6&&new Set(c.boats.map(b=>b.frame)).size===6;}
+function descriptorValid(c){return object(c)&&[1,2,3,4,5,6].includes(c.revision)&&KINDS.includes(c.kind)&&typeof c.assisted==='boolean'&&object(c.race)&&c.race.drill===c.kind&&finite(c.race.practiceLimit,1,1800)&&object(c.race.env)&&typeof c.race.env.weather==='string'&&typeof c.race.env.wind==='string'&&finite(c.race.env.windSpeed,0,100)&&object(c.drive)&&finite(c.drive.elapsed,0,283)&&Number.isInteger(c.drive.seed)&&finite(c.drive.seed,0,4294967295)&&Array.isArray(c.boats)&&c.boats.length===6&&c.boats.every(boatValid)&&c.boats.filter(b=>b.isPlayer).length===1&&new Set(c.boats.map(b=>b.course)).size===6&&new Set(c.boats.map(b=>b.frame)).size===6;}
 function initial(t){
  const r=t?.initial,d=r?.drive;
  if(!KINDS.includes(t?.kind)||!object(r)||!object(d)||r.drill!==t.kind||!finite(r.practiceLimit,1,1800)||!finite(d.elapsed,0,283)||!Array.isArray(d.boats)||d.boats.length!==6||d.boats.filter(b=>b?.isPlayer).length!==1)return null;
@@ -43,11 +43,11 @@ function conditionKey(t){
    return v;
   });
   // Increase revision if a later update changes driving rules for these conditions.
-  const descriptor={revision:3,kind:t.kind,assisted:!!t.assistUsed,
+  const descriptor={revision:6,kind:t.kind,assisted:!!t.assistUsed,controls141:(root.KM_IMPROVE141||(typeof require==='function'?require('./improve141.js'):null)).controls(t.practiceSettings?.controls141),
    race:pick(r,['drill','practiceLimit','type','grade','env','buff','itemBoost','strategy','tilt','difficulty','controlMode','startPolicy','watch','auto']),
    venue:pick(r.venue||{},['id','stats','roughness','lane']),
    finalAlliance:ref(r.finalAlliance),
-   drive:pick(d,['version','progressRule','seed','frame','elapsed','startAt','countdown','started','laps','goal','controls','wakeClock']),
+   drive:pick(d,['version','progressRule','cpuStartRule','balanceRule140','seed','frame','elapsed','startAt','countdown','started','laps','goal','controls','wakeClock']),
    wakes:(d.wakes||[]).map(w=>({...w,owner:ref(w.owner)})),boats};
   // Keep the exact canonical condition, avoiding hash collisions between unlike runs.
   const key='p122:'+canonical(descriptor);return descriptorValid(descriptor)&&key.length<=LIMITS.keyChars?key:null;

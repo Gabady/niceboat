@@ -3,6 +3,13 @@ from pathlib import Path
 import hashlib
 import re
 
+
+def atomic_text(path,text):
+    if not text: raise ValueError('Empty generated file: '+str(path))
+    temporary=path.with_name(path.name+'.building')
+    temporary.write_text(text)
+    temporary.replace(path)
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -28,7 +35,7 @@ def sync_safe(root=ROOT):
         html = html.replace('</head>', '<meta name="safe-source-sha256" content="' + digest + '">\n</head>', 1)
         outputs.append((root / ('index_' + platform.lower() + '_safe.html'), html))
     for file, html in outputs:
-        file.write_text(html)
+        atomic_text(file,html)
     return digest
 
 

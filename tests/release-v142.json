@@ -1,0 +1,42 @@
+{
+  "build": "142",
+  "revision": "story-continuity-stage-4-2026-10-22",
+  "modules": 61,
+  "sourceSha256": "4f410534bc0e270c64fd797fae08de357d6b43859983a42b71c4835d98721221",
+  "checks": {
+    "progress": 53,
+    "cpu-stats": 8,
+    "hard": 16,
+    "cpu-start": 13,
+    "rules": 15,
+    "improve": 24,
+    "controls": 10,
+    "continuity": 29
+  },
+  "checksTotal": 168,
+  "deliveredInlineChecks": 159,
+  "improvementSuiteSimulatedRaces": 10,
+  "scope": [
+    "choice-aware reunion reasons and chronological bridges",
+    "28 saved no-reward relationship moments",
+    "28 grounded alternatives without effect hints",
+    "four main arcs connected to actual prior decisions",
+    "fair saved automatic queue and deferred gates",
+    "stage-sensitive endings while keeping confession and SG final gates"
+  ],
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "Production DOM/input handlers run in adapters, not real layout or touchscreen.",
+    "No browser screenshots or physical-device/audio/FPS verification.",
+    "Reports named V141 and earlier are historical.",
+    "Automatic small scenes may be withdrawn if a later chapter or ending supersedes an unread scene."
+  ]
+}

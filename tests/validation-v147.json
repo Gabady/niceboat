@@ -1,0 +1,157 @@
+{
+  "build": "147",
+  "sourceModules": {
+    "src/affinity.js": "e9d26624e0ffefc6f9441b532b72cf910f7cd9504bfa60b5b1279080f6e78366",
+    "src/after143.js": "622450132c74a5c0626aac3945e50e73fc8a44f6d9974d9e906982d373267a5d",
+    "src/audio-assets.js": "1ceb2e3a592d0e0a2f9a18bfe00785ecc38e21afa8be4103057c767ba7aefcdb",
+    "src/audio.js": "e242de5124d9e648df0d6a7c42d9046bc43b2bc8f2dfa6c2576054b4e31c2fcc",
+    "src/awakening136.js": "25ebd5d1fec939ec3a691ca483d1d76ea6bfd97f014655ea34975b8bc602ff1b",
+    "src/bonds-data.js": "368c91f8b9dc2c641b12ee1b8b02ff95b89926f0b1633dbf3e1a3e2dd2339866",
+    "src/bonds.js": "5abe4ba19818c808454bb7662ac061594e103eb73e0524b89baec8fd9ac43c92",
+    "src/campaign-data.js": "49dedeeb82bf3ac2fb2b402cd44cf3e846b3e70f329d1b95774bea8ae8768a44",
+    "src/campaign.js": "90dd710c87c4976dfe8a4f1b50a83749d4b5ef7c44fa4397e59286b1e548763c",
+    "src/cast.js": "7d15b4faad814e2228da05093f48a2757c62ddd20846c3575558aea1bc525353",
+    "src/challenge145.js": "76290084bd7405b25b91a91693845d5bb53fc9cf92154e873a249fe0f8bbb661",
+    "src/cheer126.js": "c73d4df48d332ab75ecd3328452f039fe960d6c7a4749a0110622c0980fc9081",
+    "src/choices133.js": "4c24b99bc304d42a5603d3416f3e4d82fc7eeb054e91da006f3b6348caf7dc38",
+    "src/coaching121.js": "5ccd752d613086891c055fc69b4acb0f0d9f0b8a5936d455929cdf7ba2e57bdc",
+    "src/continuity-data142.js": "eced2d219c123a7ccb5fd9952bdb4769d28c34614f6e6e765c96eda9b3c6493b",
+    "src/continuity142.js": "d482d3bb19cabce2bcad3649b5a8f153b4923a0da89d3dd5704677d36da834b9",
+    "src/craft118.js": "9b5261f08d3f247967d09cf4a099ead6f1fb627ab82a66edcff4e3ae8015a882",
+    "src/data.js": "ab65208565d149ea1b05d724f20b9c923c93fd404fcfe894b9fa8e7fa20e2a92",
+    "src/days143.js": "6900b530f541c9dd68d21d848ef16bd0f2766daa909247464bc160b433f3b345",
+    "src/development.js": "34aecb7911e9a624f8947949255b2535cc52709b0f3f942e84138ffef3db2efa",
+    "src/dialogue.js": "c62a29870ba69f61a8b4de738e18bfec970ca2224eda3ea4a6a3f0beb839cf38",
+    "src/drama-data.js": "280899fccd0fbe7e8e98b33db340c4a1120b7105d2c680a06bdaf00c796ed358",
+    "src/drama.js": "8ea69ff2df43f7a89a08bf6e61bff233946ec2c49cae00f9a8e75c1ac51e4025",
+    "src/driving-ui.js": "6a530deb233f69182986c6fdf7f0b459f56bbcce384b406302351b560c814ed9",
+    "src/epilogues126.js": "3d98673c573959a3ee226b5006e3f918a51e98c835353c79cbdb441e1fe94575",
+    "src/finale.js": "645f7eddeb2d5cc6d2ace85c7d9dc5c1d491d09265965c748f6f93222072c150",
+    "src/flow131.js": "4101fea00b4d1265f5a52d46df957ce4fc5dd4322ab2c4abccae15a30644b6fb",
+    "src/hard129.js": "64c7a2406ea409e9ccdd62aa8387a8a8ca50c56306ff5a81fd1f365dfe925e3a",
+    "src/heroine-expressions125.js": "9a4b84799b954188d0490d17722e1bbd24157806d36b9a7cd12b4b8d49429ab7",
+    "src/improve141.js": "7f572b737303d92f32af8cde9160b9411221286c078e4e3f1d4e080af3639ce4",
+    "src/introductions126.js": "de23f60cd27bd5736d2267bbdb677c18109207089bc899b5a163df45ac6b8d88",
+    "src/journey134.js": "ea5b752885326af21d3494821ceceeb0aa8e82952624d99fbe0133dc6a92e6eb",
+    "src/memory-data146.js": "ed57bc22df626c0a43c794f9404a98bbf40c46d2eed23e6df641d35233789a19",
+    "src/memory146.js": "27c1fae4356304c8d23e27f56fd394dd40ec2c6989c4f55900dff52718c1e96a",
+    "src/mentor-data.js": "9e0819611b3f2e105c7d3f34c00b80ebcb61e3cb3de0c25a5101b0d553218d30",
+    "src/music.js": "0d169c30ca722a5e789fdca2ba6b72b7cbdf39a8c4310b6224fa3d4aad12275b",
+    "src/narrative132.js": "62d2b9705c8ab394bf1e54eaf7f19c38a53e3b9fcee79679cfb0676959cb67b9",
+    "src/natsu-data126.js": "680192abcf6d55ecc48420099d2b44df23eac2db6506aec6c5a14e911d1bc109",
+    "src/passage143.js": "ae8059a42b0ec9357b4b6b85f77baf929c07f1ad5f5507ae62e72eee3bda63aa",
+    "src/portrait-assets.js": "48afed37797769a340e31279c08c8c52b106720d296ebf21911821628352d17e",
+    "src/portrait-expressions.js": "643cfc9b0eb81bae49aa431c669f347d871b8646b1841a2306aa800a039d6e6a",
+    "src/portraits.js": "0838180ffd310f4386e7b10b16918b728293a9340348ec8f809d57ace5029758",
+    "src/practice122.js": "ff4455d712b0141d0286a724c9e64abdebf6f315c51fa94b8615bc9933053971",
+    "src/practice133.js": "b7c973ff5e4dfcf05e3114537260dc4c33c034f654133a9933819801cae7ee5f",
+    "src/presentation.js": "26d858f2641a2d13b91f6e360f1fb919b900de99749349ca9b2c96f56c965475",
+    "src/profile.js": "c4c6cae1b21f78967078a43f666bec14a1a0e633d74be29c1f82c147707b7b89",
+    "src/progress144.js": "8764edf9114861582562854287689aad5fe589d43ac893cd6ecf4d8647660e8e",
+    "src/race-dialogue.js": "6bfa4407c32fd384f29d300ecdc1e671da182d185a7c5fe708fd09cda07d95fa",
+    "src/race-feedback.js": "183310dd1ed3b1b66347f403472a0b07b47101c5d1bff81adc4f6fbef0688afa",
+    "src/race-renderer.js": "0b8d6c2e688bde4c017783f642bbb6528485ec3f3d508a22d05ce6dce3c5bdaa",
+    "src/racing.js": "c20e92edf7557b80d6af993fff59de9af8140f03a4e83e07be861888f03d4fe2",
+    "src/reader129.js": "3eab561b913e2446db21b1812dc4e626a66a8323c7a61d65551edaac954f0b81",
+    "src/review122.js": "1dee13ae34c122946a1ca739bafdbaa0c8bea822a0e0c22a1978daf45dc0358d",
+    "src/review145.js": "42c534544009cab48c68979ae9cd68408b4e825f58af1229b9ac1fb5498f654b",
+    "src/romance127-akari-mio.js": "bb933fe8a49be49ef2437bff04eff2eeaa11f5529defe644a27ad821a7da3218",
+    "src/romance127-mizuki-natsu.js": "e74bafb29f7a44c3c91deba5a39fc8939e69ccfb96d250c9f5129aeba2bd0858",
+    "src/romance127-nagi-kanade.js": "e0a3d64923f54bffa74ad669576ace859f5d821244d988dcedd0e8cb90d7a18a",
+    "src/romance127-tsumugi.js": "d95719894b6cbde2f89cd78b71ccac86422ad730d886abeb229d16e8d213c39b",
+    "src/romance127.js": "4f3ccacc3b5955fb8a742560245423a670e8fd30b29ba3bd4a0ff468987f0b8f",
+    "src/routes130.js": "2e89f4c8a4c1dbeabeeb84b9def85d491e4a662447a0c9759b92a92fcce3d981",
+    "src/scene131.js": "c27a85f8ddb1edd6f95bb1989cdcb20bfbaf002636f531760e5dfc289dab303f",
+    "src/script.js": "757bbac4b31fa83e5f2053cebff7df866f854c308a122b87eeeff4f516e74c8d",
+    "src/social129.js": "f517834b9676d1e2a30db61f008a6a9f5336c599a3c16018b43d5437580e4809",
+    "src/storage122.js": "fe20793265e658d5b2a09f3c89233d8646c6690048b4f69eeef8c33e7fee81e4",
+    "src/story-extra.js": "93784e311796e3fb4c6fe904b387961360651cf4d0f6f17769393c06358f3f31",
+    "src/story.js": "81c0904785e52004c5c6802a9c4d0d997658ec8996b6b6e12b743bc486f60979",
+    "src/support146.js": "3dc061366d6b431bbf4f12fd31d8d6669fbf06a0b6242776b52f1c72f58e535d",
+    "src/thrill.js": "7abbaca5709a867b02e86d055e77b7b5fdf32f69fe33fc3f48afa04a64f759dd",
+    "src/visual-assets.js": "d0a1b639c3e9e071fdc0dddfa649080acc45c5d95140f0f7c716423358e20edf",
+    "src/workshop128.js": "0fdcd61871049c7156e26a0e3b3036e59856f046452023b7626c87624d140d35"
+  },
+  "sourceSha256": "2f2d9d4c1a69137c7d92b572ad471eebaf83db039045193046a48bfba3558138",
+  "reports": {
+    "progress": {
+      "checks": 94,
+      "seconds": 205.25,
+      "sha256": "98ce94c2d88a732572ef9fd8d7da9ff0eb1816189ca8ecff8496e9c359c89637"
+    },
+    "cpu-stats": {
+      "checks": 8,
+      "seconds": 1.04,
+      "sha256": "93564632a9e60021fc5cbd200785b224223b1f47cb39070dcf8452f009880721"
+    },
+    "hard": {
+      "checks": 16,
+      "seconds": 2.56,
+      "sha256": "85ffe1cf0eec71e2d19f3dc9fea8a18dde1fc3d8c4969b6200f8740211264528"
+    },
+    "cpu-start": {
+      "checks": 13,
+      "seconds": 26.47,
+      "sha256": "8b6ec6cdf81a34a142578674a17abb4132af9c8f36d00b0f5c308bf23b6120c3"
+    },
+    "rules": {
+      "checks": 15,
+      "seconds": 3.45,
+      "sha256": "1d79b2e80fd58abaea0a2145ee58d25cd8396872248252e02b9d727d203e6204"
+    },
+    "improve": {
+      "checks": 24,
+      "seconds": 22.96,
+      "sha256": "078ce07239755cfe14625dd9e131cdca194647f460b483b1b6d27a496833ef4b"
+    },
+    "controls": {
+      "checks": 12,
+      "seconds": 0.92,
+      "sha256": "f99e38648680e47347366dfadba008edf7284bdb362aadfd323cb847ccf734bf"
+    },
+    "continuity": {
+      "checks": 29,
+      "seconds": 1.71,
+      "sha256": "bf03e92899457252e939c636e937186cdb4399e135733f383ef84ec63d1ab77a"
+    },
+    "after": {
+      "checks": 19,
+      "seconds": 9.75,
+      "sha256": "d49e3228801f66a30f733fbd60e88010d6b48b310bbf8ab729da506783e65684"
+    },
+    "progression": {
+      "checks": 15,
+      "seconds": 0.45,
+      "sha256": "036770415a1542916c8e81488ef50faa4ebec0a4115bc309ea0144e5caaa7bc6"
+    },
+    "review": {
+      "checks": 14,
+      "seconds": 4.9,
+      "sha256": "f0c8e527c6860d6528a55aeff5ec2f94dd1f3193529790bc240240e072b82b71"
+    },
+    "challenge": {
+      "checks": 22,
+      "seconds": 39.89,
+      "sha256": "7a26f745b1c6382788a59ae8f1a33d2d85a0c75d0c2a9badd0c7b9cfced35cda"
+    },
+    "memory": {
+      "checks": 24,
+      "seconds": 0.74,
+      "sha256": "d05468dd41a5465d5c03b5f133781d2f8d18d22f10a9cbb8461e95382ad93f90"
+    },
+    "support": {
+      "checks": 9,
+      "seconds": 0.33,
+      "sha256": "01b6f14887fd33fab4a6fa01fc981684752cbc7360cf62621bf9917b6406a3fa"
+    },
+    "race-skip": {
+      "checks": 10,
+      "seconds": 14.21,
+      "sha256": "94e5d5c8ae17fadfe54350fb78a6971466900e18b1f17255b1812945e77930f3"
+    }
+  },
+  "checksTotal": 324,
+  "browserTested": false,
+  "browserReport": "See tests/browser-v147.json for a separate source-bound real-browser run",
+  "physicalDevicesTested": false
+}

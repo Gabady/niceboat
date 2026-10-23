@@ -34,7 +34,7 @@ const recoveryChapters=[
  ['折れた先の水面','桟橋で、相馬に最後の確認をした。「ここまで変えてきた走りで行きます」声は、自分でも思ったより落ち着いていた。昔に戻るためではない。今日の一着を取るために、艇へ乗り込んだ。']
 ];
 const chapter=c=>(c.campaign?.arc==='recovery'?recoveryChapters:chapters)[c.stage];
-const stageName=c=>c.campaign?.arc==='recovery'&&c.stage<2?'復帰シリーズ '+(c.stage?'後期':'前期'):D.stages[c.stage].name;
+const stageName=c=>c.short143?'短編 · '+(c.campaign.arc==='recovery'?'復帰の一節':'新人の一節'):c.campaign?.arc==='recovery'&&c.stage<2?'復帰シリーズ '+(c.stage?'後期':'前期'):D.stages[c.stage].name;
 const choice=(label,effect,reply)=>({label,effect,reply});
 const stat=(key,value=.35)=>({stat:key,value});
 const gear=(part,value=1.2)=>({gear:part,value});
@@ -164,14 +164,14 @@ function settle(c,r,result,api){
  log(c,{kind:'duelResult',title:won?'ライバル対決 勝利':'次こそ、先へ',note:q.rivalName+(won?'「今日は君の勝ちだ。次は譲らない」':'「また同じ水面で会おう。その時も、先は譲らない」'),rewards:won?[q.money+'万円',z.skill?D.abilityMap[z.skill].name:'', '人気＋3'].filter(Boolean):[]});
  result.duel=z;return z;
 }
-function finish(c){const t=ensure(c);if(!c.ending||t.closed)return;t.closed=c.ending;log(c,{kind:'chapter',title:c.ending==='sgChampion'?'水面に刻んだ名前':c.ending==='gate'?'まだ、物語の途中':'最高峰の、その先へ',note:c.ending==='sgChampion'?'表彰台から、あの横断幕が見えた。朝倉と篠原、七瀬もいる。勝ったのは一艇。でも、ここまで来たのは一人ではなかった。':c.ending==='gate'?'最高峰への条件には届かなかった。練習帳を開くと、最初の頃にはできなかった動きが何度も書かれている。朝倉が隣に座った。「悔しいな。落ち着いたら、次の練習を考えよう」':'最高峰の水面から戻ると、篠原はいつものように艇を受け止めた。「次は、どんな走りにしようか」物語は、まだ続いている。'});}
+function finish(c){const t=ensure(c);if(!c.ending||t.closed)return;t.closed=c.ending;if(c.short143){log(c,{kind:'chapter',title:'一節を持ち帰る',note:'今回の一節を終えた。準備と出走の記録をまとめ、次に試したいことをノートへ残した。'});return;}log(c,{kind:'chapter',title:c.ending==='sgChampion'?'水面に刻んだ名前':c.ending==='gate'?'まだ、物語の途中':'最高峰の、その先へ',note:c.ending==='sgChampion'?'表彰台から、あの横断幕が見えた。朝倉と篠原、七瀬もいる。勝ったのは一艇。でも、ここまで来たのは一人ではなかった。':c.ending==='gate'?'最高峰への条件には届かなかった。練習帳を開くと、最初の頃にはできなかった動きが何度も書かれている。朝倉が隣に座った。「悔しいな。落ち着いたら、次の練習を考えよう」':'最高峰の水面から戻ると、篠原はいつものように艇を受け止めた。「次は、どんな走りにしようか」物語は、まだ続いている。'});}
 function valid(t){
  if(t?.introductions!==undefined&&!Introductions?.valid(t.introductions))return false;
  const str=(s,n)=>typeof s==='string'&&s.length<=n,num=(v,a,b)=>Number.isInteger(v)&&v>=a&&v<=b,id=s=>str(s,110)&&/^[a-zA-Z0-9_:-]+$/.test(s);
  if(t?.skillStages&&(!Array.isArray(t.skillStages)||t.skillStages.length>9||new Set(t.skillStages).size!==t.skillStages.length||!t.skillStages.every(v=>num(v,0,8))))return false;
  if(t?.arcs&&(typeof t.arcs!=='object'||Array.isArray(t.arcs)||!Object.entries(t.arcs).every(([k,a])=>Extra.arcs.some(x=>x.id===k)&&a&&num(a.step,1,3)&&num(a.route,0,1)&&num(a.lastStage,0,8)&&(a.insight===undefined||num(a.insight,0,a.step)))))return false;
  if(t?.pending&&('variant' in t.pending)&&(!num(t.pending.variant,0,1)||t.pending.variant>0&&!eventMap[t.pending.id]?.branches?.[t.pending.variant]))return false;
- if(!t||('closed' in t&&!['sgChampion','sgFinished','gate'].includes(t.closed))||t.version!==1||!num(t.seed,0,4294967295)||!num(t.serial,0,2000)||!Array.isArray(t.chapters)||t.chapters.length>9||!t.chapters.every(v=>num(v,0,8))||new Set(t.chapters).size!==t.chapters.length||!Array.isArray(t.gates)||t.gates.length>60||!t.gates.every(id)||!t.seen||!Object.entries(t.seen).every(([k,v])=>eventMap[k]&&num(v,0,1000))||!t.bonds||!['mentor','mechanic'].every(k=>num(t.bonds[k],0,1000))||!Array.isArray(t.shown)||t.shown.length>100||!t.shown.every(s=>str(s,150))||!Array.isArray(t.rivals)||t.rivals.length>9||!t.rivals.every(r=>id(r.id)&&str(r.name,30)&&num(r.wins,0,9)&&num(r.losses,0,9)&&num(r.met,0,8)))return false;
+ if(!t||('closed' in t&&!['sgChampion','sgFinished','gate','short'].includes(t.closed))||t.version!==1||!num(t.seed,0,4294967295)||!num(t.serial,0,2000)||!Array.isArray(t.chapters)||t.chapters.length>9||!t.chapters.every(v=>num(v,0,8))||new Set(t.chapters).size!==t.chapters.length||!Array.isArray(t.gates)||t.gates.length>60||!t.gates.every(id)||!t.seen||!Object.entries(t.seen).every(([k,v])=>eventMap[k]&&num(v,0,1000))||!t.bonds||!['mentor','mechanic'].every(k=>num(t.bonds[k],0,1000))||!Array.isArray(t.shown)||t.shown.length>100||!t.shown.every(s=>str(s,150))||!Array.isArray(t.rivals)||t.rivals.length>9||!t.rivals.every(r=>id(r.id)&&str(r.name,30)&&num(r.wins,0,9)&&num(r.losses,0,9)&&num(r.met,0,8)))return false;
  if(!Array.isArray(t.log)||t.log.length>72||!t.log.every(l=>num(l.index,1,2000)&&num(l.stage,0,8)&&['chapter','event','duel','duelResult','skip'].includes(l.kind)&&str(l.title,80)&&str(l.note,3000)&&(!l.rewards||Array.isArray(l.rewards)&&l.rewards.length<=6&&l.rewards.every(s=>str(s,100)))))return false;
  if(t.pending&&(!['duel','event'].includes(t.pending.kind)||!id(t.pending.key)||!id(t.pending.raceId)||!(t.pending.kind==='duel'?t.pending.id==='duel':eventMap[t.pending.id])))return false;
  const q=t.duel;if(q&&(!num(q.stage,0,8)||!num(q.round,1,4)||!['scheduled','offered','accepted','declined','settled'].includes(q.status)||!id(q.rivalId)||!str(q.rivalName,30)||!num(q.money,0,150)||(q.raceId!==null&&!id(q.raceId))||!t.rivals.some(n=>n.id===q.rivalId)))return false;

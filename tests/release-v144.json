@@ -1,0 +1,44 @@
+{
+  "build": "144",
+  "revision": "progression-and-preparation-ab-2026-10-22",
+  "modules": 65,
+  "sourceSha256": "c59b5720f2ea132af37e98a4abd831ff3c9b64f2aa7930f03f07268455ea7e3c",
+  "checks": {
+    "progress": 71,
+    "cpu-stats": 8,
+    "hard": 16,
+    "cpu-start": 13,
+    "rules": 15,
+    "improve": 24,
+    "controls": 10,
+    "continuity": 29,
+    "after": 19,
+    "progression": 15
+  },
+  "checksTotal": 220,
+  "deliveredInlineChecks": 213,
+  "improvementSuiteSimulatedRaces": 10,
+  "afterSuiteSimulatedRaces": 5,
+  "scope": [
+    "shared progression availability and primary action policy",
+    "stale-render and target guards including deferred registration",
+    "atomic career settlement, series transitions and story choices",
+    "compact preparation and result screens with persistent disclosures",
+    "old-save and cup/exhibition progression compatibility"
+  ],
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "Production DOM/input handlers run in adapters, not real layout or touchscreen.",
+    "No browser screenshots or physical-device/audio/FPS verification.",
+    "Reports named V143 and earlier are historical.",
+    "Short careers stop after two qualifiers and, when qualified, one final; they do not advance the ten-part heroine routes."
+  ]
+}

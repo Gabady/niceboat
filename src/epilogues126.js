@@ -711,16 +711,17 @@ function performanceCues(id,outcome,story){
  }return result;
 }
 function entry(kind,id,relationship,chapterStep,result,story){
- const p=people[id];return {key:'epilogue126:'+kind+':'+id,id:kind+':'+id,kind,person:{id,name:p.name,portraitKey:p.portraitKey},title:story.title,relationship,chapterStep,outcome:result.outcome,background:p.background,expressionCues:kind==='heroine'&&relationship==='partner'?(story.expressionCues||performanceCues(id,result.outcome,story)):{},body:[lead(result),...story.body]};
+ const p=people[id];return {key:'epilogue126:'+kind+':'+id,id:kind+':'+id,kind,person:{id,name:p.name,portraitKey:p.portraitKey},title:story.title,relationship,chapterStep,outcome:result.outcome,background:p.background,expressionCues:kind==='heroine'&&relationship==='partner'?(story.expressionCues||(story.continuity142?{}:performanceCues(id,result.outcome,story))):{},body:[lead(result),...story.body]};
 }
-function capture(c){
+function capture(c){if(c?.short143)return null;
  if(c?.epilogues126)return c.epilogues126;
  const result=classify(c);if(!result)return null;
  const entries=[],b=c.bonds;
  for(const id of heroineIds){const q=b?.heroines?.[id];if(!q?.met)continue;
   const completed=b.partner===id&&q.dated&&!q.failed;
   const relationship=completed?'partner':q.failed?(String(q.reason||'').includes('友人')?'friend':'apart'):'acquaintance';
-  const story=completed?(Romance?.ending(id,result.outcome)||stories[id][result.outcome]):shortHeroine(id,result.outcome,relationship);
+  const fallback=completed?(Romance?.ending(id,result.outcome)||stories[id][result.outcome]):shortHeroine(id,result.outcome,relationship);
+  const story=(root.KM_CONTINUITY142||(typeof require==='function'?require('./continuity142.js'):null)).ending(c,id,result,fallback);
   entries.push(entry('heroine',id,relationship,q.step||0,result,story));
  }
  const mentor=c.cast?.mentor?.id,intro=c.cast?.introduction;

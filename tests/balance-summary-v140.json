@@ -1,0 +1,148 @@
+{
+  "build": "140",
+  "sourceSha256": "395d6de2246546128258664d9c461485b01a8230ace67b58f6a4dd6365086187",
+  "pairedConditions": 44,
+  "simulatedRaces": 88,
+  "groups": [
+    {
+      "stage": 7,
+      "control": "manual",
+      "pairs": 10,
+      "before": {
+        "place": 3.5,
+        "earlyLeaderGap": 31.244,
+        "finalLapLeaderGap": 89.822,
+        "duelSeconds": 46.55,
+        "finalLapDuelSeconds": 10.55,
+        "overtakes": 1.4,
+        "lostPositions": 1.4,
+        "faults": 0.0,
+        "finishers": 6.0
+      },
+      "after": {
+        "place": 1.3,
+        "earlyLeaderGap": 2.343,
+        "finalLapLeaderGap": 5.755,
+        "duelSeconds": 31.4,
+        "finalLapDuelSeconds": 7.3,
+        "overtakes": 1.4,
+        "lostPositions": 1.0,
+        "faults": 0.0,
+        "finishers": 6.0
+      }
+    },
+    {
+      "stage": 7,
+      "control": "spectator",
+      "pairs": 10,
+      "before": {
+        "place": 1.5,
+        "earlyLeaderGap": 1.899,
+        "finalLapLeaderGap": 22.266,
+        "duelSeconds": 32.9,
+        "finalLapDuelSeconds": 5.35,
+        "overtakes": 0.3,
+        "lostPositions": 0.8,
+        "faults": 0.0,
+        "finishers": 6.0
+      },
+      "after": {
+        "place": 1.2,
+        "earlyLeaderGap": 0.401,
+        "finalLapLeaderGap": 1.594,
+        "duelSeconds": 18.8,
+        "finalLapDuelSeconds": 2.65,
+        "overtakes": 0.1,
+        "lostPositions": 0.2,
+        "faults": 0.0,
+        "finishers": 6.0
+      }
+    },
+    {
+      "stage": 8,
+      "control": "manual",
+      "pairs": 10,
+      "before": {
+        "place": 5.7,
+        "earlyLeaderGap": 63.207,
+        "finalLapLeaderGap": 198.077,
+        "duelSeconds": 22.65,
+        "finalLapDuelSeconds": 4.15,
+        "overtakes": 0.8,
+        "lostPositions": 0.9,
+        "faults": 0.0,
+        "finishers": 6.0
+      },
+      "after": {
+        "place": 3.8,
+        "earlyLeaderGap": 43.611,
+        "finalLapLeaderGap": 139.69,
+        "duelSeconds": 70.827,
+        "finalLapDuelSeconds": 23.577,
+        "overtakes": 2.6,
+        "lostPositions": 2.5,
+        "faults": 0.0,
+        "finishers": 6.0
+      }
+    },
+    {
+      "stage": 8,
+      "control": "spectator",
+      "pairs": 10,
+      "before": {
+        "place": 5.6,
+        "earlyLeaderGap": 59.234,
+        "finalLapLeaderGap": 177.384,
+        "duelSeconds": 43.513,
+        "finalLapDuelSeconds": 11.463,
+        "overtakes": 1.1,
+        "lostPositions": 1.8,
+        "faults": 0.0,
+        "finishers": 6.0
+      },
+      "after": {
+        "place": 3.2,
+        "earlyLeaderGap": 32.253,
+        "finalLapLeaderGap": 112.78,
+        "duelSeconds": 62.85,
+        "finalLapDuelSeconds": 19.35,
+        "overtakes": 1.6,
+        "lostPositions": 1.6,
+        "faults": 0.0,
+        "finishers": 6.0
+      }
+    }
+  ],
+  "finals": {
+    "before": {
+      "place": 2.0,
+      "earlyLeaderGap": 8.933,
+      "finalLapLeaderGap": 17.743,
+      "duelSeconds": 26.125,
+      "finalLapDuelSeconds": 2.5,
+      "overtakes": 0.25,
+      "lostPositions": 0.25,
+      "faults": 0.0,
+      "finishers": 6.0
+    },
+    "after": {
+      "place": 1.5,
+      "earlyLeaderGap": 0.0,
+      "finalLapLeaderGap": 14.91,
+      "duelSeconds": 23.375,
+      "finalLapDuelSeconds": 5.25,
+      "overtakes": 0.25,
+      "lostPositions": 0.25,
+      "faults": 0.0,
+      "finishers": 6.0
+    }
+  },
+  "allPlayerFinishers": true,
+  "afterStartFaults": 0,
+  "limitations": [
+    "Two fixed seeds/water conditions; not a population win-rate estimate.",
+    "Manual uses existing AI as surrogate input with manual-player physics; no human input tests.",
+    "Fixed ability total 475 and N/SR/SSR/SSR loadouts, not a full career progression simulation.",
+    "Six-boat contact interactions can change individual outcomes non-monotonically."
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "build": "139",
+  "revision": "reimplemented-from-v137-2026-10-22",
+  "modules": 58,
+  "sourceSha256": "d77b7227d7dd214360fd3cd4513087fd359f738b5f791507ac71a223f299417f",
+  "hardCpuReduction": {
+    "stats": 5,
+    "stages": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "sgUnchanged": true,
+    "playerUnchanged": true,
+    "activeRacesPreserved": true
+  },
+  "checks": {
+    "cpu-stats": 8,
+    "progress": 37,
+    "hard": 16,
+    "cpu-start": 13
+  },
+  "checksTotal": 74,
+  "deliveredInlineChecks": 111,
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "DOM adapter executes the production handlers, not real layout or touchscreen.",
+    "Browser installation failed; no browser screenshots or physical-device/audio/FPS verification."
+  ]
+}

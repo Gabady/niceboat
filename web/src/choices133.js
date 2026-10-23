@@ -92,9 +92,9 @@ const beats={
 function heroine(sc,c,id,index){if(!sc)return sc;const q=c.bonds?.heroines[id],b=beats[id]?.[index];let body=sc.body.slice(),choices=sc.choices;
  if(b){body.push(...b.tail);choices=b.options.map((o,code)=>({code,label:o[0],reply:o[1],emotion:code===1?'thoughtful':'warm',trust:10,affection:10}));}
  const previous=q?.memories133?.find(x=>x.chapter===index-1);
- if(previous){const o=beats[id][previous.chapter].options[previous.option];body=[S.bridge('あの話をしたあと','次に会う日まで'),...o[2],S.bridge('それから数日','この日の出来事'),...body];}
- if(index===7&&q?.memories133?.length){const m=q.memories133.at(-1),label=beats[id][m.chapter].options[m.option][0];body.splice(1,0,'主人公（心の声）「『'+label+'』。'+({akari:'そう言った頃は、工房に行く用事を探していた。今日は、何も持ってこなかった。',mio:'あの返事を送る時も、何度か書き直した。今日は、顔を見て言わないと。',nagi:'会う日を決めるたび、勤務の予定だけでなく自分の予定も伝えるようになった。次の約束も、したい。',kanade:'教室を出てからも、あの声を思い出していた。曲の続きを聴きたいだけでは、もうない。',tsumugi:'店の外で会う日を、こんなに待つようになるとは思わなかった。今日は、客の顔ではいられない。',mizuki:'勝負の話なら、すぐ言い返せるのに。今は一言を決めるのに、こんなにかかる。',natsu:'旗を振る姿より、隣を歩く横顔を思い出すことが増えた。本人に言ったら、どんな顔をするだろう。'})[id]+'」');}
- return {...sc,readerVersion:133,body,choices,memoryChapter133:b?index:null};
+ if(previous&&!sc.continuity142){const o=beats[id][previous.chapter].options[previous.option];body=[S.bridge('あの話をしたあと','次に会う日まで'),...o[2],S.bridge('それから数日','この日の出来事'),...body];}
+ if(index===7&&!sc.continuity142&&q?.memories133?.length){const m=q.memories133.at(-1),label=beats[id][m.chapter].options[m.option][0];body.splice(1,0,'主人公（心の声）「『'+label+'』。'+({akari:'そう言った頃は、工房に行く用事を探していた。今日は、何も持ってこなかった。',mio:'あの返事を送る時も、何度か書き直した。今日は、顔を見て言わないと。',nagi:'会う日を決めるたび、勤務の予定だけでなく自分の予定も伝えるようになった。次の約束も、したい。',kanade:'教室を出てからも、あの声を思い出していた。曲の続きを聴きたいだけでは、もうない。',tsumugi:'店の外で会う日を、こんなに待つようになるとは思わなかった。今日は、客の顔ではいられない。',mizuki:'勝負の話なら、すぐ言い返せるのに。今は一言を決めるのに、こんなにかかる。',natsu:'旗を振る姿より、隣を歩く横顔を思い出すことが増えた。本人に言ったら、どんな顔をするだろう。'})[id]+'」');}
+ return {...sc,readerVersion:sc.continuity142?142:133,body,choices,memoryChapter133:b?index:null};
 }
 function remember(q,sc,ch){if(sc.memoryChapter133===null||sc.memoryChapter133===undefined)return;q.memories133||=[];if(!q.memories133.some(x=>x.chapter===sc.memoryChapter133))q.memories133.push({chapter:sc.memoryChapter133,option:ch.code});}
 function valid(q){return q.memories133===undefined||Array.isArray(q.memories133)&&q.memories133.length<=2&&Array.isArray(q.choices)&&q.memories133.every(x=>x&&typeof x==='object')&&new Set(q.memories133.map(x=>x.chapter)).size===q.memories133.length&&q.memories133.every(x=>[2,4].includes(x.chapter)&&x.chapter<q.step&&[0,1,2].includes(x.option)&&q.choices[x.chapter]===x.option);}

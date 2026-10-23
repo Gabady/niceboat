@@ -13,7 +13,7 @@ function capture(c,z){const t=ensure(c);if(t.closed)return t;const i=B.stages.in
  if(c.ending==='gate')close(c,'gate');else if(z.stage===8)t.closed=true;return t;
 }
 function close(c,kind='early'){const t=ensure(c);if(t.closed)return t;t.entries.push({id:kind,kind,stage:c.stage,outcome:'setback',...build(c.player),read:false});t.closed=true;return t;}
-function mark(t,id){const e=t?.entries.find(e=>e.id===id);if(!e)return false;e.read=true;return true;}
+function mark(t,id){const e=t?.entries.find(e=>e.id===id);if(!e||t.version===2&&!e.legacy&&e.choiceSpec!==null&&!e.decision)return false;e.read=true;return true;}
 function scene(t,id){const a=B.map[t.arc],e=t.entries.find(e=>e.id===id);if(!a||!e)return null;
  let title,body;if(e.kind==='opening'){title='プロローグ';body=a.intro.slice();if(e.late)body.unshift('これまでの走りを振り返るうち、デビューの日のことを思い出した。あの日、どんな思いで艇に乗ったのか。');}
  else if(e.kind==='season'){const i=B.stages.indexOf(e.stage),ch=a.chapters[i];title=ch.title;body=[...ch.body,ch.variants[e.outcome]];if([3,7,8].includes(e.stage)){body.push(a.craft[e.strong]);if(e.weak)body.push(D.stats[e.weak]+'は、ほかの能力に比べてまだ低い。次はそこを練習して、得意な走りを生かしたい。');}}

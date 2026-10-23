@@ -37,7 +37,7 @@ const followups={
 };
 function spec(arc,i){const a=arcs[arc];return [...a.choices[i],...a.keys,...a.replies];}
 function goal(t){if(t.arc==='light')return t.mode===0?'別々の二走で、同じ部位を整備する':'モーターとプロペラを一度ずつ整備する';if(t.arc==='back')return t.mode===0?D.stats[t.focus]+'を別々の二走で練習する':'ライバルと特訓し、'+D.stats[t.focus]+'を自主練する';const target=t.mode===0&&t.arc==='shore'?'power':t.focus;return D.stats[target]+'を練習してから、'+(t.arc==='shore'&&t.mode===1?'三着以内で有効完走する':'一走を有効完走する');}
-function select(c,e,index){const arc=c.campaign.arc,weak=keys.slice().sort((a,b)=>c.player.stats[a]-c.player.stats[b])[0],origin=c.refinement?.recovery?.origin||weak;
+function select(c,e,index){const P=root.KM_PASSAGE143||(typeof require==='function'?require('./passage143.js'):null);P.archiveTask(c);const arc=c.campaign.arc,weak=keys.slice().sort((a,b)=>c.player.stats[a]-c.player.stats[b])[0],origin=c.refinement?.recovery?.origin||weak;
  const focus=arc==='back'?weak:arc==='shore'?(index===0?'power':'turn'):arc==='recovery'?(index===0?origin:({speed:'accel',turn:'power',start:'turn',accel:'speed',power:'start'})[origin]):index===0?'speed':'turn';
  c.campaign.task133={version:1,arc,source:e.id,mode:index,focus,records:[],completed:false,rewarded:false};return '\n次の実践：'+goal(c.campaign.task133)+'。練習・整備はいつもの行動枠を使います。';
 }

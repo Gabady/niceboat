@@ -1,0 +1,13 @@
+競艇物語 V147
+
+ZIPを展開し、START.html を開いて「ゲームを開く」を押してください。
+Android: index_android_safe.html
+iPhone / iPad: index_iphone_safe.html
+PC: index.html
+
+操船中の一時停止から「結果へスキップ」を選べます。通常シリーズの優勝戦・準優勝戦もスキップ可能です。最優秀シリーズの最終戦（優勝戦・順位決定戦）だけ手動必須です。
+
+更新前に旧版でセーブJSONを書き出し、新版タイトルの「旧版のセーブを引き継ぐ」から復元します。続きが確認できるまで旧版とJSONを残してください。
+
+端末のファイルプレビューでは実行や保存が制限される場合があります。JavaScriptを実行できるHTML閲覧環境で開いてください。公開URL版はこの配布には含まれません。
+検証結果と範囲はREADME.mdとtests/release-v147.jsonに記載。実機・Safari・実機音声/FPSは未検証です。

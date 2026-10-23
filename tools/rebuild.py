@@ -1,6 +1,13 @@
 from pathlib import Path
 import re,json
 from sync_safe import sync_safe
+
+def atomic_text(path,text):
+    if not text: raise ValueError('Empty generated file: '+str(path))
+    temporary=path.with_name(path.name+'.building')
+    temporary.write_text(text)
+    temporary.replace(path)
+
 root=Path(__file__).resolve().parents[1]
 names=json.loads((root/'tools/script_order.json').read_text())
 html=(root/'index.html').read_text()
@@ -18,6 +25,6 @@ for name in names:
  text=(root/'src'/(name+'.js')).read_text()
  if '</script' in text.lower():raise ValueError('JS本文にscript終端タグが含まれています')
  blocks.append('<script>\n'+text+'\n</script>')
-(root/'index.html').write_text(html[:start]+'\n'.join(blocks)+html[end:])
+atomic_text(root/'index.html',html[:start]+'\n'.join(blocks)+html[end:])
 sync_safe(root)
 print('基本HTMLと両Safe版を更新しました。web/の更新は rebuild_web.py を実行してください。')

@@ -1,0 +1,34 @@
+{
+  "build": "146",
+  "sourceSha256": "22c354f2300ffb80e4a15173cd6771d51f43f7a8e42518b2791a0810fca076a2",
+  "gameScripts": 70,
+  "testType": "Delivered inline scripts and delegated pointer/click handlers in DOM adapter",
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "entries": [
+    {
+      "file": "index.html",
+      "sha256": "22c354f2300ffb80e4a15173cd6771d51f43f7a8e42518b2791a0810fca076a2",
+      "allGameScriptsEqual": true,
+      "inlineCodeExecuted": true,
+      "delegatedClickChecks": 92,
+      "passed": true
+    },
+    {
+      "file": "index_android_safe.html",
+      "sha256": "155da16e829e32c58287e6698b83dd5813e588e939d2a22d1099574ff5234538",
+      "allGameScriptsEqual": true,
+      "inlineCodeExecuted": true,
+      "delegatedClickChecks": 92,
+      "passed": true
+    },
+    {
+      "file": "index_iphone_safe.html",
+      "sha256": "86196e08547281c931850fafd936a00d1ce598d7fe845b44e1e566acff49405b",
+      "allGameScriptsEqual": true,
+      "inlineCodeExecuted": true,
+      "delegatedClickChecks": 92,
+      "passed": true
+    }
+  ]
+}

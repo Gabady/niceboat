@@ -1,0 +1,42 @@
+{
+  "build": "141",
+  "revision": "review-practice-next-race-stage-3-2026-10-22",
+  "modules": 59,
+  "sourceSha256": "ed2529255e3070aa9b2bec177ed7146377f022372a9ed051397b4df0d446a3bf",
+  "checks": {
+    "progress": 46,
+    "cpu-stats": 8,
+    "hard": 16,
+    "cpu-start": 13,
+    "rules": 15,
+    "improve": 24,
+    "controls": 10
+  },
+  "checksTotal": 132,
+  "deliveredInlineChecks": 138,
+  "improvementSuiteSimulatedRaces": 10,
+  "scope": [
+    "review goal -> normal training/maintenance -> one next-race comparison",
+    "same equipment/water, nearby recorded segment practice without career writes",
+    "contextual opponent hints",
+    "brief skill/wake/contact feedback",
+    "optional all-final spectator mode and separate actual control records",
+    "three-stage tutorial and configurable tap/drag controls"
+  ],
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "Production DOM/input handlers run in adapters, not real layout or touchscreen.",
+    "Replay-derived practice approximates positions/speeds/wakes; transient effects and loads reset.",
+    "Next-race differences are observations, not isolated causal training effects.",
+    "No browser screenshots or physical-device/audio/FPS verification.",
+    "Reports named V140 and earlier are historical, not rerun balance benchmarks."
+  ]
+}

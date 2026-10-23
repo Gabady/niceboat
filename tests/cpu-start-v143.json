@@ -1,0 +1,93 @@
+{
+  "build": "143",
+  "scope": "Real fixed-step engine; V136 physics comparison, eligibility, starts, save continuity and full races. No browser/device verification.",
+  "baselineSha256": "6e20cf4b1dcf0b3f85c0e84c417a2d3656149508a900b0da0f4844c2bf1fc507",
+  "checks": [
+    "素のスタート90以上だけS、100超でSS。A境界と小数は抜け道にならない",
+    "対象は零・一閃・先駆と各MLR版だけ。一般技や無関係なMLRで解禁しない",
+    "人物名・ボス属性・会場・一時能力補正では強い踏み込みを解禁しない",
+    "全難易度・各グレードで通常CPUの初動推力を抑え、S・SSも旧版を超えて増幅しない",
+    "同じ能力ならS・SSと指定技能の所持者は通常CPUより強い踏み込みを保つ",
+    "プレイヤーの推力とF/L許容は手動・観戦とも変更しない",
+    "補正終了前の1秒で通常加速へ滑らかに戻り、その後の物理係数は同じ",
+    "通常CPUは実助走でも通過速度が抑えられ、6コースで合法スタートする",
+    "S・SSと指定技能は強さを残し、向かい風・追い風でもF/Lを増やさない",
+    "V136の助走途中セーブは旧物理のまま続き、能力・整備値を切り下げない",
+    "更新後の助走途中は保存・再開で完全一致し、ルール番号の不正値を拒否する",
+    "操作練習の旧記録を保持し、変更後の条件とは別記録にする",
+    "全難易度の3周実走が終了し、有限値・通過判定・セーブ形式を維持する"
+  ],
+  "opening": [
+    {
+      "mode": "easy",
+      "start": 65,
+      "beforeKmh": 75.85676154848095,
+      "afterKmh": 71.09164440068588
+    },
+    {
+      "mode": "easy",
+      "start": 80,
+      "beforeKmh": 80.3909656613998,
+      "afterKmh": 71.52862086085975
+    },
+    {
+      "mode": "easy",
+      "start": 89,
+      "beforeKmh": 82.98180908557515,
+      "afterKmh": 71.74329005362006
+    },
+    {
+      "mode": "normal",
+      "start": 65,
+      "beforeKmh": 81.47333361071442,
+      "afterKmh": 74.55063175631204
+    },
+    {
+      "mode": "normal",
+      "start": 80,
+      "beforeKmh": 86.337867310216,
+      "afterKmh": 75.00178483631181
+    },
+    {
+      "mode": "normal",
+      "start": 89,
+      "beforeKmh": 89.17130822635256,
+      "afterKmh": 75.2738698988438
+    },
+    {
+      "mode": "hard",
+      "start": 65,
+      "beforeKmh": 80.76699119698202,
+      "afterKmh": 73.92167875893756
+    },
+    {
+      "mode": "hard",
+      "start": 80,
+      "beforeKmh": 85.65485399139077,
+      "afterKmh": 74.41844732798216
+    },
+    {
+      "mode": "hard",
+      "start": 89,
+      "beforeKmh": 88.42840853769083,
+      "afterKmh": 74.66550455400701
+    }
+  ],
+  "fullRaces": [
+    {
+      "mode": "easy",
+      "finishers": 6,
+      "elapsed": 118.59999999999455
+    },
+    {
+      "mode": "normal",
+      "finishers": 6,
+      "elapsed": 116.31666666666135
+    },
+    {
+      "mode": "hard",
+      "finishers": 6,
+      "elapsed": 118.68333333332788
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "build": "136",
+  "scope": "Paired V135/V136 engine comparisons; event-frequency simulations are not player win-rate estimates",
+  "checks": [
+    "同じ能力と乱数で、ハードの練習・イベント・レース後成長を旧版と比較",
+    "イージーとノーマルは同条件の練習・イベント・実走結果が旧版と一致",
+    "54走すべて不振の試算でも回数をリセットし、同一レースで二重発生しない"
+  ],
+  "growth": {
+    "training": {
+      "samples": 60,
+      "oldMean": 1.939833333333333,
+      "newMean": 2.2343333333333324,
+      "ratio": 1.151817166423232
+    },
+    "event": {
+      "samples": 60,
+      "oldMean": 0.1599999999999966,
+      "newMean": 0.18999999999999773,
+      "ratio": 1.187500000000011
+    },
+    "race": {
+      "samples": 60,
+      "oldMean": 1.1833333333333367,
+      "newMean": 1.3676666666666706,
+      "ratio": 1.1557746478873239
+    }
+  },
+  "frequency": {
+    "sixth": {
+      "runs": 5000,
+      "racesPerRun": 54,
+      "meanEvents": 6.9684,
+      "medianEvents": 7,
+      "p90Events": 8,
+      "meanSkills": 8.7102
+    },
+    "outsidePodium": {
+      "runs": 5000,
+      "racesPerRun": 54,
+      "meanEvents": 5.418,
+      "medianEvents": 5,
+      "p90Events": 6,
+      "meanSkills": 5.418
+    }
+  }
+}

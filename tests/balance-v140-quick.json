@@ -1,0 +1,88 @@
+{
+  "build": "140",
+  "scope": "Fixed-step AI surrogate, paired seeds/courses/equipment/weather. Not human win rates. Manual mode uses the existing autopilot on the unassisted player physics; spectator mode uses its actual player pace. Distance gaps are sampled at player 300 m / 1200 m. Duels mean another active boat within 15 m progress after 150 m. Overtakes require a change from >2 m behind to >2 m ahead of an active boat.",
+  "baselineSha256": "e4c6922d1ffa0292e97fe3c89a375a512258ac6e06a98e1d1970087896507d0e",
+  "races": [
+    {
+      "stage": 7,
+      "build": "balanced",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "before": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 80.49357752710748,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 29.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 1,
+        "finished": true,
+        "finishTime": 80.19009076845886,
+        "earlyPlace": 1,
+        "earlyLeaderGap": 0,
+        "finalLapLeaderGap": 0,
+        "duelSeconds": 14.5,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      }
+    },
+    {
+      "stage": 8,
+      "build": "balanced",
+      "seed": 1401,
+      "control": "manual",
+      "weather": {
+        "weather": "晴れ",
+        "wind": "無風",
+        "windSpeed": 0
+      },
+      "before": {
+        "place": 6,
+        "finished": true,
+        "finishTime": 82.95522281753622,
+        "earlyPlace": 6,
+        "earlyLeaderGap": 71.33999999999997,
+        "finalLapLeaderGap": 175.2299999999998,
+        "duelSeconds": 15,
+        "finalLapDuelSeconds": 0,
+        "overtakes": 0,
+        "lostPositions": 0,
+        "faults": 0,
+        "finishers": 6
+      },
+      "after": {
+        "place": 4,
+        "finished": true,
+        "finishTime": 84.50466937690507,
+        "earlyPlace": 5,
+        "earlyLeaderGap": 48.089999999999975,
+        "finalLapLeaderGap": 130.1500000000001,
+        "duelSeconds": 47.150000000000006,
+        "finalLapDuelSeconds": 4.650000000000006,
+        "overtakes": 1,
+        "lostPositions": 2,
+        "faults": 0,
+        "finishers": 6
+      }
+    }
+  ],
+  "checks": [
+    "paired-races-complete-with-valid-drive"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "build": "143",
+  "revision": "post-career-stage-5-2026-10-22",
+  "modules": 64,
+  "sourceSha256": "76c2510836c365a170a295d72318bcfc7566b3c23a46f7df9a60c1716e9bfdce",
+  "checks": {
+    "progress": 61,
+    "cpu-stats": 8,
+    "hard": 16,
+    "cpu-start": 13,
+    "rules": 15,
+    "improve": 24,
+    "controls": 10,
+    "continuity": 29,
+    "after": 19
+  },
+  "checksTotal": 195,
+  "deliveredInlineChecks": 183,
+  "improvementSuiteSimulatedRaces": 10,
+  "afterSuiteSimulatedRaces": 5,
+  "scope": [
+    "registered-racer 3-race and 6-course cups with isolated state",
+    "one-meet short career for four story arcs",
+    "eight cast life scenes with encounter gates",
+    "actual main-task history and route-specific guidance",
+    "optional reading spacing and twelve-card archive pages",
+    "save-transfer shortcut and play-only packaging"
+  ],
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "Production DOM/input handlers run in adapters, not real layout or touchscreen.",
+    "No browser screenshots or physical-device/audio/FPS verification.",
+    "Reports named V142 and earlier are historical.",
+    "Short careers stop after two qualifiers and, when qualified, one final; they do not advance the ten-part heroine routes."
+  ]
+}

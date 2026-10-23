@@ -1,0 +1,57 @@
+{
+  "build": "147",
+  "revision": "race-skip-and-stability-2026-10-23",
+  "modules": 70,
+  "sourceSha256": "2f2d9d4c1a69137c7d92b572ad471eebaf83db039045193046a48bfba3558138",
+  "checks": {
+    "progress": 94,
+    "cpu-stats": 8,
+    "hard": 16,
+    "cpu-start": 13,
+    "rules": 15,
+    "improve": 24,
+    "controls": 12,
+    "continuity": 29,
+    "after": 19,
+    "progression": 15,
+    "review": 14,
+    "challenge": 22,
+    "memory": 24,
+    "support": 9,
+    "race-skip": 10
+  },
+  "checksTotal": 324,
+  "deliveredInlineChecks": 282,
+  "improvementSuiteSimulatedRaces": 10,
+  "afterSuiteSimulatedRaces": 5,
+  "reviewSuiteSimulatedRaces": 2,
+  "groundedHeroineMoments": 42,
+  "mainStateVariants": 24,
+  "rivalCallbacks": 10,
+  "challengeSuiteSimulatedRaces": 31,
+  "scope": [
+    "mid-race result skip continuing actual race state; retire action removed",
+    "manual control required only in SG championship and consolation finals",
+    "manual challenge skips remain reference records; automatic records isolated",
+    "stale driving callbacks rejected; actual V146 save migration preserves position and growth",
+    "progression, save recovery, actual Chromium mobile touch emulation and JSON transfer regressions"
+  ],
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "browserTested": true,
+  "physicalDevicesTested": false,
+  "browserVersion": "134.0.6998.35",
+  "browserChecks": 13,
+  "limitations": [
+    "Chromium 134 mobile emulation; no Safari/WebKit or physical-device verification.",
+    "No physical-device/audio/FPS certification; browser screenshots remain private QA intermediates.",
+    "Reports named V146 and earlier are historical.",
+    "Fixed challenges are local records, not an online verified leaderboard.",
+    "Short careers stop after two qualifiers and, when qualified, one final; they do not advance the ten-part heroine routes."
+  ]
+}

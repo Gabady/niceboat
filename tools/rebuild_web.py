@@ -1,5 +1,12 @@
 from pathlib import Path
 import re,json,base64,hashlib
+
+def atomic_text(path,text):
+    if not text: raise ValueError('Empty generated file: '+str(path))
+    temporary=path.with_name(path.name+'.building')
+    temporary.write_text(text)
+    temporary.replace(path)
+
 root=Path(__file__).resolve().parents[1];names=json.loads((root/'tools/script_order.json').read_text())
 html=(root/'index.html').read_text();matches=list(re.finditer(r'<script[^>]*>(.*?)</script>',html,re.S))
 if len(matches)!=len(names):raise SystemExit('スクリプト構成が一致しません。')
@@ -16,5 +23,5 @@ def source(m):
 html=re.sub(r'<script[^>]*>.*?</script>',source,html,flags=re.S)
 guard=re.search(r'<script[^>]*>.*?</script>',(root/'index_iphone_safe.html').read_text(),re.S).group()
 html=html.replace('<script src=',guard+'\n<script src=',1)
-(web/'index.html').write_text(re.sub(pattern,external,html));(web/'assets-manifest.json').write_text(json.dumps(assets,indent=2))
+atomic_text(web/'index.html',re.sub(pattern,external,html));(web/'assets-manifest.json').write_text(json.dumps(assets,indent=2))
 print('web/ を単体HTMLと同じ内容へ更新しました。')

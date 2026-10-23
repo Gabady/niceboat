@@ -1,0 +1,45 @@
+{
+  "build": "136",
+  "testType": "DOM adapter; no layout, touch, audio or physical-device verification",
+  "entrypoint": null,
+  "checks": [
+    "任意会話を読み終えると開いた準備画面に戻り、古いホーム画面を出さない",
+    "任意会話の中断で存在しない自動イベントを一時停止しない",
+    "手動で開いた未読章は読了を記録し、その章を自動で開き直さない",
+    "G3後期の古いホーム画面からシリーズボタンで実際の進行地点に復帰する",
+    "師匠の手動入門後は師匠画面へ戻る",
+    "通常のシリーズボタンは一度だけ次節を作り、再操作でも機材や対戦相手を変更しない",
+    "ライバルの交流を選び返答も読むと育成へ戻り、選択の効果を二重に加えない",
+    "本編の手動選択後に返答を読み終えると物語の一覧へ戻る",
+    "自動イベント中断中に別の記録を読んでも元のイベント・返答・しおりを変更しない",
+    "選択後の自動イベントを保存復元し、返答を読了してからシリーズへ進める",
+    "既に完了した古い自動イベントだけが残るセーブは、シリーズボタン一回で復帰する",
+    "V134の停止状態を読み込み、能力・賞金・レース・既得報酬・しおりを引き継ぐ",
+    "最後の本文でもスクロール操作は無視し、その次のタップやキーボード操作で読了できる",
+    "賞金不足で最優秀シリーズに進めない場合もボタンから登録画面へ進む"
+  ],
+  "failures": [
+    {
+      "name": "初戦後に今節の約束を開いても選べない返答で閉じ込めない",
+      "error": "Expected values to be strictly equal:\n\n2 !== 0\n"
+    },
+    {
+      "name": "場面転換が最後のページでも返答ボタンを表示する",
+      "error": "The input did not match the regular expression /data-action=\"planChoice\"/. Input:\n\n'<section class=\"novel-stage novel-bridge131\" aria-label=\"場面転換\"><div class=\"novel-top\"><h2>場面の終わり</h2><button class=\"btn novel-close\" data-action=\"novelExit\" data-value=\"\">中断して戻る</button></div><div class=\"bridge-card131\"><small>場面転換</small><p class=\"bridge-time131\">翌朝</p><h3>ピット</h3><p>返事をする</p></div><div class=\"novel-bottom\"><div class=\"novel-tools\"><button class=\"btn text-btn\" data-action=\"novelPrev\" data-value=\"\" disabled>前へ</button><span>1 / 1</span><button class=\"btn text-btn\" data-action=\"novelHistory\" data-value=\"\">履歴</button></div><button class=\"btn primary novel-next123\" data-action=\"novelNext\" data-value=\"\">続きを読む</button></div></section>'\n"
+    },
+    {
+      "name": "走行開始後に古い準備画面へ戻っても操作不能な出走ボタンを残さない",
+      "error": "Expected values to be strictly equal:\n\n'preRace' !== 'race'\n"
+    },
+    {
+      "name": "旧版で既読だけが付いた未回答の本編を復帰させる",
+      "error": "Expected values to be strictly equal:\n\n'home' !== 'novel'\n"
+    },
+    {
+      "name": "破棄済みの会話が戻り先に残っていても育成へ戻れる",
+      "error": "Expected values to be strictly equal:\n\n'novel' !== 'action'\n"
+    }
+  ],
+  "testedSourceBuild": "135",
+  "purpose": "Pre-fix reproduction: five failures on V135"
+}

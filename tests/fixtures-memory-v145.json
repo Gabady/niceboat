@@ -1,0 +1,4575 @@
+{
+  "sourceBuild": "145",
+  "bond": {
+    "version": 80,
+    "build": "145",
+    "seed": 4167085048,
+    "career": {
+      "player": {
+        "id": "p1fsk6m395tvh",
+        "name": "旧版しおり検証",
+        "stats": {
+          "speed": 37,
+          "turn": 53,
+          "start": 53,
+          "accel": 46,
+          "power": 40
+        },
+        "adjust": {
+          "motorVar": 38,
+          "motorSuccess": 21,
+          "propVar": 67,
+          "propSuccess": 21
+        },
+        "growth": "starter",
+        "skills": [
+          "quick"
+        ],
+        "mastery": {},
+        "popularity": 0,
+        "money": 0,
+        "totalEarnings": 0,
+        "inventory": {},
+        "equipment": null,
+        "points": 0,
+        "finishes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scoreTotal": 0,
+        "tie": 0.48374837287701666,
+        "scenario": "light",
+        "profile": {
+          "region": "",
+          "motto": "",
+          "color": "lagoon",
+          "emblem": "wave",
+          "favorite": false
+        },
+        "difficulty": "normal"
+      },
+      "playMode141": "drive",
+      "seed": 1813730123,
+      "stage": 3,
+      "status": "home",
+      "series": null,
+      "history": [],
+      "shop": null,
+      "lastShop": null,
+      "balance": {
+        "last": null,
+        "streak": 0
+      },
+      "stats": {
+        "races": 8,
+        "wins": 0,
+        "capsizes": 0
+      },
+      "lastResult": null,
+      "ending": null,
+      "development": {
+        "version": 1,
+        "rival": {
+          "id": "main_izumi",
+          "cast": "izumi",
+          "met": 0,
+          "history": [],
+          "training": 0
+        },
+        "paths": {
+          "speed": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "turn": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "start": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "accel": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "power": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          }
+        },
+        "plans": [],
+        "settled": [],
+        "training": [],
+        "finals": {},
+        "readers": {
+          "dialogue118:bond:akari:8:3:3:142": 3
+        },
+        "outcomes": [],
+        "archive": null
+      },
+      "campaign": {
+        "version": 2,
+        "arc": "light",
+        "edition": 119,
+        "origin": 0,
+        "entries": [
+          {
+            "practice133": null,
+            "choiceMode": "paths133",
+            "observation": null,
+            "id": "opening",
+            "kind": "opening",
+            "stage": 0,
+            "outcome": "steady",
+            "strong": "turn",
+            "weak": null,
+            "read": false,
+            "late": false,
+            "legacy": false,
+            "branch": "contest",
+            "wins": 0,
+            "races": 0,
+            "prior": null,
+            "priorText": "",
+            "priorAligned": null,
+            "choiceSpec": 0,
+            "decision": null,
+            "prose": {
+              "title": "序章 · 灯を継ぐ",
+              "body": [
+                "◇場面◇{\"when\":\"回想・子供の頃\",\"place\":\"父の工房\",\"caption\":\"\"}",
+                "父の仕事が終わるまで、主人公は戸口の椅子に座って待っていた。触るなと言われた工具ほど、形をよく覚えている。",
+                "一度だけ、小さな部品を落として床を探した。父は怒らず、照明をもう一つ点けた。",
+                "父「見つけるまで、ここは踏むなよ」",
+                "その一言で、父の仕事を止めてしまったのだと思った。見つかった時、誰より大きく息を吐いたのは主人公だった。",
+                "◇場面◇{\"when\":\"現在・帰郷の日\",\"place\":\"工房へ続く道\",\"caption\":\"\"}",
+                "遠くから見える看板は同じだった。昔より低く感じるのは、自分の背が伸びたからだけではない気がした。",
+                "主人公（心の声）「今度は、困らせるために帰るんじゃない。そう言えるだけのお金が、まだない」",
+                "何を言えば父を安心させられるか考えた。自分が何をしたいかは、そのあとに回していた。",
+                "荷物を持ち直し、戸を開けた。いつも入口にあった工具が、見慣れない箱へ移されていた。",
+                "◇場面◇{\"when\":\"帰郷した午後\",\"place\":\"父の工房\",\"caption\":\"\"}",
+                "工房の戸を開けると、湯を沸かす音だけが聞こえた。子供の頃は、その音が工具の音に隠れていた。",
+                "作業台の高さは変わらない。昔は踏み台が要った場所に、今は自分の出走用の鞄が届く。",
+                "父「そこに置くな。油が付く」",
+                "主人公「もう付いてる。向こうのピットで」",
+                "父「なら、帰ってきたからって余計に汚すな」",
+                "いつものやり取りに安心しかけて、棚の空白に気づいた。",
+                "毎朝同じ場所にあった工具が、新聞紙に包まれている。包みの横には引き取り先の名前があった。",
+                "主人公「片づけるって、少し整理するだけかと思ってた」",
+                "父「そう聞こえるように言ったのかもしれんな」",
+                "父は湯飲みを二つ出した。片方を持つ時だけ、反対の手を添えた。",
+                "主人公は鞄から出走表を出し、賞金の欄が見えないように折った。隠した数字ほど、頭の中では大きかった。",
+                "父は売却予定の工具に付けた札を裏返した。一番古いレンチだけ、値段が空欄だった。",
+                "主人公「それは売らないのか」",
+                "父「値段を決められないだけだ。若い頃から使ってるからな」",
+                "父が落としたボルトを拾い、作業台へ置いた。",
+                "主人公「手、また痛むのか」",
+                "父「寒いだけだ。それより、お前の出走表を見せろ」",
+                "主人公「先に店の話をしたい。工具、売るつもりなんだろ」",
+                "父「使えなくなる前に、使う奴へ渡す。それでいい」",
+                "主人公「よくない。賞金を稼ぐ。修理代も、店の金も」",
+                "父「そのために選手になったのか？」",
+                "主人公「……それだけじゃない。でも、放っておけないだろ」",
+                "父「ありがたいよ。ただ、お前が負けるたびに店まで背負われちゃ、俺も応援しづらい」",
+                "父は出走表を作業台に広げた。",
+                "父「俺が見たいのは、お前のレースだ。まず何を変えたい？」",
+                "父「お前のメモ、直した所より迷った所の方が長いな」",
+                "主人公「そこを飛ばしたら、次も同じ所で迷うだろ」",
+                "父は赤鉛筆を取ったが、書き込まずに主人公へ渡した。"
+              ]
+            },
+            "edition142": true
+          }
+        ],
+        "closed": false,
+        "dominance": false
+      },
+      "story": {
+        "version": 1,
+        "seed": 54241047,
+        "chapters": [],
+        "gates": [],
+        "seen": {},
+        "bonds": {
+          "mentor": 0,
+          "mechanic": 0
+        },
+        "pending": null,
+        "rivals": [],
+        "duel": null,
+        "log": [],
+        "shown": [],
+        "serial": 0,
+        "arcs": {},
+        "skillStages": [],
+        "introductions": {
+          "version": 1,
+          "known": [],
+          "scenes": []
+        }
+      },
+      "bonds": {
+        "version": 3,
+        "partner": null,
+        "completed": null,
+        "nextAt": 7,
+        "waitHeroine": "akari",
+        "shortcutUsed": false,
+        "encounters": {
+          "seed": 303781637,
+          "rolled": [],
+          "notice": null
+        },
+        "pending": {
+          "id": "akari",
+          "kind": "chapter",
+          "step": 3,
+          "stamp": 8,
+          "edition142": true,
+          "key": "akari:8:3:3",
+          "scene142": {
+            "title": "読んでいい紙、駄目な紙",
+            "body": [
+              "◇場面◇{\"when\":\"前の返事から続いたこと\",\"place\":\"工房\",\"caption\":\"\"}",
+              "翌日の昼、灯から「今日は十二時に食べました」と連絡が来た。納期を延ばしてもらえた話は、その次だった。",
+              "主人公「昼ご飯の報告が先なんだ」",
+              "灯「待たせた人には、経過報告が必要なので」",
+              "添付された予定表には、一件だけ断った仕事があった。灯は、その客の話はまだしなかった。",
+              "◇場面◇{\"when\":\"その後、次に会うまで\",\"place\":\"灯の工房・朝\",\"caption\":\"\"}",
+              "灯は買ってきた昼食を冷蔵庫へ入れ、休憩の時刻を紙に書いた。麺の固まった容器を見つめられた顔を、まだ覚えていた。",
+              "灯（心の声）「あんな時間に食べていたの、あの日だけじゃないんだけど」",
+              "紙を貼ってから、誰に見せるわけでもないのに字を直す。入口の方を見て、自分でおかしくなった。",
+              "今日は試走の報告に来ると言っていた。机を空けようとして、収支表の数字に手が止まる。",
+              "灯（心の声）「話しやすいからって、何でも話せるわけじゃない。まだ、そこまでは」",
+              "◇場面◇{\"when\":\"同じ日の午後\",\"place\":\"工房へ向かう道\",\"caption\":\"\"}",
+              "主人公はメモの『乗りにくい』に線を引き、いつそう感じたかを書き足した。灯なら最初にそこを聞く。",
+              "前より長く居るようになった。それでも、迎えてくれる場所を自分の場所のように扱いたくはなかった。",
+              "主人公（心の声）「今日は先に、何時まで大丈夫か聞こう」",
+              "◇場面◇{\"when\":\"約束の時刻\",\"place\":\"工房の机\",\"caption\":\"\"}",
+              "試走の感想を渡そうとすると、灯は机の紙を裏返した。見えたのは、工房の収支表だった。",
+              "主人公「ごめん。読むつもりはなかった」",
+              "灯「数字、頭に残りました？」",
+              "残った、と答えた。灯は椅子を引いたが、座らなかった。",
+              "主人公「自分にできることがあれば」",
+              "灯「まず、できるって言わないでほしいです」",
+              "主人公は出しかけたメモを引っ込めた。灯がその端を押さえる。",
+              "灯「それはください。走った感想は、聞きたい」",
+              "紙を替えると、二人の間の空気も少し動いた。灯は字の横へ、容赦なく疑問符をつけていく。",
+              "灯「ここの『なんか違う』、もうちょっと何とかなりませんか」"
+            ],
+            "choices": [
+              {
+                "code": 0,
+                "label": "財布の話は頼まれるまで触れない。感想は書き直す",
+                "reply": "灯「お願いします。……線引きが下手なの、私もです。紙を隠したまま怒って」",
+                "emotion": "thoughtful",
+                "trust": 10,
+                "affection": 10
+              },
+              {
+                "code": 1,
+                "label": "今日は感想だけ渡して、また来るよ",
+                "reply": "灯「はい。明日は、もう少しちゃんと読めると思います」",
+                "emotion": "warm",
+                "trust": 7,
+                "affection": 6
+              },
+              {
+                "code": 2,
+                "label": "今日はここで聞く。手伝える範囲は、灯さんから教えて",
+                "reply": "灯「じゃあ、今は感想だけ。頼みたいことができたら、こっちから言います」",
+                "emotion": "thoughtful",
+                "trust": 7,
+                "affection": 6
+              }
+            ],
+            "stage": 2,
+            "races": 8,
+            "trust": 16,
+            "affection": 0,
+            "readerVersion": 142,
+            "expressionCues": {
+              "warm": [
+                "数字、頭に残りました？",
+                "まず、できるって言わないでほしいです",
+                "それはください。走った感想は、聞きたい",
+                "ここの『なんか違う』、もうちょっと何とかなりませんか"
+              ]
+            },
+            "continuity142": true,
+            "episodeRole142": "親しさと仕事の境界",
+            "memoryChapter133": null,
+            "kind": "chapter",
+            "key": "akari:8:3:3"
+          }
+        },
+        "heroines": {
+          "akari": {
+            "met": true,
+            "metStage": 0,
+            "metRace": 0,
+            "step": 3,
+            "trust": 100,
+            "affection": 100,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": [
+              0,
+              1,
+              0
+            ],
+            "meeting142": {
+              "chapter": 2,
+              "choice": 0,
+              "races": 5,
+              "stage": 1,
+              "due": 7,
+              "expires": 10,
+              "title": "昼休みは四時二十分"
+            },
+            "interludes142": [
+              {
+                "step": 2,
+                "due": 3,
+                "read": false,
+                "shown": false,
+                "withdrawn": true,
+                "title": "青鉛筆の居場所",
+                "body": [
+                  "◇場面◇{\"when\":\"会話のあと、別々の日を過ごして\",\"place\":\"工房\",\"caption\":\"\"}",
+                  "前に広げた図面の端だけが、写真で届いた。青い線の横に、小さな疑問符が一つある。",
+                  "灯「これ、消す前に誰かに見せたくなって」",
+                  "主人公はすぐ答えず、どこを迷っているか聞いた。返事が二つに分かれて届く。",
+                  "灯（心の声）「説明が長いって、まだ言われてない。もう少し書いてもいいかな」"
+                ]
+              }
+            ],
+            "memories133": [
+              {
+                "chapter": 2,
+                "option": 0
+              }
+            ]
+          },
+          "mio": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "nagi": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "kanade": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "tsumugi": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "mizuki": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "natsu": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          }
+        },
+        "training": {
+          "stages": [],
+          "rivals": {}
+        },
+        "log": [
+          {
+            "kind": "romance",
+            "heroine": "akari",
+            "title": "段差ひとつ",
+            "note": "灯「明日。……笑うかと思った。来るなら、午後にしてください」",
+            "choice": "四回目はいつ試すの？",
+            "scene130": {
+              "title": "段差ひとつ",
+              "body": [
+                "◇場面◇{\"when\":\"競走場を出てから\",\"place\":\"港の裏通り\",\"caption\":\"\"}",
+                "人の流れについて歩いていたら、駅へ向かう角を通り過ぎていた。戻るには、この細い道を抜ける方が早そうだった。",
+                "鞄の中で練習ノートが角に当たる。今日つまずいた場所に丸をつけたまま、どう直すかは書けていない。",
+                "主人公（心の声）「帰ったら映像を見よう。……帰ってから、と言ってもう三日だ」",
+                "路地から、車輪が空回りする音がした。見ると、小さな工房の入口で台車が斜めになっている。",
+                "誰かを呼ぶ声はしなかった。中にいる人は一度台車を引き、角度を変えて、また押した。",
+                "主人公（心の声）「一人でやる気か。あの段差、下からじゃ見えないんだろうな」",
+                "主人公は鞄を壁際へ置いた。手伝えるかと尋ねる前に、向こうがこちらを見た。",
+                "◇場面◇{\"when\":\"数分後\",\"place\":\"工房の入口\",\"caption\":\"\"}",
+                "工房の前で、台車の車輪が溝にはまっていた。主人公が手を伸ばすと、作業着の女性が肘で止めた。",
+                "灯「そこ、熱いです。持つなら黒い取っ手」",
+                "二人で押すと、台車は拍子抜けするほど軽く動いた。彼女だけが勢い余って一歩走った。",
+                "主人公「慣れてるんじゃなかった？」",
+                "灯「一人では、です」",
+                "灯は名札の油を親指で拭いた。汐見灯。主人公が名乗る間も、空いた手で車輪を押さえている。",
+                "主人公「もう離しても平気そうだけど」",
+                "灯「……そうですね。ありがとうございます」",
+                "工房の中には、同じ大きさの部品が三つ並んでいた。値札の裏に、違う日付が書いてある。",
+                "灯「同じ失敗を三回。見なかったことにしてください」"
+              ]
+            },
+            "dated": false,
+            "failed": false,
+            "startedDating": false,
+            "completed": false,
+            "emotion": "warm",
+            "expressionCues": {
+              "warm": [
+                "そこ、熱いです。持つなら黒い取っ手",
+                "一人では、です",
+                "……そうですね。ありがとうございます",
+                "同じ失敗を三回。見なかったことにしてください"
+              ]
+            },
+            "index": 1,
+            "races": 0,
+            "stage": 0
+          },
+          {
+            "kind": "romance",
+            "heroine": "akari",
+            "title": "赤い線の残し方",
+            "note": "灯「じゃあ日付順で。古い方を下にしないでくださいね」",
+            "choice": "今日は図面の整理から付き合うよ",
+            "scene130": {
+              "title": "赤い線の残し方",
+              "body": [
+                "◇場面◇{\"when\":\"前に話してから\",\"place\":\"工房\",\"caption\":\"\"}",
+                "四回目を見たいと言った翌日、主人公は工房へ向かった。午後なら、と言われた時刻に合わせ、入口で声をかけた。",
+                "試している間は邪魔をせず、終わってから次に寄ってよい日を聞いた。灯は納品日を避けて手帳に丸をつけ、連絡先も書き添えた。",
+                "帰り道に届いた最初の連絡は、呼び鈴が壊れているという注意だった。",
+                "主人公（心の声）「店の場所はもう知ってる。次は、あの人に声をかけに行くんだ」",
+                "◇場面◇{\"when\":\"次に会う約束の日\",\"place\":\"工房\",\"caption\":\"\"}",
+                "約束の午後、灯は椅子の座面を拭いていた。床より椅子の方がきれいで、主人公は鞄を膝に載せた。",
+                "灯「鞄はそこへ。椅子は人用です」",
+                "図面の上を、赤鉛筆の線が何本も横切っている。灯の筆箱に赤鉛筆はなかった。",
+                "主人公「これは、お父さんの？」",
+                "灯「はい。直すたびに青で描くから、だんだん読めなくなって」",
+                "主人公「新しい紙に描いたら？」",
+                "灯「それだと、全部自分で決めたみたいで」",
+                "主人公も、練習ノートの最初のページを長く捨てられなかった話をした。今より大きな字で、先輩の言葉だけが並んでいた。",
+                "灯「まだ持ってます？」",
+                "主人公「うん。でも、今日の練習には持っていかない」",
+                "灯は紙を一枚取り出した。赤い図面は、捨てずに左側へ置いた。"
+              ]
+            },
+            "dated": false,
+            "failed": false,
+            "startedDating": false,
+            "completed": false,
+            "emotion": "warm",
+            "expressionCues": {
+              "thoughtful": [
+                "鞄はそこへ。椅子は人用です",
+                "はい。直すたびに青で描くから、だんだん読めなくなって",
+                "それだと、全部自分で決めたみたいで",
+                "まだ持ってます？"
+              ]
+            },
+            "index": 2,
+            "races": 2,
+            "stage": 0
+          },
+          {
+            "kind": "romance",
+            "heroine": "akari",
+            "title": "昼休みは四時二十分",
+            "note": "灯「聞こえる所だと言いにくい。入口の椅子なら……終わったら呼びます」",
+            "choice": "電話が終わるまで、ここで待ってる",
+            "scene130": {
+              "title": "昼休みは四時二十分",
+              "body": [
+                "◇場面◇{\"when\":\"二度目の訪問のあと\",\"place\":\"工房から駅まで\",\"caption\":\"\"}",
+                "赤い線の話が、練習中にも頭に残った。書き直した所を消さずにおくと、どこで考えが変わったか分かる。",
+                "そのことを灯へ短く送った。返事は翌日の昼で、『見せてください。笑いませんから』とあった。",
+                "主人公（心の声）「笑わない、と先に言われると余計に気になる」",
+                "何度かメモを持っていくうちに、灯の空く時間を聞いてから訪ねるようになった。毎日ではない。遠征の前後には、しばらく間があく。",
+                "この日も、午後なら手が空くと聞いていた。少し早く着き、入口で一度立ち止まった。",
+                "中からは返事がない。約束を忘れたのかと思うと、作業台の陰で椅子が鳴った。",
+                "主人公（心の声）「ずっとそこにいたのか。時計も見ないで」",
+                "◇場面◇{\"when\":\"午後四時二十分\",\"place\":\"工房の作業台\",\"caption\":\"\"}",
+                "灯の机で、コンビニの麺が固まっていた。主人公が時計を見ると、灯はふたを伏せた。",
+                "灯「昼ご飯です。今から食べるところ」",
+                "主人公「今、四時」",
+                "灯「二十分ですね」",
+                "笑いかけて、灯はやめた。電話が鳴る。受けた仕事をいつ返せるか、同じ説明を三度繰り返した。",
+                "切った後も、手は受話器から離れなかった。",
+                "灯「『お父さんなら』って。私だと一晩かかるの、知らないんでしょうね」",
+                "主人公「引き受けた時、言えなかった？」",
+                "灯「言ったら、よそへ行かれそうで」",
+                "主人公は麺を指した。灯はようやくふたを開け、固まった端を箸で持ち上げた。",
+                "灯「ひどい。これ、一本の食べ物になってる」",
+                "灯は箸を置き、納期のメモを引き寄せた。",
+                "灯「電話、今日中にしないと。……先に食べます。見張らなくても逃げません」"
+              ]
+            },
+            "dated": false,
+            "failed": false,
+            "startedDating": false,
+            "completed": false,
+            "emotion": "warm",
+            "expressionCues": {
+              "thoughtful": [
+                "昼ご飯です。今から食べるところ",
+                "二十分ですね",
+                "『お父さんなら』って。私だと一晩かかるの、知らないんでしょうね",
+                "言ったら、よそへ行かれそうで",
+                "ひどい。これ、一本の食べ物になってる"
+              ]
+            },
+            "index": 3,
+            "races": 5,
+            "stage": 1
+          }
+        ],
+        "serial": 3,
+        "reward": null
+      },
+      "finale": {
+        "version": 1,
+        "wallDefeated": null,
+        "rival": {
+          "route": "open",
+          "chosenAt": null,
+          "growth": 0
+        },
+        "settled": [],
+        "log": [],
+        "finalGrid": null
+      },
+      "affinity": {
+        "version": 1,
+        "rival": 8,
+        "mentors": {},
+        "unlocked": [],
+        "settled": [],
+        "trained": [],
+        "requests": [
+          {
+            "id": "akari:3",
+            "heroine": "akari",
+            "chapter": 3,
+            "type": "race",
+            "cost": 0,
+            "target": 3,
+            "status": "declined",
+            "created": 5,
+            "deadline": null,
+            "resolved": 5,
+            "delta": 0
+          }
+        ],
+        "rolled": [
+          "akari:1",
+          "akari:2",
+          "akari:3"
+        ],
+        "seed": 2214662936,
+        "log": []
+      },
+      "refinement": {
+        "version": 1,
+        "grandfather": [],
+        "races": [],
+        "recovery": null
+      },
+      "scenario128": {
+        "version": 1,
+        "arc": "light",
+        "analysisKey": "speed",
+        "streak": 0,
+        "recovery": 0,
+        "settled": [],
+        "awarded": []
+      },
+      "transition144": 3,
+      "flow131": {
+        "version": 1,
+        "visited": [],
+        "done": [],
+        "queue": [],
+        "active": {
+          "kind": "heroine",
+          "id": "akari",
+          "step": 3,
+          "key": "heroine:akari:3"
+        },
+        "reply": null,
+        "paused": true,
+        "returnPage": "home"
+      }
+    },
+    "registry": [],
+    "rivals": [],
+    "coins": 1000,
+    "quick": null,
+    "settings": {
+      "speed": 1,
+      "postureAssist": false,
+      "haptics": true,
+      "raceFX": "full",
+      "textSize": "normal",
+      "contrast": "standard"
+    },
+    "savedAt": null
+  },
+  "main": {
+    "version": 80,
+    "build": "145",
+    "seed": 4167085048,
+    "career": {
+      "player": {
+        "id": "p1fsk6m395tvh",
+        "name": "旧版しおり検証",
+        "stats": {
+          "speed": 37,
+          "turn": 53.11,
+          "start": 53,
+          "accel": 46,
+          "power": 40
+        },
+        "adjust": {
+          "motorVar": 38,
+          "motorSuccess": 21,
+          "propVar": 67,
+          "propSuccess": 21
+        },
+        "growth": "starter",
+        "skills": [
+          "quick"
+        ],
+        "mastery": {},
+        "popularity": 0,
+        "money": 0,
+        "totalEarnings": 0,
+        "inventory": {},
+        "equipment": null,
+        "points": 0,
+        "finishes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scoreTotal": 0,
+        "tie": 0.48374837287701666,
+        "scenario": "light",
+        "profile": {
+          "region": "",
+          "motto": "",
+          "color": "lagoon",
+          "emblem": "wave",
+          "favorite": false
+        },
+        "difficulty": "normal"
+      },
+      "playMode141": "drive",
+      "seed": 1813730123,
+      "stage": 1,
+      "status": "home",
+      "series": null,
+      "history": [],
+      "shop": null,
+      "lastShop": null,
+      "balance": {
+        "last": null,
+        "streak": 0
+      },
+      "stats": {
+        "races": 0,
+        "wins": 0,
+        "capsizes": 0
+      },
+      "lastResult": null,
+      "ending": null,
+      "development": {
+        "version": 1,
+        "rival": {
+          "id": "main_izumi",
+          "cast": "izumi",
+          "met": 0,
+          "history": [],
+          "training": 0
+        },
+        "paths": {
+          "speed": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "turn": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "start": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "accel": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "power": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          }
+        },
+        "plans": [],
+        "settled": [],
+        "training": [],
+        "finals": {},
+        "readers": {
+          "dialogue118:campaign:p1fsk6m395tvh:season:1": 2
+        },
+        "outcomes": [],
+        "archive": null
+      },
+      "campaign": {
+        "version": 2,
+        "arc": "light",
+        "edition": 119,
+        "origin": 0,
+        "entries": [
+          {
+            "practice133": null,
+            "choiceMode": "paths133",
+            "observation": null,
+            "id": "opening",
+            "kind": "opening",
+            "stage": 0,
+            "outcome": "steady",
+            "strong": "turn",
+            "weak": null,
+            "read": true,
+            "late": false,
+            "legacy": false,
+            "branch": "contest",
+            "wins": 0,
+            "races": 0,
+            "prior": null,
+            "priorText": "",
+            "priorAligned": null,
+            "choiceSpec": 0,
+            "decision": {
+              "index": 1,
+              "aligned": true,
+              "key": "turn",
+              "gain": 0,
+              "skill": null,
+              "note": "父「二つ比べるなら、触った順番も残せ。後で都合よく覚え直すからな、人間は」\n次の実践：モーターとプロペラを一度ずつ整備する。練習・整備はいつもの行動枠を使います。"
+            },
+            "prose": {
+              "title": "序章 · 灯を継ぐ",
+              "body": [
+                "◇場面◇{\"when\":\"回想・子供の頃\",\"place\":\"父の工房\",\"caption\":\"\"}",
+                "父の仕事が終わるまで、主人公は戸口の椅子に座って待っていた。触るなと言われた工具ほど、形をよく覚えている。",
+                "一度だけ、小さな部品を落として床を探した。父は怒らず、照明をもう一つ点けた。",
+                "父「見つけるまで、ここは踏むなよ」",
+                "その一言で、父の仕事を止めてしまったのだと思った。見つかった時、誰より大きく息を吐いたのは主人公だった。",
+                "◇場面◇{\"when\":\"現在・帰郷の日\",\"place\":\"工房へ続く道\",\"caption\":\"\"}",
+                "遠くから見える看板は同じだった。昔より低く感じるのは、自分の背が伸びたからだけではない気がした。",
+                "主人公（心の声）「今度は、困らせるために帰るんじゃない。そう言えるだけのお金が、まだない」",
+                "何を言えば父を安心させられるか考えた。自分が何をしたいかは、そのあとに回していた。",
+                "荷物を持ち直し、戸を開けた。いつも入口にあった工具が、見慣れない箱へ移されていた。",
+                "◇場面◇{\"when\":\"帰郷した午後\",\"place\":\"父の工房\",\"caption\":\"\"}",
+                "工房の戸を開けると、湯を沸かす音だけが聞こえた。子供の頃は、その音が工具の音に隠れていた。",
+                "作業台の高さは変わらない。昔は踏み台が要った場所に、今は自分の出走用の鞄が届く。",
+                "父「そこに置くな。油が付く」",
+                "主人公「もう付いてる。向こうのピットで」",
+                "父「なら、帰ってきたからって余計に汚すな」",
+                "いつものやり取りに安心しかけて、棚の空白に気づいた。",
+                "毎朝同じ場所にあった工具が、新聞紙に包まれている。包みの横には引き取り先の名前があった。",
+                "主人公「片づけるって、少し整理するだけかと思ってた」",
+                "父「そう聞こえるように言ったのかもしれんな」",
+                "父は湯飲みを二つ出した。片方を持つ時だけ、反対の手を添えた。",
+                "主人公は鞄から出走表を出し、賞金の欄が見えないように折った。隠した数字ほど、頭の中では大きかった。",
+                "父は売却予定の工具に付けた札を裏返した。一番古いレンチだけ、値段が空欄だった。",
+                "主人公「それは売らないのか」",
+                "父「値段を決められないだけだ。若い頃から使ってるからな」",
+                "父が落としたボルトを拾い、作業台へ置いた。",
+                "主人公「手、また痛むのか」",
+                "父「寒いだけだ。それより、お前の出走表を見せろ」",
+                "主人公「先に店の話をしたい。工具、売るつもりなんだろ」",
+                "父「使えなくなる前に、使う奴へ渡す。それでいい」",
+                "主人公「よくない。賞金を稼ぐ。修理代も、店の金も」",
+                "父「そのために選手になったのか？」",
+                "主人公「……それだけじゃない。でも、放っておけないだろ」",
+                "父「ありがたいよ。ただ、お前が負けるたびに店まで背負われちゃ、俺も応援しづらい」",
+                "父は出走表を作業台に広げた。",
+                "父「俺が見たいのは、お前のレースだ。まず何を変えたい？」",
+                "父「お前のメモ、直した所より迷った所の方が長いな」",
+                "主人公「そこを飛ばしたら、次も同じ所で迷うだろ」",
+                "父は赤鉛筆を取ったが、書き込まずに主人公へ渡した。"
+              ]
+            },
+            "edition142": true
+          },
+          {
+            "practice133": {
+              "version": 1,
+              "arc": "light",
+              "source": "opening",
+              "mode": 1,
+              "focus": "turn",
+              "records": [],
+              "completed": false,
+              "rewarded": false
+            },
+            "choiceMode": "paths133",
+            "observation": null,
+            "id": "season:1",
+            "kind": "season",
+            "stage": 1,
+            "outcome": "steady",
+            "strong": "turn",
+            "weak": null,
+            "read": false,
+            "late": false,
+            "legacy": false,
+            "branch": "contest",
+            "wins": 0,
+            "races": 0,
+            "prior": 1,
+            "priorText": "モーターとプロペラ、両方の変化を記録する",
+            "priorAligned": true,
+            "choiceSpec": 1,
+            "decision": null,
+            "result": {
+              "rank": 2,
+              "place": 2,
+              "type": "championship",
+              "champion": false
+            },
+            "prose": {
+              "title": "消さない赤線",
+              "body": [
+                "◇場面◇{\"when\":\"前に決めた実践を振り返る\",\"place\":\"工房\",\"caption\":\"\"}",
+                "父「予定どおり触れない日もある。空いた欄を、触ったことにだけはするなよ」",
+                "◇場面◇{\"when\":\"その後\",\"place\":\"工房\",\"caption\":\"\"}",
+                "◇場面◇{\"when\":\"前の帰省のあと\",\"place\":\"主人公の宿舎\",\"caption\":\"\"}",
+                "父に何を食べたか聞かれたことが、妙に残っていた。レースの説明をあれほど用意した自分は、少し拍子抜けしていた。",
+                "次は父の好物を買おうと決めた。何か持っていけば、手ぶらで結果だけ話しに行くより楽だった。",
+                "◇場面◇{\"when\":\"回想・選手になる前\",\"place\":\"工房の作業台\",\"caption\":\"\"}",
+                "練習の予定を書いた紙を見せると、父は赤い線を引いた。休む日を、あとから押し込むなと言われた。",
+                "主人公は、その線の下に消した予定が透けるのを嫌がった。うまくできなかった考えまで見せている気がした。",
+                "◇場面◇{\"when\":\"現在・その記憶を思い返して\",\"place\":\"主人公の手元\",\"caption\":\"\"}",
+                "主人公（心の声）「見せたい所だけつなげた映像なら、赤い線もいらない。……それで何を聞いてほしいんだろう」",
+                "◇場面◇{\"when\":\"帰省の途中\",\"place\":\"菓子を買う店\",\"caption\":\"\"}",
+                "工房へ向かう途中で、父の好きな菓子を買った。映像を見てもらうための土産だと考えると、少し腹が立った。",
+                "戸の向こうで客の声がした。主人公は挨拶だけして、奥の椅子に座った。",
+                "膝の上には、一番うまく走れた区間を頭出しした端末がある。",
+                "父「そこ、寒いだろ。中へ入ってろ」",
+                "主人公「あと少しなんだろ」",
+                "父は返事をしなかった。聞こえなかったのか、答えられなかったのか、確かめるのも嫌だった。",
+                "雨に濡れた菓子の袋を椅子の下へ置き、端末に落ちた水滴を拭いた。画面へ戻した指が、再生位置を少し前へ動かした。",
+                "うまく走れた区間の手前に、失敗したターンがある。そこを飛ばした理由を聞かれたら、何と答えるつもりだったのだろう。",
+                "主人公「店では、いつも客が先なんだな」",
+                "父「そういう仕事だ。だが、約束した時間を過ぎていい理由にはならんな」",
+                "時計を見上げると、約束の時間から一時間が過ぎていた。父の手元には、まだ外した部品が残っている。",
+                "主人公「もう一時間待ってる」",
+                "父「すまん。この人も明日使うんだ」",
+                "主人公「約束しただろ。こっちのレースは後回しか」",
+                "父「そう言われても仕方ない。あと十分くれ」",
+                "修理を終えた父が、二人分の茶を置いた。",
+                "父「待たせた。今日はどこから見る？」",
+                "主人公「いい所だけ見せようかと思ってた」",
+                "父「俺の機嫌を取る必要はない」",
+                "主人公「違う。がっかりされたくなかったんだよ」",
+                "父「失敗しただけで、見るのをやめるか。俺が一番失敗してる」",
+                "父は赤線の横へ、小さく自分の名前も書いた。",
+                "主人公「そっちの失敗まで書くのか」",
+                "父「お前の所だけ赤くしたら、俺のノートじゃないだろ」",
+                "父が再生ボタンをこちらへ向けた。",
+                "◇場面◇{\"when\":\"今節を終えて\",\"place\":\"走りの記録を振り返る\",\"caption\":\"\"}",
+                "最終戦は2着だった。",
+                "父「結果は見た。まず、お前自身がどう感じたか聞きたい」",
+                "主人公「うまくできた所だけなら、いいレースだったって言える」",
+                "{{rival}}「逆の所だけ見たら、全部駄目にも見えるな」",
+                "主人公「どっちにするか、迷ってた」",
+                "{{rival}}「感想を決める前に、最初から見よう。俺も気になる場面がある」",
+                "主人公「分かった。次に使う所と、直す所を一つずつ決めたい」",
+                "父「こっちの部品、まだ使うのか」",
+                "主人公「替えたら直るかもしれない。でも、どこが違ったか分からなくなる」"
+              ]
+            },
+            "edition142": true,
+            "connection142": [
+              "◇場面◇{\"when\":\"前に話してから、今回の報告まで\",\"place\":\"工房へ続く道\",\"caption\":\"\"}",
+              "前に父へ「モーターとプロペラ、両方の変化を記録する」と答えた。口にした時の気持ちを、結果に合わせて言い換えたくはなかった。",
+              "子供の頃は、怒られそうな物だけ鞄の底へ隠した。父の足音がすると、その鞄ごと椅子の下へ押し込んだ。",
+              "主人公（心の声）「今日は持ってきた。聞かれる前に、出そう」",
+              "◇場面◇{\"when\":\"思い出から目を上げて\",\"place\":\"今回の話へ\",\"caption\":\"\"}"
+            ]
+          }
+        ],
+        "closed": false,
+        "dominance": false,
+        "task133": {
+          "version": 1,
+          "arc": "light",
+          "source": "opening",
+          "mode": 1,
+          "focus": "turn",
+          "records": [],
+          "completed": false,
+          "rewarded": false
+        }
+      },
+      "story": {
+        "version": 1,
+        "seed": 54241047,
+        "chapters": [],
+        "gates": [],
+        "seen": {},
+        "bonds": {
+          "mentor": 0,
+          "mechanic": 0
+        },
+        "pending": null,
+        "rivals": [],
+        "duel": null,
+        "log": [],
+        "shown": [],
+        "serial": 0,
+        "arcs": {},
+        "skillStages": [],
+        "introductions": {
+          "version": 1,
+          "known": [],
+          "scenes": []
+        }
+      },
+      "bonds": {
+        "version": 3,
+        "partner": null,
+        "completed": null,
+        "nextAt": 0,
+        "waitHeroine": null,
+        "shortcutUsed": false,
+        "encounters": {
+          "seed": 303781637,
+          "rolled": [],
+          "notice": null
+        },
+        "pending": null,
+        "heroines": {
+          "akari": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "mio": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "nagi": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "kanade": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "tsumugi": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "mizuki": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "natsu": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          }
+        },
+        "training": {
+          "stages": [],
+          "rivals": {}
+        },
+        "log": [],
+        "serial": 0,
+        "reward": null
+      },
+      "finale": {
+        "version": 1,
+        "wallDefeated": null,
+        "rival": {
+          "route": "open",
+          "chosenAt": null,
+          "growth": 0
+        },
+        "settled": [],
+        "log": [],
+        "finalGrid": null
+      },
+      "affinity": {
+        "version": 1,
+        "rival": 8,
+        "mentors": {},
+        "unlocked": [],
+        "settled": [],
+        "trained": [],
+        "requests": [],
+        "rolled": [],
+        "seed": 2207875353,
+        "log": []
+      },
+      "refinement": {
+        "version": 1,
+        "grandfather": [],
+        "races": [],
+        "recovery": null
+      },
+      "scenario128": {
+        "version": 1,
+        "arc": "light",
+        "analysisKey": "speed",
+        "streak": 0,
+        "recovery": 0,
+        "settled": [],
+        "awarded": []
+      }
+    },
+    "registry": [],
+    "rivals": [],
+    "coins": 1000,
+    "quick": null,
+    "settings": {
+      "speed": 1,
+      "postureAssist": false,
+      "haptics": true,
+      "raceFX": "full",
+      "textSize": "normal",
+      "contrast": "standard"
+    },
+    "savedAt": null
+  },
+  "rival": {
+    "version": 80,
+    "build": "145",
+    "seed": 4167085048,
+    "career": {
+      "player": {
+        "id": "p1fsk6m395tvh",
+        "name": "旧版しおり検証",
+        "stats": {
+          "speed": 37,
+          "turn": 53,
+          "start": 53.5,
+          "accel": 46,
+          "power": 40
+        },
+        "adjust": {
+          "motorVar": 38,
+          "motorSuccess": 21,
+          "propVar": 67,
+          "propSuccess": 21
+        },
+        "growth": "starter",
+        "skills": [
+          "quick"
+        ],
+        "mastery": {},
+        "popularity": 0,
+        "money": 0,
+        "totalEarnings": 0,
+        "inventory": {},
+        "equipment": null,
+        "points": 0,
+        "finishes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scoreTotal": 0,
+        "tie": 0.48374837287701666,
+        "scenario": "light",
+        "profile": {
+          "region": "",
+          "motto": "",
+          "color": "lagoon",
+          "emblem": "wave",
+          "favorite": false
+        },
+        "difficulty": "normal"
+      },
+      "playMode141": "drive",
+      "seed": 1813730123,
+      "stage": 3,
+      "status": "home",
+      "series": null,
+      "history": [],
+      "shop": null,
+      "lastShop": null,
+      "balance": {
+        "last": null,
+        "streak": 0
+      },
+      "stats": {
+        "races": 0,
+        "wins": 0,
+        "capsizes": 0
+      },
+      "lastResult": null,
+      "ending": null,
+      "development": {
+        "version": 1,
+        "rival": {
+          "id": "main_izumi",
+          "cast": "izumi",
+          "met": 0,
+          "history": [],
+          "training": 0,
+          "drama": {
+            "version": 2,
+            "entries": [
+              {
+                "index": 0,
+                "stage": 0,
+                "record": null,
+                "decision": {
+                  "index": 0,
+                  "aligned": true,
+                  "key": "start",
+                  "gain": 0,
+                  "skill": null,
+                  "note": "泉「今度は止めて。自分だと、そこ飛ばしちゃうから」"
+                },
+                "prose": {
+                  "title": "零の手前",
+                  "body": [
+                    "◇場面◇{\"when\":\"練習の終わり\",\"place\":\"控室の入口\",\"caption\":\"\"}",
+                    "泉の声が聞こえなくなると、部屋は思ったより静かだった。主人公は忘れた物を取りに戻り、まだ残っている人影に気づいた。",
+                    "画面の光が泉の顔へ当たっていた。何度も同じ所で止まる映像を見て、主人公は挨拶を少し小さくした。",
+                    "◇場面◇{\"when\":\"それから\",\"place\":\"控室の入口\",\"caption\":\"\"}",
+                    "立花泉は、スタートの映像だけを繰り返していた。主人公に気づくと、端末を閉じかける。",
+                    "泉「何。速かった？」",
+                    "主人公「まだ見えてない」",
+                    "泉「じゃあ見て。ちゃんと」",
+                    "映像では、出足の直前に艇がわずかに沈んだ。泉はそこを一度も止めなかった。",
+                    "主人公「ここで、迷った？」",
+                    "泉「……そう見えた？」",
+                    "速いと褒められるより、その質問の方が気になったらしい。泉は端末をこちらへ寄せた。"
+                  ]
+                },
+                "choiceLabels130": [
+                  "迷っても合わせ直せる所を、もう一回見たい",
+                  "迷わなければ、もっと速かったのにね"
+                ]
+              },
+              {
+                "index": 1,
+                "stage": 1,
+                "record": null,
+                "decision": {
+                  "index": 0,
+                  "aligned": false,
+                  "key": "start",
+                  "gain": 0,
+                  "skill": null,
+                  "note": "泉「分かってるよ。分かってて、言えないんだって」"
+                },
+                "prose": {
+                  "title": "大きな声の裏",
+                  "body": [
+                    "◇場面◇{\"when\":\"集合時刻の少し前\",\"place\":\"廊下\",\"caption\":\"\"}",
+                    "泉の冗談に笑って、主人公も緊張がほぐれた。いつも助けられている、と礼を言おうとした時には、人が周りに増えていた。",
+                    "あとで言えばいい。そう思って離れた所から見ると、誰もいなくなった泉の肩が、少し下がった。",
+                    "◇場面◇{\"when\":\"それから\",\"place\":\"廊下\",\"caption\":\"\"}",
+                    "集合前、泉はいつもよりよくしゃべった。冗談を言い、他の選手の肩を叩き、一人になった途端に黙った。",
+                    "主人公「疲れない？」",
+                    "泉「何が」",
+                    "主人公「今の全部」",
+                    "泉は笑おうとして、息だけ吐いた。",
+                    "泉「静かにしてると、怖がってるって言われる。実際、怖いけど」",
+                    "主人公が隣に座ると、泉は止めなかった。二人分の靴先の向こうで、時計の針だけが進む。",
+                    "泉「今の話、他ではしないで」"
+                  ]
+                },
+                "choiceLabels130": [
+                  "みんな怖いんだから、隠さなくてもいいのに",
+                  "分かった。ここでは黙ってても気にしない"
+                ]
+              },
+              {
+                "index": 2,
+                "stage": 2,
+                "record": null,
+                "decision": {
+                  "index": 0,
+                  "aligned": true,
+                  "key": "start",
+                  "gain": 0,
+                  "skill": null,
+                  "note": "泉「うん。途中で次の話にしないなら、聞いて」"
+                },
+                "prose": {
+                  "title": "早すぎた励まし",
+                  "body": [
+                    "◇場面◇{\"when\":\"練習の片づけ中\",\"place\":\"艇庫\",\"caption\":\"\"}",
+                    "何か声をかけたい。それだけを急いで、主人公は次の練習の話をした。泉は返事をしたが、道具を拭く手を止めなかった。",
+                    "自分なら何と言ってほしいかを考えたのは、その後だった。既に口から出た言葉は、引っ込められなかった。",
+                    "◇場面◇{\"when\":\"それから\",\"place\":\"艇庫\",\"caption\":\"\"}",
+                    "泉の練習が崩れた日、主人公は「次がある」と言った。泉はうなずいたが、それきり話さなくなった。",
+                    "帰り際、主人公が呼び止める。",
+                    "主人公「さっき、何かまずかった？」",
+                    "泉「次の話をする前に、今日が嫌だったって言いたかった」",
+                    "主人公は自分が同じ言葉をもらった時のことを思い出した。うれしかった日も、腹が立った日もある。",
+                    "主人公「すぐ元気になってほしかったんだと思う」",
+                    "泉「そっちが安心するため？」",
+                    "言い返せなかった。泉も、その沈黙を急いで埋めなかった。"
+                  ]
+                },
+                "choiceLabels130": [
+                  "そうだったかもしれない。今日の話、まだ聞いていい？",
+                  "でも、励ますつもりだったことは分かってよ"
+                ]
+              },
+              {
+                "index": 3,
+                "stage": 3,
+                "record": null,
+                "decision": null,
+                "prose": {
+                  "title": "腕時計を外す日",
+                  "body": [
+                    "◇場面◇{\"when\":\"休憩の時間\",\"place\":\"控室\",\"caption\":\"\"}",
+                    "泉が時計を見るたび、主人公もつられて時刻を確かめた。まだ余裕はある。そう言いかけて、時刻だけの話ではないのかもしれないと思った。",
+                    "泉の指が時計の留め具へ向かった。主人公は尋ねずに、向かいの椅子を引いた。",
+                    "◇場面◇{\"when\":\"それから\",\"place\":\"控室\",\"caption\":\"\"}",
+                    "泉が腕時計を外して、机に置いた。バンドの内側に、細い跡が幾つも付いている。",
+                    "泉「出走前、触り過ぎてるって言われた」",
+                    "主人公「お守り？」",
+                    "泉「最初は時間を見るだけだった。今は、ないと落ち着かない」",
+                    "外した手首を、泉は無意識に触った。主人公が時計を取ろうとすると、少しだけ顔が動く。",
+                    "主人公は手を止めた。",
+                    "泉「今日は鞄に入れる。捨てるほど嫌いじゃないし」"
+                  ]
+                },
+                "choiceLabels130": [
+                  "思い切って預けた方が、早く慣れるんじゃない？",
+                  "必要になったら、自分で出せる場所に置けばいい"
+                ]
+              }
+            ],
+            "reward": null
+          }
+        },
+        "paths": {
+          "speed": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "turn": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "start": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "accel": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "power": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          }
+        },
+        "plans": [],
+        "settled": [],
+        "training": [],
+        "finals": {},
+        "readers": {},
+        "outcomes": [],
+        "archive": null
+      },
+      "campaign": {
+        "version": 2,
+        "arc": "light",
+        "edition": 119,
+        "origin": 0,
+        "entries": [
+          {
+            "practice133": null,
+            "choiceMode": "paths133",
+            "observation": null,
+            "id": "opening",
+            "kind": "opening",
+            "stage": 0,
+            "outcome": "steady",
+            "strong": "turn",
+            "weak": null,
+            "read": false,
+            "late": false,
+            "legacy": false,
+            "branch": "contest",
+            "wins": 0,
+            "races": 0,
+            "prior": null,
+            "priorText": "",
+            "priorAligned": null,
+            "choiceSpec": 0,
+            "decision": null,
+            "prose": {
+              "title": "序章 · 灯を継ぐ",
+              "body": [
+                "◇場面◇{\"when\":\"回想・子供の頃\",\"place\":\"父の工房\",\"caption\":\"\"}",
+                "父の仕事が終わるまで、主人公は戸口の椅子に座って待っていた。触るなと言われた工具ほど、形をよく覚えている。",
+                "一度だけ、小さな部品を落として床を探した。父は怒らず、照明をもう一つ点けた。",
+                "父「見つけるまで、ここは踏むなよ」",
+                "その一言で、父の仕事を止めてしまったのだと思った。見つかった時、誰より大きく息を吐いたのは主人公だった。",
+                "◇場面◇{\"when\":\"現在・帰郷の日\",\"place\":\"工房へ続く道\",\"caption\":\"\"}",
+                "遠くから見える看板は同じだった。昔より低く感じるのは、自分の背が伸びたからだけではない気がした。",
+                "主人公（心の声）「今度は、困らせるために帰るんじゃない。そう言えるだけのお金が、まだない」",
+                "何を言えば父を安心させられるか考えた。自分が何をしたいかは、そのあとに回していた。",
+                "荷物を持ち直し、戸を開けた。いつも入口にあった工具が、見慣れない箱へ移されていた。",
+                "◇場面◇{\"when\":\"帰郷した午後\",\"place\":\"父の工房\",\"caption\":\"\"}",
+                "工房の戸を開けると、湯を沸かす音だけが聞こえた。子供の頃は、その音が工具の音に隠れていた。",
+                "作業台の高さは変わらない。昔は踏み台が要った場所に、今は自分の出走用の鞄が届く。",
+                "父「そこに置くな。油が付く」",
+                "主人公「もう付いてる。向こうのピットで」",
+                "父「なら、帰ってきたからって余計に汚すな」",
+                "いつものやり取りに安心しかけて、棚の空白に気づいた。",
+                "毎朝同じ場所にあった工具が、新聞紙に包まれている。包みの横には引き取り先の名前があった。",
+                "主人公「片づけるって、少し整理するだけかと思ってた」",
+                "父「そう聞こえるように言ったのかもしれんな」",
+                "父は湯飲みを二つ出した。片方を持つ時だけ、反対の手を添えた。",
+                "主人公は鞄から出走表を出し、賞金の欄が見えないように折った。隠した数字ほど、頭の中では大きかった。",
+                "父は売却予定の工具に付けた札を裏返した。一番古いレンチだけ、値段が空欄だった。",
+                "主人公「それは売らないのか」",
+                "父「値段を決められないだけだ。若い頃から使ってるからな」",
+                "父が落としたボルトを拾い、作業台へ置いた。",
+                "主人公「手、また痛むのか」",
+                "父「寒いだけだ。それより、お前の出走表を見せろ」",
+                "主人公「先に店の話をしたい。工具、売るつもりなんだろ」",
+                "父「使えなくなる前に、使う奴へ渡す。それでいい」",
+                "主人公「よくない。賞金を稼ぐ。修理代も、店の金も」",
+                "父「そのために選手になったのか？」",
+                "主人公「……それだけじゃない。でも、放っておけないだろ」",
+                "父「ありがたいよ。ただ、お前が負けるたびに店まで背負われちゃ、俺も応援しづらい」",
+                "父は出走表を作業台に広げた。",
+                "父「俺が見たいのは、お前のレースだ。まず何を変えたい？」",
+                "父「お前のメモ、直した所より迷った所の方が長いな」",
+                "主人公「そこを飛ばしたら、次も同じ所で迷うだろ」",
+                "父は赤鉛筆を取ったが、書き込まずに主人公へ渡した。"
+              ]
+            },
+            "edition142": true
+          }
+        ],
+        "closed": false,
+        "dominance": false
+      },
+      "story": {
+        "version": 1,
+        "seed": 54241047,
+        "chapters": [],
+        "gates": [],
+        "seen": {},
+        "bonds": {
+          "mentor": 0,
+          "mechanic": 0
+        },
+        "pending": null,
+        "rivals": [],
+        "duel": null,
+        "log": [],
+        "shown": [],
+        "serial": 0,
+        "arcs": {},
+        "skillStages": [],
+        "introductions": {
+          "version": 1,
+          "known": [],
+          "scenes": []
+        }
+      },
+      "bonds": {
+        "version": 3,
+        "partner": null,
+        "completed": null,
+        "nextAt": 0,
+        "waitHeroine": null,
+        "shortcutUsed": false,
+        "encounters": {
+          "seed": 303781637,
+          "rolled": [],
+          "notice": null
+        },
+        "pending": null,
+        "heroines": {
+          "akari": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "mio": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "nagi": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "kanade": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "tsumugi": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "mizuki": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "natsu": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          }
+        },
+        "training": {
+          "stages": [],
+          "rivals": {}
+        },
+        "log": [],
+        "serial": 0,
+        "reward": null
+      },
+      "finale": {
+        "version": 1,
+        "wallDefeated": null,
+        "rival": {
+          "route": "open",
+          "chosenAt": null,
+          "growth": 0
+        },
+        "settled": [],
+        "log": [],
+        "finalGrid": null
+      },
+      "affinity": {
+        "version": 1,
+        "rival": 12,
+        "mentors": {},
+        "unlocked": [],
+        "settled": [],
+        "trained": [],
+        "requests": [],
+        "rolled": [],
+        "seed": 2207875353,
+        "log": [
+          {
+            "kind": "rival",
+            "id": "main_izumi",
+            "before": 8,
+            "after": 11,
+            "delta": 3,
+            "reason": "対話での返事",
+            "stage": 0,
+            "races": 0
+          },
+          {
+            "kind": "rival",
+            "id": "main_izumi",
+            "before": 11,
+            "after": 9,
+            "delta": -2,
+            "reason": "対話での返事",
+            "stage": 1,
+            "races": 0
+          },
+          {
+            "kind": "rival",
+            "id": "main_izumi",
+            "before": 9,
+            "after": 12,
+            "delta": 3,
+            "reason": "対話での返事",
+            "stage": 2,
+            "races": 0
+          }
+        ]
+      },
+      "refinement": {
+        "version": 1,
+        "grandfather": [],
+        "races": [],
+        "recovery": null
+      },
+      "scenario128": {
+        "version": 1,
+        "arc": "light",
+        "analysisKey": "speed",
+        "streak": 0,
+        "recovery": 0,
+        "settled": [],
+        "awarded": []
+      }
+    },
+    "registry": [],
+    "rivals": [],
+    "coins": 1000,
+    "quick": null,
+    "settings": {
+      "speed": 1,
+      "postureAssist": false,
+      "haptics": true,
+      "raceFX": "full",
+      "textSize": "normal",
+      "contrast": "standard"
+    },
+    "savedAt": null
+  },
+  "race": {
+    "version": 80,
+    "build": "145",
+    "seed": 1703683565,
+    "career": {
+      "player": {
+        "id": "p1fsk6m395tvh",
+        "name": "旧版しおり検証",
+        "stats": {
+          "speed": 37,
+          "turn": 53,
+          "start": 53,
+          "accel": 46,
+          "power": 40
+        },
+        "adjust": {
+          "motorVar": 38,
+          "motorSuccess": 21,
+          "propVar": 67,
+          "propSuccess": 21
+        },
+        "growth": "starter",
+        "skills": [
+          "quick"
+        ],
+        "mastery": {},
+        "popularity": 0,
+        "money": 0,
+        "totalEarnings": 0,
+        "inventory": {},
+        "equipment": {
+          "boat": {
+            "stability": 83,
+            "turn": 2,
+            "accel": 2
+          },
+          "motor": {
+            "speed": 1.6392,
+            "accel": 3,
+            "condition": 88,
+            "trait": 0
+          },
+          "prop": {
+            "turn": 10.406,
+            "accel": 4,
+            "condition": 66,
+            "trait": 2
+          }
+        },
+        "points": 0,
+        "finishes": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "scoreTotal": 0,
+        "tie": 0.07557119661942124,
+        "scenario": "light",
+        "profile": {
+          "region": "",
+          "motto": "",
+          "color": "lagoon",
+          "emblem": "wave",
+          "favorite": false
+        },
+        "difficulty": "normal"
+      },
+      "playMode141": "drive",
+      "seed": 203378395,
+      "stage": 0,
+      "status": "race",
+      "series": {
+        "stage": 0,
+        "tier": "rookie",
+        "name": "新人シリーズ 前期",
+        "venue": {
+          "id": "aonagi",
+          "name": "青凪水面",
+          "note": "安定水面。実力と機材が結果に出る",
+          "stats": {
+            "turn": 2,
+            "power": 2
+          },
+          "roughness": 0,
+          "lane": 1.02
+        },
+        "npcs": [
+          {
+            "id": "main_izumi",
+            "name": "立花 泉",
+            "stats": {
+              "speed": 40,
+              "turn": 42,
+              "start": 49,
+              "accel": 40,
+              "power": 42
+            },
+            "adjust": {
+              "motorVar": 34,
+              "motorSuccess": 20,
+              "propVar": 29,
+              "propSuccess": 21
+            },
+            "growth": "starter",
+            "skills": [
+              "quick"
+            ],
+            "mastery": {},
+            "popularity": 7,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 86,
+                "turn": 1,
+                "accel": 0
+              },
+              "motor": {
+                "speed": 10.085,
+                "accel": -1.5,
+                "condition": 73,
+                "trait": 1
+              },
+              "prop": {
+                "turn": 14.7514,
+                "accel": 0.5,
+                "condition": 100,
+                "trait": 3
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.4802951777819544,
+            "portraitKey": "rival_07",
+            "racePersona": "rival"
+          },
+          {
+            "id": "mizuki",
+            "name": "朝凪 瑞希",
+            "stats": {
+              "speed": 43,
+              "turn": 48,
+              "start": 41,
+              "accel": 46,
+              "power": 43
+            },
+            "adjust": {
+              "motorVar": 28,
+              "motorSuccess": 20,
+              "propVar": 62,
+              "propSuccess": 21
+            },
+            "growth": "charger",
+            "skills": [
+              "steady"
+            ],
+            "mastery": {},
+            "popularity": 37,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 59,
+                "turn": 1,
+                "accel": 4
+              },
+              "motor": {
+                "speed": 18.8133,
+                "accel": 0.5,
+                "condition": 72,
+                "trait": 1
+              },
+              "prop": {
+                "turn": 23.6923,
+                "accel": 5.5,
+                "condition": 97,
+                "trait": 3
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.8121805735863745,
+            "special": false,
+            "racePersona": "heroine",
+            "portraitKey": "mizuki"
+          },
+          {
+            "id": "npc2_psa2j0ob4dqak",
+            "name": "八雲 志帆",
+            "stats": {
+              "speed": 47,
+              "turn": 45,
+              "start": 46,
+              "accel": 50,
+              "power": 44
+            },
+            "adjust": {
+              "motorVar": 42,
+              "motorSuccess": 18,
+              "propVar": 69,
+              "propSuccess": 22
+            },
+            "growth": "charger",
+            "skills": [
+              "engineer"
+            ],
+            "mastery": {},
+            "popularity": 12,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 43,
+                "turn": 7,
+                "accel": 5
+              },
+              "motor": {
+                "speed": 8.3976,
+                "accel": 1.5,
+                "condition": 100,
+                "trait": 3
+              },
+              "prop": {
+                "turn": 20.004,
+                "accel": 1.5,
+                "condition": 81,
+                "trait": 3
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.7569002562668175
+          },
+          {
+            "id": "npc3_p6n1zxilsy58m",
+            "name": "神崎 一真",
+            "stats": {
+              "speed": 49,
+              "turn": 45,
+              "start": 34,
+              "accel": 41,
+              "power": 46
+            },
+            "adjust": {
+              "motorVar": 38,
+              "motorSuccess": 22,
+              "propVar": 37,
+              "propSuccess": 20
+            },
+            "growth": "tough",
+            "skills": [
+              "calm"
+            ],
+            "mastery": {},
+            "popularity": 37,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 52,
+                "turn": 2,
+                "accel": 4
+              },
+              "motor": {
+                "speed": -6.3352,
+                "accel": 7.5,
+                "condition": 88,
+                "trait": 3
+              },
+              "prop": {
+                "turn": 9.9481,
+                "accel": 7.5,
+                "condition": 77,
+                "trait": 1
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.6073224055580795
+          },
+          {
+            "id": "npc4_pdqvvvfwnlqg2",
+            "name": "八雲 蒼",
+            "stats": {
+              "speed": 34,
+              "turn": 34,
+              "start": 32,
+              "accel": 47,
+              "power": 48
+            },
+            "adjust": {
+              "motorVar": 43,
+              "motorSuccess": 21,
+              "propVar": 59,
+              "propSuccess": 20
+            },
+            "growth": "charger",
+            "skills": [
+              "inside"
+            ],
+            "mastery": {},
+            "popularity": 20,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 77,
+                "turn": -1,
+                "accel": 0
+              },
+              "motor": {
+                "speed": 13.0408,
+                "accel": 3,
+                "condition": 89,
+                "trait": 2
+              },
+              "prop": {
+                "turn": 10.0426,
+                "accel": 8.5,
+                "condition": 91,
+                "trait": 3
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.22888570046052337
+          },
+          {
+            "id": "npc5_pex97xnder9jt",
+            "name": "相沢 凪",
+            "stats": {
+              "speed": 46,
+              "turn": 44,
+              "start": 47,
+              "accel": 37,
+              "power": 48
+            },
+            "adjust": {
+              "motorVar": 52,
+              "motorSuccess": 19,
+              "propVar": 38,
+              "propSuccess": 18
+            },
+            "growth": "sprinter",
+            "skills": [
+              "grit"
+            ],
+            "mastery": {},
+            "popularity": 19,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 76,
+                "turn": 2,
+                "accel": 1
+              },
+              "motor": {
+                "speed": -4.8885,
+                "accel": 4,
+                "condition": 69,
+                "trait": 2
+              },
+              "prop": {
+                "turn": 3.8822,
+                "accel": -2,
+                "condition": 88,
+                "trait": 0
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.1171888280659914
+          },
+          {
+            "id": "npc6_pq77jehf54i66",
+            "name": "三浦 颯太",
+            "stats": {
+              "speed": 46,
+              "turn": 42,
+              "start": 39,
+              "accel": 41,
+              "power": 32
+            },
+            "adjust": {
+              "motorVar": 51,
+              "motorSuccess": 22,
+              "propVar": 53,
+              "propSuccess": 22
+            },
+            "growth": "balanced",
+            "skills": [
+              "straighten"
+            ],
+            "mastery": {},
+            "popularity": 45,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 69,
+                "turn": 6,
+                "accel": -2
+              },
+              "motor": {
+                "speed": 11.0002,
+                "accel": -1.5,
+                "condition": 73,
+                "trait": 1
+              },
+              "prop": {
+                "turn": 0.2158,
+                "accel": 4,
+                "condition": 81,
+                "trait": 2
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.4212371588218957
+          },
+          {
+            "id": "npc7_pqa0updscd7lf",
+            "name": "久遠 千尋",
+            "stats": {
+              "speed": 30,
+              "turn": 42,
+              "start": 44,
+              "accel": 50,
+              "power": 34
+            },
+            "adjust": {
+              "motorVar": 61,
+              "motorSuccess": 22,
+              "propVar": 63,
+              "propSuccess": 21
+            },
+            "growth": "starter",
+            "skills": [
+              "steady"
+            ],
+            "mastery": {},
+            "popularity": 42,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 47,
+                "turn": 0,
+                "accel": 1
+              },
+              "motor": {
+                "speed": 15.9821,
+                "accel": -1,
+                "condition": 86,
+                "trait": 0
+              },
+              "prop": {
+                "turn": 17.8261,
+                "accel": 7,
+                "condition": 98,
+                "trait": 0
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.6510399044491351
+          },
+          {
+            "id": "npc8_ps76uwgsxbedq",
+            "name": "月城 光",
+            "stats": {
+              "speed": 41,
+              "turn": 42,
+              "start": 37,
+              "accel": 34,
+              "power": 51
+            },
+            "adjust": {
+              "motorVar": 31,
+              "motorSuccess": 19,
+              "propVar": 36,
+              "propSuccess": 22
+            },
+            "growth": "sprinter",
+            "skills": [
+              "entry"
+            ],
+            "mastery": {},
+            "popularity": 34,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 54,
+                "turn": 5,
+                "accel": 4
+              },
+              "motor": {
+                "speed": 16.238,
+                "accel": -1,
+                "condition": 87,
+                "trait": 0
+              },
+              "prop": {
+                "turn": 12.5495,
+                "accel": 0,
+                "condition": 96,
+                "trait": 0
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.9693895641248673
+          },
+          {
+            "id": "npc9_p7qbsregzytl6",
+            "name": "久遠 颯太",
+            "stats": {
+              "speed": 45,
+              "turn": 39,
+              "start": 48,
+              "accel": 50,
+              "power": 36
+            },
+            "adjust": {
+              "motorVar": 40,
+              "motorSuccess": 22,
+              "propVar": 41,
+              "propSuccess": 22
+            },
+            "growth": "starter",
+            "skills": [
+              "mechanic"
+            ],
+            "mastery": {},
+            "popularity": 56,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 45,
+                "turn": -1,
+                "accel": 7
+              },
+              "motor": {
+                "speed": 21.1271,
+                "accel": 8,
+                "condition": 83,
+                "trait": 2
+              },
+              "prop": {
+                "turn": 16.009,
+                "accel": 6.5,
+                "condition": 90,
+                "trait": 1
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.640116156777367
+          },
+          {
+            "id": "npc10_pn1j6ata4hhbk",
+            "name": "高瀬 奏",
+            "stats": {
+              "speed": 36,
+              "turn": 45,
+              "start": 54,
+              "accel": 38,
+              "power": 48
+            },
+            "adjust": {
+              "motorVar": 56,
+              "motorSuccess": 21,
+              "propVar": 35,
+              "propSuccess": 21
+            },
+            "growth": "starter",
+            "skills": [
+              "grip"
+            ],
+            "mastery": {},
+            "popularity": 26,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 51,
+                "turn": 8,
+                "accel": -2
+              },
+              "motor": {
+                "speed": 4.3009,
+                "accel": -1.5,
+                "condition": 74,
+                "trait": 3
+              },
+              "prop": {
+                "turn": 6.0706,
+                "accel": 7.5,
+                "condition": 100,
+                "trait": 3
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.12723363190889359
+          },
+          {
+            "id": "npc11_pq0pb4u1gmvkw",
+            "name": "高瀬 颯太",
+            "stats": {
+              "speed": 46,
+              "turn": 46,
+              "start": 49,
+              "accel": 35,
+              "power": 44
+            },
+            "adjust": {
+              "motorVar": 55,
+              "motorSuccess": 18,
+              "propVar": 47,
+              "propSuccess": 21
+            },
+            "growth": "charger",
+            "skills": [
+              "quick"
+            ],
+            "mastery": {},
+            "popularity": 17,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 61,
+                "turn": 3,
+                "accel": 0
+              },
+              "motor": {
+                "speed": 6.0092,
+                "accel": -0.5,
+                "condition": 65,
+                "trait": 1
+              },
+              "prop": {
+                "turn": 8.9623,
+                "accel": 7,
+                "condition": 75,
+                "trait": 2
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.12035164283588529
+          },
+          {
+            "id": "npc12_p62j3lx9o9fot",
+            "name": "桐生 千尋",
+            "stats": {
+              "speed": 49,
+              "turn": 42,
+              "start": 37,
+              "accel": 36,
+              "power": 49
+            },
+            "adjust": {
+              "motorVar": 39,
+              "motorSuccess": 19,
+              "propVar": 68,
+              "propSuccess": 20
+            },
+            "growth": "artist",
+            "skills": [
+              "quick"
+            ],
+            "mastery": {},
+            "popularity": 46,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 69,
+                "turn": 1,
+                "accel": 1
+              },
+              "motor": {
+                "speed": 6.631,
+                "accel": 3.5,
+                "condition": 83,
+                "trait": 3
+              },
+              "prop": {
+                "turn": 14.2947,
+                "accel": -1.5,
+                "condition": 87,
+                "trait": 3
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.6775003389921039
+          },
+          {
+            "id": "npc13_px2tmj3difmra",
+            "name": "碧川 遥",
+            "stats": {
+              "speed": 30,
+              "turn": 44,
+              "start": 40,
+              "accel": 43,
+              "power": 43
+            },
+            "adjust": {
+              "motorVar": 35,
+              "motorSuccess": 19,
+              "propVar": 64,
+              "propSuccess": 18
+            },
+            "growth": "starter",
+            "skills": [
+              "mechanic"
+            ],
+            "mastery": {},
+            "popularity": 6,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 65,
+                "turn": 9,
+                "accel": 8
+              },
+              "motor": {
+                "speed": 18.4971,
+                "accel": -2.5,
+                "condition": 75,
+                "trait": 1
+              },
+              "prop": {
+                "turn": 10.6719,
+                "accel": 0,
+                "condition": 85,
+                "trait": 0
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.8502866697963327
+          },
+          {
+            "id": "npc14_pujikbo1qcqyc",
+            "name": "朝倉 奏",
+            "stats": {
+              "speed": 34,
+              "turn": 35,
+              "start": 44,
+              "accel": 36,
+              "power": 51
+            },
+            "adjust": {
+              "motorVar": 41,
+              "motorSuccess": 19,
+              "propVar": 60,
+              "propSuccess": 18
+            },
+            "growth": "tough",
+            "skills": [
+              "feather"
+            ],
+            "mastery": {},
+            "popularity": 46,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 40,
+                "turn": 7,
+                "accel": 3
+              },
+              "motor": {
+                "speed": -8.0705,
+                "accel": 7.5,
+                "condition": 95,
+                "trait": 3
+              },
+              "prop": {
+                "turn": 11.4301,
+                "accel": 2.5,
+                "condition": 79,
+                "trait": 1
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.23943950748071074
+          },
+          {
+            "id": "npc15_p76qr5cosn70b",
+            "name": "相沢 真琴",
+            "stats": {
+              "speed": 43,
+              "turn": 33,
+              "start": 41,
+              "accel": 44,
+              "power": 51
+            },
+            "adjust": {
+              "motorVar": 30,
+              "motorSuccess": 18,
+              "propVar": 41,
+              "propSuccess": 22
+            },
+            "growth": "sprinter",
+            "skills": [
+              "steady"
+            ],
+            "mastery": {},
+            "popularity": 23,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 51,
+                "turn": 1,
+                "accel": 4
+              },
+              "motor": {
+                "speed": 24.9241,
+                "accel": 5,
+                "condition": 74,
+                "trait": 0
+              },
+              "prop": {
+                "turn": 18.1511,
+                "accel": 9,
+                "condition": 73,
+                "trait": 2
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.1765122136566788
+          },
+          {
+            "id": "npc16_pxratustorod0",
+            "name": "八雲 湊・18",
+            "stats": {
+              "speed": 33,
+              "turn": 40,
+              "start": 38,
+              "accel": 42,
+              "power": 38
+            },
+            "adjust": {
+              "motorVar": 63,
+              "motorSuccess": 22,
+              "propVar": 39,
+              "propSuccess": 19
+            },
+            "growth": "sprinter",
+            "skills": [
+              "stout"
+            ],
+            "mastery": {},
+            "popularity": 56,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 78,
+                "turn": 5,
+                "accel": 4
+              },
+              "motor": {
+                "speed": 5.4406,
+                "accel": 11,
+                "condition": 87,
+                "trait": 2
+              },
+              "prop": {
+                "turn": 13.6433,
+                "accel": 1,
+                "condition": 90,
+                "trait": 0
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.03727459744550288
+          },
+          {
+            "id": "npc17_pa3qr7xvo3098",
+            "name": "真壁 光",
+            "stats": {
+              "speed": 45,
+              "turn": 45,
+              "start": 42,
+              "accel": 39,
+              "power": 41
+            },
+            "adjust": {
+              "motorVar": 29,
+              "motorSuccess": 20,
+              "propVar": 36,
+              "propSuccess": 21
+            },
+            "growth": "tough",
+            "skills": [
+              "wit_weather"
+            ],
+            "mastery": {},
+            "popularity": 54,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 40,
+                "turn": 1,
+                "accel": 8
+              },
+              "motor": {
+                "speed": -2.3699,
+                "accel": 0.5,
+                "condition": 98,
+                "trait": 3
+              },
+              "prop": {
+                "turn": 14.4165,
+                "accel": -1.5,
+                "condition": 100,
+                "trait": 3
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.06265143002383411
+          },
+          {
+            "id": "npc18_pre1hlzo46gev",
+            "name": "風間 遥",
+            "stats": {
+              "speed": 30,
+              "turn": 39,
+              "start": 46,
+              "accel": 36,
+              "power": 39
+            },
+            "adjust": {
+              "motorVar": 52,
+              "motorSuccess": 18,
+              "propVar": 49,
+              "propSuccess": 19
+            },
+            "growth": "charger",
+            "skills": [
+              "practice"
+            ],
+            "mastery": {},
+            "popularity": 26,
+            "money": 0,
+            "totalEarnings": 0,
+            "inventory": {},
+            "equipment": {
+              "boat": {
+                "stability": 45,
+                "turn": 1,
+                "accel": -1
+              },
+              "motor": {
+                "speed": 1.4527,
+                "accel": 5.5,
+                "condition": 76,
+                "trait": 1
+              },
+              "prop": {
+                "turn": 7.7027,
+                "accel": 7.5,
+                "condition": 85,
+                "trait": 1
+              }
+            },
+            "points": 0,
+            "finishes": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "scoreTotal": 0,
+            "tie": 0.7651805172208697
+          }
+        ],
+        "round": 0,
+        "finalType": null,
+        "ranking": null,
+        "otherFinals": [],
+        "race": {
+          "id": "pcrv2klkdrrl",
+          "type": "qualifier",
+          "finalSpectator141": false,
+          "grade": "rookie",
+          "venue": {
+            "id": "aonagi",
+            "name": "青凪水面",
+            "note": "安定水面。実力と機材が結果に出る",
+            "stats": {
+              "turn": 2,
+              "power": 2
+            },
+            "roughness": 0,
+            "lane": 1.02
+          },
+          "env": {
+            "weather": "晴れ",
+            "wind": "追い風",
+            "windSpeed": 0
+          },
+          "runners": [
+            {
+              "id": "npc8_ps76uwgsxbedq",
+              "name": "月城 光",
+              "stats": {
+                "speed": 41,
+                "turn": 42,
+                "start": 37,
+                "accel": 34,
+                "power": 51
+              },
+              "adjust": {
+                "motorVar": 31,
+                "motorSuccess": 19,
+                "propVar": 36,
+                "propSuccess": 22
+              },
+              "growth": "sprinter",
+              "skills": [
+                "entry"
+              ],
+              "mastery": {},
+              "popularity": 34,
+              "money": 0,
+              "totalEarnings": 0,
+              "inventory": {},
+              "equipment": {
+                "boat": {
+                  "stability": 54,
+                  "turn": 5,
+                  "accel": 4
+                },
+                "motor": {
+                  "speed": 16.238,
+                  "accel": -1,
+                  "condition": 87,
+                  "trait": 0
+                },
+                "prop": {
+                  "turn": 12.5495,
+                  "accel": 0,
+                  "condition": 96,
+                  "trait": 0
+                }
+              },
+              "points": 0,
+              "finishes": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "scoreTotal": 0,
+              "tie": 0.9693895641248673,
+              "frame": 1,
+              "course": 1,
+              "score": 0,
+              "progress": 0,
+              "previousProgress": 0,
+              "capsized": false,
+              "capsizePhase": null,
+              "stamina": 100,
+              "isPlayer": false,
+              "strategy": "balanced",
+              "phaseHistory": [],
+              "activations": [],
+              "debuffEvents": [],
+              "orders": [],
+              "odds": 4.3,
+              "favourite": 1
+            },
+            {
+              "id": "p1fsk6m395tvh",
+              "name": "旧版しおり検証",
+              "stats": {
+                "speed": 37,
+                "turn": 53,
+                "start": 53,
+                "accel": 46,
+                "power": 40
+              },
+              "adjust": {
+                "motorVar": 38,
+                "motorSuccess": 21,
+                "propVar": 67,
+                "propSuccess": 21
+              },
+              "growth": "starter",
+              "skills": [
+                "quick"
+              ],
+              "mastery": {},
+              "popularity": 0,
+              "money": 0,
+              "totalEarnings": 0,
+              "inventory": {},
+              "equipment": {
+                "boat": {
+                  "stability": 83,
+                  "turn": 2,
+                  "accel": 2
+                },
+                "motor": {
+                  "speed": 1.6392,
+                  "accel": 3,
+                  "condition": 88,
+                  "trait": 0
+                },
+                "prop": {
+                  "turn": 10.406,
+                  "accel": 4,
+                  "condition": 66,
+                  "trait": 2
+                }
+              },
+              "points": 0,
+              "finishes": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "scoreTotal": 0,
+              "tie": 0.07557119661942124,
+              "scenario": "light",
+              "profile": {
+                "region": "",
+                "motto": "",
+                "color": "lagoon",
+                "emblem": "wave",
+                "favorite": false
+              },
+              "difficulty": "normal",
+              "frame": 2,
+              "course": 2,
+              "score": 0,
+              "progress": 0,
+              "previousProgress": 0,
+              "capsized": false,
+              "capsizePhase": null,
+              "stamina": 100,
+              "isPlayer": true,
+              "strategy": "balanced",
+              "phaseHistory": [],
+              "activations": [],
+              "debuffEvents": [],
+              "orders": [],
+              "odds": 4.6,
+              "favourite": 3
+            },
+            {
+              "id": "npc9_p7qbsregzytl6",
+              "name": "久遠 颯太",
+              "stats": {
+                "speed": 45,
+                "turn": 39,
+                "start": 48,
+                "accel": 50,
+                "power": 36
+              },
+              "adjust": {
+                "motorVar": 40,
+                "motorSuccess": 22,
+                "propVar": 41,
+                "propSuccess": 22
+              },
+              "growth": "starter",
+              "skills": [
+                "mechanic"
+              ],
+              "mastery": {},
+              "popularity": 56,
+              "money": 0,
+              "totalEarnings": 0,
+              "inventory": {},
+              "equipment": {
+                "boat": {
+                  "stability": 45,
+                  "turn": -1,
+                  "accel": 7
+                },
+                "motor": {
+                  "speed": 21.1271,
+                  "accel": 8,
+                  "condition": 83,
+                  "trait": 2
+                },
+                "prop": {
+                  "turn": 16.009,
+                  "accel": 6.5,
+                  "condition": 90,
+                  "trait": 1
+                }
+              },
+              "points": 0,
+              "finishes": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "scoreTotal": 0,
+              "tie": 0.640116156777367,
+              "frame": 3,
+              "course": 3,
+              "score": 0,
+              "progress": 0,
+              "previousProgress": 0,
+              "capsized": false,
+              "capsizePhase": null,
+              "stamina": 100,
+              "isPlayer": false,
+              "strategy": "balanced",
+              "phaseHistory": [],
+              "activations": [],
+              "debuffEvents": [],
+              "orders": [],
+              "odds": 4.6,
+              "favourite": 4
+            },
+            {
+              "id": "npc15_p76qr5cosn70b",
+              "name": "相沢 真琴",
+              "stats": {
+                "speed": 43,
+                "turn": 33,
+                "start": 41,
+                "accel": 44,
+                "power": 51
+              },
+              "adjust": {
+                "motorVar": 30,
+                "motorSuccess": 18,
+                "propVar": 41,
+                "propSuccess": 22
+              },
+              "growth": "sprinter",
+              "skills": [
+                "steady"
+              ],
+              "mastery": {},
+              "popularity": 23,
+              "money": 0,
+              "totalEarnings": 0,
+              "inventory": {},
+              "equipment": {
+                "boat": {
+                  "stability": 51,
+                  "turn": 1,
+                  "accel": 4
+                },
+                "motor": {
+                  "speed": 24.9241,
+                  "accel": 5,
+                  "condition": 74,
+                  "trait": 0
+                },
+                "prop": {
+                  "turn": 18.1511,
+                  "accel": 9,
+                  "condition": 73,
+                  "trait": 2
+                }
+              },
+              "points": 0,
+              "finishes": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "scoreTotal": 0,
+              "tie": 0.1765122136566788,
+              "frame": 4,
+              "course": 4,
+              "score": 0,
+              "progress": 0,
+              "previousProgress": 0,
+              "capsized": false,
+              "capsizePhase": null,
+              "stamina": 100,
+              "isPlayer": false,
+              "strategy": "balanced",
+              "phaseHistory": [],
+              "activations": [],
+              "debuffEvents": [],
+              "orders": [],
+              "odds": 5.2,
+              "favourite": 5
+            },
+            {
+              "id": "npc2_psa2j0ob4dqak",
+              "name": "八雲 志帆",
+              "stats": {
+                "speed": 47,
+                "turn": 45,
+                "start": 46,
+                "accel": 50,
+                "power": 44
+              },
+              "adjust": {
+                "motorVar": 42,
+                "motorSuccess": 18,
+                "propVar": 69,
+                "propSuccess": 22
+              },
+              "growth": "charger",
+              "skills": [
+                "engineer"
+              ],
+              "mastery": {},
+              "popularity": 12,
+              "money": 0,
+              "totalEarnings": 0,
+              "inventory": {},
+              "equipment": {
+                "boat": {
+                  "stability": 43,
+                  "turn": 7,
+                  "accel": 5
+                },
+                "motor": {
+                  "speed": 8.3976,
+                  "accel": 1.5,
+                  "condition": 100,
+                  "trait": 3
+                },
+                "prop": {
+                  "turn": 20.004,
+                  "accel": 1.5,
+                  "condition": 81,
+                  "trait": 3
+                }
+              },
+              "points": 0,
+              "finishes": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "scoreTotal": 0,
+              "tie": 0.7569002562668175,
+              "frame": 5,
+              "course": 5,
+              "score": 0,
+              "progress": 0,
+              "previousProgress": 0,
+              "capsized": false,
+              "capsizePhase": null,
+              "stamina": 100,
+              "isPlayer": false,
+              "strategy": "balanced",
+              "phaseHistory": [],
+              "activations": [],
+              "debuffEvents": [],
+              "orders": [],
+              "odds": 4.4,
+              "favourite": 2
+            },
+            {
+              "id": "npc18_pre1hlzo46gev",
+              "name": "風間 遥",
+              "stats": {
+                "speed": 30,
+                "turn": 39,
+                "start": 46,
+                "accel": 36,
+                "power": 39
+              },
+              "adjust": {
+                "motorVar": 52,
+                "motorSuccess": 18,
+                "propVar": 49,
+                "propSuccess": 19
+              },
+              "growth": "charger",
+              "skills": [
+                "practice"
+              ],
+              "mastery": {},
+              "popularity": 26,
+              "money": 0,
+              "totalEarnings": 0,
+              "inventory": {},
+              "equipment": {
+                "boat": {
+                  "stability": 45,
+                  "turn": 1,
+                  "accel": -1
+                },
+                "motor": {
+                  "speed": 1.4527,
+                  "accel": 5.5,
+                  "condition": 76,
+                  "trait": 1
+                },
+                "prop": {
+                  "turn": 7.7027,
+                  "accel": 7.5,
+                  "condition": 85,
+                  "trait": 1
+                }
+              },
+              "points": 0,
+              "finishes": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "scoreTotal": 0,
+              "tie": 0.7651805172208697,
+              "frame": 6,
+              "course": 6,
+              "score": 0,
+              "progress": 0,
+              "previousProgress": 0,
+              "capsized": false,
+              "capsizePhase": null,
+              "stamina": 100,
+              "isPlayer": false,
+              "strategy": "balanced",
+              "phaseHistory": [],
+              "activations": [],
+              "debuffEvents": [],
+              "orders": [],
+              "odds": 9.5,
+              "favourite": 6
+            }
+          ],
+          "phase": -1,
+          "done": false,
+          "settled": false,
+          "logs": [],
+          "events": [],
+          "cutins": [],
+          "instructions": [],
+          "result": null,
+          "buff": {
+            "speed": 0,
+            "turn": 0,
+            "start": 0,
+            "accel": 0,
+            "power": 0
+          },
+          "itemBoost": 0,
+          "usedItems": {},
+          "strategy": "balanced",
+          "startRule129": true,
+          "tilt": 0,
+          "prepVersion": 87,
+          "auto": false,
+          "difficulty": "normal",
+          "workshop128": {
+            "version": 1,
+            "focus": null,
+            "quality": null,
+            "tiltFactor": 0
+          },
+          "tilt131": {
+            "version": 1
+          },
+          "scenario128": {
+            "version": 1,
+            "arc": "light",
+            "analysisKey": "speed",
+            "streak": 0,
+            "recovery": 0,
+            "traits": []
+          },
+          "drive": {
+            "version": 2,
+            "progressRule": 120,
+            "cpuStartRule": 137,
+            "balanceRule140": 140,
+            "controlUse141": {
+              "manual": 0,
+              "auto": 0
+            },
+            "seed": 2024274453,
+            "frame": 0,
+            "elapsed": 0,
+            "startAt": 12,
+            "countdown": 12,
+            "started": false,
+            "finished": false,
+            "paused": true,
+            "boats": [
+              {
+                "id": "npc8_ps76uwgsxbedq",
+                "name": "月城 光",
+                "frame": 1,
+                "course": 1,
+                "isPlayer": false,
+                "difficulty": "normal",
+                "stats": {
+                  "speed": 41,
+                  "turn": 42,
+                  "start": 37,
+                  "accel": 34,
+                  "power": 51
+                },
+                "equipment": {
+                  "boat": {
+                    "stability": 54,
+                    "turn": 5,
+                    "accel": 4
+                  },
+                  "motor": {
+                    "speed": 16.238,
+                    "accel": -1,
+                    "condition": 87,
+                    "trait": 0
+                  },
+                  "prop": {
+                    "turn": 12.5495,
+                    "accel": 0,
+                    "condition": 96,
+                    "trait": 0
+                  }
+                },
+                "skills": [
+                  "entry"
+                ],
+                "mastery": {},
+                "racePersona": null,
+                "castId": null,
+                "castRole": null,
+                "portraitKey": null,
+                "x": -35.45133223538372,
+                "z": 36,
+                "heading": 0,
+                "vx": 0,
+                "vz": 0,
+                "yawRate": 0,
+                "speed": 0,
+                "steer": 0,
+                "throttle": 0,
+                "engine": 0,
+                "posture": 0,
+                "postureTarget": 0,
+                "progress": -42,
+                "lastS": 58,
+                "checkpoints": 0,
+                "phase": 0,
+                "lastZone": null,
+                "finishTime": null,
+                "capsized": false,
+                "dnf": false,
+                "startFault": null,
+                "startTime": null,
+                "stamina": 100,
+                "stress": 0,
+                "heel": 0,
+                "slip": 0,
+                "penaltyUntil": 0,
+                "lane": 36,
+                "reaction": 0,
+                "effects": [],
+                "activations": [],
+                "interference": [],
+                "phaseHistory": [],
+                "statsBuff": {},
+                "itemBoost": 0,
+                "metrics": {
+                  "contacts": 0,
+                  "boundaries": 0,
+                  "rescues": 0,
+                  "maxSpeed": 0,
+                  "slideSeconds": 0,
+                  "throttleSeconds": 0,
+                  "coastSeconds": 0,
+                  "turnSpeedSum": 0,
+                  "turnSamples": 0,
+                  "wakeSeconds": 0,
+                  "lineChanges": 0,
+                  "contactImpulse": 0,
+                  "lowTurnSeconds": 0,
+                  "highStraightSeconds": 0,
+                  "postureGoodSeconds": 0
+                },
+                "cooldownContact": 0,
+                "cooldownBoundary": 0,
+                "aiBias": 0.6426131464540958,
+                "startRoll": -0.6921811318024993,
+                "startAim": 0.1378359013651581,
+                "plan": null,
+                "nextPlan": 0,
+                "wakeLoad": 0,
+                "aiLane": 36
+              },
+              {
+                "id": "p1fsk6m395tvh",
+                "name": "旧版しおり検証",
+                "frame": 2,
+                "course": 2,
+                "isPlayer": true,
+                "difficulty": "normal",
+                "stats": {
+                  "speed": 37,
+                  "turn": 53,
+                  "start": 53,
+                  "accel": 46,
+                  "power": 40
+                },
+                "equipment": {
+                  "boat": {
+                    "stability": 83,
+                    "turn": 2,
+                    "accel": 2
+                  },
+                  "motor": {
+                    "speed": 1.6392,
+                    "accel": 3,
+                    "condition": 88,
+                    "trait": 0
+                  },
+                  "prop": {
+                    "turn": 10.406,
+                    "accel": 4,
+                    "condition": 66,
+                    "trait": 2
+                  }
+                },
+                "skills": [
+                  "quick"
+                ],
+                "mastery": {},
+                "racePersona": null,
+                "castId": null,
+                "castRole": null,
+                "portraitKey": null,
+                "x": -40.45133223538372,
+                "z": 41.1,
+                "heading": 0,
+                "vx": 0,
+                "vz": 0,
+                "yawRate": 0,
+                "speed": 0,
+                "steer": 0,
+                "throttle": 0,
+                "engine": 0,
+                "posture": 0,
+                "postureTarget": 0,
+                "progress": -47,
+                "lastS": 53,
+                "checkpoints": 0,
+                "phase": 0,
+                "lastZone": null,
+                "finishTime": null,
+                "capsized": false,
+                "dnf": false,
+                "startFault": null,
+                "startTime": null,
+                "stamina": 100,
+                "stress": 0,
+                "heel": 0,
+                "slip": 0,
+                "penaltyUntil": 0,
+                "lane": 41.1,
+                "reaction": 0,
+                "effects": [],
+                "activations": [],
+                "interference": [],
+                "phaseHistory": [],
+                "statsBuff": {
+                  "speed": 0,
+                  "turn": 0,
+                  "start": 0,
+                  "accel": 0,
+                  "power": 0
+                },
+                "itemBoost": 0,
+                "metrics": {
+                  "contacts": 0,
+                  "boundaries": 0,
+                  "rescues": 0,
+                  "maxSpeed": 0,
+                  "slideSeconds": 0,
+                  "throttleSeconds": 0,
+                  "coastSeconds": 0,
+                  "turnSpeedSum": 0,
+                  "turnSamples": 0,
+                  "wakeSeconds": 0,
+                  "lineChanges": 0,
+                  "contactImpulse": 0,
+                  "lowTurnSeconds": 0,
+                  "highStraightSeconds": 0,
+                  "postureGoodSeconds": 0
+                },
+                "cooldownContact": 0,
+                "cooldownBoundary": 0,
+                "aiBias": 0.468180269934237,
+                "startRoll": -0.22505142027512193,
+                "startAim": 0.10961646958269985,
+                "plan": null,
+                "nextPlan": 0,
+                "wakeLoad": 0,
+                "aiLane": 41.1
+              },
+              {
+                "id": "npc9_p7qbsregzytl6",
+                "name": "久遠 颯太",
+                "frame": 3,
+                "course": 3,
+                "isPlayer": false,
+                "difficulty": "normal",
+                "stats": {
+                  "speed": 45,
+                  "turn": 39,
+                  "start": 48,
+                  "accel": 50,
+                  "power": 36
+                },
+                "equipment": {
+                  "boat": {
+                    "stability": 45,
+                    "turn": -1,
+                    "accel": 7
+                  },
+                  "motor": {
+                    "speed": 21.1271,
+                    "accel": 8,
+                    "condition": 83,
+                    "trait": 2
+                  },
+                  "prop": {
+                    "turn": 16.009,
+                    "accel": 6.5,
+                    "condition": 90,
+                    "trait": 1
+                  }
+                },
+                "skills": [
+                  "mechanic"
+                ],
+                "mastery": {},
+                "racePersona": null,
+                "castId": null,
+                "castRole": null,
+                "portraitKey": null,
+                "x": -45.45133223538372,
+                "z": 46.2,
+                "heading": 0,
+                "vx": 0,
+                "vz": 0,
+                "yawRate": 0,
+                "speed": 0,
+                "steer": 0,
+                "throttle": 0,
+                "engine": 0,
+                "posture": 0,
+                "postureTarget": 0,
+                "progress": -52,
+                "lastS": 48,
+                "checkpoints": 0,
+                "phase": 0,
+                "lastZone": null,
+                "finishTime": null,
+                "capsized": false,
+                "dnf": false,
+                "startFault": null,
+                "startTime": null,
+                "stamina": 100,
+                "stress": 0,
+                "heel": 0,
+                "slip": 0,
+                "penaltyUntil": 0,
+                "lane": 46.2,
+                "reaction": 0,
+                "effects": [],
+                "activations": [],
+                "interference": [],
+                "phaseHistory": [],
+                "statsBuff": {},
+                "itemBoost": 0,
+                "metrics": {
+                  "contacts": 0,
+                  "boundaries": 0,
+                  "rescues": 0,
+                  "maxSpeed": 0,
+                  "slideSeconds": 0,
+                  "throttleSeconds": 0,
+                  "coastSeconds": 0,
+                  "turnSpeedSum": 0,
+                  "turnSamples": 0,
+                  "wakeSeconds": 0,
+                  "lineChanges": 0,
+                  "contactImpulse": 0,
+                  "lowTurnSeconds": 0,
+                  "highStraightSeconds": 0,
+                  "postureGoodSeconds": 0
+                },
+                "cooldownContact": 0,
+                "cooldownBoundary": 0,
+                "aiBias": 0.18085686583071947,
+                "startRoll": 0.10988135635852814,
+                "startAim": 0.12383050927407988,
+                "plan": null,
+                "nextPlan": 0,
+                "wakeLoad": 0,
+                "aiLane": 46.2
+              },
+              {
+                "id": "npc15_p76qr5cosn70b",
+                "name": "相沢 真琴",
+                "frame": 4,
+                "course": 4,
+                "isPlayer": false,
+                "difficulty": "normal",
+                "stats": {
+                  "speed": 43,
+                  "turn": 33,
+                  "start": 41,
+                  "accel": 44,
+                  "power": 51
+                },
+                "equipment": {
+                  "boat": {
+                    "stability": 51,
+                    "turn": 1,
+                    "accel": 4
+                  },
+                  "motor": {
+                    "speed": 24.9241,
+                    "accel": 5,
+                    "condition": 74,
+                    "trait": 0
+                  },
+                  "prop": {
+                    "turn": 18.1511,
+                    "accel": 9,
+                    "condition": 73,
+                    "trait": 2
+                  }
+                },
+                "skills": [
+                  "steady"
+                ],
+                "mastery": {},
+                "racePersona": null,
+                "castId": null,
+                "castRole": null,
+                "portraitKey": null,
+                "x": -71.45133223538372,
+                "z": 51.3,
+                "heading": 0,
+                "vx": 0,
+                "vz": 0,
+                "yawRate": 0,
+                "speed": 0,
+                "steer": 0,
+                "throttle": 0,
+                "engine": 0,
+                "posture": 0,
+                "postureTarget": 0,
+                "progress": -78,
+                "lastS": 22,
+                "checkpoints": 0,
+                "phase": 0,
+                "lastZone": null,
+                "finishTime": null,
+                "capsized": false,
+                "dnf": false,
+                "startFault": null,
+                "startTime": null,
+                "stamina": 100,
+                "stress": 0,
+                "heel": 0,
+                "slip": 0,
+                "penaltyUntil": 0,
+                "lane": 51.3,
+                "reaction": 0,
+                "effects": [],
+                "activations": [],
+                "interference": [],
+                "phaseHistory": [],
+                "statsBuff": {},
+                "itemBoost": 0,
+                "metrics": {
+                  "contacts": 0,
+                  "boundaries": 0,
+                  "rescues": 0,
+                  "maxSpeed": 0,
+                  "slideSeconds": 0,
+                  "throttleSeconds": 0,
+                  "coastSeconds": 0,
+                  "turnSpeedSum": 0,
+                  "turnSamples": 0,
+                  "wakeSeconds": 0,
+                  "lineChanges": 0,
+                  "contactImpulse": 0,
+                  "lowTurnSeconds": 0,
+                  "highStraightSeconds": 0,
+                  "postureGoodSeconds": 0
+                },
+                "cooldownContact": 0,
+                "cooldownBoundary": 0,
+                "aiBias": 0.9630350056104362,
+                "startRoll": -0.7564227492548525,
+                "startAim": 0.1282899717933131,
+                "plan": null,
+                "nextPlan": 0,
+                "wakeLoad": 0,
+                "aiLane": 51.3
+              },
+              {
+                "id": "npc2_psa2j0ob4dqak",
+                "name": "八雲 志帆",
+                "frame": 5,
+                "course": 5,
+                "isPlayer": false,
+                "difficulty": "normal",
+                "stats": {
+                  "speed": 47,
+                  "turn": 45,
+                  "start": 46,
+                  "accel": 50,
+                  "power": 44
+                },
+                "equipment": {
+                  "boat": {
+                    "stability": 43,
+                    "turn": 7,
+                    "accel": 5
+                  },
+                  "motor": {
+                    "speed": 8.3976,
+                    "accel": 1.5,
+                    "condition": 100,
+                    "trait": 3
+                  },
+                  "prop": {
+                    "turn": 20.004,
+                    "accel": 1.5,
+                    "condition": 81,
+                    "trait": 3
+                  }
+                },
+                "skills": [
+                  "engineer"
+                ],
+                "mastery": {},
+                "racePersona": null,
+                "castId": null,
+                "castRole": null,
+                "portraitKey": null,
+                "x": -78.45133223538372,
+                "z": 56.4,
+                "heading": 0,
+                "vx": 0,
+                "vz": 0,
+                "yawRate": 0,
+                "speed": 0,
+                "steer": 0,
+                "throttle": 0,
+                "engine": 0,
+                "posture": 0,
+                "postureTarget": 0,
+                "progress": -85,
+                "lastS": 15,
+                "checkpoints": 0,
+                "phase": 0,
+                "lastZone": null,
+                "finishTime": null,
+                "capsized": false,
+                "dnf": false,
+                "startFault": null,
+                "startTime": null,
+                "stamina": 100,
+                "stress": 0,
+                "heel": 0,
+                "slip": 0,
+                "penaltyUntil": 0,
+                "lane": 56.4,
+                "reaction": 0,
+                "effects": [],
+                "activations": [],
+                "interference": [],
+                "phaseHistory": [],
+                "statsBuff": {},
+                "itemBoost": 0,
+                "metrics": {
+                  "contacts": 0,
+                  "boundaries": 0,
+                  "rescues": 0,
+                  "maxSpeed": 0,
+                  "slideSeconds": 0,
+                  "throttleSeconds": 0,
+                  "coastSeconds": 0,
+                  "turnSpeedSum": 0,
+                  "turnSamples": 0,
+                  "wakeSeconds": 0,
+                  "lineChanges": 0,
+                  "contactImpulse": 0,
+                  "lowTurnSeconds": 0,
+                  "highStraightSeconds": 0,
+                  "postureGoodSeconds": 0
+                },
+                "cooldownContact": 0,
+                "cooldownBoundary": 0,
+                "aiBias": 0.14099908713251352,
+                "startRoll": 0.5523178465664387,
+                "startAim": 0.13331671928986155,
+                "plan": null,
+                "nextPlan": 0,
+                "wakeLoad": 0,
+                "aiLane": 56.4
+              },
+              {
+                "id": "npc18_pre1hlzo46gev",
+                "name": "風間 遥",
+                "frame": 6,
+                "course": 6,
+                "isPlayer": false,
+                "difficulty": "normal",
+                "stats": {
+                  "speed": 30,
+                  "turn": 39,
+                  "start": 46,
+                  "accel": 36,
+                  "power": 39
+                },
+                "equipment": {
+                  "boat": {
+                    "stability": 45,
+                    "turn": 1,
+                    "accel": -1
+                  },
+                  "motor": {
+                    "speed": 1.4527,
+                    "accel": 5.5,
+                    "condition": 76,
+                    "trait": 1
+                  },
+                  "prop": {
+                    "turn": 7.7027,
+                    "accel": 7.5,
+                    "condition": 85,
+                    "trait": 1
+                  }
+                },
+                "skills": [
+                  "practice"
+                ],
+                "mastery": {},
+                "racePersona": null,
+                "castId": null,
+                "castRole": null,
+                "portraitKey": null,
+                "x": -85.45133223538372,
+                "z": 61.5,
+                "heading": 0,
+                "vx": 0,
+                "vz": 0,
+                "yawRate": 0,
+                "speed": 0,
+                "steer": 0,
+                "throttle": 0,
+                "engine": 0,
+                "posture": 0,
+                "postureTarget": 0,
+                "progress": -92,
+                "lastS": 8,
+                "checkpoints": 0,
+                "phase": 0,
+                "lastZone": null,
+                "finishTime": null,
+                "capsized": false,
+                "dnf": false,
+                "startFault": null,
+                "startTime": null,
+                "stamina": 100,
+                "stress": 0,
+                "heel": 0,
+                "slip": 0,
+                "penaltyUntil": 0,
+                "lane": 61.5,
+                "reaction": 0,
+                "effects": [],
+                "activations": [],
+                "interference": [],
+                "phaseHistory": [],
+                "statsBuff": {},
+                "itemBoost": 0,
+                "metrics": {
+                  "contacts": 0,
+                  "boundaries": 0,
+                  "rescues": 0,
+                  "maxSpeed": 0,
+                  "slideSeconds": 0,
+                  "throttleSeconds": 0,
+                  "coastSeconds": 0,
+                  "turnSpeedSum": 0,
+                  "turnSamples": 0,
+                  "wakeSeconds": 0,
+                  "lineChanges": 0,
+                  "contactImpulse": 0,
+                  "lowTurnSeconds": 0,
+                  "highStraightSeconds": 0,
+                  "postureGoodSeconds": 0
+                },
+                "cooldownContact": 0,
+                "cooldownBoundary": 0,
+                "aiBias": -0.8823806745931506,
+                "startRoll": -0.5320188524201512,
+                "startAim": 0.15418986138017843,
+                "plan": null,
+                "nextPlan": 0,
+                "wakeLoad": 0,
+                "aiLane": 61.5
+              }
+            ],
+            "events": [],
+            "eventSequence": 0,
+            "logs": [
+              {
+                "phase": 0,
+                "text": "助走開始。内側はスロー、外側は後方からダッシュ。通過までは直進のみ。通常の早発への余裕が生まれるのはスタート A 以上。B 以下は時計が頂点に達してから通過しよう。早発を補助する特能には例外がある。",
+                "kind": "phase",
+                "id": null,
+                "lap": 1,
+                "time": 0
+              }
+            ],
+            "laps": 3,
+            "goal": 1800,
+            "controls": {
+              "steer": 0,
+              "throttle": 0,
+              "posture": 0
+            },
+            "replay": {
+              "version": 1,
+              "from": 0,
+              "frames": [
+                {
+                  "t": 0,
+                  "boats": [
+                    [
+                      -35.45,
+                      36,
+                      0,
+                      -42,
+                      0,
+                      0,
+                      1
+                    ],
+                    [
+                      -40.45,
+                      41.1,
+                      0,
+                      -47,
+                      0,
+                      0,
+                      2
+                    ],
+                    [
+                      -45.45,
+                      46.2,
+                      0,
+                      -52,
+                      0,
+                      0,
+                      3
+                    ],
+                    [
+                      -71.45,
+                      51.3,
+                      0,
+                      -78,
+                      0,
+                      0,
+                      4
+                    ],
+                    [
+                      -78.45,
+                      56.4,
+                      0,
+                      -85,
+                      0,
+                      0,
+                      5
+                    ],
+                    [
+                      -85.45,
+                      61.5,
+                      0,
+                      -92,
+                      0,
+                      0,
+                      6
+                    ]
+                  ]
+                }
+              ],
+              "events": [
+                {
+                  "t": 0,
+                  "text": "助走開始。内側はスロー、外側は後方からダッシュ。通過までは直進のみ。通常の早発への余裕が生まれるのはスタート A 以上。B 以下は時計が頂点に達してから通過しよう。早発を補助する特能には例外がある。",
+                  "kind": "phase"
+                }
+              ]
+            },
+            "lastAnnouncedLeader": null,
+            "finalized": false,
+            "wakes": [],
+            "wakeClock": 0
+          }
+        },
+        "action": {
+          "normal": 0,
+          "training": 1,
+          "tune": 1,
+          "actionVersion": 88,
+          "baseActions": {
+            "training": 1,
+            "tune": 1
+          },
+          "trainingMode": "focus",
+          "halfActions": {
+            "training": 0,
+            "tune": 0
+          },
+          "logs": [],
+          "debug": [],
+          "extras": [],
+          "extrasNotified": false
+        },
+        "startStats": {
+          "speed": 37,
+          "turn": 53,
+          "start": 53,
+          "accel": 46,
+          "power": 40
+        },
+        "startMoney": 0,
+        "qualificationRank": null,
+        "completed": false
+      },
+      "history": [],
+      "shop": {
+        "stage": 0,
+        "stock": [
+          {
+            "id": "entry",
+            "price": 292,
+            "sold": false
+          },
+          {
+            "id": "doguchi_sr",
+            "price": 292,
+            "sold": false
+          },
+          {
+            "id": "spanner",
+            "price": 208,
+            "sold": false
+          },
+          {
+            "id": "student",
+            "price": 292,
+            "sold": false
+          }
+        ],
+        "purchases": 0,
+        "limit": 2,
+        "itemBuys": {}
+      },
+      "lastShop": null,
+      "balance": {
+        "last": null,
+        "streak": 0
+      },
+      "stats": {
+        "races": 0,
+        "wins": 0,
+        "capsizes": 0
+      },
+      "lastResult": null,
+      "ending": null,
+      "development": {
+        "version": 1,
+        "rival": {
+          "id": "main_izumi",
+          "cast": "izumi",
+          "met": 0,
+          "history": [],
+          "training": 0
+        },
+        "paths": {
+          "speed": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "turn": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "start": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "accel": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          },
+          "power": {
+            "hints": 0,
+            "practice": 0,
+            "learned": false,
+            "branch": null
+          }
+        },
+        "plans": [],
+        "settled": [],
+        "training": [],
+        "finals": {},
+        "readers": {},
+        "outcomes": [],
+        "archive": null
+      },
+      "campaign": {
+        "version": 2,
+        "arc": "light",
+        "edition": 119,
+        "origin": 0,
+        "entries": [
+          {
+            "practice133": null,
+            "choiceMode": "paths133",
+            "observation": null,
+            "id": "opening",
+            "kind": "opening",
+            "stage": 0,
+            "outcome": "steady",
+            "strong": "turn",
+            "weak": null,
+            "read": false,
+            "late": false,
+            "legacy": false,
+            "branch": "contest",
+            "wins": 0,
+            "races": 0,
+            "prior": null,
+            "priorText": "",
+            "priorAligned": null,
+            "choiceSpec": 0,
+            "decision": null,
+            "prose": {
+              "title": "序章 · 灯を継ぐ",
+              "body": [
+                "◇場面◇{\"when\":\"回想・子供の頃\",\"place\":\"父の工房\",\"caption\":\"\"}",
+                "父の仕事が終わるまで、主人公は戸口の椅子に座って待っていた。触るなと言われた工具ほど、形をよく覚えている。",
+                "一度だけ、小さな部品を落として床を探した。父は怒らず、照明をもう一つ点けた。",
+                "父「見つけるまで、ここは踏むなよ」",
+                "その一言で、父の仕事を止めてしまったのだと思った。見つかった時、誰より大きく息を吐いたのは主人公だった。",
+                "◇場面◇{\"when\":\"現在・帰郷の日\",\"place\":\"工房へ続く道\",\"caption\":\"\"}",
+                "遠くから見える看板は同じだった。昔より低く感じるのは、自分の背が伸びたからだけではない気がした。",
+                "主人公（心の声）「今度は、困らせるために帰るんじゃない。そう言えるだけのお金が、まだない」",
+                "何を言えば父を安心させられるか考えた。自分が何をしたいかは、そのあとに回していた。",
+                "荷物を持ち直し、戸を開けた。いつも入口にあった工具が、見慣れない箱へ移されていた。",
+                "◇場面◇{\"when\":\"帰郷した午後\",\"place\":\"父の工房\",\"caption\":\"\"}",
+                "工房の戸を開けると、湯を沸かす音だけが聞こえた。子供の頃は、その音が工具の音に隠れていた。",
+                "作業台の高さは変わらない。昔は踏み台が要った場所に、今は自分の出走用の鞄が届く。",
+                "父「そこに置くな。油が付く」",
+                "主人公「もう付いてる。向こうのピットで」",
+                "父「なら、帰ってきたからって余計に汚すな」",
+                "いつものやり取りに安心しかけて、棚の空白に気づいた。",
+                "毎朝同じ場所にあった工具が、新聞紙に包まれている。包みの横には引き取り先の名前があった。",
+                "主人公「片づけるって、少し整理するだけかと思ってた」",
+                "父「そう聞こえるように言ったのかもしれんな」",
+                "父は湯飲みを二つ出した。片方を持つ時だけ、反対の手を添えた。",
+                "主人公は鞄から出走表を出し、賞金の欄が見えないように折った。隠した数字ほど、頭の中では大きかった。",
+                "父は売却予定の工具に付けた札を裏返した。一番古いレンチだけ、値段が空欄だった。",
+                "主人公「それは売らないのか」",
+                "父「値段を決められないだけだ。若い頃から使ってるからな」",
+                "父が落としたボルトを拾い、作業台へ置いた。",
+                "主人公「手、また痛むのか」",
+                "父「寒いだけだ。それより、お前の出走表を見せろ」",
+                "主人公「先に店の話をしたい。工具、売るつもりなんだろ」",
+                "父「使えなくなる前に、使う奴へ渡す。それでいい」",
+                "主人公「よくない。賞金を稼ぐ。修理代も、店の金も」",
+                "父「そのために選手になったのか？」",
+                "主人公「……それだけじゃない。でも、放っておけないだろ」",
+                "父「ありがたいよ。ただ、お前が負けるたびに店まで背負われちゃ、俺も応援しづらい」",
+                "父は出走表を作業台に広げた。",
+                "父「俺が見たいのは、お前のレースだ。まず何を変えたい？」",
+                "父「お前のメモ、直した所より迷った所の方が長いな」",
+                "主人公「そこを飛ばしたら、次も同じ所で迷うだろ」",
+                "父は赤鉛筆を取ったが、書き込まずに主人公へ渡した。"
+              ]
+            },
+            "edition142": true
+          }
+        ],
+        "closed": false,
+        "dominance": false
+      },
+      "story": {
+        "version": 1,
+        "seed": 1885806860,
+        "chapters": [
+          0
+        ],
+        "gates": [
+          "pcrv2klkdrrl"
+        ],
+        "seen": {},
+        "bonds": {
+          "mentor": 0,
+          "mechanic": 0
+        },
+        "pending": null,
+        "rivals": [
+          {
+            "id": "main_izumi",
+            "name": "立花 泉",
+            "portraitKey": "rival_07",
+            "wins": 0,
+            "losses": 0,
+            "met": 0
+          }
+        ],
+        "duel": {
+          "stage": 0,
+          "round": 2,
+          "rivalId": "main_izumi",
+          "rivalName": "立花 泉",
+          "status": "scheduled",
+          "raceId": null,
+          "money": 8
+        },
+        "log": [
+          {
+            "kind": "chapter",
+            "title": "白いヘルメット",
+            "note": "朝倉は新品のヘルメットを軽くたたいた。「まずは一つ、自分で良くなったと言える走りをしよう」まだ硬いベルトを締め、主人公は桟橋へ向かった。",
+            "index": 1,
+            "stage": 0
+          }
+        ],
+        "shown": [],
+        "serial": 1,
+        "arcs": {},
+        "skillStages": [],
+        "introductions": {
+          "version": 1,
+          "known": [],
+          "scenes": []
+        }
+      },
+      "bonds": {
+        "version": 3,
+        "partner": null,
+        "completed": null,
+        "nextAt": 0,
+        "waitHeroine": null,
+        "shortcutUsed": false,
+        "encounters": {
+          "seed": 2348506272,
+          "rolled": [
+            "0:0"
+          ],
+          "notice": null,
+          "natsu": {
+            "seed": 334276200,
+            "rolled": [
+              "0:0"
+            ]
+          }
+        },
+        "pending": null,
+        "heroines": {
+          "akari": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "mio": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "nagi": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "kanade": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "tsumugi": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "mizuki": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          },
+          "natsu": {
+            "met": false,
+            "metStage": null,
+            "metRace": null,
+            "step": 0,
+            "trust": 0,
+            "affection": 0,
+            "failed": false,
+            "reason": "",
+            "dated": false,
+            "choices": []
+          }
+        },
+        "training": {
+          "stages": [],
+          "rivals": {}
+        },
+        "log": [],
+        "serial": 0,
+        "reward": null
+      },
+      "finale": {
+        "version": 1,
+        "wallDefeated": null,
+        "rival": {
+          "route": "open",
+          "chosenAt": null,
+          "growth": 0
+        },
+        "settled": [],
+        "log": [],
+        "finalGrid": null
+      },
+      "affinity": {
+        "version": 1,
+        "rival": 8,
+        "mentors": {},
+        "unlocked": [],
+        "settled": [],
+        "trained": [],
+        "requests": [],
+        "rolled": [],
+        "seed": 2207875353,
+        "log": []
+      },
+      "refinement": {
+        "version": 1,
+        "grandfather": [],
+        "races": [],
+        "recovery": null
+      },
+      "scenario128": {
+        "version": 1,
+        "arc": "light",
+        "analysisKey": "speed",
+        "streak": 0,
+        "recovery": 0,
+        "settled": [],
+        "awarded": []
+      },
+      "cast": {
+        "version": 1,
+        "mentor": null,
+        "boss": null,
+        "mentorLocked": false,
+        "stages": [
+          0
+        ],
+        "schedule": null,
+        "duels": [],
+        "trained": 0
+      },
+      "transition144": 2,
+      "journey134": {
+        "version": 1,
+        "offers": [],
+        "duels": [],
+        "daily": [],
+        "ending": null
+      }
+    },
+    "registry": [],
+    "rivals": [],
+    "coins": 1000,
+    "quick": null,
+    "settings": {
+      "speed": 1,
+      "postureAssist": false,
+      "haptics": true,
+      "raceFX": "full",
+      "textSize": "normal",
+      "contrast": "standard"
+    },
+    "savedAt": null
+  }
+}

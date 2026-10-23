@@ -45,7 +45,7 @@ function memoryLines(c,m,E){
  const p=E.Development.rival(c),v=voices[c.development.rival.cast],q=m;
  const result=q.outcome==='void'?'主人公は着順表の失格欄を見た。今日は、先着を競う話をする気になれなかった。':q.outcome==='opponentFault'?p.name+'「今日は有効に走り切れなかった。決着の話は、次にさせて」':p.name+'「'+v[q.outcome]+'」';
  const proof=q.trained?(q.outcome==='void'?'練習した内容は残っている。ただ、今日は有効完走できなかった。実践できたと急いで結論を出すのはやめた。':q.applied===true?'練習で確かめた'+D.stats[q.key]+'について、本番の記録にも実践の目安が残っていた。':q.applied===false?'準備した'+D.stats[q.key]+'は、本番では実践の目安まで届かなかった。練習したことと、使えたことは別だった。':'練習した'+D.stats[q.key]+'を使えたかは、この走行記録では確かめられない。'):q.observed?'二人は'+q.task+'を開いた。着順だけでは、そこで何が起きたかまでは分からない。':'細かな区間の記録は残っていない。まずは出走と着順を、二人で確かめた。';
- return [bridge('同走したレースのあと','ピットの映像端末'),result,proof,q.manual?'主人公は自分が迷った場所で、映像を止めた。':'今回は観戦・自動走行の記録だった。主人公は、自分の操作の反省と混同せず、次の準備欄を開いた。'];
+ return [bridge('同走したレースのあと','ピットの映像端末'),result,proof,q.manual?'主人公は自分が迷った場所で、映像を止めた。':'主人公は、操作の反省と準備の見直しを混同しないように、走行の記録を確かめてから次の準備欄を開いた。'];
 }
 function settle(c,r,z,E){
  const j=ensure(c),q=offer(c),b=r.drive?.boats.find(x=>x.isPlayer);
@@ -77,12 +77,12 @@ function dailyDefinitions(c,E){
  if(met(c,'kanade'))defs.push({id:'sound',person:'kanade',title:'録音に入った笑い声',body:[bridge('奏に録音を頼まれた帰り道','港の歩道'),'水の音を録りたいという奏に付き合い、主人公は'+n+'と手すりから離れて立っていた。','奏「今から十秒、何も言わないで」','十秒がやけに長い。隣から小さく腹の音がして、主人公の肩が揺れた。','奏は録音を止めず、自分まで笑い出した。',bridge('再生してみると','港のベンチ'),'奏「これは別の名前で残す。水の音は、もう一回」','二人は今度こそ黙った。遠くのエンジン音が、さっきよりはっきり聞こえた。']});
  if(met(c,'mizuki'))defs.push({id:'schedule',person:'mizuki',title:'空いていない日',body:[bridge('節間、次の予定を決める頃','競走場の掲示板前'),'瑞希と'+n+'は、それぞれの予定表を広げていた。三人で映像を見ようという話が、なかなかまとまらない。','瑞希「その日は私が走る。そっちが空いてても、私が空いてない」','主人公は自分の予定だけに丸をつけていた紙を折り直した。',n+'「じゃあ映像だけ先に送る。感想は、返せる日に」','瑞希「それならできる。ちゃんと見るから、急かさないで」','集まる日は決まらなかった。それでも、話は一つ先へ進んだ。']});
  if(c.cast?.mentor&&E.Cast.introduced(c)){const m=E.Cast.map[c.cast.mentor.id];defs.push({id:'mentor_rival',person:m.id,title:'しまい方にも癖がある',body:[bridge('合同練習が終わった日','艇庫'),m.name+'が工具の数を数えている横で、'+n+'が台車の向きを直した。',n+'「先輩、こっち向きの方が出しやすくないですか」',m.name+'「出す時はな。今日は戻す所までやろう」','主人公が間に入る前に、二人で台車を動かし始めた。意外に、言い争いにはならなかった。','帰る頃には通路が少し広くなっていた。誰が折れたのかは、聞かないでおいた。']});}
- return defs;
+ const extra=(root.KM_DAYS143||(typeof require==='function'?require('./days143.js'):null)).available(c,E);return [...extra,...defs];
 }
 function collectDaily(c,E){
  if(c.ending||c.stage<1||c.stats.races<1)return null;const j=ensure(c);
  if(j.daily.some(x=>x.stage===c.stage))return null;
- const d=dailyDefinitions(c,E).find(x=>!j.daily.some(y=>y.id===x.id));if(!d)return null;
+ const eligible=dailyDefinitions(c,E).filter(x=>!j.daily.some(y=>y.id===x.id));const d=eligible.length?eligible[(c.stage-1)%eligible.length]:null;if(!d)return null;
  const person=E.Bonds.B.map[d.person]||E.Cast.map[d.person]||E.Development.rival(c);
  const e={...d,person:{id:person.id,name:person.name,portraitKey:person.portraitKey||''},stage:c.stage,read:false};j.daily.push(e);return e;
 }

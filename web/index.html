@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#071b2a">
   <meta name="description" content="選手を育て、五つの水面を駆ける。スマホで遊ぶ育成と一人称の操作型ボートレース『競艇物語』。">
-  <title>競艇物語 V134</title>
+  <title>競艇物語 V147</title>
   <style>
 /* 競艇物語 — Deep water, race-white numerals, signal amber. */
 :root {
@@ -3073,6 +3073,97 @@ body:not(.in-race) .entry-choice123{display:grid;grid-template-columns:34px minm
 .opportunity134,.rival-memory134,.journey-journal134{margin:14px 0;padding:16px;border:1px solid #5b9c9b66;border-radius:14px;background:#0b2638;color:#eaf4ee;overflow-wrap:anywhere}
 .opportunity134 h3,.journey-journal134 h2{margin:6px 0 10px}.opportunity134 p,.rival-memory134 p{line-height:1.7}.journey-journal134 details{margin-top:12px}.choice-history134{padding-left:1.5em}.choice-history134 li{padding:10px 0;border-bottom:1px solid #ffffff20}.choice-history134 b,.choice-history134 span{display:block}.choice-history134 span{margin-top:6px;line-height:1.7}.review134>details{margin-top:14px}.review134 .review-task122{margin-top:10px}.opportunity134 summary,.rival-memory134 summary,.journey-journal134 summary,.review134 summary{min-height:44px;cursor:pointer;line-height:1.6;padding:8px 0}
 @media(max-width:480px){.opportunity134,.journey-journal134,.rival-memory134{padding:12px}.review134 .button-row{display:grid;grid-template-columns:1fr}}
+/* V139: less persistent chrome; every primary action remains visible. */
+body:not(.in-race):not(.reading-novel) .masthead{height:58px;padding:10px 20px;border-bottom:1px solid #28414e;background:transparent}
+.masthead .brand{font-size:16px;letter-spacing:.06em}.masthead .brand span{display:none}.masthead .version{padding-right:48px;font-size:11px}
+body:not(.in-race):not(.reading-novel) #app{max-width:900px;padding:22px 20px calc(100px + env(safe-area-inset-bottom))}
+body:not(.in-race) .page-heading{margin-bottom:20px}body:not(.in-race) .page-heading h1{font-size:clamp(23px,4.8vw,30px);line-height:1.4;margin-bottom:5px}
+body:not(.in-race) .page-heading>.eyebrow{font-size:10px;letter-spacing:.1em;margin-bottom:6px;color:#9db4be}
+.quiet-panel139{border:1px solid #2c4858;background:#102c3d;border-radius:16px;padding:18px;margin:16px 0;box-shadow:none}
+.quiet-panel139 .section-line{margin-bottom:12px}.quiet-panel139 h2{font-size:15px;margin:0}.quiet-panel139 p:last-child{margin-bottom:0}
+.quiet-links139{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.quiet-links139>.btn{min-height:44px;padding:9px 13px;font-size:13px;box-shadow:none;background:transparent;border-color:#355263;color:#c7dbdf}
+.budget139{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:#b2c7d0;font-size:13px}.budget139>span{padding:5px 12px;border-radius:8px;background:#183748}.budget139 b{margin-left:8px;color:#c3f4e6;font-variant-numeric:tabular-nums}
+.train-grid139{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.tune-grid139{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.btn.quiet-choice139{display:flex;flex-direction:column;gap:7px;min-width:0;min-height:88px;padding:12px 5px;border-radius:12px;border:1px solid #3b606d;background:#183c4b;color:#e8f2f1;box-shadow:none;touch-action:pan-y;-webkit-touch-callout:none;user-select:none;-webkit-user-select:none}
+.quiet-choice139>span{font-size:12px;font-weight:500;line-height:1.3}.quiet-choice139>b{font-size:24px;font-variant-numeric:tabular-nums}.quiet-choice139 .parameter{display:flex;justify-content:center;gap:4px}.quiet-choice139 .grade{font-size:11px;min-width:17px}
+.quiet-choice139:disabled{background:#0f2938;opacity:.5}.tune-grid139 .quiet-choice139{min-height:82px;flex-direction:row;justify-content:space-between;padding:15px}.tune-grid139 .quiet-choice139>span{font-size:14px}
+.hint139{font-size:12px;color:#9db4bf;margin:16px 0}.receipt139{padding:12px 14px;margin:12px 0;border-left:2px solid #82d9c7;background:#112e3e;font-size:13px;line-height:1.7}
+.primary-step139{margin:18px 0}.primary-step139>.btn{margin:0;min-height:54px}.opportunity-mini139{margin:7px 0}.opportunity-mini139>.btn{color:#efd5a4;font-size:13px;padding:5px 0;min-height:44px;text-align:left}
+body:not(.in-race) .next-voyage{background:#143b46;color:#edf6f3;border:1px solid #476c71;box-shadow:none;padding:22px;margin:20px 0;gap:18px}
+.next-voyage .eyebrow{color:#a1c9c2}.next-voyage h2{font-size:24px;color:#e9f6ef}.next-voyage .btn.primary{background:#9de5d1;color:#103a38;border-color:#9de5d1;min-height:54px}
+.race-meta139{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:13px;color:#c1d4dc;margin-bottom:18px}.race-meta139 b{font-size:17px;color:#b1ecd9}
+.series-numbers139{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:14px}.series-numbers139 span{font-size:12px;color:#b1c6cf}.series-numbers139 b{display:block;font-size:23px;color:#ecf5ef}
+.reward-summary139{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.story-routes139{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:18px 0}.story-routes139 .btn{min-width:0;padding:12px 8px}
+.settings-section>summary{min-height:48px;padding:14px 16px;font-size:14px}.settings-section[open]{padding-bottom:12px}.settings-section>.page-heading,.settings-section>.campaign-strip,.settings-section>.journey-journal134,.settings-section>.button-row{margin:14px}
+.runners-table .name-button{min-height:44px;padding:8px 0;font-size:14px}.runners-table td{padding:10px}.runners-table .cpu-start-note137{font-size:11px;color:#d7c499}.result-hero{box-shadow:none}.result-hero small{display:block;margin-top:7px}
+.save-footer{border:0;justify-content:center;margin:24px 0 8px;padding:0;color:#8ca5b1;font-size:11px;min-height:18px}
+.app-dock.bottom-nav{width:min(500px,100%);border-radius:18px 18px 0 0;padding:6px 12px calc(6px + env(safe-area-inset-bottom));gap:5px;background:#0c2434f5;box-shadow:0 -4px 18px #00152255}
+.app-dock .btn.text-btn{min-height:48px;padding:5px;font-size:11px;gap:3px}.app-dock .ui-icon{width:19px;height:19px}.app-dock .btn.active{box-shadow:inset 0 -2px #9cdec9;outline:0;background:#92d8c70c}
+.modal-root{z-index:200}.modal{max-height:calc(100dvh - 24px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}.modal>.section-line{position:sticky;top:-20px;background:#132f42;z-index:2;padding:10px 0;gap:12px}.modal>.section-line>.btn{flex-shrink:0;min-height:44px;color:#b4e9d9}.modal .two-column{grid-template-columns:1fr}.modal .page-heading h1{font-size:21px}
+.sound-controls{top:max(10px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));gap:0}.sound-controls summary{min-width:40px;min-height:40px;padding:7px 11px;border-radius:12px;font-size:17px}.sound-controls .sound-panel{max-height:calc(100dvh - 75px);overflow-y:auto}.sound-panel #sound-toggle{width:100%;margin-bottom:10px;min-height:44px}
+.high-contrast .quiet-panel139{border-color:#93b2bd;background:#092332}.high-contrast .hint139,.high-contrast .quiet-links139>.btn{color:#e0ecef}.large-type .quiet-choice139>span{font-size:14px}
+@media(max-width:420px){body:not(.in-race):not(.reading-novel) #app{padding:18px 14px calc(92px + env(safe-area-inset-bottom))}.quiet-panel139{padding:14px}.train-grid139{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.quiet-choice139>span{font-size:12px}.btn.quiet-choice139{min-height:78px}.tune-grid139 .quiet-choice139{flex-direction:column;gap:5px;padding:12px}.quiet-links139>.btn{font-size:12px;padding:8px 11px}.race-meta139{gap:6px 12px}.modal{width:calc(100% - 16px);padding:16px 14px}.modal>.section-line{top:-16px}}
+@media(orientation:landscape) and (max-height:560px){body:not(.in-race):not(.reading-novel) #app{padding-bottom:18px}.app-dock.bottom-nav{position:static;transform:none;margin:22px auto 0;border-radius:14px;border-bottom:1px solid #5d7d8799;padding:5px 10px}.train-grid139{grid-template-columns:repeat(5,minmax(0,1fr))}.btn.quiet-choice139{min-height:70px}.quiet-panel139{padding:12px}.modal{max-height:calc(100dvh - 16px)}}
+@media(prefers-reduced-motion:reduce){.quiet-choice139,.primary-step139 .btn{transition:none}}
+
+
+/* V140: story readability remains independent of CPU difficulty and driving assistance. */
+.large-type:not(.in-race) .novel-text{font-size:clamp(19px,4.7vw,23px);line-height:1.9}
+.large-type:not(.in-race) .novel-choice b{font-size:17px;line-height:1.6}
+.high-contrast:not(.in-race) .novel-box{background:#061727;border-color:#e6f5f9;color:#fff}
+/* V141: small review cue; details stay folded. Controls share their visual/input sides. */
+.goal-strip141{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:9px 13px;border-left:3px solid #8edacb;background:#173b4d;border-radius:5px;font-size:13px;line-height:1.5}
+.goal-strip141 .btn{flex-shrink:0}.control-fields141{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;margin:14px 0}.control-fields141 label{display:flex;flex-direction:column;gap:7px;font-size:13px}.control-fields141 label:has(input){flex-direction:row;align-items:center}.control-fields141 select{width:100%;min-width:0;min-height:44px;padding:8px;font-size:14px}.controls141{margin:14px 0}.mode-records141{margin:16px 0}
+.drive-shell{--control-size:1;--control-lift:0px;--control-inset:0px}
+.drive-shell .drive-controls{left:clamp(10px,calc(16px + var(--control-inset)),18vw);right:clamp(10px,calc(16px + var(--control-inset)),18vw);bottom:calc(16px + env(safe-area-inset-bottom) + var(--control-lift));height:calc(82px * var(--control-size));gap:10px}
+.drive-shell .drive-controls .steer-pad{flex:0 1 calc(210px * var(--control-size));width:50%;max-width:50%;height:100%;min-height:60px}
+.drive-shell .drive-controls .pedals{flex:0 1 calc(150px * var(--control-size));width:40%;max-width:40%;min-width:60px}
+.drive-shell .drive-controls .pedal.throttle{max-width:none;min-height:60px}
+.drive-shell .drive-controls>.posture-panel{width:50%;max-width:calc(210px * var(--control-size))}
+.drive-shell.swapped141 .drive-controls{flex-direction:row-reverse}.drive-shell.swapped141 .posture-panel{left:auto;right:0}.drive-shell.swapped141 .steer-hit-zone{left:auto;right:0}.drive-shell.swapped141 .throttle-hit-zone{right:auto;left:0}
+.steer-buttons141{display:none;position:absolute;inset:0;gap:3px;padding:4px;align-items:stretch}.steer-buttons141 button{min-width:0;min-height:44px;flex:1;border:1px solid #95c7ca;border-radius:9px;background:#123248;color:#f3f4ea;font-size:12px;touch-action:manipulation}.steer-buttons141 button[aria-pressed=true]{background:#a5ecd8;color:#102e40}
+.drive-shell.tap-steer141 .steer-buttons141{display:flex}.drive-shell.tap-steer141 .steer-pad>:not(.steer-buttons141){display:none}.drive-shell.tap-steer141 .steer-hit-zone{pointer-events:none}
+.drive-shell .drive-live{bottom:calc(82px * var(--control-size) + 76px + env(safe-area-inset-bottom) + var(--control-lift));left:12px;right:12px;max-height:60px}
+.drive-dialog .controls141{font-size:14px;text-align:left}.drive-dialog .drive-instructions{font-size:14px;line-height:1.7}.drive-dialog .control-fields141{grid-template-columns:repeat(2,minmax(0,1fr))}.drive-dialog select{color:#eaf5ef;background:#123248;border:1px solid #8abfc4;border-radius:7px}.drive-dialog{max-height:100%;overflow-y:auto}
+@media(orientation:landscape) and (max-height:600px){.drive-shell .drive-controls .steer-pad{flex-basis:calc(155px * var(--control-size))}.drive-shell .drive-controls .pedals{flex-basis:calc(130px * var(--control-size))}.drive-shell .drive-controls>.posture-panel{max-width:calc(155px * var(--control-size))}.drive-shell .drive-live{left:36%;right:36%;bottom:16px;font-size:10px;max-height:70px;overflow:hidden}.drive-dialog{padding:16px}.drive-dialog .control-fields141{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+
+/* V143: opt-in reading space; preserve scroll and choice access. */
+.wide-reading143 .novel-text{line-height:1.85;letter-spacing:.035em;overflow-wrap:anywhere}.wide-reading143 .novel-box{overflow-y:auto;overscroll-behavior:contain}.wide-reading143 .novel-choices b{line-height:1.55}#import-text{width:100%;box-sizing:border-box}#cup-format143,#cup-driver143,#draft-length143,#spacing143{width:100%;min-height:44px}.registry-card{content-visibility:auto;contain-intrinsic-size:auto 340px}
+
+/* V144: one primary progression area, compact preparation, persistent disclosures. */
+.career-screen144{max-width:980px;margin:0 auto;min-width:0}
+.career-screen144 .page-heading{margin-bottom:14px}
+.prep-goal144{display:flex;gap:12px;align-items:baseline;margin:12px 0 16px;padding-left:12px;border-left:3px solid var(--mint,#a5e7db)}
+.prep-goal144>span{font-size:.74rem;opacity:.75;white-space:nowrap}.prep-goal144 p{margin:0;line-height:1.5;font-weight:650;font-size:.94rem}
+.preparation-grid144{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin:14px 0}.preparation-grid144 .quiet-panel139{margin:0;padding:16px}
+.preparation-grid144 .section-line{margin-bottom:12px}.preparation-grid144 .section-line h2{font-size:1rem;margin:0}
+.preparation-grid144 .train-grid139{gap:8px}.preparation-grid144 .quiet-links139{margin:10px 0 0}
+.shared-note144{margin:6px 0;font-size:.8rem;color:var(--muted,#a9bbc5)}
+.progress-bar144{display:grid;gap:9px;margin:18px 0 20px;padding:16px;border:1px solid rgba(156,224,210,.32);border-radius:18px;background:rgba(20,52,66,.9);min-width:0}
+.progress-bar144>.btn.primary{width:100%;min-height:52px;white-space:normal}.progress-note144{margin:0;font-size:.8rem;line-height:1.5;color:#c1d5dc;overflow-wrap:anywhere}
+.progress-options144{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.progress-options144>.btn{min-height:44px;flex:1 1 140px;white-space:normal}
+.next-voyage .progress-bar144{margin:0;flex:1 1 260px}.next-voyage .progress-note144{color:#e5f3f1}
+.disclosure144{margin:10px 0;border:1px solid rgba(177,208,219,.2);border-radius:14px;background:rgba(18,44,59,.6);min-width:0;overflow:hidden}
+.disclosure144>summary{cursor:pointer;min-height:48px;padding:13px 16px;line-height:1.45;font-weight:650;overflow-wrap:anywhere}
+.disclosure144>summary:hover,.disclosure144>summary:focus-visible{background:rgba(160,225,212,.09)}
+.disclosure144[open]>summary{border-bottom:1px solid rgba(177,208,219,.16)}
+.disclosure-body144{padding:16px;min-width:0}.disclosure-body144 .quiet-links139{margin-bottom:0}.disclosure-body144>p:first-child{margin-top:0}
+.disclosure-body144 .panel{padding:14px}.disclosure-body144 .table-wrap{max-width:100%;overflow-x:auto}.disclosure-body144 .stats-grid{min-width:0}
+.career-screen144 .race-meta139{flex-wrap:wrap;gap:8px 14px}.career-screen144 .race-meta139>span{overflow-wrap:anywhere}
+.career-screen144 button:focus-visible,.disclosure144>summary:focus-visible{outline:3px solid #b9f1dd;outline-offset:3px}
+.career-screen144 .btn[disabled]{opacity:.55;cursor:not-allowed}.acquisition-list144 p{overflow-wrap:anywhere}
+.high-contrast .progress-bar144,.high-contrast .disclosure144{background:#071c29;border-color:#b6d7e3}.high-contrast .progress-note144{color:#fff}
+@media(min-width:760px){.preparation-grid144{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}.progress-bar144>.primary{max-width:540px;justify-self:center}.progress-note144{text-align:center}}
+@media(max-width:420px){.prep-goal144{display:block}.prep-goal144>span{display:block;margin-bottom:5px}.progress-bar144{padding:12px}.disclosure-body144{padding:12px}.preparation-grid144 .quiet-panel139{padding:12px}.career-screen144 .result-number{font-size:clamp(2.5rem,15vw,4.5rem)}}
+@media(prefers-reduced-motion:reduce){.career-screen144 *{scroll-behavior:auto}}
+
+
+/* V145: facts, hypotheses, and one chosen experiment; fixed-challenge cards. */
+.review145 h3{font-size:1rem;margin:0 0 .6rem}.review145 ul{margin:.4rem 0;padding-left:1.2rem}.review145 li{margin:.4rem 0;line-height:1.6}.review-facts145,.review-factors145,.review-trial145{padding:1rem 0;border-top:1px solid var(--line,#34515f)}.review-factors145 small{display:block;line-height:1.7;opacity:.8}.review-choices145{display:flex;flex-wrap:wrap;gap:.6rem}.review-choices145 .btn{flex:1 1 12rem;min-height:48px;white-space:normal}.selected145{border-color:#9be4d6!important;opacity:1!important}.challenge-grid145{display:grid;gap:1rem;margin:1rem 0}.challenge-grid145 .quiet-panel139{margin:0;display:flex;flex-direction:column;gap:.5rem}.challenge-grid145 .primary{margin-top:auto}.challenge-record145{padding:1rem 0;border-top:1px solid var(--line,#34515f)}.challenge-record145 p{margin:.5rem 0}.review145 p{line-height:1.75}.career-screen144 select{max-width:100%;min-height:44px}.career-screen144 label{display:block;margin:.7rem 0}.career-screen144 label select{display:block;width:100%;margin-top:.4rem}@media(min-width:880px){.challenge-grid145{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:420px){.review145 .section-line{flex-wrap:wrap}.review-choices145 .btn{flex-basis:100%}}
+
+/* V146 optional memory and support panels */
+.memory-group146{margin:1.4rem 0}.memory-group146 h3{font-size:.85rem;color:var(--muted);letter-spacing:.06em}.memory-group146 article{padding:.75rem 0;border-bottom:1px solid rgba(160,206,212,.15)}.memory-group146 article p{margin:.4rem 0;font-size:.95rem}.memory-resume146{padding:1rem;border:1px solid rgba(160,240,220,.3);border-radius:16px}.memory-resume146 small,.support-build146{color:var(--muted)}.support-links146{margin:.7rem 0}#diagnostic146-text{width:100%;font: .85rem/1.5 monospace;overflow-wrap:anywhere}.modal .settings-section p,.modal .settings-section li{line-height:1.8}.modal .settings-section li+li{margin-top:.65rem}
 </style>
   
   
@@ -3080,7 +3171,7 @@ body:not(.in-race) .entry-choice123{display:grid;grid-template-columns:34px minm
 
 </head>
 <body>
-  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v134</span></header>
+  <header class="masthead"><button class="brand" data-action="title" aria-label="タイトルへ">競艇物語<span>BOAT RACING CHRONICLE</span></button><span class="version">v147</span></header>
   <main id="app" tabindex="-1"><p class="loading">水面を準備しています…</p></main>
   <aside id="save-health121" role="status" aria-live="polite" hidden></aside>
   <div id="toast" role="status" aria-live="polite"></div>
@@ -3122,13 +3213,19 @@ if(root.visualViewport)root.visualViewport.addEventListener('resize',schedule);
 <script src="src/journey134.js"></script>
 <script src="src/workshop128.js"></script>
 <script src="src/hard129.js"></script>
+<script src="src/awakening136.js"></script>
 <script src="src/affinity.js"></script>
 <script src="src/social129.js"></script>
 <script src="src/craft118.js"></script>
 <script src="src/drama-data.js"></script>
 <script src="src/scene131.js"></script>
+<script src="src/days143.js"></script>
 <script src="src/narrative132.js"></script>
 <script src="src/choices133.js"></script>
+<script src="src/continuity-data142.js"></script>
+<script src="src/memory-data146.js"></script>
+<script src="src/memory146.js"></script>
+<script src="src/continuity142.js"></script>
 <script src="src/routes130.js"></script>
 <script src="src/drama.js"></script>
 <script src="src/racing.js"></script>
@@ -3173,6 +3270,13 @@ if(root.visualViewport)root.visualViewport.addEventListener('resize',schedule);
 <script src="src/coaching121.js"></script>
 <script src="src/epilogues126.js"></script>
 <script src="src/flow131.js"></script>
+<script src="src/improve141.js"></script>
+<script src="src/after143.js"></script>
+<script src="src/passage143.js"></script>
+<script src="src/progress144.js"></script>
+<script src="src/review145.js"></script>
+<script src="src/challenge145.js"></script>
+<script src="src/support146.js"></script>
 <script src="src/script.js"></script>
 </body>
 </html>

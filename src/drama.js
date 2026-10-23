@@ -2,6 +2,8 @@
 
 /* V106: recorded story branches and thematic decisions. No DOM or random draws on reads. */
 (function(root){'use strict';
+const Memory146=root.KM_MEMORY146||(typeof require==='function'?require('./memory146.js'):null);
+const Continuity=root.KM_CONTINUITY142||(typeof require==='function'?require('./continuity142.js'):null);
 const Journey134=root.KM_JOURNEY134||(typeof require==='function'?require('./journey134.js'):null);
 const Practice133=root.KM_PRACTICE133||(typeof require==='function'?require('./practice133.js'):null);
 const Scenes=root.KM_SCENE131||(typeof require==='function'?require('./scene131.js'):null);
@@ -20,7 +22,7 @@ function entry(c,kind,stage,result){const t=c.campaign,prev=t.entries.filter(x=>
   if(stage>=2&&wins>=8&&races>=10&&wins/races>=.60)t.dominance=true;
   branch=t.dominance?(result.outcome==='setback'?'fracture':last?.branch==='fracture'?'rebound':'crown'):result.outcome==='setback'?'pressure':last?.outcome==='setback'?'rebound':'contest';
  }
- return {practice133:Practice133.capture(t),choiceMode:'paths133',observation:kind==='season'?Craft.storyBeat(c):null,id:kind==='season'?'season:'+stage:kind,kind,stage,outcome:result?.outcome||'steady',strong:keys.slice().sort((a,b)=>c.player.stats[b]-c.player.stats[a])[0],weak:null,read:false,late:kind==='opening'&&stage>0,legacy:false,branch,wins,races,prior:prev?.decision?prev.decision.index:null,priorText:prev?.decision?specFor(t,prev)[prev.decision.index]:'',priorAligned:prev?.decision?prev.decision.aligned:null,choiceSpec:hasChoice?di:null,decision:null,...(kind==='season'?{result:{rank:result.rank,place:result.place,type:result.type,champion:result.champion}}:{})};
+ return {edition146:true,practice133:Practice133.capture(t),choiceMode:'paths133',observation:kind==='season'?Craft.storyBeat(c):null,id:kind==='season'?'season:'+stage:kind,kind,stage,outcome:result?.outcome||'steady',strong:keys.slice().sort((a,b)=>c.player.stats[b]-c.player.stats[a])[0],weak:null,read:false,late:kind==='opening'&&stage>0,legacy:false,branch,wins,races,prior:prev?.decision?prev.decision.index:null,priorText:prev?.decision?specFor(t,prev)[prev.decision.index]:'',priorAligned:prev?.decision?prev.decision.aligned:null,choiceSpec:hasChoice?di:null,decision:null,...(kind==='season'?{result:{rank:result.rank,place:result.place,type:result.type,champion:result.champion}}:{})};
 }
 function ensure(c,legacy){
  if(!c.campaign){c.campaign={version:2,arc:B.arcs[c.player.scenario]?c.player.scenario:'light',edition:119,origin:c.stage,entries:[],closed:false,dominance:false};c.campaign.entries.push(entry(c,'opening',c.stage));freezeScene(c.campaign,c.campaign.entries[0]);}
@@ -43,9 +45,9 @@ function scene(t,id,legacy){const e=t?.entries.find(x=>x.id===id);if(!e)return n
  if(e.choiceSpec!==null&&e.choiceSpec!==undefined&&!e.decision)body.push(actor+'「'+({light:'それで、今はどう考えてる？　お前の返事を聞かせてくれ。',back:'君はどうしたい？　俺の予想じゃなく、本人の答えを聞きたい。',shore:'今、どうしたいか聞かせて。できそうなことから、一緒に考えよう。',recovery:'今の考えを聞かせてくれ。昔と違う答えでも、構わない。'})[t.arc]+'」');
  if(e.prose){title=e.prose.title;body=e.prose.body.slice();}
  if(e.decision)body.push('選んだ返答：'+specFor(t,e)[e.decision.index],e.decision.note);
- return {title,body,arc:a.title,stage:e.stage,kind:e.kind,result:e.result||null,branch:B.branches[e.branch]?.name||'',choices:e.choiceSpec!==null&&e.choiceSpec!==undefined&&!e.decision?specFor(t,e).slice(0,2):[]};
+ return Continuity.main({title,body,arc:a.title,stage:e.stage,kind:e.kind,result:e.result||null,branch:B.branches[e.branch]?.name||'',choices:e.choiceSpec!==null&&e.choiceSpec!==undefined&&!e.decision?specFor(t,e).slice(0,2):[]},t,e);
 }
-function freezeScene(t,e){const sc=scene(t,e.id);if(sc&&!e.prose){const staged=Practice133.stage(Narrative.main(sc,t.arc,e),t,e);e.prose={title:sc.title,body:staged.body};}}
+function freezeScene(t,e){const sc=scene(t,e.id);if(sc&&!e.prose){const staged=Practice133.stage(Narrative.main(sc,t.arc,e),t,e);e.prose={title:sc.title,body:staged.body};e.edition142=true;}}
 function pending(t){return t?.version===2?t.entries.filter(e=>!e.legacy&&e.choiceSpec!==null&&!e.decision):[];}
 function choose(c,id,index,api){const t=c.campaign,e=t?.entries.find(x=>x.id===id);if(t?.version!==2||!e||pending(t)[0]!==e||!whole(index,0,1)||c.status==='race'||c.series?.race?.drive&&!c.series.race.done)return null;
  const spec=specFor(t,e),modern=['paths','paths133'].includes(e.choiceMode),aligned=modern||index===spec[2],key=modern?spec[2+index]:spec[3],amount=aligned?gain(c,key,modern?.16:.32,api):0;let skill=null;const score=t.entries.filter(x=>x.decision?.aligned).length+(aligned?1:0);
@@ -58,6 +60,8 @@ function valid(t,legacy){if(t?.version===1)return legacy.valid(t);if(!t||t.versi
  if(i===0?(e.id!=='opening'||e.stage!==t.origin):e.kind==='opening')return false;
  if(e.kind==='season'){const z=e.result;if(!z||e.id!=='season:'+e.stage||!whole(z.rank,1,20)||!['championship','consolation','eliminated'].includes(z.type)||(z.type==='eliminated'?z.place!==null:!whole(z.place,1,6))||typeof z.champion!=='boolean'||e.outcome!==legacy.outcome({champion:z.champion,finalType:z.type,finalPlace:z.place})||z.champion&&(z.type!=='championship'||z.place!==1))return false;}
  if(['gate','early'].includes(e.kind)&&(e.id!==e.kind||i!==t.entries.length-1||!t.closed))return false;
+ if(e.edition146!==undefined&&typeof e.edition146!=='boolean'||!Memory146.validMain(e.memory146,t,e))return false;
+ if(e.edition142!==undefined&&typeof e.edition142!=='boolean')return false;if(e.connection142!==undefined&&(!e.edition142||!Array.isArray(e.connection142)||e.connection142.length>8||!e.connection142.every(x=>str(x,1500))))return false;
  if(!Practice133.valid(e.practice133,t.arc,t.entries))return false;if(e.prose&&(!str(e.prose.title,160)||!Array.isArray(e.prose.body)||e.prose.body.length>100||!e.prose.body.every(v=>str(v,3000))))return false;
  if(e.legacy===true)return true;
  if(e.legacy!==false||!str(e.priorText,200)||![null,true,false].includes(e.priorAligned)||!B.branches[e.branch]||!whole(e.wins,0,60)||!whole(e.races,e.wins,60)||!([null,0,1].includes(e.prior))||!(e.choiceSpec===null||whole(e.choiceSpec,0,5)))return false;
@@ -76,7 +80,7 @@ function rivalRead(t,person,index,withoutDecision=false){const q=t.rival.drama,e
  if(e.record&&(q.version===1||e.legacy130))body.push(e.record.won?'直近の対戦では、自分が先着した。':'直近の対戦では、相手が先着した。',e.record.won?person.name+'「次は同じ所で負けないから、油断しないでくれよ」':'主人公「次は追いつきたい。今日の映像も、後で見せてくれる？」');
  if(e.prose){title=e.prose.title;body=e.prose.body.slice();}
  if(e.decision&&!withoutDecision)body.push('選んだ返答：'+(e.choiceLabels130||ch[2])[e.decision.index],e.decision.note);return {key:'rival'+(e.prose?.body.some(x=>Scenes.read(x))?'131':q.version===2?'130':'106')+':'+person.id+':'+e.index,title,person,background:'harbor',body,choices:[],index:e.index};}
-function rivalScene(c,person){const q=rivalState(c),g=rivalGate(c);let e=q.entries.find(x=>!x.decision);if(!e&&g.open){if(g.index===7)A.unlock(c,'rival');const last=c.development.rival.history.at(-1),ch=B.rivals[c.development.rival.cast].chapters[g.index];e={index:g.index,stage:c.stage,record:last?{won:last.won,place:last.place,other:last.other}:null,decision:null,prose:Journey134.rivalScene(c,Scenes.rival({title:ch[0],body:ch[1].slice()},c.development.rival.cast,g.index)),choiceLabels130:ch[2].slice()};q.entries.push(e);}if(!e)e=q.entries.at(-1);if(!e)return null;const sc=rivalRead(c.development,person,e.index);if(!e.decision&&g.open)sc.choices=e.choiceLabels130.slice();return sc;}
+function rivalScene(c,person){const q=rivalState(c),g=rivalGate(c);let e=q.entries.find(x=>!x.decision);if(!e&&g.open){if(g.index===7)A.unlock(c,'rival');const last=c.development.rival.history.at(-1),ch=B.rivals[c.development.rival.cast].chapters[g.index];e={index:g.index,stage:c.stage,record:last?{won:last.won,place:last.place,other:last.other}:null,decision:null,...Memory146.rival(c,Journey134.rivalScene(c,Scenes.rival({title:ch[0],body:ch[1].slice()},c.development.rival.cast,g.index)),g.index),choiceLabels130:ch[2].slice()};q.entries.push(e);}if(!e)e=q.entries.at(-1);if(!e)return null;const sc=rivalRead(c.development,person,e.index);if(!e.decision&&g.open)sc.choices=e.choiceLabels130.slice();return sc;}
 function chooseRival(c,index,choice,api){const q=rivalState(c),g=rivalGate(c),e=q.entries.find(x=>x.index===index);if(!g.open||!e||e.decision||index!==g.index||!whole(choice,0,1))return null;const def=rivalDefinition(q,c.development.rival.cast,e),ch=def.chapters[index],person=api.Development.rival(c),aligned=choice===ch[3],amount=aligned?gain(c,person.key,.35,api):0;let skill=null;
  const score=q.entries.filter(x=>x.decision?.aligned).length+(aligned?1:0),won=c.development.rival.history.some(x=>x.won);
  if(index===7&&aligned&&score>=6&&won&&!q.reward){const id={speed:'burst',turn:'split',start:'entry',accel:'wit_latebird',power:'anchor'}[person.key];skill=api.acquire(c,c.player,id,person.name+'と磨いた技').id;q.reward=skill;}
@@ -86,6 +90,7 @@ function validRival(q,cast){if(q===undefined)return true;const modern=q?.version
  if(q.legacy130!==undefined&&(!modern||!whole(q.legacy130,0,5)||q.legacy130>q.entries.length))return false;
  const rewards=q.entries.filter(e=>e.decision?.skill);if(rewards.length>1||q.reward!==(rewards[0]?.decision.skill||null))return false;
  let open=false;return q.entries.every((e,i)=>{const legacy=!modern||i<(q.legacy130||0),def=legacy?Routes.legacyRivals[cast]:B.rivals[cast];if(e.index!==i||!whole(e.stage,(legacy?legacyRivalStages:rivalStages)[i],8)||open||modern&&(!!e.legacy130!==legacy))return false;
+ if(!Memory146.validRival(e.memory146,q,cast,e))return false;
  if(e.record&&(!whole(e.record.place,1,6)||!whole(e.record.other,1,6)||typeof e.record.won!=='boolean'))return false;
  if(e.prose&&(!str(e.prose.title,160)||!Array.isArray(e.prose.body)||e.prose.body.length>100||!e.prose.body.every(x=>str(x))))return false;
  if(modern&&(!e.prose||!Array.isArray(e.choiceLabels130)||e.choiceLabels130.length!==2||!e.choiceLabels130.every((x,j)=>x===def.chapters[i][2][j])))return false;

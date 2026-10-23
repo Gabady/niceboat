@@ -1,0 +1,46 @@
+{
+  "build": "140",
+  "revision": "cpu-balance-stage-2-2026-10-22",
+  "modules": 58,
+  "sourceSha256": "a157bfcd206d514b25ef6a176f43423b6d137c5b3328ac3b1fe37699a54c8633",
+  "hardCpuReduction": {
+    "stats": 5,
+    "stages": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "sgUnchanged": true,
+    "playerUnchanged": true,
+    "activeRacesPreserved": true
+  },
+  "checks": {
+    "cpu-stats": 8,
+    "progress": 39,
+    "hard": 16,
+    "cpu-start": 13,
+    "rules": 15
+  },
+  "checksTotal": 91,
+  "deliveredInlineChecks": 117,
+  "simulatedRaces": 88,
+  "htmlEntrypoints": [
+    "index.html",
+    "index_android_safe.html",
+    "index_iphone_safe.html",
+    "index_editable.html",
+    "web/index.html"
+  ],
+  "browserTested": false,
+  "physicalDevicesTested": false,
+  "limitations": [
+    "DOM adapter executes the production handlers, not real layout or touchscreen.",
+    "No browser layout/screenshots or physical-device/audio/FPS verification.",
+    "Paired AI simulations use 2 fixed seeds, not human win rates."
+  ]
+}

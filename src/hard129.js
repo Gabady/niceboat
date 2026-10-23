@@ -4,7 +4,20 @@ const D=root.KM_DATA||(typeof require==='function'?require('./data.js'):null);
 const copy=x=>JSON.parse(JSON.stringify(x)),hard=p=>p?.difficulty==='hard';
 const hash=s=>{let h=2166136261;for(const c of String(s))h=Math.imul(h^c.charCodeAt(0),16777619)>>>0;return h;};
 function promote(v){const bands=[0,35,50,65,80,90,101,121];if(v>=101)return Math.min(120,v);let i=0;while(v>=bands[i+1])i++;return Math.min(120,Math.round((bands[i+1]+(v-bands[i])/(bands[i+1]-bands[i])*(bands[i+2]-bands[i+1]))*100)/100);}
-function npc(c,p){if(!hard(c.player)||p.id===c.player.id)return p;const stamp=D.statKeys.map(k=>p.stats[k]).join('|');if(p.hardStats129===stamp)return p;p.difficulty='hard';for(const k of D.statKeys)p.stats[k]=promote(p.stats[k]);p.hardStats129=D.statKeys.map(k=>p.stats[k]).join('|');return p;}
+function npc(c,p){
+ if(!hard(c.player)||p.id===c.player.id)return p;
+ const stamp=D.statKeys.map(k=>p.stats[k]).join('|'),reduction=c.stage===8?0:5;
+ const promoted=p.hardStats129===stamp,previous=promoted&&p.hardReduction138===5?5:0;
+ if(promoted&&previous===reduction)return p;
+ p.difficulty='hard';for(const k of D.statKeys)p.stats[k]=Math.max(0,(promoted?p.stats[k]+previous:promote(p.stats[k]))-reduction);
+ p.hardReduction138=reduction;p.hardStats129=D.statKeys.map(k=>p.stats[k]).join('|');return p;
+}
+function migrate(c){
+ if(!hard(c?.player)||c.stage===8||!c.series||c.series.completed)return false;
+ c.series.npcs.forEach(p=>npc(c,p));
+ const r=c.series.race;if(!r||r.drive||r.done||r.phase>=0)return false;
+ r.runners.forEach(p=>npc(c,p));return true;
+}
 function initial(p){const q=copy(p);if(hard(q))for(const k of D.statKeys)q.stats[k]=Math.min(120,Math.round(q.stats[k]*1.2*100)/100);return q;}
 function pool(p){const preferred=p.skills.map(id=>D.abilityMap['mlr_'+id]).filter(Boolean);const all=D.abilities.filter(a=>a.rarity==='MLR'&&!p.skills.includes(a.id));const best=preferred.filter(a=>!p.skills.includes(a.id));return best.length?best:all;}
 function award(c,key,reason,api){if(!hard(c.player))return null;const h=c.hard129||(c.hard129={awarded:[],wins:0,settled:[]});if(h.awarded.includes(key))return null;const a=pool(c.player);if(!a.length)return null;const skill=a[hash(c.player.id+':'+key)%a.length];h.awarded.push(key);return api.acquire(c,c.player,skill.id,reason);}
@@ -15,5 +28,5 @@ function settle(c,r,z,api){if(!hard(c.player)||c.stage!==8)return;const h=c.hard
  if(r.type==='championship'&&z.place===1)take('champion','最優秀・シリーズ制覇');
 }
 function valid(h){return h===undefined||!!h&&Array.isArray(h.awarded)&&h.awarded.length<=4&&new Set(h.awarded).size===h.awarded.length&&h.awarded.every(x=>['wins','final','podium','champion'].includes(x))&&Number.isInteger(h.wins)&&h.wins>=0&&h.wins<=5&&Array.isArray(h.settled)&&h.settled.length<=6&&new Set(h.settled).size===h.settled.length&&h.settled.every(x=>typeof x==='string'&&x.length<120);}
-const H={hard,promote,npc,initial,pool,award,finalGrid,settle,valid};root.KM_HARD129=H;if(typeof module!=='undefined'&&module.exports)module.exports=H;
+const H={hard,promote,npc,migrate,initial,pool,award,finalGrid,settle,valid};root.KM_HARD129=H;if(typeof module!=='undefined'&&module.exports)module.exports=H;
 })(globalThis);

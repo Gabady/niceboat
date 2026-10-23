@@ -1,0 +1,288 @@
+{
+  "build": "135",
+  "scope": "Deterministic engine tests; no browser or physical-device verification",
+  "checks": [
+    "54回集中はA、半々はB。父の教え・追加経験があっても基礎はAまで",
+    "特殊能力補正だけでSに届き、重ねてもS上限。過去の基礎数値は削らない",
+    "B以下の普段の効果は小さく、会心だけ上振れ。Sでも影響は有界",
+    "整備の実操作は一回で完結し、失敗も学習。半分効果・無効操作・旧ムラ値の非依存",
+    "父の今節の約束と整備会話は新しい上限を使い、Aの経験を70へ戻さない",
+    "追加整備券も半分の経験・効果で、行動前と行動後のどちらでも一度だけ使える",
+    "新ティルトは独立した角度設定。旧レースは元の角度と整備倍率を保持",
+    "本編の返答で四物語それぞれ2つの技を伝授し、再読・無効選択では重複しない",
+    "旧進行の物語報酬は読込時に与えず、未読の節目を読んだ時だけ付与する",
+    "完走・失格・分析の記録は一度だけ更新。次走スナップショットだけを変更",
+    "物語のレース効果はプレイヤーのみ。手動・観戦とも小幅で、保存後も同じ",
+    "V127進行中セーブの位置・能力・機材・会話を変更せず復元する",
+    "追加データの不正な値・別物語の特能をセーブ読込で拒否する",
+    "V127実エンジンの固定条件と比較し、C以下の練習と全帯域のレース成長を抑制"
+  ],
+  "maintenance": [
+    {
+      "start": 18,
+      "arc": "light",
+      "mode": "easy",
+      "concentrated": 88,
+      "split": 71.7575
+    },
+    {
+      "start": 18,
+      "arc": "light",
+      "mode": "normal",
+      "concentrated": 88,
+      "split": 71.7575
+    },
+    {
+      "start": 18,
+      "arc": "back",
+      "mode": "easy",
+      "concentrated": 86.5707,
+      "split": 68.8415
+    },
+    {
+      "start": 18,
+      "arc": "back",
+      "mode": "normal",
+      "concentrated": 86.5707,
+      "split": 68.8415
+    },
+    {
+      "start": 18,
+      "arc": "shore",
+      "mode": "easy",
+      "concentrated": 86.5707,
+      "split": 68.8415
+    },
+    {
+      "start": 18,
+      "arc": "shore",
+      "mode": "normal",
+      "concentrated": 86.5707,
+      "split": 68.8415
+    },
+    {
+      "start": 18,
+      "arc": "recovery",
+      "mode": "easy",
+      "concentrated": 86.5707,
+      "split": 68.8415
+    },
+    {
+      "start": 18,
+      "arc": "recovery",
+      "mode": "normal",
+      "concentrated": 86.5707,
+      "split": 68.8415
+    },
+    {
+      "start": 20,
+      "arc": "light",
+      "mode": "easy",
+      "concentrated": 88,
+      "split": 72.4498
+    },
+    {
+      "start": 20,
+      "arc": "light",
+      "mode": "normal",
+      "concentrated": 88,
+      "split": 72.4498
+    },
+    {
+      "start": 20,
+      "arc": "back",
+      "mode": "easy",
+      "concentrated": 86.9169,
+      "split": 69.5338
+    },
+    {
+      "start": 20,
+      "arc": "back",
+      "mode": "normal",
+      "concentrated": 86.9169,
+      "split": 69.5338
+    },
+    {
+      "start": 20,
+      "arc": "shore",
+      "mode": "easy",
+      "concentrated": 86.9169,
+      "split": 69.5338
+    },
+    {
+      "start": 20,
+      "arc": "shore",
+      "mode": "normal",
+      "concentrated": 86.9169,
+      "split": 69.5338
+    },
+    {
+      "start": 20,
+      "arc": "recovery",
+      "mode": "easy",
+      "concentrated": 86.9169,
+      "split": 69.5338
+    },
+    {
+      "start": 20,
+      "arc": "recovery",
+      "mode": "normal",
+      "concentrated": 86.9169,
+      "split": 69.5338
+    },
+    {
+      "start": 22,
+      "arc": "light",
+      "mode": "easy",
+      "concentrated": 88,
+      "split": 73.1421
+    },
+    {
+      "start": 22,
+      "arc": "light",
+      "mode": "normal",
+      "concentrated": 88,
+      "split": 73.1421
+    },
+    {
+      "start": 22,
+      "arc": "back",
+      "mode": "easy",
+      "concentrated": 87.2631,
+      "split": 70.2261
+    },
+    {
+      "start": 22,
+      "arc": "back",
+      "mode": "normal",
+      "concentrated": 87.2631,
+      "split": 70.2261
+    },
+    {
+      "start": 22,
+      "arc": "shore",
+      "mode": "easy",
+      "concentrated": 87.2631,
+      "split": 70.2261
+    },
+    {
+      "start": 22,
+      "arc": "shore",
+      "mode": "normal",
+      "concentrated": 87.2631,
+      "split": 70.2261
+    },
+    {
+      "start": 22,
+      "arc": "recovery",
+      "mode": "easy",
+      "concentrated": 87.2631,
+      "split": 70.2261
+    },
+    {
+      "start": 22,
+      "arc": "recovery",
+      "mode": "normal",
+      "concentrated": 87.2631,
+      "split": 70.2261
+    }
+  ],
+  "growth": [
+    {
+      "value": 25,
+      "mode": "easy",
+      "trainingBefore": 1.59,
+      "trainingAfter": 1.08,
+      "raceBefore": 0.41,
+      "raceAfter": 0.15
+    },
+    {
+      "value": 25,
+      "mode": "normal",
+      "trainingBefore": 2.12,
+      "trainingAfter": 1.44,
+      "raceBefore": 0.55,
+      "raceAfter": 0.21
+    },
+    {
+      "value": 40,
+      "mode": "easy",
+      "trainingBefore": 1.43,
+      "trainingAfter": 0.98,
+      "raceBefore": 0.37,
+      "raceAfter": 0.14
+    },
+    {
+      "value": 40,
+      "mode": "normal",
+      "trainingBefore": 1.9,
+      "trainingAfter": 1.31,
+      "raceBefore": 0.49,
+      "raceAfter": 0.19
+    },
+    {
+      "value": 55,
+      "mode": "easy",
+      "trainingBefore": 1.27,
+      "trainingAfter": 0.83,
+      "raceBefore": 0.33,
+      "raceAfter": 0.12
+    },
+    {
+      "value": 55,
+      "mode": "normal",
+      "trainingBefore": 1.69,
+      "trainingAfter": 1.1,
+      "raceBefore": 0.44,
+      "raceAfter": 0.16
+    },
+    {
+      "value": 70,
+      "mode": "easy",
+      "trainingBefore": 0.71,
+      "trainingAfter": 0.71,
+      "raceBefore": 0.19,
+      "raceAfter": 0.1
+    },
+    {
+      "value": 70,
+      "mode": "normal",
+      "trainingBefore": 0.95,
+      "trainingAfter": 0.95,
+      "raceBefore": 0.25,
+      "raceAfter": 0.14
+    },
+    {
+      "value": 85,
+      "mode": "easy",
+      "trainingBefore": 0.32,
+      "trainingAfter": 0.32,
+      "raceBefore": 0.08,
+      "raceAfter": 0.05
+    },
+    {
+      "value": 85,
+      "mode": "normal",
+      "trainingBefore": 0.42,
+      "trainingAfter": 0.42,
+      "raceBefore": 0.11,
+      "raceAfter": 0.06
+    },
+    {
+      "value": 95,
+      "mode": "easy",
+      "trainingBefore": 0.11,
+      "trainingAfter": 0.11,
+      "raceBefore": 0.03,
+      "raceAfter": 0.02
+    },
+    {
+      "value": 95,
+      "mode": "normal",
+      "trainingBefore": 0.15,
+      "trainingAfter": 0.15,
+      "raceBefore": 0.04,
+      "raceAfter": 0.02
+    }
+  ]
+}

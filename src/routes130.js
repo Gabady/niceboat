@@ -4703,15 +4703,17 @@ function apply(B){if(!B||applied.has(B))return B;
 function applyRivals(B){if(!B||applied.has(B))return B;for(const [id,route]of Object.entries(data.rivals)){legacyRivals[id]=copy(B.rivals[id]);Object.assign(B.rivals[id],copy(route));}applied.add(B);return B;}
 function qualifiedFinal(c){const r=c?.series?.race;return !!(c.stage===8&&!c.ending&&r&&r.type==='championship'&&(!r.grade||r.grade==='sg')&&!r.done&&!r.drive&&r.runners?.some(n=>n.id===c.player.id));}
 function complete(t,id){const q=t?.heroines?.[id];return !!(q&&t.partner===id&&q.dated&&!q.failed&&t.completed===id&&(q.step===10||q.legacy130?.completed&&q.step>=8||t.version<3&&q.step===7));}
-function chapter(c,h,i){const sc=copy((c.campaign?.arc==='recovery'?h.recoveryChapters:h.chapters)[i]||null);if(!sc)return null;
+function chapter(c,h,i,legacy=false){const sc=copy((c.campaign?.arc==='recovery'?h.recoveryChapters:h.chapters)[i]||null);if(!sc)return null;
  if(h.id==='mizuki'&&i===9&&c.series?.race?.runners?.some(n=>n.id==='mizuki')){
  const replacements={
   '瑞希「今日は岸から見てる。私にいい顔を見せようとして、走りを変えないで」':'瑞希「今日は同じ六艇だね。私にいい顔を見せようとして、譲ったりしないで」',
   '瑞希「それなら、ちゃんと応援できる」':'瑞希「私も。一着は譲らない。終わったら、一緒に映像を見よう」'
  };sc.body=sc.body.map(x=>replacements[x]||x);const ch=sc.choices.find(x=>x.code===1);ch.label='同じ一着を取りにいこう。水面で会おう';ch.reply='瑞希「うん。終わったら、どっちが先でも話そう。今夜は時間を空けてある」';
  }
- const narrated=(root.KM_NARRATIVE132||(typeof require==='function'?require('./narrative132.js'):null)).heroine(sc,c,h.id,i);
- return (root.KM_CHOICES133||(typeof require==='function'?require('./choices133.js'):null)).heroine(narrated,c,h.id,i);
+ const narrator=legacy?(root.KM_NARRATIVE132||(typeof require==='function'?require('./narrative132.js'):null)):(root.KM_CONTINUITY142||(typeof require==='function'?require('./continuity142.js'):null));
+ const narrated=narrator.heroine(sc,c,h.id,i);
+ const revised=(root.KM_CHOICES133||(typeof require==='function'?require('./choices133.js'):null)).heroine(narrated,c,h.id,i);
+ return legacy?revised:narrator.choices(revised,h.id,i);
 }
 function expression(id,text){for(const ch of data.heroines[id]||[]){for(const [emotion,words]of Object.entries(ch.expressionCues||{}))if(words.includes(text))return emotion;for(const q of ch.choices)if(q.reply.includes('「'+text+'」'))return q.emotion;}return null;}
 const API={data,apply,applyRivals,legacyRivals,qualifiedFinal,complete,chapter,expression};root.KM_ROUTES130=API;if(typeof module!=='undefined'&&module.exports)module.exports=API;

@@ -2,7 +2,7 @@
 (function(root){
 'use strict';
 const finite=v=>Number.isFinite(v),num=v=>finite(v)?v:0,positive=v=>Math.max(0,num(v));
-const modeNames={manual:'自分で操船',assisted:'途中から観戦',auto:'おまかせ走行',spectator:'観戦モード',skip:'結果へスキップ',unknown:'操作方式の記録なし'};
+const modeNames={mixed:'手動＋観戦',manual:'自分で操船',assisted:'途中から観戦',auto:'おまかせ走行',spectator:'観戦モード',skip:'結果へスキップ',unknown:'操作方式の記録なし'};
 const sectorName=i=>(Math.floor(i/4)+1)+'周目・'+['第1ターンまで','向こう正面','第2ターン','ホーム直線'][i%4];
 const stamp=v=>finite(v)&&v>=0&&v<=283?v:null;
 
@@ -37,7 +37,7 @@ function taskFromSection(x){
 function review(z,player){
  if(!z||typeof z!=='object')return null;
  const m=z.driving?.metrics||{},q=m.craft||{},sections=sectionsOf(z),controlMode=Object.prototype.hasOwnProperty.call(modeNames,z.driving?.controlMode)?z.driving.controlMode:'unknown',manual=controlMode==='manual';
- const modeNote=manual?'':controlMode==='assisted'?'手動と自動が混在した記録です。区間ごとの操作主体は特定できません。':controlMode==='unknown'?'操作方式の記録がないため、操作の評価は行いません。':'観戦・自動走行の記録です。操作の評価ではありません。';
+ const modeNote=manual?'':['assisted','mixed'].includes(controlMode)?'手動と自動が混在した記録です。区間ごとの操作主体は特定できません。':controlMode==='unknown'?'操作方式の記録がないため、操作の評価は行いません。':'観戦・自動走行の記録です。操作の評価ではありません。';
  const losses=sections.filter(x=>x.gapChange>3||x.rankChange>0).sort((a,b)=>b.gapChange-a.gapChange||b.rankChange-a.rankChange||(a.t??0)-(b.t??0)),loss=losses[0];
  const best=sections.filter(x=>x.rankChange<0).sort((a,b)=>a.rankChange-b.rankChange||a.gapChange-b.gapChange)[0];
  const finish=finite(z.driving?.time)&&!z.startFault&&!z.capsized&&!z.dnf;
